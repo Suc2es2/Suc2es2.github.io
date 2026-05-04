@@ -1,0 +1,587 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  <title>
+    VulnHub Empire：Breakout | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="Empire：Breakout项目地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;empire&#x2F;02-Breakout.zip 是一个打包好的镜像文件 注意：导入 vmx 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  80、10000、20000 都是 Web 服务  敏感信息泄露Apache2 Debian Default Page: It wo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VulnHub Empire：Breakout">
+<meta property="og:url" content="http://example.com/2026/05/04/Empire%20Breakout/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="Empire：Breakout项目地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;empire&#x2F;02-Breakout.zip 是一个打包好的镜像文件 注意：导入 vmx 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  80、10000、20000 都是 Web 服务  敏感信息泄露Apache2 Debian Default Page: It wo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69f8b00cb681ce9bfd1fb9e0.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69f8b031b681ce9bfd1fb9e1.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69f8b05fb681ce9bfd1fb9e8.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69f8b520b681ce9bfd1ff917.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69f8b0e2b681ce9bfd1fb9fe.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69f8b56eb681ce9bfd1ff921.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69f8b647b681ce9bfd1ff936.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69f8b6f2b681ce9bfd1ff949.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69f8b71eb681ce9bfd1ff950.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69f8b94bb681ce9bfd1ff986.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69f8be25b681ce9bfd1ff9fb.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69f8be95b681ce9bfd1ff9fc.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69f8c051b681ce9bfd1ffa1f.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69f8c096b681ce9bfd1ffa20.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69f8c146b681ce9bfd1ffa23.png">
+<meta property="article:published_time" content="2026-05-04T14:20:00.000Z">
+<meta property="article:modified_time" content="2026-05-04T15:56:38.997Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="Brainfuck 解密">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Capabilities 提权">
+<meta property="article:tag" content="SMB 用户枚举">
+<meta property="article:tag" content="敏感信息泄露">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/69f8b00cb681ce9bfd1fb9e0.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="VulnHub Empire：Breakout">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">VulnHub Empire：Breakout</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Empire%EF%BC%9ABreakout"><span class="toc-number">1.</span> <span class="toc-text">Empire：Breakout</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-number">1.1.</span> <span class="toc-text">敏感信息泄露</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache2-Debian-Default-Page-It-works"><span class="toc-number">1.1.1.</span> <span class="toc-text">Apache2 Debian Default Page: It works</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SMB-%E7%94%A8%E6%88%B7%E6%9E%9A%E4%B8%BE"><span class="toc-number">1.1.2.</span> <span class="toc-text">SMB 用户枚举</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF"><span class="toc-number">1.2.</span> <span class="toc-text">CTF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Brainfuck-%E8%A7%A3%E5%AF%86"><span class="toc-number">1.2.1.</span> <span class="toc-text">Brainfuck 解密</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RCE"><span class="toc-number">1.3.</span> <span class="toc-text">RCE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Usermin-1-830"><span class="toc-number">1.3.1.</span> <span class="toc-text">Usermin 1.830</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.4.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Capabilities-%E6%8F%90%E6%9D%83"><span class="toc-number">1.4.1.</span> <span class="toc-text">Capabilities 提权</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">12</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">119</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-Empire Breakout" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-05-04T14:20:00.000Z" itemprop="datePublished">2026-05-04</time>
+    <time style="display: none;" id="post-update-time">2026-05-04</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="Empire：Breakout"><a href="#Empire：Breakout" class="headerlink" title="Empire：Breakout"></a>Empire：Breakout</h1><p>项目地址：<a target="_blank" rel="noopener" href="https://download.vulnhub.com/empire/02-Breakout.zip">https://download.vulnhub.com/empire/02-Breakout.zip</a></p>
+<p>是一个打包好的镜像文件</p>
+<p><strong>注意：导入 vmx 时一定要选择我已移动，否则没网</strong></p>
+<p>使用 Nmap 扫描出开放服务及操作系统版本</p>
+<p><img src="https://pic1.imgdb.cn/item/69f8b00cb681ce9bfd1fb9e0.png"></p>
+<p>80、10000、20000 都是 Web 服务</p>
+<p><img src="https://pic1.imgdb.cn/item/69f8b031b681ce9bfd1fb9e1.png"></p>
+<h2 id="敏感信息泄露"><a href="#敏感信息泄露" class="headerlink" title="敏感信息泄露"></a>敏感信息泄露</h2><h3 id="Apache2-Debian-Default-Page-It-works"><a href="#Apache2-Debian-Default-Page-It-works" class="headerlink" title="Apache2 Debian Default Page: It works"></a>Apache2 Debian Default Page: It works</h3><p>在 80 端口首页中发现注释</p>
+<p><img src="https://pic1.imgdb.cn/item/69f8b05fb681ce9bfd1fb9e8.png"></p>
+<h3 id="SMB-用户枚举"><a href="#SMB-用户枚举" class="headerlink" title="SMB 用户枚举"></a>SMB 用户枚举</h3><p>前面扫描发现一个开放的 SMB 端口，使用 enum4linux 进行用户枚举</p>
+<p>找到用户 cyber</p>
+<p><img src="https://pic1.imgdb.cn/item/69f8b520b681ce9bfd1ff917.png"></p>
+<h2 id="CTF"><a href="#CTF" class="headerlink" title="CTF"></a>CTF</h2><h3 id="Brainfuck-解密"><a href="#Brainfuck-解密" class="headerlink" title="Brainfuck 解密"></a>Brainfuck 解密</h3><p>前面的注释一眼 Brainfuck，去在线网站解密</p>
+<p><img src="https://pic1.imgdb.cn/item/69f8b0e2b681ce9bfd1fb9fe.png"></p>
+<p>拿到 <code>.2uqPEfj3D&lt;P&#39;a-3</code> 去登录</p>
+<p>发现 20000 端口可以登录进去</p>
+<p><img src="https://pic1.imgdb.cn/item/69f8b56eb681ce9bfd1ff921.png"></p>
+<h2 id="RCE"><a href="#RCE" class="headerlink" title="RCE"></a>RCE</h2><h3 id="Usermin-1-830"><a href="#Usermin-1-830" class="headerlink" title="Usermin 1.830"></a>Usermin 1.830</h3><p>发现在最下面有一个终端，点击后可以执行任何命令</p>
+<p><img src="https://pic1.imgdb.cn/item/69f8b647b681ce9bfd1ff936.png"></p>
+<p>直接反弹 Shell</p>
+<p><img src="https://pic1.imgdb.cn/item/69f8b6f2b681ce9bfd1ff949.png"></p>
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><h3 id="Capabilities-提权"><a href="#Capabilities-提权" class="headerlink" title="Capabilities 提权"></a>Capabilities 提权</h3><p><code>sudo -l</code> 查看权限无果</p>
+<p><img src="https://pic1.imgdb.cn/item/69f8b71eb681ce9bfd1ff950.png"></p>
+<p>执行命令 <code>getcap -r / 2&gt;/dev/null</code></p>
+<ul>
+<li><p><strong><code>getcap</code></strong><br>用于查看文件的“能力”（capabilities）</p>
+</li>
+<li><p><strong><code>-r</code></strong><br>递归查询</p>
+</li>
+<li><p><strong><code>/</code></strong><br>指定搜索的根目录</p>
+</li>
+<li><p><strong><code>2&gt;/dev/null</code></strong><br>将所有报错信息直接丢弃</p>
+</li>
+</ul>
+<p>当一个文件被设置了能力，它的行为会受到特殊影响。例如：</p>
+<ul>
+<li><p><strong><code>cap_setuid</code></strong><br>允许程序修改自己的UID，即把自己变成 root</p>
+</li>
+<li><p><strong><code>cap_net_bind_service</code></strong><br>允许程序绑定小于1024的特权端口</p>
+</li>
+<li><p><strong><code>cap_sys_ptrace</code></strong><br>允许程序读写其他进程的内存，可用于注入代码</p>
+</li>
+<li><p><strong><code>cap_dac_read_search</code></strong><br>允许程序绕过文件系统的所有读权限检查，直接读取任何文件（包括 &#x2F;etc&#x2F;shadow 密码文件）</p>
+</li>
+</ul>
+<p><code>/usr/bin/ping</code> 带有 <code>cap_net_raw</code> 是正常系统配置，用于发送 ICMP 包</p>
+<p><code>/home/cyber/tar</code> 带有 <code>cap_dac_read_search=ep</code> 则是极度高危信号——这个自定义的 <code>tar</code> 程序可以绕过所有文件读权限检查</p>
+<p><img src="https://pic1.imgdb.cn/item/69f8b94bb681ce9bfd1ff986.png"></p>
+<p>在备份目录中找到一个密码的备份文件</p>
+<p><img src="https://pic1.imgdb.cn/item/69f8be25b681ce9bfd1ff9fb.png"></p>
+<p>在家目录中可以以 Root 身份运行 <code>tar</code></p>
+<p><img src="https://pic1.imgdb.cn/item/69f8be95b681ce9bfd1ff9fc.png"></p>
+<p>先将 <code>/var/backups/.old_pass.bak</code> 打包，<code>/home/cyber/tar</code> 拥有 <code>cap_dac_read_search</code>，可以直接忽略权限检查，将它打包进归档</p>
+<p>然后解压上一步生成的 <code>passwd</code></p>
+<p>即在当前目录下创建了 <code>var/backups/</code> 目录，并把旧的密码备份文件还原了出来</p>
+<p><img src="https://pic1.imgdb.cn/item/69f8c051b681ce9bfd1ffa1f.png"></p>
+<p>拿到密码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ts&amp;4&amp;YurgtRX(=~h</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/69f8c096b681ce9bfd1ffa20.png"></p>
+<p>最后提权成功</p>
+<p><img src="https://pic1.imgdb.cn/item/69f8c146b681ce9bfd1ffa23.png"></p>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/VulnHub/" title="VulnHub" data-aos="zoom-in">VulnHub</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Brainfuck-%E8%A7%A3%E5%AF%86/" rel="tag" title="Brainfuck 解密">Brainfuck 解密</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag" title="CTF">CTF</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Capabilities-%E6%8F%90%E6%9D%83/" rel="tag" title="Capabilities 提权">Capabilities 提权</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/SMB-%E7%94%A8%E6%88%B7%E6%9E%9A%E4%B8%BE/" rel="tag" title="SMB 用户枚举">SMB 用户枚举</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/" rel="tag" title="敏感信息泄露">敏感信息泄露</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Web Developer：1" class="lazyload">
+      <a href="/2026/05/04/Web%20Developer%EF%BC%9A1/" aria-label="后一篇: VulnHub Web Developer：1"  title="后一篇: VulnHub Web Developer：1"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          VulnHub Web Developer：1
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        63.1k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        05:24
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Empire%EF%BC%9ABreakout"><span class="toc-number">1.</span> <span class="toc-text">Empire：Breakout</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-number">1.1.</span> <span class="toc-text">敏感信息泄露</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Apache2-Debian-Default-Page-It-works"><span class="toc-number">1.1.1.</span> <span class="toc-text">Apache2 Debian Default Page: It works</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SMB-%E7%94%A8%E6%88%B7%E6%9E%9A%E4%B8%BE"><span class="toc-number">1.1.2.</span> <span class="toc-text">SMB 用户枚举</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF"><span class="toc-number">1.2.</span> <span class="toc-text">CTF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Brainfuck-%E8%A7%A3%E5%AF%86"><span class="toc-number">1.2.1.</span> <span class="toc-text">Brainfuck 解密</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RCE"><span class="toc-number">1.3.</span> <span class="toc-text">RCE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Usermin-1-830"><span class="toc-number">1.3.1.</span> <span class="toc-text">Usermin 1.830</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.4.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Capabilities-%E6%8F%90%E6%9D%83"><span class="toc-number">1.4.1.</span> <span class="toc-text">Capabilities 提权</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">64</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">12</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">119</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "VulnHub Empire：Breakout",
+          url: "http://example.com/2026/05/04/Empire%20Breakout/",
+          excerpt: "",
+          description: "",
+          stripContent: "Empire：Breakout项目地址：https://download.vulnhub.com/empire/02-Breakout.zip 是一个打包好的镜像文件 注意：导入 vmx 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  80、10000、20000 都是 Web 服务  敏感信息泄露Apache2 Debian Default Page: It works在 80 端口首页中发现注释  SMB 用户枚举前面扫描发现一个开放的 SMB 端口，使用 e",
+          date: "Mon May 04 2026 22:20:00 GMT+0800",
+          updated: "Mon May 04 2026 23:56:38 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
