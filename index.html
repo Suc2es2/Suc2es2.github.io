@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">65</div>
+    <div class="sidebar-state-number">66</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -490,8 +490,37 @@ XSS点击头像处
 </div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/25/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Windows%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-%E8%BF%91%E6%BA%90%E6%B8%97%E9%80%8F/" aria-label="知攻善防实验室 Windows 应急响应-近源渗透" title="知攻善防实验室 Windows 应急响应-近源渗透"></a>
+      <a class="post-link" href="/2026/04/25/%E7%94%B5%E7%AB%9E%E5%90%8E%E5%8F%B0/" aria-label="某电竞小程序后台接管" title="某电竞小程序后台接管"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="某电竞小程序后台接管" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-25</span>
+        <span><span class="icon-pencil"></span>135 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
+      </div>
+      <h2 class="post-title">某电竞小程序后台接管</h2>
+      <article class="post-article">
+          某电竞小程序后台接管前言本次测试属于公益类型的 SRC
+弱口令小程序正常抓包，但是测了一圈下来没找到任何洞（越权有 Cookie 鉴权，支付也没啥问题）
+
+索性搜索这个小程序的域名找找资产，还真找到几个站点
+
+弱口令 admin&amp;#x2F;admin 直接登录进去了
+第一个站点回显没有权限，应该是没用了，毕竟 Hunter 上标明了是云厂商
+
+第二个站点成功接管
+
+
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/25/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Windows%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-%E8%BF%91%E6%BA%90%E6%B8%97%E9%80%8F/" aria-label="知攻善防实验室 Windows 应急响应-近源渗透" title="知攻善防实验室 Windows 应急响应-近源渗透"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="知攻善防实验室 Windows 应急响应-近源渗透" class="lazyload">
     </div>
     <div class="post-info">
@@ -520,44 +549,6 @@ XSS点击头像处
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/23/Gemini%20Inc%201/" aria-label="VulnHub Gemini Inc：1" title="VulnHub Gemini Inc：1"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Gemini Inc：1" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-23</span>
-        <span><span class="icon-pencil"></span>636 字</span>
-        <span><span class="icon-clock"></span>3 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub Gemini Inc：1</h2>
-      <article class="post-article">
-          USV：2017项目地址：https://download.vulnhub.com/geminiinc/Gemini-Pentest-v1.zip
-是一个打包好的镜像文件
-注意：导入 vmx 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-弱口令Gemini Inc扫描目录发现有一个 /test2
-
-访问过去给了一个 GitHub 地址
-
-拿到了项目源码
-
-访问 80 端口，点击 Login
-
-在初始化数据库的代码段中找到默认管理员账号
-
-破解 MD5
-
-弱口令 admin/1234 直接进去了
-
-XSSEdit info of admin在后台编辑资料中尝试注
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
   </nav>
@@ -581,10 +572,10 @@ XSSEdit info of admin在后台编辑资料中尝试注
       </div>
       <div>
         <span class="icon-brush"></span>
-        63.2k
+        63.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        05:25
+        05:26
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -612,7 +603,7 @@ XSSEdit info of admin在后台编辑资料中尝试注
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">65</div>
+    <div class="sidebar-state-number">66</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
