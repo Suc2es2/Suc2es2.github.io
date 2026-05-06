@@ -17,20 +17,29 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="知攻善防实验室 Windows 应急响应-挖矿事件题目机房运维小陈，下班后发现还有工作没完成，然后上机器越用越卡，请你帮他看看原因 应急响应攻击者的 IP 地址（RDP 溯源）在桌面上没有看到部署网站类的软件，所以先排除掉 Web  查看开放端口情况发现有开启 445 以及 3389  找事件 ID 为 4625 的登录成功日志，成功拿到 IP">
+    <meta name="description" content="知攻善防实验室 Windows 应急响应-挖矿事件题目机房运维小陈，下班后发现还有工作没完成，然后上机器越用越卡，请你帮他看看原因 应急响应攻击者的 IP 地址（RDP 溯源）在桌面上没有看到部署网站类的软件，所以先排除掉 Web  查看开放端口情况发现有开启 445 以及 3389  找事件 ID 为 4625 的登录成功日志，成功拿到 IP  攻击者开始攻击的时间（RDP 溯源）攻击者开始攻击">
 <meta property="og:type" content="article">
 <meta property="og:title" content="知攻善防实验室 Windows 应急响应-挖矿事件">
 <meta property="og:url" content="http://example.com/2026/05/05/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Windows%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-%E6%8C%96%E7%9F%BF%E4%BA%8B%E4%BB%B6/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="知攻善防实验室 Windows 应急响应-挖矿事件题目机房运维小陈，下班后发现还有工作没完成，然后上机器越用越卡，请你帮他看看原因 应急响应攻击者的 IP 地址（RDP 溯源）在桌面上没有看到部署网站类的软件，所以先排除掉 Web  查看开放端口情况发现有开启 445 以及 3389  找事件 ID 为 4625 的登录成功日志，成功拿到 IP">
+<meta property="og:description" content="知攻善防实验室 Windows 应急响应-挖矿事件题目机房运维小陈，下班后发现还有工作没完成，然后上机器越用越卡，请你帮他看看原因 应急响应攻击者的 IP 地址（RDP 溯源）在桌面上没有看到部署网站类的软件，所以先排除掉 Web  查看开放端口情况发现有开启 445 以及 3389  找事件 ID 为 4625 的登录成功日志，成功拿到 IP  攻击者开始攻击的时间（RDP 溯源）攻击者开始攻击">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/69fa12382356c9fc91939464.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/69fa12992356c9fc91939484.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/69fa3fd82356c9fc919400d7.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fac5845b6fdfa53a246fd1.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fac61e5b6fdfa53a24703d.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fafe9d4498ed47aaabc4ee.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fb03394498ed47aaabc943.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fb08d84498ed47aaabceb4.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fb09cd4498ed47aaabcf98.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fb0a374498ed47aaabd032.png">
 <meta property="article:published_time" content="2026-05-05T02:18:00.000Z">
-<meta property="article:modified_time" content="2026-05-06T02:55:23.253Z">
+<meta property="article:modified_time" content="2026-05-06T09:31:33.171Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="RDP 溯源">
+<meta property="article:tag" content="任务计划程序">
+<meta property="article:tag" content="后台进程找恶意文件">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://pic1.imgdb.cn/item/69fa12382356c9fc91939464.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
@@ -150,7 +159,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4-Windows-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-%E6%8C%96%E7%9F%BF%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">知攻善防实验室 Windows 应急响应-挖矿事件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94"><span class="toc-number">1.2.</span> <span class="toc-text">应急响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84-IP-%E5%9C%B0%E5%9D%80%EF%BC%88RDP-%E6%BA%AF%E6%BA%90%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">攻击者的 IP 地址（RDP 溯源）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4-Windows-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-%E6%8C%96%E7%9F%BF%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">知攻善防实验室 Windows 应急响应-挖矿事件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94"><span class="toc-number">1.2.</span> <span class="toc-text">应急响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84-IP-%E5%9C%B0%E5%9D%80%EF%BC%88RDP-%E6%BA%AF%E6%BA%90%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">攻击者的 IP 地址（RDP 溯源）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E5%BC%80%E5%A7%8B%E6%94%BB%E5%87%BB%E7%9A%84%E6%97%B6%E9%97%B4%EF%BC%88RDP-%E6%BA%AF%E6%BA%90%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">攻击者开始攻击的时间（RDP 溯源）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E6%94%BB%E5%87%BB%E7%9A%84%E7%AB%AF%E5%8F%A3%EF%BC%88RDP-%E6%BA%AF%E6%BA%90%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">攻击者攻击的端口（RDP 溯源）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%96%E7%9F%BF%E7%A8%8B%E5%BA%8F%E7%9A%84-md5%EF%BC%88%E5%90%8E%E5%8F%B0%E8%BF%9B%E7%A8%8B%E6%89%BE%E6%81%B6%E6%84%8F%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">挖矿程序的 md5（后台进程找恶意文件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E9%97%A8%E8%84%9A%E6%9C%AC%E7%9A%84-md5%EF%BC%88%E4%BB%BB%E5%8A%A1%E8%AE%A1%E5%88%92%E7%A8%8B%E5%BA%8F%EF%BC%89"><span class="toc-number">1.2.5.</span> <span class="toc-text">后门脚本的 md5（任务计划程序）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%BF%E6%B1%A0%E5%9C%B0%E5%9D%80%EF%BC%88%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">1.2.6.</span> <span class="toc-text">矿池地址（配置文件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%92%B1%E5%8C%85%E5%9C%B0%E5%9D%80%EF%BC%88%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">1.2.7.</span> <span class="toc-text">钱包地址（配置文件）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -165,11 +174,11 @@
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">13</div>
+    <div class="sidebar-state-number">12</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">120</div>
+    <div class="sidebar-state-number">121</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -244,12 +253,31 @@
 <p><img src="https://pic1.imgdb.cn/item/69fa12992356c9fc91939484.png"></p>
 <p>找事件 ID 为 4625 的登录成功日志，成功拿到 IP</p>
 <p><img src="https://pic1.imgdb.cn/item/69fa3fd82356c9fc919400d7.png"></p>
+<h3 id="攻击者开始攻击的时间（RDP-溯源）"><a href="#攻击者开始攻击的时间（RDP-溯源）" class="headerlink" title="攻击者开始攻击的时间（RDP 溯源）"></a>攻击者开始攻击的时间（RDP 溯源）</h3><p>攻击者开始攻击的时间即为 RDP 爆破开始的时间</p>
+<p>这里我用自己二开的 BLA 扫描出时间戳</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2024-05-21 20:25:22</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/69fac5845b6fdfa53a246fd1.png"></p>
+<h3 id="攻击者攻击的端口（RDP-溯源）"><a href="#攻击者攻击的端口（RDP-溯源）" class="headerlink" title="攻击者攻击的端口（RDP 溯源）"></a>攻击者攻击的端口（RDP 溯源）</h3><p>RDP 默认端口为 3389</p>
+<h3 id="挖矿程序的-md5（后台进程找恶意文件）"><a href="#挖矿程序的-md5（后台进程找恶意文件）" class="headerlink" title="挖矿程序的 md5（后台进程找恶意文件）"></a>挖矿程序的 md5（后台进程找恶意文件）</h3><p>挖矿病毒特征就是 CPU 占用率 100%，任务管理器里找占用最高的就是</p>
+<p><img src="https://pic1.imgdb.cn/item/69fac61e5b6fdfa53a24703d.png"></p>
+<h3 id="后门脚本的-md5（任务计划程序）"><a href="#后门脚本的-md5（任务计划程序）" class="headerlink" title="后门脚本的 md5（任务计划程序）"></a>后门脚本的 md5（任务计划程序）</h3><p>重启靶机会执行一段 cmd 命令</p>
+<p><img src="https://pic1.imgdb.cn/item/69fafe9d4498ed47aaabc4ee.png"></p>
+<p>打开任务计划程序找到恶意的 <code>.bat</code> 文件</p>
+<p><img src="https://pic1.imgdb.cn/item/69fb03394498ed47aaabc943.png"></p>
+<p>定位到具体文件</p>
+<p><img src="https://pic1.imgdb.cn/item/69fb08d84498ed47aaabceb4.png"></p>
+<h3 id="矿池地址（配置文件）"><a href="#矿池地址（配置文件）" class="headerlink" title="矿池地址（配置文件）"></a>矿池地址（配置文件）</h3><p>在挖矿病毒的根目录中有一个 <code>config,json</code> 文件，打开就能看到地址</p>
+<p><code>c3pool.org</code> 也叫猫池</p>
+<p><img src="https://pic1.imgdb.cn/item/69fb09cd4498ed47aaabcf98.png"></p>
+<h3 id="钱包地址（配置文件）"><a href="#钱包地址（配置文件）" class="headerlink" title="钱包地址（配置文件）"></a>钱包地址（配置文件）</h3><p>同样也是在这个文件中找到，去猫池上查找这个地址</p>
+<p><img src="https://pic1.imgdb.cn/item/69fb0a374498ed47aaabd032.png"></p>
 
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" title="应急响应" data-aos="zoom-in">应急响应</a><a class="article-category-link" href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2/" title="知攻善防" data-aos="zoom-in">知攻善防</a>
 
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/RDP-%E6%BA%AF%E6%BA%90/" rel="tag" title="RDP 溯源">RDP 溯源</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/RDP-%E6%BA%AF%E6%BA%90/" rel="tag" title="RDP 溯源">RDP 溯源</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E4%BB%BB%E5%8A%A1%E8%AE%A1%E5%88%92%E7%A8%8B%E5%BA%8F/" rel="tag" title="任务计划程序">任务计划程序</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%90%8E%E5%8F%B0%E8%BF%9B%E7%A8%8B%E6%89%BE%E6%81%B6%E6%84%8F%E6%96%87%E4%BB%B6/" rel="tag" title="后台进程找恶意文件">后台进程找恶意文件</a></li></ul>
 
     </footer>
   </div>
@@ -294,10 +322,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        63.3k
+        63.6k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        05:26
+        05:27
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -319,7 +347,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4-Windows-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-%E6%8C%96%E7%9F%BF%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">知攻善防实验室 Windows 应急响应-挖矿事件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94"><span class="toc-number">1.2.</span> <span class="toc-text">应急响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84-IP-%E5%9C%B0%E5%9D%80%EF%BC%88RDP-%E6%BA%AF%E6%BA%90%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">攻击者的 IP 地址（RDP 溯源）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4-Windows-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-%E6%8C%96%E7%9F%BF%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">知攻善防实验室 Windows 应急响应-挖矿事件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94"><span class="toc-number">1.2.</span> <span class="toc-text">应急响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84-IP-%E5%9C%B0%E5%9D%80%EF%BC%88RDP-%E6%BA%AF%E6%BA%90%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">攻击者的 IP 地址（RDP 溯源）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E5%BC%80%E5%A7%8B%E6%94%BB%E5%87%BB%E7%9A%84%E6%97%B6%E9%97%B4%EF%BC%88RDP-%E6%BA%AF%E6%BA%90%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">攻击者开始攻击的时间（RDP 溯源）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E6%94%BB%E5%87%BB%E7%9A%84%E7%AB%AF%E5%8F%A3%EF%BC%88RDP-%E6%BA%AF%E6%BA%90%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">攻击者攻击的端口（RDP 溯源）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%96%E7%9F%BF%E7%A8%8B%E5%BA%8F%E7%9A%84-md5%EF%BC%88%E5%90%8E%E5%8F%B0%E8%BF%9B%E7%A8%8B%E6%89%BE%E6%81%B6%E6%84%8F%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">挖矿程序的 md5（后台进程找恶意文件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E9%97%A8%E8%84%9A%E6%9C%AC%E7%9A%84-md5%EF%BC%88%E4%BB%BB%E5%8A%A1%E8%AE%A1%E5%88%92%E7%A8%8B%E5%BA%8F%EF%BC%89"><span class="toc-number">1.2.5.</span> <span class="toc-text">后门脚本的 md5（任务计划程序）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%BF%E6%B1%A0%E5%9C%B0%E5%9D%80%EF%BC%88%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">1.2.6.</span> <span class="toc-text">矿池地址（配置文件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%92%B1%E5%8C%85%E5%9C%B0%E5%9D%80%EF%BC%88%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">1.2.7.</span> <span class="toc-text">钱包地址（配置文件）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -334,11 +362,11 @@
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">13</div>
+    <div class="sidebar-state-number">12</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">120</div>
+    <div class="sidebar-state-number">121</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -451,9 +479,9 @@
           url: "http://example.com/2026/05/05/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Windows%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-%E6%8C%96%E7%9F%BF%E4%BA%8B%E4%BB%B6/",
           excerpt: "",
           description: "",
-          stripContent: "知攻善防实验室 Windows 应急响应-挖矿事件题目机房运维小陈，下班后发现还有工作没完成，然后上机器越用越卡，请你帮他看看原因 应急响应攻击者的 IP 地址（RDP 溯源）在桌面上没有看到部署网站类的软件，所以先排除掉 Web  查看开放端口情况发现有开启 445 以及 3389  找事件 ID 为 4625 的登录成功日志，成功拿到 IP  ",
+          stripContent: "知攻善防实验室 Windows 应急响应-挖矿事件题目机房运维小陈，下班后发现还有工作没完成，然后上机器越用越卡，请你帮他看看原因 应急响应攻击者的 IP 地址（RDP 溯源）在桌面上没有看到部署网站类的软件，所以先排除掉 Web  查看开放端口情况发现有开启 445 以及 3389  找事件 ID 为 4625 的登录成功日志，成功拿到 IP  攻击者开始攻击的时间（RDP 溯源）攻击者开始攻击的时间即为 RDP 爆破开始的时间 这里我用自己二开的 BLA 扫描出时间戳 12024-05-21",
           date: "Tue May 05 2026 10:18:00 GMT+0800",
-          updated: "Wed May 06 2026 10:55:23 GMT+0800",
+          updated: "Wed May 06 2026 17:31:33 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
