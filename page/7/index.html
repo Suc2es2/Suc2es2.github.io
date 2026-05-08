@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">68</div>
+    <div class="sidebar-state-number">69</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -220,6 +220,9 @@
       <div class="widget">
         <ul>
             <li>
+              <a href="/2026/05/08/Empire%20LupinOne/" title="VulnHub Empire：LupinOne">VulnHub Empire：LupinOne</a>
+            </li>
+            <li>
               <a href="/2026/05/07/%E4%BD%A0%E7%9A%84%E9%AD%94%E7%8E%8B%E6%8A%A4%E4%B8%80%E8%88%AC/" title="出题——你的魔王护一般">出题——你的魔王护一般</a>
             </li>
             <li>
@@ -230,9 +233,6 @@
             </li>
             <li>
               <a href="/2026/05/05/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Windows%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-%E6%8C%96%E7%9F%BF%E4%BA%8B%E4%BB%B6/" title="知攻善防实验室 Windows 应急响应-挖矿事件">知攻善防实验室 Windows 应急响应-挖矿事件</a>
-            </li>
-            <li>
-              <a href="/2026/05/04/Empire%20Breakout/" title="VulnHub Empire：Breakout">VulnHub Empire：Breakout</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,45 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/LAMPSecurity%20CTF6/" aria-label="VulnHub LAMPSecurity：CTF6" title="VulnHub LAMPSecurity：CTF6"></a>
+      <a class="post-link" href="/2026/04/01/Metasploitable%201&2/" aria-label="VulnHub Metasploitable：1&amp;2" title="VulnHub Metasploitable：1&amp;2"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Metasploitable：1&amp;2" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-01</span>
+        <span><span class="icon-pencil"></span>348 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">VulnHub Metasploitable：1&amp;2</h2>
+      <article class="post-article">
+          Metasploitable: 1&amp;amp;2项目地址：https://download.vulnhub.com/metasploitable/Metasploitable.zip
+是一个打包好的镜像文件
+注意：导入 vmx 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+弱口令FTP使用九头蛇爆破拿到弱口令 
+1user:user
+
+
+SSH（user）连进去发现有 SSH 私钥
+
+远程拷贝下来再降低 SSH 版本是可以连接上的
+
+SSH（msfadmin）利用 FTP 弱口令读取文件
+
+发现有三个普通用户
+
+最后爆破出为
+1msfadmin:msfadmin
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/01/LAMPSecurity%20CTF6/" aria-label="VulnHub LAMPSecurity：CTF6" title="VulnHub LAMPSecurity：CTF6"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub LAMPSecurity：CTF6" class="lazyload">
     </div>
     <div class="post-info">
@@ -276,9 +313,9 @@ phpMyAdmin通过 SQL 注入漏洞我们可以拿到数据库 mys
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/AMPSecurity%20CTF5/" aria-label="VulnHub AMPSecurity：CTF5" title="VulnHub AMPSecurity：CTF5"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub AMPSecurity：CTF5" class="lazyload">
     </div>
     <div class="post-info">
@@ -309,9 +346,9 @@ NanoCMS pagesdata.txtGitHub 找到源码发现有一个文件泄露了密码
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/AMPSecurity%20CTF4/" aria-label="VulnHub AMPSecurity：CTF4" title="VulnHub AMPSecurity：CTF4"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub AMPSecurity：CTF4" class="lazyload">
     </div>
     <div class="post-info">
@@ -339,9 +376,9 @@ XSSHeader Search 搜索框（反射）测试存在反射 XSS 漏洞
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/pWnOS%201.0/" aria-label="VulnHub pWnOS：1.0" title="VulnHub pWnOS：1.0"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub pWnOS：1.0" class="lazyload">
     </div>
     <div class="post-info">
@@ -370,9 +407,9 @@ XSSname&amp;amp;level（两个反射）80 端口发现两个 XSS 漏洞，对应
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/Badstore%201.2.3/" aria-label="VulnHub Badstore：1.2.3" title="VulnHub Badstore：1.2.3"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Badstore：1.2.3" class="lazyload">
     </div>
     <div class="post-info">
@@ -406,9 +443,9 @@ XSSSearch 搜索框（反射）对搜索框输入测试发现 SQL 报错语
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/03/01/%E6%B4%97%E8%A1%A3%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20XSS-1/" aria-label="某洗衣小程序文件上传 XSS" title="某洗衣小程序文件上传 XSS"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="某洗衣小程序文件上传 XSS" class="lazyload">
     </div>
     <div class="post-info">
@@ -435,9 +472,9 @@ XSS在上传头像处上传一个 PNG 类型的文件，里面是 HTML 类型的
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/02/01/wechat/" aria-label="微信小程序抓包教程" title="微信小程序抓包教程"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="微信小程序抓包教程" class="lazyload">
     </div>
     <div class="post-info">
@@ -463,9 +500,9 @@ Yakit首先要启动劫持，下载证书
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/01/01/2025%20%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" aria-label="2025 年度总结" title="2025 年度总结"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2025 年度总结" class="lazyload">
     </div>
     <div class="post-info">
@@ -519,10 +556,10 @@ Yakit首先要启动劫持，下载证书
       </div>
       <div>
         <span class="icon-brush"></span>
-        65.6k
+        66.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        05:38
+        05:41
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -550,7 +587,7 @@ Yakit首先要启动劫持，下载证书
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">68</div>
+    <div class="sidebar-state-number">69</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>

