@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   <title>
-    知攻善防实验室 Linux 应急响应-2 | 雾島风起時
+    知攻善防实验室 Linux 应急响应——2 | 雾島风起時
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,12 +17,12 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="知攻善防实验室 Linux 应急响应-2题目前景需要：看监控的时候发现 webshell 告警，领导让你上机检查你可以救救安服仔吗！！ 应急响应破解 CentOS 7官方提供的靶机用户名和密码无效，需要我们重置密码  重启来到这个页面按 e  进入到编辑页面，找到这个 ro  改为 rw init&#x3D;&#x2F;sysroot&#x2F;bin&#x2F;sh，再按 Ctrl + X 使用单用户模式启动  使用下面的命令访问系统">
+    <meta name="description" content="知攻善防实验室 Linux 应急响应——2题目前景需要：看监控的时候发现 webshell 告警，领导让你上机检查你可以救救安服仔吗！！ 应急响应破解 CentOS 7官方提供的靶机用户名和密码无效，需要我们重置密码  重启来到这个页面按 e  进入到编辑页面，找到这个 ro  改为 rw init&#x3D;&#x2F;sysroot&#x2F;bin&#x2F;sh，再按 Ctrl + X 使用单用户模式启动  使用下面的命令访问系">
 <meta property="og:type" content="article">
-<meta property="og:title" content="知攻善防实验室 Linux 应急响应-2">
+<meta property="og:title" content="知攻善防实验室 Linux 应急响应——2">
 <meta property="og:url" content="http://example.com/2026/04/11/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Linux%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-2/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="知攻善防实验室 Linux 应急响应-2题目前景需要：看监控的时候发现 webshell 告警，领导让你上机检查你可以救救安服仔吗！！ 应急响应破解 CentOS 7官方提供的靶机用户名和密码无效，需要我们重置密码  重启来到这个页面按 e  进入到编辑页面，找到这个 ro  改为 rw init&#x3D;&#x2F;sysroot&#x2F;bin&#x2F;sh，再按 Ctrl + X 使用单用户模式启动  使用下面的命令访问系统">
+<meta property="og:description" content="知攻善防实验室 Linux 应急响应——2题目前景需要：看监控的时候发现 webshell 告警，领导让你上机检查你可以救救安服仔吗！！ 应急响应破解 CentOS 7官方提供的靶机用户名和密码无效，需要我们重置密码  重启来到这个页面按 e  进入到编辑页面，找到这个 ro  改为 rw init&#x3D;&#x2F;sysroot&#x2F;bin&#x2F;sh，再按 Ctrl + X 使用单用户模式启动  使用下面的命令访问系">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/69d9f265757fdade5ead4b4d.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/69d9f362757fdade5ead4b92.png">
@@ -54,7 +54,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/69da071f757fdade5ead841e.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/69da0749757fdade5ead8433.png">
 <meta property="article:published_time" content="2026-04-11T10:18:00.000Z">
-<meta property="article:modified_time" content="2026-05-05T14:41:36.063Z">
+<meta property="article:modified_time" content="2026-05-08T03:42:19.758Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="PHPEMS RCE">
 <meta property="article:tag" content="PHPEMS 弱口令">
@@ -164,11 +164,11 @@
 <header id="header" aria-label="Site header">
         <picture>
         </picture>
-          <img  fetchpriority="high" src="/images/banner.webp" alt="知攻善防实验室 Linux 应急响应-2">
+          <img  fetchpriority="high" src="/images/banner.webp" alt="知攻善防实验室 Linux 应急响应——2">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">知攻善防实验室 Linux 应急响应-2</h1>
+            <h1 data-aos="slide-up">知攻善防实验室 Linux 应急响应——2</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -183,7 +183,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4-Linux-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-2"><span class="toc-number">1.</span> <span class="toc-text">知攻善防实验室 Linux 应急响应-2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94"><span class="toc-number">1.2.</span> <span class="toc-text">应急响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A0%B4%E8%A7%A3-CentOS-7"><span class="toc-number">1.2.1.</span> <span class="toc-text">破解 CentOS 7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85-IP%EF%BC%88%E5%AE%9D%E5%A1%94%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81-%E5%AE%9D%E5%A1%94%E6%97%A5%E5%BF%97%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">攻击者 IP（宝塔重置密码 + 宝塔日志）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E4%BF%AE%E6%94%B9%E7%9A%84%E7%AE%A1%E7%90%86%E5%91%98%E6%98%8E%E6%96%87%E5%AF%86%E7%A0%81%EF%BC%88PHPEMS-%E5%BC%B1%E5%8F%A3%E4%BB%A4%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">攻击者修改的管理员明文密码（PHPEMS 弱口令）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%BF%9E%E6%8E%A5-WebShell-%E7%9A%84-URL%EF%BC%88PHPEMS-RCE%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">提交第一次连接 WebShell 的 URL（PHPEMS RCE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4-Webshell-%E8%BF%9E%E6%8E%A5%E5%AF%86%E7%A0%81%EF%BC%88PHPEMS-RCE%EF%BC%89"><span class="toc-number">1.2.5.</span> <span class="toc-text">提交 Webshell 连接密码（PHPEMS RCE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84-flag1%EF%BC%88%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%EF%BC%89"><span class="toc-number">1.2.6.</span> <span class="toc-text">提交数据包的 flag1（蚁剑流量特征）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%94%BB%E5%87%BB%E8%80%85%E4%BD%BF%E7%94%A8%E7%9A%84%E5%90%8E%E7%BB%AD%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%9C%A8%E9%A9%AC%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0%EF%BC%88WebShell-%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%EF%BC%89"><span class="toc-number">1.2.7.</span> <span class="toc-text">提交攻击者使用的后续上传的木马文件名称（WebShell 流量特征）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF"><span class="toc-number">1.3.</span> <span class="toc-text">CTF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%94%BB%E5%87%BB%E8%80%85%E9%9A%90%E8%97%8F%E7%9A%84-flag2%EF%BC%88%E5%85%B3%E9%94%AE%E5%AD%97%E8%BF%87%E6%BB%A4%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">提交攻击者隐藏的 flag2（关键字过滤）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%94%BB%E5%87%BB%E8%80%85%E9%9A%90%E8%97%8F%E7%9A%84-flag3%EF%BC%88%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">提交攻击者隐藏的 flag3（环境变量）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4-Linux-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E2%80%94%E2%80%942"><span class="toc-number">1.</span> <span class="toc-text">知攻善防实验室 Linux 应急响应——2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94"><span class="toc-number">1.2.</span> <span class="toc-text">应急响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A0%B4%E8%A7%A3-CentOS-7"><span class="toc-number">1.2.1.</span> <span class="toc-text">破解 CentOS 7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85-IP%EF%BC%88%E5%AE%9D%E5%A1%94%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81-%E5%AE%9D%E5%A1%94%E6%97%A5%E5%BF%97%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">攻击者 IP（宝塔重置密码 + 宝塔日志）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E4%BF%AE%E6%94%B9%E7%9A%84%E7%AE%A1%E7%90%86%E5%91%98%E6%98%8E%E6%96%87%E5%AF%86%E7%A0%81%EF%BC%88PHPEMS-%E5%BC%B1%E5%8F%A3%E4%BB%A4%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">攻击者修改的管理员明文密码（PHPEMS 弱口令）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%BF%9E%E6%8E%A5-WebShell-%E7%9A%84-URL%EF%BC%88PHPEMS-RCE%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">提交第一次连接 WebShell 的 URL（PHPEMS RCE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4-Webshell-%E8%BF%9E%E6%8E%A5%E5%AF%86%E7%A0%81%EF%BC%88PHPEMS-RCE%EF%BC%89"><span class="toc-number">1.2.5.</span> <span class="toc-text">提交 Webshell 连接密码（PHPEMS RCE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84-flag1%EF%BC%88%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%EF%BC%89"><span class="toc-number">1.2.6.</span> <span class="toc-text">提交数据包的 flag1（蚁剑流量特征）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%94%BB%E5%87%BB%E8%80%85%E4%BD%BF%E7%94%A8%E7%9A%84%E5%90%8E%E7%BB%AD%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%9C%A8%E9%A9%AC%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0%EF%BC%88WebShell-%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%EF%BC%89"><span class="toc-number">1.2.7.</span> <span class="toc-text">提交攻击者使用的后续上传的木马文件名称（WebShell 流量特征）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF"><span class="toc-number">1.3.</span> <span class="toc-text">CTF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%94%BB%E5%87%BB%E8%80%85%E9%9A%90%E8%97%8F%E7%9A%84-flag2%EF%BC%88%E5%85%B3%E9%94%AE%E5%AD%97%E8%BF%87%E6%BB%A4%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">提交攻击者隐藏的 flag2（关键字过滤）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%94%BB%E5%87%BB%E8%80%85%E9%9A%90%E8%97%8F%E7%9A%84-flag3%EF%BC%88%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">提交攻击者隐藏的 flag3（环境变量）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -194,7 +194,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">69</div>
+    <div class="sidebar-state-number">70</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -202,7 +202,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">128</div>
+    <div class="sidebar-state-number">131</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -261,7 +261,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2026-04-11T10:18:00.000Z" itemprop="datePublished">2026-04-11</time>
-    <time style="display: none;" id="post-update-time">2026-05-05</time>
+    <time style="display: none;" id="post-update-time">2026-05-08</time>
   </span>
 </div>
 
@@ -270,7 +270,7 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="知攻善防实验室-Linux-应急响应-2"><a href="#知攻善防实验室-Linux-应急响应-2" class="headerlink" title="知攻善防实验室 Linux 应急响应-2"></a>知攻善防实验室 Linux 应急响应-2</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>前景需要：看监控的时候发现 webshell 告警，领导让你上机检查你可以救救安服仔吗！！</p>
+        <h1 id="知攻善防实验室-Linux-应急响应——2"><a href="#知攻善防实验室-Linux-应急响应——2" class="headerlink" title="知攻善防实验室 Linux 应急响应——2"></a>知攻善防实验室 Linux 应急响应——2</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>前景需要：看监控的时候发现 webshell 告警，领导让你上机检查你可以救救安服仔吗！！</p>
 <h2 id="应急响应"><a href="#应急响应" class="headerlink" title="应急响应"></a>应急响应</h2><h3 id="破解-CentOS-7"><a href="#破解-CentOS-7" class="headerlink" title="破解 CentOS 7"></a>破解 CentOS 7</h3><p>官方提供的靶机用户名和密码无效，需要我们重置密码</p>
 <p><img src="https://pic1.imgdb.cn/item/69d9f265757fdade5ead4b4d.png"></p>
 <p>重启来到这个页面按 e</p>
@@ -370,11 +370,11 @@
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="知攻善防实验室 Linux 应急响应-1" class="lazyload">
-      <a href="/2026/04/11/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Linux%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-1/" aria-label="后一篇: 知攻善防实验室 Linux 应急响应-1"  title="后一篇: 知攻善防实验室 Linux 应急响应-1"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="知攻善防实验室 Linux 应急响应——1" class="lazyload">
+      <a href="/2026/04/11/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Linux%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-1/" aria-label="后一篇: 知攻善防实验室 Linux 应急响应——1"  title="后一篇: 知攻善防实验室 Linux 应急响应——1"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          知攻善防实验室 Linux 应急响应-1
+          知攻善防实验室 Linux 应急响应——1
       </h3>
     </div>
   </nav>
@@ -401,10 +401,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        66.1k
+        66.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        05:41
+        05:43
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -426,7 +426,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4-Linux-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-2"><span class="toc-number">1.</span> <span class="toc-text">知攻善防实验室 Linux 应急响应-2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94"><span class="toc-number">1.2.</span> <span class="toc-text">应急响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A0%B4%E8%A7%A3-CentOS-7"><span class="toc-number">1.2.1.</span> <span class="toc-text">破解 CentOS 7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85-IP%EF%BC%88%E5%AE%9D%E5%A1%94%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81-%E5%AE%9D%E5%A1%94%E6%97%A5%E5%BF%97%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">攻击者 IP（宝塔重置密码 + 宝塔日志）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E4%BF%AE%E6%94%B9%E7%9A%84%E7%AE%A1%E7%90%86%E5%91%98%E6%98%8E%E6%96%87%E5%AF%86%E7%A0%81%EF%BC%88PHPEMS-%E5%BC%B1%E5%8F%A3%E4%BB%A4%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">攻击者修改的管理员明文密码（PHPEMS 弱口令）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%BF%9E%E6%8E%A5-WebShell-%E7%9A%84-URL%EF%BC%88PHPEMS-RCE%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">提交第一次连接 WebShell 的 URL（PHPEMS RCE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4-Webshell-%E8%BF%9E%E6%8E%A5%E5%AF%86%E7%A0%81%EF%BC%88PHPEMS-RCE%EF%BC%89"><span class="toc-number">1.2.5.</span> <span class="toc-text">提交 Webshell 连接密码（PHPEMS RCE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84-flag1%EF%BC%88%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%EF%BC%89"><span class="toc-number">1.2.6.</span> <span class="toc-text">提交数据包的 flag1（蚁剑流量特征）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%94%BB%E5%87%BB%E8%80%85%E4%BD%BF%E7%94%A8%E7%9A%84%E5%90%8E%E7%BB%AD%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%9C%A8%E9%A9%AC%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0%EF%BC%88WebShell-%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%EF%BC%89"><span class="toc-number">1.2.7.</span> <span class="toc-text">提交攻击者使用的后续上传的木马文件名称（WebShell 流量特征）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF"><span class="toc-number">1.3.</span> <span class="toc-text">CTF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%94%BB%E5%87%BB%E8%80%85%E9%9A%90%E8%97%8F%E7%9A%84-flag2%EF%BC%88%E5%85%B3%E9%94%AE%E5%AD%97%E8%BF%87%E6%BB%A4%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">提交攻击者隐藏的 flag2（关键字过滤）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%94%BB%E5%87%BB%E8%80%85%E9%9A%90%E8%97%8F%E7%9A%84-flag3%EF%BC%88%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">提交攻击者隐藏的 flag3（环境变量）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4-Linux-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E2%80%94%E2%80%942"><span class="toc-number">1.</span> <span class="toc-text">知攻善防实验室 Linux 应急响应——2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94"><span class="toc-number">1.2.</span> <span class="toc-text">应急响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A0%B4%E8%A7%A3-CentOS-7"><span class="toc-number">1.2.1.</span> <span class="toc-text">破解 CentOS 7</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85-IP%EF%BC%88%E5%AE%9D%E5%A1%94%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81-%E5%AE%9D%E5%A1%94%E6%97%A5%E5%BF%97%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">攻击者 IP（宝塔重置密码 + 宝塔日志）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E4%BF%AE%E6%94%B9%E7%9A%84%E7%AE%A1%E7%90%86%E5%91%98%E6%98%8E%E6%96%87%E5%AF%86%E7%A0%81%EF%BC%88PHPEMS-%E5%BC%B1%E5%8F%A3%E4%BB%A4%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">攻击者修改的管理员明文密码（PHPEMS 弱口令）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%BF%9E%E6%8E%A5-WebShell-%E7%9A%84-URL%EF%BC%88PHPEMS-RCE%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">提交第一次连接 WebShell 的 URL（PHPEMS RCE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4-Webshell-%E8%BF%9E%E6%8E%A5%E5%AF%86%E7%A0%81%EF%BC%88PHPEMS-RCE%EF%BC%89"><span class="toc-number">1.2.5.</span> <span class="toc-text">提交 Webshell 连接密码（PHPEMS RCE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84-flag1%EF%BC%88%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%EF%BC%89"><span class="toc-number">1.2.6.</span> <span class="toc-text">提交数据包的 flag1（蚁剑流量特征）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%94%BB%E5%87%BB%E8%80%85%E4%BD%BF%E7%94%A8%E7%9A%84%E5%90%8E%E7%BB%AD%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%9C%A8%E9%A9%AC%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0%EF%BC%88WebShell-%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%EF%BC%89"><span class="toc-number">1.2.7.</span> <span class="toc-text">提交攻击者使用的后续上传的木马文件名称（WebShell 流量特征）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF"><span class="toc-number">1.3.</span> <span class="toc-text">CTF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%94%BB%E5%87%BB%E8%80%85%E9%9A%90%E8%97%8F%E7%9A%84-flag2%EF%BC%88%E5%85%B3%E9%94%AE%E5%AD%97%E8%BF%87%E6%BB%A4%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">提交攻击者隐藏的 flag2（关键字过滤）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E6%94%BB%E5%87%BB%E8%80%85%E9%9A%90%E8%97%8F%E7%9A%84-flag3%EF%BC%88%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">提交攻击者隐藏的 flag3（环境变量）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -437,7 +437,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">69</div>
+    <div class="sidebar-state-number">70</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -445,7 +445,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">128</div>
+    <div class="sidebar-state-number">131</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -554,13 +554,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "ALL",
-          title: "知攻善防实验室 Linux 应急响应-2",
+          title: "知攻善防实验室 Linux 应急响应——2",
           url: "http://example.com/2026/04/11/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Linux%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-2/",
           excerpt: "",
           description: "",
-          stripContent: "知攻善防实验室 Linux 应急响应-2题目前景需要：看监控的时候发现 webshell 告警，领导让你上机检查你可以救救安服仔吗！！ 应急响应破解 CentOS 7官方提供的靶机用户名和密码无效，需要我们重置密码  重启来到这个页面按 e  进入到编辑页面，找到这个 ro  改为 rw init=/sysroot/bin/sh，再按 Ctrl + X 使用单用户模式启动  使用下面的命令访问系统 1chroot /sysroot  然后更新 root 密码重启系统  成功登录进去  攻击者 I",
+          stripContent: "知攻善防实验室 Linux 应急响应——2题目前景需要：看监控的时候发现 webshell 告警，领导让你上机检查你可以救救安服仔吗！！ 应急响应破解 CentOS 7官方提供的靶机用户名和密码无效，需要我们重置密码  重启来到这个页面按 e  进入到编辑页面，找到这个 ro  改为 rw init=/sysroot/bin/sh，再按 Ctrl + X 使用单用户模式启动  使用下面的命令访问系统 1chroot /sysroot  然后更新 root 密码重启系统  成功登录进去  攻击者 ",
           date: "Sat Apr 11 2026 18:18:00 GMT+0800",
-          updated: "Tue May 05 2026 22:41:36 GMT+0800",
+          updated: "Fri May 08 2026 11:42:19 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

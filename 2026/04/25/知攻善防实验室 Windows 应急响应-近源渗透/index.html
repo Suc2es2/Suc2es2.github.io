@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   <title>
-    知攻善防实验室 Windows 应急响应-近源渗透 | 雾島风起時
+    知攻善防实验室 Windows 应急响应——近源渗透 | 雾島风起時
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,12 +17,12 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="知攻善防实验室 Windows 应急响应-近源渗透题目小王从某安全大厂被优化掉后，来到了某私立小学当起了计算机老师。某一天上课的时候，发现鼠标在自己动弹，又发现除了某台电脑，其他电脑连不上网络。感觉肯定有学生捣乱，于是开启了应急 应急响应攻击者的外网 IP 地址（病毒文件分析）在桌面上发现可疑文件，题目提示了是近源，所以可以排除 Web 同时靶机又没有通讯软件和邮件，排除钓鱼  桌面上有 Word">
+    <meta name="description" content="知攻善防实验室 Windows 应急响应——近源渗透题目小王从某安全大厂被优化掉后，来到了某私立小学当起了计算机老师。某一天上课的时候，发现鼠标在自己动弹，又发现除了某台电脑，其他电脑连不上网络。感觉肯定有学生捣乱，于是开启了应急 应急响应攻击者的外网 IP 地址（病毒文件分析）在桌面上发现可疑文件，题目提示了是近源，所以可以排除 Web 同时靶机又没有通讯软件和邮件，排除钓鱼  桌面上有 Wor">
 <meta property="og:type" content="article">
-<meta property="og:title" content="知攻善防实验室 Windows 应急响应-近源渗透">
+<meta property="og:title" content="知攻善防实验室 Windows 应急响应——近源渗透">
 <meta property="og:url" content="http://example.com/2026/04/25/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Windows%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-%E8%BF%91%E6%BA%90%E6%B8%97%E9%80%8F/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="知攻善防实验室 Windows 应急响应-近源渗透题目小王从某安全大厂被优化掉后，来到了某私立小学当起了计算机老师。某一天上课的时候，发现鼠标在自己动弹，又发现除了某台电脑，其他电脑连不上网络。感觉肯定有学生捣乱，于是开启了应急 应急响应攻击者的外网 IP 地址（病毒文件分析）在桌面上发现可疑文件，题目提示了是近源，所以可以排除 Web 同时靶机又没有通讯软件和邮件，排除钓鱼  桌面上有 Word">
+<meta property="og:description" content="知攻善防实验室 Windows 应急响应——近源渗透题目小王从某安全大厂被优化掉后，来到了某私立小学当起了计算机老师。某一天上课的时候，发现鼠标在自己动弹，又发现除了某台电脑，其他电脑连不上网络。感觉肯定有学生捣乱，于是开启了应急 应急响应攻击者的外网 IP 地址（病毒文件分析）在桌面上发现可疑文件，题目提示了是近源，所以可以排除 Web 同时靶机又没有通讯软件和邮件，排除钓鱼  桌面上有 Wor">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/69ec2a5d673fb9750a2f9825.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/69ec2b1e673fb9750a2f988b.png">
@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/69ec39bd673fb9750a2fce4c.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/69ec3a4a673fb9750a2fcf4b.png">
 <meta property="article:published_time" content="2026-04-25T02:18:00.000Z">
-<meta property="article:modified_time" content="2026-05-05T14:41:41.272Z">
+<meta property="article:modified_time" content="2026-05-08T03:42:23.063Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="可疑文件查找">
 <meta property="article:tag" content="病毒文件分析">
@@ -142,11 +142,11 @@
 <header id="header" aria-label="Site header">
         <picture>
         </picture>
-          <img  fetchpriority="high" src="/images/banner.webp" alt="知攻善防实验室 Windows 应急响应-近源渗透">
+          <img  fetchpriority="high" src="/images/banner.webp" alt="知攻善防实验室 Windows 应急响应——近源渗透">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">知攻善防实验室 Windows 应急响应-近源渗透</h1>
+            <h1 data-aos="slide-up">知攻善防实验室 Windows 应急响应——近源渗透</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -161,7 +161,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4-Windows-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-%E8%BF%91%E6%BA%90%E6%B8%97%E9%80%8F"><span class="toc-number">1.</span> <span class="toc-text">知攻善防实验室 Windows 应急响应-近源渗透</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94"><span class="toc-number">1.2.</span> <span class="toc-text">应急响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84%E5%A4%96%E7%BD%91-IP-%E5%9C%B0%E5%9D%80%EF%BC%88%E7%97%85%E6%AF%92%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">攻击者的外网 IP 地址（病毒文件分析）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84%E5%86%85%E7%BD%91%E8%B7%B3%E6%9D%BF-IP-%E5%9C%B0%E5%9D%80%EF%BC%88%E7%97%85%E6%AF%92%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">攻击者的内网跳板 IP 地址（病毒文件分析）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E4%BD%BF%E7%94%A8%E7%9A%84%E9%99%90%E9%80%9F%E8%BD%AF%E4%BB%B6%EF%BC%88%E5%8F%AF%E7%96%91%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">攻击者使用的限速软件（可疑文件查找）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84%E5%90%8E%E9%97%A8%EF%BC%88%E5%8F%AF%E7%96%91%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">攻击者的后门（可疑文件查找）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF"><span class="toc-number">1.3.</span> <span class="toc-text">CTF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%95%99%E4%B8%8B%E7%9A%84-flag%EF%BC%88%E5%8F%AF%E7%96%91%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">攻击者留下的 flag（可疑文件查找）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4-Windows-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E2%80%94%E2%80%94%E8%BF%91%E6%BA%90%E6%B8%97%E9%80%8F"><span class="toc-number">1.</span> <span class="toc-text">知攻善防实验室 Windows 应急响应——近源渗透</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94"><span class="toc-number">1.2.</span> <span class="toc-text">应急响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84%E5%A4%96%E7%BD%91-IP-%E5%9C%B0%E5%9D%80%EF%BC%88%E7%97%85%E6%AF%92%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">攻击者的外网 IP 地址（病毒文件分析）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84%E5%86%85%E7%BD%91%E8%B7%B3%E6%9D%BF-IP-%E5%9C%B0%E5%9D%80%EF%BC%88%E7%97%85%E6%AF%92%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">攻击者的内网跳板 IP 地址（病毒文件分析）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E4%BD%BF%E7%94%A8%E7%9A%84%E9%99%90%E9%80%9F%E8%BD%AF%E4%BB%B6%EF%BC%88%E5%8F%AF%E7%96%91%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">攻击者使用的限速软件（可疑文件查找）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84%E5%90%8E%E9%97%A8%EF%BC%88%E5%8F%AF%E7%96%91%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">攻击者的后门（可疑文件查找）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF"><span class="toc-number">1.3.</span> <span class="toc-text">CTF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%95%99%E4%B8%8B%E7%9A%84-flag%EF%BC%88%E5%8F%AF%E7%96%91%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">攻击者留下的 flag（可疑文件查找）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -172,7 +172,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">69</div>
+    <div class="sidebar-state-number">70</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -180,7 +180,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">128</div>
+    <div class="sidebar-state-number">131</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -239,7 +239,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2026-04-25T02:18:00.000Z" itemprop="datePublished">2026-04-25</time>
-    <time style="display: none;" id="post-update-time">2026-05-05</time>
+    <time style="display: none;" id="post-update-time">2026-05-08</time>
   </span>
 </div>
 
@@ -248,7 +248,7 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="知攻善防实验室-Windows-应急响应-近源渗透"><a href="#知攻善防实验室-Windows-应急响应-近源渗透" class="headerlink" title="知攻善防实验室 Windows 应急响应-近源渗透"></a>知攻善防实验室 Windows 应急响应-近源渗透</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>小王从某安全大厂被优化掉后，来到了某私立小学当起了计算机老师。某一天上课的时候，发现鼠标在自己动弹，又发现除了某台电脑，其他电脑连不上网络。感觉肯定有学生捣乱，于是开启了应急</p>
+        <h1 id="知攻善防实验室-Windows-应急响应——近源渗透"><a href="#知攻善防实验室-Windows-应急响应——近源渗透" class="headerlink" title="知攻善防实验室 Windows 应急响应——近源渗透"></a>知攻善防实验室 Windows 应急响应——近源渗透</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>小王从某安全大厂被优化掉后，来到了某私立小学当起了计算机老师。某一天上课的时候，发现鼠标在自己动弹，又发现除了某台电脑，其他电脑连不上网络。感觉肯定有学生捣乱，于是开启了应急</p>
 <h2 id="应急响应"><a href="#应急响应" class="headerlink" title="应急响应"></a>应急响应</h2><h3 id="攻击者的外网-IP-地址（病毒文件分析）"><a href="#攻击者的外网-IP-地址（病毒文件分析）" class="headerlink" title="攻击者的外网 IP 地址（病毒文件分析）"></a>攻击者的外网 IP 地址（病毒文件分析）</h3><p>在桌面上发现可疑文件，题目提示了是近源，所以可以排除 Web</p>
 <p>同时靶机又没有通讯软件和邮件，排除钓鱼</p>
 <p><img src="https://pic1.imgdb.cn/item/69ec2a5d673fb9750a2f9825.png"></p>
@@ -326,10 +326,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        66.1k
+        66.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        05:41
+        05:43
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -351,7 +351,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4-Windows-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-%E8%BF%91%E6%BA%90%E6%B8%97%E9%80%8F"><span class="toc-number">1.</span> <span class="toc-text">知攻善防实验室 Windows 应急响应-近源渗透</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94"><span class="toc-number">1.2.</span> <span class="toc-text">应急响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84%E5%A4%96%E7%BD%91-IP-%E5%9C%B0%E5%9D%80%EF%BC%88%E7%97%85%E6%AF%92%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">攻击者的外网 IP 地址（病毒文件分析）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84%E5%86%85%E7%BD%91%E8%B7%B3%E6%9D%BF-IP-%E5%9C%B0%E5%9D%80%EF%BC%88%E7%97%85%E6%AF%92%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">攻击者的内网跳板 IP 地址（病毒文件分析）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E4%BD%BF%E7%94%A8%E7%9A%84%E9%99%90%E9%80%9F%E8%BD%AF%E4%BB%B6%EF%BC%88%E5%8F%AF%E7%96%91%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">攻击者使用的限速软件（可疑文件查找）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84%E5%90%8E%E9%97%A8%EF%BC%88%E5%8F%AF%E7%96%91%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">攻击者的后门（可疑文件查找）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF"><span class="toc-number">1.3.</span> <span class="toc-text">CTF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%95%99%E4%B8%8B%E7%9A%84-flag%EF%BC%88%E5%8F%AF%E7%96%91%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">攻击者留下的 flag（可疑文件查找）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4-Windows-%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E2%80%94%E2%80%94%E8%BF%91%E6%BA%90%E6%B8%97%E9%80%8F"><span class="toc-number">1.</span> <span class="toc-text">知攻善防实验室 Windows 应急响应——近源渗透</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94"><span class="toc-number">1.2.</span> <span class="toc-text">应急响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84%E5%A4%96%E7%BD%91-IP-%E5%9C%B0%E5%9D%80%EF%BC%88%E7%97%85%E6%AF%92%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">攻击者的外网 IP 地址（病毒文件分析）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84%E5%86%85%E7%BD%91%E8%B7%B3%E6%9D%BF-IP-%E5%9C%B0%E5%9D%80%EF%BC%88%E7%97%85%E6%AF%92%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">攻击者的内网跳板 IP 地址（病毒文件分析）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E4%BD%BF%E7%94%A8%E7%9A%84%E9%99%90%E9%80%9F%E8%BD%AF%E4%BB%B6%EF%BC%88%E5%8F%AF%E7%96%91%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">攻击者使用的限速软件（可疑文件查找）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%9A%84%E5%90%8E%E9%97%A8%EF%BC%88%E5%8F%AF%E7%96%91%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">攻击者的后门（可疑文件查找）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF"><span class="toc-number">1.3.</span> <span class="toc-text">CTF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E7%95%99%E4%B8%8B%E7%9A%84-flag%EF%BC%88%E5%8F%AF%E7%96%91%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">攻击者留下的 flag（可疑文件查找）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -362,7 +362,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">69</div>
+    <div class="sidebar-state-number">70</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -370,7 +370,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">128</div>
+    <div class="sidebar-state-number">131</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -479,13 +479,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "ALL",
-          title: "知攻善防实验室 Windows 应急响应-近源渗透",
+          title: "知攻善防实验室 Windows 应急响应——近源渗透",
           url: "http://example.com/2026/04/25/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Windows%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-%E8%BF%91%E6%BA%90%E6%B8%97%E9%80%8F/",
           excerpt: "",
           description: "",
-          stripContent: "知攻善防实验室 Windows 应急响应-近源渗透题目小王从某安全大厂被优化掉后，来到了某私立小学当起了计算机老师。某一天上课的时候，发现鼠标在自己动弹，又发现除了某台电脑，其他电脑连不上网络。感觉肯定有学生捣乱，于是开启了应急 应急响应攻击者的外网 IP 地址（病毒文件分析）在桌面上发现可疑文件，题目提示了是近源，所以可以排除 Web 同时靶机又没有通讯软件和邮件，排除钓鱼  桌面上有 Word，结合学生上传 Word 交作业场景推测有宏病毒 将桌面上的 Word 文件全部打包成压缩包共享出来",
+          stripContent: "知攻善防实验室 Windows 应急响应——近源渗透题目小王从某安全大厂被优化掉后，来到了某私立小学当起了计算机老师。某一天上课的时候，发现鼠标在自己动弹，又发现除了某台电脑，其他电脑连不上网络。感觉肯定有学生捣乱，于是开启了应急 应急响应攻击者的外网 IP 地址（病毒文件分析）在桌面上发现可疑文件，题目提示了是近源，所以可以排除 Web 同时靶机又没有通讯软件和邮件，排除钓鱼  桌面上有 Word，结合学生上传 Word 交作业场景推测有宏病毒 将桌面上的 Word 文件全部打包成压缩包共享出",
           date: "Sat Apr 25 2026 10:18:00 GMT+0800",
-          updated: "Tue May 05 2026 22:41:41 GMT+0800",
+          updated: "Fri May 08 2026 11:42:23 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
