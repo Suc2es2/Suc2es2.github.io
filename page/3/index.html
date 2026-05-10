@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">72</div>
+    <div class="sidebar-state-number">74</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -160,7 +160,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">133</div>
+    <div class="sidebar-state-number">134</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -220,6 +220,12 @@
       <div class="widget">
         <ul>
             <li>
+              <a href="/2026/05/10/Noob%201/" title="VulnHub Nood：1">VulnHub Nood：1</a>
+            </li>
+            <li>
+              <a href="/2026/05/09/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Linux%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-Where%20IS%EF%BC%9F/" title="知攻善防实验室 Linux 应急响应-Where IS？">知攻善防实验室 Linux 应急响应-Where IS？</a>
+            </li>
+            <li>
               <a href="/2026/05/09/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Windows%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-Web%203/" title="知攻善防实验室 Windows 应急响应——Web 3">知攻善防实验室 Windows 应急响应——Web 3</a>
             </li>
             <li>
@@ -227,12 +233,6 @@
             </li>
             <li>
               <a href="/2026/05/07/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Windows%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-Web%202/" title="知攻善防实验室 Windows 应急响应——Web 2">知攻善防实验室 Windows 应急响应——Web 2</a>
-            </li>
-            <li>
-              <a href="/2026/05/07/%E4%BD%A0%E7%9A%84%E9%AD%94%E7%8E%8B%E6%8A%A4%E4%B8%80%E8%88%AC/" title="出题——你的魔王护一般">出题——你的魔王护一般</a>
-            </li>
-            <li>
-              <a href="/2026/05/06/The%20Planets%20Earth/" title="VulnHub The Planets：Earth">VulnHub The Planets：Earth</a>
             </li>
         </ul>
       </div>
@@ -244,6 +244,66 @@
 </aside>
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/16/Depth%201/" aria-label="VulnHub Depth：1" title="VulnHub Depth：1"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Depth：1" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-16</span>
+        <span><span class="icon-pencil"></span>305 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">VulnHub Depth：1</h2>
+      <article class="post-article">
+          VulnHub Depth: 1项目地址：https://download.vulnhub.com/depth/DepthB2R.ova
+是一个打包好的镜像文件
+注意：导入 vmx 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+发现 8080 运行了 JSP，访问发现是 Tomcat
+
+RCEFile listing checker扫描目录发现 /test.jsp，功能是可以执行系统命令 ls -l /tmp 
+
+提取SSH 本地登录执行 ls -l /home 命令查看用户家目录，发现 bill
+
+尝试 SSH 本地登录成功，可以使用当前 bill 用户执行
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/14/2026%20%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BD%E5%88%9B%E6%96%B0%E5%A4%A7%E8%B5%9B%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%90%E8%B5%9B%E9%81%93%E5%9B%A2%E9%98%9F%E8%B5%9B%20WriteUp/" aria-label="2026 数字中国创新大赛网络安全子赛道团队赛 WriteUp" title="2026 数字中国创新大赛网络安全子赛道团队赛 WriteUp"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2026 数字中国创新大赛网络安全子赛道团队赛 WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-14</span>
+        <span><span class="icon-pencil"></span>3.2k 字</span>
+        <span><span class="icon-clock"></span>17 分钟</span>
+      </div>
+      <h2 class="post-title">2026 数字中国创新大赛网络安全子赛道团队赛 WriteUp</h2>
+      <article class="post-article">
+          2026 数字中国创新大赛网络安全子赛道团队赛 WriteUp前言第一次在星盟带队打比赛，解出了五道题排名第二
+
+SecureDoc 是别的师傅爆破出了密码，最后由我绕过 WAF 拿到二血
+asystem 其他师傅也解出来了，但是我交的快，哈哈，相当于五道题都是我解的，这波带飞了
+虽然是松柏组，但是这个成绩在学生组也是能进决赛的（松柏前四）
+Misc冰碧蝎?过滤 HTTP
+
+追踪第一个 POST 请求拿到密钥 1ca3b8c9c81a5fdc
+
+后续一直在访问 &amp;#x2F;upload&amp;#x2F;1774…….dcic.php 路径，确认这个就是 WebShell
+
+解密方式是 base64 
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/11/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Linux%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-2/" aria-label="知攻善防实验室 Linux 应急响应——2" title="知攻善防实验室 Linux 应急响应——2"></a>
     <div class="post-cover left">
@@ -483,70 +543,6 @@
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/02/2024%20%E7%AC%AC%E4%B8%80%E5%B1%8A%20Solar%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B/" aria-label="2024 第一届 Solar 应急响应挑战赛" title="2024 第一届 Solar 应急响应挑战赛"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2024 第一届 Solar 应急响应挑战赛" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-02</span>
-        <span><span class="icon-pencil"></span>4.4k 字</span>
-        <span><span class="icon-clock"></span>21 分钟</span>
-      </div>
-      <h2 class="post-title">2024 第一届 Solar 应急响应挑战赛</h2>
-      <article class="post-article">
-          2024 第一届 Solar 应急响应挑战赛签到签到（邮件头溯源）
-根据邮件头信息，邮件的发件顺序可以从最早的 Received 头部向后推断，首先是最初的邮件来源，依次通过多个邮件服务器转发。具体顺序如下：
-
-mail.solar.sec
-mail.da4s8gag.com
-newxmmxszc6-1.qq.com
-
-所以，flag的结果为
-1flag&amp;#123;mail.solar.sec|mail.da4s8gag.com|newxmmxszc6-1.qq.com&amp;#125;
-
-日志流量日志流量-1（WebShell 查杀）
-查看流量包发现有对 b.jsp 的 POST 请求
-
-手动查看
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/zico2%201/" aria-label="VulnHub zico2：1" title="VulnHub zico2：1"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub zico2：1" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-01</span>
-        <span><span class="icon-pencil"></span>510 字</span>
-        <span><span class="icon-clock"></span>3 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub zico2：1</h2>
-      <article class="post-article">
-          zico2: 1项目地址：https://download.vulnhub.com/btrsys/BTRSys1.rar
-是一个打包好的镜像文件
-注意：导入 vmx 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-本地文件包含page查看 80 端口发现有使用文件包含函数
-
-尝试读取 /etc/passwd 文件成功
-
-弱口令phpLiteAdmin扫描目录发现另一个后台 /dbadmin/
-
-弱口令 admin 登录成功
-
-RCEphpLiteAdmin在 PhpLiteAdmin 主界面找到“Create new database”输入框，输入数据库名 ha
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
   </nav>
@@ -570,10 +566,10 @@ RCEphpLiteAdmin在 PhpLiteAdmin 主界面找到“Create new database”输入�
       </div>
       <div>
         <span class="icon-brush"></span>
-        67.1k
+        67.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        05:46
+        05:49
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -601,7 +597,7 @@ RCEphpLiteAdmin在 PhpLiteAdmin 主界面找到“Create new database”输入�
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">72</div>
+    <div class="sidebar-state-number">74</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -609,7 +605,7 @@ RCEphpLiteAdmin在 PhpLiteAdmin 主界面找到“Create new database”输入�
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">133</div>
+    <div class="sidebar-state-number">134</div>
   </div>
 </div>
 <div class="sidebar-social" >
