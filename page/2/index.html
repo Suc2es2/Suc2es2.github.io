@@ -226,13 +226,13 @@
               <a href="/2026/05/10/Noob%201/" title="VulnHub Nood：1">VulnHub Nood：1</a>
             </li>
             <li>
+              <a href="/2026/05/10/%E7%94%B5%E7%AB%9E%E5%AE%A2%E6%9C%8D%E5%AF%B9%E8%AF%9D%E8%B6%8A%E6%9D%83/" title="某电竞客服对话越权">某电竞客服对话越权</a>
+            </li>
+            <li>
               <a href="/2026/05/09/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Linux%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-Where%20IS%EF%BC%9F/" title="知攻善防实验室 Linux 应急响应-Where IS？">知攻善防实验室 Linux 应急响应-Where IS？</a>
             </li>
             <li>
               <a href="/2026/05/09/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Windows%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-Web%203/" title="知攻善防实验室 Windows 应急响应——Web 3">知攻善防实验室 Windows 应急响应——Web 3</a>
-            </li>
-            <li>
-              <a href="/2026/05/08/Empire%20LupinOne/" title="VulnHub Empire：LupinOne">VulnHub Empire：LupinOne</a>
             </li>
         </ul>
       </div>
@@ -245,32 +245,27 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/05/%E7%94%B5%E7%AB%9E%E5%AE%A2%E6%9C%8D%E5%AF%B9%E8%AF%9D%E8%B6%8A%E6%9D%83/" aria-label="某电竞客服对话越权" title="某电竞客服对话越权"></a>
+      <a class="post-link" href="/2026/05/05/%E7%94%B5%E7%AB%9E%E5%90%8E%E5%8F%B0/" aria-label="某电竞小程序后台接管" title="某电竞小程序后台接管"></a>
     <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="某电竞客服对话越权" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="某电竞小程序后台接管" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2026-05-05</span>
-        <span><span class="icon-pencil"></span>183 字</span>
+        <span><span class="icon-pencil"></span>135 字</span>
         <span><span class="icon-clock"></span>1 分钟</span>
       </div>
-      <h2 class="post-title">某电竞客服对话越权</h2>
+      <h2 class="post-title">某电竞小程序后台接管</h2>
       <article class="post-article">
-          电竞客服对话越权前言本次测试属于公益类型的 SRC
-越权抓包与客服对话的流量包，发现存在两个关键参数
-一个是 chat_id，另一个则是 token
+          某电竞小程序后台接管前言本次测试属于公益类型的 SRC
+弱口令小程序正常抓包，但是测了一圈下来没找到任何洞（越权有 Cookie 鉴权，支付也没啥问题）
 
-因为数据格式是 JSON，所以将 token 置空试试
+索性搜索这个小程序的域名找找资产，还真找到几个站点
 
-发送成功（这里应该是我超时了，所以重新抓了一个包导致 chat_id 不一样）
+弱口令 admin&amp;#x2F;admin 直接登录进去了
+第一个站点回显没有权限，应该是没用了，毕竟 Hunter 上标明了是云厂商
 
-切换为小号抓包获取 chat_id
-
-替换参数与文字内容发包
-
-可以看到发出去了，并且这个 chat_id 在后端应该是每次 +1
-所以可以遍历这个参数从而给客服制造大量垃圾消息以及影响客户本身询问的需求，高危起步了
+第二个站点成功接管
 
 
       </article>
