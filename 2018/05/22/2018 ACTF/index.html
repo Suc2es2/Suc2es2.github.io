@@ -17,18 +17,26 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="2018 ACTF WriteUp">
+    <meta name="description" content="2018 ACTF WriteUp前言主办方：XCTF Crypto你能看出这是什么加密么（RSA） 1234567p&#x3D;0x928fb6aa9d813b6c3270131818a7c54edb18e3806942b88670106c1821e0326364194a8c49392849432b37632f0abe3f3c52e909b939c91c50e41a7b8cd00c67d6743b4fq&#x3D;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2018 ACTF WriteUp">
 <meta property="og:url" content="http://example.com/2018/05/22/2018%20ACTF/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="2018 ACTF WriteUp">
+<meta property="og:description" content="2018 ACTF WriteUp前言主办方：XCTF Crypto你能看出这是什么加密么（RSA） 1234567p&#x3D;0x928fb6aa9d813b6c3270131818a7c54edb18e3806942b88670106c1821e0326364194a8c49392849432b37632f0abe3f3c52e909b939c91c50e41a7b8cd00c67d6743b4fq&#x3D;">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a04301c6f6a2d474b49b711.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a0430276f6a2d474b49b71b.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a0434376f6a2d474b49bb54.png">
 <meta property="article:published_time" content="2018-05-22T06:18:00.000Z">
-<meta property="article:modified_time" content="2026-05-13T06:26:16.605Z">
+<meta property="article:modified_time" content="2026-05-13T09:31:14.710Z">
 <meta property="article:author" content="ALL">
+<meta property="article:tag" content="AES-ECB">
 <meta property="article:tag" content="CTF">
+<meta property="article:tag" content="RSA">
+<meta property="article:tag" content="摩斯密码">
+<meta property="article:tag" content="流密码密钥重用">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6a04301c6f6a2d474b49b711.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -146,7 +154,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-ACTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2018 ACTF WriteUp</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-ACTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2018 ACTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.2.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%A0%E8%83%BD%E7%9C%8B%E5%87%BA%E8%BF%99%E6%98%AF%E4%BB%80%E4%B9%88%E5%8A%A0%E5%AF%86%E4%B9%88%EF%BC%88RSA%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">你能看出这是什么加密么（RSA）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MyOwnCBC%EF%BC%88AES-ECB%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">MyOwnCBC（AES-ECB）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Morse%EF%BC%88%E6%91%A9%E6%96%AF%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">Morse（摩斯密码）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tiny-LFSR%EF%BC%88%E6%B5%81%E5%AF%86%E7%A0%81%E5%AF%86%E9%92%A5%E9%87%8D%E7%94%A8%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">Tiny LFSR（流密码密钥重用）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -165,7 +173,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">142</div>
+    <div class="sidebar-state-number">145</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -233,12 +241,117 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="2018-ACTF-WriteUp"><a href="#2018-ACTF-WriteUp" class="headerlink" title="2018 ACTF WriteUp"></a>2018 ACTF WriteUp</h1>
+        <h1 id="2018-ACTF-WriteUp"><a href="#2018-ACTF-WriteUp" class="headerlink" title="2018 ACTF WriteUp"></a>2018 ACTF WriteUp</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>主办方：XCTF</p>
+<h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="你能看出这是什么加密么（RSA）"><a href="#你能看出这是什么加密么（RSA）" class="headerlink" title="你能看出这是什么加密么（RSA）"></a>你能看出这是什么加密么（RSA）</h3><p><img src="https://pic1.imgdb.cn/item/6a04301c6f6a2d474b49b711.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">p=0x928fb6aa9d813b6c3270131818a7c54edb18e3806942b88670106c1821e0326364194a8c49392849432b37632f0abe3f3c52e909b939c91c50e41a7b8cd00c67d6743b4f</span><br><span class="line"></span><br><span class="line">q=0xec301417ccdffa679a8dcc4027dd0d75baf9d441625ed8930472165717f4732884c33f25d4ee6a6c9ae6c44aedad039b0b72cf42cab7f80d32b74061</span><br><span class="line"></span><br><span class="line">e=0x10001</span><br><span class="line"></span><br><span class="line">c=0x70c9133e1647e95c3cb99bd998a9028b5bf492929725a9e8e6d2e277fa0f37205580b196e5f121a2e83bc80a8204c99f5036a07c8cf6f96c420369b4161d2654a7eccbdaf583204b645e137b3bd15c5ce865298416fd5831cba0d947113ed5be5426b708b89451934d11f9aed9085b48b729449e461ff0863552149b965e22b6   </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"></span><br><span class="line">p = <span class="number">0x928fb6aa9d813b6c3270131818a7c54edb18e3806942b88670106c1821e0326364194a8c49392849432b37632f0abe3f3c52e909b939c91c50e41a7b8cd00c67d6743b4f</span></span><br><span class="line">q = <span class="number">0xec301417ccdffa679a8dcc4027dd0d75baf9d441625ed8930472165717f4732884c33f25d4ee6a6c9ae6c44aedad039b0b72cf42cab7f80d32b74061</span></span><br><span class="line">e = <span class="number">0x10001</span></span><br><span class="line">c = <span class="number">0x70c9133e1647e95c3cb99bd998a9028b5bf492929725a9e8e6d2e277fa0f37205580b196e5f121a2e83bc80a8204c99f5036a07c8cf6f96c420369b4161d2654a7eccbdaf583204b645e137b3bd15c5ce865298416fd5831cba0d947113ed5be5426b708b89451934d11f9aed9085b48b729449e461ff0863552149b965e22b6</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># RSA 解密</span></span><br><span class="line">n = p * q</span><br><span class="line">phi = (p-<span class="number">1</span>) * (q-<span class="number">1</span>)</span><br><span class="line">d = gmpy2.invert(e, phi)</span><br><span class="line">m = gmpy2.powmod(c, d, n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将解密后的大整数转换为字节串</span></span><br><span class="line"><span class="comment"># 注意：m 的 bit 长度不一定是 8 的倍数，用 (bit_length+7)//8 计算字节数</span></span><br><span class="line">byte_len = (m.bit_length() + <span class="number">7</span>) // <span class="number">8</span></span><br><span class="line">m_bytes = m.to_bytes(byte_len, <span class="string">&#x27;big&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 直接打印全部字节（可能包含不可打印字符，但能看到 flag）</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;全部字节串:&quot;</span>, m_bytes)</span><br></pre></td></tr></table></figure>
+
+<p>得到 <code>afctf{R54_|5_$0_$imp13}</code></p>
+<h3 id="MyOwnCBC（AES-ECB）"><a href="#MyOwnCBC（AES-ECB）" class="headerlink" title="MyOwnCBC（AES-ECB）"></a>MyOwnCBC（AES-ECB）</h3><p><img src="https://pic1.imgdb.cn/item/6a0430276f6a2d474b49b71b.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python2.7</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Random <span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">MyOwnCBC</span>(<span class="params">key, plain</span>):</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(key)!=<span class="number">32</span>:</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;error!&quot;</span></span><br><span class="line">	cipher_txt = <span class="string">b&quot;&quot;</span></span><br><span class="line">	cipher_arr = []</span><br><span class="line">	cipher = AES.new(key, AES.MODE_ECB, <span class="string">&quot;&quot;</span>)</span><br><span class="line">	plain = [plain[i:i+<span class="number">32</span>] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(plain), <span class="number">32</span>)]</span><br><span class="line">	<span class="built_in">print</span> (plain)</span><br><span class="line">	cipher_arr.append(cipher.encrypt(plain[<span class="number">0</span>]))</span><br><span class="line">	cipher_txt += cipher_arr[<span class="number">0</span>]</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(plain)):</span><br><span class="line">		cipher = AES.new(cipher_arr[i-<span class="number">1</span>], AES.MODE_ECB, <span class="string">&quot;&quot;</span>)</span><br><span class="line">		cipher_arr.append(cipher.encrypt(plain[i]))</span><br><span class="line">		cipher_txt += cipher_arr[i]</span><br><span class="line">	<span class="keyword">return</span> cipher_txt</span><br><span class="line"></span><br><span class="line">key = random.getrandbits(<span class="number">256</span>)</span><br><span class="line">key = long_to_bytes(key)</span><br><span class="line"></span><br><span class="line">s = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;flag.txt&quot;</span>,<span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">	s = f.read()</span><br><span class="line">	f.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;flag_cipher&quot;</span>,<span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">	f.write(MyOwnCBC(key, s))</span><br><span class="line">	f.close()</span><br></pre></td></tr></table></figure>
+
+<p>加密流程：</p>
+<ul>
+<li><p><code>C0 = AES_ECB(key, P0)</code>，输出 32 字节（因为 <code>P0</code> 是 32 字节）</p>
+</li>
+<li><p><code>C1 = AES_ECB(C0, P1)</code></p>
+</li>
+<li><p><code>C2 = AES_ECB(C1, P2)</code></p>
+</li>
+<li><p>……</p>
+</li>
+</ul>
+<p>密文文件正是 <code>C0 + C1 + C2 + ...</code> 的拼接</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plain = [plain[i:i+<span class="number">32</span>] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(plain), <span class="number">32</span>)]   <span class="comment"># 每 32 字节一组</span></span><br><span class="line">cipher_arr.append(cipher.encrypt(plain[<span class="number">0</span>]))          <span class="comment"># 第一块：用主密钥 key 加密</span></span><br><span class="line">cipher = AES.new(cipher_arr[i-<span class="number">1</span>], AES.MODE_ECB, <span class="string">&quot;&quot;</span>)  <span class="comment"># 后续块：用前一块密文做密钥</span></span><br><span class="line">cipher_arr.append(cipher.encrypt(plain[i]))</span><br></pre></td></tr></table></figure>
+
+<p>AES 是对称加密，加密和解密使用同一个密钥</p>
+<p>对于 <code>C1</code> 来说，加密时用的密钥是 <code>C0</code>，而这个 <code>C0</code> 就保存在密文文件的最前面 32 字节</p>
+<p>因此只要拿到了密文文件，我们就可以用 <code>C0</code> 作为密钥解密 <code>C1</code>，得到 <code>P1</code>；再用 <code>C1</code> 解密 <code>C2</code> 得到 <code>P2……</code> 依此类推，完全不需要主密钥 <code>key</code></p>
+<p>解密步骤如下：</p>
+<ul>
+<li><ol>
+<li>读取 <code>flag_cipher</code> 文件，得到完整密文字节串</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>按 32 字节一组切分成 <code>blocks = [C0, C1, C2, ..., Cn]</code></li>
+</ol>
+</li>
+<li><ol start="3">
+<li>对 <code>i</code> 从 1 到 <code>n</code>，用 <code>C_{i-1}</code> 作为密钥，解密 <code>C_i</code> 得到 <code>P_i</code></li>
+</ol>
+</li>
+<li><ol start="4">
+<li>将所有解密出的 <code>P_i</code> 拼接，即得到从第二块开始的明文</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取密文文件</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;flag_cipher&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    data = f.read()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 每 32 字节切一个块</span></span><br><span class="line">blocks = [data[i:i+<span class="number">32</span>] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(data), <span class="number">32</span>)]</span><br><span class="line"></span><br><span class="line">plaintext = <span class="string">b&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(blocks)):</span><br><span class="line">    key = blocks[i-<span class="number">1</span>]          <span class="comment"># 前一个密文块就是本轮的密钥</span></span><br><span class="line">    cipher = AES.new(key, AES.MODE_ECB)</span><br><span class="line">    plain_block = cipher.decrypt(blocks[i])</span><br><span class="line">    plaintext += plain_block</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印结果（可能尾部有填充，但 flag 通常以 &#125; 结尾，直接看即可）</span></span><br><span class="line"><span class="built_in">print</span>(plaintext.decode(<span class="string">&#x27;latin-1&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>得到 <code>afctf{Don&#39;t_be_fooled_by_yourself}</code></p>
+<h3 id="Morse（摩斯密码）"><a href="#Morse（摩斯密码）" class="headerlink" title="Morse（摩斯密码）"></a>Morse（摩斯密码）</h3><p><img src="https://pic1.imgdb.cn/item/6a0434376f6a2d474b49bb54.png"></p>
+<p>拿到密文</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-..../.----/-..../-..../-..../...--/--.../....-/-..../-..../--.../-.../...--/.----/--.../...--/..---/--.../--.../....-/...../..-./--.../...--/...--/-----/...../..-./...--/...--/...--/....-/...--/...../--.../----./--.../-..</span><br></pre></td></tr></table></figure>
+
+<p>解密得到 <code>actf{1s&#39;t_s0_345y}</code></p>
+<h3 id="Tiny-LFSR（流密码密钥重用）"><a href="#Tiny-LFSR（流密码密钥重用）" class="headerlink" title="Tiny LFSR（流密码密钥重用）"></a>Tiny LFSR（流密码密钥重用）</h3><p>附件：</p>
+<ul>
+<li><p><code>.bash_history.txt</code>：记录了两条加密命令</p>
+</li>
+<li><p><code>Encrypt.py</code>：加密脚本</p>
+</li>
+<li><p><code>Plain.txt</code>：已知明文</p>
+</li>
+<li><p><code>cipher.txt</code>：<code>Plain.txt</code> 的密文</p>
+</li>
+<li><p><code>flag_encode.txt</code>：<code>flag.txt</code> 的密文</p>
+</li>
+</ul>
+<p>查看 <code>.bash_history.txt</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">python Encrypt.py key.txt Plain.txt cipher.txt</span><br><span class="line">python Encrypt.py key.txt flag.txt flag_encode.txt</span><br><span class="line">rm flag.txt</span><br><span class="line">rm key.txt</span><br></pre></td></tr></table></figure>
+
+<p>这说明同一个密钥 <code>key.txt</code> 被用来加密了 <code>Plain.txt</code> 和 <code>flag.txt</code></p>
+<p>脚本分析：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">key = <span class="string">&quot;&quot;</span>                    <span class="comment"># 读取 key.txt（十六进制字符串）</span></span><br><span class="line">R = <span class="built_in">int</span>(key,<span class="number">16</span>)             <span class="comment"># 将 key 转成整数，作为 LFSR 的种子</span></span><br><span class="line">mask = <span class="number">0b1101100000000</span>...   <span class="comment"># 64 位的 mask</span></span><br><span class="line"></span><br><span class="line">a = <span class="string">&#x27;&#x27;</span>.join([<span class="built_in">chr</span>(<span class="built_in">int</span>(b, <span class="number">16</span>)) <span class="keyword">for</span> b <span class="keyword">in</span> [key[i:i+<span class="number">2</span>] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(key), <span class="number">2</span>)]])</span><br><span class="line"><span class="comment"># a 是 key 的十六进制解码后的字节串（8 字节，因为 key 是 16 位 hex 即 64bit）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加密过程：</span></span><br><span class="line"><span class="comment"># 前 len(a) 字节（即 8 字节）：直接用 a 的对应字节与明文异或</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(a)):</span><br><span class="line">    ff.write((<span class="built_in">ord</span>(s[i])^<span class="built_in">ord</span>(a[i])).to_bytes(<span class="number">1</span>, byteorder=<span class="string">&#x27;big&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 之后的字节：反复调用 lfsr(R, mask) 生成伪随机字节，与明文异或</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(a), lent):</span><br><span class="line">    tmp=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>):       <span class="comment"># 每 8 次 LFSR 输出合成一个字节</span></span><br><span class="line">        (R,out)=lfsr(R,mask)</span><br><span class="line">        tmp=(tmp &lt;&lt; <span class="number">1</span>)^out</span><br><span class="line">    ff.write((tmp^<span class="built_in">ord</span>(s[i])).to_bytes(<span class="number">1</span>, byteorder=<span class="string">&#x27;big&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>加密实质：这是一个流密码，密文 &#x3D; 明文 ⊕ 密钥流</p>
+<p>密钥流的前 8 字节是固定的 <code>a</code>，后续由 LFSR 以 <code>R</code> 为种子不断生成</p>
+<p><strong>1. 流密码密钥重用</strong></p>
+<p>同一个种子 <code>R</code> 被用来加密了两个不同的文件，如果获得一对已知的明文和密文，攻击者就可以通过异或提取整个密钥流</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密钥流 = 明文 ⊕ 密文</span><br></pre></td></tr></table></figure>
+
+<p>然后，用这个密钥流去异或其他被同一密钥流加密的密文，就能得到对应的明文</p>
+<p><strong>2. 已知明文</strong></p>
+<p>我们正好有 <code>Plain.txt</code> 的明文内容，以及它的密文 <code>cipher.txt</code></p>
+<p>所以我们可以提取出前 <code>len(Plain)</code> 字节的密钥流，并用来解密 <code>flag_encode.txt</code> 的同样多的字节</p>
+<p>但是 <code>flag.txt</code> 的长度可能超过 <code>Plain.txt</code>，此时密钥流就不够用了</p>
+<p><strong>3. 恢复 LFSR 种子</strong></p>
+<p>要得到完整的密钥流，我们需要知道种子 <code>R</code>（也就是 key.txt 的内容）</p>
+<p>注意到：密钥流的前 8 字节就是 <code>a</code>，而 <code>a</code> 由 key.txt 直接解码得到</p>
+<p>因此，我们可以通过明文 <code>Plain.txt</code> 的前 8 字节与密文 <code>cipher.txt</code> 的前 8 字节异或，恢复出 <code>a</code></p>
+<ul>
+<li><p><code>a = Plain[:8] XOR cipher[:8]</code></p>
+</li>
+<li><p>然后将 <code>a</code> 转回十六进制字符串，即 <code>key = a.hex()</code></p>
+</li>
+<li><p>再 <code>R = int(key, 16)</code>，LFSR 种子到手！</p>
+</li>
+</ul>
+<p><strong>4. 重新生成完整密钥流</strong></p>
+<p>有了 <code>R</code> 和公开的 <code>mask</code>，我们就可以完全复现加密时 LFSR 的整个生命周期，生成任意长度的密钥流</p>
+<p>从第 9 字节开始，运行与加密程序相同的代码，一直生成到长度 ≥ <code>flag_encode.txt</code> 的长度</p>
+<p><strong>5. 解密 flag</strong></p>
+<p>将生成的完整密钥流与 <code>flag_encode.txt</code> 逐字节异或，得到完整的 <code>flag.txt</code> 明文</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ---------- 原题 LFSR 函数 ----------</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">lfsr</span>(<span class="params">R, mask</span>):</span><br><span class="line">    output = (R &lt;&lt; <span class="number">1</span>) &amp; <span class="number">0xffffffffffffffff</span></span><br><span class="line">    i = (R &amp; mask) &amp; <span class="number">0xffffffffffffffff</span></span><br><span class="line">    lastbit = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i != <span class="number">0</span>:</span><br><span class="line">        lastbit ^= (i &amp; <span class="number">1</span>)</span><br><span class="line">        i = i &gt;&gt; <span class="number">1</span></span><br><span class="line">    output ^= lastbit</span><br><span class="line">    <span class="keyword">return</span> (output, lastbit)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- 1. 读取文件 ----------</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;Plain.txt&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> f: plain = f.read()</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;cipher.txt&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> f: cipher = f.read()</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;flag_encode.txt&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> f: flag_enc = f.read()</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- 2. 恢复前 8 字节密钥 a ----------</span></span><br><span class="line">a = <span class="built_in">bytes</span>([p ^ c <span class="keyword">for</span> p, c <span class="keyword">in</span> <span class="built_in">zip</span>(plain[:<span class="number">8</span>], cipher[:<span class="number">8</span>])])</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- 3. 恢复种子 R ----------</span></span><br><span class="line">key_hex = a.<span class="built_in">hex</span>()</span><br><span class="line">R = <span class="built_in">int</span>(key_hex, <span class="number">16</span>)</span><br><span class="line">mask = <span class="number">0b1101100000000000000000000000000000000000000000000000000000000000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- 4. 生成足够长的密钥流 ----------</span></span><br><span class="line">keystream = <span class="built_in">bytearray</span>(a)    <span class="comment"># 前 8 字节直接使用</span></span><br><span class="line"><span class="keyword">while</span> <span class="built_in">len</span>(keystream) &lt; <span class="built_in">len</span>(flag_enc):</span><br><span class="line">    tmp = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>):</span><br><span class="line">        R, out = lfsr(R, mask)</span><br><span class="line">        tmp = (tmp &lt;&lt; <span class="number">1</span>) ^ out</span><br><span class="line">    keystream.append(tmp)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- 5. 解密 ----------</span></span><br><span class="line">flag = <span class="built_in">bytes</span>([k ^ f <span class="keyword">for</span> k, f <span class="keyword">in</span> <span class="built_in">zip</span>(keystream, flag_enc)])</span><br><span class="line"><span class="built_in">print</span>(flag.decode(errors=<span class="string">&#x27;replace&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>得到 <code>actf{read_is_hard_but_worthy}</code></p>
+
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/CTF/" title="CTF" data-aos="zoom-in">CTF</a>
 
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag" title="CTF">CTF</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/AES-ECB/" rel="tag" title="AES-ECB">AES-ECB</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag" title="CTF">CTF</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/RSA/" rel="tag" title="RSA">RSA</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%91%A9%E6%96%AF%E5%AF%86%E7%A0%81/" rel="tag" title="摩斯密码">摩斯密码</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%B5%81%E5%AF%86%E7%A0%81%E5%AF%86%E9%92%A5%E9%87%8D%E7%94%A8/" rel="tag" title="流密码密钥重用">流密码密钥重用</a></li></ul>
 
     </footer>
   </div>
@@ -275,10 +388,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        71k
+        72.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        06:07
+        06:14
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -300,7 +413,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-ACTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2018 ACTF WriteUp</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-ACTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2018 ACTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.2.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%A0%E8%83%BD%E7%9C%8B%E5%87%BA%E8%BF%99%E6%98%AF%E4%BB%80%E4%B9%88%E5%8A%A0%E5%AF%86%E4%B9%88%EF%BC%88RSA%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">你能看出这是什么加密么（RSA）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MyOwnCBC%EF%BC%88AES-ECB%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">MyOwnCBC（AES-ECB）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Morse%EF%BC%88%E6%91%A9%E6%96%AF%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">Morse（摩斯密码）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tiny-LFSR%EF%BC%88%E6%B5%81%E5%AF%86%E7%A0%81%E5%AF%86%E9%92%A5%E9%87%8D%E7%94%A8%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">Tiny LFSR（流密码密钥重用）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -319,7 +432,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">142</div>
+    <div class="sidebar-state-number">145</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -432,9 +545,9 @@
           url: "http://example.com/2018/05/22/2018%20ACTF/",
           excerpt: "",
           description: "",
-          stripContent: "2018 ACTF WriteUp",
+          stripContent: "2018 ACTF WriteUp前言主办方：XCTF Crypto你能看出这是什么加密么（RSA） 1234567p=0x928fb6aa9d813b6c3270131818a7c54edb18e3806942b88670106c1821e0326364194a8c49392849432b37632f0abe3f3c52e909b939c91c50e41a7b8cd00c67d6743b4fq=0xec301417ccdffa679a8dcc4027dd0d75baf9d441625ed893",
           date: "Tue May 22 2018 14:18:00 GMT+0800",
-          updated: "Wed May 13 2026 14:26:16 GMT+0800",
+          updated: "Wed May 13 2026 17:31:14 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
