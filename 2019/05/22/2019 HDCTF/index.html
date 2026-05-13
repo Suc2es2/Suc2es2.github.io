@@ -17,12 +17,12 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="2019 HDCTF前言主办方：海南大学  Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程）下载附件是一个 .img，使用 vol2 进行取证，先查看操作系统 1python2 vol.py -f memory.img imageinfo  发现是 Windows 2003，给出了三个具体的版本  查看进程，Server 2003 生命周期中 SP2 是最普遍的版本，所以选">
+    <meta name="description" content="2019 HDCTF前言主办方：海南大学 Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程） 下载附件是一个 .img，使用 vol2 进行取证，先查看操作系统 1python2 vol.py -f memory.img imageinfo  发现是 Windows 2003，给出了三个具体的版本  查看进程，Server 2003 生命周期中 SP2 是最普遍的版本，所以选">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2019 HDCTF WriteUp">
 <meta property="og:url" content="http://example.com/2019/05/22/2019%20HDCTF/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="2019 HDCTF前言主办方：海南大学  Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程）下载附件是一个 .img，使用 vol2 进行取证，先查看操作系统 1python2 vol.py -f memory.img imageinfo  发现是 Windows 2003，给出了三个具体的版本  查看进程，Server 2003 生命周期中 SP2 是最普遍的版本，所以选">
+<meta property="og:description" content="2019 HDCTF前言主办方：海南大学 Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程） 下载附件是一个 .img，使用 vol2 进行取证，先查看操作系统 1python2 vol.py -f memory.img imageinfo  发现是 Windows 2003，给出了三个具体的版本  查看进程，Server 2003 生命周期中 SP2 是最普遍的版本，所以选">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a02de62c05e72d9171c06bf.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a02d943c05e72d9171bc434.png">
@@ -46,7 +46,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a03f9e56f6a2d474b48dc9b.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a03fa7b6f6a2d474b48dd59.png">
 <meta property="article:published_time" content="2019-05-22T06:18:00.000Z">
-<meta property="article:modified_time" content="2026-05-13T04:14:46.008Z">
+<meta property="article:modified_time" content="2026-05-13T04:16:43.118Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="MFC">
@@ -263,8 +263,8 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
         <h1 id="2019-HDCTF"><a href="#2019-HDCTF" class="headerlink" title="2019 HDCTF"></a>2019 HDCTF</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>主办方：海南大学</p>
-<p><img src="https://pic1.imgdb.cn/item/6a02de62c05e72d9171c06bf.png"></p>
-<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="你能发现什么蛛丝马迹吗（Windows-pslist-排查进程）"><a href="#你能发现什么蛛丝马迹吗（Windows-pslist-排查进程）" class="headerlink" title="你能发现什么蛛丝马迹吗（Windows pslist 排查进程）"></a>你能发现什么蛛丝马迹吗（Windows pslist 排查进程）</h3><p>下载附件是一个 <code>.img</code>，使用 vol2 进行取证，先查看操作系统</p>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="你能发现什么蛛丝马迹吗（Windows-pslist-排查进程）"><a href="#你能发现什么蛛丝马迹吗（Windows-pslist-排查进程）" class="headerlink" title="你能发现什么蛛丝马迹吗（Windows pslist 排查进程）"></a>你能发现什么蛛丝马迹吗（Windows pslist 排查进程）</h3><p><img src="https://pic1.imgdb.cn/item/6a02de62c05e72d9171c06bf.png"></p>
+<p>下载附件是一个 <code>.img</code>，使用 vol2 进行取证，先查看操作系统</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python2 vol.py -f memory.img imageinfo</span><br></pre></td></tr></table></figure>
 
 <p>发现是 Windows 2003，给出了三个具体的版本</p>
@@ -653,9 +653,9 @@
           url: "http://example.com/2019/05/22/2019%20HDCTF/",
           excerpt: "",
           description: "",
-          stripContent: "2019 HDCTF前言主办方：海南大学  Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程）下载附件是一个 .img，使用 vol2 进行取证，先查看操作系统 1python2 vol.py -f memory.img imageinfo  发现是 Windows 2003，给出了三个具体的版本  查看进程，Server 2003 生命周期中 SP2 是最普遍的版本，所以选择它 1python2 vol.py -f memory.img --profile=Win2003",
+          stripContent: "2019 HDCTF前言主办方：海南大学 Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程） 下载附件是一个 .img，使用 vol2 进行取证，先查看操作系统 1python2 vol.py -f memory.img imageinfo  发现是 Windows 2003，给出了三个具体的版本  查看进程，Server 2003 生命周期中 SP2 是最普遍的版本，所以选择它 1python2 vol.py -f memory.img --profile=Win2003",
           date: "Wed May 22 2019 14:18:00 GMT+0800",
-          updated: "Wed May 13 2026 12:14:46 GMT+0800",
+          updated: "Wed May 13 2026 12:16:43 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
