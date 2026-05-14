@@ -1,0 +1,662 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  <title>
+    攻防演练 | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="攻防演练2018 年“辽宁护网2018” 网络攻防实战演习辽宁省公安厅网络安全保卫总队于 9 月 14 日至 21 日组织开展了 “辽宁护网2018” 网络攻防实战演习 本次演习在真实网络环境下，参赛队伍分为攻击方、防守方和应急处置队伍。攻击方对金融、通讯、医疗卫生、广播电视、证券、交通、教育、国土资源、水利及党政机关的门户网站、云平台、交易平台、数据系统、物联网等目标系统进行网络攻击，防守方则组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="攻防演练">
+<meta property="og:url" content="http://example.com/2018/03/01/%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="攻防演练2018 年“辽宁护网2018” 网络攻防实战演习辽宁省公安厅网络安全保卫总队于 9 月 14 日至 21 日组织开展了 “辽宁护网2018” 网络攻防实战演习 本次演习在真实网络环境下，参赛队伍分为攻击方、防守方和应急处置队伍。攻击方对金融、通讯、医疗卫生、广播电视、证券、交通、教育、国土资源、水利及党政机关的门户网站、云平台、交易平台、数据系统、物联网等目标系统进行网络攻击，防守方则组">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a0550116ab1697a9de6ba9f.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a0550026ab1697a9de6ba8b.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a054f9c6ab1697a9de6ba1f.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a0565726ab1697a9de72060.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a05657e6ab1697a9de7206d.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a0565926ab1697a9de72085.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a055d6b6ab1697a9de6ef21.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a055c6b6ab1697a9de6edee.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a0567b36ab1697a9de722cb.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a0569656ab1697a9de724b5.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a0557de6ab1697a9de6e906.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a0557c26ab1697a9de6e8df.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a056a246ab1697a9de72507.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a056b7c6ab1697a9de72559.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a056c266ab1697a9de72578.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a056cae6ab1697a9de72588.png">
+<meta property="article:published_time" content="2018-03-01T08:39:00.000Z">
+<meta property="article:modified_time" content="2026-05-14T06:44:47.903Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="攻防演练">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6a0550116ab1697a9de6ba9f.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="攻防演练">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">攻防演练</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.</span> <span class="toc-text">攻防演练</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2018-%E5%B9%B4"><span class="toc-number">1.1.</span> <span class="toc-text">2018 年</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E8%BE%BD%E5%AE%81%E6%8A%A4%E7%BD%912018%E2%80%9D-%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E6%BC%94%E4%B9%A0"><span class="toc-number">1.1.1.</span> <span class="toc-text">“辽宁护网2018” 网络攻防实战演习</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E5%9B%BD%E5%88%91%E4%BA%8B%E8%AD%A6%E5%AF%9F%E5%AD%A6%E9%99%A2"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">中国刑事警察学院</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E8%BF%9E-%E2%80%9C%E6%8A%A4%E7%BD%912018%E2%80%9D-%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E6%BC%94%E4%B9%A0"><span class="toc-number">1.1.2.</span> <span class="toc-text">大连 “护网2018” 网络攻防实战演习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%BF%E4%B8%9C-%E2%80%9C%E6%8A%A4%E7%BD%912018%E2%80%9D-%E5%85%A8%E7%9C%81%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E4%B9%A0"><span class="toc-number">1.1.3.</span> <span class="toc-text">广东 “护网2018” 全省网络安全攻防演习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%81%E5%A4%8F-%E2%80%9C%E6%8A%A4%E7%BD%912018%E2%80%9D-%E2%80%93-%E7%AC%AC%E4%BA%8C%E5%B1%8A-%E2%80%9C%E6%96%B0%E6%BD%AE%E6%9D%AF%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E4%B9%A0%E5%A4%A7%E8%B5%9B"><span class="toc-number">1.1.4.</span> <span class="toc-text">宁夏 “护网2018” – 第二届 “新潮杯” 网络安全攻防演习大赛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%B5%E9%98%B3%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%8A%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.1.5.</span> <span class="toc-text">贵阳大数据及网络安全攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%99%E6%B1%9F%E7%9C%81-%E2%80%9C%E6%8A%A4%E7%BD%912018%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%9E%E6%88%98%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.1.6.</span> <span class="toc-text">浙江省 “护网2018” 网络实战攻防演练</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E6%98%93%E5%AE%89%E5%85%A8%E9%83%A8"><span class="toc-number">1.1.6.1.</span> <span class="toc-text">网易安全部</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%9B%E5%B7%A5%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83%E6%B4%BB%E5%8A%A8"><span class="toc-number">1.1.7.</span> <span class="toc-text">军工网络安全攻防演练活动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2019-%E5%B9%B4"><span class="toc-number">1.2.</span> <span class="toc-text">2019 年</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%BA%E7%A4%BE%E7%B3%BB%E7%BB%9F%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.2.1.</span> <span class="toc-text">人社系统网络攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%B7%E5%8D%97%E7%9C%81%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E6%88%98%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.2.2.</span> <span class="toc-text">海南省网络安全实战攻防演练</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2020-%E5%B9%B4"><span class="toc-number">1.3.</span> <span class="toc-text">2020 年</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%92%E5%B2%9B%E5%B8%82%E9%87%8D%E7%82%B9%E8%A1%8C%E4%B8%9A%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%93%E9%A1%B9%E6%BC%94%E7%BB%83"><span class="toc-number">1.3.1.</span> <span class="toc-text">青岛市重点行业网络安全专项演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E7%B2%A4%E7%9B%BE-2020%E2%80%9D-%E5%B9%BF%E4%B8%9C%E7%9C%81%E6%95%B0%E5%AD%97%E6%94%BF%E5%BA%9C%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.3.2.</span> <span class="toc-text">“粤盾-2020” 广东省数字政府网络安全攻防演练</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2021-%E5%B9%B4"><span class="toc-number">1.4.</span> <span class="toc-text">2021 年</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B2%B3%E5%8C%97%E7%9C%81%E5%BA%86%E7%A5%9D%E5%BB%BA%E5%85%9A100%E5%91%A8%E5%B9%B4%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E6%80%A5%E6%BC%94%E7%BB%83"><span class="toc-number">1.4.1.</span> <span class="toc-text">河北省庆祝建党100周年网络安全应急演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%B1%E8%A5%BF%E7%9C%81%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%BA%8B%E4%BB%B6%E5%BA%94%E6%80%A5%E6%BC%94%E7%BB%83"><span class="toc-number">1.4.2.</span> <span class="toc-text">山西省网络安全事件应急演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E5%86%80%E8%B1%AB%E9%84%82%E6%99%8B%E5%B7%9D%E2%80%9D-%E4%BA%94%E7%9C%81%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E8%81%94%E5%90%88%E6%BC%94%E4%B9%A0"><span class="toc-number">1.4.3.</span> <span class="toc-text">“冀豫鄂晋川” 五省网络安全联合演习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A2%85%E5%B7%9E%E5%B8%82-%E2%80%9C%E7%BD%91%E5%AE%89%E8%81%94%C2%B7%E4%BA%AE%E5%89%91%E8%A1%8C%E5%8A%A8%E2%80%9D-%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.4.4.</span> <span class="toc-text">梅州市 “网安联·亮剑行动” 网络攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9B%E5%B1%B1%E5%B8%82%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%BA%8B%E4%BB%B6%E5%BA%94%E6%80%A5%E6%BC%94%E7%BB%83%E6%9A%A8%E7%AC%AC%E4%B8%80%E5%B1%8A%E2%80%9C%E9%A3%9E%E9%B8%BF%E6%9D%AF%E2%80%9D%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B"><span class="toc-number">1.4.5.</span> <span class="toc-text">佛山市网络安全事件应急演练暨第一届“飞鸿杯”网络安全大赛</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2022-%E5%B9%B4"><span class="toc-number">1.5.</span> <span class="toc-text">2022 年</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%95%E5%A4%B4%E9%A6%96%E5%B1%8A-%E2%80%9C%E9%AE%80%E5%9F%8E%E6%9D%AF%E2%80%9D-%E6%95%B0%E5%AD%97%E6%94%BF%E5%BA%9C%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.5.1.</span> <span class="toc-text">汕头首届 “鮀城杯” 数字政府网络安全攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%89%E6%9E%97-%E2%80%9C%E6%8A%A4%E7%BD%912022%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E6%BC%94%E4%B9%A0%E6%9A%A8%E7%AC%AC%E4%BA%8C%E5%B1%8A%E7%8E%89%E6%9E%97%E5%B8%82%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF%E5%A4%A7%E8%B5%9B"><span class="toc-number">1.5.2.</span> <span class="toc-text">玉林 “护网2022” 网络安全攻防实战演习暨第二届玉林市网络安全技术大赛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%8A%E9%98%B3%E5%B8%82-%E2%80%9C%E6%8A%A4%E7%BD%912022%E2%80%9D-%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E6%BC%94%E4%B9%A0"><span class="toc-number">1.5.3.</span> <span class="toc-text">益阳市 “护网2022” 网络攻防实战演习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B2%A7%E5%B7%9E%E5%B8%82%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E6%80%A5%E6%BC%94%E7%BB%83%E6%9A%A8-%E2%80%9C%E6%8A%A4%E7%BD%912022%E2%80%9D-%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.5.4.</span> <span class="toc-text">沧州市网络安全应急演练暨 “护网2022” 攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E7%B2%A4%E7%9B%BE-2022%E2%80%9D-%E5%B9%BF%E4%B8%9C%E7%9C%81%E6%95%B0%E5%AD%97%E6%94%BF%E5%BA%9C%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.5.5.</span> <span class="toc-text">“粤盾-2022” 广东省数字政府网络安全攻防演练</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2023-%E5%B9%B4"><span class="toc-number">1.6.</span> <span class="toc-text">2023 年</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E5%BE%A1%E6%B5%B7-2023%E2%80%9D-%E7%8F%A0%E6%B5%B7%C2%B7%E9%98%B3%E6%B1%9F%C2%B7%E4%BA%91%E6%B5%AE%E6%95%B0%E5%AD%97%E6%94%BF%E5%BA%9C%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E8%81%94%E5%90%88%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.6.1.</span> <span class="toc-text">“御海-2023” 珠海·阳江·云浮数字政府网络安全联合攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E6%B8%85%E7%BD%91-2023%E2%80%9D-%E6%B8%85%E8%BF%9C%E5%B8%82%E5%85%A8%E5%9F%9F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.6.2.</span> <span class="toc-text">“清网-2023” 清远市全域网络安全攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%8A%E5%9D%8A-%E2%80%9C%E6%8A%A4%E7%BD%912023%E2%80%9D-%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E6%BC%94%E4%B9%A0"><span class="toc-number">1.6.3.</span> <span class="toc-text">廊坊 “护网2023” 网络攻防实战演习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B4%87%E5%B7%A6%E5%B8%82%E7%AC%AC%E4%BA%8C%E5%B1%8A-%E2%80%9C%E6%8A%A4%E7%BD%912023%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E4%B9%A0"><span class="toc-number">1.6.4.</span> <span class="toc-text">崇左市第二届 “护网2023” 网络安全攻防演习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%A9%E5%B7%9E%E5%B8%82%E6%95%99%E8%82%B2%E7%B3%BB%E7%BB%9F-%E2%80%9C%E6%8A%A4%E7%BD%912023%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%BC%94%E7%BB%83"><span class="toc-number">1.6.5.</span> <span class="toc-text">温州市教育系统 “护网2023” 网络安全演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E9%BB%94%E7%BD%91%E4%BD%BF%E5%91%BD2023%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E6%80%A5%E6%BC%94%E7%BB%83"><span class="toc-number">1.6.6.</span> <span class="toc-text">“黔网使命2023” 网络安全应急演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BE%99%E5%8F%A3%E5%B8%82-%E2%80%9C%E6%8A%A4%E7%BD%912023%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83"><span class="toc-number">1.6.7.</span> <span class="toc-text">龙口市 “护网2023” 网络安全攻防实战演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E7%B2%A4%E7%9B%BE-2023%E2%80%9D-%E5%B9%BF%E4%B8%9C%E7%9C%81%E6%95%B0%E5%AD%97%E6%94%BF%E5%BA%9C%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.6.8.</span> <span class="toc-text">“粤盾-2023” 广东省数字政府网络安全攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%9D%E6%B8%9D%E6%BB%87%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E6%88%98%E6%94%BB%E9%98%B2%E6%9A%A8%E5%BA%94%E6%80%A5%E6%BC%94%E7%BB%83"><span class="toc-number">1.6.9.</span> <span class="toc-text">川渝滇网络安全实战攻防暨应急演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%8F%E5%B7%9E%E5%B8%82%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83"><span class="toc-number">1.6.10.</span> <span class="toc-text">福州市网络安全攻防实战演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BD%AE%E5%B7%9E%E5%B8%82-%E2%80%9C%E6%BD%AE%E7%BD%91%E5%AE%89%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E5%B8%B8%E6%80%81%E5%8C%96%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.6.11.</span> <span class="toc-text">潮州市 “潮网安” 网络安全和数据安全常态化攻防演练</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2024-%E5%B9%B4"><span class="toc-number">1.7.</span> <span class="toc-text">2024 年</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E6%B7%B1%E8%93%9D%C2%B7%E8%8E%9E%E7%9B%BE-2024%E2%80%9D-%E6%95%B0%E5%AD%97%E6%94%BF%E5%BA%9C%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E8%81%94%E5%90%88%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.7.1.</span> <span class="toc-text">“深蓝·莞盾-2024” 数字政府网络安全联合攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E7%B2%A4%E7%9B%BE-2024%E2%80%9D-%E5%B9%BF%E4%B8%9C%E7%9C%81%E6%95%B0%E5%AD%97%E6%94%BF%E5%BA%9C%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.7.2.</span> <span class="toc-text">“粤盾-2024” 广东省数字政府网络安全攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%96%E5%B1%8A-%E2%80%9C%E9%A6%99%E6%B8%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83%E2%80%94%E4%BB%A5%E6%94%BB%E7%AD%91%E9%98%B22024%E2%80%9D"><span class="toc-number">1.7.3.</span> <span class="toc-text">首届 “香港网络安全攻防演练—以攻筑防2024”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E6%B5%B7%E7%9B%BE%E8%A1%8C%E5%8A%A8-2024%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%92%8C%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E5%AE%9E%E7%BD%91%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.7.4.</span> <span class="toc-text">“海盾行动-2024” 网络和数据安全实网攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E2%80%8B%E5%8F%8C%E5%9F%8E%E9%93%B8%E7%9B%BE%E2%80%9D-%E4%B8%AD%E5%B1%B1%C2%B7%E6%B1%9F%E9%97%A8%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E6%88%98%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.7.5.</span> <span class="toc-text">“​双城铸盾” 中山·江门网络安全实战攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E6%B9%9B%E7%9B%BE%E2%80%942024%E2%80%9D-%E6%B9%9B%E6%B1%9F%E5%B8%82%E6%95%B0%E5%AD%97%E6%94%BF%E5%BA%9C%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.7.6.</span> <span class="toc-text">“湛盾—2024” 湛江市数字政府网络安全攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C2024%E9%93%B8%E7%89%A2%E9%98%B2%E7%BA%BF-%E6%8A%A4%E8%88%AA%E4%BA%91%E7%BD%91%E2%80%9D-%E4%BF%A1%E6%81%AF%E9%80%9A%E4%BF%A1%E4%B8%9A%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E7%BD%91%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83%E6%9A%A8%E6%8A%80%E8%83%BD%E7%AB%9E%E8%B5%9B"><span class="toc-number">1.7.7.</span> <span class="toc-text">“2024铸牢防线 护航云网” 信息通信业网络安全实网攻防演练暨技能竞赛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BD%AE%E5%B7%9E%E5%B8%82-%E2%80%9C%E6%BD%AE%E7%BD%91%E5%AE%89%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E5%B8%B8%E6%80%81%E5%8C%96%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83-1"><span class="toc-number">1.7.8.</span> <span class="toc-text">潮州市 “潮网安” 网络安全和数据安全常态化攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A9%E6%B4%A5%E5%B8%82%E6%AD%A6%E6%B8%85%E5%8C%BA-%E2%80%9C%E9%80%9A%E6%AD%A6%E5%BB%8A%E2%80%9D-%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83"><span class="toc-number">1.7.9.</span> <span class="toc-text">天津市武清区 “通武廊” 网络数据安全攻防实战演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%99%E6%B8%AF%E7%B6%B2%E7%B5%A1%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%B7%B4"><span class="toc-number">1.7.10.</span> <span class="toc-text">香港網絡安全攻防演練</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E9%93%B8%E7%BD%912024%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E7%BD%91%E6%94%BB%E9%98%B2%E4%B8%8A%E6%B5%B7%E5%9C%B0%E5%8C%BA%E6%B4%BB%E5%8A%A8%E6%9A%A8-%E2%80%9C%E7%A3%90%E7%9F%B3%E8%A1%8C%E5%8A%A8%E2%80%9D-%E4%B8%8A%E6%B5%B7%E5%B8%82%E5%B7%A5%E4%B8%9A%E5%92%8C%E4%BF%A1%E6%81%AF%E5%8C%96%E9%A2%86%E5%9F%9F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E6%88%98%E6%94%BB%E9%98%B2%E6%B4%BB%E5%8A%A8"><span class="toc-number">1.7.11.</span> <span class="toc-text">“铸网2024” 网络安全实网攻防上海地区活动暨 “磐石行动” 上海市工业和信息化领域网络安全实战攻防活动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E8%8E%9E%E7%9B%BE-2024%E2%80%9D-%E4%B8%9C%E8%8E%9E%E5%B8%82%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83%E6%9A%A8%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1%E6%9C%88"><span class="toc-number">1.7.12.</span> <span class="toc-text">“莞盾-2024” 东莞市网络安全攻防演练暨安全服务月</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2025-%E5%B9%B4"><span class="toc-number">1.8.</span> <span class="toc-text">2025 年</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%91%E5%8D%97%E7%9C%81%E4%BF%A1%E6%81%AF%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E7%BD%91%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83%E6%9A%A8%E6%8A%80%E8%83%BD%E7%AB%9E%E8%B5%9B"><span class="toc-number">1.8.1.</span> <span class="toc-text">云南省信息通信网络安全实网攻防演练暨技能竞赛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E9%93%B8%E7%BD%912025%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E7%BD%91%E6%94%BB%E9%98%B2%E4%B8%8A%E6%B5%B7%E5%9C%B0%E5%8C%BA%E6%B4%BB%E5%8A%A8%E6%9A%A8-%E2%80%9C%E7%A3%90%E7%9F%B3%E8%A1%8C%E5%8A%A8%E2%80%9D-%E4%B8%8A%E6%B5%B7%E5%B8%82%E5%B7%A5%E4%B8%9A%E5%92%8C%E4%BF%A1%E6%81%AF%E5%8C%96%E9%A2%86%E5%9F%9F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E6%88%98%E6%94%BB%E9%98%B2%E6%B4%BB%E5%8A%A8"><span class="toc-number">1.8.2.</span> <span class="toc-text">“铸网2025” 网络安全实网攻防上海地区活动暨 “磐石行动” 上海市工业和信息化领域网络安全实战攻防活动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2026-%E5%B9%B4"><span class="toc-number">1.9.</span> <span class="toc-text">2026 年</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E7%96%86-%E2%80%9C%E5%A4%A9%E5%B1%B1%E5%9B%BA%E7%BD%91%E2%80%942026%E2%80%9D-%E5%B7%B4%E5%B7%9E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83"><span class="toc-number">1.9.1.</span> <span class="toc-text">新疆 “天山固网—2026” 巴州网络安全攻防实战演练</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">83</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">14</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">150</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-项目" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2018-03-01T08:39:00.000Z" itemprop="datePublished">2018-03-01</time>
+    <time style="display: none;" id="post-update-time">2026-05-14</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="攻防演练"><a href="#攻防演练" class="headerlink" title="攻防演练"></a>攻防演练</h1><h2 id="2018-年"><a href="#2018-年" class="headerlink" title="2018 年"></a>2018 年</h2><h3 id="“辽宁护网2018”-网络攻防实战演习"><a href="#“辽宁护网2018”-网络攻防实战演习" class="headerlink" title="“辽宁护网2018” 网络攻防实战演习"></a>“辽宁护网2018” 网络攻防实战演习</h3><p>辽宁省公安厅网络安全保卫总队于 9 月 14 日至 21 日组织开展了 “辽宁护网2018” 网络攻防实战演习</p>
+<p>本次演习在真实网络环境下，参赛队伍分为攻击方、防守方和应急处置队伍。攻击方对金融、通讯、医疗卫生、广播电视、证券、交通、教育、国土资源、水利及党政机关的门户网站、云平台、交易平台、数据系统、物联网等目标系统进行网络攻击，防守方则组织防守力量发现、跟踪、溯源各种攻击行为</p>
+<p>通过演习，发现和整改网络系统存在的深层次安全问题，提高对网络安全重要性的认知，促进国家网络安全等级保护制度落实，进一步提高辽宁省关键信息基础设施综合防护水平</p>
+<h4 id="中国刑事警察学院"><a href="#中国刑事警察学院" class="headerlink" title="中国刑事警察学院"></a>中国刑事警察学院</h4><p>该院派出网侦系三名学生甄帅、刘镓铭、张浩瀚参加了本次演习</p>
+<p>在演习中发现辽宁省各企事业单位网站各级别漏洞 70 余处，获得了主办单位和各级领导的认可并取得第九名的好成绩</p>
+<h3 id="大连-“护网2018”-网络攻防实战演习"><a href="#大连-“护网2018”-网络攻防实战演习" class="headerlink" title="大连 “护网2018” 网络攻防实战演习"></a>大连 “护网2018” 网络攻防实战演习</h3><p>11 月 6 日，此次攻防战是大连警方网安部门精心组织开展，也是推进 “净网2018” 专项行动的一项重要举措</p>
+<p>其中，30 支攻击战队由国内顶尖网络安全服务团队、网络安全等级测评机构、高等院校等 90 名优秀选手组成</p>
+<p>100 支防守队伍由包括金融、通讯、医疗卫生、广播电视、证券、交通、水利及党政机关的门户网站、云平台、交易平台、数据系统、物联网等各个领域专业人士组成</p>
+<p>通过演练，发现整改深层次高危安全漏洞和隐患 96 处，有效维护了全市重点网站及重要信息系统安全</p>
+<h3 id="广东-“护网2018”-全省网络安全攻防演习"><a href="#广东-“护网2018”-全省网络安全攻防演习" class="headerlink" title="广东 “护网2018” 全省网络安全攻防演习"></a>广东 “护网2018” 全省网络安全攻防演习</h3><p>8 月 20 日，省公安厅网警总队组织全省公安机关网警、省计算机信息网络安全协会和 15 家网络安全企业负责人召开视频会议，专项启动 “护网2018” 攻防演习</p>
+<h3 id="宁夏-“护网2018”-–-第二届-“新潮杯”-网络安全攻防演习大赛"><a href="#宁夏-“护网2018”-–-第二届-“新潮杯”-网络安全攻防演习大赛" class="headerlink" title="宁夏 “护网2018” – 第二届 “新潮杯” 网络安全攻防演习大赛"></a>宁夏 “护网2018” – 第二届 “新潮杯” 网络安全攻防演习大赛</h3><p>8 月 6 日，由自治区网络安全等级保护工作领导小组办公室牵头，自治区公安厅、国家安全厅、人力资源和社会保障厅、通信管理局、国家保密局、密码管理局、中国人民银行银川中心支行、国网宁夏电力有限公司等 8 家单位共同举办</p>
+<p>最终，宁夏电信队获得比赛第一名，移动一队获得比赛第二名，国网电力二队、国网电力一队取得并列第三名</p>
+<h3 id="贵阳大数据及网络安全攻防演练"><a href="#贵阳大数据及网络安全攻防演练" class="headerlink" title="贵阳大数据及网络安全攻防演练"></a>贵阳大数据及网络安全攻防演练</h3><p>11 月 29 日，本次攻防演练活动重点聚焦“放管服”改革下的政务服务云平台，以及业务系统的安全检测，着力提升“互联网+政务服务”整体安全态势感知和风险防范能力，在前两届攻防演练活动基础上，进一步进行迭代升级</p>
+<p>6 天的时间，具有全国一流水平的 44 支攻击队伍对 “放管服” 政务系统进行时网攻防，靶标涵盖了贵州、广东等省市78个 “放管服” 系统，实现跨省、跨区域攻防</p>
+<h3 id="浙江省-“护网2018”-网络实战攻防演练"><a href="#浙江省-“护网2018”-网络实战攻防演练" class="headerlink" title="浙江省 “护网2018” 网络实战攻防演练"></a>浙江省 “护网2018” 网络实战攻防演练</h3><p>由浙江省公安厅主办，于 2018 年 9 月 26 日-27 日在杭州举行</p>
+<p>演练从交通、能源、金融、水利、政务服务、工控系统等重点行业领域随机选取省市县级共 82 家单位目标，采用资产探测、WAF 绕过、漏洞挖掘、权限提取等网络攻击手段，突出在真实网络环境下的攻防对抗</p>
+<p><img src="https://pic1.imgdb.cn/item/6a0550116ab1697a9de6ba9f.png"></p>
+<p><img src="https://pic1.imgdb.cn/item/6a0550026ab1697a9de6ba8b.png"></p>
+<h4 id="网易安全部"><a href="#网易安全部" class="headerlink" title="网易安全部"></a>网易安全部</h4><p>授予网易安全部证书</p>
+<p><img src="https://pic1.imgdb.cn/item/6a054f9c6ab1697a9de6ba1f.png"></p>
+<h3 id="军工网络安全攻防演练活动"><a href="#军工网络安全攻防演练活动" class="headerlink" title="军工网络安全攻防演练活动"></a>军工网络安全攻防演练活动</h3><p>11 月 22 日在北京举行</p>
+<p>大赛由国家国防科技工业局信息中心主办，军民融合信息安防集采平台运营办公室承办</p>
+<p>经过 6 个小时的激烈比拼，安恒信息战队在十六家军工集团公司和民口单位精英战队中脱颖而出，获得 “优秀团队奖”，位列第一</p>
+<h2 id="2019-年"><a href="#2019-年" class="headerlink" title="2019 年"></a>2019 年</h2><h3 id="人社系统网络攻防演练"><a href="#人社系统网络攻防演练" class="headerlink" title="人社系统网络攻防演练"></a>人社系统网络攻防演练</h3><p>8 月 7 日，针对当前日益严峻的网络安全形势，为进一步检验和提高网络系统检测发现、安全防护、应急处置能力，促进网络安全积极防御体系建设，市人社局组织了首次人社系统网络攻防演练</p>
+<h3 id="海南省网络安全实战攻防演练"><a href="#海南省网络安全实战攻防演练" class="headerlink" title="海南省网络安全实战攻防演练"></a>海南省网络安全实战攻防演练</h3><p>10 月 10 日，本次演练将组织 16 支网络安全渗透测试队伍，对海南省 30 个重点保卫目标进行网络安全实战攻防演练，以检验海南省关键信息基础设施单位网络安全防护、应急处置和指挥调度能力，提高海南省关键信息基础设施的综合防御能力</p>
+<h2 id="2020-年"><a href="#2020-年" class="headerlink" title="2020 年"></a>2020 年</h2><h3 id="青岛市重点行业网络安全专项演练"><a href="#青岛市重点行业网络安全专项演练" class="headerlink" title="青岛市重点行业网络安全专项演练"></a>青岛市重点行业网络安全专项演练</h3><p>2020 年 11 月 24 日，青岛市组织了以 “牢固网安屏障” 为主题的重点行业网络安全专项演练</p>
+<p>演练由中共青岛市委网信办、青岛市公安局、青岛市人力资源和社会保障局联合组织，面向全市交通、金融、能源、新闻、文旅、卫生、工业等重点行业，18 个市直单位和 10 个区市的网络安全精英代表组队参加实战演练，收到明显成效</p>
+<h3 id="“粤盾-2020”-广东省数字政府网络安全攻防演练"><a href="#“粤盾-2020”-广东省数字政府网络安全攻防演练" class="headerlink" title="“粤盾-2020” 广东省数字政府网络安全攻防演练"></a>“粤盾-2020” 广东省数字政府网络安全攻防演练</h3><h2 id="2021-年"><a href="#2021-年" class="headerlink" title="2021 年"></a>2021 年</h2><h3 id="河北省庆祝建党100周年网络安全应急演练"><a href="#河北省庆祝建党100周年网络安全应急演练" class="headerlink" title="河北省庆祝建党100周年网络安全应急演练"></a>河北省庆祝建党100周年网络安全应急演练</h3><p>7 月 6 日，河北省委网信办联合省通信管理局、国家计算机网络应急技术处理协调中心河北分中心，组织开展了一次跨地区、跨部门、跨行业的网络安全实战化应急演练</p>
+<h3 id="山西省网络安全事件应急演练"><a href="#山西省网络安全事件应急演练" class="headerlink" title="山西省网络安全事件应急演练"></a>山西省网络安全事件应急演练</h3><p>全省网络安全事件应急演练于 10 月 11 日在太原进行</p>
+<p>本次演练由省委网信办主办，国家计算机网络与信息安全管理中心山西分中心、太原市委网信办承办，部分省直单位、网信企业和太原市有关部门、各县（市、区）相关负责同志现场观摩学习</p>
+<h3 id="“冀豫鄂晋川”-五省网络安全联合演习"><a href="#“冀豫鄂晋川”-五省网络安全联合演习" class="headerlink" title="“冀豫鄂晋川” 五省网络安全联合演习"></a>“冀豫鄂晋川” 五省网络安全联合演习</h3><p>10 月 13 日至 15 日，国网河北电力牵头组织，国网河北信通公司具体实施，联合国网河南、湖北、山西、四川电力等单位开展主题为 “共筑防线、共享安全” 的五省网络安全实战攻防联合演习</p>
+<p>本次五省联合演习秉持“真实开放、协同共演、重在提升”原则，各单位联合组建实战指挥部、攻击组、防守组、裁判组 4 个角色组</p>
+<p>此次演习共计 82 名人员通过线上协同完成演习工作，其中国网河北电力牵头组建第三攻击队，开展协作攻击渗透</p>
+<p>此次演习，各参演单位共计选择上报 30 套应用系统作为靶标，通过落实严格撤防、互相开放的演练原则，真实检验系统安全防护短板</p>
+<h3 id="梅州市-“网安联·亮剑行动”-网络攻防演练"><a href="#梅州市-“网安联·亮剑行动”-网络攻防演练" class="headerlink" title="梅州市 “网安联·亮剑行动” 网络攻防演练"></a>梅州市 “网安联·亮剑行动” 网络攻防演练</h3><p>5 月 28 日，由梅州市公安局主办，广东省网络空间安全协会、中国电信梅州分公司联合承办的梅州市网络攻防演练</p>
+<p>此次演练邀请到天融信、蓝盾信息、绿盟科技、山东新潮、远蓝信息、方昇科技、金盾检测、竞远安全、南方信息安全研究院、嘉应学院、广东东软学院、梅州公安等来自全国知名安全厂商、技术公司、高等院校和公安机关共 15 支攻方队伍，对梅州市 50 余家重点单位，300 余个关键信息基础设施、重要信息系统、重点网站等进行模拟实战渗透攻防</p>
+<p>演练的对象涵盖了教育、医疗、政府、企业和媒体等主要行业和领域，全面检查提升重点行业单位网络安全防护、监测预警和应急处置能力，检验网络安全监管部门、重点行业单位、社会力量协同应对突发事件的能力和水平</p>
+<p><img src="https://pic1.imgdb.cn/item/6a0565726ab1697a9de72060.png"></p>
+<p><img src="https://pic1.imgdb.cn/item/6a05657e6ab1697a9de7206d.png"></p>
+<p><img src="https://pic1.imgdb.cn/item/6a0565926ab1697a9de72085.png"></p>
+<h3 id="佛山市网络安全事件应急演练暨第一届“飞鸿杯”网络安全大赛"><a href="#佛山市网络安全事件应急演练暨第一届“飞鸿杯”网络安全大赛" class="headerlink" title="佛山市网络安全事件应急演练暨第一届“飞鸿杯”网络安全大赛"></a>佛山市网络安全事件应急演练暨第一届“飞鸿杯”网络安全大赛</h3><p>8 月 11 日，大赛共吸引了全省 26 支队伍参赛。大赛采用实战攻防演练形式，全域覆盖佛山市网络 IP，其中包括全市 98 家重点攻击单位</p>
+<h2 id="2022-年"><a href="#2022-年" class="headerlink" title="2022 年"></a>2022 年</h2><h3 id="汕头首届-“鮀城杯”-数字政府网络安全攻防演练"><a href="#汕头首届-“鮀城杯”-数字政府网络安全攻防演练" class="headerlink" title="汕头首届 “鮀城杯” 数字政府网络安全攻防演练"></a>汕头首届 “鮀城杯” 数字政府网络安全攻防演练</h3><p>该活动由汕头市政务服务数据管理局、汕头市委网信办、汕头市公安局联合主办，主要检验汕头市政务网络整体安全防护能力，是提升汕头市数字政府网络安全保障水平的一项重要举措</p>
+<p>从 6 月 20 日至 24 日的 5 天时间内，由绿盟等 12 家国内知名网络安全企业组成攻击队伍，对全市 29 家单位 82 个政务信息系统进行模拟实战攻防，演练对象涵盖了教育、医疗、政府、企业等行业和领域的关键信息基础设施和重要政务信息系统</p>
+<p>活动期间，29 家防守队累计提交防守成果报告 217 份；12 支攻击队充分凭借各自擅长的渗透技能，寻找突破口，通过信息收集、代码分析，发现 82 个政务系统各类网络安全隐患 86 个，为相关部门及时有效排查整改提供了依据</p>
+<h3 id="玉林-“护网2022”-网络安全攻防实战演习暨第二届玉林市网络安全技术大赛"><a href="#玉林-“护网2022”-网络安全攻防实战演习暨第二届玉林市网络安全技术大赛" class="headerlink" title="玉林 “护网2022” 网络安全攻防实战演习暨第二届玉林市网络安全技术大赛"></a>玉林 “护网2022” 网络安全攻防实战演习暨第二届玉林市网络安全技术大赛</h3><p>9 月 20 日，此次实战演习和技术大赛共评出广西塔易战队、广西网信等 6 支优秀攻击队；评出玉林市大数据发展和政务服务局、中国联通玉林分公司、中国电信玉林分公司、玉林市第一人民医院、博白县人民医院 5 家优秀防守单位</p>
+<p>本次演习活动搭建了专门演习平台，邀请了 15 支攻击队，把全市 122 家关键信息基础设施和重要信息系统运营使用单位作为演习防守重点单位</p>
+<p>攻击方由公安网警、网络安全企业等保测评机构、大中专院校等 15 支队伍组成。防守方由玉林市重点党政事业单位和教育文化、医疗卫生、新闻媒体、交通物流、能源电力等行业单位及重点国有企业，共 122 家单位组成。涉及门户网站、办公系统、其他业务系统等目标系统 263 个</p>
+<h3 id="益阳市-“护网2022”-网络攻防实战演习"><a href="#益阳市-“护网2022”-网络攻防实战演习" class="headerlink" title="益阳市 “护网2022” 网络攻防实战演习"></a>益阳市 “护网2022” 网络攻防实战演习</h3><p>8月 22 日，益阳市 “护网2022” 网络攻防实战演习启动，攻防演习从 8 月 22 日开始到 8 月 26 日结束，为期 5 天</p>
+<p>此次实战演习由市公安局、市委网信办主办，中国联通益阳分公司承办，邀请湖南金盾测评等单位组成 7 支攻击队，组织全市近 60 家重点党政机关、重要行业部门为防守单位，通过实战练兵，全面提升我市关键信息基础设施和重要信息系统网络安全防护能力，为党的二十大胜利召开营造安全稳定的网络环境</p>
+<p><img src="https://pic1.imgdb.cn/item/6a055d6b6ab1697a9de6ef21.png"></p>
+<h3 id="沧州市网络安全应急演练暨-“护网2022”-攻防演练"><a href="#沧州市网络安全应急演练暨-“护网2022”-攻防演练" class="headerlink" title="沧州市网络安全应急演练暨 “护网2022” 攻防演练"></a>沧州市网络安全应急演练暨 “护网2022” 攻防演练</h3><p>8 月 23 日，活动由市委网信办、市公安局联合组织开展，旨在检验全市网络安全整体防护水平，进一步提升应急处置能力</p>
+<h3 id="“粤盾-2022”-广东省数字政府网络安全攻防演练"><a href="#“粤盾-2022”-广东省数字政府网络安全攻防演练" class="headerlink" title="“粤盾-2022” 广东省数字政府网络安全攻防演练"></a>“粤盾-2022” 广东省数字政府网络安全攻防演练</h3><p>九月份，由廣東省政府主辦，省政務服務數據管理局、省委網信辦、省保密局、省公安廳、省通信管理局、國家計算機網絡應急技術處理協調中心廣東分中心、廣州市越秀區政府承辦</p>
+<h2 id="2023-年"><a href="#2023-年" class="headerlink" title="2023 年"></a>2023 年</h2><h3 id="“御海-2023”-珠海·阳江·云浮数字政府网络安全联合攻防演练"><a href="#“御海-2023”-珠海·阳江·云浮数字政府网络安全联合攻防演练" class="headerlink" title="“御海-2023” 珠海·阳江·云浮数字政府网络安全联合攻防演练"></a>“御海-2023” 珠海·阳江·云浮数字政府网络安全联合攻防演练</h3><p>7 月 10 日，本次演练有着攻击队伍多、靶标覆盖广、跨度时间长、防守响应快等特点。演练期间，累计组织有效防御 59 次，处置攻击 4400 余次，阻止 2 起钓鱼事件，发现 1 个假冒政府的钓鱼网站，排查各类网络安全隐患 265 个</p>
+<p>云浮市住房公积金管理中心获评云浮市最佳防守单位，市教育局、市市场监督管理局、市生态环境局、中共郁南县纪律检查委员会监察委员会机关、云安区政务服务数据管理局共 5 家单位获评云浮市优秀防守单位</p>
+<p>广东亿迅科技有限公司、中国联通云浮市分公司、罗定职业技术学院等 3 家企业及高校获评云浮市优秀攻击队伍</p>
+<h3 id="“清网-2023”-清远市全域网络安全攻防演练"><a href="#“清网-2023”-清远市全域网络安全攻防演练" class="headerlink" title="“清网-2023” 清远市全域网络安全攻防演练"></a>“清网-2023” 清远市全域网络安全攻防演练</h3><p>本次攻防演练由清远市委网信办、市委国安办、市委机要和保密局、市工业和信息化局、市公安局、市政务服务数据管理局等单位联合举办，由国家计算机网络与信息安全管理中心广东分中心承办，由清远职业技术学院协办，攻击队伍是清远市第一届技术支撑单位</p>
+<p>8 月 28 日至 9 月 1 日开展实战攻防</p>
+<p>本次攻防体现了全天候、实战化、限定靶标、不限路径的特点</p>
+<p>本次攻防靶标包括市直 36 个单位 105 个靶标、县市区 53 个单位 77 个靶标以及企业组靶标。相关单位对这次攻防进行了授权，同时，攻击队签订了保密承诺书</p>
+<p><img src="https://pic1.imgdb.cn/item/6a055c6b6ab1697a9de6edee.png"></p>
+<h3 id="廊坊-“护网2023”-网络攻防实战演习"><a href="#廊坊-“护网2023”-网络攻防实战演习" class="headerlink" title="廊坊 “护网2023” 网络攻防实战演习"></a>廊坊 “护网2023” 网络攻防实战演习</h3><p>8 月 21 日，廊坊市 “护网2023” 网络安全攻防实战演习在北华航天工业学院拉开帷幕</p>
+<p>本次演习为期 5 天，由廊坊市公安局主办，由国内和我省知名网络安全企业、科研机构、高校以及重要行业部门中安全可靠、技术过硬的技术人员组建 10 支攻击队伍</p>
+<h3 id="崇左市第二届-“护网2023”-网络安全攻防演习"><a href="#崇左市第二届-“护网2023”-网络安全攻防演习" class="headerlink" title="崇左市第二届 “护网2023” 网络安全攻防演习"></a>崇左市第二届 “护网2023” 网络安全攻防演习</h3><p>活动时间从 9 月 13 日至 15 日，为期 3 天，由崇左市委网信办、市公安局、市国家安全局、市大数据发展局、崇左供电局和江州区委网信办共同举办</p>
+<p>活动邀请了崇左市人民医院等单位组成 13 支攻击队伍，防守方单位涵盖崇左市党政机关、医疗、教育、金融等行业领域</p>
+<h3 id="温州市教育系统-“护网2023”-网络安全演练"><a href="#温州市教育系统-“护网2023”-网络安全演练" class="headerlink" title="温州市教育系统 “护网2023” 网络安全演练"></a>温州市教育系统 “护网2023” 网络安全演练</h3><p>4 月 24 日至 28 日温州市教育系统举行 “护网2023” 网络安全实战演练，本次演练历时 5 天</p>
+<p>19 支攻击队伍在真实网络环境下，对在温高校、县（市、区）教育行政部门、中小学校（幼儿园）超 1000 多家单位的网络及业务系统进行渗透、攻击，参演的单位数达 60 家，登记在册的目标系统数达 736 个</p>
+<p>本次演练裁判组共审核了 291 份报告，其中攻击方报告 123 份，防守方报告 168 份，有效报告 234 份，报告准确率达 80%。演练累计攻击 30 万次，共发现 92 个安全漏洞，其中 59 漏洞均为高危及以上漏洞。演练中多个教育行政部门、高校、中小学校的网络被打穿，演练突破占比 31%，其中 5 支攻击队伍打进目标内网，获取到大数据平台、人事管理系统、招生报名系统等关键业务系统敏感数据，多个被攻破的数据库数据量超百万</p>
+<p>优秀攻击队伍名单：</p>
+<ul>
+<li><p>一等奖：温州职业技术学院、文成县教育局</p>
+</li>
+<li><p>二等奖：温州市鹿城区教育局、温州市职业中等专业学校、乐清市教育局</p>
+</li>
+<li><p>三等奖：温州市龙湾教育技术服务中心、温州大学、永嘉县教育局、瑞安市教育局、瓯海区教育局</p>
+</li>
+</ul>
+<p>优秀防守单位：</p>
+<ul>
+<li>浙江工贸职业技术学院、温州科技职业学院、洞头区教育局</li>
+</ul>
+<p>优秀攻防兼备单位：</p>
+<ul>
+<li>温州职业技术学院、泰顺县教育局、温州市第二职业中等专业学校</li>
+</ul>
+<p>优秀应急处置单位</p>
+<ul>
+<li>温州市教育技术中心、温州医科大学</li>
+</ul>
+<p>突出贡献奖</p>
+<ul>
+<li>彭剑锋、陈赉谛</li>
+</ul>
+<h3 id="“黔网使命2023”-网络安全应急演练"><a href="#“黔网使命2023”-网络安全应急演练" class="headerlink" title="“黔网使命2023” 网络安全应急演练"></a>“黔网使命2023” 网络安全应急演练</h3><p>于 11 月 16 日下午，贵州省通信管理局牵头通信运营企业举办</p>
+<p>贵州省通信管理局组织各基础电信企业和网络安全技术支撑单位组建了 6 支网络安全攻击组，抽取行业内 165 个互联网暴露面系统（基础电信企业 55 个系统、互联网企业 55 个系统、工业互联网企业 55 个系统），采取漏洞扫描和渗透测试等方式开展实战攻防工作</p>
+<p>本次实战攻防演练共发现行业内各系统高中危网络安全漏洞 65 个，其中高危漏洞 44 个，中危漏洞 21 个，省通信管理局将督导问题企业进行整改，以实战攻防对抗形式帮助有关企业查摆问题，堵塞漏洞，提升问题发现、应急处置和整改落实的能力</p>
+<h3 id="龙口市-“护网2023”-网络安全攻防实战演练"><a href="#龙口市-“护网2023”-网络安全攻防实战演练" class="headerlink" title="龙口市 “护网2023” 网络安全攻防实战演练"></a>龙口市 “护网2023” 网络安全攻防实战演练</h3><p>6 月 29 日，由龙口市网信办、龙口市公安局主办、烟台南山学院承办，</p>
+<p>本次攻防实战演练活动中，利用真实网络环境，通过实战攻防演练指挥系统，采用 “背靠背” 的方式进行，由国内实力较强的 6 家网络安全公司的 20 多名攻击人员，对龙口市重点单位、平台公司、企业及关键信息系统实施网络渗透、攻击</p>
+<p><img src="https://pic1.imgdb.cn/item/6a0567b36ab1697a9de722cb.png"></p>
+<h3 id="“粤盾-2023”-广东省数字政府网络安全攻防演练"><a href="#“粤盾-2023”-广东省数字政府网络安全攻防演练" class="headerlink" title="“粤盾-2023” 广东省数字政府网络安全攻防演练"></a>“粤盾-2023” 广东省数字政府网络安全攻防演练</h3><p>9 月 4 日，由广东省人民政府主办，以 “共筑本质安全，护航高质量发展” 为主题的 “粤盾-2023” 数字政府网络安全实战攻防演练活动在广州拉开帷幕</p>
+<p>演练现场，50 支全国顶尖攻击队伍将对全省党政机关（事业单位）重要信息系统开展为期 5 天的实兵、实网、实战攻防演练</p>
+<h3 id="川渝滇网络安全实战攻防暨应急演练"><a href="#川渝滇网络安全实战攻防暨应急演练" class="headerlink" title="川渝滇网络安全实战攻防暨应急演练"></a>川渝滇网络安全实战攻防暨应急演练</h3><p>7 月 18 日，攻击队来自四川、重庆、云南三省地共 13 支代表队伍</p>
+<p>本次活动由四川省委网信办、重庆市委网信办、云南省委网信办主办，四川省宜宾市委网信办、四川省达州市委网信办、四川省南充市委网信办、重庆市北碚区委网信办、重庆高新区党工委宣传部、重庆市璧山区委网信办、云南省昆明市委网信办、云南省玉溪市委网信办协办</p>
+<h3 id="福州市网络安全攻防实战演练"><a href="#福州市网络安全攻防实战演练" class="headerlink" title="福州市网络安全攻防实战演练"></a>福州市网络安全攻防实战演练</h3><p>7 月 13 日，本次演练为期 5 天，以完善福州市县两级网络安全联合防御体系为目标，分为组织筹备、实兵对抗、总结提升三个阶段，旨在进一步发挥全市网络安全协同联动工作效能，主动探测分析网络资产，主动监测感知安全态势，主动巡查发现威胁隐患，推动各县（市）区、各参演单位进一步前移网络安全防护关口，提升网络安全防御水平和应急处置能力，形成“一网攻击、全网防御”的协同防御机制</p>
+<p>参演单位 40 家，范围覆盖福州涉及城市实际运行的医疗、教育、水利、交通、媒体、电子政务等重点民生行业领域</p>
+<p>由 20 家网络安全技术支撑单位组成攻击队</p>
+<p><img src="https://pic1.imgdb.cn/item/6a0569656ab1697a9de724b5.png"></p>
+<h3 id="潮州市-“潮网安”-网络安全和数据安全常态化攻防演练"><a href="#潮州市-“潮网安”-网络安全和数据安全常态化攻防演练" class="headerlink" title="潮州市 “潮网安” 网络安全和数据安全常态化攻防演练"></a>潮州市 “潮网安” 网络安全和数据安全常态化攻防演练</h3><h2 id="2024-年"><a href="#2024-年" class="headerlink" title="2024 年"></a>2024 年</h2><h3 id="“深蓝·莞盾-2024”-数字政府网络安全联合攻防演练"><a href="#“深蓝·莞盾-2024”-数字政府网络安全联合攻防演练" class="headerlink" title="“深蓝·莞盾-2024” 数字政府网络安全联合攻防演练"></a>“深蓝·莞盾-2024” 数字政府网络安全联合攻防演练</h3><p>6 月 24 日至 28 日，深圳、东莞、潮州和揭阳四地的市政务服务和数据管理局、市委网信办、市委机要和保密局、市公安局等单位联合举办</p>
+<h3 id="“粤盾-2024”-广东省数字政府网络安全攻防演练"><a href="#“粤盾-2024”-广东省数字政府网络安全攻防演练" class="headerlink" title="“粤盾-2024” 广东省数字政府网络安全攻防演练"></a>“粤盾-2024” 广东省数字政府网络安全攻防演练</h3><p>9 月 29 日，来自全国顶尖安全企业、科研院所、互联网企业等安全专家组成 50 支攻击队伍，将对全省党委、政府、人大、政协、法院、群团组织等单位多个政务信息系统开展 24 小时不间断的实网攻击，提前检测发现可能存在的高危风险，为庆祝新中国成立75周年营造良好的网络安全环境，并为“十五运会”信息化安全保障工作做好准备</p>
+<h3 id="首届-“香港网络安全攻防演练—以攻筑防2024”"><a href="#首届-“香港网络安全攻防演练—以攻筑防2024”" class="headerlink" title="首届 “香港网络安全攻防演练—以攻筑防2024”"></a>首届 “香港网络安全攻防演练—以攻筑防2024”</h3><p>演练 11 月 15 日开始，为期三日两夜，共 60 小时，香港网络安全攻防演练由数字办主办，协办机构包括香港警务处网络安全和科技罪案调查科、香港互联网注册管理有限公司及香港资讯科技学院</p>
+<p><img src="https://pic1.imgdb.cn/item/6a0557de6ab1697a9de6e906.png"></p>
+<h3 id="“海盾行动-2024”-网络和数据安全实网攻防演练"><a href="#“海盾行动-2024”-网络和数据安全实网攻防演练" class="headerlink" title="“海盾行动-2024” 网络和数据安全实网攻防演练"></a>“海盾行动-2024” 网络和数据安全实网攻防演练</h3><p>10 月 18 日，由海南省通信管理局主办的为期两周的 “海盾行动-2024” 网络和数据安全实网攻防演练圆满落幕</p>
+<p>北京神州绿盟科技有限公司、中国联通海南省分公司、中国移动海南公司取得了渗透测试组的前 3 名</p>
+<p>中国移动海南公司、中国电信海南公司、中国联通海南省分公司取得了防守组的前 3 名</p>
+<h3 id="“​双城铸盾”-中山·江门网络安全实战攻防演练"><a href="#“​双城铸盾”-中山·江门网络安全实战攻防演练" class="headerlink" title="“​双城铸盾” 中山·江门网络安全实战攻防演练"></a>“​双城铸盾” 中山·江门网络安全实战攻防演练</h3><p>4 月 24 日上午，以 “夯实中江网络安全防线，护航新质生产力发展” 为主题的 2024”双城铸盾”中山·江门网络安全实战攻防演练在中山拉开帷幕</p>
+<p>71 支专业攻击队伍将以两市政务系统和重点领域企业系统为靶标，对两市非涉密政务信息系统开展为期5天的实兵、实网、实战攻防演练，全面检验广东数字政府网络安全能力</p>
+<p><img src="https://pic1.imgdb.cn/item/6a0557c26ab1697a9de6e8df.png"></p>
+<h3 id="“湛盾—2024”-湛江市数字政府网络安全攻防演练"><a href="#“湛盾—2024”-湛江市数字政府网络安全攻防演练" class="headerlink" title="“湛盾—2024” 湛江市数字政府网络安全攻防演练"></a>“湛盾—2024” 湛江市数字政府网络安全攻防演练</h3><p>6 月 19 日下午，为期一周的 “湛盾—2024” 湛江市数字政府网络安全攻防演练活动落下帷幕</p>
+<p>本次演练选取了 105 个政务信息系统作为重点靶标，覆盖党委、人大、政协、政府、群团、法院、检察院等相关单位，共涉及 38 个市级政务单位、39 个县级政务单位、2 个镇级政务单位的信息系统</p>
+<p>经过演练，中国移动湛江分公司、市人社局、市交通运输局、市生态环境局、奋勇高新区、坡头区被评为 “优秀防守单位”，市公共资源交易中心、市财政局、市总工会被评为 “优秀组织单位”</p>
+<p>在优秀攻击队伍评选中，任子行网络技术股份有限公司获一等奖，天翼安全、三六零数字安全获二等奖，广东海洋大学、省信息安全测评中心、迪普科技获三等奖</p>
+<h3 id="“2024铸牢防线-护航云网”-信息通信业网络安全实网攻防演练暨技能竞赛"><a href="#“2024铸牢防线-护航云网”-信息通信业网络安全实网攻防演练暨技能竞赛" class="headerlink" title="“2024铸牢防线 护航云网” 信息通信业网络安全实网攻防演练暨技能竞赛"></a>“2024铸牢防线 护航云网” 信息通信业网络安全实网攻防演练暨技能竞赛</h3><p>8 月 26－30 日，由云南省通信管理局联合省委网信办成功举办</p>
+<p>本次活动从 13 个重要行业领域选取 200 余套信息系统作为实战渗透目标，组织全省信息通信、能源、金融、教育、网络安全机构等领域的 19 支 “攻击” 队伍，以实网、实战方式进行技能大比武，有效检验了各目标单位的网络安全监测防护、应急处置、技术研判水平</p>
+<h3 id="潮州市-“潮网安”-网络安全和数据安全常态化攻防演练-1"><a href="#潮州市-“潮网安”-网络安全和数据安全常态化攻防演练-1" class="headerlink" title="潮州市 “潮网安” 网络安全和数据安全常态化攻防演练"></a>潮州市 “潮网安” 网络安全和数据安全常态化攻防演练</h3><p>7 月 10 日，由潮州市委网信办、市公安局、市政数局联合举办</p>
+<p>本次演练将举办 “1+2+3+N” 场专题活动，对全市重要信息系统、网站平台开展实兵、实网、实战攻防演练</p>
+<p>“1” 为举办一场电子邮件专场攻防演练，”2” 为开展网络安全和数据安全事件应急技能和数字政府网络安全两个专题系列培训活动，”3” 为全力做好 “粤网安” “粤盾” “ 深蓝·莞盾-2024” 三场专场攻防演练防守，”N” 为聚焦网络安全事件热点难点，对全行业全领域纵深持续开展为期 6 个月的常态化攻防演练</p>
+<p><img src="https://pic1.imgdb.cn/item/6a056a246ab1697a9de72507.png"></p>
+<h3 id="天津市武清区-“通武廊”-网络数据安全攻防实战演练"><a href="#天津市武清区-“通武廊”-网络数据安全攻防实战演练" class="headerlink" title="天津市武清区 “通武廊” 网络数据安全攻防实战演练"></a>天津市武清区 “通武廊” 网络数据安全攻防实战演练</h3><p>9 月 5 日，攻击队共 10 支</p>
+<h3 id="香港網絡安全攻防演練"><a href="#香港網絡安全攻防演練" class="headerlink" title="香港網絡安全攻防演練"></a>香港網絡安全攻防演練</h3><p>11 月 6 日，由 9 個政府部門、3 間公共機構組成的藍隊，會在管理系統日常運作時，防禦紅隊的攻擊，保護系統安全；他們在日常工作地點應對攻擊，並作出適當的防衛。每隊藍隊的成員約 10 多人</p>
+<p><img src="https://pic1.imgdb.cn/item/6a056b7c6ab1697a9de72559.png"></p>
+<h3 id="“铸网2024”-网络安全实网攻防上海地区活动暨-“磐石行动”-上海市工业和信息化领域网络安全实战攻防活动"><a href="#“铸网2024”-网络安全实网攻防上海地区活动暨-“磐石行动”-上海市工业和信息化领域网络安全实战攻防活动" class="headerlink" title="“铸网2024” 网络安全实网攻防上海地区活动暨 “磐石行动” 上海市工业和信息化领域网络安全实战攻防活动"></a>“铸网2024” 网络安全实网攻防上海地区活动暨 “磐石行动” 上海市工业和信息化领域网络安全实战攻防活动</h3><p>8 月 1 日，本届 “磐石行动” 汇聚了来自全国各网络安全专业企业、机构和高校组成的 42 支顶尖攻击队伍，以及来自上海市网络基础设施、电信互联网、工业互联网平台标识企业的 138 支防守队伍，由权威第三方机构和知名高校组成专业裁判团队</p>
+<p>活动通过实战化、场景化的演练，全面提升上海市参赛单位网络安全防护能力和应急响应水平</p>
+<p><img src="https://pic1.imgdb.cn/item/6a056c266ab1697a9de72578.png"></p>
+<h3 id="“莞盾-2024”-东莞市网络安全攻防演练暨安全服务月"><a href="#“莞盾-2024”-东莞市网络安全攻防演练暨安全服务月" class="headerlink" title="“莞盾-2024” 东莞市网络安全攻防演练暨安全服务月"></a>“莞盾-2024” 东莞市网络安全攻防演练暨安全服务月</h3><p>6 月 21 日，此次演练是首次联合深圳、潮州和揭阳三地开展，活动规模更大、实战范围更广、技术水准更高</p>
+<p>东莞将组织包括高校队伍在内的 30 个攻击队对全市 99 个行业类靶标、102 个政务类靶标和 105 个镇属企事业单位靶标，以及揭阳市 151 个政务类靶标开展为期 5 天全天候攻防演练。活动后期，将聚焦行业网络安全问题开展演练，提高行业单位的网络安全防护能力，还将举办第一届网络安全攻防技能竞赛，提升网络安全人才职业技能</p>
+<p><img src="https://pic1.imgdb.cn/item/6a056cae6ab1697a9de72588.png"></p>
+<h2 id="2025-年"><a href="#2025-年" class="headerlink" title="2025 年"></a>2025 年</h2><h3 id="云南省信息通信网络安全实网攻防演练暨技能竞赛"><a href="#云南省信息通信网络安全实网攻防演练暨技能竞赛" class="headerlink" title="云南省信息通信网络安全实网攻防演练暨技能竞赛"></a>云南省信息通信网络安全实网攻防演练暨技能竞赛</h3><p>9 月 12 日，活动由云南省通信管理局、云南省公安厅、云南省工业和信息化厅主办，云南省互联网协会、云南省通信网络保障中心承办</p>
+<p>实网攻防渗透针对 40 余家云南省重点工业互联网企业、重点增值电信企业暴露在公共互联网的 200 余个信息系统，采用非破坏性手段在活动规定时间内展开实网攻击，攻击方式包括但不限于渗透测试、漏洞利用、权限获取、边界突破等</p>
+<h3 id="“铸网2025”-网络安全实网攻防上海地区活动暨-“磐石行动”-上海市工业和信息化领域网络安全实战攻防活动"><a href="#“铸网2025”-网络安全实网攻防上海地区活动暨-“磐石行动”-上海市工业和信息化领域网络安全实战攻防活动" class="headerlink" title="“铸网2025” 网络安全实网攻防上海地区活动暨 “磐石行动” 上海市工业和信息化领域网络安全实战攻防活动"></a>“铸网2025” 网络安全实网攻防上海地区活动暨 “磐石行动” 上海市工业和信息化领域网络安全实战攻防活动</h3><p>汇聚了来自全国网络安全企业、机构和高校的 50 支顶尖攻击队伍，以及上海市网络基础设施、互联网、工业互联网平台和标识解析企业的 177 支防守队伍，参赛人员近 4000 人，开展了为期 10 天的实战对抗</p>
+<h2 id="2026-年"><a href="#2026-年" class="headerlink" title="2026 年"></a>2026 年</h2><h3 id="新疆-“天山固网—2026”-巴州网络安全攻防实战演练"><a href="#新疆-“天山固网—2026”-巴州网络安全攻防实战演练" class="headerlink" title="新疆 “天山固网—2026” 巴州网络安全攻防实战演练"></a>新疆 “天山固网—2026” 巴州网络安全攻防实战演练</h3><p>4 月 20 日，新疆 “天山固网—2026” 巴州网络安全攻防实战演练在库尔勒启动，以实战化演练筑牢区域网络安全防线，全面提升网络安全实战防护能力，保障网络、数据安全稳定运行</p>
+<p>此次演练由巴州党委网信办、巴州公安局联合主办，创新构建油地、兵地、校地“三方融合”联动协作模式，整合发挥石油行业、兵团二师、本地高校的网络安全保障资源和技术优势，实现资源共享、优势互补、协同作战</p>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83/" title="攻防演练" data-aos="zoom-in">攻防演练</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83/" rel="tag" title="攻防演练">攻防演练</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2018 ACTF WriteUp" class="lazyload">
+        <a href="/2018/05/22/2018%20ACTF/" aria-label="前一篇: 2018 ACTF WriteUp" title="前一篇: 2018 ACTF WriteUp"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            2018 ACTF WriteUp
+        </h3>
+      </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        80.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        06:44
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.</span> <span class="toc-text">攻防演练</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2018-%E5%B9%B4"><span class="toc-number">1.1.</span> <span class="toc-text">2018 年</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E8%BE%BD%E5%AE%81%E6%8A%A4%E7%BD%912018%E2%80%9D-%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E6%BC%94%E4%B9%A0"><span class="toc-number">1.1.1.</span> <span class="toc-text">“辽宁护网2018” 网络攻防实战演习</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E5%9B%BD%E5%88%91%E4%BA%8B%E8%AD%A6%E5%AF%9F%E5%AD%A6%E9%99%A2"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">中国刑事警察学院</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E8%BF%9E-%E2%80%9C%E6%8A%A4%E7%BD%912018%E2%80%9D-%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E6%BC%94%E4%B9%A0"><span class="toc-number">1.1.2.</span> <span class="toc-text">大连 “护网2018” 网络攻防实战演习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%BF%E4%B8%9C-%E2%80%9C%E6%8A%A4%E7%BD%912018%E2%80%9D-%E5%85%A8%E7%9C%81%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E4%B9%A0"><span class="toc-number">1.1.3.</span> <span class="toc-text">广东 “护网2018” 全省网络安全攻防演习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%81%E5%A4%8F-%E2%80%9C%E6%8A%A4%E7%BD%912018%E2%80%9D-%E2%80%93-%E7%AC%AC%E4%BA%8C%E5%B1%8A-%E2%80%9C%E6%96%B0%E6%BD%AE%E6%9D%AF%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E4%B9%A0%E5%A4%A7%E8%B5%9B"><span class="toc-number">1.1.4.</span> <span class="toc-text">宁夏 “护网2018” – 第二届 “新潮杯” 网络安全攻防演习大赛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%B5%E9%98%B3%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%8A%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.1.5.</span> <span class="toc-text">贵阳大数据及网络安全攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%99%E6%B1%9F%E7%9C%81-%E2%80%9C%E6%8A%A4%E7%BD%912018%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%9E%E6%88%98%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.1.6.</span> <span class="toc-text">浙江省 “护网2018” 网络实战攻防演练</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BD%91%E6%98%93%E5%AE%89%E5%85%A8%E9%83%A8"><span class="toc-number">1.1.6.1.</span> <span class="toc-text">网易安全部</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%9B%E5%B7%A5%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83%E6%B4%BB%E5%8A%A8"><span class="toc-number">1.1.7.</span> <span class="toc-text">军工网络安全攻防演练活动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2019-%E5%B9%B4"><span class="toc-number">1.2.</span> <span class="toc-text">2019 年</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%BA%E7%A4%BE%E7%B3%BB%E7%BB%9F%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.2.1.</span> <span class="toc-text">人社系统网络攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%B7%E5%8D%97%E7%9C%81%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E6%88%98%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.2.2.</span> <span class="toc-text">海南省网络安全实战攻防演练</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2020-%E5%B9%B4"><span class="toc-number">1.3.</span> <span class="toc-text">2020 年</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%92%E5%B2%9B%E5%B8%82%E9%87%8D%E7%82%B9%E8%A1%8C%E4%B8%9A%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%B8%93%E9%A1%B9%E6%BC%94%E7%BB%83"><span class="toc-number">1.3.1.</span> <span class="toc-text">青岛市重点行业网络安全专项演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E7%B2%A4%E7%9B%BE-2020%E2%80%9D-%E5%B9%BF%E4%B8%9C%E7%9C%81%E6%95%B0%E5%AD%97%E6%94%BF%E5%BA%9C%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.3.2.</span> <span class="toc-text">“粤盾-2020” 广东省数字政府网络安全攻防演练</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2021-%E5%B9%B4"><span class="toc-number">1.4.</span> <span class="toc-text">2021 年</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B2%B3%E5%8C%97%E7%9C%81%E5%BA%86%E7%A5%9D%E5%BB%BA%E5%85%9A100%E5%91%A8%E5%B9%B4%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E6%80%A5%E6%BC%94%E7%BB%83"><span class="toc-number">1.4.1.</span> <span class="toc-text">河北省庆祝建党100周年网络安全应急演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%B1%E8%A5%BF%E7%9C%81%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%BA%8B%E4%BB%B6%E5%BA%94%E6%80%A5%E6%BC%94%E7%BB%83"><span class="toc-number">1.4.2.</span> <span class="toc-text">山西省网络安全事件应急演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E5%86%80%E8%B1%AB%E9%84%82%E6%99%8B%E5%B7%9D%E2%80%9D-%E4%BA%94%E7%9C%81%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E8%81%94%E5%90%88%E6%BC%94%E4%B9%A0"><span class="toc-number">1.4.3.</span> <span class="toc-text">“冀豫鄂晋川” 五省网络安全联合演习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A2%85%E5%B7%9E%E5%B8%82-%E2%80%9C%E7%BD%91%E5%AE%89%E8%81%94%C2%B7%E4%BA%AE%E5%89%91%E8%A1%8C%E5%8A%A8%E2%80%9D-%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.4.4.</span> <span class="toc-text">梅州市 “网安联·亮剑行动” 网络攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9B%E5%B1%B1%E5%B8%82%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E4%BA%8B%E4%BB%B6%E5%BA%94%E6%80%A5%E6%BC%94%E7%BB%83%E6%9A%A8%E7%AC%AC%E4%B8%80%E5%B1%8A%E2%80%9C%E9%A3%9E%E9%B8%BF%E6%9D%AF%E2%80%9D%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B"><span class="toc-number">1.4.5.</span> <span class="toc-text">佛山市网络安全事件应急演练暨第一届“飞鸿杯”网络安全大赛</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2022-%E5%B9%B4"><span class="toc-number">1.5.</span> <span class="toc-text">2022 年</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%95%E5%A4%B4%E9%A6%96%E5%B1%8A-%E2%80%9C%E9%AE%80%E5%9F%8E%E6%9D%AF%E2%80%9D-%E6%95%B0%E5%AD%97%E6%94%BF%E5%BA%9C%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.5.1.</span> <span class="toc-text">汕头首届 “鮀城杯” 数字政府网络安全攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%89%E6%9E%97-%E2%80%9C%E6%8A%A4%E7%BD%912022%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E6%BC%94%E4%B9%A0%E6%9A%A8%E7%AC%AC%E4%BA%8C%E5%B1%8A%E7%8E%89%E6%9E%97%E5%B8%82%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF%E5%A4%A7%E8%B5%9B"><span class="toc-number">1.5.2.</span> <span class="toc-text">玉林 “护网2022” 网络安全攻防实战演习暨第二届玉林市网络安全技术大赛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%8A%E9%98%B3%E5%B8%82-%E2%80%9C%E6%8A%A4%E7%BD%912022%E2%80%9D-%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E6%BC%94%E4%B9%A0"><span class="toc-number">1.5.3.</span> <span class="toc-text">益阳市 “护网2022” 网络攻防实战演习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B2%A7%E5%B7%9E%E5%B8%82%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E6%80%A5%E6%BC%94%E7%BB%83%E6%9A%A8-%E2%80%9C%E6%8A%A4%E7%BD%912022%E2%80%9D-%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.5.4.</span> <span class="toc-text">沧州市网络安全应急演练暨 “护网2022” 攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E7%B2%A4%E7%9B%BE-2022%E2%80%9D-%E5%B9%BF%E4%B8%9C%E7%9C%81%E6%95%B0%E5%AD%97%E6%94%BF%E5%BA%9C%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.5.5.</span> <span class="toc-text">“粤盾-2022” 广东省数字政府网络安全攻防演练</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2023-%E5%B9%B4"><span class="toc-number">1.6.</span> <span class="toc-text">2023 年</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E5%BE%A1%E6%B5%B7-2023%E2%80%9D-%E7%8F%A0%E6%B5%B7%C2%B7%E9%98%B3%E6%B1%9F%C2%B7%E4%BA%91%E6%B5%AE%E6%95%B0%E5%AD%97%E6%94%BF%E5%BA%9C%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E8%81%94%E5%90%88%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.6.1.</span> <span class="toc-text">“御海-2023” 珠海·阳江·云浮数字政府网络安全联合攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E6%B8%85%E7%BD%91-2023%E2%80%9D-%E6%B8%85%E8%BF%9C%E5%B8%82%E5%85%A8%E5%9F%9F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.6.2.</span> <span class="toc-text">“清网-2023” 清远市全域网络安全攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%8A%E5%9D%8A-%E2%80%9C%E6%8A%A4%E7%BD%912023%E2%80%9D-%E7%BD%91%E7%BB%9C%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E6%BC%94%E4%B9%A0"><span class="toc-number">1.6.3.</span> <span class="toc-text">廊坊 “护网2023” 网络攻防实战演习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B4%87%E5%B7%A6%E5%B8%82%E7%AC%AC%E4%BA%8C%E5%B1%8A-%E2%80%9C%E6%8A%A4%E7%BD%912023%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E4%B9%A0"><span class="toc-number">1.6.4.</span> <span class="toc-text">崇左市第二届 “护网2023” 网络安全攻防演习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%A9%E5%B7%9E%E5%B8%82%E6%95%99%E8%82%B2%E7%B3%BB%E7%BB%9F-%E2%80%9C%E6%8A%A4%E7%BD%912023%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%BC%94%E7%BB%83"><span class="toc-number">1.6.5.</span> <span class="toc-text">温州市教育系统 “护网2023” 网络安全演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E9%BB%94%E7%BD%91%E4%BD%BF%E5%91%BD2023%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%BA%94%E6%80%A5%E6%BC%94%E7%BB%83"><span class="toc-number">1.6.6.</span> <span class="toc-text">“黔网使命2023” 网络安全应急演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BE%99%E5%8F%A3%E5%B8%82-%E2%80%9C%E6%8A%A4%E7%BD%912023%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83"><span class="toc-number">1.6.7.</span> <span class="toc-text">龙口市 “护网2023” 网络安全攻防实战演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E7%B2%A4%E7%9B%BE-2023%E2%80%9D-%E5%B9%BF%E4%B8%9C%E7%9C%81%E6%95%B0%E5%AD%97%E6%94%BF%E5%BA%9C%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.6.8.</span> <span class="toc-text">“粤盾-2023” 广东省数字政府网络安全攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%9D%E6%B8%9D%E6%BB%87%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E6%88%98%E6%94%BB%E9%98%B2%E6%9A%A8%E5%BA%94%E6%80%A5%E6%BC%94%E7%BB%83"><span class="toc-number">1.6.9.</span> <span class="toc-text">川渝滇网络安全实战攻防暨应急演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%8F%E5%B7%9E%E5%B8%82%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83"><span class="toc-number">1.6.10.</span> <span class="toc-text">福州市网络安全攻防实战演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BD%AE%E5%B7%9E%E5%B8%82-%E2%80%9C%E6%BD%AE%E7%BD%91%E5%AE%89%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E5%B8%B8%E6%80%81%E5%8C%96%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.6.11.</span> <span class="toc-text">潮州市 “潮网安” 网络安全和数据安全常态化攻防演练</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2024-%E5%B9%B4"><span class="toc-number">1.7.</span> <span class="toc-text">2024 年</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E6%B7%B1%E8%93%9D%C2%B7%E8%8E%9E%E7%9B%BE-2024%E2%80%9D-%E6%95%B0%E5%AD%97%E6%94%BF%E5%BA%9C%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E8%81%94%E5%90%88%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.7.1.</span> <span class="toc-text">“深蓝·莞盾-2024” 数字政府网络安全联合攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E7%B2%A4%E7%9B%BE-2024%E2%80%9D-%E5%B9%BF%E4%B8%9C%E7%9C%81%E6%95%B0%E5%AD%97%E6%94%BF%E5%BA%9C%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.7.2.</span> <span class="toc-text">“粤盾-2024” 广东省数字政府网络安全攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%96%E5%B1%8A-%E2%80%9C%E9%A6%99%E6%B8%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83%E2%80%94%E4%BB%A5%E6%94%BB%E7%AD%91%E9%98%B22024%E2%80%9D"><span class="toc-number">1.7.3.</span> <span class="toc-text">首届 “香港网络安全攻防演练—以攻筑防2024”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E6%B5%B7%E7%9B%BE%E8%A1%8C%E5%8A%A8-2024%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%92%8C%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E5%AE%9E%E7%BD%91%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.7.4.</span> <span class="toc-text">“海盾行动-2024” 网络和数据安全实网攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E2%80%8B%E5%8F%8C%E5%9F%8E%E9%93%B8%E7%9B%BE%E2%80%9D-%E4%B8%AD%E5%B1%B1%C2%B7%E6%B1%9F%E9%97%A8%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E6%88%98%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.7.5.</span> <span class="toc-text">“​双城铸盾” 中山·江门网络安全实战攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E6%B9%9B%E7%9B%BE%E2%80%942024%E2%80%9D-%E6%B9%9B%E6%B1%9F%E5%B8%82%E6%95%B0%E5%AD%97%E6%94%BF%E5%BA%9C%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83"><span class="toc-number">1.7.6.</span> <span class="toc-text">“湛盾—2024” 湛江市数字政府网络安全攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C2024%E9%93%B8%E7%89%A2%E9%98%B2%E7%BA%BF-%E6%8A%A4%E8%88%AA%E4%BA%91%E7%BD%91%E2%80%9D-%E4%BF%A1%E6%81%AF%E9%80%9A%E4%BF%A1%E4%B8%9A%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E7%BD%91%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83%E6%9A%A8%E6%8A%80%E8%83%BD%E7%AB%9E%E8%B5%9B"><span class="toc-number">1.7.7.</span> <span class="toc-text">“2024铸牢防线 护航云网” 信息通信业网络安全实网攻防演练暨技能竞赛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BD%AE%E5%B7%9E%E5%B8%82-%E2%80%9C%E6%BD%AE%E7%BD%91%E5%AE%89%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%92%8C%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E5%B8%B8%E6%80%81%E5%8C%96%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83-1"><span class="toc-number">1.7.8.</span> <span class="toc-text">潮州市 “潮网安” 网络安全和数据安全常态化攻防演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A9%E6%B4%A5%E5%B8%82%E6%AD%A6%E6%B8%85%E5%8C%BA-%E2%80%9C%E9%80%9A%E6%AD%A6%E5%BB%8A%E2%80%9D-%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83"><span class="toc-number">1.7.9.</span> <span class="toc-text">天津市武清区 “通武廊” 网络数据安全攻防实战演练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%99%E6%B8%AF%E7%B6%B2%E7%B5%A1%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%B7%B4"><span class="toc-number">1.7.10.</span> <span class="toc-text">香港網絡安全攻防演練</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E9%93%B8%E7%BD%912024%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E7%BD%91%E6%94%BB%E9%98%B2%E4%B8%8A%E6%B5%B7%E5%9C%B0%E5%8C%BA%E6%B4%BB%E5%8A%A8%E6%9A%A8-%E2%80%9C%E7%A3%90%E7%9F%B3%E8%A1%8C%E5%8A%A8%E2%80%9D-%E4%B8%8A%E6%B5%B7%E5%B8%82%E5%B7%A5%E4%B8%9A%E5%92%8C%E4%BF%A1%E6%81%AF%E5%8C%96%E9%A2%86%E5%9F%9F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E6%88%98%E6%94%BB%E9%98%B2%E6%B4%BB%E5%8A%A8"><span class="toc-number">1.7.11.</span> <span class="toc-text">“铸网2024” 网络安全实网攻防上海地区活动暨 “磐石行动” 上海市工业和信息化领域网络安全实战攻防活动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E8%8E%9E%E7%9B%BE-2024%E2%80%9D-%E4%B8%9C%E8%8E%9E%E5%B8%82%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83%E6%9A%A8%E5%AE%89%E5%85%A8%E6%9C%8D%E5%8A%A1%E6%9C%88"><span class="toc-number">1.7.12.</span> <span class="toc-text">“莞盾-2024” 东莞市网络安全攻防演练暨安全服务月</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2025-%E5%B9%B4"><span class="toc-number">1.8.</span> <span class="toc-text">2025 年</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%91%E5%8D%97%E7%9C%81%E4%BF%A1%E6%81%AF%E9%80%9A%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E7%BD%91%E6%94%BB%E9%98%B2%E6%BC%94%E7%BB%83%E6%9A%A8%E6%8A%80%E8%83%BD%E7%AB%9E%E8%B5%9B"><span class="toc-number">1.8.1.</span> <span class="toc-text">云南省信息通信网络安全实网攻防演练暨技能竞赛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E9%93%B8%E7%BD%912025%E2%80%9D-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E7%BD%91%E6%94%BB%E9%98%B2%E4%B8%8A%E6%B5%B7%E5%9C%B0%E5%8C%BA%E6%B4%BB%E5%8A%A8%E6%9A%A8-%E2%80%9C%E7%A3%90%E7%9F%B3%E8%A1%8C%E5%8A%A8%E2%80%9D-%E4%B8%8A%E6%B5%B7%E5%B8%82%E5%B7%A5%E4%B8%9A%E5%92%8C%E4%BF%A1%E6%81%AF%E5%8C%96%E9%A2%86%E5%9F%9F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E6%88%98%E6%94%BB%E9%98%B2%E6%B4%BB%E5%8A%A8"><span class="toc-number">1.8.2.</span> <span class="toc-text">“铸网2025” 网络安全实网攻防上海地区活动暨 “磐石行动” 上海市工业和信息化领域网络安全实战攻防活动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2026-%E5%B9%B4"><span class="toc-number">1.9.</span> <span class="toc-text">2026 年</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E7%96%86-%E2%80%9C%E5%A4%A9%E5%B1%B1%E5%9B%BA%E7%BD%91%E2%80%942026%E2%80%9D-%E5%B7%B4%E5%B7%9E%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83"><span class="toc-number">1.9.1.</span> <span class="toc-text">新疆 “天山固网—2026” 巴州网络安全攻防实战演练</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">83</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">14</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">150</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "攻防演练",
+          url: "http://example.com/2018/03/01/%E9%A1%B9%E7%9B%AE/",
+          excerpt: "",
+          description: "",
+          stripContent: "攻防演练2018 年“辽宁护网2018” 网络攻防实战演习辽宁省公安厅网络安全保卫总队于 9 月 14 日至 21 日组织开展了 “辽宁护网2018” 网络攻防实战演习 本次演习在真实网络环境下，参赛队伍分为攻击方、防守方和应急处置队伍。攻击方对金融、通讯、医疗卫生、广播电视、证券、交通、教育、国土资源、水利及党政机关的门户网站、云平台、交易平台、数据系统、物联网等目标系统进行网络攻击，防守方则组织防守力量发现、跟踪、溯源各种攻击行为 通过演习，发现和整改网络系统存在的深层次安全问题，提高对网络",
+          date: "Thu Mar 01 2018 16:39:00 GMT+0800",
+          updated: "Thu May 14 2026 14:44:47 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
