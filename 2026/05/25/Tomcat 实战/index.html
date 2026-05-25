@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a13b5eefe89374d20951569.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a13be854a8f57a65a3bdaa2.png">
 <meta property="article:published_time" content="2026-05-24T23:15:00.000Z">
-<meta property="article:modified_time" content="2026-05-25T04:19:35.035Z">
+<meta property="article:modified_time" content="2026-05-25T06:27:32.263Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="RCE">
 <meta property="article:tag" content="任意文件读取">
@@ -266,7 +266,7 @@
 </ul>
 <p>问题就在于，这个默认开启的 AJP 服务（端口 8009），其协议实现上存在一处文件包含缺陷</p>
 <p>攻击者向目标 Tomcat 服务器的 AJP 端口（默认8009）发起连接，并发送一个精心构造的恶意 AJP 请求</p>
-<p>-参数注入：在这个恶意请求中，攻击者会注入三个关键的请求属性：</p>
+<p>参数注入：在这个恶意请求中，攻击者会注入三个关键的请求属性：</p>
 <ul>
 <li><p><code>javax.servlet.include.request_uri</code> 原始客户端的完整请求 URI（<code>/app/servletA/extra/info.jsp</code>）</p>
 </li>
@@ -482,7 +482,7 @@
           description: "",
           stripContent: "实战——Tomcat 站点渗透前言Apache Tomcat 是一个开源的轻量级 Java Web 服务器和 Servlet 容器 它能加载、管理并执行 .war 包中的 Java Web 应用 当用户通过浏览器访问时，Tomcat 负责：  接收 HTTP 请求，并将其封装成 Java 对象（HttpServletRequest）  定位并调用对应的 Servlet（doGet、doPost 等方法）  执行 JSP 文件：将 .jsp 文件编译成 Servlet 后再执行  返回 HTTP ",
           date: "Mon May 25 2026 07:15:00 GMT+0800",
-          updated: "Mon May 25 2026 12:19:35 GMT+0800",
+          updated: "Mon May 25 2026 14:27:32 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
