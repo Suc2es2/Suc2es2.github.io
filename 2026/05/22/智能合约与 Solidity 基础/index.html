@@ -24,11 +24,17 @@
 <meta property="og:site_name" content="雾島风起時">
 <meta property="og:description" content="智能合约与 Solidity 基础智能合约生活类比：自动售货机  传统的买卖：你给老板钱，老板给你水  智能合约：一台自动售货机  你把钱塞进去，按下按钮，水自动掉下来  它的规则是写死在机器里的（代码）  只要条件满足，就一定会执行（吐水）  没有人能中途反悔（去中心化）     总结：智能合约就是运行在区块链上的、自动执行的计算机程序 而 Solidity，就是用来写这种程序的编程语言 Sol">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a19f288dd7746a9b033ab98.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a19f34add7746a9b033abc2.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a19f3bfdd7746a9b033abdc.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a19f40bdd7746a9b033abec.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a1a438ddd7746a9b0345060.png">
 <meta property="article:published_time" content="2026-05-22T06:18:00.000Z">
-<meta property="article:modified_time" content="2026-05-29T20:00:46.754Z">
+<meta property="article:modified_time" content="2026-05-30T02:00:43.424Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="区块链">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6a19f288dd7746a9b033ab98.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -253,14 +259,14 @@
 <p>总结：智能合约就是运行在区块链上的、自动执行的计算机程序</p>
 <p>而 <strong>Solidity</strong>，就是用来写这种程序的编程语言</p>
 <h2 id="Solidity-基础"><a href="#Solidity-基础" class="headerlink" title="Solidity 基础"></a>Solidity 基础</h2><h3 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h3><p>在 Solidity 中，有几种最常用的变量</p>
-<h4 id="uint（无符号整数）"><a href="#uint（无符号整数）" class="headerlink" title="uint（无符号整数）"></a>uint（无符号整数）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uint256 public totalMoney;</span><br><span class="line">uint8 public gameId;</span><br></pre></td></tr></table></figure>
+<h4 id="uint（无符号整数）"><a href="#uint（无符号整数）" class="headerlink" title="uint（无符号整数）"></a>uint（无符号整数）</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uint256 public totalMoney;</span><br><span class="line">uint8 public gameId;</span><br></pre></td></tr></table></figure>
 
 <h4 id="address（地址）"><a href="#address（地址）" class="headerlink" title="address（地址）"></a>address（地址）</h4><p>以太坊里每个人的 “银行卡号”，是一串 42 位的字符（如 <code>0x123...abc</code>）</p>
 <p>别人给你转账，必须知道你的 <code>address</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">address public boss;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">address public boss;</span><br></pre></td></tr></table></figure>
 
 <h4 id="mapping（映射）"><a href="#mapping（映射）" class="headerlink" title="mapping（映射）"></a>mapping（映射）</h4><p>用来建立 “一对一” 的查询关系</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 语法：mapping(查什么 =&gt; 得到什么) 名字;</span></span><br><span class="line">mapping(address =&gt; uint256) public balances;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 语法：mapping(查什么 =&gt; 得到什么) 名字;</span><br><span class="line">mapping(address =&gt; uint256) public balances;</span><br></pre></td></tr></table></figure>
 
 <h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>合约里有很多功能（函数），我们需要规定<strong>谁有权限调用它们</strong></p>
 <ul>
@@ -294,17 +300,65 @@
 </ul>
 <h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p>合约执行完一个操作后，向外界发出的 “通知”</p>
 <p>你在游戏里充值了 100 元，系统广播：”玩家张三充值 100 元！”</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">event 充值成功(address 谁, uint 多少钱); <span class="comment"># 定义广播内容</span></span><br><span class="line">emit 充值成功(msg.sender, 100);         <span class="comment"># 触发广播</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">event 充值成功(address 谁, uint 多少钱); // 定义广播内容</span><br><span class="line">emit 充值成功(msg.sender, 100);         // 触发广播</span><br></pre></td></tr></table></figure>
 
 <h3 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h3><p>在执行核心功能前，先做一轮 “安检”</p>
 <p>去银行取大额现金，<strong>保安（Modifier）</strong> 先检查你是不是本人，确认无误后，才让柜员（函数） 给你办业务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">require(你的余额 &gt;= 取款金额, <span class="string">&quot;余额不足，滚蛋！&quot;</span>);</span><br><span class="line"><span class="comment"># 如果条件不满足，直接中断，并喊出后面的错误提示。</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">require(你的余额 &gt;= 取款金额, &quot;余额不足，滚蛋！&quot;);</span><br><span class="line">// 如果条件不满足，直接中断，并喊出后面的错误提示。</span><br></pre></td></tr></table></figure>
 
 <h3 id="合约调用"><a href="#合约调用" class="headerlink" title="合约调用"></a>合约调用</h3><p>一个合约可以去使用另一个合约的功能</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import <span class="string">&quot;./微信支付合约.sol&quot;</span>; <span class="comment"># 引入工具包</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &quot;./微信支付合约.sol&quot;; // 引入工具包</span><br></pre></td></tr></table></figure>
 
 <h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><p>简单的存取款本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract SimpleLedger &#123;</span><br><span class="line">    // ① uint：记录总存款金额（不能为负）</span><br><span class="line">    uint256 public totalBalance;</span><br><span class="line"></span><br><span class="line">    // ② address：记录合约部署者（管理员）地址</span><br><span class="line">    address public owner;</span><br><span class="line"></span><br><span class="line">    // ③ mapping：地址 -&gt; 该地址的存款余额</span><br><span class="line">    mapping(address =&gt; uint256) public balances;</span><br><span class="line"></span><br><span class="line">    // 事件，便于在浏览器/控制台观察存款行为</span><br><span class="line">    event Deposited(address indexed <span class="built_in">who</span>, uint256 amount);</span><br><span class="line"></span><br><span class="line">    // 构造函数：初始化 owner 为合约创建者</span><br><span class="line">    <span class="function"><span class="title">constructor</span></span>() &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 存款函数：调用者向合约存入一定数量的 wei（以太币最小单位）</span><br><span class="line">    <span class="keyword">function</span> deposit() external payable &#123;</span><br><span class="line">        require(msg.value &gt; 0, <span class="string">&quot;Deposit amount must be positive&quot;</span>);</span><br><span class="line">        balances[msg.sender] += msg.value;</span><br><span class="line">        totalBalance += msg.value;</span><br><span class="line">        emit Deposited(msg.sender, msg.value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 查询任意地址的余额（mapping 自动生成 getter，但也可以写显式函数）</span><br><span class="line">    <span class="keyword">function</span> getBalance(address <span class="built_in">who</span>) external view returns (uint256) &#123;</span><br><span class="line">        <span class="built_in">return</span> balances[<span class="built_in">who</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 仅管理员可以查看合约总余额（另一种只读方式）</span><br><span class="line">    <span class="keyword">function</span> getTotalBalance() external view returns (uint256) &#123;</span><br><span class="line">        <span class="built_in">return</span> totalBalance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.8.0;</span><br><span class="line"></span><br><span class="line">contract SimpleLedger &#123;</span><br><span class="line">    // ① uint：记录总存款金额（不能为负）</span><br><span class="line">    uint256 public totalBalance;</span><br><span class="line"></span><br><span class="line">    // ② address：记录合约部署者（管理员）地址</span><br><span class="line">    address public owner;</span><br><span class="line"></span><br><span class="line">    // ③ mapping：地址 -&gt; 该地址的存款余额</span><br><span class="line">    mapping(address =&gt; uint256) public balances;</span><br><span class="line"></span><br><span class="line">    // 事件，便于在浏览器/控制台观察存款行为</span><br><span class="line">    event Deposited(address indexed who, uint256 amount);</span><br><span class="line"></span><br><span class="line">    // 构造函数：初始化 owner 为合约创建者</span><br><span class="line">    constructor() &#123;</span><br><span class="line">        owner = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 存款函数：调用者向合约存入一定数量的 wei（以太币最小单位）</span><br><span class="line">    // payable：允许函数在调用时接收以太币</span><br><span class="line">    function deposit() external payable &#123;</span><br><span class="line">        require(msg.value &gt; 0, &quot;Deposit amount must be positive&quot;);</span><br><span class="line">        // 从账本中取出当前余额，加上本次存款金额。将新余额写回账本</span><br><span class="line">        balances[msg.sender] += msg.value;</span><br><span class="line">        // 统计所有用户存入的总金额</span><br><span class="line">        totalBalance += msg.value;</span><br><span class="line">        emit Deposited(msg.sender, msg.value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 查询任意地址的余额</span><br><span class="line">    function getBalance(address who) external view returns (uint256) &#123;</span><br><span class="line">        return balances[who];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 仅管理员可以查看合约总余额（另一种只读方式）</span><br><span class="line">    function getTotalBalance() external view returns (uint256) &#123;</span><br><span class="line">        return totalBalance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>打开 <a target="_blank" rel="noopener" href="https://remix.ethereum.org/">https://remix.ethereum.org/</a> 在线部署</p>
+<p>新建一个 <code>SimpleLedger.sol</code> 文件在 <code>contracts</code> 文件夹中，把代码粘贴进去</p>
+<p>Ctrl + S 自动编译</p>
+<p>在 Deploy &amp; run transactions 中点击部署合约</p>
+<p><img src="https://pic1.imgdb.cn/item/6a19f288dd7746a9b033ab98.png"></p>
+<p>可以看到当前合约部署者的存款金额为 0</p>
+<p><img src="https://pic1.imgdb.cn/item/6a19f34add7746a9b033abc2.png"></p>
+<p>选择我们手写的存款函数</p>
+<p><img src="https://pic1.imgdb.cn/item/6a19f3bfdd7746a9b033abdc.png"></p>
+<p>开始转账（单位是 wei，比如 1000000000000000000 代表 1 ETH）</p>
+<p>在 Debug 中查看转账记录</p>
+<ul>
+<li><p><code>0x4e3795...b16b42</code>：这笔交易的唯一标识符，用于全网查询</p>
+</li>
+<li><p>Tx Fee：交易消耗的总手续费 &#x3D; Gas Used × Gas Price</p>
+</li>
+<li><p>Block：这笔交易被打包到的区块高度，在 Remix VM 中区块号从 0 开始递增</p>
+</li>
+<li><p>Tx Type：0 代表 Legacy 交易</p>
+</li>
+<li><p>Timestamp：区块头中记录的时间戳</p>
+</li>
+<li><p>Gas Price：每单位 gas 的价格，交易发送者愿意支付的单价</p>
+</li>
+<li><p>From：交易发起者的地址</p>
+</li>
+<li><p>Gas Used：这笔交易实际消耗的 gas 数量</p>
+</li>
+<li><p>To：交易接收方地址</p>
+</li>
+<li><p>Tx Index：这笔交易在该区块中的索引位置</p>
+</li>
+<li><p>Function：Remix 根据 ABI 解析出调用的函数名</p>
+</li>
+<li><p>Tx Nonce：该账户发起的交易序号，从 0 开始递增，每发送一笔加 1。防止重放攻击，并确保交易顺序</p>
+</li>
+<li><p>Value：交易附带转移的以太币数量</p>
+</li>
+<li><p>SENDER：当前调用上下文的 msg.sender</p>
+</li>
+<li><p>CALL：EVM 指令操作码，表示发起一个子调用</p>
+</li>
+</ul>
+<p><img src="https://pic1.imgdb.cn/item/6a19f40bdd7746a9b033abec.png"></p>
+<p>通过 <code>getBalance</code> 函数可以查询交易发起者的存款</p>
+<p><img src="https://pic1.imgdb.cn/item/6a1a438ddd7746a9b0345060.png"></p>
+
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/" title="区块链" data-aos="zoom-in">区块链</a>
@@ -354,10 +408,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        101.2k
+        101.6k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        08:24
+        08:25
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -513,7 +567,7 @@
           description: "",
           stripContent: "智能合约与 Solidity 基础智能合约生活类比：自动售货机  传统的买卖：你给老板钱，老板给你水  智能合约：一台自动售货机  你把钱塞进去，按下按钮，水自动掉下来  它的规则是写死在机器里的（代码）  只要条件满足，就一定会执行（吐水）  没有人能中途反悔（去中心化）     总结：智能合约就是运行在区块链上的、自动执行的计算机程序 而 Solidity，就是用来写这种程序的编程语言 Solidity 基础变量类型在 Solidity 中，有几种最常用的变量 uint（无符号整数）12ui",
           date: "Fri May 22 2026 14:18:00 GMT+0800",
-          updated: "Sat May 30 2026 04:00:46 GMT+0800",
+          updated: "Sat May 30 2026 10:00:43 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
