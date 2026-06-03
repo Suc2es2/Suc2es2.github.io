@@ -17,17 +17,26 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="Alzheimer项目地址：https:&#x2F;&#x2F;downloads.hackmyvm.eu&#x2F;alzheimer.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本">
+    <meta name="description" content="Alzheimer项目地址：https:&#x2F;&#x2F;downloads.hackmyvm.eu&#x2F;alzheimer.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  弱口令FTP前面 NMap 已经扫描出来了，直接匿名登录 1229 Entering Extended Passive Mode (|||42234|)  这说">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MazeSec Alzheimer">
 <meta property="og:url" content="http://example.com/2025/04/01/Alzheimer/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="Alzheimer项目地址：https:&#x2F;&#x2F;downloads.hackmyvm.eu&#x2F;alzheimer.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本">
+<meta property="og:description" content="Alzheimer项目地址：https:&#x2F;&#x2F;downloads.hackmyvm.eu&#x2F;alzheimer.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  弱口令FTP前面 NMap 已经扫描出来了，直接匿名登录 1229 Entering Extended Passive Mode (|||42234|)  这说">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a1fe7509ecef7401784e937.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a1fea6b9ecef74017853005.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a1ffa7e9ecef740178563de.png">
 <meta property="article:published_time" content="2025-04-01T09:33:00.000Z">
-<meta property="article:modified_time" content="2026-06-03T06:50:58.926Z">
+<meta property="article:modified_time" content="2026-06-03T10:20:27.338Z">
 <meta property="article:author" content="ALL">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Port Knocking">
+<meta property="article:tag" content="SUID 提权">
+<meta property="article:tag" content="casph 提权">
+<meta property="article:tag" content="弱口令">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6a1fe7509ecef7401784e937.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -145,7 +154,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Alzheimer"><span class="toc-number">1.</span> <span class="toc-text">Alzheimer</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Alzheimer"><span class="toc-number">1.</span> <span class="toc-text">Alzheimer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="toc-number">1.1.</span> <span class="toc-text">弱口令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FTP"><span class="toc-number">1.1.1.</span> <span class="toc-text">FTP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF"><span class="toc-number">1.2.</span> <span class="toc-text">CTF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Port-Knocking"><span class="toc-number">1.2.1.</span> <span class="toc-text">Port Knocking</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4-1"><span class="toc-number">1.3.</span> <span class="toc-text">弱口令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH"><span class="toc-number">1.3.1.</span> <span class="toc-text">SSH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.4.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SUID-%E6%8F%90%E6%9D%83-casph-%E6%8F%90%E6%9D%83"><span class="toc-number">1.4.1.</span> <span class="toc-text">SUID 提权 + casph 提权</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -164,7 +173,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">167</div>
+    <div class="sidebar-state-number">169</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -236,12 +245,43 @@
 <p>是一个打包好的镜像文件</p>
 <p><strong>注意：导入 ova 时一定要选择我已移动，否则没网</strong></p>
 <p>使用 Nmap 扫描出开放服务及操作系统版本</p>
+<p><img src="https://pic1.imgdb.cn/item/6a1fe7509ecef7401784e937.png"></p>
+<h2 id="弱口令"><a href="#弱口令" class="headerlink" title="弱口令"></a>弱口令</h2><h3 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h3><p>前面 NMap 已经扫描出来了，直接匿名登录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">229 Entering Extended Passive Mode (|||42234|)</span><br></pre></td></tr></table></figure>
 
+<p>这说明 FTP 正在尝试使用被动模式建立数据通道来传输文件列表，端口为 42234 端口</p>
+<p>需要先输入 <code>passive</code> 关闭被动模式</p>
+<p><img src="https://pic1.imgdb.cn/item/6a1fea6b9ecef74017853005.png"></p>
+<h2 id="CTF"><a href="#CTF" class="headerlink" title="CTF"></a>CTF</h2><h3 id="Port-Knocking"><a href="#Port-Knocking" class="headerlink" title="Port Knocking"></a>Port Knocking</h3><p>查看隐藏文件内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">I need to knock this ports and</span><br><span class="line">one door will be open!</span><br><span class="line">1000</span><br><span class="line">2000</span><br><span class="line">3000</span><br></pre></td></tr></table></figure>
+
+<p>我真没招了，刚开始只开 80。重启了都不开了</p>
+<p><img src="https://pic1.imgdb.cn/item/6a1ffa7e9ecef740178563de.png"></p>
+<h2 id="弱口令-1"><a href="#弱口令-1" class="headerlink" title="弱口令"></a>弱口令</h2><h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h3><p>首页回显</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">I dont remember where I stored my password :(</span><br><span class="line">I only remember that was into a .txt file...</span><br><span class="line">-medusa</span><br><span class="line"></span><br><span class="line">&lt;!---. --- - .... .. -. --. --&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Web 端扫描目录，<code>/secret/</code> 说有一个隐藏文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Maybe my password is in this secret folder?</span><br></pre></td></tr></table></figure>
+
+<p>猜测是 FTP 端口的 <code>.secretnote.txt</code>，将之前的文件删除，再重新 Get 一下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">I need to knock this ports and</span><br><span class="line">one door will be open!</span><br><span class="line">1000</span><br><span class="line">2000</span><br><span class="line">3000</span><br><span class="line">Ihavebeenalwayshere!!!</span><br><span class="line">Ihavebeenalwayshere!!!</span><br></pre></td></tr></table></figure>
+
+<p>多出来的是首页中的用户的密码，SSH 直接登录</p>
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><h3 id="SUID-提权-casph-提权"><a href="#SUID-提权-casph-提权" class="headerlink" title="SUID 提权 + casph 提权"></a>SUID 提权 + casph 提权</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">medusa@alzheimer:~$ find / -perm -u=s -<span class="built_in">type</span> f 2&gt;/dev/null</span><br><span class="line">/usr/lib/dbus-1.0/dbus-daemon-launch-helper</span><br><span class="line">/usr/lib/openssh/ssh-keysign</span><br><span class="line">/usr/lib/eject/dmcrypt-get-device</span><br><span class="line">/usr/bin/chsh</span><br><span class="line">/usr/bin/sudo</span><br><span class="line">/usr/bin/mount</span><br><span class="line">/usr/bin/newgrp</span><br><span class="line">/usr/bin/su</span><br><span class="line">/usr/bin/passwd</span><br><span class="line">/usr/bin/chfn</span><br><span class="line">/usr/bin/umount</span><br><span class="line">/usr/bin/gpasswd</span><br><span class="line">/usr/sbin/capsh</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>/usr/sbin/capsh</code>：用于操作和测试 Linux Capabilities</li>
+<li><code>--gid=0</code>：将进程的有效 GID 设置为 <code>0</code></li>
+<li><code>--uid=0</code>：将进程的有效 UID 设置为 0</li>
+<li><code>--</code>：参数分隔符，之后执行默认 shell（通常是 &#x2F;bin&#x2F;bash）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HMVrespectmemories</span><br><span class="line">HMVlovememories</span><br></pre></td></tr></table></figure>
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/MazeSec/" title="MazeSec" data-aos="zoom-in">MazeSec</a>
 
-      
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag" title="CTF">CTF</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Port-Knocking/" rel="tag" title="Port Knocking">Port Knocking</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/SUID-%E6%8F%90%E6%9D%83/" rel="tag" title="SUID 提权">SUID 提权</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/casph-%E6%8F%90%E6%9D%83/" rel="tag" title="casph 提权">casph 提权</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%BC%B1%E5%8F%A3%E4%BB%A4/" rel="tag" title="弱口令">弱口令</a></li></ul>
+
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
@@ -285,10 +325,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        106.1k
+        106.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        08:49
+        08:50
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -310,7 +350,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Alzheimer"><span class="toc-number">1.</span> <span class="toc-text">Alzheimer</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Alzheimer"><span class="toc-number">1.</span> <span class="toc-text">Alzheimer</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="toc-number">1.1.</span> <span class="toc-text">弱口令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FTP"><span class="toc-number">1.1.1.</span> <span class="toc-text">FTP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF"><span class="toc-number">1.2.</span> <span class="toc-text">CTF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Port-Knocking"><span class="toc-number">1.2.1.</span> <span class="toc-text">Port Knocking</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4-1"><span class="toc-number">1.3.</span> <span class="toc-text">弱口令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH"><span class="toc-number">1.3.1.</span> <span class="toc-text">SSH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.4.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SUID-%E6%8F%90%E6%9D%83-casph-%E6%8F%90%E6%9D%83"><span class="toc-number">1.4.1.</span> <span class="toc-text">SUID 提权 + casph 提权</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -329,7 +369,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">167</div>
+    <div class="sidebar-state-number">169</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -442,9 +482,9 @@
           url: "http://example.com/2025/04/01/Alzheimer/",
           excerpt: "",
           description: "",
-          stripContent: "Alzheimer项目地址：https://downloads.hackmyvm.eu/alzheimer.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本 ",
+          stripContent: "Alzheimer项目地址：https://downloads.hackmyvm.eu/alzheimer.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  弱口令FTP前面 NMap 已经扫描出来了，直接匿名登录 1229 Entering Extended Passive Mode (|||42234|)  这说明 FTP 正在尝试使用被动模式建立数据通道来传输文件列表，端口为 42234 端口 需要先输入 p",
           date: "Tue Apr 01 2025 17:33:00 GMT+0800",
-          updated: "Wed Jun 03 2026 14:50:58 GMT+0800",
+          updated: "Wed Jun 03 2026 18:20:27 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
