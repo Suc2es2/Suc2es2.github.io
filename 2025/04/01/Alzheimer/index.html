@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   <title>
-    某充电桩小程序商家后台 XSS | 雾島风起時
+    MazeSec Alzheimer | 雾島风起時
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,24 +17,17 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="某充电桩小程序 XSS前言本次测试属于公益类型的 SRC XSS设置管理是查看功能，只能测越权，可惜有鉴权  添加站点中有一个上传图片  上传 XSS 图片，结果回显路径给咱自动添加了 .html 后缀  还有这好事？">
+    <meta name="description" content="Alzheimer项目地址：https:&#x2F;&#x2F;downloads.hackmyvm.eu&#x2F;alzheimer.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本">
 <meta property="og:type" content="article">
-<meta property="og:title" content="某充电桩小程序商家后台 XSS">
-<meta property="og:url" content="http://example.com/2026/05/20/%E6%9F%90%E5%85%85%E7%94%B5%E6%A1%A9%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%95%86%E5%AE%B6%E5%90%8E%E5%8F%B0%20XSS/index.html">
+<meta property="og:title" content="MazeSec Alzheimer">
+<meta property="og:url" content="http://example.com/2025/04/01/Alzheimer/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="某充电桩小程序 XSS前言本次测试属于公益类型的 SRC XSS设置管理是查看功能，只能测越权，可惜有鉴权  添加站点中有一个上传图片  上传 XSS 图片，结果回显路径给咱自动添加了 .html 后缀  还有这好事？">
+<meta property="og:description" content="Alzheimer项目地址：https:&#x2F;&#x2F;downloads.hackmyvm.eu&#x2F;alzheimer.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/6a0c9178a0971b8b02a4b3c3.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/6a0c90baa0971b8b02a4b3b0.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/6a0c90e6a0971b8b02a4b3b8.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/6a0c9120a0971b8b02a4b3be.png">
-<meta property="article:published_time" content="2026-05-19T16:39:00.000Z">
-<meta property="article:modified_time" content="2026-05-19T16:43:19.925Z">
+<meta property="article:published_time" content="2025-04-01T09:33:00.000Z">
+<meta property="article:modified_time" content="2026-06-03T06:50:58.926Z">
 <meta property="article:author" content="ALL">
-<meta property="article:tag" content="XSS">
-<meta property="article:tag" content="微信小程序">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6a0c9178a0971b8b02a4b3c3.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -133,11 +126,11 @@
 <header id="header" aria-label="Site header">
         <picture>
         </picture>
-          <img  fetchpriority="high" src="/images/banner.webp" alt="某充电桩小程序商家后台 XSS">
+          <img  fetchpriority="high" src="/images/banner.webp" alt="MazeSec Alzheimer">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">某充电桩小程序商家后台 XSS</h1>
+            <h1 data-aos="slide-up">MazeSec Alzheimer</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -152,7 +145,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%90%E5%85%85%E7%94%B5%E6%A1%A9%E5%B0%8F%E7%A8%8B%E5%BA%8F-XSS"><span class="toc-number">1.</span> <span class="toc-text">某充电桩小程序 XSS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS"><span class="toc-number">1.2.</span> <span class="toc-text">XSS</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Alzheimer"><span class="toc-number">1.</span> <span class="toc-text">Alzheimer</span></a></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -224,13 +217,13 @@
   </div>
 </aside>
 
-          <section id="main" aria-label="Main content"><article id="post-某充电桩小程序商家后台 XSS" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main" aria-label="Main content"><article id="post-Alzheimer" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2026-05-19T16:39:00.000Z" itemprop="datePublished">2026-05-20</time>
-    <time style="display: none;" id="post-update-time">2026-05-20</time>
+    <time datetime="2025-04-01T09:33:00.000Z" itemprop="datePublished">2025-04-01</time>
+    <time style="display: none;" id="post-update-time">2026-06-03</time>
   </span>
 </div>
 
@@ -239,39 +232,33 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="某充电桩小程序-XSS"><a href="#某充电桩小程序-XSS" class="headerlink" title="某充电桩小程序 XSS"></a>某充电桩小程序 XSS</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本次测试属于公益类型的 SRC</p>
-<h2 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h2><p>设置管理是查看功能，只能测越权，可惜有鉴权</p>
-<p><img src="https://pic1.imgdb.cn/item/6a0c9178a0971b8b02a4b3c3.png"></p>
-<p>添加站点中有一个上传图片</p>
-<p><img src="https://pic1.imgdb.cn/item/6a0c90baa0971b8b02a4b3b0.png"></p>
-<p>上传 XSS 图片，结果回显路径给咱自动添加了 <code>.html</code> 后缀</p>
-<p><img src="https://pic1.imgdb.cn/item/6a0c90e6a0971b8b02a4b3b8.png"></p>
-<p>还有这好事？</p>
-<p><img src="https://pic1.imgdb.cn/item/6a0c9120a0971b8b02a4b3be.png"></p>
+        <h1 id="Alzheimer"><a href="#Alzheimer" class="headerlink" title="Alzheimer"></a>Alzheimer</h1><p>项目地址：<a target="_blank" rel="noopener" href="https://downloads.hackmyvm.eu/alzheimer.zip">https://downloads.hackmyvm.eu/alzheimer.zip</a></p>
+<p>是一个打包好的镜像文件</p>
+<p><strong>注意：导入 ova 时一定要选择我已移动，否则没网</strong></p>
+<p>使用 Nmap 扫描出开放服务及操作系统版本</p>
 
     </div>
     <footer class="article-footer">
-        <a class="article-category-link" href="/categories/SRC/" title="SRC" data-aos="zoom-in">SRC</a>
+        <a class="article-category-link" href="/categories/MazeSec/" title="MazeSec" data-aos="zoom-in">MazeSec</a>
 
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/XSS/" rel="tag" title="XSS">XSS</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag" title="微信小程序">微信小程序</a></li></ul>
-
+      
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="蚁剑流量特征" class="lazyload">
-        <a href="/2026/05/21/%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81/" aria-label="前一篇: 蚁剑流量特征" title="前一篇: 蚁剑流量特征"></a>
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2025 年度总结" class="lazyload">
+        <a href="/2026/01/01/2025%20%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" aria-label="前一篇: 2025 年度总结" title="前一篇: 2025 年度总结"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            蚁剑流量特征
+            2025 年度总结
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="某充电桩小程序后台接管&amp;越权修改他人信息以及密码（可遍历）" class="lazyload">
-      <a href="/2026/05/19/%E5%85%85%E7%94%B5%E6%A1%A9%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%89%93%E7%A9%BF/" aria-label="后一篇: 某充电桩小程序后台接管&amp;越权修改他人信息以及密码（可遍历）"  title="后一篇: 某充电桩小程序后台接管&amp;越权修改他人信息以及密码（可遍历）"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec SuidyRevenge" class="lazyload">
+      <a href="/2025/04/01/SuidyRevenge/" aria-label="后一篇: MazeSec SuidyRevenge"  title="后一篇: MazeSec SuidyRevenge"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          某充电桩小程序后台接管&amp;越权修改他人信息以及密码（可遍历）
+          MazeSec SuidyRevenge
       </h3>
     </div>
   </nav>
@@ -323,7 +310,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%90%E5%85%85%E7%94%B5%E6%A1%A9%E5%B0%8F%E7%A8%8B%E5%BA%8F-XSS"><span class="toc-number">1.</span> <span class="toc-text">某充电桩小程序 XSS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS"><span class="toc-number">1.2.</span> <span class="toc-text">XSS</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Alzheimer"><span class="toc-number">1.</span> <span class="toc-text">Alzheimer</span></a></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -451,13 +438,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "ALL",
-          title: "某充电桩小程序商家后台 XSS",
-          url: "http://example.com/2026/05/20/%E6%9F%90%E5%85%85%E7%94%B5%E6%A1%A9%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%95%86%E5%AE%B6%E5%90%8E%E5%8F%B0%20XSS/",
+          title: "MazeSec Alzheimer",
+          url: "http://example.com/2025/04/01/Alzheimer/",
           excerpt: "",
           description: "",
-          stripContent: "某充电桩小程序 XSS前言本次测试属于公益类型的 SRC XSS设置管理是查看功能，只能测越权，可惜有鉴权  添加站点中有一个上传图片  上传 XSS 图片，结果回显路径给咱自动添加了 .html 后缀  还有这好事？  ",
-          date: "Wed May 20 2026 00:39:00 GMT+0800",
-          updated: "Wed May 20 2026 00:43:19 GMT+0800",
+          stripContent: "Alzheimer项目地址：https://downloads.hackmyvm.eu/alzheimer.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本 ",
+          date: "Tue Apr 01 2025 17:33:00 GMT+0800",
+          updated: "Wed Jun 03 2026 14:50:58 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
