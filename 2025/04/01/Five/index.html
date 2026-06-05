@@ -17,17 +17,38 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="Five项目地址：https:&#x2F;&#x2F;downloads.hackmyvm.eu&#x2F;five.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本">
+    <meta name="description" content="Five项目地址：https:&#x2F;&#x2F;downloads.hackmyvm.eu&#x2F;five.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  文件上传upload（路径绕过）扫描目录  访问 upload.html 可以上传文件  上传反弹 Shell 成功，但是默认放在了 uploads&#x2F; 目录下面  这个路径访问是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MazeSec Five">
 <meta property="og:url" content="http://example.com/2025/04/01/Five/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="Five项目地址：https:&#x2F;&#x2F;downloads.hackmyvm.eu&#x2F;five.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本">
+<meta property="og:description" content="Five项目地址：https:&#x2F;&#x2F;downloads.hackmyvm.eu&#x2F;five.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  文件上传upload（路径绕过）扫描目录  访问 upload.html 可以上传文件  上传反弹 Shell 成功，但是默认放在了 uploads&#x2F; 目录下面  这个路径访问是">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-01T09:35:00.000Z">
-<meta property="article:modified_time" content="2026-06-05T01:38:11.203Z">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a222c5ff0d1d8911fab9cc4.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a222df4f0d1d8911fabbae9.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a222e69f0d1d8911fabbb02.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a222fecf0d1d8911fabbb52.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a223057f0d1d8911fabbb59.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a22308cf0d1d8911fabbb5e.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a2230c8f0d1d8911fabbb6a.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a22310df0d1d8911fabbb7b.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a2231d4f0d1d8911fabbba4.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a223238f0d1d8911fabbbe2.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a22332af0d1d8911fabbc1f.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a22341df0d1d8911fabbc70.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a223450f0d1d8911fabbc84.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a223772f0d1d8911fabbcfd.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a2237aef0d1d8911fabbd27.png">
+<meta property="article:published_time" content="2025-04-01T09:36:00.000Z">
+<meta property="article:modified_time" content="2026-06-05T02:55:08.536Z">
 <meta property="article:author" content="ALL">
+<meta property="article:tag" content="&#x2F;etc&#x2F;sudoers 配置不当">
+<meta property="article:tag" content="Python 升级为交互式 Shell">
+<meta property="article:tag" content="cp 提权">
+<meta property="article:tag" content="man 提权">
+<meta property="article:tag" content="文件上传">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6a222c5ff0d1d8911fab9cc4.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -145,7 +166,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Five"><span class="toc-number">1.</span> <span class="toc-text">Five</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Five"><span class="toc-number">1.</span> <span class="toc-text">Five</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.1.</span> <span class="toc-text">文件上传</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#upload%EF%BC%88%E8%B7%AF%E5%BE%84%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">upload（路径绕过）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.2.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Python-%E5%8D%87%E7%BA%A7%E4%B8%BA%E4%BA%A4%E4%BA%92%E5%BC%8F-Shell"><span class="toc-number">1.2.1.</span> <span class="toc-text">Python 升级为交互式 Shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#etc-sudoers-%E9%85%8D%E7%BD%AE%E4%B8%8D%E5%BD%93"><span class="toc-number">1.2.2.</span> <span class="toc-text">&#x2F;etc&#x2F;sudoers 配置不当</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cp-%E6%8F%90%E6%9D%83"><span class="toc-number">1.2.3.</span> <span class="toc-text">cp 提权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#man-%E6%8F%90%E6%9D%83"><span class="toc-number">1.2.4.</span> <span class="toc-text">man 提权</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -164,7 +185,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">172</div>
+    <div class="sidebar-state-number">174</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -222,7 +243,7 @@
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2025-04-01T09:35:00.000Z" itemprop="datePublished">2025-04-01</time>
+    <time datetime="2025-04-01T09:36:00.000Z" itemprop="datePublished">2025-04-01</time>
     <time style="display: none;" id="post-update-time">2026-06-05</time>
   </span>
 </div>
@@ -236,12 +257,57 @@
 <p>是一个打包好的镜像文件</p>
 <p><strong>注意：导入 ova 时一定要选择我已移动，否则没网</strong></p>
 <p>使用 Nmap 扫描出开放服务及操作系统版本</p>
+<p><img src="https://pic1.imgdb.cn/item/6a222c5ff0d1d8911fab9cc4.png"></p>
+<h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><h3 id="upload（路径绕过）"><a href="#upload（路径绕过）" class="headerlink" title="upload（路径绕过）"></a>upload（路径绕过）</h3><p>扫描目录</p>
+<p><img src="https://pic1.imgdb.cn/item/6a222df4f0d1d8911fabbae9.png"></p>
+<p>访问 <code>upload.html</code> 可以上传文件</p>
+<p><img src="https://pic1.imgdb.cn/item/6a222e69f0d1d8911fabbb02.png"></p>
+<p>上传反弹 Shell 成功，但是默认放在了 <code>uploads/</code> 目录下面</p>
+<p><img src="https://pic1.imgdb.cn/item/6a222fecf0d1d8911fabbb52.png"></p>
+<p>这个路径访问是 403，抓包看看</p>
+<p><img src="https://pic1.imgdb.cn/item/6a223057f0d1d8911fabbb59.png"></p>
+<p>将这个 <code>uploads/</code> 上传位置删除为空，这样子就传到了根目录下面，回显成功</p>
+<p><img src="https://pic1.imgdb.cn/item/6a22308cf0d1d8911fabbb5e.png"></p>
+<p>访问拿到 Shell</p>
+<p><img src="https://pic1.imgdb.cn/item/6a2230c8f0d1d8911fabbb6a.png"></p>
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><h3 id="Python-升级为交互式-Shell"><a href="#Python-升级为交互式-Shell" class="headerlink" title="Python 升级为交互式 Shell"></a>Python 升级为交互式 Shell</h3><p><img src="https://pic1.imgdb.cn/item/6a22310df0d1d8911fabbb7b.png"></p>
+<h3 id="etc-sudoers-配置不当"><a href="#etc-sudoers-配置不当" class="headerlink" title="&#x2F;etc&#x2F;sudoers 配置不当"></a>&#x2F;etc&#x2F;sudoers 配置不当</h3><p>检查权限发现给了 <code>cp</code> 命令的 melisa 用户的权限</p>
+<h3 id="cp-提权"><a href="#cp-提权" class="headerlink" title="cp 提权"></a>cp 提权</h3><p>由于前面没有扫描出开放了 22 端口，本地检查一下</p>
+<p>有一个 4444 端口开放，暂时不知道是干嘛的</p>
+<p><img src="https://pic1.imgdb.cn/item/6a2231d4f0d1d8911fabbba4.png"></p>
+<p>检查家目录看到用户 melisa 是有 <code>.ssh/</code> 目录的，说明可以走 SSH 登录</p>
+<p><img src="https://pic1.imgdb.cn/item/6a223238f0d1d8911fabbbe2.png"></p>
+<p>拷贝过来登录 4444 端口发现还是需要密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh melisa@127.0.0.1 -p 4444 -i id_rsa</span><br></pre></td></tr></table></figure>
 
+<p><img src="https://pic1.imgdb.cn/item/6a22332af0d1d8911fabbc1f.png"></p>
+<p>私钥有了，权限也对，应该是公钥出现了问题</p>
+<p>但是因为 <code>id_rsa</code> 的权限是 melisa 用户的，我们没法直接查看</p>
+<p>解决方法是我们自己创建一个文件，然后用把内容也复制过来</p>
+<p><img src="https://pic1.imgdb.cn/item/6a22341df0d1d8911fabbc70.png"></p>
+<p>然后重新生成公钥</p>
+<p><img src="https://pic1.imgdb.cn/item/6a223450f0d1d8911fabbc84.png"></p>
+<p>完整命令如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">www-data@five:/$ <span class="built_in">cd</span> /tmp</span><br><span class="line">www-data@five:/tmp$ <span class="built_in">touch</span> id_rsa</span><br><span class="line">www-data@five:/tmp$ <span class="built_in">sudo</span> -u melisa <span class="built_in">cp</span> /home/melisa/.ssh/id_rsa /tmp/id_rsa</span><br><span class="line">www-data@five:/tmp$ <span class="built_in">chmod</span> 600 /tmp/id_rsa</span><br><span class="line">www-data@five:/tmp$ ssh-keygen -y -f id_rsa &gt; authorized_keys</span><br><span class="line">www-data@five:/tmp$ <span class="built_in">sudo</span> -u melisa <span class="built_in">cp</span> /tmp/authorized_keys /home/melisa/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+<p>最后成功登录</p>
+<p><img src="https://pic1.imgdb.cn/item/6a223772f0d1d8911fabbcfd.png"></p>
+<h3 id="man-提权"><a href="#man-提权" class="headerlink" title="man 提权"></a>man 提权</h3><p>检查权限发现有很多命令可以使用</p>
+<p><img src="https://pic1.imgdb.cn/item/6a2237aef0d1d8911fabbd27.png"></p>
+<p>使用 <code>man</code> 提权：</p>
+<ul>
+<li><code>-P</code> 指定选项指定分页器为 less</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> /bin/man -P less <span class="built_in">id</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://pic1.imgdb.cn/item/6a223a3af0d1d8911fabca27.png">https://pic1.imgdb.cn/item/6a223a3af0d1d8911fabca27.png</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ilovebinaries</span><br><span class="line">WTFGivemefive</span><br></pre></td></tr></table></figure>
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/MazeSec/" title="MazeSec" data-aos="zoom-in">MazeSec</a>
 
-      
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/etc-sudoers-%E9%85%8D%E7%BD%AE%E4%B8%8D%E5%BD%93/" rel="tag" title="&#x2F;etc&#x2F;sudoers 配置不当">&#x2F;etc&#x2F;sudoers 配置不当</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Python-%E5%8D%87%E7%BA%A7%E4%B8%BA%E4%BA%A4%E4%BA%92%E5%BC%8F-Shell/" rel="tag" title="Python 升级为交互式 Shell">Python 升级为交互式 Shell</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/cp-%E6%8F%90%E6%9D%83/" rel="tag" title="cp 提权">cp 提权</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/man-%E6%8F%90%E6%9D%83/" rel="tag" title="man 提权">man 提权</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="tag" title="文件上传">文件上传</a></li></ul>
+
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
@@ -285,10 +351,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        108.9k
+        109.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        09:03
+        09:04
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -310,7 +376,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Five"><span class="toc-number">1.</span> <span class="toc-text">Five</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Five"><span class="toc-number">1.</span> <span class="toc-text">Five</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.1.</span> <span class="toc-text">文件上传</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#upload%EF%BC%88%E8%B7%AF%E5%BE%84%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">upload（路径绕过）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.2.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Python-%E5%8D%87%E7%BA%A7%E4%B8%BA%E4%BA%A4%E4%BA%92%E5%BC%8F-Shell"><span class="toc-number">1.2.1.</span> <span class="toc-text">Python 升级为交互式 Shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#etc-sudoers-%E9%85%8D%E7%BD%AE%E4%B8%8D%E5%BD%93"><span class="toc-number">1.2.2.</span> <span class="toc-text">&#x2F;etc&#x2F;sudoers 配置不当</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cp-%E6%8F%90%E6%9D%83"><span class="toc-number">1.2.3.</span> <span class="toc-text">cp 提权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#man-%E6%8F%90%E6%9D%83"><span class="toc-number">1.2.4.</span> <span class="toc-text">man 提权</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -329,7 +395,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">172</div>
+    <div class="sidebar-state-number">174</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -442,9 +508,9 @@
           url: "http://example.com/2025/04/01/Five/",
           excerpt: "",
           description: "",
-          stripContent: "Five项目地址：https://downloads.hackmyvm.eu/five.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本 ",
-          date: "Tue Apr 01 2025 17:35:00 GMT+0800",
-          updated: "Fri Jun 05 2026 09:38:11 GMT+0800",
+          stripContent: "Five项目地址：https://downloads.hackmyvm.eu/five.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  文件上传upload（路径绕过）扫描目录  访问 upload.html 可以上传文件  上传反弹 Shell 成功，但是默认放在了 uploads/ 目录下面  这个路径访问是 403，抓包看看  将这个 uploads/ 上传位置删除为空，这样子就传到了根目录下面，回显成功 ",
+          date: "Tue Apr 01 2025 17:36:00 GMT+0800",
+          updated: "Fri Jun 05 2026 10:55:08 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

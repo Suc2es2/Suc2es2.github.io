@@ -160,7 +160,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">172</div>
+    <div class="sidebar-state-number">174</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -505,8 +505,8 @@ Yakit首先要启动劫持，下载证书
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2025-04-01</span>
-        <span><span class="icon-pencil"></span>58 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
+        <span><span class="icon-pencil"></span>460 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
       </div>
       <h2 class="post-title">MazeSec Five</h2>
       <article class="post-article">
@@ -515,6 +515,20 @@ Yakit首先要启动劫持，下载证书
 注意：导入 ova 时一定要选择我已移动，否则没网
 使用 Nmap 扫描出开放服务及操作系统版本
 
+文件上传upload（路径绕过）扫描目录
+
+访问 upload.html 可以上传文件
+
+上传反弹 Shell 成功，但是默认放在了 uploads/ 目录下面
+
+这个路径访问是 403，抓包看看
+
+将这个 uploads/ 上传位置删除为空，这样子就传到了根目录下面，回显成功
+
+访问拿到 Shell
+
+提权Python 升级为交互式 Shell
+&amp;#x2F;etc&amp;#x2F;
       </article>
     </div>
   </div>
@@ -574,10 +588,10 @@ Yakit首先要启动劫持，下载证书
       </div>
       <div>
         <span class="icon-brush"></span>
-        108.9k
+        109.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        09:03
+        09:04
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -613,7 +627,7 @@ Yakit首先要启动劫持，下载证书
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">172</div>
+    <div class="sidebar-state-number">174</div>
   </div>
 </div>
 <div class="sidebar-social" >
