@@ -1,0 +1,910 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  <title>
+    2020 0xGame WriteUp | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="2020 0xGame WriteUp前言主办方：南京邮电大学 Miscflip（波形图 + 摩斯密码 + BinWalk + 倒序） 打开压缩包后得到一个 ZIP 和 MP3  ZIP 需要密码，使用 Audacity 打开 MP3  根据波形长短猜测是摩斯密码 1....- ----- ----- ---.. ..... -.... -.... ----. ----. ...-- -----">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2020 0xGame WriteUp">
+<meta property="og:url" content="http://example.com/2020/04/14/2020%200xGame/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="2020 0xGame WriteUp前言主办方：南京邮电大学 Miscflip（波形图 + 摩斯密码 + BinWalk + 倒序） 打开压缩包后得到一个 ZIP 和 MP3  ZIP 需要密码，使用 Audacity 打开 MP3  根据波形长短猜测是摩斯密码 1....- ----- ----- ---.. ..... -.... -.... ----. ----. ...-- -----">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6919fce33203f7be000b18b6.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6919fe603203f7be000b1909.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6919fe353203f7be000b1903.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6919fec73203f7be000b1912.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6919fee23203f7be000b192d.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6919ff5a3203f7be000b193f.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6919ff793203f7be000b194c.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6919ff883203f7be000b1953.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a06463203f7be000b1add.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a09e73203f7be000b1c36.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a0a793203f7be000b1c49.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a11973203f7be000b2075.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a0e853203f7be000b1eb6.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a11623203f7be000b2048.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a15d43203f7be000b2311.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a15e83203f7be000b231d.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a160e3203f7be000b234e.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a16433203f7be000b2375.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a16943203f7be000b23b4.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a16bb3203f7be000b23d9.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a18c53203f7be000b2528.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a18dc3203f7be000b2534.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a18f03203f7be000b2549.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a19133203f7be000b2556.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a19453203f7be000b256b.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a80293203f7be000b99f0.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a7ffa3203f7be000b97f5.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a81333203f7be000ba677.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a817a3203f7be000ba9bd.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a81843203f7be000baa20.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a819d3203f7be000bab00.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a816d3203f7be000ba922.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691a81ea3203f7be000baeb2.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691aa9713203f7be000d4614.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691b2b563203f7be00107e6e.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/692bdfe0291f309b79e9000b.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/692be0b4291f309b79e900da.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/692be0fc291f309b79e90599.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/692bf746291f309b79e94883.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691b31bd3203f7be0010816c.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691b31cb3203f7be0010816f.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691b35853203f7be0010833b.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691e12f33203f7be0018c793.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691e23d23203f7be0018c916.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691e91d73203f7be001921a0.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/692a793127638c120a3c173a.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/692bc9e3291f309b79e8b598.png">
+<meta property="article:published_time" content="2020-04-14T05:18:00.000Z">
+<meta property="article:modified_time" content="2026-06-05T21:58:54.471Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Crypto">
+<meta property="article:tag" content="Misc">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6919fce33203f7be000b18b6.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="2020 0xGame WriteUp">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">2020 0xGame WriteUp</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-0xGame-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 0xGame WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#flip%EF%BC%88%E6%B3%A2%E5%BD%A2%E5%9B%BE-%E6%91%A9%E6%96%AF%E5%AF%86%E7%A0%81-BinWalk-%E5%80%92%E5%BA%8F%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">flip（波形图 + 摩斯密码 + BinWalk + 倒序）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pacp%EF%BC%88SQL-%E7%9B%B2%E6%B3%A8%E6%B5%81%E9%87%8F-PNG-%E5%AE%BD%E9%AB%98%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">pacp（SQL 盲注流量 + PNG 宽高）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#differentPic%EF%BC%88%E5%9B%BE%E5%83%8F%E5%90%88%E6%88%90%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">differentPic（图像合成）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extract%EF%BC%88BinWalk-Stegpy%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">extract（BinWalk + Stegpy）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyMisc%EF%BC%88%E6%8B%A8%E5%8F%B7-Stegpy%EF%BC%89"><span class="toc-number">1.2.5.</span> <span class="toc-text">easyMisc（拨号+ Stegpy）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lowerBase64%EF%BC%88Base64-%E8%A7%A3%E7%A0%81%EF%BC%89"><span class="toc-number">1.2.6.</span> <span class="toc-text">lowerBase64（Base64 解码）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#threeThousand%EF%BC%88ZIP-%E7%88%86%E7%A0%B4%EF%BC%89"><span class="toc-number">1.2.7.</span> <span class="toc-text">threeThousand（ZIP 爆破）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.3.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Calendar%EF%BC%88%E6%97%A5%E6%9C%9F%E7%BD%91%E6%A0%BC%E5%9D%90%E6%A0%87%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">Calendar（日期网格坐标密码）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyXor%EF%BC%88%E5%BC%82%E6%88%96%E5%8A%A0%E5%AF%86%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">easyXor（异或加密）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supperAffine%EF%BC%88%E4%BB%BF%E5%B0%84%E5%8A%A0%E5%AF%86%E5%8F%98%E7%A7%8D%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">supperAffine（仿射加密变种）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#equationSet%EF%BC%88%E6%8F%90%E5%85%AC%E5%9B%A0%E6%95%B0-p-%E6%9E%84%E9%80%A0%E7%AE%80%E6%98%93%E6%96%B9%E7%A8%8B%EF%BC%89"><span class="toc-number">1.3.4.</span> <span class="toc-text">equationSet（提公因数 p 构造简易方程）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fibonacci%EF%BC%88%E7%88%86%E7%A0%B4%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E5%91%A8%E6%9C%9F%EF%BC%89"><span class="toc-number">1.3.5.</span> <span class="toc-text">Fibonacci（爆破斐波那契数列周期）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyRSA%EF%BC%88%E5%88%A9%E7%94%A8-p-%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-GCD-%E6%94%BB%E5%87%BB%EF%BC%89"><span class="toc-number">1.3.6.</span> <span class="toc-text">easyRSA（利用 p 信息泄露 GCD 攻击）</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">115</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">16</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">174</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-2020 0xGame" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2020-04-14T05:18:00.000Z" itemprop="datePublished">2020-04-14</time>
+    <time style="display: none;" id="post-update-time">2026-06-06</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="2020-0xGame-WriteUp"><a href="#2020-0xGame-WriteUp" class="headerlink" title="2020 0xGame WriteUp"></a>2020 0xGame WriteUp</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>主办方：南京邮电大学</p>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="flip（波形图-摩斯密码-BinWalk-倒序）"><a href="#flip（波形图-摩斯密码-BinWalk-倒序）" class="headerlink" title="flip（波形图 + 摩斯密码 + BinWalk + 倒序）"></a>flip（波形图 + 摩斯密码 + BinWalk + 倒序）</h3><p><img src="https://pic1.imgdb.cn/item/6919fce33203f7be000b18b6.png"></p>
+<p>打开压缩包后得到一个 ZIP 和 MP3</p>
+<p><img src="https://pic1.imgdb.cn/item/6919fe603203f7be000b1909.png"></p>
+<p>ZIP 需要密码，使用 Audacity 打开 MP3</p>
+<p><img src="https://pic1.imgdb.cn/item/6919fe353203f7be000b1903.png"></p>
+<p>根据波形长短猜测是摩斯密码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">....- ----- ----- ---.. ..... -.... -.... ----. ----. ...-- ----- ----- ... .. -.. .-. --- .-- ... ... .- .--.</span><br></pre></td></tr></table></figure>
+
+<p>解密得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">400856699300sidrowssap</span><br></pre></td></tr></table></figure>
+
+<p>翻译了一下题目题目名称有翻转的意思，把摩斯密码倒序发现:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwordis003996658004</span><br></pre></td></tr></table></figure>
+
+<p><code>003996658004</code> 即为压缩包密码</p>
+<p>解压后还是压缩包</p>
+<p><img src="https://pic1.imgdb.cn/item/6919fec73203f7be000b1912.png"></p>
+<p>使用 Kali 的 BinWalk 分离</p>
+<p><img src="https://pic1.imgdb.cn/item/6919fee23203f7be000b192d.png"></p>
+<p>查看 <code>password.txt</code> 文件发现</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br></pre></td><td class="code"><pre><span class="line">?gnorw eb ot smees gnihtemos tub ,yranib ni elif etirw ot tnaw I</span><br><span class="line"></span><br><span class="line">10100110</span><br><span class="line"></span><br><span class="line">11010110</span><br><span class="line"></span><br><span class="line">00101100</span><br><span class="line"></span><br><span class="line">11000010</span><br><span class="line"></span><br><span class="line">11111010</span><br><span class="line"></span><br><span class="line">01100110</span><br><span class="line"></span><br><span class="line">00001100</span><br><span class="line"></span><br><span class="line">11111010</span><br><span class="line"></span><br><span class="line">10100110</span><br><span class="line"></span><br><span class="line">11000110</span><br><span class="line"></span><br><span class="line">11001100</span><br><span class="line"></span><br><span class="line">10010110</span><br><span class="line"></span><br><span class="line">00001110</span><br><span class="line"></span><br><span class="line">11111010</span><br><span class="line"></span><br><span class="line">10000010</span><br><span class="line"></span><br><span class="line">00000100</span><br><span class="line"></span><br><span class="line">11001110</span><br><span class="line"></span><br><span class="line">10010110</span><br><span class="line"></span><br><span class="line">00000100</span><br><span class="line"></span><br><span class="line">00100110</span><br><span class="line"></span><br><span class="line">01001110</span><br><span class="line"></span><br><span class="line">11110110</span><br><span class="line"></span><br><span class="line">11101110</span><br><span class="line"></span><br><span class="line">11001110</span><br><span class="line"></span><br><span class="line">11001110</span><br><span class="line"></span><br><span class="line">10000110</span><br><span class="line"></span><br><span class="line">00001110</span><br><span class="line"></span><br><span class="line">00000100</span><br><span class="line"></span><br><span class="line">10100110</span><br><span class="line"></span><br><span class="line">00010110</span><br><span class="line"></span><br><span class="line">00101110</span><br><span class="line"></span><br><span class="line">00000100</span><br><span class="line"></span><br><span class="line">00110100</span><br><span class="line"></span><br><span class="line">10101110</span><br><span class="line"></span><br><span class="line">11110110</span><br><span class="line"></span><br><span class="line">10011110</span><br><span class="line"></span><br><span class="line">00000100</span><br><span class="line"></span><br><span class="line">01001110</span><br><span class="line"></span><br><span class="line">11110110</span><br><span class="line"></span><br><span class="line">01100110</span><br><span class="line"></span><br><span class="line">00000100</span><br><span class="line"></span><br><span class="line">10100110</span><br><span class="line"></span><br><span class="line">11010110</span><br><span class="line"></span><br><span class="line">10000110</span><br><span class="line"></span><br><span class="line">11000110</span><br><span class="line"></span><br><span class="line">00000100</span><br><span class="line"></span><br><span class="line">01100110</span><br><span class="line"></span><br><span class="line">11110110</span><br><span class="line"></span><br><span class="line">00000100</span><br><span class="line"></span><br><span class="line">10100110</span><br><span class="line"></span><br><span class="line">11000110</span><br><span class="line"></span><br><span class="line">10100110</span><br><span class="line"></span><br><span class="line">10010110</span><br><span class="line"></span><br><span class="line">00001110</span><br><span class="line"></span><br><span class="line">00000100</span><br><span class="line"></span><br><span class="line">10000110</span><br><span class="line"></span><br><span class="line">00000100</span><br><span class="line"></span><br><span class="line">00101110</span><br><span class="line"></span><br><span class="line">11001110</span><br><span class="line"></span><br><span class="line">10101110</span><br><span class="line"></span><br><span class="line">01010110</span><br><span class="line"></span><br><span class="line">00000100</span><br><span class="line"></span><br><span class="line">11001110</span><br><span class="line"></span><br><span class="line">10010110</span><br><span class="line"></span><br><span class="line">00000100</span><br><span class="line"></span><br><span class="line">10110110</span><br><span class="line"></span><br><span class="line">10100110</span><br><span class="line"></span><br><span class="line">00110110</span><br><span class="line"></span><br><span class="line">01000110</span><br><span class="line"></span><br><span class="line">11110110</span><br><span class="line"></span><br><span class="line">01001110</span><br><span class="line"></span><br><span class="line">00001110</span><br><span class="line"></span><br><span class="line">00000100</span><br><span class="line"></span><br><span class="line">11001110</span><br><span class="line"></span><br><span class="line">10010110</span><br><span class="line"></span><br><span class="line">00010110</span><br><span class="line"></span><br><span class="line">00101110</span><br><span class="line"></span><br><span class="line">00000100</span><br><span class="line"></span><br><span class="line">00101110</span><br><span class="line"></span><br><span class="line">10000110</span><br><span class="line"></span><br><span class="line">00010110</span><br><span class="line"></span><br><span class="line">00101110</span><br><span class="line"></span><br><span class="line">00000100</span><br><span class="line"></span><br><span class="line">01001110</span><br><span class="line"></span><br><span class="line">10100110</span><br><span class="line"></span><br><span class="line">01101110</span><br><span class="line"></span><br><span class="line">10100110</span><br><span class="line"></span><br><span class="line">00110110</span><br><span class="line"></span><br><span class="line">11000110</span><br><span class="line"></span><br><span class="line">00000100</span><br><span class="line"></span><br><span class="line">11110110</span><br><span class="line"></span><br><span class="line">11001110</span><br><span class="line"></span><br><span class="line">00000100</span><br><span class="line"></span><br><span class="line">10100110</span><br><span class="line"></span><br><span class="line">01001110</span><br><span class="line"></span><br><span class="line">10000110</span><br><span class="line"></span><br><span class="line">00000100</span><br><span class="line"></span><br><span class="line">10101110</span><br><span class="line"></span><br><span class="line">11110110</span><br><span class="line"></span><br><span class="line">10011010</span><br></pre></td></tr></table></figure>
+
+<p>明显的倒序排列</p>
+<p>将所有内容倒序后得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br></pre></td><td class="code"><pre><span class="line">01011001</span><br><span class="line"></span><br><span class="line">01101111</span><br><span class="line"></span><br><span class="line">01110101</span><br><span class="line"></span><br><span class="line">00100000</span><br><span class="line"></span><br><span class="line">01100001</span><br><span class="line"></span><br><span class="line">01110010</span><br><span class="line"></span><br><span class="line">01100101</span><br><span class="line"></span><br><span class="line">00100000</span><br><span class="line"></span><br><span class="line">01110011</span><br><span class="line"></span><br><span class="line">01101111</span><br><span class="line"></span><br><span class="line">00100000</span><br><span class="line"></span><br><span class="line">01100011</span><br><span class="line"></span><br><span class="line">01101100</span><br><span class="line"></span><br><span class="line">01100101</span><br><span class="line"></span><br><span class="line">01110110</span><br><span class="line"></span><br><span class="line">01100101</span><br><span class="line"></span><br><span class="line">01110010</span><br><span class="line"></span><br><span class="line">00100000</span><br><span class="line"></span><br><span class="line">01110100</span><br><span class="line"></span><br><span class="line">01101000</span><br><span class="line"></span><br><span class="line">01100001</span><br><span class="line"></span><br><span class="line">01110100</span><br><span class="line"></span><br><span class="line">00100000</span><br><span class="line"></span><br><span class="line">01110100</span><br><span class="line"></span><br><span class="line">01101000</span><br><span class="line"></span><br><span class="line">01101001</span><br><span class="line"></span><br><span class="line">01110011</span><br><span class="line"></span><br><span class="line">00100000</span><br><span class="line"></span><br><span class="line">01110000</span><br><span class="line"></span><br><span class="line">01110010</span><br><span class="line"></span><br><span class="line">01101111</span><br><span class="line"></span><br><span class="line">01100010</span><br><span class="line"></span><br><span class="line">01101100</span><br><span class="line"></span><br><span class="line">01100101</span><br><span class="line"></span><br><span class="line">01101101</span><br><span class="line"></span><br><span class="line">00100000</span><br><span class="line"></span><br><span class="line">01101001</span><br><span class="line"></span><br><span class="line">01110011</span><br><span class="line"></span><br><span class="line">00100000</span><br><span class="line"></span><br><span class="line">01101010</span><br><span class="line"></span><br><span class="line">01110101</span><br><span class="line"></span><br><span class="line">01110011</span><br><span class="line"></span><br><span class="line">01110100</span><br><span class="line"></span><br><span class="line">00100000</span><br><span class="line"></span><br><span class="line">01100001</span><br><span class="line"></span><br><span class="line">00100000</span><br><span class="line"></span><br><span class="line">01110000</span><br><span class="line"></span><br><span class="line">01101001</span><br><span class="line"></span><br><span class="line">01100101</span><br><span class="line"></span><br><span class="line">01100011</span><br><span class="line"></span><br><span class="line">01100101</span><br><span class="line"></span><br><span class="line">00100000</span><br><span class="line"></span><br><span class="line">01101111</span><br><span class="line"></span><br><span class="line">01100110</span><br><span class="line"></span><br><span class="line">00100000</span><br><span class="line"></span><br><span class="line">01100011</span><br><span class="line"></span><br><span class="line">01100001</span><br><span class="line"></span><br><span class="line">01101011</span><br><span class="line"></span><br><span class="line">01100101</span><br><span class="line"></span><br><span class="line">00100000</span><br><span class="line"></span><br><span class="line">01100110</span><br><span class="line"></span><br><span class="line">01101111</span><br><span class="line"></span><br><span class="line">01110010</span><br><span class="line"></span><br><span class="line">00100000</span><br><span class="line"></span><br><span class="line">01111001</span><br><span class="line"></span><br><span class="line">01101111</span><br><span class="line"></span><br><span class="line">01110101</span><br><span class="line"></span><br><span class="line">00101100</span><br><span class="line"></span><br><span class="line">00100000</span><br><span class="line"></span><br><span class="line">01110100</span><br><span class="line"></span><br><span class="line">01101000</span><br><span class="line"></span><br><span class="line">01100101</span><br><span class="line"></span><br><span class="line">00100000</span><br><span class="line"></span><br><span class="line">01110000</span><br><span class="line"></span><br><span class="line">01100001</span><br><span class="line"></span><br><span class="line">01110011</span><br><span class="line"></span><br><span class="line">01110011</span><br><span class="line"></span><br><span class="line">01110111</span><br><span class="line"></span><br><span class="line">01101111</span><br><span class="line"></span><br><span class="line">01110010</span><br><span class="line"></span><br><span class="line">01100100</span><br><span class="line"></span><br><span class="line">00100000</span><br><span class="line"></span><br><span class="line">01101001</span><br><span class="line"></span><br><span class="line">01110011</span><br><span class="line"></span><br><span class="line">00100000</span><br><span class="line"></span><br><span class="line">01000001</span><br><span class="line"></span><br><span class="line">01011111</span><br><span class="line"></span><br><span class="line">01110000</span><br><span class="line"></span><br><span class="line">01101001</span><br><span class="line"></span><br><span class="line">00110011</span><br><span class="line"></span><br><span class="line">01100011</span><br><span class="line"></span><br><span class="line">01100101</span><br><span class="line"></span><br><span class="line">01011111</span><br><span class="line"></span><br><span class="line">00110000</span><br><span class="line"></span><br><span class="line">01100110</span><br><span class="line"></span><br><span class="line">01011111</span><br><span class="line"></span><br><span class="line">01000011</span><br><span class="line"></span><br><span class="line">00110100</span><br><span class="line"></span><br><span class="line">01101011</span><br><span class="line"></span><br><span class="line">01100101</span><br><span class="line"></span><br><span class="line">I want to write file in binary, but something seems to be wrong?</span><br></pre></td></tr></table></figure>
+
+<p>二进制转十六进制再转 ASCII 码得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You are so clever that this problem is just a piece of cake for you, the password is A_pi3ce_0f_C4ke</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>A_pi3ce_0f_C4ke</code> 密码提取出压缩包中的 <code>galf_si_siht.png</code></p>
+<p>提示我们打不开文件</p>
+<p><img src="https://pic1.imgdb.cn/item/6919ff5a3203f7be000b193f.png"></p>
+<p>使用 010editor 打开该文件</p>
+<p>发现文件头不是 PNG 格式</p>
+<p><img src="https://pic1.imgdb.cn/item/6919ff793203f7be000b194c.png"></p>
+<p>拉到最底下发现还是倒序 <strong>黄豆流汗脸.jpg</strong> </p>
+<p><img src="https://pic1.imgdb.cn/item/6919ff883203f7be000b1953.png"></p>
+<p>将整个文件的十六进制倒序后保存为 PNG 图片打开发现二维码，使用二维码扫描工具得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://am473ur.com/0xgame/flip/bd055250d3906d1f791d8e83b4396893.php</span><br></pre></td></tr></table></figure>
+
+<p>访问拿到 flag（估计不在了）</p>
+<h3 id="pacp（SQL-盲注流量-PNG-宽高）"><a href="#pacp（SQL-盲注流量-PNG-宽高）" class="headerlink" title="pacp（SQL 盲注流量 + PNG 宽高）"></a>pacp（SQL 盲注流量 + PNG 宽高）</h3><p><img src="https://pic1.imgdb.cn/item/691a06463203f7be000b1add.png"></p>
+<p>打开流量包发现是盲注流量</p>
+<p><img src="https://pic1.imgdb.cn/item/691a09e73203f7be000b1c36.png"></p>
+<p>过滤 POST 请求发现有上传一个文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http.request.method == POST</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/691a0a793203f7be000b1c49.png"></p>
+<p>追踪 HTTP 流复制原始数据</p>
+<p><img src="https://pic1.imgdb.cn/item/691a11973203f7be000b2075.png"></p>
+<p>用 WinHex 复制成新文件解压缩文件是一张图片，打开没内容，检查 CRC 发现宽高被更改过</p>
+<p><img src="https://pic1.imgdb.cn/item/691a0e853203f7be000b1eb6.png"></p>
+<p>使用随波逐流梭哈出原图</p>
+<p><img src="https://pic1.imgdb.cn/item/691a11623203f7be000b2048.png"></p>
+<h3 id="differentPic（图像合成）"><a href="#differentPic（图像合成）" class="headerlink" title="differentPic（图像合成）"></a>differentPic（图像合成）</h3><p><img src="https://pic1.imgdb.cn/item/691a15d43203f7be000b2311.png"></p>
+<p>解压缩文件是两个一模一样的图片</p>
+<p><img src="https://pic1.imgdb.cn/item/691a15e83203f7be000b231d.png"></p>
+<p>使用 StegSolve 打开选择 Image Combiner 模式（图像合成）</p>
+<p><img src="https://pic1.imgdb.cn/item/691a160e3203f7be000b234e.png"></p>
+<p>发现可疑内容</p>
+<p><img src="https://pic1.imgdb.cn/item/691a16433203f7be000b2375.png"></p>
+<p>保存后再打开切换通道发现是二维码</p>
+<p><img src="https://pic1.imgdb.cn/item/691a16943203f7be000b23b4.png"></p>
+<p>扫码拿到 flag</p>
+<p><img src="https://pic1.imgdb.cn/item/691a16bb3203f7be000b23d9.png"></p>
+<h3 id="extract（BinWalk-Stegpy）"><a href="#extract（BinWalk-Stegpy）" class="headerlink" title="extract（BinWalk + Stegpy）"></a>extract（BinWalk + Stegpy）</h3><p><img src="https://pic1.imgdb.cn/item/691a18c53203f7be000b2528.png"></p>
+<p>打开压缩包后发现图片</p>
+<p><img src="https://pic1.imgdb.cn/item/691a18dc3203f7be000b2534.png"></p>
+<p>使用 BinWalk 检查发现有隐藏文件</p>
+<p><img src="https://pic1.imgdb.cn/item/691a18f03203f7be000b2549.png"></p>
+<p>提取出二维码扫描给出提示工具 Stegpy</p>
+<p><img src="https://pic1.imgdb.cn/item/691a19133203f7be000b2556.png"></p>
+<p>使用 Stegpy 成功拿到 flag</p>
+<p><img src="https://pic1.imgdb.cn/item/691a19453203f7be000b256b.png"></p>
+<h3 id="easyMisc（拨号-Stegpy）"><a href="#easyMisc（拨号-Stegpy）" class="headerlink" title="easyMisc（拨号+ Stegpy）"></a>easyMisc（拨号+ Stegpy）</h3><p><img src="https://pic1.imgdb.cn/item/691a80293203f7be000b99f0.png"></p>
+<p>解压缩出三个文件</p>
+<p><img src="https://pic1.imgdb.cn/item/691a7ffa3203f7be000b97f5.png"></p>
+<p>打开音频文件听着像是拨号声音，疑似拨号隐写</p>
+<p><img src="https://pic1.imgdb.cn/item/691a81333203f7be000ba677.png"></p>
+<p>把频率设置为低频 697、高频 1633</p>
+<p><img src="https://pic1.imgdb.cn/item/691a817a3203f7be000ba9bd.png"></p>
+<p><img src="https://pic1.imgdb.cn/item/691a81843203f7be000baa20.png"></p>
+<p>得到下图</p>
+<p><img src="https://pic1.imgdb.cn/item/691a819d3203f7be000bab00.png"></p>
+<p>对照拨号隐写表格解密出：<code>2821876761</code></p>
+<p><img src="https://pic1.imgdb.cn/item/691a816d3203f7be000ba922.png"></p>
+<p>使用 <code>2821876761</code> 解压得到 flag 图片</p>
+<p>再次使用 Stegpy 得到 flag</p>
+<p><img src="https://pic1.imgdb.cn/item/691a81ea3203f7be000baeb2.png"></p>
+<h3 id="lowerBase64（Base64-解码）"><a href="#lowerBase64（Base64-解码）" class="headerlink" title="lowerBase64（Base64 解码）"></a>lowerBase64（Base64 解码）</h3><p><img src="https://pic1.imgdb.cn/item/691aa9713203f7be000d4614.png"></p>
+<p><strong>Base64字符串中的字母被随机转换了大小写</strong></p>
+<p>正常的Base64解码器要求严格的大小写，所以我们需要找到正确的大小写组合</p>
+<p>Base64 编码原理</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Base64 编码过程：</span><br><span class="line">原文: 3 字节 = 24 bits → 分成 4 组，每组 6 bits → 每组映射为 1 个 Base64 字符</span><br><span class="line"># 所以解码时需要以 4 个 Base64 字符为一组进行处理</span><br></pre></td></tr></table></figure>
+
+<p>由于我们不知道哪些字母应该是大写、哪些应该是小写，所以需要<strong>暴力枚举所有可能的大小写组合</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(c), <span class="number">4</span>):  <span class="comment"># 以 4 个字符为一组处理</span></span><br><span class="line">    pos = []</span><br><span class="line">    chunk = c[i:i+<span class="number">4</span>]  <span class="comment"># 取出 4 个字符的块</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 为每个字符创建可能的大小写组合</span></span><br><span class="line">    <span class="keyword">for</span> char <span class="keyword">in</span> chunk:</span><br><span class="line">        <span class="keyword">if</span> char.isalpha():</span><br><span class="line">            pos.append([char.lower(), char.upper()])  <span class="comment"># 字母有两种可能</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            pos.append([char])  <span class="comment"># 非字母只有一种可能</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 生成所有大小写组合</span></span><br><span class="line">    cases = [<span class="string">&quot;&quot;</span>.join(k) <span class="keyword">for</span> k <span class="keyword">in</span> product(*pos)]</span><br></pre></td></tr></table></figure>
+
+<p><strong>举例说明</strong>：</p>
+<p>如果当前 chunk 是 <code>&quot;AbC1&quot;</code>，那么：</p>
+<ul>
+<li><code>&#39;A&#39;</code> → <code>[&#39;a&#39;, &#39;A&#39;]</code></li>
+<li><code>&#39;b&#39;</code> → <code>[&#39;b&#39;, &#39;B&#39;]</code></li>
+<li><code>&#39;C&#39;</code> → <code>[&#39;c&#39;, &#39;C&#39;]</code></li>
+<li><code>&#39;1&#39;</code> → <code>[&#39;1&#39;]</code></li>
+</ul>
+<p>通过 <code>product(*pos)</code> 会生成：<code>&quot;abc1&quot;, &quot;abC1&quot;, &quot;aBc1&quot;, &quot;aBC1&quot;, &quot;Abc1&quot;, &quot;AbC1&quot;, &quot;ABc1&quot;, &quot;ABC1&quot;</code> 共 8 种组合</p>
+<p>最后验证结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="keyword">case</span> <span class="keyword">in</span> cases:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        decoded = b64decode(<span class="keyword">case</span>)  <span class="comment"># 尝试解码</span></span><br><span class="line">        <span class="comment"># 检查解码后的字符是否都在有效字符表中</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">all</span>(<span class="built_in">chr</span>(byte) <span class="keyword">in</span> table <span class="keyword">for</span> byte <span class="keyword">in</span> decoded):</span><br><span class="line">            real_data += <span class="keyword">case</span></span><br><span class="line">            flag += decoded</span><br><span class="line">            <span class="keyword">break</span>  <span class="comment"># 找到有效组合就跳出</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">continue</span>  <span class="comment"># 解码失败就尝试下一个组合</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/691b2b563203f7be00107e6e.png"></p>
+<h3 id="threeThousand（ZIP-爆破）"><a href="#threeThousand（ZIP-爆破）" class="headerlink" title="threeThousand（ZIP 爆破）"></a>threeThousand（ZIP 爆破）</h3><p><img src="https://pic1.imgdb.cn/item/692bdfe0291f309b79e9000b.png"></p>
+<p>第一次爆出密码是 33</p>
+<p><img src="https://pic1.imgdb.cn/item/692be0b4291f309b79e900da.png"></p>
+<p>打开发现还有压缩包，且都是加密</p>
+<p><img src="https://pic1.imgdb.cn/item/692be0fc291f309b79e90599.png"></p>
+<p>写脚本爆破</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> product</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">try_password</span>(<span class="params">zip_file, password, target_dir</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">with</span> zipfile.ZipFile(zip_file, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> zip_ref:</span><br><span class="line">            zip_ref.extractall(target_dir, pwd=password.encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;成功解压 <span class="subst">&#123;zip_file&#125;</span>，密码: <span class="subst">&#123;password&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="comment"># 获取脚本所在目录</span></span><br><span class="line">    script_dir = os.path.dirname(os.path.abspath(__file__))</span><br><span class="line"></span><br><span class="line">    starting_zip = <span class="string">&#x27;2999.zip&#x27;</span></span><br><span class="line">    <span class="comment"># 目标解压目录也在同一目录下</span></span><br><span class="line">    target_directory = os.path.join(script_dir, <span class="string">&#x27;extracted_files&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 构建完整的文件路径</span></span><br><span class="line">    current_zip = os.path.join(script_dir, starting_zip)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 确保目标目录存在</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(target_directory):</span><br><span class="line">        os.makedirs(target_directory)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;创建解压目录: <span class="subst">&#123;target_directory&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 生成所有可能的两位数密码组合</span></span><br><span class="line">    passwords = [<span class="string">&#x27;&#x27;</span>.join(p) <span class="keyword">for</span> p <span class="keyword">in</span> product(<span class="string">&#x27;0123456789&#x27;</span>, repeat=<span class="number">2</span>)]</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;生成的密码列表: <span class="subst">&#123;passwords&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;脚本目录: <span class="subst">&#123;script_dir&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;当前处理的文件: <span class="subst">&#123;current_zip&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;目标解压目录: <span class="subst">&#123;target_directory&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="comment"># 检查当前zip文件是否存在</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(current_zip):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;文件 <span class="subst">&#123;current_zip&#125;</span> 不存在，停止解压缩。&#x27;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;正在尝试解压: <span class="subst">&#123;os.path.basename(current_zip)&#125;</span>&quot;</span>)</span><br><span class="line">        password_found = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> password <span class="keyword">in</span> passwords:</span><br><span class="line">            <span class="keyword">if</span> try_password(current_zip, password, target_directory):</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&#x27;成功使用密码 <span class="subst">&#123;password&#125;</span> 解压文件 <span class="subst">&#123;os.path.basename(current_zip)&#125;</span>！&#x27;</span>)</span><br><span class="line">                password_found = <span class="literal">True</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> password_found:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;无法为 <span class="subst">&#123;os.path.basename(current_zip)&#125;</span> 找到密码，停止解压缩。&#x27;</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 获取当前文件名（不含路径）</span></span><br><span class="line">        current_filename = os.path.basename(current_zip)</span><br><span class="line">        <span class="comment"># 提取数字并减1</span></span><br><span class="line">        next_zip_number = <span class="built_in">int</span>(current_filename.split(<span class="string">&#x27;.&#x27;</span>)[<span class="number">0</span>]) - <span class="number">1</span></span><br><span class="line">        <span class="comment"># 下一个文件应该在目标目录中</span></span><br><span class="line">        current_zip = os.path.join(target_directory, <span class="string">f&#x27;<span class="subst">&#123;next_zip_number&#125;</span>.zip&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;下一个要解压的文件: <span class="subst">&#123;os.path.basename(current_zip)&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/692bf746291f309b79e94883.png"></p>
+<h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="Calendar（日期网格坐标密码）"><a href="#Calendar（日期网格坐标密码）" class="headerlink" title="Calendar（日期网格坐标密码）"></a>Calendar（日期网格坐标密码）</h3><p><img src="https://pic1.imgdb.cn/item/691b31bd3203f7be0010816c.png"></p>
+<p>题目给出了一张图片</p>
+<p><img src="https://pic1.imgdb.cn/item/691b31cb3203f7be0010816f.png"></p>
+<p>以及一段字符</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SAT1,THU1,MON3,MON2,WED3,SUN2,THU1,SUN4,FRI3,THU1,MON4,MON4,FRI4,THU3,SUN4,SUN2,TUE4,THU1,FRI1,MON3,MON2</span><br></pre></td></tr></table></figure>
+
+<p>观察最后的数字只有 <code>1~4</code>，推测这就是行号，而字符就是对应的列</p>
+<p>将得到的数字按照字母表的顺序转换最后得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0xGame&#123;calendarpasswordtable&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="easyXor（异或加密）"><a href="#easyXor（异或加密）" class="headerlink" title="easyXor（异或加密）"></a>easyXor（异或加密）</h3><p><img src="https://pic1.imgdb.cn/item/691b35853203f7be0010833b.png"></p>
+<p><strong>连续两次异或同一个数结果不变</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cipher = [<span class="number">72</span>, <span class="number">63</span>, <span class="number">38</span>, <span class="number">12</span>, <span class="number">8</span>, <span class="number">30</span>, <span class="number">30</span>, <span class="number">6</span>, <span class="number">82</span>, <span class="number">4</span>, <span class="number">84</span>, <span class="number">88</span>, <span class="number">92</span>, <span class="number">7</span>, <span class="number">79</span>, <span class="number">29</span>, <span class="number">8</span>, <span class="number">90</span>, <span class="number">85</span>, <span class="number">26</span>, <span class="number">25</span>, <span class="number">87</span>, <span class="number">80</span>, <span class="number">10</span>, <span class="number">20</span>, <span class="number">20</span>, <span class="number">9</span>, <span class="number">4</span>, <span class="number">80</span>, <span class="number">73</span>, <span class="number">31</span>, <span class="number">5</span>, <span class="number">82</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">92</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">94</span>, <span class="number">81</span>, <span class="number">4</span>, <span class="number">85</span>, <span class="number">27</span>, <span class="number">35</span>]</span><br><span class="line">flag = <span class="string">&quot;&quot;</span></span><br><span class="line">cipher += [<span class="built_in">ord</span>(<span class="string">&quot;^&quot;</span>)]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(cipher)-<span class="number">1</span>):</span><br><span class="line">    flag = <span class="built_in">chr</span>(cipher[<span class="built_in">len</span>(cipher) - i - <span class="number">2</span>] ^ cipher[<span class="built_in">len</span>(cipher) - i - <span class="number">1</span>]) + flag</span><br><span class="line">    cipher[<span class="built_in">len</span>(cipher) - i - <span class="number">2</span>] = <span class="built_in">ord</span>(flag[<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"><span class="comment"># 0xGame&#123;ec15a9eb-08b7-4c39-904d-27eed888f73f&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="supperAffine（仿射加密变种）"><a href="#supperAffine（仿射加密变种）" class="headerlink" title="supperAffine（仿射加密变种）"></a>supperAffine（仿射加密变种）</h3><p><img src="https://pic1.imgdb.cn/item/691e12f33203f7be0018c793.png"></p>
+<p>解题技巧先放前面：</p>
+<ol>
+<li><strong>识别密码体制：</strong> 代码中出现了 <code>affine(x, a, b)</code> 和 <code>GCD(MOD, ...)</code>，立即锁定这是<strong>仿射密码</strong>及其变种</li>
+<li><strong>识别模数：</strong> 立即进行<strong>模数分解</strong>，MOD &#x3D; 62 &#x3D; 2 * 31</li>
+<li>**代数化简：**看到 <code>f3(f2(f1(x)))</code> 这种结构，立即意识到这是可以合并的</li>
+</ol>
+<p>给出源代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> ascii_letters, digits</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line"><span class="keyword">assert</span> flag.startswith(<span class="string">&quot;0xGame&#123;&quot;</span>) <span class="keyword">and</span> flag.endswith(<span class="string">&quot;&#125;&quot;</span>)</span><br><span class="line">table = ascii_letters+digits</span><br><span class="line">MOD = <span class="built_in">len</span>(table)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">affine</span>(<span class="params">x, a, b</span>): <span class="keyword">return</span> a*x+b</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">genKey</span>():</span><br><span class="line">    a = [randint(<span class="number">1</span>, <span class="number">64</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)]</span><br><span class="line">    b = [randint(<span class="number">1</span>, <span class="number">64</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)]</span><br><span class="line">    <span class="keyword">while</span> GCD(MOD, a[<span class="number">0</span>]*a[<span class="number">1</span>]*a[<span class="number">2</span>]) != <span class="number">1</span>:</span><br><span class="line">        a = [randint(<span class="number">1</span>, <span class="number">64</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)]</span><br><span class="line">    <span class="keyword">return</span> a, b</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cipher = <span class="string">&quot;&quot;</span></span><br><span class="line">A, B = genKey()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> flag:</span><br><span class="line">    <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> table:</span><br><span class="line">        cipher += i</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        cipher += table[affine(affine(affine(table.find(i),A[<span class="number">0</span>], B[<span class="number">0</span>]), A[<span class="number">1</span>], B[<span class="number">1</span>]), A[<span class="number">2</span>], B[<span class="number">2</span>]) % MOD]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;cipher =&quot;</span>, cipher)</span><br><span class="line"><span class="comment"># cipher = t6b7Tn&#123;2GByBZBB-aan2-JRWn-GnZB-Jyf7a722ffnZ&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>📜 仿射加密原理简述</strong></p>
+<p>仿射加密是一种非常基础的单表替代密码，它建立在凯撒密码的基础上，但引入了一个乘法因子，使其比凯撒密码更复杂一些</p>
+<p><strong>1. 核心数学公式</strong></p>
+<p>仿射加密的加解密过程都基于模运算</p>
+<p>假设：</p>
+<ul>
+<li>x：明文字符在字母表中的位置（索引）</li>
+<li>y：密文字符在字母表中的位置（索引）</li>
+<li>m：字母表的大小（即模数，例如英文字母表 m&#x3D;26）</li>
+<li>K_a 和 K_b：密钥，其中 K_a 是乘法密钥， K_b 是加法密钥</li>
+</ul>
+<p><img src="https://pic1.imgdb.cn/item/691e23d23203f7be0018c916.png"></p>
+<table>
+<thead>
+<tr>
+<th><strong>过程</strong></th>
+<th><strong>公式</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>加密</td>
+<td>E(x) &#x3D; (K_a * x + K_b) MOD m</td>
+</tr>
+<tr>
+<td>解密</td>
+<td>D(y) &#x3D; K_a^{-1} * (y - K_b) MOD m</td>
+</tr>
+</tbody></table>
+<p><strong>2. 密钥要求 (Key Requirement)</strong></p>
+<p>为了确保加密过程是<strong>可逆的</strong>（即能够唯一解密）：</p>
+<ol>
+<li><strong>乘法密钥 K_a 必须与模数 m 互质</strong><ul>
+<li>数学表示为：GCD(K_a, m) &#x3D; 1</li>
+<li>只有 K_a 与 m 互质，才能保证 K_a 在模 m 意义下存在逆元 K_a^{-1}（在解密公式中使用）</li>
+</ul>
+</li>
+<li><strong>加法密钥 K_b 可以是任意整数，通常选择在 [0, m-1] 范围内</strong></li>
+</ol>
+<p><strong>3. 实际操作示例（以英文字母表 m&#x3D;26 为例）</strong></p>
+<ol>
+<li><strong>字母表映射：</strong> 将 A 映射到 0，B 映射到 1，… Z 映射到 25。</li>
+<li><strong>选择密钥：</strong> 假设 m&#x3D;26，我们选择 K_a&#x3D;5（因为 GCD(5, 26) &#x3D; 1）和 K_b&#x3D;8</li>
+<li><strong>加密 ‘C’：</strong><ul>
+<li>‘C’ 的索引 x&#x3D;2</li>
+<li>E(2) &#x3D; (5 * 2 + 8)(MOD 26) &#x3D; 18 (MOD 26)</li>
+<li>索引 18 对应字母 ‘S’。因此，’C’ 被加密成 ‘S’</li>
+</ul>
+</li>
+</ol>
+<p>现在再来解析源代码，<strong>第一步构建字符集</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ascii_letters 包含 &#x27;a-z&#x27; (26) 和 &#x27;A-Z&#x27; (26)，digits 包含 &#x27;0-9&#x27; (10)</span></span><br><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> ascii_letters, digits</span><br><span class="line">table = ascii_letters+digits</span><br><span class="line">MOD = <span class="built_in">len</span>(table)	<span class="comment"># MOD = 26 +26 + 10 = 62</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>第二步定义仿射加密函数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">affine</span>(<span class="params">x, a, b</span>): <span class="keyword">return</span> a*x+b</span><br></pre></td></tr></table></figure>
+
+<p><strong>第三步定义密钥生成函数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">genKey</span>():</span><br><span class="line">    <span class="comment"># 随机生成三个乘法系数 (A[0], A[1], A[2])，范围 [1, 64]</span></span><br><span class="line">    a = [randint(<span class="number">1</span>, <span class="number">64</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)]</span><br><span class="line">    <span class="comment"># 随机生成三个加法系数 (B[0], B[1], B[2])，范围 [1, 64]</span></span><br><span class="line">    b = [randint(<span class="number">1</span>, <span class="number">64</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 关键检查：确保乘法系数的乘积与模数 62 互质 (Coprime)</span></span><br><span class="line">    <span class="comment"># GCD(62, A_total) == 1 是仿射密码可逆（可解密）的必要条件</span></span><br><span class="line">    <span class="keyword">while</span> GCD(MOD, a[<span class="number">0</span>] * a[<span class="number">1</span>] * a[<span class="number">2</span>]) != <span class="number">1</span>:</span><br><span class="line">        a = [randint(<span class="number">1</span>, <span class="number">64</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)]</span><br><span class="line">    <span class="keyword">return</span> a, b</span><br></pre></td></tr></table></figure>
+
+<p>我们对模数 62 进行素因数分解：62 &#x3D; 2 * 31</p>
+<p><strong>互质的定义：</strong> 两个数互质，意味着它们除了 1 以外，没有其他的公因数</p>
+<p>因此，要让 k_a 与 62 互质，k_a 绝对不能包含 62 的任何因数</p>
+<p>所以 <code>a[i]</code> 不能是偶数，也不能是 31 的倍数</p>
+<p><strong>第四步加密</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> flag:</span><br><span class="line">    <span class="comment"># 如果字符不在表中（例如 &#x27;&#123;&#x27;, &#x27;&#125;&#x27;, &#x27;-&#x27;, &#x27;_&#x27;），则不加密，直接保留</span></span><br><span class="line">    <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> table:</span><br><span class="line">        cipher += i</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 核心加密逻辑：嵌套三次仿射变换</span></span><br><span class="line">        <span class="comment"># 设 x 为字符 i 在 table 中的索引</span></span><br><span class="line">        <span class="comment"># Step 1: y1 = A[0]x + B[0]</span></span><br><span class="line">        <span class="comment"># Step 2: y2 = A[1]y1 + B[1]</span></span><br><span class="line">        <span class="comment"># Step 3: y3 = A[2]y2 + B[2]</span></span><br><span class="line">        <span class="comment"># Final:  cipher_char_index = y3 % MOD</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 原始代码写得比较紧凑，逻辑展开如下：</span></span><br><span class="line">        idx = table.find(i)</span><br><span class="line">        step1 = affine(idx, A[<span class="number">0</span>], B[<span class="number">0</span>])</span><br><span class="line">        step2 = affine(step1, A[<span class="number">1</span>], B[<span class="number">1</span>])</span><br><span class="line">        step3 = affine(step2, A[<span class="number">2</span>], B[<span class="number">2</span>])</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 查表替换</span></span><br><span class="line">        cipher += table[step3 % MOD]</span><br></pre></td></tr></table></figure>
+
+<p>转换成数学公式<br>$$<br>\begin{aligned}<br>&amp;f(x)\ &#x3D;\ A_3(A_2(A_1\ *\ x\ +\ B_1)\ +\ B_2)\ +\ B_3\<br>&amp;f(x)\ &#x3D;\ A_3([A_2A_1\ *\ x\ +\ B_1A_2]\ +\ B_2)\ +\ B_3\<br>&amp;f(x)\ &#x3D;\ A_3(A_2A_1\ *\ x)\ +\ A_3(B_1A_2)\ +\ B_2A_3\ +\ B_3\\<br>&amp;K_a\ &#x3D;\ A_1A_2A_3,K_b\ &#x3D;\ A_3(B_1A_2)\ +\ B_2A_3\ +\ B_3\\<br>&amp;f(x)\ &#x3D;\ K_a\ *\ x\ +\ K_b<br>\end{aligned}<br>$$<br><strong>模数的等效性</strong></p>
+<p>在模运算中，如果两个整数除以同一个模数 M 得到的余数相同，那么它们在模 M 的意义下是<strong>等效的</strong>（或<strong>同余的</strong>）</p>
+<p>模数 MOD &#x3D; 62，这就好比一个只有 62 个刻度的时钟</p>
+<p>如果你转了 1 圈（62格），指针回到原点（0）</p>
+<p>如果你转了 65 格，指针停在 3 的位置。<strong>所以在模 62 的世界里，65 和 3 是完全等价的</strong></p>
+<p>虽然题目生成密钥时使用了三个密钥，且他们乘起来可能非常大</p>
+<p>但在上面我们化简的结果中，有效的 A 只有 <strong>A_total (MOD 62)</strong> 的结果，有效的 B 只有 <strong>B_total (MOD 62)</strong> 的结果</p>
+<p>无论原始参数多复杂、数值多大，最终起作用的有效密钥 (A,B) 必定落在 [0, 61] 这个范围内。因此，我们不需要去猜原始的那 6 个随机数，只需要暴力枚举 0 到 61 之间的数，就能找到那个<strong>等效密钥</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> ascii_letters, digits</span><br><span class="line"></span><br><span class="line">table = ascii_letters + digits</span><br><span class="line">cipher = <span class="string">&quot;t6b7Tn&#123;2GByBZBB-aan2-JRWn-GnZB-Jyf7a722ffnZ&#125;&quot;</span></span><br><span class="line">MOD = <span class="built_in">len</span>(table)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_ab</span>():</span><br><span class="line">    <span class="comment"># 遍历所有可能的有效 A (0-61)</span></span><br><span class="line">    <span class="keyword">for</span> a <span class="keyword">in</span> <span class="built_in">range</span>(MOD):</span><br><span class="line">        <span class="comment"># 遍历所有可能的有效 B (0-61)</span></span><br><span class="line">        <span class="keyword">for</span> b <span class="keyword">in</span> <span class="built_in">range</span>(MOD):</span><br><span class="line">            <span class="comment"># 验证逻辑：</span></span><br><span class="line">            <span class="comment"># 我们知道 flag 开头是 &quot;0xGame&#123;&quot;</span></span><br><span class="line">            <span class="comment"># 我们知道密文 cipher 开头是 &quot;t6b7Tn&quot;</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 检查 1: 明文 &#x27;0&#x27; 能否加密成 密文 &#x27;t&#x27;?</span></span><br><span class="line">            <span class="keyword">if</span> (a * table.find(<span class="string">&quot;0&quot;</span>) + b) % MOD == table.find(cipher[<span class="number">0</span>]):</span><br><span class="line">                <span class="comment"># 检查 2: 明文 &#x27;x&#x27; 能否加密成 密文 &#x27;6&#x27;?</span></span><br><span class="line">                <span class="keyword">if</span> (a * table.find(<span class="string">&quot;x&quot;</span>) + b) % MOD == table.find(cipher[<span class="number">1</span>]):</span><br><span class="line">                    <span class="comment"># ... 继续检查 &#x27;G&#x27; -&gt; &#x27;b&#x27;, &#x27;a&#x27; -&gt; &#x27;7&#x27;</span></span><br><span class="line">                    <span class="comment"># 如果这四个字符都匹配上了，说明我们找到了正确的等效密钥 (a, b)</span></span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;a, b = &#123;&#125;, &#123;&#125;&quot;</span>.<span class="built_in">format</span>(a, b))</span><br><span class="line">                    <span class="keyword">return</span> (a, b)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">flag = <span class="string">&quot;&quot;</span></span><br><span class="line">A, B = find_ab() <span class="comment"># 获取找到的等效密钥</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> cipher:</span><br><span class="line">    <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> table:</span><br><span class="line">        flag += i <span class="comment"># 特殊字符直接保留</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 仿射解密公式：D(y) = inverse(A) * (y - B) % MOD</span></span><br><span class="line">        <span class="comment"># inverse(A, MOD) 是求 A 在模 MOD 下的乘法逆元</span></span><br><span class="line">        flag += table[inverse(A, MOD) * (table.find(i) - B) % MOD]</span><br></pre></td></tr></table></figure>
+
+<h3 id="equationSet（提公因数-p-构造简易方程）"><a href="#equationSet（提公因数-p-构造简易方程）" class="headerlink" title="equationSet（提公因数 p 构造简易方程）"></a>equationSet（提公因数 p 构造简易方程）</h3><p><img src="https://pic1.imgdb.cn/item/691e91d73203f7be001921a0.png"></p>
+<p>解题技巧先放前面：</p>
+<ol>
+<li><strong>符号化：<strong>所有给出的数值用</strong>数学符号</strong>表示出来，并建立它们之间的关系</li>
+<li><strong>寻找公因数：<strong>如果给出的两个大数 A 和 B 都是由</strong>相同的素数因子</strong>构成的，那么 GCD(A, B) 往往是解密的关键</li>
+<li>**确定解题路径：**一旦 p 被分解出来，接下来就要想方设法得到 q 和 r 的信息</li>
+</ol>
+<p>题目给出代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">m = bytes_to_long(flag.encode())</span><br><span class="line">p, q, r = getPrime(<span class="number">512</span>), getPrime(<span class="number">512</span>), getPrime(<span class="number">512</span>)</span><br><span class="line"></span><br><span class="line">n = p*q*r</span><br><span class="line">c = <span class="built_in">pow</span>(m, e, n)</span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"><span class="built_in">print</span>(n)</span><br><span class="line"><span class="built_in">print</span>(p+q+r)</span><br><span class="line"><span class="built_in">print</span>(p*q+p*r)</span><br></pre></td></tr></table></figure>
+
+<p>转换成数学公式<br>$$<br>\begin{aligned}<br>&amp;n\ &#x3D;\ p\ *\ q\ *\ r\<br>&amp;t\ &#x3D;\ p\ *\ q\ +\ p\ *\ r\ &#x3D;\ p(q\ +\ r)\<br>&amp;ϕ(n)\ &#x3D;\ (p\ -\ 1)(q\ -\ 1)(r\ -\ 1)<br>\end{aligned}<br>$$<br>我们可以清楚地看到，<strong>p 是 n 和 t 的公共因子</strong></p>
+<p>那 GCD(n, t) 会正好是 p 吗？会不会包含其他因子？<br>$$<br>\begin{aligned}<br>&amp;GCD(pqr,p(q\ +\ r))\ &#x3D;\ p\ *\ GCD(qr,q\ +\ r)<br>\end{aligned}<br>$$<br>由于 q 和 r 都是生成的 512 位随机大素数，它们互质，且它们的和 q+r 极大概率与它们的积 qr 互质</p>
+<p>因此 GCD(qr, q+r) &#x3D; 1</p>
+<p><strong>结论：</strong> 直接计算 GCD(n, t) 就能无痛提取出素数 p</p>
+<p>对于 n&#x3D;pqr，欧拉函数定义为：<br>$$<br>\begin{aligned}<br>&amp;\phi(n)\ &#x3D;\ (p-1)(q-1)(r-1)\\<br>&amp;\phi(n)\ &#x3D;\ (p-1)\ *\ [(q-1)(r-1)]\\<br>&amp;n\ -\ t\ &#x3D;\ pqr\ -\ pq\ - \ pr\<br>&amp;n\ -\ t\ &#x3D;\ p(qr\ -\ q\ - \ r)\<br>&amp;(n\ -\ t)\ &#x2F;&#x2F;\ p\ &#x3D;\ (qr\ -\ q\ - \ r)\<br>&amp;(n\ -\ t)\ &#x2F;&#x2F;\ p\ +\ 1\ &#x3D;\ (qr\ -\ q\ - \ r)\ +\ 1\\<br>&amp;qr\ -\ q\ - \ r\ +\ 1\ &#x3D;\ q(r\ -\ 1)\ -\ 1(r\ -\ 1)\<br>&amp;q(r\ -\ 1)\ -\ 1(r\ -\ 1)\ &#x3D;\ (q\ -\ 1)(r\ -\ 1)\\<br>&amp;(n\ -\ t)\ &#x2F;&#x2F;\ p\ +\ 1\ &#x3D;\ (q\ -\ 1)(r\ -\ 1)\<br>&amp;\phi(n)\ &#x3D;\ (p-1)\ *\ [(q-1)(r-1)]\<br>&amp;\phi(n)\ &#x3D;\ (p-1)\ *\ [(n\ -\ t)\ &#x2F;&#x2F;\ p\ +\ 1]\<br>\end{aligned}<br>$$<br><strong>观察公因数</strong> 是 Crypto 选手的直觉。看到 n 和 t 有明显的公共结构（都含有 p），第一时间想到的就是 GCD</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># ==========================================</span></span><br><span class="line"><span class="comment"># 题目信息与数学关系回顾</span></span><br><span class="line"><span class="comment"># ------------------------------------------</span></span><br><span class="line"><span class="comment"># 已知：</span></span><br><span class="line"><span class="comment"># n = p * q * r  (三素数 RSA)</span></span><br><span class="line"><span class="comment"># s = p + q + r  (此变量在本脚本中未被使用)</span></span><br><span class="line"><span class="comment"># t = p * q + p * r = p * (q + r)</span></span><br><span class="line"><span class="comment"># ==========================================</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 题目给出的长整数数据（省略部分以保持整洁）</span></span><br><span class="line">c = <span class="number">216719040256186298397028655750064798850.</span>.. </span><br><span class="line">n = <span class="number">894056034566447301955142597300391580123.</span>..</span><br><span class="line">t = <span class="number">157435908314881832180551915807491465031.</span>..</span><br><span class="line"></span><br><span class="line"><span class="comment"># [第一步]：提取公共素因子 p</span></span><br><span class="line"><span class="comment"># 数学原理：n = p*q*r，t = p*(q+r)</span></span><br><span class="line"><span class="comment"># 显然 p 是 n 和 t 的最大公约数</span></span><br><span class="line">p = GCD(n, t)</span><br><span class="line"></span><br><span class="line"><span class="comment"># [第二步]：巧妙构造欧拉函数 phi(n)</span></span><br><span class="line"><span class="comment"># 目标：phi = (p-1) * (q-1) * (r-1)</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># 1. 括号右边推导：((n - t) // p + 1)</span></span><br><span class="line"><span class="comment">#    分子：n - t = pqr - (pq + pr) = pqr - pq - pr = p(qr - q - r)</span></span><br><span class="line"><span class="comment">#    除法：(n - t) // p = qr - q - r</span></span><br><span class="line"><span class="comment">#    加一：qr - q - r + 1</span></span><br><span class="line"><span class="comment">#    因式分解：q(r-1) - 1(r-1) = (q-1)(r-1)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 2. 最终合并：</span></span><br><span class="line"><span class="comment">#    (p-1) * [(q-1)(r-1)] = phi(n)</span></span><br><span class="line">phi = (p - <span class="number">1</span>) * ((n - t) // p + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># [第三步]：常规 RSA 私钥计算</span></span><br><span class="line"><span class="comment"># 计算 e 在模 phi 下的乘法逆元 d</span></span><br><span class="line">d = inverse(<span class="number">65537</span>, phi)</span><br><span class="line"></span><br><span class="line"><span class="comment"># [第四步]：解密</span></span><br><span class="line"><span class="comment"># m = c^d mod n</span></span><br><span class="line">m = <span class="built_in">pow</span>(c, d, n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将解密出的长整数转换为字节串（即明文 Flag）</span></span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(m))</span><br></pre></td></tr></table></figure>
+
+<h3 id="Fibonacci（爆破斐波那契数列周期）"><a href="#Fibonacci（爆破斐波那契数列周期）" class="headerlink" title="Fibonacci（爆破斐波那契数列周期）"></a>Fibonacci（爆破斐波那契数列周期）</h3><p><img src="https://pic1.imgdb.cn/item/692a793127638c120a3c173a.png"></p>
+<p>解题技巧先放前面：</p>
+<ol>
+<li><strong>识别计算陷阱与核心矛盾：<strong>看到一个天文数字立即判定这是</strong>计算陷阱</strong></li>
+<li>**建立 Pisano 周期的知识框架：**了解周期的基本性质</li>
+<li>**掌握求和公式的转化：**一旦找到周期和周期和，必须将求和公式转换为可计算的代数形式</li>
+<li>**大数运算：**CTF 中处理超大数论运算，首选 <code>gmpy2</code> 库</li>
+</ol>
+<p>题目代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> next_prime</span><br><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> reduce</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">F</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">if</span> x == <span class="number">1</span> <span class="keyword">or</span> x == <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> F(x-<span class="number">1</span>)+F(x-<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">n = reduce(<span class="keyword">lambda</span> a, b: a*b, [getPrime(<span class="number">4</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>)])</span><br><span class="line">r = getRandomNBitInteger(<span class="number">67</span>)</span><br><span class="line">S = <span class="built_in">sum</span>([F(i) % n <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r)])</span><br><span class="line">p = next_prime(S**<span class="number">16</span>)</span><br><span class="line">q = getPrime(p.bit_length())</span><br><span class="line">m = bytes_to_long(flag)</span><br><span class="line">c = <span class="built_in">pow</span>(m, <span class="number">65537</span>, p*q)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;r =&quot;</span>, r)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;n =&quot;</span>, n)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;c =&quot;</span>, c)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;N =&quot;</span>, p*q)</span><br></pre></td></tr></table></figure>
+
+<p>现在分析代码</p>
+<p>定义了一个斐波那契数列</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">F</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">if</span> x == <span class="number">1</span> <span class="keyword">or</span> x == <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="comment"># 递归定义，计算量巨大，但由于模运算，实际计算只需在一个周期内完成</span></span><br><span class="line">    <span class="keyword">return</span> F(x-<span class="number">1</span>) + F(x-<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>斐波那契数列是一个<strong>递推数列</strong>，它的核心规则是：<strong>从第三项起，数列中的每一项都等于前两项之和</strong><br>$$<br>\begin{aligned}<br>&amp;F_n\ &#x3D;\ F_{n-1}\ +\ F_{n-2}\ (n \geq 3)<br>\end{aligned}<br>$$<br>在 CTF 和数论领域，斐波那契数列的<strong>模运算性质</strong>至关重要：</p>
+<p><strong>Pisano 周期</strong></p>
+<ul>
+<li><strong>定义：</strong> 斐波那契数列对任何正整数 n 取模后，都会变成一个<strong>循环数列</strong>。这个循环的长度就被称为 <strong>Pisano 周期</strong>，记作<br>$$<br>\begin{aligned}<br>&amp;\pi(n)<br>\end{aligned}<br>$$</li>
+</ul>
+<p>小模数 n 的生成</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2. 小模数 n 的生成</span></span><br><span class="line"><span class="comment"># 生成 4 个 4-bit 的小素数（p_i &lt;= 15）</span></span><br><span class="line"><span class="comment"># n 是这四个小素数的乘积</span></span><br><span class="line"><span class="comment"># n 的大小约为 16 bits (n &lt;= 15^4 = 50625)</span></span><br><span class="line">n = reduce(<span class="keyword">lambda</span> a, b: a*b, [getPrime(<span class="number">4</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>)])</span><br></pre></td></tr></table></figure>
+
+<p>巨大的求和上限 r</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3. 巨大的求和上限 r</span></span><br><span class="line"><span class="comment"># r 是一个 67-bit 的大整数 (r 约等于 2^67)</span></span><br><span class="line"><span class="comment"># 注意：r 是计算 S 的唯一输入，且 r 已经泄露给我们</span></span><br><span class="line">r = getRandomNBitInteger(<span class="number">67</span>)</span><br></pre></td></tr></table></figure>
+
+<p>S 的计算</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 4. 关键泄露信息 S 的计算 (S是 p 的基础)</span></span><br><span class="line"><span class="comment"># S 是前 r 个斐波那契数在模 n 下的和：S = Sum_&#123;i=0&#125;^&#123;r-1&#125; (F(i) mod n)</span></span><br><span class="line">S = <span class="built_in">sum</span>([F(i) % n <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r)])</span><br></pre></td></tr></table></figure>
+
+<p>生成巨大的素数 p</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 5. 生成巨大的素数 p</span></span><br><span class="line"><span class="comment"># p 是 S^16 之后的第一个素数</span></span><br><span class="line"><span class="comment"># S 的大小约为 r * n (约 2^67 * 2^16 = 2^83)</span></span><br><span class="line"><span class="comment"># p 的大小约为 (2^83)^16 = 2^1328 bits</span></span><br><span class="line">p = next_prime(S**<span class="number">16</span>)</span><br></pre></td></tr></table></figure>
+
+<p>生成素数 q</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 6. 生成素数 q</span></span><br><span class="line"><span class="comment"># q 是一个与 p 相同长度的素数 (q 约 1328 bits)</span></span><br><span class="line">q = getPrime(p.bit_length())</span><br></pre></td></tr></table></figure>
+
+<p>首先要求出 p -&gt; S -&gt; r 这个顺序</p>
+<p>先看 S 的计算方式<br>$$<br>\begin{aligned}<br>&amp;S\ &#x3D;\ \sum_{i-0}^{r-1}{F((i)\ \ (mod\ n))}<br>\end{aligned}<br>$$<br>求和次数 r 太大，但是，求和时使用的模数 <strong>n 却非常小</strong>（不到 65536）</p>
+<p>这是整个解题的关键步骤。我们不能循环 r 次，但 n 很小，所以我们要找规律</p>
+<p><strong>Pisano 周期（重复的舞蹈）</strong></p>
+<p>当斐波那契数列对一个小数字 n 取模时，它的结果会不断重复，形成一个<strong>循环</strong>。这个循环的长度就是 <strong>Pisano 周期 T</strong></p>
+<ul>
+<li>斐波那契数列 mod n 就像一个<strong>舞者</strong>在一个很小的圆形舞台（模数 n）上跳舞。它跳了一段时间后，姿势和位置一定会回到起点 (1, 1)</li>
+<li><strong>周期 T</strong> 就是这支舞完整跳完一次所需要的步数</li>
+</ul>
+<p>通过脚本实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a, b = <span class="number">1</span>, <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    a, b = b, (a + b) % n <span class="comment"># 找到下一步的舞步</span></span><br><span class="line">    <span class="keyword">if</span> a == <span class="number">1</span> <span class="keyword">and</span> b == <span class="number">1</span>: <span class="comment"># 检查是否回到起点</span></span><br><span class="line">        T = period = <span class="built_in">len</span>(fibs) <span class="comment"># 记录步数 T</span></span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<p>因为 n 很小，这个循环很快就能结束，我们得到了周期 T 和跳一圈舞的总得分 Sum_{cycle}</p>
+<p>现在我们有了舞蹈的规律，就可以计算 r 步的总得分 S：</p>
+<ul>
+<li><strong>完整周期数 k：</strong> k &#x3D; r &#x2F;&#x2F; T （看看 r 步能跳多少次完整的舞）</li>
+<li><strong>剩余步数 rem：</strong> rem &#x3D; r % T （最后多出来没跳完的几步）</li>
+</ul>
+<p>$$<br>\begin{aligned}<br>&amp;S\ &#x3D;\ (完整次数\ k\ *\ 一圈的总得分\ Sum_{cycle})\ +\ (剩余几步的得分\ Sum_{cycle})<br>\end{aligned}<br>$$</p>
+<p>这一步就将天文数字 r 转换成了一个可计算的公式，得到了我们想要的秘密蓝图 S</p>
+<table>
+<thead>
+<tr>
+<th><strong>脚本代码</strong></th>
+<th><strong>作用</strong></th>
+<th><strong>简单理解</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>p = next_prime(S ** 16)</code></td>
+<td><strong>计算第一个秘密零件 p。</strong> 严格按照题目的公式，找到 S^{16} 之后的第一个素数</td>
+<td></td>
+</tr>
+<tr>
+<td><code>q = N // p</code></td>
+<td><strong>计算第二个秘密零件 q。</strong> N 是 p 和 q 的乘积，所以 q &#x3D; N &#x2F; p</td>
+<td></td>
+</tr>
+<tr>
+<td><code>phi = (p - 1) * (q - 1)</code></td>
+<td><strong>计算制造蓝图 \phi(N)</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>d = inverse(65537, phi)</code></td>
+<td><strong>计算万能钥匙 d。</strong> <code>inverse</code> 是求一个数在 \pmod{phi} 世界里的“倒数”</td>
+<td></td>
+</tr>
+<tr>
+<td><code>m = pow(c, d, N)</code></td>
+<td><strong>解密！</strong> 使用万能钥匙 d 打开保险箱 N 中的密文 c</td>
+<td></td>
+</tr>
+<tr>
+<td><code>long_to_bytes(m)</code></td>
+<td>将解密得到的数字 m 转换回 Flag 文本</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>完整代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"></span><br><span class="line"><span class="comment"># ==========================================</span></span><br><span class="line"><span class="comment"># 1. 在此填入题目给出的参数 (从你的题目输出中复制)</span></span><br><span class="line"><span class="comment"># ==========================================</span></span><br><span class="line">r = <span class="number">6799657976717333</span>  <span class="comment"># 题目给出的 r (67-bit integer)</span></span><br><span class="line">n = <span class="number">34969</span>  <span class="comment"># 题目给出的 n (小整数，约 16-bit)</span></span><br><span class="line">c = <span class="number">182306974283951620352146026941583994848813143690343545292100780435573376889099600153592983212384957591086328477660614034391593564733860826251499298995355977799109267846836211477797049861348446512705981010295182077777939692478140339301301250656211795668782349225298841295102744088295274299888068087536135862146848855194234931032258224223054120694400807261402442809227521150204434199401928373883267697928229945582110688115412960868921538084717338343966490113059627708880297277412143561561837953806960309840302665509500602335832680764801782789278492075478763944213005349707521471401389317139473794212210077629296628421658105048387207038261321205</span>  <span class="comment"># 题目给出的密文 c</span></span><br><span class="line">N = <span class="number">1885611999537620305525377668936000019248252379006235038175895811710218489750248037027959751027236326639084060685909621893589756343903429224938045802850975926055076789137326688384533999739909152386986919824268841500802585809839133132715892685629871188263336038221503698167753853207939360629026179572549702198037779413041272313618794196167670066872427987596564652249864272782397242041014605617282098654595635031878004275878165728021995744626212185694275937448739806439006047047376363093018124169182873374456718929377731991273039952515054850718253257895996999907977029169396644305213162133388169761391593110121229266422245167572929912914529689341</span>  <span class="comment"># 题目给出的公钥 N</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ==========================================</span></span><br><span class="line"><span class="comment"># 2. 核心函数：寻找 Pisano 周期并计算周期和</span></span><br><span class="line"><span class="comment">#    对应思路 2 的优化版：直接在 Python 中实现</span></span><br><span class="line"><span class="comment"># ==========================================</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_pisano_info</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="comment"># 斐波那契数列缓存，用于计算余数部分的和</span></span><br><span class="line">    fibs = [<span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 寻找周期：暴力迭代直到再次出现 &quot;1, 1&quot;</span></span><br><span class="line">    <span class="comment"># 因为 n 很小，这个循环会很快结束</span></span><br><span class="line">    a, b = <span class="number">1</span>, <span class="number">1</span></span><br><span class="line">    period = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="comment"># 下一项 F(i) = F(i-1) + F(i-2)</span></span><br><span class="line">        a, b = b, (a + b) % n</span><br><span class="line">        fibs.append(b)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 检查是否回到了起点 (1, 1)</span></span><br><span class="line">        <span class="comment"># 注意：现在的 b 是新的一项，a 是上一项</span></span><br><span class="line">        <span class="keyword">if</span> a == <span class="number">1</span> <span class="keyword">and</span> b == <span class="number">1</span>:</span><br><span class="line">            <span class="comment"># 找到了循环节！</span></span><br><span class="line">            <span class="comment"># 此时 fibs 最后两个是 1, 1，属于下一个周期的开始，要去掉</span></span><br><span class="line">            fibs.pop()</span><br><span class="line">            fibs.pop()</span><br><span class="line">            period = <span class="built_in">len</span>(fibs)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    period_sum = <span class="built_in">sum</span>(fibs)</span><br><span class="line">    <span class="keyword">return</span> period, period_sum, fibs</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;[*] Analyzing Pisano period for n = <span class="subst">&#123;n&#125;</span>...&quot;</span>)</span><br><span class="line">period, period_sum, fibs = get_pisano_info(n)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;[+] Period found: T = <span class="subst">&#123;period&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;[+] Sum of one period: <span class="subst">&#123;period_sum&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ==========================================</span></span><br><span class="line"><span class="comment"># 3. 计算 S</span></span><br><span class="line"><span class="comment">#    利用公式：S = (完整周期的次数 * 周期和) + (剩余部分的和)</span></span><br><span class="line"><span class="comment"># ==========================================</span></span><br><span class="line">k = r // period  <span class="comment"># 完整的周期数</span></span><br><span class="line">rem = r % period  <span class="comment"># 剩余的项数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 剩余部分的和 = 前 rem 项之和</span></span><br><span class="line">rem_sum = <span class="built_in">sum</span>(fibs[:rem])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算最终的 S (注意题目中 S 是模 n 后求和，不需要再对 S 取模)</span></span><br><span class="line">S = k * period_sum + rem_sum</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;[+] Calculated S = <span class="subst">&#123;S&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ==========================================</span></span><br><span class="line"><span class="comment"># 4. 恢复 RSA 密钥 p, q</span></span><br><span class="line"><span class="comment">#    题目逻辑：p = next_prime(S**16)</span></span><br><span class="line"><span class="comment"># ==========================================</span></span><br><span class="line"><span class="comment"># 注意 S**16 很大，需要用 gmpy2 处理大数运算</span></span><br><span class="line">base_p = gmpy2.mpz(S) ** <span class="number">16</span></span><br><span class="line">p = <span class="built_in">int</span>(gmpy2.next_prime(base_p))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证 p 是否正确</span></span><br><span class="line"><span class="keyword">if</span> N % p == <span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[+] Successfully recovered p!&quot;</span>)</span><br><span class="line">    q = N // p</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[-] Failed to recover p. Check parameters.&quot;</span>)</span><br><span class="line">    exit()</span><br><span class="line"></span><br><span class="line"><span class="comment"># ==========================================</span></span><br><span class="line"><span class="comment"># 5. 标准 RSA 解密</span></span><br><span class="line"><span class="comment"># ==========================================</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">phi = (p - <span class="number">1</span>) * (q - <span class="number">1</span>)</span><br><span class="line">d = inverse(e, phi)</span><br><span class="line"></span><br><span class="line">m = <span class="built_in">pow</span>(c, d, N)</span><br><span class="line">flag = long_to_bytes(m)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n--------------------------------------------------&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Flag:&quot;</span>, flag.decode())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;--------------------------------------------------&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="easyRSA（利用-p-信息泄露-GCD-攻击）"><a href="#easyRSA（利用-p-信息泄露-GCD-攻击）" class="headerlink" title="easyRSA（利用 p 信息泄露 GCD 攻击）"></a>easyRSA（利用 p 信息泄露 GCD 攻击）</h3><p><img src="https://pic1.imgdb.cn/item/692bc9e3291f309b79e8b598.png"></p>
+<p>解题技巧先放前面：</p>
+<ol>
+<li>**识别 GCD 攻击模式：**看到泄露信息 hint &#x3D; m^17 (mod p)，必须立刻联想到 p 是 (m^17 - hint) 的因子</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag <span class="comment"># 目标明文</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 初始化和密钥生成</span></span><br><span class="line">m = bytes_to_long(flag)  <span class="comment"># 将 Flag 转换为巨大的整数 m</span></span><br><span class="line">p = getPrime(<span class="number">1024</span>)       <span class="comment"># 生成第一个秘密素数 p (1024 bits)</span></span><br><span class="line">q = getPrime(<span class="number">1024</span>)       <span class="comment"># 生成第二个秘密素数 q (1024 bits)</span></span><br><span class="line">n = p * q                <span class="comment"># RSA 模数 N (2048 bits，安全标准)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 核心漏洞：Hint 的泄露</span></span><br><span class="line"><span class="comment"># 提示 H 是明文 m 以极小的指数 17 对素数 p 取模的结果。</span></span><br><span class="line"><span class="comment"># 数学关系：hint ≡ m^17 (mod p)</span></span><br><span class="line"><span class="comment"># 这意味着 p 整除 (m^17 - hint)</span></span><br><span class="line">hint = <span class="built_in">pow</span>(m, <span class="number">17</span>, p)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 标准 RSA 加密</span></span><br><span class="line">e = <span class="number">65537</span>                <span class="comment"># 公钥指数 e (最常用的 Fermat 素数)</span></span><br><span class="line">c = <span class="built_in">pow</span>(m, e, n)         <span class="comment"># 密文 c ≡ m^e (mod n)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 泄露给攻击者的信息</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;n =&quot;</span>, n)          <span class="comment"># 公钥模数 N (2048-bit)</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;e =&quot;</span>, e)          <span class="comment"># 公钥指数</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;c =&quot;</span>, c)          <span class="comment"># 密文</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;hint =&quot;</span>, hint)    <span class="comment"># 泄露信息 H (m^17 mod p)</span></span><br></pre></td></tr></table></figure>
+
+<p>我们从题目提供的两个基本关系开始：<br>$$<br>\begin{aligned}<br>&amp;1:\ x\ &#x3D;\ 11\ *\ d\ +\ 7\ *\ \phi(n)\\<br>&amp;2:\ e\ *\ d\ \equiv 1\ (mod\ \ {\phi(n)})\\<br>&amp;将\ RSA\ 关系转化为代数等式，引入一个未知整数\ r\\<br>&amp;e\ <em>\ d\ &#x3D;\ 1\ +\ r\ <em>\ \phi(n)<br>\end{aligned}<br>$$<br>我们的目标是消除未知数 d。最有效的方法是将**等式 1</em></em> 的两侧都乘以已知的公钥 e，从而引入 e * d 项，方便进行替换</p>
+<p>将<strong>等式 1</strong> 两侧同乘 e：<br>$$<br>\begin{aligned}<br>&amp;3:\ x\ *\ e&#x3D;\ 11\ <em>\ (e\ <em>\ d)+\ 7\ <em>\ e\ <em>\phi(n)<br>\end{aligned}<br>$$<br>现在，我们将**等式 2</em></em> 代入**等式 3</em></em> 中的 (e * d) 项：<br>$$<br>\begin{aligned}<br>&amp;3:\ x\ *\ e&#x3D;\ 11\ *\ (1\ +\ r\ *\ \phi(n))+\ 7\ *\ e\ *\phi(n)<br>\end{aligned}<br>$$<br>现在，等式中已经成功消除了 d。我们进行代数整理，将所有含欧拉函数 n 的项归类，常数项移到左侧<br>$$<br>\begin{aligned}<br>&amp;x\ *\ e&#x3D;\ 11\ +\ 11\ *\ r\ *\ \phi(n)+\ 7\ *\ e\ *\phi(n)\\<br>&amp;x\ *\ e\ -\ 11\ &#x3D;\ 11\ *\ r\ *\ \phi(n)+\ 7\ *\ e\ *\phi(n)\\<br>&amp;x\ *\ e\ -\ 11\ &#x3D;\ (11\ <em>\ r\ +\ 7\ <em>\ e)\ <em>\phi(n)\\<br>&amp;\phi(n)\ &#x3D;\ \frac{x</em>e-11}{11</em>r+7</em>e}\\<br>\end{aligned}<br>$$<br>这个方程中，唯一剩下的未知数是整数 r</p>
+<p>由于欧拉函数 n 必须是一个巨大的<strong>整数</strong>（通常 2048 位），因此分子必须能够被分母<strong>整除</strong></p>
+<p>所以直接爆破破解 r</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># 步骤 1: 替换为题目中泄露的参数</span></span><br><span class="line"><span class="comment"># IMPORTANT: 请将这里的占位符替换为你实际的 CTF 数据！</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line">N = <span class="number">15321211041844905603734344178124947500324300419514650914959277216026081094496518094622195813971694335738777589926626969243883848477814650916143749322154944235584863085124154540941941026813506509060939499627059712020664731558566028207969260861863294704292014958955493668692256998253634012942569080200336487172402729072437050952572508561453302097971258470685521456512378089846772560530301852104802168974905937732653119166440832834381675710869396094149006807933529429939569477709674581421481769103309376717894952118650888932952440197471338958967318775671821835706884032860123711415773758546392549257375305940969423099611</span>  <span class="comment"># RSA 模数 n</span></span><br><span class="line">E = <span class="number">65537</span>  <span class="comment"># 公钥指数 e (通常是 65537)</span></span><br><span class="line">C = <span class="number">14896093236493033914781929755936872928003725648997746598164823180134348743474984136539422027221313199599273430548738399424773586673404519182726589878322104929749149555906399158136445184378100079558203687049497943904275695897824656260657349522646553949766831267321006314984113971129230701131171378457086851261467999754137290017989201512492586108768533159551545321805463224339252886492732021354821330371600069958523522302729848548167244423902572054475396534469987383265867036041513161170273368613864180696427386890714264902686976581317435011139081192227958859641684254938165261747405568369502852705979424383731908971282</span>  <span class="comment"># 密文 c</span></span><br><span class="line">X = <span class="number">265060901898485540806769085700708185460124724747068797929982044073895401490880169847709049380530156090772787935089173201664711759633269693627724735457902114209008145932150728406880988293457762401679305297063608204632708505031098047582175011825482347052645324085149631658741807382378778694666759557421043250548432429798543553950625554307402164142007388940921309688918410535907564996075660231557340541491155676279511654970843992008027830570227549010293790074386638365293013298327534604995316180405779571245069623638693068707267840181413082202552862853411080755107836252852929279422343700808788459217261282790226013328915</span>  <span class="comment"># 泄露信息 x (x = 11*d + 7*phi(n))</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 我们可以从 r=1 开始，因为 r 必须是正整数</span></span><br><span class="line">R_MAX = <span class="number">100000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"><span class="comment"># 步骤 2: 核心解题函数 - 枚举 r 求解 phi(n)</span></span><br><span class="line"><span class="comment"># =========================================================</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">solve_modified_rsa</span>(<span class="params">N, E, C, X, R_MAX</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    根据公式 phi(n) = (X*E - 11) / (11*r + 7*E) 枚举 r，</span></span><br><span class="line"><span class="string">    并验证结果是否为合法的 phi(n)。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 公式分子 C_NUM = X*E - 11</span></span><br><span class="line">    C_NUM = X * E - <span class="number">11</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[*] 开始枚举 r (r_max=<span class="subst">&#123;R_MAX&#125;</span>)...&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># r 必须为正整数</span></span><br><span class="line">    <span class="keyword">for</span> r <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, R_MAX + <span class="number">1</span>):</span><br><span class="line">        <span class="comment"># 公式分母 D_DEN = 11*r + 7*E</span></span><br><span class="line">        D_DEN = <span class="number">11</span> * r + <span class="number">7</span> * E</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 1. 整除性检查：判断分子是否能被分母整除</span></span><br><span class="line">        <span class="keyword">if</span> C_NUM % D_DEN == <span class="number">0</span>:</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 找到潜在的 phi(n)</span></span><br><span class="line">            phi_n = C_NUM // D_DEN</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;[+] 找到潜在的 phi(n) 候选项 (r=<span class="subst">&#123;r&#125;</span>)&quot;</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 2. 合理性检查：phi(n) 必须小于 N</span></span><br><span class="line">            <span class="keyword">if</span> phi_n &gt;= N:</span><br><span class="line">                <span class="comment"># 理论上不可能，如果出现说明数据有误，或 r_max 设置太小</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 3. RSA 约束检查：判断 phi(n) 是否能用于分解 N</span></span><br><span class="line">            <span class="comment"># 我们知道：p + q = N - phi(n) + 1</span></span><br><span class="line">            <span class="comment"># 设 S = p + q</span></span><br><span class="line">            S = N - phi_n + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 根据韦达定理，p, q 是二次方程 X^2 - S*X + N = 0 的根</span></span><br><span class="line">            <span class="comment"># 判别式 D = S^2 - 4*N 必须是一个完全平方数 (Perfect Square)</span></span><br><span class="line">            D = S * S - <span class="number">4</span> * N</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 使用 gmpy2 检查 D 是否为完全平方数</span></span><br><span class="line">            <span class="keyword">if</span> gmpy2.is_square(D):</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;[!!!] 成功找到正确的 phi(n)!&quot;</span>)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;[!] r = <span class="subst">&#123;r&#125;</span>&quot;</span>)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;[!] phi(n) = <span class="subst">&#123;phi_n&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">                <span class="comment"># 4. 最终解密</span></span><br><span class="line"></span><br><span class="line">                <span class="comment"># 计算私钥 d = E^(-1) mod phi(n)</span></span><br><span class="line">                d = inverse(E, phi_n)</span><br><span class="line"></span><br><span class="line">                <span class="comment"># 解密明文 m = C^d mod N</span></span><br><span class="line">                m = <span class="built_in">pow</span>(C, d, N)</span><br><span class="line"></span><br><span class="line">                flag = long_to_bytes(m)</span><br><span class="line"></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;\n==============================================&quot;</span>)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;p + q = <span class="subst">&#123;S&#125;</span>&quot;</span>)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;Private Key d = <span class="subst">&#123;d&#125;</span>&quot;</span>)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;Decrypted Flag: <span class="subst">&#123;flag.decode()&#125;</span>&quot;</span>)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;==============================================&quot;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span>  <span class="comment"># 退出函数</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[-] 未能在设定的 R_MAX 范围内找到有效的 phi(n)，请尝试增大 R_MAX 或检查输入数据。&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="keyword">if</span> N == ...:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;错误：请先在脚本顶部替换 N, C, X 的占位符！&quot;</span>)</span><br><span class="line">        sys.exit(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    solve_modified_rsa(N, E, C, X, R_MAX)</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/CTF/" title="CTF" data-aos="zoom-in">CTF</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag" title="CTF">CTF</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Crypto/" rel="tag" title="Crypto">Crypto</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag" title="Misc">Misc</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="b2evolution CMS SQL 注入（CVE-2021-28242）" class="lazyload">
+        <a href="/2021/05/26/b2evolution%20CMS%20SQL%20%E6%B3%A8%E5%85%A5%EF%BC%88CVE-2021-28242%EF%BC%89/" aria-label="前一篇: b2evolution CMS SQL 注入（CVE-2021-28242）" title="前一篇: b2evolution CMS SQL 注入（CVE-2021-28242）"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            b2evolution CMS SQL 注入（CVE-2021-28242）
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 HDCTF WriteUp" class="lazyload">
+      <a href="/2019/05/22/2019%20HDCTF/" aria-label="后一篇: 2019 HDCTF WriteUp"  title="后一篇: 2019 HDCTF WriteUp"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          2019 HDCTF WriteUp
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        116.9k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        09:39
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-0xGame-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 0xGame WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#flip%EF%BC%88%E6%B3%A2%E5%BD%A2%E5%9B%BE-%E6%91%A9%E6%96%AF%E5%AF%86%E7%A0%81-BinWalk-%E5%80%92%E5%BA%8F%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">flip（波形图 + 摩斯密码 + BinWalk + 倒序）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pacp%EF%BC%88SQL-%E7%9B%B2%E6%B3%A8%E6%B5%81%E9%87%8F-PNG-%E5%AE%BD%E9%AB%98%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">pacp（SQL 盲注流量 + PNG 宽高）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#differentPic%EF%BC%88%E5%9B%BE%E5%83%8F%E5%90%88%E6%88%90%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">differentPic（图像合成）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extract%EF%BC%88BinWalk-Stegpy%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">extract（BinWalk + Stegpy）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyMisc%EF%BC%88%E6%8B%A8%E5%8F%B7-Stegpy%EF%BC%89"><span class="toc-number">1.2.5.</span> <span class="toc-text">easyMisc（拨号+ Stegpy）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lowerBase64%EF%BC%88Base64-%E8%A7%A3%E7%A0%81%EF%BC%89"><span class="toc-number">1.2.6.</span> <span class="toc-text">lowerBase64（Base64 解码）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#threeThousand%EF%BC%88ZIP-%E7%88%86%E7%A0%B4%EF%BC%89"><span class="toc-number">1.2.7.</span> <span class="toc-text">threeThousand（ZIP 爆破）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.3.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Calendar%EF%BC%88%E6%97%A5%E6%9C%9F%E7%BD%91%E6%A0%BC%E5%9D%90%E6%A0%87%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">Calendar（日期网格坐标密码）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyXor%EF%BC%88%E5%BC%82%E6%88%96%E5%8A%A0%E5%AF%86%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">easyXor（异或加密）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supperAffine%EF%BC%88%E4%BB%BF%E5%B0%84%E5%8A%A0%E5%AF%86%E5%8F%98%E7%A7%8D%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">supperAffine（仿射加密变种）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#equationSet%EF%BC%88%E6%8F%90%E5%85%AC%E5%9B%A0%E6%95%B0-p-%E6%9E%84%E9%80%A0%E7%AE%80%E6%98%93%E6%96%B9%E7%A8%8B%EF%BC%89"><span class="toc-number">1.3.4.</span> <span class="toc-text">equationSet（提公因数 p 构造简易方程）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fibonacci%EF%BC%88%E7%88%86%E7%A0%B4%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E5%91%A8%E6%9C%9F%EF%BC%89"><span class="toc-number">1.3.5.</span> <span class="toc-text">Fibonacci（爆破斐波那契数列周期）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyRSA%EF%BC%88%E5%88%A9%E7%94%A8-p-%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2-GCD-%E6%94%BB%E5%87%BB%EF%BC%89"><span class="toc-number">1.3.6.</span> <span class="toc-text">easyRSA（利用 p 信息泄露 GCD 攻击）</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">115</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">16</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">174</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "2020 0xGame WriteUp",
+          url: "http://example.com/2020/04/14/2020%200xGame/",
+          excerpt: "",
+          description: "",
+          stripContent: "2020 0xGame WriteUp前言主办方：南京邮电大学 Miscflip（波形图 + 摩斯密码 + BinWalk + 倒序） 打开压缩包后得到一个 ZIP 和 MP3  ZIP 需要密码，使用 Audacity 打开 MP3  根据波形长短猜测是摩斯密码 1....- ----- ----- ---.. ..... -.... -.... ----. ----. ...-- ----- ----- ... .. -.. .-. --- .-- ... ... .- .--.  解密得到",
+          date: "Tue Apr 14 2020 13:18:00 GMT+0800",
+          updated: "Sat Jun 06 2026 05:58:54 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
