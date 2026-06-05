@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">115</div>
+    <div class="sidebar-state-number">116</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -160,7 +160,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">174</div>
+    <div class="sidebar-state-number">175</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -318,8 +318,8 @@ newxmmxszc6-1.qq.com
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2020-04-14</span>
-        <span><span class="icon-pencil"></span>7.1k 字</span>
-        <span><span class="icon-clock"></span>32 分钟</span>
+        <span><span class="icon-pencil"></span>5.6k 字</span>
+        <span><span class="icon-clock"></span>26 分钟</span>
       </div>
       <h2 class="post-title">2020 0xGame WriteUp</h2>
       <article class="post-article">
@@ -488,8 +488,48 @@ Crib‑dragging
 </div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/" aria-label="RSA 共模攻击" title="RSA 共模攻击"></a>
+      <a class="post-link" href="/2019/05/22/%E4%BB%BF%E5%B0%84%E5%8A%A0%E5%AF%86/" aria-label="仿射加密" title="仿射加密"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="仿射加密" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>215 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
+      </div>
+      <h2 class="post-title">仿射加密</h2>
+      <article class="post-article">
+          仿射加密仿射加密就像把字母表上的每个字母，通过 “乘以一个数” 再加 “一个常数” 映射成另一个字母
+这样加密后的字母和原字母呈线性关系，所以叫 “仿射”
+加密原理把英文字母 a~z 对应成数字 0~25
+设：
+
+x &amp;#x3D; 明文字母对应的数字
+
+y &amp;#x3D; 密文字母对应的数字
+
+
+仿射加密的数学形式就是：
+1y = (a * x + b) \mod 26
+
+其中 a 和 b 是密钥，必须满足：
+
+a 与 26 互质（gcd(a,26)=1），否则不同明文字母可能加密成同一密文
+
+b 是 0~25 之间的整数
+
+
+解密原理解密就是要从 y 求出 x
+1a*x = y - b (mo
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/" aria-label="RSA 共模攻击" title="RSA 共模攻击"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="RSA 共模攻击" class="lazyload">
     </div>
     <div class="post-info">
@@ -519,27 +559,6 @@ c2 = m^e2 mod n
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2018/05/22/2018%20ACTF/" aria-label="2018 ACTF WriteUp" title="2018 ACTF WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2018 ACTF WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2018-05-22</span>
-        <span><span class="icon-pencil"></span>5.1k 字</span>
-        <span><span class="icon-clock"></span>24 分钟</span>
-      </div>
-      <h2 class="post-title">2018 ACTF WriteUp</h2>
-      <article class="post-article">
-          2018 ACTF WriteUp前言主办方：XCTF
-Crypto你能看出这是什么加密么（RSA）
-1234567p=0x928fb6aa9d813b6c3270131818a7c54edb18e3806942b88670106c1821e0326364194a8c49392849432b37632f0abe3f3c52e909b939c91c50e41a7b8cd00c67d6743b4fq=0xec301417ccdffa679a8dcc4027dd0d75baf9d441625ed8930472165717f4732884c33f25d4ee6a6c9ae6c44aedad039b0b
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/10/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/12/">下一页 &raquo;</a>
   </nav>
@@ -563,10 +582,10 @@ Crypto你能看出这是什么加密么（RSA）
       </div>
       <div>
         <span class="icon-brush"></span>
-        116.9k
+        115.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        09:39
+        09:34
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -594,7 +613,7 @@ Crypto你能看出这是什么加密么（RSA）
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">115</div>
+    <div class="sidebar-state-number">116</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -602,7 +621,7 @@ Crypto你能看出这是什么加密么（RSA）
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">174</div>
+    <div class="sidebar-state-number">175</div>
   </div>
 </div>
 <div class="sidebar-social" >
