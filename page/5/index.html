@@ -156,11 +156,11 @@
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">16</div>
+    <div class="sidebar-state-number">18</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">175</div>
+    <div class="sidebar-state-number">178</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -232,7 +232,7 @@
               <a href="/2026/05/22/Kilo-Org%20kilocode%EF%BC%88CVE-2026-8766%EF%BC%89/" title="Kilo-Org kilocode （CVE-2026-8766）">Kilo-Org kilocode （CVE-2026-8766）</a>
             </li>
             <li>
-              <a href="/2026/05/22/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%20Solidity%20%E5%9F%BA%E7%A1%80/" title="区块链基础">区块链基础</a>
+              <a href="/2026/05/22/Many-Time%20Pad/" title="Many-Time Pad">Many-Time Pad</a>
             </li>
         </ul>
       </div>
@@ -244,6 +244,191 @@
 </aside>
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/20/Homeless%201/" aria-label="VulnHub Homeless：1" title="VulnHub Homeless：1"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Homeless：1" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-20</span>
+        <span><span class="icon-pencil"></span>588 字</span>
+        <span><span class="icon-clock"></span>3 分钟</span>
+      </div>
+      <h2 class="post-title">VulnHub Homeless：1</h2>
+      <article class="post-article">
+          Homeless: 1项目地址：https://download.vulnhub.com/homeless/Homeless.zip
+是一个打包好的镜像文件
+注意：导入 vmx 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+CTFindex（UA 头爆破）扫描后台没东西，看看 robots.txt 发现提示字典 rockyou
+
+访问 80 端口看到有回显内容，BurpSuite 检查确认
+
+结合给的爆破字典提示，尝试爆破这个 UA 头内容
+爆破出关键字 cyberdog，让我们访问一个路径
+
+拼接到浏览器访问，是一个文件上传页面
+
+文件上传Upload Me
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/16/Depth%201/" aria-label="VulnHub Depth：1" title="VulnHub Depth：1"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Depth：1" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-16</span>
+        <span><span class="icon-pencil"></span>305 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">VulnHub Depth：1</h2>
+      <article class="post-article">
+          VulnHub Depth: 1项目地址：https://download.vulnhub.com/depth/DepthB2R.ova
+是一个打包好的镜像文件
+注意：导入 vmx 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+发现 8080 运行了 JSP，访问发现是 Tomcat
+
+RCEFile listing checker扫描目录发现 /test.jsp，功能是可以执行系统命令 ls -l /tmp 
+
+提取SSH 本地登录执行 ls -l /home 命令查看用户家目录，发现 bill
+
+尝试 SSH 本地登录成功，可以使用当前 bill 用户执行
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/14/2026%20%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BD%E5%88%9B%E6%96%B0%E5%A4%A7%E8%B5%9B%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%90%E8%B5%9B%E9%81%93%E5%9B%A2%E9%98%9F%E8%B5%9B%20WriteUp/" aria-label="2026 数字中国创新大赛网络安全子赛道团队赛 WriteUp" title="2026 数字中国创新大赛网络安全子赛道团队赛 WriteUp"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2026 数字中国创新大赛网络安全子赛道团队赛 WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-14</span>
+        <span><span class="icon-pencil"></span>3.2k 字</span>
+        <span><span class="icon-clock"></span>17 分钟</span>
+      </div>
+      <h2 class="post-title">2026 数字中国创新大赛网络安全子赛道团队赛 WriteUp</h2>
+      <article class="post-article">
+          2026 数字中国创新大赛网络安全子赛道团队赛 WriteUp前言主办方：福建省通信管理局和总工会
+第一次在星盟带队打比赛，解出了五道题排名第二
+
+SecureDoc 是别的师傅爆破出了密码，最后由我绕过 WAF 拿到二血
+asystem 其他师傅也解出来了，但是我交的快，哈哈，相当于五道题都是我解的，这波带飞了
+虽然是松柏组，但是这个成绩在学生组也是能进决赛的（松柏前四）
+Misc冰碧蝎?过滤 HTTP
+
+追踪第一个 POST 请求拿到密钥 1ca3b8c9c81a5fdc
+
+后续一直在访问 &amp;#x2F;upload&amp;#x2F;1774…….dcic.php 路径，确认这个就是 WebShe
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/11/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Linux%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-2/" aria-label="知攻善防实验室 Linux 应急响应——2" title="知攻善防实验室 Linux 应急响应——2"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="知攻善防实验室 Linux 应急响应——2" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-11</span>
+        <span><span class="icon-pencil"></span>703 字</span>
+        <span><span class="icon-clock"></span>3 分钟</span>
+      </div>
+      <h2 class="post-title">知攻善防实验室 Linux 应急响应——2</h2>
+      <article class="post-article">
+          知攻善防实验室 Linux 应急响应——2题目前景需要：看监控的时候发现 webshell 告警，领导让你上机检查你可以救救安服仔吗！！
+应急响应破解 CentOS 7官方提供的靶机用户名和密码无效，需要我们重置密码
+
+重启来到这个页面按 e
+
+进入到编辑页面，找到这个 ro
+
+改为 rw init=/sysroot/bin/sh，再按 Ctrl + X 使用单用户模式启动
+
+使用下面的命令访问系统
+1chroot /sysroot
+
+然后更新 root 密码重启系统
+
+成功登录进去
+
+攻击者 IP（宝塔重置密码 + 宝塔日志）提示了 WebShell，那就看看 /var
+随便没有 www 目
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/11/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Linux%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-1/" aria-label="知攻善防实验室 Linux 应急响应——1" title="知攻善防实验室 Linux 应急响应——1"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="知攻善防实验室 Linux 应急响应——1" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-11</span>
+        <span><span class="icon-pencil"></span>344 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">知攻善防实验室 Linux 应急响应——1</h2>
+      <article class="post-article">
+          知攻善防实验室 Linux 应急响应——1题目小王急匆匆地找到小张，小王说：张哥，我 dev 服务器被黑了，快救救我！！
+应急响应黑客的 IP 地址（Redis 远程连接）靶机需要关注其公众号获取
+账号密码：defend&amp;#x2F;defend, root&amp;#x2F;defend
+登录后先看看有无 Web 网站，看黑客是不是从 Web 打进来的
+很显然是没有的，因为它没有 /www 目录
+
+再查看日志文件
+发现 .log 的日志文件主要是以 vmware、yum 以及 Xorg 为主，这些主要是系统相关的
+
+从攻击者角度思考，一台靶机如果没有 Web 网站，那该怎么打进来呢？？？
+没错，那就是
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/11/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E6%80%8E%E4%B9%88%E6%89%93/" aria-label="出题——静态网站怎么打" title="出题——静态网站怎么打"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="出题——静态网站怎么打" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-11</span>
+        <span><span class="icon-pencil"></span>526 字</span>
+        <span><span class="icon-clock"></span>3 分钟</span>
+      </div>
+      <h2 class="post-title">出题——静态网站怎么打</h2>
+      <article class="post-article">
+          出题——静态网站怎么打前言第一次出题，按照平台要求存放 flag 位置的话发现是有三个非预期解的
+一个是直接任意文件读取到了固定的 flag 位置，另一个则是传 phpinfo() 读取环境变量，另一个则是执行读取文件内容函数
+主要是平台把 flag 位置直接给出来了，让大家没想到其实这关没这么简单
+
+任意文件读取page（双写绕过 + %00 截断）提示是静态网站，看了一圈确实没有给任何交互点，但是发现 ?page 一直在变化
+
+推测使用的文件包含函数，且没有后缀 .php，所以应该是后端会自动拼接后缀 .php
+先尝试读取 /etc/passwd 文件，使用 %00 截断无果
+
+再加上双写
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/09/D-Link%20DCS%20%E7%9B%91%E6%8E%A7%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%E6%BC%8F%E6%B4%9E/" aria-label="实战——攻陷海外某政府官员家庭监控" title="实战——攻陷海外某政府官员家庭监控"></a>
     <div class="post-cover left">
@@ -362,204 +547,6 @@
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/03/BTRSys%20v2.1/" aria-label="VulnHub BTRSys：v2.1" title="VulnHub BTRSys：v2.1"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub BTRSys：v2.1" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-03</span>
-        <span><span class="icon-pencil"></span>615 字</span>
-        <span><span class="icon-clock"></span>4 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub BTRSys：v2.1</h2>
-      <article class="post-article">
-          BTRSys: v2.1项目地址：https://download.vulnhub.com/btrsys/BTRSys1.rar
-是一个打包好的镜像文件
-注意：导入 vmx 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-发现 /wordpress 目录，确认存在 WordPress 站点
-
-弱口令WordPress使用 wpscan 检测 WordPress 版本和账号
-1wpscan --url http://192.168.110.134/wordpress -U users.txt -P /usr/share/wordlists/rockyou.txt
-
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/zico2%201/" aria-label="VulnHub zico2：1" title="VulnHub zico2：1"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub zico2：1" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-01</span>
-        <span><span class="icon-pencil"></span>510 字</span>
-        <span><span class="icon-clock"></span>3 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub zico2：1</h2>
-      <article class="post-article">
-          zico2: 1项目地址：https://download.vulnhub.com/btrsys/BTRSys1.rar
-是一个打包好的镜像文件
-注意：导入 vmx 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-本地文件包含page查看 80 端口发现有使用文件包含函数
-
-尝试读取 /etc/passwd 文件成功
-
-弱口令phpLiteAdmin扫描目录发现另一个后台 /dbadmin/
-
-弱口令 admin 登录成功
-
-RCEphpLiteAdmin在 PhpLiteAdmin 主界面找到“Create new database”输入框，输入数据库名 ha
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/hackfest2016%20Orcus/" aria-label="VulnHub hackfest2016：Orcus" title="VulnHub hackfest2016：Orcus"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub hackfest2016：Orcus" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-01</span>
-        <span><span class="icon-pencil"></span>373 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub hackfest2016：Orcus</h2>
-      <article class="post-article">
-          hackfest2016: Orcus项目地址：https://download.vulnhub.com/hackfest2016/Orcus.ova
-是一个打包好的镜像文件
-注意：导入 vmx 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-弱口令phpMyAdmin扫描目录
-
-访问 /backups 目录拿到源码
-
-翻到了数据库账号密码
-
-成功登录到了前面扫出来的 phpMyAdmin 后台
-
-在数据库中找到一个和之前扫出的目录同名的
-
-文件上传Zenphpoto（CVE-2020-36079）访问 Web 页面发现需要数据库的配置信息
-
-使用上面的账号密码
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/hackfest2016%20Sedna/" aria-label="VulnHub hackfest2016：Sedna" title="VulnHub hackfest2016：Sedna"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub hackfest2016：Sedna" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-01</span>
-        <span><span class="icon-pencil"></span>470 字</span>
-        <span><span class="icon-clock"></span>3 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub hackfest2016：Sedna</h2>
-      <article class="post-article">
-          hackfest2016: Sedna项目地址：https://download.vulnhub.com/hackfest2016/Sedna.ova
-是一个打包好的镜像文件
-注意：导入 vmx 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-文件上传BuilderEngine 3.5.0扫描后台发现有个这个目录可以访问
-
-访问过去是空白，查看页面源代码推测使用的框架
-
-去 Exploit-DB 中找到历史 NDay
-
-按照官网给出的路径访问过去
-
-创建一个简单的 HTML 文件 upload.html，内容如下
-1234&amp;lt;form method=&amp;quo
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/DC416%202016-Fortress/" aria-label="VulnHub DC416：2016-Fortress" title="VulnHub DC416：2016-Fortress"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub DC416：2016-Fortress" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-01</span>
-        <span><span class="icon-pencil"></span>469 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub DC416：2016-Fortress</h2>
-      <article class="post-article">
-          DC416: 2016-Fortress项目地址：https://download.vulnhub.com/dc416-2016/dc416-fortress.ova
-是一个打包好的镜像文件
-注意：导入 vmx 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-RCESCANN3R（换行符绕过）访问 80 端口发现执行的是 NMap
-
-BP 抓包使用换行符绕过
-
-查看文件发现有两个目录
-
-访问其中一个目录的文件拿到用户 craven 的哈希
-
-查看家目录发现两个用户都可以访问
-
-翻到了提示文件
-
-在别的文件中发现密码的组合方式
-
-成功爆破出密码
-1931qwert
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/pluck%201/" aria-label="VulnHub pluck：1" title="VulnHub pluck：1"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub pluck：1" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-01</span>
-        <span><span class="icon-pencil"></span>888 字</span>
-        <span><span class="icon-clock"></span>4 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub pluck：1</h2>
-      <article class="post-article">
-          pluck: 1项目地址：https://download.vulnhub.com/pluck/pluck.ova.zip
-是一个打包好的镜像文件
-注意：导入 vmx 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-任意文件读取Pluck访问 80 端口发现存在 ?page 参数
-
-尝试读取 /etc/passwd 文件成功
-
-读取脚本文件 /usr/local/scripts/backup.sh
-提示备份文件存放于 /backups/backup.tar
-1#!/bin/bash ######################## # Server Backup
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/4/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/6/">下一页 &raquo;</a>
   </nav>
@@ -618,11 +605,11 @@ BP 抓包使用换行符绕过
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">16</div>
+    <div class="sidebar-state-number">18</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">175</div>
+    <div class="sidebar-state-number">178</div>
   </div>
 </div>
 <div class="sidebar-social" >

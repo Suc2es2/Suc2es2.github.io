@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   <title>
-    Many-Time Pad | 雾島风起時
+    RSA 共模攻击 | 雾島风起時
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,18 +17,18 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="Many-Time Pad攻击原理设明文 P1、P2 用同一个密钥 K 加密，得到密文 C1、C2： 12C1 &#x3D; P1 XOR KC2 &#x3D; P2 XOR K  攻击者截获两条密文后，可以计算它们的异或： 123C1 XOR C2 &#x3D; (P1 XOR K) XOR (P2 XOR K)           &#x3D; P1 XOR P2 XOR (K XOR K)           &#x3D; P1 XOR P">
+    <meta name="description" content="RSA 共模攻击前置条件有两把 “公钥”：(n, e1) 和 (n, e2) 注意：n 完全相同，但 e1 与 e2 不同且互质 同一份明文 m，分别用这两把公钥加密，生成了两个密文：  c1 &#x3D; m^e1 mod n  c2 &#x3D; m^e2 mod n   如果只知道 c1, c2, e1, e2, n，没有私钥也能算出 m 贝祖等式共模攻击完全建立在贝祖等式上 如果两个整数 e1 和 e2 互质">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Many-Time Pad">
-<meta property="og:url" content="http://example.com/2019/05/22/Many-Time%20Pad/index.html">
+<meta property="og:title" content="RSA 共模攻击">
+<meta property="og:url" content="http://example.com/2026/05/12/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="Many-Time Pad攻击原理设明文 P1、P2 用同一个密钥 K 加密，得到密文 C1、C2： 12C1 &#x3D; P1 XOR KC2 &#x3D; P2 XOR K  攻击者截获两条密文后，可以计算它们的异或： 123C1 XOR C2 &#x3D; (P1 XOR K) XOR (P2 XOR K)           &#x3D; P1 XOR P2 XOR (K XOR K)           &#x3D; P1 XOR P">
+<meta property="og:description" content="RSA 共模攻击前置条件有两把 “公钥”：(n, e1) 和 (n, e2) 注意：n 完全相同，但 e1 与 e2 不同且互质 同一份明文 m，分别用这两把公钥加密，生成了两个密文：  c1 &#x3D; m^e1 mod n  c2 &#x3D; m^e2 mod n   如果只知道 c1, c2, e1, e2, n，没有私钥也能算出 m 贝祖等式共模攻击完全建立在贝祖等式上 如果两个整数 e1 和 e2 互质">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-05-22T06:18:00.000Z">
-<meta property="article:modified_time" content="2026-05-25T10:10:47.551Z">
+<meta property="article:published_time" content="2026-05-12T06:18:00.000Z">
+<meta property="article:modified_time" content="2026-06-06T01:36:17.456Z">
 <meta property="article:author" content="ALL">
-<meta property="article:tag" content="Crypto">
-<meta property="article:tag" content="Many-Time Pad">
+<meta property="article:tag" content="共模攻击">
+<meta property="article:tag" content="现代密码">
 <meta name="twitter:card" content="summary">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
@@ -128,11 +128,11 @@
 <header id="header" aria-label="Site header">
         <picture>
         </picture>
-          <img  fetchpriority="high" src="/images/banner.webp" alt="Many-Time Pad">
+          <img  fetchpriority="high" src="/images/banner.webp" alt="RSA 共模攻击">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">Many-Time Pad</h1>
+            <h1 data-aos="slide-up">RSA 共模攻击</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -147,7 +147,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Many-Time-Pad"><span class="toc-number">1.</span> <span class="toc-text">Many-Time Pad</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">攻击原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crib%E2%80%91dragging"><span class="toc-number">1.2.</span> <span class="toc-text">Crib‑dragging</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E6%A1%88%E4%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text">详细案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%AE%A1%E7%AE%97-XOR-C1-XOR-C2-P1-XOR-P2"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 计算 XOR &#x3D; C1 XOR C2 &#x3D; P1 XOR P2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AF%BB%E6%89%BE%E5%AD%97%E6%AF%8D%E5%AD%97%E8%8A%82"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 寻找字母字节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%A9%E7%94%A8%E4%B8%8A%E4%B8%8B%E6%96%87%E5%8C%BA%E5%88%86%E7%A9%BA%E6%A0%BC%E5%BD%92%E5%B1%9E"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. 利用上下文区分空格归属</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%8E%A8%E6%BC%94"><span class="toc-number">1.3.4.</span> <span class="toc-text">4. 推演</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RSA-%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB"><span class="toc-number">1.</span> <span class="toc-text">RSA 共模攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">前置条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%9D%E7%A5%96%E7%AD%89%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">贝祖等式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E6%80%9D%E8%B7%AF"><span class="toc-number">1.3.</span> <span class="toc-text">攻击思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%BE%E7%82%B9%E2%80%94%E2%80%94%E8%B4%9F%E6%8C%87%E6%95%B0"><span class="toc-number">1.4.</span> <span class="toc-text">难点——负指数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E9%80%86%E5%85%83"><span class="toc-number">1.4.1.</span> <span class="toc-text">模逆元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95"><span class="toc-number">1.4.2.</span> <span class="toc-text">解法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E5%9B%BE"><span class="toc-number">1.5.</span> <span class="toc-text">步骤图</span></a></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -162,11 +162,11 @@
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">16</div>
+    <div class="sidebar-state-number">18</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">175</div>
+    <div class="sidebar-state-number">178</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -219,13 +219,13 @@
   </div>
 </aside>
 
-          <section id="main" aria-label="Main content"><article id="post-Many-Time Pad" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main" aria-label="Main content"><article id="post-共模攻击" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2019-05-22T06:18:00.000Z" itemprop="datePublished">2019-05-22</time>
-    <time style="display: none;" id="post-update-time">2026-05-25</time>
+    <time datetime="2026-05-12T06:18:00.000Z" itemprop="datePublished">2026-05-12</time>
+    <time style="display: none;" id="post-update-time">2026-06-06</time>
   </span>
 </div>
 
@@ -234,101 +234,71 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="Many-Time-Pad"><a href="#Many-Time-Pad" class="headerlink" title="Many-Time Pad"></a>Many-Time Pad</h1><h2 id="攻击原理"><a href="#攻击原理" class="headerlink" title="攻击原理"></a>攻击原理</h2><p>设明文 <code>P1</code>、<code>P2</code> 用同一个密钥 <code>K</code> 加密，得到密文 <code>C1</code>、<code>C2</code>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C1 = P1 XOR K</span><br><span class="line">C2 = P2 XOR K</span><br></pre></td></tr></table></figure>
-
-<p>攻击者截获两条密文后，可以计算它们的异或：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C1 XOR C2 = (P1 XOR K) XOR (P2 XOR K) </span><br><span class="line">          = P1 XOR P2 XOR (K XOR K) </span><br><span class="line">          = P1 XOR P2</span><br></pre></td></tr></table></figure>
-
-<p>密钥被完全消除，攻击者得到了 <code>P1 XOR P2</code></p>
-<p>通过交互式的猜测（crib‑dragging），攻击者能将两条明文分离开，进而还原密钥并读取所有用同一密钥加密的消息</p>
-<h2 id="Crib‑dragging"><a href="#Crib‑dragging" class="headerlink" title="Crib‑dragging"></a>Crib‑dragging</h2><p>假设我们猜测某条明文的某个位置可能出现一个单词（称为 crib），例如 <code>&quot;the &quot;</code> 或 <code>&quot;secret&quot;</code></p>
-<p>将该 crib 异或到 <code>P1 XOR P2</code> 的对应位置：</p>
+        <h1 id="RSA-共模攻击"><a href="#RSA-共模攻击" class="headerlink" title="RSA 共模攻击"></a>RSA 共模攻击</h1><h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><p>有两把 “公钥”：<code>(n, e1)</code> 和 <code>(n, e2)</code></p>
+<p>注意：<code>n</code> 完全相同，但 <code>e1</code> 与 <code>e2</code> 不同且互质</p>
+<p>同一份明文 <code>m</code>，分别用这两把公钥加密，生成了两个密文：</p>
 <ul>
-<li><p>如果猜测的 crib 恰好是 <code>P1</code> 的子串，则运算结果就会变成 <code>P2</code> 对应位置的原文</p>
+<li><p><code>c1 = m^e1 mod n</code></p>
 </li>
-<li><p>如果结果是可读的英文（或符合语言习惯），则猜测很可能正确</p>
-</li>
-<li><p>随后可以从 <code>P2</code> 的已知片段继续猜测 <code>P1</code> 的其他部分，逐步 “拖拽” 出整段明文</p>
+<li><p><code>c2 = m^e2 mod n</code></p>
 </li>
 </ul>
-<p>另一个重要技巧是 “空格特性”：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x27;A&#x27; XOR 0x20 = &#x27;a&#x27;   （大写变小写）</span><br><span class="line">&#x27;a&#x27; XOR 0x20 = &#x27;A&#x27;   （小写变大写）</span><br><span class="line">空格(0x20) XOR 字母 = 翻转该字母的大小写</span><br></pre></td></tr></table></figure>
+<p>如果只知道 <code>c1</code>, <code>c2</code>, <code>e1</code>, <code>e2</code>, <code>n</code>，没有私钥也能算出 <code>m</code></p>
+<h2 id="贝祖等式"><a href="#贝祖等式" class="headerlink" title="贝祖等式"></a>贝祖等式</h2><p>共模攻击完全建立在<strong>贝祖等式</strong>上</p>
+<p>如果两个整数 <code>e1</code> 和 <code>e2</code> 互质，那么存在整数 <code>s</code> 和 <code>t</code> 使得：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e1 * s + e2 * t = 1</span><br></pre></td></tr></table></figure>
 
-<p>在 <code>P1 XOR P2</code> 中，若某个字节呈现出一个字母（<code>0x41‑0x5A</code> 或 <code>0x61‑0x7A</code>），极大概率说明该位置一个明文是空格，另一个是对应的大小写翻转字母</p>
-<p>通过判断上下文，可以标出空格位置，极大加速破解</p>
-<h2 id="详细案例"><a href="#详细案例" class="headerlink" title="详细案例"></a>详细案例</h2><p>假设攻击者截获的密文如下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C1: 0E 56 77 5F 38 79 FA 5F 52 1C 2F 3C 39 5E 5C 1E 5B 6F</span><br><span class="line">C2: 13 4A 32 16 38 3C F8 0D 5A 11 7C 21 2F 0C 4A 4A 0E 6F</span><br></pre></td></tr></table></figure>
+<p>在 Python 里我们可以直接用 <code>gmpy2.gcdext(e1, e2)</code>，它会返回 <code>(g, s, t)</code>，其中 <code>g=1</code>（因为互质）</p>
+<h2 id="攻击思路"><a href="#攻击思路" class="headerlink" title="攻击思路"></a>攻击思路</h2><p>如果 <code>e1*s + e2*t = 1</code> 成立，我们构造这样一个组合：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">c1^s * c2^t  ≡ (m^e1)^s * (m^e2)^t</span><br><span class="line">             ≡ m^(e1*s + e2*t)</span><br><span class="line">             ≡ m^1</span><br><span class="line">             ≡ m (mod n)</span><br></pre></td></tr></table></figure>
 
-<h3 id="1-计算-XOR-C1-XOR-C2-P1-XOR-P2"><a href="#1-计算-XOR-C1-XOR-C2-P1-XOR-P2" class="headerlink" title="1. 计算 XOR = C1 XOR C2 = P1 XOR P2"></a>1. 计算 <code>XOR = C1 XOR C2 = P1 XOR P2</code></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X = C1 XOR C2:</span><br><span class="line">1D 1C 45 49 00 45 02 52 08 0D 53 1D 16 52 16 54 55 00</span><br></pre></td></tr></table></figure>
+<p>也就是说，<code>c1^s1 · c2^s2 mod n</code> 直接就等于我们想要的明文 <code>m</code></p>
+<h2 id="难点——负指数"><a href="#难点——负指数" class="headerlink" title="难点——负指数"></a>难点——负指数</h2><p>但是 <code>s</code> 和 <code>t</code> 中一定有一个是负数（因为 <code>e1</code> 和 <code>e2</code> 都是正数，但它们的线性组合要等于 1，只能一个正一个负）</p>
+<p>在普通数学中，<code>c1^s1</code> 如果指数是负数，比如 <code>c1^{-3}</code>，就是 <code>1 / (c1^3)</code></p>
+<p>但在模 <code>n</code> 的世界里，没有直接的小数除法，我们用乘法逆元（也叫模逆元）来取代除法</p>
+<h3 id="模逆元"><a href="#模逆元" class="headerlink" title="模逆元"></a>模逆元</h3><p>举个例子，在模 <code>n</code> 下，<code>a</code> 的逆元是 <code>a^{-1}</code> ，它满足：：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a × a^&#123;-1&#125; ≡ 1 (mod n)</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-寻找字母字节"><a href="#2-寻找字母字节" class="headerlink" title="2. 寻找字母字节"></a>2. 寻找字母字节</h3><p>攻击者遍历 <code>X</code> 的每一个字节，识别所有落在字母范围的值：</p>
+<p>例如，<code>n = 7</code>，<code>a = 3</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3 × 5 = 15 ≡ 1 (mod 7)</span><br></pre></td></tr></table></figure>
+
+<p>所以 3 的逆元是 5</p>
+<p>有了逆元之后，我们就可以定义 “负指数” 了</p>
+<p><code>c1^{-k}</code> 就定义为 <code>(c1^{-1})^k</code>（<code>k</code> 是正数）</p>
+<p><strong>也就是先求 <code>c1</code> 的逆元，再把它取 <code>k</code> 次方</strong></p>
+<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>设我们算出 <code>s1 &lt; 0</code>, <code>s2 &gt; 0</code>：</p>
 <ul>
-<li><p><code>X[2] = 0x45</code> → ‘E’ (大写字母)</p>
+<li><ol>
+<li>对 <code>s1</code> 取相反数：<code>s1&#39; = -s1</code></li>
+</ol>
 </li>
-<li><p><code>X[3] = 0x49</code> → ‘I’ (大写字母)</p>
-</li>
-<li><p><code>X[5] = 0x45</code> → ‘E’</p>
-</li>
-<li><p><code>X[7] = 0x52</code> → ‘R’</p>
-</li>
-<li><p><code>X[10] = 0x53</code> → ‘S’</p>
-</li>
-<li><p><code>X[13] = 0x52</code> → ‘R’</p>
-</li>
-<li><p><code>X[15] = 0x54</code> → ‘T’</p>
-</li>
-<li><p><code>X[16] = 0x55</code> → ‘U’</p>
+<li><ol start="2">
+<li>计算 <code>c1</code> 在模 <code>n</code> 下的乘法逆元 <code>inv_c1</code>，满足 <code>c1 * inv_c1 ≡ 1 (mod n)</code></li>
+</ol>
 </li>
 </ul>
-<p>得到候选位置：索引 <code>2, 3, 5, 7, 10, 13, 15, 16</code></p>
-<h3 id="3-利用上下文区分空格归属"><a href="#3-利用上下文区分空格归属" class="headerlink" title="3. 利用上下文区分空格归属"></a>3. 利用上下文区分空格归属</h3><p>现在攻击者需要判断在候选位置上，空格究竟属于 <code>P1</code> 还是 <code>P2</code></p>
-<p>这里利用第二个统计特性：空格在英文中频繁出现，且通常分隔单词。如果某个位置是空格，那么其前后往往是字母</p>
-<p>攻击者可以结合候选字母的大小写和局部结构进行推断。例如，索引 <code>2</code> 的 <code>X[2] = &#39;E&#39;</code>：</p>
-<ul>
-<li><p>假设 <code>P1[2] = 空格 (0x20)</code>，则 <code>P2[2] = 0x20 XOR 0x45 = 0x65 = &#39;e&#39;（小写 e）</code>。</p>
-</li>
-<li><p>假设 <code>P2[2] = 空格</code>，则 <code>P1[2] = 0x20 XOR 0x45 = 0x65 = &#39;e&#39;</code></p>
-</li>
-</ul>
-<p>单独看无法确定，但我们可以借助其他候选位置的相互关系。英文单词通常不会连续两个空格</p>
-<p>所以如果两个候选位置相邻或相近，它们不可能同时是空格</p>
-<p>更进一步，攻击者还会采用一种策略：暂时假设某一个位置的空格归属，然后看能否推导出连贯的字母序列</p>
-<p>如果错误，推导出的片段会呈现乱码或不符合英文音节；如果正确，则能拼接出可读的单词片段</p>
-<h3 id="4-推演"><a href="#4-推演" class="headerlink" title="4. 推演"></a>4. 推演</h3><p>考虑索引 13 到 16：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X[13]=R, X[15]=T, X[16]=U（索引14不是字母）</span><br></pre></td></tr></table></figure>
-
-<p>如果 <code>P1</code> 在这些位置中有空格，推导出的 <code>P2</code> 对应字母会形成某种模式</p>
-<p>尝试先从 <code>X[16]=U</code> 开始，英文单词结尾很少出现单独的大写 U，更可能是小写 u</p>
-<p>假设 <code>P2[16] = 空格 (0x20)</code>，则 <code>P1[16] = 0x20 XOR 0x55 = 0x75 = &#39;u&#39;</code></p>
-<p>同时 <code>X[17]=00</code> 意味着 <code>P1[17] = P2[17]</code></p>
-<p>英文中，单词结尾后可能是标点，比如 <code>&#39;.&#39;</code>（<code>0x2E</code>）或 <code>&#39;!&#39;</code>，我们稍后再看</p>
-<p>再看 <code>X[15]=T</code>，假设 <code>P2[15] = 空格</code>，则 <code>P1[15] = 0x20 XOR 0x54 = 0x74 = &#39;t&#39;</code></p>
-<p>现在我们得到 <code>P1[15]=&#39;t&#39;</code>, <code>P1[16]=&#39;u&#39;</code>，连续小写字母 <code>&quot;tu&quot;</code></p>
-<p>若转而假设 <code>P1[15]=空格</code>，则 <code>P2[15]=0x20 XOR 0x54=0x74=&#39;t&#39;</code>，且 <code>P1[16]</code> 如果是空格（<code>X[16]=U</code> 归因于 <code>P2</code> 是空格），则 <code>P2[16]=0x20 XOR 0x55=0x75=&#39;u&#39;</code>，得到 <code>P2</code> 的 <code>&quot;tu&quot;</code>,目前无法辨别</p>
-<p>…………</p>
-<p>经过几次回溯后确认</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">P1: &quot;The secret is out.&quot;</span><br><span class="line">P2: &quot;It is a mystery!!.&quot;</span><br></pre></td></tr></table></figure>
+<p>经过这一步，原来 <code>c1^s1</code>（带负指数）就等价于 <code>inv_c1 ^ (s1&#39;)</code></p>
+<h2 id="步骤图"><a href="#步骤图" class="headerlink" title="步骤图"></a>步骤图</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">① 提取 n, e1, e2, c1, c2</span><br><span class="line">        ↓</span><br><span class="line">② 扩展欧几里得 → g, s1, s2   (g=1)</span><br><span class="line">        ↓</span><br><span class="line">③ 如果 s1&lt;0：s1 = -s1；c1 = c1的逆元 mod n</span><br><span class="line">  如果 s2&lt;0：s2 = -s2；c2 = c2的逆元 mod n</span><br><span class="line">        ↓</span><br><span class="line">④ m = (c1^s1 mod n) * (c2^s2 mod n)  mod n</span><br><span class="line">        ↓</span><br><span class="line">⑤ 整数 m 转字符串 → flag</span><br></pre></td></tr></table></figure>
     </div>
     <footer class="article-footer">
-        <a class="article-category-link" href="/categories/Crypto/" title="Crypto" data-aos="zoom-in">Crypto</a>
+        <a class="article-category-link" href="/categories/%E7%8E%B0%E4%BB%A3%E5%AF%86%E7%A0%81/" title="现代密码" data-aos="zoom-in">现代密码</a>
 
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Crypto/" rel="tag" title="Crypto">Crypto</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Many-Time-Pad/" rel="tag" title="Many-Time Pad">Many-Time Pad</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/" rel="tag" title="共模攻击">共模攻击</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E7%8E%B0%E4%BB%A3%E5%AF%86%E7%A0%81/" rel="tag" title="现代密码">现代密码</a></li></ul>
 
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="Asmuth-Bloom" class="lazyload">
-        <a href="/2019/05/22/Asmuth-Bloom/" aria-label="前一篇: Asmuth-Bloom" title="前一篇: Asmuth-Bloom"></a>
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="中国剩余定理" class="lazyload">
+        <a href="/2026/05/13/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86/" aria-label="前一篇: 中国剩余定理" title="前一篇: 中国剩余定理"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            Asmuth-Bloom
+            中国剩余定理
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Vigenère 密码" class="lazyload">
-      <a href="/2019/05/22/Vigen%C3%A8re%20%E5%AF%86%E7%A0%81/" aria-label="后一篇: Vigenère 密码"  title="后一篇: Vigenère 密码"></a>
+      <a href="/2026/05/11/Vigen%C3%A8re%20%E5%AF%86%E7%A0%81/" aria-label="后一篇: Vigenère 密码"  title="后一篇: Vigenère 密码"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
           Vigenère 密码
@@ -383,7 +353,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Many-Time-Pad"><span class="toc-number">1.</span> <span class="toc-text">Many-Time Pad</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">攻击原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crib%E2%80%91dragging"><span class="toc-number">1.2.</span> <span class="toc-text">Crib‑dragging</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E6%A1%88%E4%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text">详细案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%AE%A1%E7%AE%97-XOR-C1-XOR-C2-P1-XOR-P2"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 计算 XOR &#x3D; C1 XOR C2 &#x3D; P1 XOR P2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AF%BB%E6%89%BE%E5%AD%97%E6%AF%8D%E5%AD%97%E8%8A%82"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 寻找字母字节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%88%A9%E7%94%A8%E4%B8%8A%E4%B8%8B%E6%96%87%E5%8C%BA%E5%88%86%E7%A9%BA%E6%A0%BC%E5%BD%92%E5%B1%9E"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. 利用上下文区分空格归属</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%8E%A8%E6%BC%94"><span class="toc-number">1.3.4.</span> <span class="toc-text">4. 推演</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RSA-%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB"><span class="toc-number">1.</span> <span class="toc-text">RSA 共模攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">前置条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%9D%E7%A5%96%E7%AD%89%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">贝祖等式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E6%80%9D%E8%B7%AF"><span class="toc-number">1.3.</span> <span class="toc-text">攻击思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%BE%E7%82%B9%E2%80%94%E2%80%94%E8%B4%9F%E6%8C%87%E6%95%B0"><span class="toc-number">1.4.</span> <span class="toc-text">难点——负指数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E9%80%86%E5%85%83"><span class="toc-number">1.4.1.</span> <span class="toc-text">模逆元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%B3%95"><span class="toc-number">1.4.2.</span> <span class="toc-text">解法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4%E5%9B%BE"><span class="toc-number">1.5.</span> <span class="toc-text">步骤图</span></a></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -398,11 +368,11 @@
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">16</div>
+    <div class="sidebar-state-number">18</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">175</div>
+    <div class="sidebar-state-number">178</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -511,13 +481,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "ALL",
-          title: "Many-Time Pad",
-          url: "http://example.com/2019/05/22/Many-Time%20Pad/",
+          title: "RSA 共模攻击",
+          url: "http://example.com/2026/05/12/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/",
           excerpt: "",
           description: "",
-          stripContent: "Many-Time Pad攻击原理设明文 P1、P2 用同一个密钥 K 加密，得到密文 C1、C2： 12C1 = P1 XOR KC2 = P2 XOR K  攻击者截获两条密文后，可以计算它们的异或： 123C1 XOR C2 = (P1 XOR K) XOR (P2 XOR K)           = P1 XOR P2 XOR (K XOR K)           = P1 XOR P2  密钥被完全消除，攻击者得到了 P1 XOR P2 通过交互式的猜测（crib‑dragging",
-          date: "Wed May 22 2019 14:18:00 GMT+0800",
-          updated: "Mon May 25 2026 18:10:47 GMT+0800",
+          stripContent: "RSA 共模攻击前置条件有两把 “公钥”：(n, e1) 和 (n, e2) 注意：n 完全相同，但 e1 与 e2 不同且互质 同一份明文 m，分别用这两把公钥加密，生成了两个密文：  c1 = m^e1 mod n  c2 = m^e2 mod n   如果只知道 c1, c2, e1, e2, n，没有私钥也能算出 m 贝祖等式共模攻击完全建立在贝祖等式上 如果两个整数 e1 和 e2 互质，那么存在整数 s 和 t 使得： 1e1 * s + e2 * t = 1  在 Python 里",
+          date: "Tue May 12 2026 14:18:00 GMT+0800",
+          updated: "Sat Jun 06 2026 09:36:17 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
