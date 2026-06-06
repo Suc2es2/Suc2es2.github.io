@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">116</div>
+    <div class="sidebar-state-number">118</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -160,7 +160,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">178</div>
+    <div class="sidebar-state-number">150</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -355,8 +355,39 @@ Ignore Certificate Errors：当 SMTP 服务器使用自签名
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/12/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/" aria-label="RSA 共模攻击" title="RSA 共模攻击"></a>
+      <a class="post-link" href="/2026/05/12/GCD%20%E6%94%BB%E5%87%BB/" aria-label="RSA GCD 攻击" title="RSA GCD 攻击"></a>
     <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="RSA GCD 攻击" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-05-12</span>
+        <span><span class="icon-pencil"></span>99 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
+      </div>
+      <h2 class="post-title">RSA GCD 攻击</h2>
+      <article class="post-article">
+          RSA GCD 攻击攻击原理假设：
+12n1 = p * q1n2 = p * q2
+
+p 是同一个素数，q1 和 q2 不同
+攻击者可以计算：
+1p = gcd(n1, n2)
+
+因为 p 同时整除 n1 和 n2，并且 n1 和 n2 除了 p 之外没有其他公共因子（q1 和 q2 不同，且都是素数）
+一旦得到 p，立刻得到：
+12q1 = n1 / pq2 = n2 / p
+
+进而恢复私钥 d1 和 d2
+
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/05/12/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/" aria-label="RSA 共模攻击" title="RSA 共模攻击"></a>
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="RSA 共模攻击" class="lazyload">
     </div>
     <div class="post-info">
@@ -387,36 +418,40 @@ c2 = m^e2 mod n
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/11/Many-Time%20Pad/" aria-label="Many-Time Pad" title="Many-Time Pad"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="Many-Time Pad" class="lazyload">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/05/11/RSA/" aria-label="RSA" title="RSA"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="RSA" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2026-05-11</span>
-        <span><span class="icon-pencil"></span>1.1k 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
+        <span><span class="icon-pencil"></span>447 字</span>
+        <span><span class="icon-clock"></span>3 分钟</span>
       </div>
-      <h2 class="post-title">Many-Time Pad</h2>
+      <h2 class="post-title">RSA</h2>
       <article class="post-article">
-          Many-Time Pad攻击原理设明文 P1、P2 用同一个密钥 K 加密，得到密文 C1、C2：
-12C1 = P1 XOR KC2 = P2 XOR K
+          RSA欧拉函数 φ(n)φ(n) 表示 “小于等于 n 且与 n 互质的正整数的个数”
 
-攻击者截获两条密文后，可以计算它们的异或：
-123C1 XOR C2 = (P1 XOR K) XOR (P2 XOR K)           = P1 XOR P2 XOR (K XOR K)           = P1 XOR P2
+如果 n 是质数 p，那么 φ(p) &amp;#x3D; p - 1（因为 1,2,…,p-1 都和 p 互质）
 
-密钥被完全消除，攻击者得到了 P1 XOR P2
-通过交互式的猜测（crib‑dragging），攻击者能将两条明文分离开，进而还原密钥并读取所有用同一密钥加密的消息
-Crib‑dragging
+如果 n &amp;#x3D; p * q，且 p、q 都是质数，那么 φ(n) = (p - 1) * (q - 1)
+
+例如 p &amp;#x3D; 5, q &amp;#x3D; 11，则 n &amp;#x3D; 55，φ(55) &amp;#x3D; 4 * 10 &amp;#x3D; 40
+
+
+密钥生成选两个大质数 p 和 q实际中 p、q 有 1024 位或 2048 位，这里我们用小数字演示
+12p = 61q = 53
+
+计
       </article>
     </div>
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/05/11/Vigen%C3%A8re%20%E5%AF%86%E7%A0%81/" aria-label="Vigenère 密码" title="Vigenère 密码"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Vigenère 密码" class="lazyload">
     </div>
     <div class="post-info">
@@ -441,9 +476,9 @@ Crib‑dragging
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/05/11/%E6%81%8B%E4%BA%BA%E7%A9%BA%E9%97%B4%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A1%94%E7%BD%97%E7%89%8C%E8%A7%A3%E5%AF%86/" aria-label="恋人空间小程序塔罗牌解密" title="恋人空间小程序塔罗牌解密"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="恋人空间小程序塔罗牌解密" class="lazyload">
     </div>
     <div class="post-info">
@@ -473,9 +508,9 @@ Crib‑dragging
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/05/11/%E7%94%B5%E7%AB%9E%E6%8A%95%E8%AF%89%E9%99%AA%E7%8E%A9XSS/" aria-label="某电竞俱乐部小程序投诉陪玩与客服对话文件上传 XSS（两个）" title="某电竞俱乐部小程序投诉陪玩与客服对话文件上传 XSS（两个）"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="某电竞俱乐部小程序投诉陪玩与客服对话文件上传 XSS（两个）" class="lazyload">
     </div>
     <div class="post-info">
@@ -505,9 +540,9 @@ XSS在投诉页面发现可以上传图片
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/05/10/Noob%201/" aria-label="VulnHub Noob：1" title="VulnHub Noob：1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Noob：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -539,37 +574,6 @@ https://pic1.im
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/10/%E7%94%B5%E7%AB%9E%E5%AE%A2%E6%9C%8D%E8%B6%8A%E6%9D%83%E8%8E%B7%E5%8F%96%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95/" aria-label="某电竞小程序越权查看与客服聊天记录（可遍历）" title="某电竞小程序越权查看与客服聊天记录（可遍历）"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="某电竞小程序越权查看与客服聊天记录（可遍历）" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-05-10</span>
-        <span><span class="icon-pencil"></span>145 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">某电竞小程序越权查看与客服聊天记录（可遍历）</h2>
-      <article class="post-article">
-          某电竞小程序越权查看与客服聊天记录（可遍历）前言本次测试属于公益类型的 SRC
-越权抓取点进与客服聊天的流量包
-
-content 是聊天内容，发现存在两个关键参数
-一个是 id，另一个则是 token
-
-置空 token 后仍能获取聊天记录，所以存在漏洞的参数是 id
-
-用虚拟机里的小号去获取下 id
-
-替换掉并发包成功越权，并且推测到这个参数应该是可遍历的，两个参数值相差 2
-
-
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
   </nav>
@@ -593,10 +597,10 @@ content 是聊天内容，发现存在两个关键参数
       </div>
       <div>
         <span class="icon-brush"></span>
-        115.7k
+        115.8k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        09:34
+        09:36
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -624,7 +628,7 @@ content 是聊天内容，发现存在两个关键参数
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">116</div>
+    <div class="sidebar-state-number">118</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -632,7 +636,7 @@ content 是聊天内容，发现存在两个关键参数
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">178</div>
+    <div class="sidebar-state-number">150</div>
   </div>
 </div>
 <div class="sidebar-social" >
