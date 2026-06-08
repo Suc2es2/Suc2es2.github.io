@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">124</div>
+    <div class="sidebar-state-number">125</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -160,7 +160,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">160</div>
+    <div class="sidebar-state-number">162</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -220,6 +220,9 @@
       <div class="widget">
         <ul>
             <li>
+              <a href="/2026/06/08/Napping%201.0.1/" title="VulnHub Napping：1.0.1">VulnHub Napping：1.0.1</a>
+            </li>
+            <li>
               <a href="/2026/06/08/Red%201/" title="VulnHub Red：1">VulnHub Red：1</a>
             </li>
             <li>
@@ -230,9 +233,6 @@
             </li>
             <li>
               <a href="/2026/05/25/Tomcat%20%E5%AE%9E%E6%88%98/" title="实战——Tomcat 站点渗透">实战——Tomcat 站点渗透</a>
-            </li>
-            <li>
-              <a href="/2026/05/23/pgAdmin%204%20%E5%AD%98%E5%82%A8%E5%9E%8B%20XSS%EF%BC%88CVE-2026-7814%EF%BC%89/" title="pgAdmin 4 存储型 XSS（CVE-2026-7814）">pgAdmin 4 存储型 XSS（CVE-2026-7814）</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,41 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/19/XMCVE--%E9%82%AE%E4%BB%B6%E9%92%93%E9%B1%BC%201/" aria-label="出题——XMCVE--邮件钓鱼 1" title="出题——XMCVE--邮件钓鱼 1"></a>
+      <a class="post-link" href="/2026/05/19/%E5%85%85%E7%94%B5%E6%A1%A9%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%89%93%E7%A9%BF/" aria-label="某充电桩小程序后台接管&amp;越权修改他人信息以及密码（可遍历）" title="某充电桩小程序后台接管&amp;越权修改他人信息以及密码（可遍历）"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="某充电桩小程序后台接管&amp;越权修改他人信息以及密码（可遍历）" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-05-19</span>
+        <span><span class="icon-pencil"></span>167 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
+      </div>
+      <h2 class="post-title">某充电桩小程序后台接管&amp;越权修改他人信息以及密码（可遍历）</h2>
+      <article class="post-article">
+          某充电桩小程序后台接管&amp;amp;越权修改他人信息以及密码（可遍历）前言本次测试属于公益类型的 SRC
+弱口令抓包搜集域名信息发现有后台
+
+弱口令直接登录成功
+
+越权在编辑资料这一块
+
+抓包发现后端是根据 id 参数来进行修改的，与 uuid 无关
+
+在别的接口中发现有通过 uuid 来获取 id 的
+
+开小号修改 id 为小号的，测试存在越权漏洞，并且 id 可遍历
+其中小号的任何信息都可以被修改，不限于用户名、手机号、密码等等
+
+
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/05/19/XMCVE--%E9%82%AE%E4%BB%B6%E9%92%93%E9%B1%BC%201/" aria-label="出题——XMCVE--邮件钓鱼 1" title="出题——XMCVE--邮件钓鱼 1"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="出题——XMCVE--邮件钓鱼 1" class="lazyload">
     </div>
     <div class="post-info">
@@ -273,9 +306,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/05/18/%E9%93%BE%E6%8E%A5%E9%92%93%E9%B1%BC--%E5%85%8B%E9%9A%86%E9%A1%B5%E9%9D%A2/" aria-label="链接钓鱼--克隆页面获取凭证" title="链接钓鱼--克隆页面获取凭证"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="链接钓鱼--克隆页面获取凭证" class="lazyload">
     </div>
     <div class="post-info">
@@ -299,9 +332,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/05/16/Gophish/" aria-label="Gophish 配置教程" title="Gophish 配置教程"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Gophish 配置教程" class="lazyload">
     </div>
     <div class="post-info">
@@ -347,9 +380,9 @@ Ignore Certificate Errors：当 SMTP 服务器使用自签名
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/05/14/Asmuth-Bloom/" aria-label="Asmuth-Bloom 方案" title="Asmuth-Bloom 方案"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Asmuth-Bloom 方案" class="lazyload">
     </div>
     <div class="post-info">
@@ -381,9 +414,9 @@ Ignore Certificate Errors：当 SMTP 服务器使用自签名
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/05/13/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86/" aria-label="中国剩余定理" title="中国剩余定理"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="中国剩余定理" class="lazyload">
     </div>
     <div class="post-info">
@@ -409,9 +442,9 @@ Ignore Certificate Errors：当 SMTP 服务器使用自签名
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/05/12/GCD%20%E6%94%BB%E5%87%BB/" aria-label="RSA GCD 攻击" title="RSA GCD 攻击"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="RSA GCD 攻击" class="lazyload">
     </div>
     <div class="post-info">
@@ -440,9 +473,9 @@ p 是同一个素数，q1 和 q2 不同
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/05/12/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/" aria-label="RSA 共模攻击" title="RSA 共模攻击"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="RSA 共模攻击" class="lazyload">
     </div>
     <div class="post-info">
@@ -473,9 +506,9 @@ c2 = m^e2 mod n
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/05/11/RSA/" aria-label="RSA" title="RSA"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="RSA" class="lazyload">
     </div>
     <div class="post-info">
@@ -504,9 +537,9 @@ c2 = m^e2 mod n
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/05/11/Vigen%C3%A8re%20%E5%AF%86%E7%A0%81/" aria-label="Vigenère 密码" title="Vigenère 密码"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Vigenère 密码" class="lazyload">
     </div>
     <div class="post-info">
@@ -526,38 +559,6 @@ c2 = m^e2 mod n
 
 步骤三：逐位加密对于明文的第 i 个字母 P_i，对应密钥的第 i 个字母 K_i
 用公式表示的话如下，其实就是位移，例如明文 h 
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/11/%E6%81%8B%E4%BA%BA%E7%A9%BA%E9%97%B4%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A1%94%E7%BD%97%E7%89%8C%E8%A7%A3%E5%AF%86/" aria-label="恋人空间小程序塔罗牌解密" title="恋人空间小程序塔罗牌解密"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="恋人空间小程序塔罗牌解密" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-05-11</span>
-        <span><span class="icon-pencil"></span>142 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">恋人空间小程序塔罗牌解密</h2>
-      <article class="post-article">
-          恋人空间小程序塔罗牌解密前言本次测试不涉及任何漏洞
-塔罗牌解密进入小程序点击 “爱情塔罗”
-
-来到这个界面后抓包点击 “立即开始”
-
-随便输入一个问题
-
-在抽牌界面可以看到已经有一个包发出去了
-
-这个包返回的就是用户抽的三个卡牌
-你以为是你自己抽的，实际上是后端随机发的（&amp;gt;_&amp;lt;）
-我们要做坚定的唯物主义者，伟大的共产主义战士！！！
-
-
       </article>
     </div>
   </div>
@@ -585,10 +586,10 @@ c2 = m^e2 mod n
       </div>
       <div>
         <span class="icon-brush"></span>
-        119.5k
+        119.9k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        09:55
+        09:57
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -616,7 +617,7 @@ c2 = m^e2 mod n
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">124</div>
+    <div class="sidebar-state-number">125</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -624,7 +625,7 @@ c2 = m^e2 mod n
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">160</div>
+    <div class="sidebar-state-number">162</div>
   </div>
 </div>
 <div class="sidebar-social" >
