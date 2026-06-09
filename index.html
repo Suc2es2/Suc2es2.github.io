@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">127</div>
+    <div class="sidebar-state-number">128</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -160,7 +160,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">162</div>
+    <div class="sidebar-state-number">163</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -232,7 +232,7 @@
               <a href="/2026/06/08/Red%201/" title="VulnHub Red：1">VulnHub Red：1</a>
             </li>
             <li>
-              <a href="/2026/06/08/Matrix-Breakout%202%20Morpheus/" title="VulnHub Matrix-Breakout：2 Morpheus">VulnHub Matrix-Breakout：2 Morpheus</a>
+              <a href="/2026/06/08/Jangow%201.0.1/" title="VulnHub Jangow：1.0.1">VulnHub Jangow：1.0.1</a>
             </li>
         </ul>
       </div>
@@ -370,8 +370,41 @@ AI 梭哈一下，提示扫描后台
 </div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/06/08/Matrix-Breakout%202%20Morpheus/" aria-label="VulnHub Matrix-Breakout：2 Morpheus" title="VulnHub Matrix-Breakout：2 Morpheus"></a>
+      <a class="post-link" href="/2026/06/08/Jangow%201.0.1/" aria-label="VulnHub Jangow：1.0.1" title="VulnHub Jangow：1.0.1"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Jangow：1.0.1" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-06-08</span>
+        <span><span class="icon-pencil"></span>274 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">VulnHub Jangow：1.0.1</h2>
+      <article class="post-article">
+          Jangow: 1.0.1项目地址：https://download.vulnhub.com/jangow/jangow-01-1.0.1.ova
+是一个打包好的镜像文件
+注意：导入 ova 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+RCEbuscar扫描出 /site 目录，访问过去
+
+点击右上角的 Buscar 会跳转到一个空白页面
+并且也会多一个参数，但是值是空的
+
+输入 id 竟然会执行，存在 RCE 漏洞
+
+但是无论换成哪种 Shell 都弹不回来，查看当前目录所有文件发现 Wordpress
+
+在其目录下有一个 config.php 文件，查看
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/06/08/Matrix-Breakout%202%20Morpheus/" aria-label="VulnHub Matrix-Breakout：2 Morpheus" title="VulnHub Matrix-Breakout：2 Morpheus"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Matrix-Breakout：2 Morpheus" class="lazyload">
     </div>
     <div class="post-info">
@@ -393,9 +426,9 @@ AI 梭哈一下，提示扫描后台
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/05/26/Draft%20List%20plugin%20for%20WordPress%EF%BC%88CVE-2026-9104%EF%BC%89/" aria-label="Draft List plugin for WordPress（CVE-2026-9104）" title="Draft List plugin for WordPress（CVE-2026-9104）"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Draft List plugin for WordPress（CVE-2026-9104）" class="lazyload">
     </div>
     <div class="post-info">
@@ -425,9 +458,9 @@ AI 梭哈一下，提示扫描后台
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/05/25/Tomcat%20%E5%AE%9E%E6%88%98/" aria-label="实战——Tomcat 站点渗透" title="实战——Tomcat 站点渗透"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="实战——Tomcat 站点渗透" class="lazyload">
     </div>
     <div class="post-info">
@@ -458,9 +491,9 @@ AI 梭哈一下，提示扫描后台
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/05/23/pgAdmin%204%20%E5%AD%98%E5%82%A8%E5%9E%8B%20XSS%EF%BC%88CVE-2026-7814%EF%BC%89/" aria-label="pgAdmin 4 存储型 XSS（CVE-2026-7814）" title="pgAdmin 4 存储型 XSS（CVE-2026-7814）"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="pgAdmin 4 存储型 XSS（CVE-2026-7814）" class="lazyload">
     </div>
     <div class="post-info">
@@ -504,9 +537,9 @@ Node.js 18+
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/05/22/Kilo-Org%20kilocode%EF%BC%88CVE-2026-8766%EF%BC%89/" aria-label="Kilo-Org kilocode （CVE-2026-8766）" title="Kilo-Org kilocode （CVE-2026-8766）"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Kilo-Org kilocode （CVE-2026-8766）" class="lazyload">
     </div>
     <div class="post-info">
@@ -535,47 +568,6 @@ Node.js 18+
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/22/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E4%B8%8E%20Solidity%20%E5%9F%BA%E7%A1%80/" aria-label="区块链基础" title="区块链基础"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="区块链基础" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-05-22</span>
-        <span><span class="icon-pencil"></span>2.1k 字</span>
-        <span><span class="icon-clock"></span>9 分钟</span>
-      </div>
-      <h2 class="post-title">区块链基础</h2>
-      <article class="post-article">
-          区块链基础智能合约生活类比：自动售货机
-
-传统的买卖：你给老板钱，老板给你水
-
-智能合约：一台自动售货机
-
-你把钱塞进去，按下按钮，水自动掉下来
-
-它的规则是写死在机器里的（代码）
-
-只要条件满足，就一定会执行（吐水）
-
-没有人能中途反悔（去中心化）
-
-
-
-
-总结：智能合约就是运行在区块链上的、自动执行的计算机程序
-而 Solidity，就是用来写这种程序的编程语言
-Solidity 基础变量类型在 Solidity 中，有几种最常用的变量
-uint（无符号整数）12uint256 public totalMoney;uint8 public gameId;
-
-address（地址）以太坊里每
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
   </nav>
@@ -599,10 +591,10 @@ address（地址）以太坊里每
       </div>
       <div>
         <span class="icon-brush"></span>
-        120.2k
+        120.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        09:59
+        10:01
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -630,7 +622,7 @@ address（地址）以太坊里每
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">127</div>
+    <div class="sidebar-state-number">128</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -638,7 +630,7 @@ address（地址）以太坊里每
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">162</div>
+    <div class="sidebar-state-number">163</div>
   </div>
 </div>
 <div class="sidebar-social" >
