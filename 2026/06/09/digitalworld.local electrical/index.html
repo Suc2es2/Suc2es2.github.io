@@ -35,8 +35,9 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a2841f9edae85a6285189d4.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a284348edae85a628518a68.png">
 <meta property="article:published_time" content="2026-06-09T10:30:00.000Z">
-<meta property="article:modified_time" content="2026-06-09T16:51:24.109Z">
+<meta property="article:modified_time" content="2026-06-10T09:11:51.396Z">
 <meta property="article:author" content="ALL">
+<meta property="article:tag" content="&#x2F;etc&#x2F;sudoers 配置不当">
 <meta property="article:tag" content="echo 逃逸">
 <meta property="article:tag" content="vim 提权">
 <meta property="article:tag" content="弱口令">
@@ -160,7 +161,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#digitalworld-local%EF%BC%9Aelectrical"><span class="toc-number">1.</span> <span class="toc-text">digitalworld.local：electrical</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-number">1.1.</span> <span class="toc-text">敏感信息泄露</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SiTeFiLo-1-0-6-%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2%EF%BC%88CVE-2008-5762%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">SiTeFiLo 1.0.6 - 文件泄露（CVE-2008-5762）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">弱口令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH"><span class="toc-number">1.2.1.</span> <span class="toc-text">SSH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.3.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#echo-%E9%80%83%E9%80%B8"><span class="toc-number">1.3.1.</span> <span class="toc-text">echo 逃逸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim-%E6%8F%90%E6%9D%83"><span class="toc-number">1.3.2.</span> <span class="toc-text">vim 提权</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#digitalworld-local%EF%BC%9Aelectrical"><span class="toc-number">1.</span> <span class="toc-text">digitalworld.local：electrical</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-number">1.1.</span> <span class="toc-text">敏感信息泄露</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SiTeFiLo-1-0-6-%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2%EF%BC%88CVE-2008-5762%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">SiTeFiLo 1.0.6 - 文件泄露（CVE-2008-5762）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">弱口令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH"><span class="toc-number">1.2.1.</span> <span class="toc-text">SSH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.3.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#echo-%E9%80%83%E9%80%B8"><span class="toc-number">1.3.1.</span> <span class="toc-text">echo 逃逸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#etc-sudoers-%E9%85%8D%E7%BD%AE%E4%B8%8D%E5%BD%93"><span class="toc-number">1.3.2.</span> <span class="toc-text">&#x2F;etc&#x2F;sudoers 配置不当</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim-%E6%8F%90%E6%9D%83"><span class="toc-number">1.3.3.</span> <span class="toc-text">vim 提权</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -285,13 +286,14 @@
 <p><img src="https://pic1.imgdb.cn/item/6a284348edae85a628518a68.png"></p>
 <p>检查结果后我们发现，使用 intern 用户无法使用 sudo，但使用 patrick 用户可以</p>
 <p>所以切换为 patrick 用户</p>
-<h3 id="vim-提权"><a href="#vim-提权" class="headerlink" title="vim 提权"></a>vim 提权</h3><p>检查权限该用户可以使用 <code>vim</code> 命令，直接提权到 root</p>
+<h3 id="etc-sudoers-配置不当"><a href="#etc-sudoers-配置不当" class="headerlink" title="&#x2F;etc&#x2F;sudoers 配置不当"></a>&#x2F;etc&#x2F;sudoers 配置不当</h3><p>检查权限该用户可以使用 <code>vim</code> 命令</p>
+<h3 id="vim-提权"><a href="#vim-提权" class="headerlink" title="vim 提权"></a>vim 提权</h3><p>直接提权到 root</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> vim </span><br><span class="line">:shell</span><br></pre></td></tr></table></figure>
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/VulnHub/" title="VulnHub" data-aos="zoom-in">VulnHub</a>
 
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/echo-%E9%80%83%E9%80%B8/" rel="tag" title="echo 逃逸">echo 逃逸</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/vim-%E6%8F%90%E6%9D%83/" rel="tag" title="vim 提权">vim 提权</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%BC%B1%E5%8F%A3%E4%BB%A4/" rel="tag" title="弱口令">弱口令</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/" rel="tag" title="敏感信息泄露">敏感信息泄露</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/etc-sudoers-%E9%85%8D%E7%BD%AE%E4%B8%8D%E5%BD%93/" rel="tag" title="&#x2F;etc&#x2F;sudoers 配置不当">&#x2F;etc&#x2F;sudoers 配置不当</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/echo-%E9%80%83%E9%80%B8/" rel="tag" title="echo 逃逸">echo 逃逸</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/vim-%E6%8F%90%E6%9D%83/" rel="tag" title="vim 提权">vim 提权</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%BC%B1%E5%8F%A3%E4%BB%A4/" rel="tag" title="弱口令">弱口令</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/" rel="tag" title="敏感信息泄露">敏感信息泄露</a></li></ul>
 
     </footer>
   </div>
@@ -336,10 +338,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        123.4k
+        124.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        10:17
+        10:22
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -361,7 +363,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#digitalworld-local%EF%BC%9Aelectrical"><span class="toc-number">1.</span> <span class="toc-text">digitalworld.local：electrical</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-number">1.1.</span> <span class="toc-text">敏感信息泄露</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SiTeFiLo-1-0-6-%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2%EF%BC%88CVE-2008-5762%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">SiTeFiLo 1.0.6 - 文件泄露（CVE-2008-5762）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">弱口令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH"><span class="toc-number">1.2.1.</span> <span class="toc-text">SSH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.3.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#echo-%E9%80%83%E9%80%B8"><span class="toc-number">1.3.1.</span> <span class="toc-text">echo 逃逸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim-%E6%8F%90%E6%9D%83"><span class="toc-number">1.3.2.</span> <span class="toc-text">vim 提权</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#digitalworld-local%EF%BC%9Aelectrical"><span class="toc-number">1.</span> <span class="toc-text">digitalworld.local：electrical</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-number">1.1.</span> <span class="toc-text">敏感信息泄露</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SiTeFiLo-1-0-6-%E6%96%87%E4%BB%B6%E6%B3%84%E9%9C%B2%EF%BC%88CVE-2008-5762%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">SiTeFiLo 1.0.6 - 文件泄露（CVE-2008-5762）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text">弱口令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH"><span class="toc-number">1.2.1.</span> <span class="toc-text">SSH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.3.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#echo-%E9%80%83%E9%80%B8"><span class="toc-number">1.3.1.</span> <span class="toc-text">echo 逃逸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#etc-sudoers-%E9%85%8D%E7%BD%AE%E4%B8%8D%E5%BD%93"><span class="toc-number">1.3.2.</span> <span class="toc-text">&#x2F;etc&#x2F;sudoers 配置不当</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim-%E6%8F%90%E6%9D%83"><span class="toc-number">1.3.3.</span> <span class="toc-text">vim 提权</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -495,7 +497,7 @@
           description: "",
           stripContent: "digitalworld.local：electrical博客地址：https://novasky.medium.com/digitalworld-local-development-walkthrough-vulnhub-story-of-obscurity-oscp-practice-5f52486f581b 项目地址：https://download.vulnhub.com/digitalworld/ELECTRICAL.7z（占用太大懒得下） 是一个打包好的镜像文件 注意：导入 ova ",
           date: "Tue Jun 09 2026 18:30:00 GMT+0800",
-          updated: "Wed Jun 10 2026 00:51:24 GMT+0800",
+          updated: "Wed Jun 10 2026 17:11:51 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

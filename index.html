@@ -252,16 +252,28 @@
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2026-06-09</span>
-        <span><span class="icon-pencil"></span>60 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
+        <span><span class="icon-pencil"></span>1.1k 字</span>
+        <span><span class="icon-clock"></span>6 分钟</span>
       </div>
       <h2 class="post-title">VulnHub doubletrouble：1</h2>
       <article class="post-article">
           Dripping doubletrouble：1项目地址：https://download.vulnhub.com/doubletrouble/doubletrouble.ova
 是一个打包好的镜像文件
 注意：导入 ova 时一定要选择我已移动，否则没网
-使用无影扫描出开放服务及系统版本
+使用 NMap 扫描出开放服务及系统版本
 
+访问 80 端口需要登录
+
+CTFStegseek 隐写扫描后台发现 /secrt 目录
+
+访问得到一张图片
+
+使用 Stegseek 提取出隐藏文件，在其中找到了用户名密码
+12otisrush@localhost.comotis666
+
+弱口令qdPM Login登录成功
+
+RCEqdPM 9.
       </article>
     </div>
   </div>
@@ -575,10 +587,10 @@ RCEbuscar扫描出 /site 目录，访问过去
       </div>
       <div>
         <span class="icon-brush"></span>
-        123.4k
+        124.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        10:17
+        10:22
       </div>
       <div>
         <span class="icon-eye"></span>
