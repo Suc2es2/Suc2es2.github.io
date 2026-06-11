@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">134</div>
+    <div class="sidebar-state-number">135</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -220,6 +220,9 @@
       <div class="widget">
         <ul>
             <li>
+              <a href="/2026/06/10/Vikings%201/" title="VulnHub Vikings：1">VulnHub Vikings：1</a>
+            </li>
+            <li>
               <a href="/2026/06/10/Beelzebub%201/" title="VulnHub Beelzebub：1">VulnHub Beelzebub：1</a>
             </li>
             <li>
@@ -230,9 +233,6 @@
             </li>
             <li>
               <a href="/2026/06/09/Dripping%20Blues%201/" title="VulnHub Dripping Blues：1">VulnHub Dripping Blues：1</a>
-            </li>
-            <li>
-              <a href="/2026/06/09/Corrosion%202/" title="VulnHub Corrosion：2">VulnHub Corrosion：2</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,48 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/06/10/Beelzebub%201/" aria-label="VulnHub Beelzebub：1" title="VulnHub Beelzebub：1"></a>
+      <a class="post-link" href="/2026/06/10/Vikings%201/" aria-label="VulnHub Vikings：1" title="VulnHub Vikings：1"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Vikings：1" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-06-10</span>
+        <span><span class="icon-pencil"></span>720 字</span>
+        <span><span class="icon-clock"></span>4 分钟</span>
+      </div>
+      <h2 class="post-title">VulnHub Vikings：1</h2>
+      <article class="post-article">
+          Vikings：1项目地址：https://download.vulnhub.com/vikings/Vikings.ova
+是一个打包好的镜像文件
+注意：导入 ova 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+CTFBinwalk访问首页
+
+扫描目录有个 war.txt 文件，访问是一个路径
+
+拼接在后面访问是很大段编码
+
+解码是一个压缩文件
+
+但是要求输入密码
+
+破解出来是 ragnarok123，得到一张图片
+用 Binwalk 识别出里面的压缩包
+
+加上 -e 参数解压缩出来
+
+查看文件拿到用户名密码
+1floki:f@m0usboatbuilde
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/06/10/Beelzebub%201/" aria-label="VulnHub Beelzebub：1" title="VulnHub Beelzebub：1"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Beelzebub：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -268,9 +308,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/06/10/Deathnote%201/" aria-label="VulnHub Deathnote：1" title="VulnHub Deathnote：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Deathnote：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -313,9 +353,9 @@ notes.txt 中则是密码字典
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/06/09/doubletrouble%201/" aria-label="VulnHub doubletrouble：1" title="VulnHub doubletrouble：1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub doubletrouble：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -348,9 +388,9 @@ RCEqdPM 9.
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/06/09/Dripping%20Blues%201/" aria-label="VulnHub Dripping Blues：1" title="VulnHub Dripping Blues：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Dripping Blues：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -379,9 +419,9 @@ respectmydrip.txt 文
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/06/09/Corrosion%202/" aria-label="VulnHub Corrosion：2" title="VulnHub Corrosion：2"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Corrosion：2" class="lazyload">
     </div>
     <div class="post-info">
@@ -412,9 +452,9 @@ respectmydrip.txt 文
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/06/09/digitalworld.local%20electrical/" aria-label="VulnHub digitalworld.local：electrical" title="VulnHub digitalworld.local：electrical"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub digitalworld.local：electrical" class="lazyload">
     </div>
     <div class="post-info">
@@ -436,9 +476,9 @@ respectmydrip.txt 文
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/06/08/ICA%201/" aria-label="VulnHub ICA：1" title="VulnHub ICA：1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub ICA：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -476,9 +516,9 @@ SSH在数据库中翻出用户名密码
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/06/08/Thales%201/" aria-label="VulnHub Thales：1" title="VulnHub Thales：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Thales：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -509,9 +549,9 @@ MSF 生成一个
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/06/08/Napping%201.0.1/" aria-label="VulnHub Napping：1.0.1" title="VulnHub Napping：1.0.1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Napping：1.0.1" class="lazyload">
     </div>
     <div class="post-info">
@@ -534,44 +574,6 @@ MSF 生成一个
 登录后，我们会看到一个免费的博客推广网站
 
 看起来我们可以提交链接，提交后，链接就会显示在网站上供
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/06/08/Red%201/" aria-label="VulnHub Red：1" title="VulnHub Red：1"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Red：1" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-06-08</span>
-        <span><span class="icon-pencil"></span>912 字</span>
-        <span><span class="icon-clock"></span>4 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub Red：1</h2>
-      <article class="post-article">
-          Red：1项目地址：https://download.vulnhub.com/red/Red.ova
-是一个打包好的镜像文件
-注意：导入 ova 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-文件包含NetworkFileManagerPHP发现 /wp-admin/ 目录，打开首页没啥东西
-
-查看源代码，我们发现主机名为 redrocks.win
-
-所以让我们将其添加到 hosts 文件中
-
-嘲讽我们，暗示我们的网站被黑了，他甚至提到网站里有某种后门
-
-点进这篇博客
-
-查看源代码找到注释
-
-AI 梭哈一下，提示扫描后台
-
-发现一个 NetworkFileMa
       </article>
     </div>
   </div>
@@ -599,10 +601,10 @@ AI 梭哈一下，提示扫描后台
       </div>
       <div>
         <span class="icon-brush"></span>
-        126.4k
+        127.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        10:35
+        10:39
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -630,7 +632,7 @@ AI 梭哈一下，提示扫描后台
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">134</div>
+    <div class="sidebar-state-number">135</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
