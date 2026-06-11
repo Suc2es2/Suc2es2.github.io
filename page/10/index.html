@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">133</div>
+    <div class="sidebar-state-number">134</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -220,6 +220,9 @@
       <div class="widget">
         <ul>
             <li>
+              <a href="/2026/06/10/Beelzebub%201/" title="VulnHub Beelzebub：1">VulnHub Beelzebub：1</a>
+            </li>
+            <li>
               <a href="/2026/06/10/Deathnote%201/" title="VulnHub Deathnote：1">VulnHub Deathnote：1</a>
             </li>
             <li>
@@ -230,9 +233,6 @@
             </li>
             <li>
               <a href="/2026/06/09/Corrosion%202/" title="VulnHub Corrosion：2">VulnHub Corrosion：2</a>
-            </li>
-            <li>
-              <a href="/2026/06/09/digitalworld.local%20electrical/" title="VulnHub digitalworld.local：electrical">VulnHub digitalworld.local：electrical</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,37 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/LAMPSecurity%20CTF7/" aria-label="VulnHub LAMPSecurity：CTF7" title="VulnHub LAMPSecurity：CTF7"></a>
+      <a class="post-link" href="/2026/04/01/dev-random%20relativity%20(v1.0.1)/" aria-label="VulnHub /dev/random：relativity (v1.0.1)" title="VulnHub /dev/random：relativity (v1.0.1)"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub /dev/random：relativity (v1.0.1)" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-01</span>
+        <span><span class="icon-pencil"></span>1.8k 字</span>
+        <span><span class="icon-clock"></span>9 分钟</span>
+      </div>
+      <h2 class="post-title">VulnHub /dev/random：relativity (v1.0.1)</h2>
+      <article class="post-article">
+          &amp;#x2F;dev&amp;#x2F;random: relativity (v1.0.1)项目地址：https://download.vulnhub.com/devrandom/relativity_1.0.1.zip
+是一个打包好的镜像文件
+注意：导入 vmx 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+80 端口是静态页面，只有一张图片
+
+观察到 banner 有一个 mod_sql
+
+mod_sql 是 ProFTPD 用于支持数据库后端验证的一个知名模块
+明确使用了 SQL 模块，说明该 FTP 的账号密码并不是存储在 /etc/shadow 等系统文件中
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/01/LAMPSecurity%20CTF7/" aria-label="VulnHub LAMPSecurity：CTF7" title="VulnHub LAMPSecurity：CTF7"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub LAMPSecurity：CTF7" class="lazyload">
     </div>
     <div class="post-info">
@@ -275,9 +304,9 @@ Users Ed
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/HackLAB%20VulnVoIP/" aria-label="VulnHub HackLAB：VulnVoIP" title="VulnHub HackLAB：VulnVoIP"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub HackLAB：VulnVoIP" class="lazyload">
     </div>
     <div class="post-info">
@@ -301,9 +330,9 @@ svmap 是 SIPVicious 工具集中的核心扫描器，其本质是一个 SIP 协
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/HackLAB%20Vulnix/" aria-label="VulnHub HackLAB：Vulnix" title="VulnHub HackLAB：Vulnix"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub HackLAB：Vulnix" class="lazyload">
     </div>
     <div class="post-info">
@@ -332,9 +361,9 @@ svmap 是 SIPVicious 工具集中的核心扫描器，其本质是一个 SIP 协
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/Drunk%20Admin%20Web%20Hacking%20Challenge%201/" aria-label="VulnHub Drunk Admin Web Hacking Challenge：1" title="VulnHub Drunk Admin Web Hacking Challenge：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Drunk Admin Web Hacking Challenge：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -364,9 +393,9 @@ RCEUpload（$_REQUEST[] 绕过）8880 端口就是一个文件上传，但是上
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/pWnOS%202.0/" aria-label="VulnHub pWnOS：2.0" title="VulnHub pWnOS：2.0"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub pWnOS：2.0" class="lazyload">
     </div>
     <div class="post-info">
@@ -397,9 +426,9 @@ RCEPHP 反弹 Shell继上面 SQL 注入还能写入
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/Hackademic%20RTB1/" aria-label="VulnHub Hackademic：RTB1" title="VulnHub Hackademic：RTB1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Hackademic：RTB1" class="lazyload">
     </div>
     <div class="post-info">
@@ -435,9 +464,9 @@ Google 搜索后台地址
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/Hackademic%20RTB2/" aria-label="VulnHub Hackademic：RTB2" title="VulnHub Hackademic：RTB2"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Hackademic：RTB2" class="lazyload">
     </div>
     <div class="post-info">
@@ -475,9 +504,9 @@ CTFPort Kn
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/VulnImage%201/" aria-label="VulnHub VulnImage：1" title="VulnHub VulnImage：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub VulnImage：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -503,9 +532,9 @@ SQL 注入Post（两个）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/Metasploitable%201&2/" aria-label="VulnHub Metasploitable：1&amp;2" title="VulnHub Metasploitable：1&amp;2"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Metasploitable：1&amp;2" class="lazyload">
     </div>
     <div class="post-info">
@@ -539,38 +568,6 @@ SSH（msfadmin）利用 FTP 弱口令读取文件
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/LAMPSecurity%20CTF6/" aria-label="VulnHub LAMPSecurity：CTF6" title="VulnHub LAMPSecurity：CTF6"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub LAMPSecurity：CTF6" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-01</span>
-        <span><span class="icon-pencil"></span>1.3k 字</span>
-        <span><span class="icon-clock"></span>6 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub LAMPSecurity：CTF6</h2>
-      <article class="post-article">
-          LAMPSecurity: CTF6项目地址：https://download.vulnhub.com/lampsecurity/ctf6.zip
-是一个打包好的镜像文件
-注意：导入 vmx 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-敏感信息泄露&amp;#x2F;actions这个路径泄露了源码，可以用 dirb 扫出来
-
-&amp;#x2F;sql&amp;#x2F;db.sql泄露了初始化数据库时的账号密码
-
-弱口令Widgets Inc使用上面泄露的账号密码登录成功
-1admin:adminpass
-
-
-phpMyAdmin通过 SQL 注入漏洞我们可以拿到数据库 mys
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/9/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/11/">下一页 &raquo;</a>
   </nav>
@@ -594,10 +591,10 @@ phpMyAdmin通过 SQL 注入漏洞我们可以拿到数据库 mys
       </div>
       <div>
         <span class="icon-brush"></span>
-        124.6k
+        126.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        10:23
+        10:35
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -625,7 +622,7 @@ phpMyAdmin通过 SQL 注入漏洞我们可以拿到数据库 mys
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">133</div>
+    <div class="sidebar-state-number">134</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>

