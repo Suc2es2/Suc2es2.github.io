@@ -152,15 +152,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">137</div>
+    <div class="sidebar-state-number">141</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">19</div>
+    <div class="sidebar-state-number">20</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">168</div>
+    <div class="sidebar-state-number">169</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -245,8 +245,91 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20HDCTF/" aria-label="2019 HDCTF WriteUp" title="2019 HDCTF WriteUp"></a>
+      <a class="post-link" href="/2019/05/22/MFC/" aria-label="MFC" title="MFC"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="MFC" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1k 字</span>
+        <span><span class="icon-clock"></span>4 分钟</span>
+      </div>
+      <h2 class="post-title">MFC</h2>
+      <article class="post-article">
+          MFC介绍MFC（Microsoft Foundation Classes），即微软基础类库，是微软为 Windows 平台开发者提供的一个 C++ 类库
+它的核心价值在于，用 C++ 的 “类” 将复杂的 Windows API (Win32 API) 给 “包裹” 起来，让开发者能通过面向对象的方式去调用
+这样做的好处是大大简化了 Windows 图形界面程序的开发工作
+核心思想与架构MFC 的精髓在于其六个相互配合的内部机制，包括我们马上会介绍的消息映射和序列化。简单来说：
+
+程序启动机制：负责程序启动的流程，从 CWinApp 派生对象到 AfxWinMain 主函数等
+
+窗口创建机制
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/Ret2plt/" aria-label="Ret2plt" title="Ret2plt"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2plt" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>617 字</span>
+        <span><span class="icon-clock"></span>3 分钟</span>
+      </div>
+      <h2 class="post-title">Ret2plt</h2>
+      <article class="post-article">
+          Ret2pltPLT 与 GOT在动态链接的 ELF 程序里，当你调用一个外部库函数（如 puts），实际调用的是 PLT 表中的一个条目
+这个条目会通过 GOT 表间接跳转到函数的真实地址
+关键点：只要程序链接了某个函数（比如 system），即使代码里没出现过 system，它的 PLT 表项可能也会存在
+更常见的情况是：程序虽然没有直接调用 system，但导入了 system，这样 system@plt 就是一个现成的跳板
+核心思想Ret2plt 就是利用栈溢出，将返回地址覆盖为某个函数的 PLT 表项地址（如 system@plt），并伪造好参数，从而调用该函数
+因为 PLT 表位于
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/pwn-Shellcode/" aria-label="Shellcode" title="Shellcode"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Shellcode" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>265 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">Shellcode</h2>
+      <article class="post-article">
+          Shellcode原理狭义上说，Shellcode 是一段用于获取交互式命令行的机器码
+广义上，任何用于完成攻击目标（反弹连接、添加用户、下载执行）的自包含机器码都可以叫 Shellcode
+它的特点：
+
+完全由汇编指令组成，经过编译、提取成为纯二进制字节
+
+与位置无关，不依赖外部环境，放到哪都能跑（通过相对寻址等技巧）
+
+尽量精简、无坏字符，比如不能包含 0x00（截断 strcpy），不能有换行 0x0a 等
+
+
+实战案例该怎么起名呢（Shellcode）
+没开金丝雀
+
+mprotect 的第三个参数 7 代表 RWX 权限，从指针 buf 向前偏移 16 字节 的地址开始，长度为 409
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019%20HDCTF/" aria-label="2019 HDCTF WriteUp" title="2019 HDCTF WriteUp"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 HDCTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -269,6 +352,37 @@ Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程）
 
 
 dump 出 explorer.exe，它的内存里主
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/Ret2text/" aria-label="Ret2text" title="Ret2text"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2text" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>360 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">Ret2text</h2>
+      <article class="post-article">
+          Ret2text原理在 CTF 和二进制安全里，Ret2text 是一种非常经典的栈溢出利用手法。它的名字可以这样拆开理解：
+
+Ret：Return，代表 “返回地址”
+
+2 &amp;#x2F; to：到、跳转到
+
+text：.text 段，存放程序机器指令的区域
+
+
+简单说，Ret2text 就是利用栈溢出漏洞，将函数的返回地址篡改为程序 .text 段中已存在的合法代码，从而劫持控制流去执行这些代码来获取 shell
+因为执行的代码是程序本来就有的，所以它不需要注入 Shellcode，也能绕过 NX 保护
+实战案例帮我取一个题目名称（Ret2text）
+没开金丝雀，read 函数读取大小为 6
       </article>
     </div>
   </div>
@@ -411,44 +525,8 @@ Crypto你能看出这是什么加密么（RSA）
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2010/05/26/Discuzl%EF%BC%88wooyun-2010-080723%EF%BC%89/" aria-label="Discuz 7.x/6.x 全局变量防御绕过导致代码执行漏洞（wooyun-2010-080723）" title="Discuz 7.x/6.x 全局变量防御绕过导致代码执行漏洞（wooyun-2010-080723）"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="Discuz 7.x/6.x 全局变量防御绕过导致代码执行漏洞（wooyun-2010-080723）" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2010-05-26</span>
-        <span><span class="icon-pencil"></span>674 字</span>
-        <span><span class="icon-clock"></span>4 分钟</span>
-      </div>
-      <h2 class="post-title">Discuz 7.x/6.x 全局变量防御绕过导致代码执行漏洞（wooyun-2010-080723）</h2>
-      <article class="post-article">
-          Discuz 7.x&amp;#x2F;6.x 全局变量防御绕过导致代码执行漏洞（wooyun-2010-080723）前言参考披露的报告复现
-
-漏洞类型：RCE
-
-影响版本：Discuz 6.x&amp;#x2F;7.x
-
-
-漏洞复现环境搭建源码百度网盘下载位置：https://pan.baidu.com/s/1BC1L_QL3Gi0GXYQoR_Wqsg?pwd=2tjy
-PHP 推荐使用 5.3 版本
-PHPStudy 搭建好后访问 /uc_server/install/ 安装 UCenter
-
-安装完效果如下
-
-访问 /install/ 安装 Discuz 7.2
-
-安装成功界面
-
-漏洞代码PHP 配
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
-    <a class="extend prev" rel="prev" href="/page/13/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span>
+    <a class="extend prev" rel="prev" href="/page/13/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/15/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -470,10 +548,10 @@ PHPStudy 搭建好后访问 /uc_server/install/ 安装 UCenter
       </div>
       <div>
         <span class="icon-brush"></span>
-        132k
+        135.2k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        11:01
+        11:17
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -501,15 +579,15 @@ PHPStudy 搭建好后访问 /uc_server/install/ 安装 UCenter
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">137</div>
+    <div class="sidebar-state-number">141</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">19</div>
+    <div class="sidebar-state-number">20</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">168</div>
+    <div class="sidebar-state-number">169</div>
   </div>
 </div>
 <div class="sidebar-social" >
