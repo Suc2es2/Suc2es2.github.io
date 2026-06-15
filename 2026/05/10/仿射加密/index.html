@@ -24,12 +24,14 @@
 <meta property="og:site_name" content="雾島风起時">
 <meta property="og:description" content="仿射加密仿射加密就像把字母表上的每个字母，通过 “乘以一个数” 再加 “一个常数” 映射成另一个字母 这样加密后的字母和原字母呈线性关系，所以叫 “仿射” 加密原理把英文字母 a~z 对应成数字 0~25 设：  x &#x3D; 明文字母对应的数字  y &#x3D; 密文字母对应的数字   仿射加密的数学形式就是： 1y &#x3D; (a * x + b) mod 26  其中 a 和 b 是密钥，必">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/691e12f33203f7be0018c793.png">
 <meta property="article:published_time" content="2026-05-10T06:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-06T01:33:52.868Z">
+<meta property="article:modified_time" content="2026-06-15T02:53:25.261Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="仿射加密">
 <meta property="article:tag" content="古典密码">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/691e12f33203f7be0018c793.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -147,7 +149,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%BF%E5%B0%84%E5%8A%A0%E5%AF%86"><span class="toc-number">1.</span> <span class="toc-text">仿射加密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">加密原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%AF%86%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">解密原理</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%BF%E5%B0%84%E5%8A%A0%E5%AF%86"><span class="toc-number">1.</span> <span class="toc-text">仿射加密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">加密原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%AF%86%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">解密原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#supperAffine%EF%BC%88%E4%BB%BF%E5%B0%84%E5%8A%A0%E5%AF%86%E5%8F%98%E7%A7%8D%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">supperAffine（仿射加密变种）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -225,7 +227,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2026-05-10T06:18:00.000Z" itemprop="datePublished">2026-05-10</time>
-    <time style="display: none;" id="post-update-time">2026-06-06</time>
+    <time style="display: none;" id="post-update-time">2026-06-15</time>
   </span>
 </div>
 
@@ -259,6 +261,17 @@
 
 <p>两边乘以 <code>a</code> 的模逆 <code>a^{-1}</code>（满足 <code>a * a^{-1} ≡ 1 mod 26</code>）</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = a^&#123;-1&#125; * (y - b) mod 26</span><br></pre></td></tr></table></figure>
+
+<h2 id="实战案例"><a href="#实战案例" class="headerlink" title="实战案例"></a>实战案例</h2><h3 id="supperAffine（仿射加密变种）"><a href="#supperAffine（仿射加密变种）" class="headerlink" title="supperAffine（仿射加密变种）"></a>supperAffine（仿射加密变种）</h3><p><img src="https://pic1.imgdb.cn/item/691e12f33203f7be0018c793.png"></p>
+<p>解题技巧先放前面：</p>
+<ol>
+<li><strong>识别密码体制：</strong> 代码中出现了 <code>affine(x, a, b)</code> 和 <code>GCD(MOD, ...)</code>，立即锁定这是<strong>仿射密码</strong>及其变种</li>
+<li><strong>识别模数：</strong> 立即进行<strong>模数分解</strong>，MOD &#x3D; 62 &#x3D; 2 * 31</li>
+<li>**代数化简：**看到 <code>f3(f2(f1(x)))</code> 这种结构，立即意识到这是可以合并的</li>
+</ol>
+<p>给出源代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> ascii_letters, digits</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line"><span class="keyword">assert</span> flag.startswith(<span class="string">&quot;0xGame&#123;&quot;</span>) <span class="keyword">and</span> flag.endswith(<span class="string">&quot;&#125;&quot;</span>)</span><br><span class="line">table = ascii_letters+digits</span><br><span class="line">MOD = <span class="built_in">len</span>(table)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">affine</span>(<span class="params">x, a, b</span>): <span class="keyword">return</span> a*x+b</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">genKey</span>():</span><br><span class="line">    a = [randint(<span class="number">1</span>, <span class="number">64</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)]</span><br><span class="line">    b = [randint(<span class="number">1</span>, <span class="number">64</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)]</span><br><span class="line">    <span class="keyword">while</span> GCD(MOD, a[<span class="number">0</span>]*a[<span class="number">1</span>]*a[<span class="number">2</span>]) != <span class="number">1</span>:</span><br><span class="line">        a = [randint(<span class="number">1</span>, <span class="number">64</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)]</span><br><span class="line">    <span class="keyword">return</span> a, b</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cipher = <span class="string">&quot;&quot;</span></span><br><span class="line">A, B = genKey()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> flag:</span><br><span class="line">    <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> table:</span><br><span class="line">        cipher += i</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        cipher += table[affine(affine(affine(table.find(i),A[<span class="number">0</span>], B[<span class="number">0</span>]), A[<span class="number">1</span>], B[<span class="number">1</span>]), A[<span class="number">2</span>], B[<span class="number">2</span>]) % MOD]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;cipher =&quot;</span>, cipher)</span><br><span class="line"><span class="comment"># cipher = t6b7Tn&#123;2GByBZBB-aan2-JRWn-GnZB-Jyf7a722ffnZ&#125;</span></span><br></pre></td></tr></table></figure>
+
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/" title="古典密码" data-aos="zoom-in">古典密码</a>
@@ -308,10 +321,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        135.6k
+        137.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        11:19
+        11:30
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -333,7 +346,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%BF%E5%B0%84%E5%8A%A0%E5%AF%86"><span class="toc-number">1.</span> <span class="toc-text">仿射加密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">加密原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%AF%86%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">解密原理</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%BF%E5%B0%84%E5%8A%A0%E5%AF%86"><span class="toc-number">1.</span> <span class="toc-text">仿射加密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">加密原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%AF%86%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">解密原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#supperAffine%EF%BC%88%E4%BB%BF%E5%B0%84%E5%8A%A0%E5%AF%86%E5%8F%98%E7%A7%8D%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">supperAffine（仿射加密变种）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -467,7 +480,7 @@
           description: "",
           stripContent: "仿射加密仿射加密就像把字母表上的每个字母，通过 “乘以一个数” 再加 “一个常数” 映射成另一个字母 这样加密后的字母和原字母呈线性关系，所以叫 “仿射” 加密原理把英文字母 a~z 对应成数字 0~25 设：  x &amp;#x3D; 明文字母对应的数字  y &amp;#x3D; 密文字母对应的数字   仿射加密的数学形式就是： 1y = (a * x + b) mod 26  其中 a 和 b 是密钥，必须满足：  a 与 26 互质（gcd(a,26)=1），否则不同明文字母可能加密成同一密文  b ",
           date: "Sun May 10 2026 14:18:00 GMT+0800",
-          updated: "Sat Jun 06 2026 09:33:52 GMT+0800",
+          updated: "Mon Jun 15 2026 10:53:25 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
