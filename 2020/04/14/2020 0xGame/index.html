@@ -145,7 +145,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a2c5a7d79b3658c76e458f9.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a2c137d79b3658c76e37147.png">
 <meta property="article:published_time" content="2020-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-15T03:40:20.219Z">
+<meta property="article:modified_time" content="2026-06-15T06:10:37.390Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -687,11 +687,17 @@
 <p>已知</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = p + q</span><br><span class="line">n = p × q</span><br></pre></td></tr></table></figure>
 
-<p>根据韦达定理，<code>p</code> 和 <code>q</code> 是下面这个二次方程的两个解</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t² - s·t + n = 0</span><br></pre></td></tr></table></figure>
+<p>根据韦达定理，以 <code>p</code> 和 <code>q</code> 构造一个二次方程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(t-q)(t-p) = 0</span><br><span class="line">           = t² - (p + q)t + qp</span><br></pre></td></tr></table></figure>
 
-<p>判别式公式为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Δ = (-s)² - 4·1·n = s² - 4n</span><br></pre></td></tr></table></figure>
+<p>把已知条件带入得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t² - s * t + n = 0</span><br></pre></td></tr></table></figure>
+
+<p>对于任意二次方程，判别式公式为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">at² + bt + c = 0</span><br><span class="line"></span><br><span class="line">Δ = b² - 4ac</span><br></pre></td></tr></table></figure>
+
+<p>代入得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = 1，b = -s，c = n</span><br><span class="line"></span><br><span class="line">Δ = (-s)² - 4·1·n = s² - 4n</span><br></pre></td></tr></table></figure>
 
 <p>如果判别式是完全平方数，方程就有整数解</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p = (s + √Δ)/2</span><br><span class="line">q = (s - √Δ)/2</span><br></pre></td></tr></table></figure>
@@ -700,6 +706,23 @@
 
 <h3 id="smallModulus（CRT）"><a href="#smallModulus（CRT）" class="headerlink" title="smallModulus（CRT）"></a>smallModulus（CRT）</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module = <span class="title function_ invoke__">getPrime</span>(<span class="number">64</span>)</span><br><span class="line"><span class="built_in">self</span>.<span class="title function_ invoke__">send</span>((<span class="string">&quot;flag mod &#123;&#125; (in hex) : &#123;&#125;&quot;</span>.<span class="title function_ invoke__">format</span>(</span><br><span class="line">    <span class="title function_ invoke__">hex</span>(module)[<span class="number">2</span>:], <span class="title function_ invoke__">hex</span>(m % module)[<span class="number">2</span>:])).<span class="title function_ invoke__">encode</span>())</span><br></pre></td></tr></table></figure>
 
+<p>当用户选择 1 时，服务器会：</p>
+<ul>
+<li><p>随机生成一个 64 位（bit）的素数 <code>p_i</code></p>
+</li>
+<li><p>计算 <code>r_i = m (mod p_i)</code></p>
+</li>
+<li><p>将 <code>p_i</code> 和 <code>r_i</code> 以十六进制的形式返回给用户</p>
+</li>
+<li><p>允许无限次循环查询</p>
+</li>
+</ul>
+<p>假设我们查询了 <code>k</code> 次，获得了 <code>k</code> 个不同的 64 位素数 <code>p1, p2, ..., pk</code> 以及对应的余数 <code>r1, r2, ..., rk</code></p>
+<p>我们可以写出如下的模同余方程组：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">m ≡ r1 (mod p1)</span><br><span class="line">m ≡ r2 (mod p2)</span><br><span class="line">...</span><br><span class="line">m ≡ rk (mod pk)</span><br></pre></td></tr></table></figure>
+
+<p>由于 <code>pi</code> 全都是不同的素数，因此它们之间必然两两互素（<code>gcd(pi, pj) = 1</code>）</p>
+<p>根据中国剩余定理，上述方程组在模 M 的意义下有唯一解，其中</p>
 <h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="？？？？（Shell-通配符绕过）"><a href="#？？？？（Shell-通配符绕过）" class="headerlink" title="？？？？（Shell 通配符绕过）"></a>？？？？（Shell 通配符绕过）</h3><p><img src="https://pic1.imgdb.cn/item/6a239e2e0c24090b10256368.png"></p>
 <p>打开页面提示输入 yulige 获得 flag</p>
 <p><img src="https://pic1.imgdb.cn/item/6a239e070c24090b10256359.png"></p>
@@ -1079,7 +1102,7 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        137.2k
+        137.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
         11:28
@@ -1238,7 +1261,7 @@
           description: "",
           stripContent: "2020 0xGame WriteUp前言主办方：南京邮电大学 Miscflip（波形图 + 摩斯密码 + BinWalk + 倒序） 打开压缩包后得到一个 ZIP 和 MP3  ZIP 需要密码，使用 Audacity 打开 MP3  根据波形长短猜测是摩斯密码 1....- ----- ----- ---.. ..... -.... -.... ----. ----. ...-- ----- ----- ... .. -.. .-. --- .-- ... ... .- .--.  解密得到",
           date: "Tue Apr 14 2020 13:18:00 GMT+0800",
-          updated: "Mon Jun 15 2026 11:40:20 GMT+0800",
+          updated: "Mon Jun 15 2026 14:10:37 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
