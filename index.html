@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">150</div>
+    <div class="sidebar-state-number">151</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -220,6 +220,9 @@
       <div class="widget">
         <ul>
             <li>
+              <a href="/2026/06/15/EvilBox%20One/" title="VulnHub EvilBox：One">VulnHub EvilBox：One</a>
+            </li>
+            <li>
               <a href="/2026/06/11/LSB%20Oracle%20Attack/" title="LSB Oracle Attack">LSB Oracle Attack</a>
             </li>
             <li>
@@ -230,9 +233,6 @@
             </li>
             <li>
               <a href="/2026/06/10/Vikings%201/" title="VulnHub Vikings：1">VulnHub Vikings：1</a>
-            </li>
-            <li>
-              <a href="/2026/06/10/Beelzebub%201/" title="VulnHub Beelzebub：1">VulnHub Beelzebub：1</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,39 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/06/11/LSB%20Oracle%20Attack/" aria-label="LSB Oracle Attack" title="LSB Oracle Attack"></a>
+      <a class="post-link" href="/2026/06/15/EvilBox%20One/" aria-label="VulnHub EvilBox：One" title="VulnHub EvilBox：One"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub EvilBox：One" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-06-15</span>
+        <span><span class="icon-pencil"></span>223 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
+      </div>
+      <h2 class="post-title">VulnHub EvilBox：One</h2>
+      <article class="post-article">
+          EvilBox：One项目地址：https://download.vulnhub.com/evilbox/EvilBox---One.ova
+是一个打包好的镜像文件
+注意：导入 ova 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+文件包含evil.php扫描目录发现 /secret
+
+继续扫描出 /secret/evil.php 文件，FUZZ 出参数是 command，测试存在文件包含漏洞
+
+利用 PHP 伪协议读取源码
+
+解码得到
+1234&amp;lt;?php    $filename = $_GET[&amp;#x27;command&amp;#x27;];    inc
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/06/11/LSB%20Oracle%20Attack/" aria-label="LSB Oracle Attack" title="LSB Oracle Attack"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="LSB Oracle Attack" class="lazyload">
     </div>
     <div class="post-info">
@@ -270,9 +301,9 @@ RSA 具有同态性质：(c * 2^e) mod N 对应的明文是 (2m) mod N
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/06/10/digitalworld.local%20snakeoil/" aria-label="VulnHub digitalworld.local：snakeoil" title="VulnHub digitalworld.local：snakeoil"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub digitalworld.local：snakeoil" class="lazyload">
     </div>
     <div class="post-info">
@@ -304,9 +335,9 @@ RCEFlask在 8080 端口上有个 Useful Links 页面，给了个链接
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/06/10/DarkHole%202/" aria-label="VulnHub DarkHole：2" title="VulnHub DarkHole：2"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub DarkHole：2" class="lazyload">
     </div>
     <div class="post-info">
@@ -329,9 +360,9 @@ RCEFlask在 8080 端口上有个 Useful Links 页面，给了个链接
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/06/10/Vikings%201/" aria-label="VulnHub Vikings：1" title="VulnHub Vikings：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Vikings：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -369,9 +400,9 @@ CTFBinwalk访问首页
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/06/10/Beelzebub%201/" aria-label="VulnHub Beelzebub：1" title="VulnHub Beelzebub：1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Beelzebub：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -393,9 +424,9 @@ CTFBinwalk访问首页
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/06/10/Deathnote%201/" aria-label="VulnHub Deathnote：1" title="VulnHub Deathnote：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Deathnote：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -438,9 +469,9 @@ notes.txt 中则是密码字典
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/06/09/doubletrouble%201/" aria-label="VulnHub doubletrouble：1" title="VulnHub doubletrouble：1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub doubletrouble：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -473,9 +504,9 @@ RCEqdPM 9.
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/06/09/Dripping%20Blues%201/" aria-label="VulnHub Dripping Blues：1" title="VulnHub Dripping Blues：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Dripping Blues：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -504,9 +535,9 @@ respectmydrip.txt 文
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/06/09/Corrosion%202/" aria-label="VulnHub Corrosion：2" title="VulnHub Corrosion：2"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Corrosion：2" class="lazyload">
     </div>
     <div class="post-info">
@@ -536,32 +567,8 @@ respectmydrip.txt 文
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/06/09/digitalworld.local%20electrical/" aria-label="VulnHub digitalworld.local：electrical" title="VulnHub digitalworld.local：electrical"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub digitalworld.local：electrical" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-06-09</span>
-        <span><span class="icon-pencil"></span>1.5k 字</span>
-        <span><span class="icon-clock"></span>9 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub digitalworld.local：electrical</h2>
-      <article class="post-article">
-          digitalworld.local：electrical博客地址：https://novasky.medium.com/digitalworld-local-development-walkthrough-vulnhub-story-of-obscurity-oscp-practice-5f52486f581b
-项目地址：https://download.vulnhub.com/digitalworld/ELECTRICAL.7z（占用太大懒得下）
-是一个打包好的镜像文件
-注意：导入 ova 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-12345678910
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -583,10 +590,10 @@ respectmydrip.txt 文
       </div>
       <div>
         <span class="icon-brush"></span>
-        150k
+        150.2k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        12:29
+        12:30
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -614,7 +621,7 @@ respectmydrip.txt 文
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">150</div>
+    <div class="sidebar-state-number">151</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
