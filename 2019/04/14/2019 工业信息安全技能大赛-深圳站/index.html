@@ -17,12 +17,12 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="2019 工业信息安全技能大赛-深圳站赛 WriteUp组织架构  指导单位：由国家工业信息安全发展研究中心、中国网络空间安全协会竞评演练工作委员会、中国网络空间安全人才教育联盟、中国中文信息学会评测工作委员会共同指导  主办与承办：由鹏城实验室主办，其网络空间安全研究中心具体承办  技术支持：烽台科技（北京）有限公司（灯塔实验室）为大赛提供技术支持   MiscModbus 协议分析（Modbu">
+    <meta name="description" content="2019 工业信息安全技能大赛-深圳站 WriteUp组织架构  指导单位：由国家工业信息安全发展研究中心、中国网络空间安全协会竞评演练工作委员会、中国网络空间安全人才教育联盟、中国中文信息学会评测工作委员会共同指导  主办与承办：由鹏城实验室主办，其网络空间安全研究中心具体承办  技术支持：烽台科技（北京）有限公司（灯塔实验室）为大赛提供技术支持   MiscModbus 协议分析（Modbus">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2019 工业信息安全技能大赛-深圳站 WriteUp">
 <meta property="og:url" content="http://example.com/2019/04/14/2019%20%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B7%B1%E5%9C%B3%E7%AB%99/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="2019 工业信息安全技能大赛-深圳站赛 WriteUp组织架构  指导单位：由国家工业信息安全发展研究中心、中国网络空间安全协会竞评演练工作委员会、中国网络空间安全人才教育联盟、中国中文信息学会评测工作委员会共同指导  主办与承办：由鹏城实验室主办，其网络空间安全研究中心具体承办  技术支持：烽台科技（北京）有限公司（灯塔实验室）为大赛提供技术支持   MiscModbus 协议分析（Modbu">
+<meta property="og:description" content="2019 工业信息安全技能大赛-深圳站 WriteUp组织架构  指导单位：由国家工业信息安全发展研究中心、中国网络空间安全协会竞评演练工作委员会、中国网络空间安全人才教育联盟、中国中文信息学会评测工作委员会共同指导  主办与承办：由鹏城实验室主办，其网络空间安全研究中心具体承办  技术支持：烽台科技（北京）有限公司（灯塔实验室）为大赛提供技术支持   MiscModbus 协议分析（Modbus">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a30209bb755a1449d6a3e85.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a3020b5b755a1449d6a3ea2.png">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a30afc2b755a1449d6ba918.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a30b83fb755a1449d6bafbc.png">
 <meta property="article:published_time" content="2019-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-16T03:06:25.251Z">
+<meta property="article:modified_time" content="2026-06-16T07:52:22.503Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -155,7 +155,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B7%B1%E5%9C%B3%E7%AB%99%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 工业信息安全技能大赛-深圳站赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Modbus-%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">Modbus 协议分析（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90-1%EF%BC%88TCP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">工业协议分析 1（TCP 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90-2%EF%BC%88UDP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">工业协议分析 2（UDP 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E6%80%81%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90%EF%BC%88%E5%B7%A5%E7%A8%8B%E6%96%87%E4%BB%B6%E5%8F%96%E8%AF%81%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">组态软件安全分析（工程文件取证）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E8%9C%9C%E7%BD%90%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%EF%BC%88%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%EF%BC%89"><span class="toc-number">1.1.5.</span> <span class="toc-text">工控蜜罐日志分析（日志分析）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E4%BF%A1%E9%81%93%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90%EF%BC%88MP3-Private-Bit-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.6.</span> <span class="toc-text">隐信道数据安全分析（MP3 Private Bit 隐写）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B7%B1%E5%9C%B3%E7%AB%99-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 工业信息安全技能大赛-深圳站 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Modbus-%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">Modbus 协议分析（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90-1%EF%BC%88TCP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">工业协议分析 1（TCP 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90-2%EF%BC%88UDP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">工业协议分析 2（UDP 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E6%80%81%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90%EF%BC%88%E5%B7%A5%E7%A8%8B%E6%96%87%E4%BB%B6%E5%8F%96%E8%AF%81%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">组态软件安全分析（工程文件取证）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E8%9C%9C%E7%BD%90%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%EF%BC%88%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%EF%BC%89"><span class="toc-number">1.1.5.</span> <span class="toc-text">工控蜜罐日志分析（日志分析）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E4%BF%A1%E9%81%93%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90%EF%BC%88MP3-Private-Bit-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.6.</span> <span class="toc-text">隐信道数据安全分析（MP3 Private Bit 隐写）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -166,7 +166,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">149</div>
+    <div class="sidebar-state-number">150</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -242,7 +242,7 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="2019-工业信息安全技能大赛-深圳站赛-WriteUp"><a href="#2019-工业信息安全技能大赛-深圳站赛-WriteUp" class="headerlink" title="2019 工业信息安全技能大赛-深圳站赛 WriteUp"></a>2019 工业信息安全技能大赛-深圳站赛 WriteUp</h1><p>组织架构</p>
+        <h1 id="2019-工业信息安全技能大赛-深圳站-WriteUp"><a href="#2019-工业信息安全技能大赛-深圳站-WriteUp" class="headerlink" title="2019 工业信息安全技能大赛-深圳站 WriteUp"></a>2019 工业信息安全技能大赛-深圳站 WriteUp</h1><p>组织架构</p>
 <ul>
 <li><p>指导单位：由国家工业信息安全发展研究中心、中国网络空间安全协会竞评演练工作委员会、中国网络空间安全人才教育联盟、中国中文信息学会评测工作委员会共同指导</p>
 </li>
@@ -477,11 +477,11 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="花指令" class="lazyload">
-        <a href="/2019/05/22/%E8%8A%B1%E6%8C%87%E4%BB%A4/" aria-label="前一篇: 花指令" title="前一篇: 花指令"></a>
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 工业信息安全技能大赛-山东站 WriteUp" class="lazyload">
+        <a href="/2019/04/14/2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%B1%B1%E4%B8%9C%E7%AB%99/" aria-label="前一篇: 2019 工业信息安全技能大赛-山东站 WriteUp" title="前一篇: 2019 工业信息安全技能大赛-山东站 WriteUp"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            花指令
+            2019 工业信息安全技能大赛-山东站 WriteUp
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
@@ -516,10 +516,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        149.6k
+        150k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        12:27
+        12:29
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -541,7 +541,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B7%B1%E5%9C%B3%E7%AB%99%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 工业信息安全技能大赛-深圳站赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Modbus-%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">Modbus 协议分析（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90-1%EF%BC%88TCP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">工业协议分析 1（TCP 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90-2%EF%BC%88UDP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">工业协议分析 2（UDP 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E6%80%81%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90%EF%BC%88%E5%B7%A5%E7%A8%8B%E6%96%87%E4%BB%B6%E5%8F%96%E8%AF%81%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">组态软件安全分析（工程文件取证）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E8%9C%9C%E7%BD%90%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%EF%BC%88%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%EF%BC%89"><span class="toc-number">1.1.5.</span> <span class="toc-text">工控蜜罐日志分析（日志分析）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E4%BF%A1%E9%81%93%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90%EF%BC%88MP3-Private-Bit-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.6.</span> <span class="toc-text">隐信道数据安全分析（MP3 Private Bit 隐写）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B7%B1%E5%9C%B3%E7%AB%99-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 工业信息安全技能大赛-深圳站 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Modbus-%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">Modbus 协议分析（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90-1%EF%BC%88TCP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">工业协议分析 1（TCP 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90-2%EF%BC%88UDP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">工业协议分析 2（UDP 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E6%80%81%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90%EF%BC%88%E5%B7%A5%E7%A8%8B%E6%96%87%E4%BB%B6%E5%8F%96%E8%AF%81%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">组态软件安全分析（工程文件取证）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E8%9C%9C%E7%BD%90%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%EF%BC%88%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%EF%BC%89"><span class="toc-number">1.1.5.</span> <span class="toc-text">工控蜜罐日志分析（日志分析）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E4%BF%A1%E9%81%93%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90%EF%BC%88MP3-Private-Bit-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.6.</span> <span class="toc-text">隐信道数据安全分析（MP3 Private Bit 隐写）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -552,7 +552,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">149</div>
+    <div class="sidebar-state-number">150</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -673,9 +673,9 @@
           url: "http://example.com/2019/04/14/2019%20%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B7%B1%E5%9C%B3%E7%AB%99/",
           excerpt: "",
           description: "",
-          stripContent: "2019 工业信息安全技能大赛-深圳站赛 WriteUp组织架构  指导单位：由国家工业信息安全发展研究中心、中国网络空间安全协会竞评演练工作委员会、中国网络空间安全人才教育联盟、中国中文信息学会评测工作委员会共同指导  主办与承办：由鹏城实验室主办，其网络空间安全研究中心具体承办  技术支持：烽台科技（北京）有限公司（灯塔实验室）为大赛提供技术支持   MiscModbus 协议分析（Modbus 协议）链接: https://pan.baidu.com/s/1RcC1VTPusecH9OqT",
+          stripContent: "2019 工业信息安全技能大赛-深圳站 WriteUp组织架构  指导单位：由国家工业信息安全发展研究中心、中国网络空间安全协会竞评演练工作委员会、中国网络空间安全人才教育联盟、中国中文信息学会评测工作委员会共同指导  主办与承办：由鹏城实验室主办，其网络空间安全研究中心具体承办  技术支持：烽台科技（北京）有限公司（灯塔实验室）为大赛提供技术支持   MiscModbus 协议分析（Modbus 协议）链接: https://pan.baidu.com/s/1RcC1VTPusecH9OqTv",
           date: "Sun Apr 14 2019 13:18:00 GMT+0800",
-          updated: "Tue Jun 16 2026 11:06:25 GMT+0800",
+          updated: "Tue Jun 16 2026 15:52:22 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
