@@ -152,15 +152,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">153</div>
+    <div class="sidebar-state-number">155</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">20</div>
+    <div class="sidebar-state-number">21</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">174</div>
+    <div class="sidebar-state-number">175</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -245,36 +245,37 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2025/04/01/Forbidden/" aria-label="MazeSec Forbidden" title="MazeSec Forbidden"></a>
+      <a class="post-link" href="/2025/04/01/Five/" aria-label="MazeSec Five" title="MazeSec Five"></a>
     <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Forbidden" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Five" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2025-04-01</span>
-        <span><span class="icon-pencil"></span>586 字</span>
-        <span><span class="icon-clock"></span>3 分钟</span>
+        <span><span class="icon-pencil"></span>453 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
       </div>
-      <h2 class="post-title">MazeSec Forbidden</h2>
+      <h2 class="post-title">MazeSec Five</h2>
       <article class="post-article">
-          Forbidden项目地址：https://downloads.hackmyvm.eu/forbidden.zip
+          Five项目地址：https://downloads.hackmyvm.eu/five.zip
 是一个打包好的镜像文件
 注意：导入 ova 时一定要选择我已移动，否则没网
 使用 Nmap 扫描出开放服务及操作系统版本
 
-弱口令FTP上面扫描出可以匿名登录 FTP
+文件上传upload（路径绕过）扫描目录
 
-下载 note.txt 文件提示有一个 .jpg 包含密码
+访问 upload.html 可以上传文件
 
-继续下载首页，得到提示
-1无法执行 .php 代码
+上传反弹 Shell 成功，但是默认放在了 uploads/ 目录下面
 
+这个路径访问是 403，抓包看看
 
-RCEFTP正常的 .php 文件无法执行代码，那就换一些后缀例如 .phtml、.php5 等等传上去
+将这个 uploads/ 上传位置删除为空，这样子就传到了根目录下面，回显成功
 
-.php5 可以执行，成功连接上 Shell
+访问拿到 Shell
 
-提权Python 升级为交互式 Shel
+提权Python 升级为交互式 Shell
+&amp;#x2F;etc&amp;#x2F;
       </article>
     </div>
   </div>
@@ -605,10 +606,10 @@ RCESMB139 445 端口全开，使用 enum4linux 枚举信息
       </div>
       <div>
         <span class="icon-brush"></span>
-        150.8k
+        153.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        12:33
+        12:44
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -636,15 +637,15 @@ RCESMB139 445 端口全开，使用 enum4linux 枚举信息
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">153</div>
+    <div class="sidebar-state-number">155</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">20</div>
+    <div class="sidebar-state-number">21</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">174</div>
+    <div class="sidebar-state-number">175</div>
   </div>
 </div>
 <div class="sidebar-social" >

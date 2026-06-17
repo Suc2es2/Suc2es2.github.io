@@ -152,15 +152,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">153</div>
+    <div class="sidebar-state-number">155</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">20</div>
+    <div class="sidebar-state-number">21</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">174</div>
+    <div class="sidebar-state-number">175</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -245,8 +245,34 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/Ret2plt/" aria-label="Ret2plt" title="Ret2plt"></a>
+      <a class="post-link" href="/2019/05/22/MFC/" aria-label="MFC" title="MFC"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="MFC" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1k 字</span>
+        <span><span class="icon-clock"></span>4 分钟</span>
+      </div>
+      <h2 class="post-title">MFC</h2>
+      <article class="post-article">
+          MFC介绍MFC（Microsoft Foundation Classes），即微软基础类库，是微软为 Windows 平台开发者提供的一个 C++ 类库
+它的核心价值在于，用 C++ 的 “类” 将复杂的 Windows API (Win32 API) 给 “包裹” 起来，让开发者能通过面向对象的方式去调用
+这样做的好处是大大简化了 Windows 图形界面程序的开发工作
+核心思想与架构MFC 的精髓在于其六个相互配合的内部机制，包括我们马上会介绍的消息映射和序列化。简单来说：
+
+程序启动机制：负责程序启动的流程，从 CWinApp 派生对象到 AfxWinMain 主函数等
+
+窗口创建机制
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/Ret2plt/" aria-label="Ret2plt" title="Ret2plt"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2plt" class="lazyload">
     </div>
     <div class="post-info">
@@ -268,9 +294,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/pwn-Shellcode/" aria-label="Shellcode" title="Shellcode"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Shellcode" class="lazyload">
     </div>
     <div class="post-info">
@@ -301,9 +327,9 @@ mprotect 的第三个参数 7 代表 RWX 权限，从指针 buf 向前偏移 16 
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/2019%20HDCTF/" aria-label="2019 HDCTF WriteUp" title="2019 HDCTF WriteUp"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 HDCTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -331,9 +357,9 @@ dump 出 explorer.exe，它的内存里主
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/Ret2text/" aria-label="Ret2text" title="Ret2text"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2text" class="lazyload">
     </div>
     <div class="post-info">
@@ -362,9 +388,9 @@ text：.text 段，存放程序机器指令的区域
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/%E8%8A%B1%E6%8C%87%E4%BB%A4/" aria-label="花指令" title="花指令"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="花指令" class="lazyload">
     </div>
     <div class="post-info">
@@ -394,6 +420,35 @@ text：.text 段，存放程序机器指令的区域
 jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
 
 偏移量是相对下一指令地址的位移。当前 jnz 位于 0x4
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/04/14/2019%20%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B7%B1%E5%9C%B3%E7%AB%99/" aria-label="2019 工业信息安全技能大赛-深圳站 WriteUp" title="2019 工业信息安全技能大赛-深圳站 WriteUp"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 工业信息安全技能大赛-深圳站 WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-04-14</span>
+        <span><span class="icon-pencil"></span>2.7k 字</span>
+        <span><span class="icon-clock"></span>12 分钟</span>
+      </div>
+      <h2 class="post-title">2019 工业信息安全技能大赛-深圳站 WriteUp</h2>
+      <article class="post-article">
+          2019 工业信息安全技能大赛-深圳站 WriteUp组织架构
+
+指导单位：由国家工业信息安全发展研究中心、中国网络空间安全协会竞评演练工作委员会、中国网络空间安全人才教育联盟、中国中文信息学会评测工作委员会共同指导
+
+主办与承办：由鹏城实验室主办，其网络空间安全研究中心具体承办
+
+技术支持：烽台科技（北京）有限公司（灯塔实验室）为大赛提供技术支持
+
+
+MiscModbus 协议分析（Modbus 协议）链接: https://pan.baidu.com/s/1RcC1VTPusecH9OqTvRPnPA?pwd=4wv3 提取码: 4wv3 
+题目：黑客通过外网进入一家工厂的控制网络，之后对
       </article>
     </div>
   </div>
@@ -433,29 +488,23 @@ Misc另一个隐藏的黑客（SDR 软件无线电信号分析）
 </div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/2019%20%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B7%B1%E5%9C%B3%E7%AB%99/" aria-label="2019 工业信息安全技能大赛-深圳站 WriteUp" title="2019 工业信息安全技能大赛-深圳站 WriteUp"></a>
+      <a class="post-link" href="/2019/04/14/Modbus%20%E5%8D%8F%E8%AE%AE/" aria-label="Modbus 协议" title="Modbus 协议"></a>
     <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 工业信息安全技能大赛-深圳站 WriteUp" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Modbus 协议" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>2.7k 字</span>
-        <span><span class="icon-clock"></span>12 分钟</span>
+        <span><span class="icon-pencil"></span>2.2k 字</span>
+        <span><span class="icon-clock"></span>9 分钟</span>
       </div>
-      <h2 class="post-title">2019 工业信息安全技能大赛-深圳站 WriteUp</h2>
+      <h2 class="post-title">Modbus 协议</h2>
       <article class="post-article">
-          2019 工业信息安全技能大赛-深圳站 WriteUp组织架构
+          Modbus 协议概述Modbus 是一种广泛应用于工业自动化领域的串行通信协议。它由 Modicon 公司（现属施耐德电气）于 1979 年为其可编程逻辑控制器（PLC）通信而开发，如今已成为工业电子设备之间最常用的连接方式和事实上的业界标准。
+Modbus 之所以被广泛采用，主要得益于它是公开发表且无版权要求的开放协议，用户可以免费使用；同时其消息格式简单明了，易于实现、部署和维护。
+从 OSI 模型来看，Modbus 是一个应用层（第7层）报文传输协议，它定义了与底层物理网络无关的协议数据单元（PDU），可以运行在不同类型的总线或网络上。
 
-指导单位：由国家工业信息安全发展研究中心、中国网络空间安全协会竞评演练工作委员会、中国网络空间安全人才教育联盟、中国中文信息学会评测工作委员会共同指导
-
-主办与承办：由鹏城实验室主办，其网络空间安全研究中心具体承办
-
-技术支持：烽台科技（北京）有限公司（灯塔实验室）为大赛提供技术支持
-
-
-MiscModbus 协议分析（Modbus 协议）链接: https://pan.baidu.com/s/1RcC1VTPusecH9OqTvRPnPA?pwd=4wv3 提取码: 4wv3 
-题目：黑客通过外网进入一家工厂的控制网络，之后对
+核心通信模型：主从（客户端&amp;#x2F;服务器）
       </article>
     </div>
   </div>
@@ -477,63 +526,6 @@ MiscModbus 协议分析（Modbus 协议）链接: https://pan.baidu.com/s/1RcC1V
           2018 ACTF WriteUp前言主办方：XCTF
 Crypto你能看出这是什么加密么（RSA）
 1234567p=0x928fb6aa9d813b6c3270131818a7c54edb18e3806942b88670106c1821e0326364194a8c49392849432b37632f0abe3f3c52e909b939c91c50e41a7b8cd00c67d6743b4fq=0xec301417ccdffa679a8dcc4027dd0d75baf9d441625ed8930472165717f4732884c33f25d4ee6a6c9ae6c44aedad039b0b
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2018/03/01/%E9%A1%B9%E7%9B%AE/" aria-label="攻防演练" title="攻防演练"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="攻防演练" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2018-03-01</span>
-        <span><span class="icon-pencil"></span>7.6k 字</span>
-        <span><span class="icon-clock"></span>27 分钟</span>
-      </div>
-      <h2 class="post-title">攻防演练</h2>
-      <article class="post-article">
-          攻防演练2018 年“辽宁护网2018” 网络攻防实战演习辽宁省公安厅网络安全保卫总队于 9 月 14 日至 21 日组织开展了 “辽宁护网2018” 网络攻防实战演习
-本次演习在真实网络环境下，参赛队伍分为攻击方、防守方和应急处置队伍。攻击方对金融、通讯、医疗卫生、广播电视、证券、交通、教育、国土资源、水利及党政机关的门户网站、云平台、交易平台、数据系统、物联网等目标系统进行网络攻击，防守方则组织防守力量发现、跟踪、溯源各种攻击行为
-通过演习，发现和整改网络系统存在的深层次安全问题，提高对网络安全重要性的认知，促进国家网络安全等级保护制度落实，进一步提高辽宁省关键信息基础设施综合防护水平
-中
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2016/04/14/2016%20%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%B1%B1%E4%B8%9C%E7%9C%81%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B/" aria-label="2016 第五届山东省网络安全竞赛 WriteUp" title="2016 第五届山东省网络安全竞赛 WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2016 第五届山东省网络安全竞赛 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2016-04-14</span>
-        <span><span class="icon-pencil"></span>474 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
-      </div>
-      <h2 class="post-title">2016 第五届山东省网络安全竞赛 WriteUp</h2>
-      <article class="post-article">
-          2016 第五届山东省网络安全竞赛 WriteUp赛事组织架构
-
-指导单位：中国信息安全认证中心
-
-主办单位：共青团山东省委、山东省互联网信息办公室、山东省经济和信息化委员会、山东省教育厅、山东省通信管理局、山东省学生联合会
-
-承办单位：山东信息协会、山东科技大学、中国信息安全认证中心山东分中心、浪潮集团有限公司
-
-
-共有来自山东省内 44 所高校的 130 余名大学生和 170 余名网络安全技术爱好者参加了决赛
-详细获奖名单
-
-团体奖 (一等奖)：山东科技大学（获得团体奖共 3 项：一等奖、二等奖、三等奖各 1 项）
-
-团体奖 (二等奖)：中国海洋大学
-
-团体奖 (三等奖)：山东科技大学泰安
       </article>
     </div>
   </div>
@@ -561,10 +553,10 @@ Crypto你能看出这是什么加密么（RSA）
       </div>
       <div>
         <span class="icon-brush"></span>
-        150.8k
+        153.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        12:33
+        12:44
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -592,15 +584,15 @@ Crypto你能看出这是什么加密么（RSA）
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">153</div>
+    <div class="sidebar-state-number">155</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">20</div>
+    <div class="sidebar-state-number">21</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">174</div>
+    <div class="sidebar-state-number">175</div>
   </div>
 </div>
 <div class="sidebar-social" >
