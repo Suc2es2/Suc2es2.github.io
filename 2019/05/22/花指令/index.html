@@ -7,7 +7,7 @@
   
   
   
-  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
   <title>
     花指令 | 雾島风起時
   </title>
@@ -20,7 +20,7 @@
     <meta name="description" content="花指令原理反汇编器通常有两种主要策略：  线性扫描：顺序解析每条指令，遇到干扰字节就会错位  递归下降：根据控制流跳转来反汇编，更智能但依然可能被误导   花指令正是利用反汇编器的缺陷——让它把数据当成代码，或者把代码的一部分拆解成错误指令 最终反汇编出来的结果是混乱、错误、不连续的，分析者需要手动修复或动态调试才能看清真实逻辑 实战案例 使用 Exeinfo PE 发现有 UPX 壳  脱壳后用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="花指令">
-<meta property="og:url" content="http://example.com/2019/05/22/%E8%8A%B1%E6%8C%87%E4%BB%A4/index.html">
+<meta property="og:url" content="https://suc2es2.github.io/2019/05/22/%E8%8A%B1%E6%8C%87%E4%BB%A4/index.html">
 <meta property="og:site_name" content="雾島风起時">
 <meta property="og:description" content="花指令原理反汇编器通常有两种主要策略：  线性扫描：顺序解析每条指令，遇到干扰字节就会错位  递归下降：根据控制流跳转来反汇编，更智能但依然可能被误导   花指令正是利用反汇编器的缺陷——让它把数据当成代码，或者把代码的一部分拆解成错误指令 最终反汇编出来的结果是混乱、错误、不连续的，分析者需要手动修复或动态调试才能看清真实逻辑 实战案例 使用 Exeinfo PE 发现有 UPX 壳  脱壳后用">
 <meta property="og:locale" content="zh_CN">
@@ -163,7 +163,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">155</div>
+    <div class="sidebar-state-number">156</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -171,7 +171,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">175</div>
+    <div class="sidebar-state-number">177</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -334,10 +334,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        153.4k
+        154.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        12:44
+        12:48
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -370,7 +370,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">155</div>
+    <div class="sidebar-state-number">156</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -378,7 +378,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">175</div>
+    <div class="sidebar-state-number">177</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -488,7 +488,7 @@
         window.REIMU_POST = {
           author: "ALL",
           title: "花指令",
-          url: "http://example.com/2019/05/22/%E8%8A%B1%E6%8C%87%E4%BB%A4/",
+          url: "https://suc2es2.github.io/2019/05/22/%E8%8A%B1%E6%8C%87%E4%BB%A4/",
           excerpt: "",
           description: "",
           stripContent: "花指令原理反汇编器通常有两种主要策略：  线性扫描：顺序解析每条指令，遇到干扰字节就会错位  递归下降：根据控制流跳转来反汇编，更智能但依然可能被误导   花指令正是利用反汇编器的缺陷——让它把数据当成代码，或者把代码的一部分拆解成错误指令 最终反汇编出来的结果是混乱、错误、不连续的，分析者需要手动修复或动态调试才能看清真实逻辑 实战案例 使用 Exeinfo PE 发现有 UPX 壳  脱壳后用 IDA 分析，有花指令  关键点：jnz +1 的跳转目标  jnz short 指令本身长 2 ",

@@ -7,7 +7,7 @@
   
   
   
-  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
   <title>
     Ret2csu | 雾島风起時
   </title>
@@ -20,7 +20,7 @@
     <meta name="description" content="Ret2csu原理在 glibc 的源码中，有一个函数叫 __libc_csu_init，它在程序启动时负责调用 .init_array 中的初始化函数 这个函数末尾有一段普适性很强的指令，经常被用作 ROP gadget。安全研究者最早将利用这段代码的技术称为 Return-to-csu，简称 Ret2csu。 因为 __libc_csu_init 是 libc 标准启动代码的一部分，只要程序是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ret2csu">
-<meta property="og:url" content="http://example.com/2019/05/22/Ret2csu/index.html">
+<meta property="og:url" content="https://suc2es2.github.io/2019/05/22/Ret2csu/index.html">
 <meta property="og:site_name" content="雾島风起時">
 <meta property="og:description" content="Ret2csu原理在 glibc 的源码中，有一个函数叫 __libc_csu_init，它在程序启动时负责调用 .init_array 中的初始化函数 这个函数末尾有一段普适性很强的指令，经常被用作 ROP gadget。安全研究者最早将利用这段代码的技术称为 Return-to-csu，简称 Ret2csu。 因为 __libc_csu_init 是 libc 标准启动代码的一部分，只要程序是">
 <meta property="og:locale" content="zh_CN">
@@ -166,7 +166,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">155</div>
+    <div class="sidebar-state-number">156</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -174,7 +174,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">175</div>
+    <div class="sidebar-state-number">177</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -369,10 +369,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        153.4k
+        154.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        12:44
+        12:48
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -405,7 +405,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">155</div>
+    <div class="sidebar-state-number">156</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -413,7 +413,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">175</div>
+    <div class="sidebar-state-number">177</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -523,7 +523,7 @@
         window.REIMU_POST = {
           author: "ALL",
           title: "Ret2csu",
-          url: "http://example.com/2019/05/22/Ret2csu/",
+          url: "https://suc2es2.github.io/2019/05/22/Ret2csu/",
           excerpt: "",
           description: "",
           stripContent: "Ret2csu原理在 glibc 的源码中，有一个函数叫 __libc_csu_init，它在程序启动时负责调用 .init_array 中的初始化函数 这个函数末尾有一段普适性很强的指令，经常被用作 ROP gadget。安全研究者最早将利用这段代码的技术称为 Return-to-csu，简称 Ret2csu。 因为 __libc_csu_init 是 libc 标准启动代码的一部分，只要程序是动态链接的，几乎一定存在，而且在没有 PIE 的情况下地址固定。这给了攻击者在 “找不到常规 pop",

@@ -7,7 +7,7 @@
   
   
   
-  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
   <title>
     Ret2plt | 雾島风起時
   </title>
@@ -20,7 +20,7 @@
     <meta name="description" content="Ret2pltPLT 与 GOT在动态链接的 ELF 程序里，当你调用一个外部库函数（如 puts），实际调用的是 PLT 表中的一个条目 这个条目会通过 GOT 表间接跳转到函数的真实地址 关键点：只要程序链接了某个函数（比如 system），即使代码里没出现过 system，它的 PLT 表项可能也会存在 更常见的情况是：程序虽然没有直接调用 system，但导入了 system，这样 sys">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ret2plt">
-<meta property="og:url" content="http://example.com/2019/05/22/Ret2plt/index.html">
+<meta property="og:url" content="https://suc2es2.github.io/2019/05/22/Ret2plt/index.html">
 <meta property="og:site_name" content="雾島风起時">
 <meta property="og:description" content="Ret2pltPLT 与 GOT在动态链接的 ELF 程序里，当你调用一个外部库函数（如 puts），实际调用的是 PLT 表中的一个条目 这个条目会通过 GOT 表间接跳转到函数的真实地址 关键点：只要程序链接了某个函数（比如 system），即使代码里没出现过 system，它的 PLT 表项可能也会存在 更常见的情况是：程序虽然没有直接调用 system，但导入了 system，这样 sys">
 <meta property="og:locale" content="zh_CN">
@@ -164,7 +164,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">155</div>
+    <div class="sidebar-state-number">156</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -172,7 +172,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">175</div>
+    <div class="sidebar-state-number">177</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -324,10 +324,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        153.4k
+        154.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        12:44
+        12:48
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -360,7 +360,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">155</div>
+    <div class="sidebar-state-number">156</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -368,7 +368,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">175</div>
+    <div class="sidebar-state-number">177</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -478,7 +478,7 @@
         window.REIMU_POST = {
           author: "ALL",
           title: "Ret2plt",
-          url: "http://example.com/2019/05/22/Ret2plt/",
+          url: "https://suc2es2.github.io/2019/05/22/Ret2plt/",
           excerpt: "",
           description: "",
           stripContent: "Ret2pltPLT 与 GOT在动态链接的 ELF 程序里，当你调用一个外部库函数（如 puts），实际调用的是 PLT 表中的一个条目 这个条目会通过 GOT 表间接跳转到函数的真实地址 关键点：只要程序链接了某个函数（比如 system），即使代码里没出现过 system，它的 PLT 表项可能也会存在 更常见的情况是：程序虽然没有直接调用 system，但导入了 system，这样 system@plt 就是一个现成的跳板 核心思想Ret2plt 就是利用栈溢出，将返回地址覆盖为某个函数",

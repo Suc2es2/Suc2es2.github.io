@@ -7,7 +7,7 @@
   
   
   
-  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
   <title>
     RSA 共模攻击 | 雾島风起時
   </title>
@@ -20,7 +20,7 @@
     <meta name="description" content="RSA 共模攻击前置条件有两把 “公钥”：(n, e1) 和 (n, e2) 注意：n 完全相同，但 e1 与 e2 不同且互质 同一份明文 m，分别用这两把公钥加密，生成了两个密文：  c1 &#x3D; m^e1 mod n  c2 &#x3D; m^e2 mod n   如果只知道 c1, c2, e1, e2, n，没有私钥也能算出 m 贝祖等式共模攻击完全建立在贝祖等式上 如果两个整数 e1 和 e2 互质">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RSA 共模攻击">
-<meta property="og:url" content="http://example.com/2026/05/12/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/index.html">
+<meta property="og:url" content="https://suc2es2.github.io/2026/05/12/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/index.html">
 <meta property="og:site_name" content="雾島风起時">
 <meta property="og:description" content="RSA 共模攻击前置条件有两把 “公钥”：(n, e1) 和 (n, e2) 注意：n 完全相同，但 e1 与 e2 不同且互质 同一份明文 m，分别用这两把公钥加密，生成了两个密文：  c1 &#x3D; m^e1 mod n  c2 &#x3D; m^e2 mod n   如果只知道 c1, c2, e1, e2, n，没有私钥也能算出 m 贝祖等式共模攻击完全建立在贝祖等式上 如果两个整数 e1 和 e2 互质">
 <meta property="og:locale" content="zh_CN">
@@ -158,7 +158,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">155</div>
+    <div class="sidebar-state-number">156</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -166,7 +166,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">175</div>
+    <div class="sidebar-state-number">177</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -328,10 +328,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        153.4k
+        154.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        12:44
+        12:48
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -364,7 +364,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">155</div>
+    <div class="sidebar-state-number">156</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -372,7 +372,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">175</div>
+    <div class="sidebar-state-number">177</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -482,7 +482,7 @@
         window.REIMU_POST = {
           author: "ALL",
           title: "RSA 共模攻击",
-          url: "http://example.com/2026/05/12/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/",
+          url: "https://suc2es2.github.io/2026/05/12/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/",
           excerpt: "",
           description: "",
           stripContent: "RSA 共模攻击前置条件有两把 “公钥”：(n, e1) 和 (n, e2) 注意：n 完全相同，但 e1 与 e2 不同且互质 同一份明文 m，分别用这两把公钥加密，生成了两个密文：  c1 = m^e1 mod n  c2 = m^e2 mod n   如果只知道 c1, c2, e1, e2, n，没有私钥也能算出 m 贝祖等式共模攻击完全建立在贝祖等式上 如果两个整数 e1 和 e2 互质，那么存在整数 s 和 t 使得： 1e1 * s + e2 * t = 1  在 Python 里",
