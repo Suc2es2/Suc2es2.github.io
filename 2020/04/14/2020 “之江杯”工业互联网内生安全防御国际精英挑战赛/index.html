@@ -31,8 +31,12 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a323a2981fd5b07379561aa.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a323bdb81fd5b0737956514.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a323ca781fd5b07379567a8.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3352b5a6693733f7e20989.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3356cba6693733f7e20b58.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a33579da6693733f7e20ba4.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a335e6aa6693733f7e20e73.png">
 <meta property="article:published_time" content="2020-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-17T06:27:29.636Z">
+<meta property="article:modified_time" content="2026-06-18T02:57:03.304Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -154,7 +158,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E2%80%9C%E4%B9%8B%E6%B1%9F%E6%9D%AF%E2%80%9D-%E5%B7%A5%E4%B8%9A%E4%BA%92%E8%81%94%E7%BD%91%E5%86%85%E7%94%9F%E5%AE%89%E5%85%A8%E9%98%B2%E5%BE%A1%E5%9B%BD%E9%99%85%E7%B2%BE%E8%8B%B1%E6%8C%91%E6%88%98%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 “之江杯” 工业互联网内生安全防御国际精英挑战赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95-Modbus-%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">简单 Modbus 协议分析（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E7%8E%B0%E5%9C%BA%E7%9A%84%E6%81%B6%E6%84%8F%E6%89%AB%E6%8F%8F%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">工控现场的恶意扫描（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%88%86%E6%9E%90%EF%BC%88-reg-%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%8F%96%E8%AF%81%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">注册表分析（.reg 注册表取证）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#modbus"><span class="toc-number">1.1.4.</span> <span class="toc-text">modbus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S7%E5%8D%8F%E8%AE%AE%E6%81%B6%E6%84%8F%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90"><span class="toc-number">1.1.5.</span> <span class="toc-text">S7协议恶意攻击分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%BD%8D%E6%9C%BA%E9%80%9A%E8%AE%AF%E5%BC%82%E5%B8%B8%E5%88%86%E6%9E%90"><span class="toc-number">1.1.6.</span> <span class="toc-text">上位机通讯异常分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A2%AF%E5%BD%A2%E5%9B%BE2"><span class="toc-number">1.1.7.</span> <span class="toc-text">梯形图2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S7Comm-%E6%94%BB%E5%87%BB%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90"><span class="toc-number">1.1.8.</span> <span class="toc-text">S7Comm 攻击协议分析</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E2%80%9C%E4%B9%8B%E6%B1%9F%E6%9D%AF%E2%80%9D-%E5%B7%A5%E4%B8%9A%E4%BA%92%E8%81%94%E7%BD%91%E5%86%85%E7%94%9F%E5%AE%89%E5%85%A8%E9%98%B2%E5%BE%A1%E5%9B%BD%E9%99%85%E7%B2%BE%E8%8B%B1%E6%8C%91%E6%88%98%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 “之江杯” 工业互联网内生安全防御国际精英挑战赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95-Modbus-%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">简单 Modbus 协议分析（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E7%8E%B0%E5%9C%BA%E7%9A%84%E6%81%B6%E6%84%8F%E6%89%AB%E6%8F%8F%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">工控现场的恶意扫描（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%88%86%E6%9E%90%EF%BC%88-reg-%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%8F%96%E8%AF%81%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">注册表分析（.reg 注册表取证）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#modbus%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">modbus（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S7-%E5%8D%8F%E8%AE%AE%E6%81%B6%E6%84%8F%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90%EF%BC%88S7comm-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.5.</span> <span class="toc-text">S7 协议恶意攻击分析（S7comm 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%BD%8D%E6%9C%BA%E9%80%9A%E8%AE%AF%E5%BC%82%E5%B8%B8%E5%88%86%E6%9E%90"><span class="toc-number">1.1.6.</span> <span class="toc-text">上位机通讯异常分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A2%AF%E5%BD%A2%E5%9B%BE-2"><span class="toc-number">1.1.7.</span> <span class="toc-text">梯形图 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S7Comm-%E6%94%BB%E5%87%BB%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90"><span class="toc-number">1.1.8.</span> <span class="toc-text">S7Comm 攻击协议分析</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -165,7 +169,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">156</div>
+    <div class="sidebar-state-number">157</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -232,7 +236,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2020-04-14T05:18:00.000Z" itemprop="datePublished">2020-04-14</time>
-    <time style="display: none;" id="post-update-time">2026-06-17</time>
+    <time style="display: none;" id="post-update-time">2026-06-18</time>
   </span>
 </div>
 
@@ -304,7 +308,92 @@
 <p>另外还能看到对应网关 MAC</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DefaultGatewayMac=hex:6e,58,6e,70,69,44</span><br></pre></td></tr></table></figure>
 
-<h3 id="modbus"><a href="#modbus" class="headerlink" title="modbus"></a>modbus</h3><h3 id="S7协议恶意攻击分析"><a href="#S7协议恶意攻击分析" class="headerlink" title="S7协议恶意攻击分析"></a>S7协议恶意攻击分析</h3><h3 id="上位机通讯异常分析"><a href="#上位机通讯异常分析" class="headerlink" title="上位机通讯异常分析"></a>上位机通讯异常分析</h3><h3 id="梯形图2"><a href="#梯形图2" class="headerlink" title="梯形图2"></a>梯形图2</h3><h3 id="S7Comm-攻击协议分析"><a href="#S7Comm-攻击协议分析" class="headerlink" title="S7Comm 攻击协议分析"></a>S7Comm 攻击协议分析</h3>
+<h3 id="modbus（Modbus-协议）"><a href="#modbus（Modbus-协议）" class="headerlink" title="modbus（Modbus 协议）"></a>modbus（Modbus 协议）</h3><p><img src="https://pic1.imgdb.cn/item/6a3352b5a6693733f7e20989.png"></p>
+<p>过滤出来按照长度排列，有三个数据包长度是 81 且含有十进制的 ASCII 码</p>
+<p><img src="https://pic1.imgdb.cn/item/6a3356cba6693733f7e20b58.png"></p>
+<p>将这三个流量包的字符提取出来拼接得到 <code>flag{18ghT1wr3}</code></p>
+<h3 id="S7-协议恶意攻击分析（S7comm-协议）"><a href="#S7-协议恶意攻击分析（S7comm-协议）" class="headerlink" title="S7 协议恶意攻击分析（S7comm 协议）"></a>S7 协议恶意攻击分析（S7comm 协议）</h3><p><img src="https://pic1.imgdb.cn/item/6a33579da6693733f7e20ba4.png"></p>
+<p>S7comm（S7 Communication）是西门子专有的工业控制协议，主要功能码如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">功能码</th>
+<th align="left">描述</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>0x00</strong></td>
+<td align="left">CPU 服务</td>
+<td align="left">用于执行与 CPU 本身相关的系统级功能</td>
+</tr>
+<tr>
+<td align="left"><strong>0xF0</strong></td>
+<td align="left">建立通信</td>
+<td align="left">在数据传输前，用于协商通信参数，如 PDU 大小</td>
+</tr>
+<tr>
+<td align="left"><strong>0x04</strong></td>
+<td align="left">读取变量</td>
+<td align="left">请求读取 PLC 中一个或多个变量的值</td>
+</tr>
+<tr>
+<td align="left"><strong>0x05</strong></td>
+<td align="left">写入变量</td>
+<td align="left">请求向 PLC 写入一个或多个变量的值</td>
+</tr>
+<tr>
+<td align="left"><strong>0x1A</strong></td>
+<td align="left">请求下载</td>
+<td align="left">开始下载程序块或数据块前的请求</td>
+</tr>
+<tr>
+<td align="left"><strong>0x1B</strong></td>
+<td align="left">下载块</td>
+<td align="left">传输程序块或数据块的实际数据内容</td>
+</tr>
+<tr>
+<td align="left"><strong>0x1C</strong></td>
+<td align="left">下载结束</td>
+<td align="left">通知 PLC 下载过程已全部完成</td>
+</tr>
+<tr>
+<td align="left"><strong>0x1D</strong></td>
+<td align="left">开始上传</td>
+<td align="left">开始从 PLC 上传程序块或数据块</td>
+</tr>
+<tr>
+<td align="left"><strong>0x1E</strong></td>
+<td align="left">上传</td>
+<td align="left">传输从 PLC 上传的数据内容</td>
+</tr>
+<tr>
+<td align="left"><strong>0x1F</strong></td>
+<td align="left">上传结束</td>
+<td align="left">通知上位机上传过程已全部完成</td>
+</tr>
+<tr>
+<td align="left"><strong>0x28</strong></td>
+<td align="left">PLC 控制</td>
+<td align="left">用于远程控制 PLC 的运行模式，例如启动（Start）</td>
+</tr>
+<tr>
+<td align="left"><strong>0x29</strong></td>
+<td align="left">停止 PLC</td>
+<td align="left">远程停止 PLC 的运行</td>
+</tr>
+</tbody></table>
+<p>题目说了是 “突然发生停机事件”，所以推测是 <code>0x29</code> 或者 <code>0x28</code>，直接过滤出来</p>
+<p><code>P_PROGRAM</code> 是实现 PLC 模式转换的关键服务。它主要包含两种操作：</p>
+<ul>
+<li><p>启动：将 PLC 从停止状态切换至运行状态</p>
+</li>
+<li><p>停止：将 PLC 从运行状态切换至停止状态</p>
+</li>
+</ul>
+<p><img src="https://pic1.imgdb.cn/item/6a335e6aa6693733f7e20e73.png"></p>
+<p>本题的 flag 是 <code>flag{3201414d}</code></p>
+<h3 id="上位机通讯异常分析"><a href="#上位机通讯异常分析" class="headerlink" title="上位机通讯异常分析"></a>上位机通讯异常分析</h3><h3 id="梯形图-2"><a href="#梯形图-2" class="headerlink" title="梯形图 2"></a>梯形图 2</h3><h3 id="S7Comm-攻击协议分析"><a href="#S7Comm-攻击协议分析" class="headerlink" title="S7Comm 攻击协议分析"></a>S7Comm 攻击协议分析</h3>
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/CTF/" title="CTF" data-aos="zoom-in">CTF</a>
@@ -315,11 +404,11 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 CSICTF WriteUp" class="lazyload">
-        <a href="/2020/04/14/2020%20CSICTF/" aria-label="前一篇: 2020 CSICTF WriteUp" title="前一篇: 2020 CSICTF WriteUp"></a>
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 0xGame WriteUp" class="lazyload">
+        <a href="/2020/04/14/2020%200xGame/" aria-label="前一篇: 2020 0xGame WriteUp" title="前一篇: 2020 0xGame WriteUp"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            2020 CSICTF WriteUp
+            2020 0xGame WriteUp
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
@@ -354,10 +443,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        154.3k
+        155.2k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        12:48
+        12:51
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -379,7 +468,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E2%80%9C%E4%B9%8B%E6%B1%9F%E6%9D%AF%E2%80%9D-%E5%B7%A5%E4%B8%9A%E4%BA%92%E8%81%94%E7%BD%91%E5%86%85%E7%94%9F%E5%AE%89%E5%85%A8%E9%98%B2%E5%BE%A1%E5%9B%BD%E9%99%85%E7%B2%BE%E8%8B%B1%E6%8C%91%E6%88%98%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 “之江杯” 工业互联网内生安全防御国际精英挑战赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95-Modbus-%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">简单 Modbus 协议分析（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E7%8E%B0%E5%9C%BA%E7%9A%84%E6%81%B6%E6%84%8F%E6%89%AB%E6%8F%8F%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">工控现场的恶意扫描（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%88%86%E6%9E%90%EF%BC%88-reg-%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%8F%96%E8%AF%81%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">注册表分析（.reg 注册表取证）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#modbus"><span class="toc-number">1.1.4.</span> <span class="toc-text">modbus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S7%E5%8D%8F%E8%AE%AE%E6%81%B6%E6%84%8F%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90"><span class="toc-number">1.1.5.</span> <span class="toc-text">S7协议恶意攻击分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%BD%8D%E6%9C%BA%E9%80%9A%E8%AE%AF%E5%BC%82%E5%B8%B8%E5%88%86%E6%9E%90"><span class="toc-number">1.1.6.</span> <span class="toc-text">上位机通讯异常分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A2%AF%E5%BD%A2%E5%9B%BE2"><span class="toc-number">1.1.7.</span> <span class="toc-text">梯形图2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S7Comm-%E6%94%BB%E5%87%BB%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90"><span class="toc-number">1.1.8.</span> <span class="toc-text">S7Comm 攻击协议分析</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E2%80%9C%E4%B9%8B%E6%B1%9F%E6%9D%AF%E2%80%9D-%E5%B7%A5%E4%B8%9A%E4%BA%92%E8%81%94%E7%BD%91%E5%86%85%E7%94%9F%E5%AE%89%E5%85%A8%E9%98%B2%E5%BE%A1%E5%9B%BD%E9%99%85%E7%B2%BE%E8%8B%B1%E6%8C%91%E6%88%98%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 “之江杯” 工业互联网内生安全防御国际精英挑战赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95-Modbus-%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">简单 Modbus 协议分析（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E7%8E%B0%E5%9C%BA%E7%9A%84%E6%81%B6%E6%84%8F%E6%89%AB%E6%8F%8F%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">工控现场的恶意扫描（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%88%86%E6%9E%90%EF%BC%88-reg-%E6%B3%A8%E5%86%8C%E8%A1%A8%E5%8F%96%E8%AF%81%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">注册表分析（.reg 注册表取证）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#modbus%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">modbus（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S7-%E5%8D%8F%E8%AE%AE%E6%81%B6%E6%84%8F%E6%94%BB%E5%87%BB%E5%88%86%E6%9E%90%EF%BC%88S7comm-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.5.</span> <span class="toc-text">S7 协议恶意攻击分析（S7comm 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%BD%8D%E6%9C%BA%E9%80%9A%E8%AE%AF%E5%BC%82%E5%B8%B8%E5%88%86%E6%9E%90"><span class="toc-number">1.1.6.</span> <span class="toc-text">上位机通讯异常分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A2%AF%E5%BD%A2%E5%9B%BE-2"><span class="toc-number">1.1.7.</span> <span class="toc-text">梯形图 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S7Comm-%E6%94%BB%E5%87%BB%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90"><span class="toc-number">1.1.8.</span> <span class="toc-text">S7Comm 攻击协议分析</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -390,7 +479,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">156</div>
+    <div class="sidebar-state-number">157</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -513,7 +602,7 @@
           description: "",
           stripContent: "2020 “之江杯” 工业互联网内生安全防御国际精英挑战赛 WriteUp 主办与支持：比赛由之江实验室联合中国信通院等机构共同举办，并获得了中国工程院和浙江省人民政府的支持  赛事概况：比赛于 2020 年 12 月 20 日至 22 日举办，为期三天。共邀请了来自中、美、俄、德等 8 个国家的 40 支顶尖 “白帽黑客” 战队参赛。赛事的核心目标是攻击之江实验室研发的工业互联网拟态防御系列设备  赛制与创新：大赛设置了 CTF 竞速赛、AWD 竞技赛、人机对抗赛和巅峰挑战赛四个环节。最大亮点",
           date: "Tue Apr 14 2020 13:18:00 GMT+0800",
-          updated: "Wed Jun 17 2026 14:27:29 GMT+0800",
+          updated: "Thu Jun 18 2026 10:57:03 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
