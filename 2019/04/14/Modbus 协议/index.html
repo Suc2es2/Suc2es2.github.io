@@ -26,8 +26,16 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a30209bb755a1449d6a3e85.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a3020b5b755a1449d6a3ea2.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a320d7fb67c7e4f4a887fa7.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a320b36b67c7e4f4a887510.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a320d29b67c7e4f4a887607.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a323c9881fd5b073795679c.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a323a2981fd5b07379561aa.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a323bdb81fd5b0737956514.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3352b5a6693733f7e20989.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3356cba6693733f7e20b58.png">
 <meta property="article:published_time" content="2019-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-17T02:17:39.970Z">
+<meta property="article:modified_time" content="2026-06-18T03:20:36.606Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="Misc">
 <meta name="twitter:card" content="summary">
@@ -149,7 +157,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Modbus-%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.</span> <span class="toc-text">Modbus 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B%EF%BC%9A%E4%B8%BB%E4%BB%8E%EF%BC%88%E5%AE%A2%E6%88%B7%E7%AB%AF-%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%89%E6%9E%B6%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">核心通信模型：主从（客户端&#x2F;服务器）架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E4%B8%BB%E8%A6%81%E5%8D%8F%E8%AE%AE%E5%8F%98%E4%BD%93"><span class="toc-number">1.3.</span> <span class="toc-text">三种主要协议变体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%8A%9F%E8%83%BD%E7%A0%81"><span class="toc-number">1.4.</span> <span class="toc-text">数据模型与功能码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.4.1.</span> <span class="toc-text">四种数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E7%A0%81"><span class="toc-number">1.4.2.</span> <span class="toc-text">功能码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E5%B8%A7%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.3.</span> <span class="toc-text">消息帧结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.5.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF%E4%B8%8E%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">1.6.</span> <span class="toc-text">优势与局限性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF"><span class="toc-number">1.6.1.</span> <span class="toc-text">优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">1.6.2.</span> <span class="toc-text">局限性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.7.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Modbus-%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.7.1.</span> <span class="toc-text">Modbus 协议分析（Modbus 协议）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Modbus-%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.</span> <span class="toc-text">Modbus 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B%EF%BC%9A%E4%B8%BB%E4%BB%8E%EF%BC%88%E5%AE%A2%E6%88%B7%E7%AB%AF-%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%89%E6%9E%B6%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">核心通信模型：主从（客户端&#x2F;服务器）架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E4%B8%BB%E8%A6%81%E5%8D%8F%E8%AE%AE%E5%8F%98%E4%BD%93"><span class="toc-number">1.3.</span> <span class="toc-text">三种主要协议变体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%8A%9F%E8%83%BD%E7%A0%81"><span class="toc-number">1.4.</span> <span class="toc-text">数据模型与功能码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.4.1.</span> <span class="toc-text">四种数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E7%A0%81"><span class="toc-number">1.4.2.</span> <span class="toc-text">功能码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E5%B8%A7%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.3.</span> <span class="toc-text">消息帧结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.5.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF%E4%B8%8E%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">1.6.</span> <span class="toc-text">优势与局限性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF"><span class="toc-number">1.6.1.</span> <span class="toc-text">优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">1.6.2.</span> <span class="toc-text">局限性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.7.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Modbus-%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.7.1.</span> <span class="toc-text">Modbus 协议分析（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95-Modbus-%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.7.2.</span> <span class="toc-text">简单 Modbus 协议分析（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E7%8E%B0%E5%9C%BA%E7%9A%84%E6%81%B6%E6%84%8F%E6%89%AB%E6%8F%8F%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.7.3.</span> <span class="toc-text">工控现场的恶意扫描（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#modbus%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.7.4.</span> <span class="toc-text">modbus（Modbus 协议）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -160,7 +168,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">157</div>
+    <div class="sidebar-state-number">158</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -227,7 +235,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2019-04-14T05:18:00.000Z" itemprop="datePublished">2019-04-14</time>
-    <time style="display: none;" id="post-update-time">2026-06-17</time>
+    <time style="display: none;" id="post-update-time">2026-06-18</time>
   </span>
 </div>
 
@@ -550,6 +558,47 @@
 <p><img src="https://pic1.imgdb.cn/item/6a30209bb755a1449d6a3e85.png"></p>
 <p>解码拿到 flag</p>
 <p><img src="https://pic1.imgdb.cn/item/6a3020b5b755a1449d6a3ea2.png"></p>
+<h3 id="简单-Modbus-协议分析（Modbus-协议）"><a href="#简单-Modbus-协议分析（Modbus-协议）" class="headerlink" title="简单 Modbus 协议分析（Modbus 协议）"></a>简单 Modbus 协议分析（Modbus 协议）</h3><p><img src="https://pic1.imgdb.cn/item/6a320d7fb67c7e4f4a887fa7.png"></p>
+<p>502 是 Modbus&#x2F;TCP 常用端口</p>
+<p><img src="https://pic1.imgdb.cn/item/6a320b36b67c7e4f4a887510.png"></p>
+<p>正常看了一圈找不到明显异常，没有别的功能码</p>
+<p>正常情况下，以太网帧长度大致应该是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ethernet header 14 字节 + IP total length</span><br></pre></td></tr></table></figure>
+
+<p>下面过滤语法可以筛选出存在额外字节的流量包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcp.port == 502 &amp;&amp; frame.len &gt; ip.len + 14</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>frame.len</code>：整个数据帧在物理网络上的总长度（从以太网头部开始，到数据包末尾结束）</p>
+</li>
+<li><p><code>ip.len</code>：IP 数据包的总长度（仅包含 IP 头部 + TCP 头部 + 应用层数据，不包含以太网链路层头部）</p>
+</li>
+<li><p><code>+ 14</code>：标准的 以太网 II 帧头部长度（6 字节目标 MAC + 6 字节源 MAC + 2 字节类型&#x2F;长度字段）</p>
+</li>
+</ul>
+<p><img src="https://pic1.imgdb.cn/item/6a320d29b67c7e4f4a887607.png"></p>
+<p>转为 ASCII 码得到 <code>flag{DGswTfgy1GD236fs2sfF2dskLng}</code></p>
+<h3 id="工控现场的恶意扫描（Modbus-协议）"><a href="#工控现场的恶意扫描（Modbus-协议）" class="headerlink" title="工控现场的恶意扫描（Modbus 协议）"></a>工控现场的恶意扫描（Modbus 协议）</h3><p><img src="https://pic1.imgdb.cn/item/6a323c9881fd5b073795679c.png"></p>
+<p>题目说 PLC 被扫描，PLC 常见协议优先看：</p>
+<ul>
+<li><p>Modbus&#x2F;TCP -&gt; 502 端口</p>
+</li>
+<li><p>S7comm     -&gt; 102 端口</p>
+</li>
+<li><p>EtherNet&#x2F;IP -&gt; 44818 端口</p>
+</li>
+</ul>
+<p>这份包里最明显的是 502 端口，也就是 Modbus&#x2F;TCP</p>
+<p>可以看到有两个主机在访问 PLC</p>
+<p><img src="https://pic1.imgdb.cn/item/6a323a2981fd5b07379561aa.png"></p>
+<p>按照长度排列找到 flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip.src == 192.168.99.32 &amp;&amp; ip.dst == 192.168.99.31 &amp;&amp; tcp.dstport == 502</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/6a323bdb81fd5b0737956514.png"></p>
+<h3 id="modbus（Modbus-协议）"><a href="#modbus（Modbus-协议）" class="headerlink" title="modbus（Modbus 协议）"></a>modbus（Modbus 协议）</h3><p><img src="https://pic1.imgdb.cn/item/6a3352b5a6693733f7e20989.png"></p>
+<p>过滤出来按照长度排列，有三个数据包长度是 81 且含有十进制的 ASCII 码</p>
+<p><img src="https://pic1.imgdb.cn/item/6a3356cba6693733f7e20b58.png"></p>
+<p>将这三个流量包的字符提取出来拼接得到 <code>flag{18ghT1wr3}</code></p>
 
     </div>
     <footer class="article-footer">
@@ -561,11 +610,11 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 工业信息安全技能大赛-深圳站 WriteUp" class="lazyload">
-        <a href="/2019/04/14/2019%20%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B7%B1%E5%9C%B3%E7%AB%99/" aria-label="前一篇: 2019 工业信息安全技能大赛-深圳站 WriteUp" title="前一篇: 2019 工业信息安全技能大赛-深圳站 WriteUp"></a>
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 工业信息安全技能大赛-山东站 WriteUp" class="lazyload">
+        <a href="/2019/04/14/2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%B1%B1%E4%B8%9C%E7%AB%99/" aria-label="前一篇: 2019 工业信息安全技能大赛-山东站 WriteUp" title="前一篇: 2019 工业信息安全技能大赛-山东站 WriteUp"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            2019 工业信息安全技能大赛-深圳站 WriteUp
+            2019 工业信息安全技能大赛-山东站 WriteUp
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
@@ -600,10 +649,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        155.2k
+        158.2k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        12:51
+        13:03
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -625,7 +674,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Modbus-%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.</span> <span class="toc-text">Modbus 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B%EF%BC%9A%E4%B8%BB%E4%BB%8E%EF%BC%88%E5%AE%A2%E6%88%B7%E7%AB%AF-%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%89%E6%9E%B6%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">核心通信模型：主从（客户端&#x2F;服务器）架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E4%B8%BB%E8%A6%81%E5%8D%8F%E8%AE%AE%E5%8F%98%E4%BD%93"><span class="toc-number">1.3.</span> <span class="toc-text">三种主要协议变体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%8A%9F%E8%83%BD%E7%A0%81"><span class="toc-number">1.4.</span> <span class="toc-text">数据模型与功能码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.4.1.</span> <span class="toc-text">四种数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E7%A0%81"><span class="toc-number">1.4.2.</span> <span class="toc-text">功能码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E5%B8%A7%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.3.</span> <span class="toc-text">消息帧结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.5.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF%E4%B8%8E%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">1.6.</span> <span class="toc-text">优势与局限性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF"><span class="toc-number">1.6.1.</span> <span class="toc-text">优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">1.6.2.</span> <span class="toc-text">局限性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.7.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Modbus-%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.7.1.</span> <span class="toc-text">Modbus 协议分析（Modbus 协议）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Modbus-%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.</span> <span class="toc-text">Modbus 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B%EF%BC%9A%E4%B8%BB%E4%BB%8E%EF%BC%88%E5%AE%A2%E6%88%B7%E7%AB%AF-%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%89%E6%9E%B6%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">核心通信模型：主从（客户端&#x2F;服务器）架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E4%B8%BB%E8%A6%81%E5%8D%8F%E8%AE%AE%E5%8F%98%E4%BD%93"><span class="toc-number">1.3.</span> <span class="toc-text">三种主要协议变体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%8A%9F%E8%83%BD%E7%A0%81"><span class="toc-number">1.4.</span> <span class="toc-text">数据模型与功能码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.4.1.</span> <span class="toc-text">四种数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E7%A0%81"><span class="toc-number">1.4.2.</span> <span class="toc-text">功能码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E5%B8%A7%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.3.</span> <span class="toc-text">消息帧结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.5.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF%E4%B8%8E%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">1.6.</span> <span class="toc-text">优势与局限性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8A%BF"><span class="toc-number">1.6.1.</span> <span class="toc-text">优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">1.6.2.</span> <span class="toc-text">局限性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.7.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Modbus-%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.7.1.</span> <span class="toc-text">Modbus 协议分析（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95-Modbus-%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.7.2.</span> <span class="toc-text">简单 Modbus 协议分析（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E7%8E%B0%E5%9C%BA%E7%9A%84%E6%81%B6%E6%84%8F%E6%89%AB%E6%8F%8F%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.7.3.</span> <span class="toc-text">工控现场的恶意扫描（Modbus 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#modbus%EF%BC%88Modbus-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.7.4.</span> <span class="toc-text">modbus（Modbus 协议）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -636,7 +685,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">157</div>
+    <div class="sidebar-state-number">158</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -759,7 +808,7 @@
           description: "",
           stripContent: "Modbus 协议概述Modbus 是一种广泛应用于工业自动化领域的串行通信协议。它由 Modicon 公司（现属施耐德电气）于 1979 年为其可编程逻辑控制器（PLC）通信而开发，如今已成为工业电子设备之间最常用的连接方式和事实上的业界标准。 Modbus 之所以被广泛采用，主要得益于它是公开发表且无版权要求的开放协议，用户可以免费使用；同时其消息格式简单明了，易于实现、部署和维护。 从 OSI 模型来看，Modbus 是一个应用层（第7层）报文传输协议，它定义了与底层物理网络无关的协议数据",
           date: "Sun Apr 14 2019 13:18:00 GMT+0800",
-          updated: "Wed Jun 17 2026 10:17:39 GMT+0800",
+          updated: "Thu Jun 18 2026 11:20:36 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

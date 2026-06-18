@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">157</div>
+    <div class="sidebar-state-number">158</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -451,15 +451,53 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/S7comm%20%E5%8D%8F%E8%AE%AE/" aria-label="S7comm 协议" title="S7comm 协议"></a>
+      <a class="post-link" href="/2019/04/14/COTP%20%E5%8D%8F%E8%AE%AE/" aria-label="COTP 协议" title="COTP 协议"></a>
     <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="COTP 协议" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-04-14</span>
+        <span><span class="icon-pencil"></span>942 字</span>
+        <span><span class="icon-clock"></span>4 分钟</span>
+      </div>
+      <h2 class="post-title">COTP 协议</h2>
+      <article class="post-article">
+          COTP 协议概述COTP 是 ISO OSI 七层模型中的传输层协议，其正式标准为 ISO 8073，对应的 RFC 文档是 RFC 905。你可以把它理解为 OSI 世界里的 “TCP”
+报文结构连接包用于建立、维护和断开连接。其头部结构通常如下：
+
+Length (1字节)：后续数据的长度
+
+PDU Type (1字节)：数据包类型，常见的有：
+
+0x0E：连接请求 (CR)
+
+0x0D：连接确认 (CC)
+
+0x08：断开请求 (DR)
+
+0x0C：断开确认 (DC)
+
+
+
+Destination&amp;#x2F;Source Reference (各2字节)：目的和源引用
+
+Options
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/04/14/S7comm%20%E5%8D%8F%E8%AE%AE/" aria-label="S7comm 协议" title="S7comm 协议"></a>
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="S7comm 协议" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>474 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
+        <span><span class="icon-pencil"></span>1.2k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
       </div>
       <h2 class="post-title">S7comm 协议</h2>
       <article class="post-article">
@@ -476,39 +514,6 @@ Data (数据)：长度可变，在写入等操作中携带实际数据
 通信过程Wireshark 可以清晰捕捉到 S7 通信的建立过程，分为三步：
 
 TCP 三次握手：客户端通过 TCP 端口 102 与 PLC 建立连接
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%B1%B1%E4%B8%9C%E7%AB%99/" aria-label="2019 工业信息安全技能大赛-山东站 WriteUp" title="2019 工业信息安全技能大赛-山东站 WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 工业信息安全技能大赛-山东站 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>193 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">2019 工业信息安全技能大赛-山东站 WriteUp</h2>
-      <article class="post-article">
-          2019 工业信息安全技能大赛-山东站 WriteUp组织架构：
-
-指导单位：国家工业信息安全发展研究中心、山东省工业和信息化厅
-
-主办单位：山东省电子信息产品检验院（中国赛宝（山东）实验室）
-
-承办单位：国网山东省电力公司电力科学研究院、山东云天安全大数据技术有限公司、山东省工业信息安全产业发展联盟
-
-技术支撑单位：杭州安恒信息技术股份有限公司
-
-
-Misc另一个隐藏的黑客（SDR 软件无线电信号分析）
-导入到 Audition 里查看频谱。可以隐约看到 flag 字样，硬看加猜得到 flag
-
-1flag&amp;#123;too simple too young&amp;#125;
       </article>
     </div>
   </div>
@@ -565,10 +570,10 @@ MiscModbus 协议分析（Modbus 协议）链接: https://pan.baidu.com/s/1RcC1V
       </div>
       <div>
         <span class="icon-brush"></span>
-        155.2k
+        158.2k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        12:51
+        13:03
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -596,7 +601,7 @@ MiscModbus 协议分析（Modbus 协议）链接: https://pan.baidu.com/s/1RcC1V
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">157</div>
+    <div class="sidebar-state-number">158</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
