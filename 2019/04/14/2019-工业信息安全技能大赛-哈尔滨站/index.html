@@ -25,8 +25,19 @@
 <meta property="og:description" content="2019 工业信息安全技能大赛-哈尔滨站 WriteUp📝 赛事概况  参赛规模：比赛共吸引了来自全国的 24 支队伍参加  比赛项目：大赛设有 PLC 漏洞挖掘和 SCADA 漏洞挖掘两个比赛项目   🏛️ 组织架构  指导单位：国家工业信息安全发展研究中心、黑龙江省工业和信息化厅  主办单位：黑龙江省电子技术研究所、哈尔滨工程大学   🏆 比赛结果  第一名：冀信安队  Misc异常的">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a34018a91b65c4475ada627.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a340e2591b65c4475adf946.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a34100c91b65c4475adf96f.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a34106e91b65c4475adf978.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a341c7191b65c4475ae50e9.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a341c5e91b65c4475ae50e6.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a341e7b91b65c4475ae5112.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3427c791b65c4475ae6310.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a34280791b65c4475ae631c.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a351d4471d0c6ff6145ce9b.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a351d3471d0c6ff6145ce97.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a351dd371d0c6ff6145cef4.png">
 <meta property="article:published_time" content="2019-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-18T14:33:31.013Z">
+<meta property="article:modified_time" content="2026-06-19T10:46:44.158Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -148,7 +159,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%93%88%E5%B0%94%E6%BB%A8%E7%AB%99-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 工业信息安全技能大赛-哈尔滨站 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E7%9A%84-S7-%E6%95%B0%E6%8D%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">异常的 S7 数据</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%93%88%E5%B0%94%E6%BB%A8%E7%AB%99-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 工业信息安全技能大赛-哈尔滨站 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E7%9A%84-S7-%E6%95%B0%E6%8D%AE%EF%BC%88S7comm-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">异常的 S7 数据（S7comm 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A5%9E%E5%A5%87%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%88S7-%E7%AC%A6%E5%8F%B7%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">神奇的数据（S7 符号访问服务）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%B8%A7"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">以太网帧</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IPv4-%E9%A6%96%E9%83%A8"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">IPv4 首部</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-%E9%A6%96%E9%83%A8"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">TCP 首部</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TPKT-RFC1006"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">TPKT (RFC1006)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#COTP-ISO-8073"><span class="toc-number">1.1.2.5.</span> <span class="toc-text">COTP (ISO 8073)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#S7-%E7%AC%A6%E5%8F%B7%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%EF%BC%88%E8%AF%B7%E6%B1%82%EF%BC%89"><span class="toc-number">1.1.2.6.</span> <span class="toc-text">S7 符号访问服务（请求）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%B8%A7-802-1Q"><span class="toc-number">1.1.2.7.</span> <span class="toc-text">以太网帧 (802.1Q)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IPv4-%E9%A6%96%E9%83%A8-1"><span class="toc-number">1.1.2.8.</span> <span class="toc-text">IPv4 首部</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-%E9%A6%96%E9%83%A8-1"><span class="toc-number">1.1.2.9.</span> <span class="toc-text">TCP 首部</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TPKT-RFC1006-1"><span class="toc-number">1.1.2.10.</span> <span class="toc-text">TPKT (RFC1006)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#COTP-ISO-8073-1"><span class="toc-number">1.1.2.11.</span> <span class="toc-text">COTP (ISO 8073)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#S7-%E7%AC%A6%E5%8F%B7%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%93%8D%E5%BA%94%EF%BC%89"><span class="toc-number">1.1.2.12.</span> <span class="toc-text">S7 符号访问服务（响应）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E5%88%97%E8%A1%A8%EF%BC%88VisibleString%EF%BC%89"><span class="toc-number">1.1.2.13.</span> <span class="toc-text">变量列表（VisibleString）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E5%8F%98%E7%94%B5%E7%AB%99%E8%AE%BE%E5%A4%87%E5%BC%82%E5%B8%B8%E8%AF%8A%E6%96%AD%EF%BC%88SCD-%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">智能变电站设备异常诊断（SCD 文件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%91%E5%AE%A2%E7%9A%84%E5%A4%A7%E6%84%8F%EF%BC%88%E5%90%8E%E9%97%A8%E6%BA%AF%E6%BA%90%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">黑客的大意（后门溯源）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -159,7 +170,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">165</div>
+    <div class="sidebar-state-number">167</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -226,7 +237,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2019-04-14T05:18:00.000Z" itemprop="datePublished">2019-04-14</time>
-    <time style="display: none;" id="post-update-time">2026-06-18</time>
+    <time style="display: none;" id="post-update-time">2026-06-19</time>
   </span>
 </div>
 
@@ -253,8 +264,545 @@
 <ul>
 <li>第一名：冀信安队</li>
 </ul>
-<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="异常的-S7-数据"><a href="#异常的-S7-数据" class="headerlink" title="异常的 S7 数据"></a>异常的 S7 数据</h3><p>大概看了一下，全是 <code>0x05</code> 功能码</p>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="异常的-S7-数据（S7comm-协议）"><a href="#异常的-S7-数据（S7comm-协议）" class="headerlink" title="异常的 S7 数据（S7comm 协议）"></a>异常的 S7 数据（S7comm 协议）</h3><p>大概看了一下，全是 <code>0x05</code> 功能码</p>
 <p><img src="https://pic1.imgdb.cn/item/6a34018a91b65c4475ada627.png"></p>
+<p>绝大多数写入数据都以 <code>ffff</code> 开头</p>
+<p><img src="https://pic1.imgdb.cn/item/6a340e2591b65c4475adf946.png"></p>
+<p>右键作为过滤器应用</p>
+<p><img src="https://pic1.imgdb.cn/item/6a34100c91b65c4475adf96f.png"></p>
+<p>WireShark 生成的语法是 <code>s7comm.resp.data == ff:ff:96:e7:8f:51:c4:d0:3a:2b</code></p>
+<p>我们更改为 <code>s7comm.resp.data[0:2] != ff:ff</code>，筛选出数据包</p>
+<p><img src="https://pic1.imgdb.cn/item/6a34106e91b65c4475adf978.png"></p>
+<p>所以 flag 是 <code>flag{FFAD28A0CE69DB34751F}</code></p>
+<h3 id="神奇的数据（S7-符号访问服务）"><a href="#神奇的数据（S7-符号访问服务）" class="headerlink" title="神奇的数据（S7 符号访问服务）"></a>神奇的数据（S7 符号访问服务）</h3><p><img src="https://pic1.imgdb.cn/item/6a341c7191b65c4475ae50e9.png"></p>
+<p>查看文本文件是一大堆 ASCII 码（十进制），用 <code>|</code> 间隔</p>
+<p><img src="https://pic1.imgdb.cn/item/6a341c5e91b65c4475ae50e6.png"></p>
+<p>搜索 flag <code>66|6c|61|67|</code>，有两段结果</p>
+<p><img src="https://pic1.imgdb.cn/item/6a341e7b91b65c4475ae5112.png"></p>
+<p>分析第一段是请求包</p>
+<h4 id="以太网帧"><a href="#以太网帧" class="headerlink" title="以太网帧"></a>以太网帧</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>目标 MAC</td>
+<td>08:ac:7d:01:e1:83</td>
+</tr>
+<tr>
+<td>源 MAC</td>
+<td>00:05:b7:da:72:57</td>
+</tr>
+<tr>
+<td>EtherType</td>
+<td>0x0800 (IPv4)</td>
+</tr>
+</tbody></table>
+<h4 id="IPv4-首部"><a href="#IPv4-首部" class="headerlink" title="IPv4 首部"></a>IPv4 首部</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>版本 &#x2F; IHL</td>
+<td>4 &#x2F; 5 (20 字节)</td>
+</tr>
+<tr>
+<td>DSCP &#x2F; ECN</td>
+<td>0x00</td>
+</tr>
+<tr>
+<td>总长度</td>
+<td>91 (0x005b)</td>
+</tr>
+<tr>
+<td>标识</td>
+<td>0x987e</td>
+</tr>
+<tr>
+<td>标志 &#x2F; 片偏移</td>
+<td>DF (不分片), 0</td>
+</tr>
+<tr>
+<td>TTL</td>
+<td>64</td>
+</tr>
+<tr>
+<td>协议</td>
+<td>6 (TCP)</td>
+</tr>
+<tr>
+<td>校验和</td>
+<td>0x10a1</td>
+</tr>
+<tr>
+<td>源 IP</td>
+<td>100.100.100.21</td>
+</tr>
+<tr>
+<td>目的 IP</td>
+<td>100.100.100.160</td>
+</tr>
+</tbody></table>
+<h4 id="TCP-首部"><a href="#TCP-首部" class="headerlink" title="TCP 首部"></a>TCP 首部</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>源端口</td>
+<td>57632 (0xe120)</td>
+</tr>
+<tr>
+<td>目的端口</td>
+<td>102 (ISO-TSAP)</td>
+</tr>
+<tr>
+<td>序列号</td>
+<td>0xbdcc6ad5</td>
+</tr>
+<tr>
+<td>确认号</td>
+<td>0x86f7846e</td>
+</tr>
+<tr>
+<td>数据偏移</td>
+<td>32 字节 (8)</td>
+</tr>
+<tr>
+<td>标志</td>
+<td>ACK + PSH (0x18)</td>
+</tr>
+<tr>
+<td>窗口</td>
+<td>501 (0x01f5)</td>
+</tr>
+<tr>
+<td>校验和</td>
+<td>0x5744</td>
+</tr>
+<tr>
+<td>紧急指针</td>
+<td>0</td>
+</tr>
+<tr>
+<td>选项</td>
+<td>NOP, NOP, Timestamp (TSval&#x3D;0x7d8a8100, TSecr&#x3D;0x09ad3958)</td>
+</tr>
+<tr>
+<td>负载长度</td>
+<td>39 字节</td>
+</tr>
+</tbody></table>
+<h4 id="TPKT-RFC1006"><a href="#TPKT-RFC1006" class="headerlink" title="TPKT (RFC1006)"></a>TPKT (RFC1006)</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>版本</td>
+<td>3</td>
+</tr>
+<tr>
+<td>保留</td>
+<td>0</td>
+</tr>
+<tr>
+<td>长度</td>
+<td>39 (0x0027)</td>
+</tr>
+</tbody></table>
+<h4 id="COTP-ISO-8073"><a href="#COTP-ISO-8073" class="headerlink" title="COTP (ISO 8073)"></a>COTP (ISO 8073)</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>头长度</td>
+<td>2 字节</td>
+</tr>
+<tr>
+<td>PDU 类型</td>
+<td>DT (0x0f)</td>
+</tr>
+<tr>
+<td>EOT &#x2F; TPDU-NR</td>
+<td>0x80 (EOT, NR&#x3D;0)</td>
+</tr>
+</tbody></table>
+<h4 id="S7-符号访问服务（请求）"><a href="#S7-符号访问服务（请求）" class="headerlink" title="S7 符号访问服务（请求）"></a>S7 符号访问服务（请求）</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>固定头</td>
+<td>01 00 01 00</td>
+</tr>
+<tr>
+<td>应用构造标签</td>
+<td>0x61 (Application 1)</td>
+</tr>
+<tr>
+<td>长度</td>
+<td>26 (0x1a)</td>
+</tr>
+<tr>
+<td>SEQUENCE 长度</td>
+<td>24 (0x18)</td>
+</tr>
+<tr>
+<td>协议版本 (INTEGER)</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Context[0] 长度</td>
+<td>19 (0x13)</td>
+</tr>
+<tr>
+<td>Context[0] 内容长度</td>
+<td>17 (0x11)</td>
+</tr>
+<tr>
+<td>符号 ID (INTEGER)</td>
+<td>0x666c6167 (“flag”)</td>
+</tr>
+<tr>
+<td>Context[1] 长度</td>
+<td>9</td>
+</tr>
+<tr>
+<td>↳ Context[0] (参数1)</td>
+<td>80 01 09 (原始, 值 0x09)</td>
+</tr>
+<tr>
+<td>↳ Context[1] (参数2)</td>
+<td>80 00 (原始, 空)</td>
+</tr>
+</tbody></table>
+<p>很明显，目的端口 102 → 典型的西门子 PLC ISO-TSAP 端口</p>
+<p>接下来再来看响应包</p>
+<h4 id="以太网帧-802-1Q"><a href="#以太网帧-802-1Q" class="headerlink" title="以太网帧 (802.1Q)"></a>以太网帧 (802.1Q)</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>目标 MAC</td>
+<td>00:05:b7:da:72:57</td>
+</tr>
+<tr>
+<td>源 MAC</td>
+<td>08:ac:7d:01:e1:83</td>
+</tr>
+<tr>
+<td>802.1Q TPID</td>
+<td>0x8100</td>
+</tr>
+<tr>
+<td>优先级 &#x2F; CFI &#x2F; VLAN ID</td>
+<td>0 &#x2F; 0 &#x2F; 1</td>
+</tr>
+<tr>
+<td>EtherType</td>
+<td>0x0800 (IPv4)</td>
+</tr>
+</tbody></table>
+<h4 id="IPv4-首部-1"><a href="#IPv4-首部-1" class="headerlink" title="IPv4 首部"></a>IPv4 首部</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>版本 &#x2F; IHL</td>
+<td>4 &#x2F; 5</td>
+</tr>
+<tr>
+<td>总长度</td>
+<td>145 (0x0091)</td>
+</tr>
+<tr>
+<td>标识</td>
+<td>0x15f4</td>
+</tr>
+<tr>
+<td>标志 &#x2F; 片偏移</td>
+<td>DF, 0</td>
+</tr>
+<tr>
+<td>TTL</td>
+<td>64</td>
+</tr>
+<tr>
+<td>协议</td>
+<td>6 (TCP)</td>
+</tr>
+<tr>
+<td>校验和</td>
+<td>0x92f5</td>
+</tr>
+<tr>
+<td>源 IP</td>
+<td>100.100.100.160</td>
+</tr>
+<tr>
+<td>目的 IP</td>
+<td>100.100.100.21</td>
+</tr>
+</tbody></table>
+<h4 id="TCP-首部-1"><a href="#TCP-首部-1" class="headerlink" title="TCP 首部"></a>TCP 首部</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>源端口</td>
+<td>102</td>
+</tr>
+<tr>
+<td>目的端口</td>
+<td>57632</td>
+</tr>
+<tr>
+<td>序列号</td>
+<td>0x86f7846e</td>
+</tr>
+<tr>
+<td>确认号</td>
+<td>0xbdcc6afc (确认增加 39)</td>
+</tr>
+<tr>
+<td>数据偏移</td>
+<td>32 字节</td>
+</tr>
+<tr>
+<td>标志</td>
+<td>ACK + PSH (0x18)</td>
+</tr>
+<tr>
+<td>窗口</td>
+<td>15000 (0x3a98)</td>
+</tr>
+<tr>
+<td>校验和</td>
+<td>0x56e2</td>
+</tr>
+<tr>
+<td>紧急指针</td>
+<td>0</td>
+</tr>
+<tr>
+<td>选项</td>
+<td>NOP, NOP, Timestamp (TSval&#x3D;0x09ad3958, TSecr&#x3D;0x7d8a8100)</td>
+</tr>
+<tr>
+<td>负载长度</td>
+<td>93 字节</td>
+</tr>
+</tbody></table>
+<h4 id="TPKT-RFC1006-1"><a href="#TPKT-RFC1006-1" class="headerlink" title="TPKT (RFC1006)"></a>TPKT (RFC1006)</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>版本</td>
+<td>3</td>
+</tr>
+<tr>
+<td>保留</td>
+<td>0</td>
+</tr>
+<tr>
+<td>长度</td>
+<td>93 (0x005d)</td>
+</tr>
+</tbody></table>
+<h4 id="COTP-ISO-8073-1"><a href="#COTP-ISO-8073-1" class="headerlink" title="COTP (ISO 8073)"></a>COTP (ISO 8073)</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>头长度</td>
+<td>2 字节</td>
+</tr>
+<tr>
+<td>PDU 类型</td>
+<td>DT</td>
+</tr>
+<tr>
+<td>EOT &#x2F; TPDU-NR</td>
+<td>0x80</td>
+</tr>
+</tbody></table>
+<h4 id="S7-符号访问服务（响应）"><a href="#S7-符号访问服务（响应）" class="headerlink" title="S7 符号访问服务（响应）"></a>S7 符号访问服务（响应）</h4><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>固定头</td>
+<td>01 00 01 00</td>
+</tr>
+<tr>
+<td>应用构造标签</td>
+<td>0x61</td>
+</tr>
+<tr>
+<td>长度</td>
+<td>80 (0x50)</td>
+</tr>
+<tr>
+<td>SEQUENCE 长度</td>
+<td>78 (0x4e)</td>
+</tr>
+<tr>
+<td>协议版本</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Context[0] 长度</td>
+<td>73 (0x49)</td>
+</tr>
+<tr>
+<td>Context[1] 长度</td>
+<td>71 (0x47)</td>
+</tr>
+<tr>
+<td>Invoke ID (符号 ID)</td>
+<td>0x666c6167 (“flag”)</td>
+</tr>
+<tr>
+<td>变量列表容器</td>
+<td>Context[1] (长度 63)</td>
+</tr>
+<tr>
+<td>返回状态</td>
+<td>0x00 (成功)</td>
+</tr>
+</tbody></table>
+<h4 id="变量列表（VisibleString）"><a href="#变量列表（VisibleString）" class="headerlink" title="变量列表（VisibleString）"></a>变量列表（VisibleString）</h4><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>变量符号名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>PL1012{ROT</td>
+</tr>
+<tr>
+<td>2</td>
+<td>PL1012CTRL</td>
+</tr>
+<tr>
+<td>3</td>
+<td>PL1012LD0</td>
+</tr>
+<tr>
+<td>4</td>
+<td>PL1012MEAS</td>
+</tr>
+<tr>
+<td>5</td>
+<td>PL1012RC</td>
+</tr>
+</tbody></table>
+<p>看上面的变量列表结构，删除掉 <code>PL1012</code>，flag 就出来了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;ROTCTRLLD0MEASRC&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="智能变电站设备异常诊断（SCD-文件）"><a href="#智能变电站设备异常诊断（SCD-文件）" class="headerlink" title="智能变电站设备异常诊断（SCD 文件）"></a>智能变电站设备异常诊断（SCD 文件）</h3><p>010 打开发现文件头被颠倒了</p>
+<p><img src="https://pic1.imgdb.cn/item/6a3427c791b65c4475ae6310.png"></p>
+<p>改回来后打开就是一个 <code>dcs.dcs</code> 文件</p>
+<p><img src="https://pic1.imgdb.cn/item/6a34280791b65c4475ae631c.png"></p>
+<p>初步查看文件类型</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">file dcs.dcs</span><br><span class="line">strings -a dcs.dcs | <span class="built_in">head</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到文件不是普通 XML</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dcs.dcs: data</span><br></pre></td></tr></table></figure>
+
+<p>但文件头附近有明显标识</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$KEMOV-SCD-FILE$</span><br></pre></td></tr></table></figure>
+
+<p>继续查看十六进制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">od -Ax -tx1z -N 128 dcs.dcs</span><br><span class="line"></span><br><span class="line">ff ff 24 4b 45 4d 4f 56 2d 53 43 44 2d 46 49 4c 45 24</span><br></pre></td></tr></table></figure>
+
+<p>对应了 <code>$KEMOV-SCD-FILE$</code></p>
+<p>同时后面出现了类似</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">20 31 20 31 20 30 20 6b 20 76 20 2e 20 73 20 63 20 64</span><br></pre></td></tr></table></figure>
+
+<p>这种结构解出来是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">110kv.scd</span><br></pre></td></tr></table></figure>
+
+<p>说明这个文件本质上保存的是一个变电站 SCD 配置信息，只是被厂商工具二进制化了</p>
+<p>观察文件里的 ASCII 字符串会发现它不是正常连续保存的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">20 49 20 4c 20 31 20 31 20 30 20 31</span><br></pre></td></tr></table></figure>
+
+<p>这不是普通 ASCII，而是类似</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x20 + ASCII 字符</span><br></pre></td></tr></table></figure>
+
+<p>所以</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">20 49 -&gt; I</span><br><span class="line">20 4c -&gt; L</span><br><span class="line">20 31 -&gt; 1</span><br><span class="line">20 31 -&gt; 1</span><br><span class="line">20 30 -&gt; 0</span><br><span class="line">20 31 -&gt; 1</span><br></pre></td></tr></table></figure>
+
+<p>解出来是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IL1101</span><br></pre></td></tr></table></figure>
+
+<p>中文部分则基本可以按 UTF-16BE 理解</p>
+<p>也就是说，文件里的大量字段是 1 字节长度 + 2 字节字符序列</p>
+<p>编写脚本来恢复</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"></span><br><span class="line">b = Path(<span class="string">&quot;dcs.dcs&quot;</span>).read_bytes()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] header:&quot;</span>, b[<span class="number">2</span>:<span class="number">18</span>].decode())</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">dec</span>(<span class="params">pos</span>):</span><br><span class="line">    <span class="keyword">if</span> pos &gt;= <span class="built_in">len</span>(b):</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    L = b[pos]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 字符串长度一般为偶数，每个字符 2 字节</span></span><br><span class="line">    <span class="keyword">if</span> L &lt; <span class="number">2</span> <span class="keyword">or</span> L &gt; <span class="number">200</span> <span class="keyword">or</span> L % <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    data = b[pos + <span class="number">1</span>:pos + <span class="number">1</span> + L]</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(data) != L:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    out = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> hi, lo <span class="keyword">in</span> <span class="built_in">zip</span>(data[<span class="number">0</span>::<span class="number">2</span>], data[<span class="number">1</span>::<span class="number">2</span>]):</span><br><span class="line">        <span class="comment"># ASCII 字符：20 xx</span></span><br><span class="line">        <span class="keyword">if</span> hi == <span class="number">0x20</span> <span class="keyword">and</span> <span class="number">0x20</span> &lt;= lo &lt;= <span class="number">0x7e</span>:</span><br><span class="line">            out.append(<span class="built_in">chr</span>(lo))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                ch = <span class="built_in">bytes</span>([hi, lo]).decode(<span class="string">&quot;utf-16be&quot;</span>)</span><br><span class="line">            <span class="keyword">except</span> Exception:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 本题需要的非 ASCII 基本都是中文，严格过滤误判</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> (<span class="number">0x4e00</span> &lt;= <span class="built_in">ord</span>(ch) &lt;= <span class="number">0x9fff</span>):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">            out.append(ch)</span><br><span class="line"></span><br><span class="line">    s = <span class="string">&quot;&quot;</span>.join(out)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> re.search(<span class="string">r&quot;[A-Za-z0-9\u4e00-\u9fff]&quot;</span>, s):</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> s, pos + <span class="number">1</span> + L</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">strs</span>(<span class="params">start=<span class="number">0</span>, end=<span class="literal">None</span></span>):</span><br><span class="line">    p = start</span><br><span class="line">    end = <span class="built_in">len</span>(b) <span class="keyword">if</span> end <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">else</span> <span class="built_in">min</span>(end, <span class="built_in">len</span>(b))</span><br><span class="line">    out = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> p &lt; end:</span><br><span class="line">        r = dec(p)</span><br><span class="line">        <span class="keyword">if</span> r:</span><br><span class="line">            s, p2 = r</span><br><span class="line">            out.append((p, s))</span><br><span class="line">            p = p2</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            p += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> out</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">allstr = strs()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] decoded strings:&quot;</span>, <span class="built_in">len</span>(allstr))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] first strings:&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> off, s <span class="keyword">in</span> allstr[:<span class="number">8</span>]:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">hex</span>(off), <span class="built_in">repr</span>(s))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n[+] 110kV line intelligent terminals:&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> idx, (off, s) <span class="keyword">in</span> <span class="built_in">enumerate</span>(allstr):</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;110kV&quot;</span> <span class="keyword">in</span> s <span class="keyword">and</span> <span class="string">&quot;线路智能终端&quot;</span> <span class="keyword">in</span> s:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;---&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> o, t <span class="keyword">in</span> allstr[<span class="built_in">max</span>(<span class="number">0</span>, idx - <span class="number">3</span>):idx + <span class="number">2</span>]:</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">hex</span>(o), t)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n[+] duplicated IED_GOCB:&quot;</span>)</span><br><span class="line"></span><br><span class="line">records = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> m <span class="keyword">in</span> re.finditer(<span class="string">b&quot;IED_GOCB&quot;</span>, b):</span><br><span class="line">    vals = [s <span class="keyword">for</span> _, s <span class="keyword">in</span> strs(m.end(), m.end() + <span class="number">700</span>)]</span><br><span class="line"></span><br><span class="line">    gocb = <span class="built_in">next</span>((x <span class="keyword">for</span> x <span class="keyword">in</span> vals <span class="keyword">if</span> re.fullmatch(<span class="string">r&quot;gocb\d+&quot;</span>, x)), <span class="literal">None</span>)</span><br><span class="line">    ref = <span class="built_in">next</span>((x <span class="keyword">for</span> x <span class="keyword">in</span> vals <span class="keyword">if</span> <span class="string">&quot;/LLN0&quot;</span> <span class="keyword">in</span> x), <span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line">    mi = re.search(<span class="string">r&quot;0?([A-Z]&#123;1,4&#125;\d&#123;3,4&#125;)(?=[A-Z]+/LLN0)&quot;</span>, ref)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> gocb <span class="keyword">and</span> mi:</span><br><span class="line">        ied = mi.group(<span class="number">1</span>)</span><br><span class="line">        records.append((m.start(), ied, gocb, vals[:<span class="number">6</span>]))</span><br><span class="line"></span><br><span class="line">cnt = Counter((ied, gocb) <span class="keyword">for</span> _, ied, gocb, _ <span class="keyword">in</span> records)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (ied, gocb), c <span class="keyword">in</span> <span class="built_in">sorted</span>(cnt.items()):</span><br><span class="line">    <span class="keyword">if</span> c &gt; <span class="number">1</span>:</span><br><span class="line">        <span class="built_in">print</span>(ied, gocb, <span class="string">&quot;count =&quot;</span>, c)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> off, ied2, gocb2, vals <span class="keyword">in</span> records:</span><br><span class="line">            <span class="keyword">if</span> (ied2, gocb2) == (ied, gocb):</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;   &quot;</span>, <span class="built_in">hex</span>(off), vals[:<span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+
+<p>脚本首先能恢复出原始 SCD 文件名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[+] header: $KEMOV-SCD-FILE$</span><br><span class="line">[+] decoded strings: 8174</span><br><span class="line">[+] first strings:</span><br><span class="line">0x21 &#x27;九曲110kv.scd&#x27;</span><br><span class="line">0x3b &#x27;version&#x27;</span><br><span class="line">0x4d &#x27;reversion&#x27;</span><br><span class="line">0x63 &#x27;template&#x27;</span><br><span class="line">0x77 &#x27;toolID&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>接着筛选 110kV 线路智能终端，可以看到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[+] 110kV line intelligent terminals:</span><br><span class="line">---</span><br><span class="line">0x2525d IL1101</span><br><span class="line">0x2526d 110kV1#线路智能终端</span><br><span class="line">---</span><br><span class="line">0x30a87 IL1102</span><br><span class="line">0x30a97 110kV2#线路智能终端</span><br></pre></td></tr></table></figure>
+
+<p>题目说问题可能来源于线路智能终端，所以重点检查</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IL1101</span><br><span class="line">IL1102</span><br></pre></td></tr></table></figure>
+
+<p>然后分析 IED_GOCB 记录，即 GOOSE Control Block 配置，异常输出为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[+] duplicated IED_GOCB:</span><br><span class="line">IL1101 gocb5 count = 10</span><br><span class="line">    0x28756 [&#x27;gocb5&#x27;, &#x27;0IL1101RPIT/LLN0&#x27;, &#x27;GOOSE采样&#x27;, &#x27;0IL1101RPIT/LLN0&#x27;, &#x27;GO$gocb5 0IL1101RP&#x27;]</span><br><span class="line">    0x2953e [&#x27;gocb5&#x27;, &#x27;0IL1101RPIT/LLN0&#x27;, &#x27;GOOSE采样&#x27;, &#x27;0IL1101RPIT/LLN0&#x27;, &#x27;GO$gocb5 0IL1101RP&#x27;]</span><br><span class="line">    0x2a24e [&#x27;gocb5&#x27;, &#x27;0IL1101RPIT/LLN0&#x27;, &#x27;GOOSE采样&#x27;, &#x27;0IL1101RPIT/LLN0&#x27;, &#x27;GO$gocb5 0IL1101RP&#x27;]</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<p>这里的异常点非常明确：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IL1101 / RPIT / LLN0 / gocb5</span><br></pre></td></tr></table></figure>
+
+<p>被重复配置了 10 次</p>
+<p>在 IEC 61850&#x2F;SCD 配置里，同一个 IED、同一个逻辑节点下的 GOOSE 控制块名称应该唯一。重复的 <code>gocb5</code> 会导致控制块引用冲突、GOOSE 配置异常，从而引发运行异常</p>
+<p>题目问的是 “分析存在问题根源”</p>
+<p>真正的问题是 “变电站基础配置文件 SCD 存在错误”</p>
+<p>所以 flag 是 <code>flag{scdisbad}</code></p>
+<h3 id="黑客的大意（后门溯源）"><a href="#黑客的大意（后门溯源）" class="headerlink" title="黑客的大意（后门溯源）"></a>黑客的大意（后门溯源）</h3><p><img src="https://pic1.imgdb.cn/item/6a351d4471d0c6ff6145ce9b.png"></p>
+<p>识别出是 PNG 图片，修改后缀再打开</p>
+<p><img src="https://pic1.imgdb.cn/item/6a351d3471d0c6ff6145ce97.png"></p>
+<p>GitHub 上搜索到源码，里面就有邮箱</p>
+<p><img src="https://pic1.imgdb.cn/item/6a351dd371d0c6ff6145cef4.png"></p>
 
     </div>
     <footer class="article-footer">
@@ -266,19 +814,19 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="2019-工业信息安全技能大赛-成都站 WriteUp" class="lazyload">
-        <a href="/2019/04/14/2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%88%90%E9%83%BD%E7%AB%99/" aria-label="前一篇: 2019-工业信息安全技能大赛-成都站 WriteUp" title="前一篇: 2019-工业信息安全技能大赛-成都站 WriteUp"></a>
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 工业信息安全技能大赛-深圳站 WriteUp" class="lazyload">
+        <a href="/2019/04/14/2019%20%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B7%B1%E5%9C%B3%E7%AB%99/" aria-label="前一篇: 2019 工业信息安全技能大赛-深圳站 WriteUp" title="前一篇: 2019 工业信息安全技能大赛-深圳站 WriteUp"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            2019-工业信息安全技能大赛-成都站 WriteUp
+            2019 工业信息安全技能大赛-深圳站 WriteUp
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 工业信息安全技能大赛-深圳站 WriteUp" class="lazyload">
-      <a href="/2019/04/14/2019%20%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B7%B1%E5%9C%B3%E7%AB%99/" aria-label="后一篇: 2019 工业信息安全技能大赛-深圳站 WriteUp"  title="后一篇: 2019 工业信息安全技能大赛-深圳站 WriteUp"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019-工业信息安全技能大赛-成都站 WriteUp" class="lazyload">
+      <a href="/2019/04/14/2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%88%90%E9%83%BD%E7%AB%99/" aria-label="后一篇: 2019-工业信息安全技能大赛-成都站 WriteUp"  title="后一篇: 2019-工业信息安全技能大赛-成都站 WriteUp"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          2019 工业信息安全技能大赛-深圳站 WriteUp
+          2019-工业信息安全技能大赛-成都站 WriteUp
       </h3>
     </div>
   </nav>
@@ -305,10 +853,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        162.4k
+        166.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        13:22
+        13:42
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -330,7 +878,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%93%88%E5%B0%94%E6%BB%A8%E7%AB%99-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 工业信息安全技能大赛-哈尔滨站 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E7%9A%84-S7-%E6%95%B0%E6%8D%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">异常的 S7 数据</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%93%88%E5%B0%94%E6%BB%A8%E7%AB%99-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 工业信息安全技能大赛-哈尔滨站 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E7%9A%84-S7-%E6%95%B0%E6%8D%AE%EF%BC%88S7comm-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">异常的 S7 数据（S7comm 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A5%9E%E5%A5%87%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%88S7-%E7%AC%A6%E5%8F%B7%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">神奇的数据（S7 符号访问服务）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%B8%A7"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">以太网帧</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IPv4-%E9%A6%96%E9%83%A8"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">IPv4 首部</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-%E9%A6%96%E9%83%A8"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">TCP 首部</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TPKT-RFC1006"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">TPKT (RFC1006)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#COTP-ISO-8073"><span class="toc-number">1.1.2.5.</span> <span class="toc-text">COTP (ISO 8073)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#S7-%E7%AC%A6%E5%8F%B7%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%EF%BC%88%E8%AF%B7%E6%B1%82%EF%BC%89"><span class="toc-number">1.1.2.6.</span> <span class="toc-text">S7 符号访问服务（请求）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A5%E5%A4%AA%E7%BD%91%E5%B8%A7-802-1Q"><span class="toc-number">1.1.2.7.</span> <span class="toc-text">以太网帧 (802.1Q)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IPv4-%E9%A6%96%E9%83%A8-1"><span class="toc-number">1.1.2.8.</span> <span class="toc-text">IPv4 首部</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-%E9%A6%96%E9%83%A8-1"><span class="toc-number">1.1.2.9.</span> <span class="toc-text">TCP 首部</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TPKT-RFC1006-1"><span class="toc-number">1.1.2.10.</span> <span class="toc-text">TPKT (RFC1006)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#COTP-ISO-8073-1"><span class="toc-number">1.1.2.11.</span> <span class="toc-text">COTP (ISO 8073)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#S7-%E7%AC%A6%E5%8F%B7%E8%AE%BF%E9%97%AE%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%93%8D%E5%BA%94%EF%BC%89"><span class="toc-number">1.1.2.12.</span> <span class="toc-text">S7 符号访问服务（响应）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E5%88%97%E8%A1%A8%EF%BC%88VisibleString%EF%BC%89"><span class="toc-number">1.1.2.13.</span> <span class="toc-text">变量列表（VisibleString）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E5%8F%98%E7%94%B5%E7%AB%99%E8%AE%BE%E5%A4%87%E5%BC%82%E5%B8%B8%E8%AF%8A%E6%96%AD%EF%BC%88SCD-%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">智能变电站设备异常诊断（SCD 文件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%91%E5%AE%A2%E7%9A%84%E5%A4%A7%E6%84%8F%EF%BC%88%E5%90%8E%E9%97%A8%E6%BA%AF%E6%BA%90%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">黑客的大意（后门溯源）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -341,7 +889,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">165</div>
+    <div class="sidebar-state-number">167</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -462,9 +1010,9 @@
           url: "https://suc2es2.github.io/2019/04/14/2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%93%88%E5%B0%94%E6%BB%A8%E7%AB%99/",
           excerpt: "",
           description: "",
-          stripContent: "2019 工业信息安全技能大赛-哈尔滨站 WriteUp📝 赛事概况  参赛规模：比赛共吸引了来自全国的 24 支队伍参加  比赛项目：大赛设有 PLC 漏洞挖掘和 SCADA 漏洞挖掘两个比赛项目   🏛️ 组织架构  指导单位：国家工业信息安全发展研究中心、黑龙江省工业和信息化厅  主办单位：黑龙江省电子技术研究所、哈尔滨工程大学   🏆 比赛结果  第一名：冀信安队  Misc异常的 S7 数据大概看了一下，全是 0x05 功能码  ",
+          stripContent: "2019 工业信息安全技能大赛-哈尔滨站 WriteUp📝 赛事概况  参赛规模：比赛共吸引了来自全国的 24 支队伍参加  比赛项目：大赛设有 PLC 漏洞挖掘和 SCADA 漏洞挖掘两个比赛项目   🏛️ 组织架构  指导单位：国家工业信息安全发展研究中心、黑龙江省工业和信息化厅  主办单位：黑龙江省电子技术研究所、哈尔滨工程大学   🏆 比赛结果  第一名：冀信安队  Misc异常的 S7 数据（S7comm 协议）大概看了一下，全是 0x05 功能码  绝大多数写入数据都以 fff",
           date: "Sun Apr 14 2019 13:18:00 GMT+0800",
-          updated: "Thu Jun 18 2026 22:33:31 GMT+0800",
+          updated: "Fri Jun 19 2026 18:46:44 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

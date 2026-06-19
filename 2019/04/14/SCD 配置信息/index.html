@@ -1,0 +1,590 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
+  <title>
+    SCD 文件 | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="SCD 文件定义在 IEC 61850 标准体系中，SCD（Substation Configuration Description）文件是变电站配置描述文件，它是整个变电站自动化系统的 “总配置文件” 它包含了：  一次设备接线拓扑：母线、线路、开关、互感器等的连接关系  二次智能电子设备（IED）信息：保护、测控、智能终端等装置的模型，包括逻辑设备、逻辑节点、数据对象等  通信配置：GOOSE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SCD 文件">
+<meta property="og:url" content="https://suc2es2.github.io/2019/04/14/SCD%20%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="SCD 文件定义在 IEC 61850 标准体系中，SCD（Substation Configuration Description）文件是变电站配置描述文件，它是整个变电站自动化系统的 “总配置文件” 它包含了：  一次设备接线拓扑：母线、线路、开关、互感器等的连接关系  二次智能电子设备（IED）信息：保护、测控、智能终端等装置的模型，包括逻辑设备、逻辑节点、数据对象等  通信配置：GOOSE">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3427c791b65c4475ae6310.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a34280791b65c4475ae631c.png">
+<meta property="article:published_time" content="2019-04-14T05:20:00.000Z">
+<meta property="article:modified_time" content="2026-06-19T09:32:49.070Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="工控">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6a3427c791b65c4475ae6310.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="SCD 文件">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">SCD 文件</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SCD-%E6%96%87%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">SCD 文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.2.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E5%8F%98%E7%94%B5%E7%AB%99%E8%AE%BE%E5%A4%87%E5%BC%82%E5%B8%B8%E8%AF%8A%E6%96%AD%EF%BC%88SCD-%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">智能变电站设备异常诊断（SCD 文件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%91%E5%AE%A2%E7%9A%84%E5%A4%A7%E6%84%8F"><span class="toc-number">1.2.2.</span> <span class="toc-text">黑客的大意</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">167</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">21</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">177</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-SCD 配置信息" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2019-04-14T05:20:00.000Z" itemprop="datePublished">2019-04-14</time>
+    <time style="display: none;" id="post-update-time">2026-06-19</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="SCD-文件"><a href="#SCD-文件" class="headerlink" title="SCD 文件"></a>SCD 文件</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>在 IEC 61850 标准体系中，SCD（Substation Configuration Description）文件是变电站配置描述文件，它是整个变电站自动化系统的 “总配置文件”</p>
+<p>它包含了：</p>
+<ul>
+<li><p>一次设备接线拓扑：母线、线路、开关、互感器等的连接关系</p>
+</li>
+<li><p>二次智能电子设备（IED）信息：保护、测控、智能终端等装置的模型，包括逻辑设备、逻辑节点、数据对象等</p>
+</li>
+<li><p>通信配置：GOOSE、SV 等报文的控制块、发布&#x2F;订阅关系，MMS 报告设置等</p>
+</li>
+<li><p>映射关系：将设备间的逻辑信号绑定到具体网络报文</p>
+</li>
+</ul>
+<p>简单说，SCD 文件是变电站二次系统集成和运维的基础数据，必须保证正确性和唯一性，否则会导致保护误动、拒动或通信故障</p>
+<h2 id="实战案例"><a href="#实战案例" class="headerlink" title="实战案例"></a>实战案例</h2><h3 id="智能变电站设备异常诊断（SCD-文件）"><a href="#智能变电站设备异常诊断（SCD-文件）" class="headerlink" title="智能变电站设备异常诊断（SCD 文件）"></a>智能变电站设备异常诊断（SCD 文件）</h3><p>010 打开发现文件头被颠倒了</p>
+<p><img src="https://pic1.imgdb.cn/item/6a3427c791b65c4475ae6310.png"></p>
+<p>改回来后打开就是一个 <code>dcs.dcs</code> 文件</p>
+<p><img src="https://pic1.imgdb.cn/item/6a34280791b65c4475ae631c.png"></p>
+<p>初步查看文件类型</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">file dcs.dcs</span><br><span class="line">strings -a dcs.dcs | <span class="built_in">head</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到文件不是普通 XML</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dcs.dcs: data</span><br></pre></td></tr></table></figure>
+
+<p>但文件头附近有明显标识</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$KEMOV-SCD-FILE$</span><br></pre></td></tr></table></figure>
+
+<p>继续查看十六进制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">od -Ax -tx1z -N 128 dcs.dcs</span><br><span class="line"></span><br><span class="line">ff ff 24 4b 45 4d 4f 56 2d 53 43 44 2d 46 49 4c 45 24</span><br></pre></td></tr></table></figure>
+
+<p>对应了 <code>$KEMOV-SCD-FILE$</code></p>
+<p>同时后面出现了类似</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">20 31 20 31 20 30 20 6b 20 76 20 2e 20 73 20 63 20 64</span><br></pre></td></tr></table></figure>
+
+<p>这种结构解出来是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">110kv.scd</span><br></pre></td></tr></table></figure>
+
+<p>说明这个文件本质上保存的是一个变电站 SCD 配置信息，只是被厂商工具二进制化了</p>
+<p>观察文件里的 ASCII 字符串会发现它不是正常连续保存的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">20 49 20 4c 20 31 20 31 20 30 20 31</span><br></pre></td></tr></table></figure>
+
+<p>这不是普通 ASCII，而是类似</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x20 + ASCII 字符</span><br></pre></td></tr></table></figure>
+
+<p>所以</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">20 49 -&gt; I</span><br><span class="line">20 4c -&gt; L</span><br><span class="line">20 31 -&gt; 1</span><br><span class="line">20 31 -&gt; 1</span><br><span class="line">20 30 -&gt; 0</span><br><span class="line">20 31 -&gt; 1</span><br></pre></td></tr></table></figure>
+
+<p>解出来是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IL1101</span><br></pre></td></tr></table></figure>
+
+<p>中文部分则基本可以按 UTF-16BE 理解</p>
+<p>也就是说，文件里的大量字段是 1 字节长度 + 2 字节字符序列</p>
+<p>编写脚本来恢复</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"></span><br><span class="line">b = Path(<span class="string">&quot;dcs.dcs&quot;</span>).read_bytes()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] header:&quot;</span>, b[<span class="number">2</span>:<span class="number">18</span>].decode())</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">dec</span>(<span class="params">pos</span>):</span><br><span class="line">    <span class="keyword">if</span> pos &gt;= <span class="built_in">len</span>(b):</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    L = b[pos]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 字符串长度一般为偶数，每个字符 2 字节</span></span><br><span class="line">    <span class="keyword">if</span> L &lt; <span class="number">2</span> <span class="keyword">or</span> L &gt; <span class="number">200</span> <span class="keyword">or</span> L % <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    data = b[pos + <span class="number">1</span>:pos + <span class="number">1</span> + L]</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(data) != L:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    out = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> hi, lo <span class="keyword">in</span> <span class="built_in">zip</span>(data[<span class="number">0</span>::<span class="number">2</span>], data[<span class="number">1</span>::<span class="number">2</span>]):</span><br><span class="line">        <span class="comment"># ASCII 字符：20 xx</span></span><br><span class="line">        <span class="keyword">if</span> hi == <span class="number">0x20</span> <span class="keyword">and</span> <span class="number">0x20</span> &lt;= lo &lt;= <span class="number">0x7e</span>:</span><br><span class="line">            out.append(<span class="built_in">chr</span>(lo))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                ch = <span class="built_in">bytes</span>([hi, lo]).decode(<span class="string">&quot;utf-16be&quot;</span>)</span><br><span class="line">            <span class="keyword">except</span> Exception:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 本题需要的非 ASCII 基本都是中文，严格过滤误判</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> (<span class="number">0x4e00</span> &lt;= <span class="built_in">ord</span>(ch) &lt;= <span class="number">0x9fff</span>):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">            out.append(ch)</span><br><span class="line"></span><br><span class="line">    s = <span class="string">&quot;&quot;</span>.join(out)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> re.search(<span class="string">r&quot;[A-Za-z0-9\u4e00-\u9fff]&quot;</span>, s):</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> s, pos + <span class="number">1</span> + L</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">strs</span>(<span class="params">start=<span class="number">0</span>, end=<span class="literal">None</span></span>):</span><br><span class="line">    p = start</span><br><span class="line">    end = <span class="built_in">len</span>(b) <span class="keyword">if</span> end <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">else</span> <span class="built_in">min</span>(end, <span class="built_in">len</span>(b))</span><br><span class="line">    out = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> p &lt; end:</span><br><span class="line">        r = dec(p)</span><br><span class="line">        <span class="keyword">if</span> r:</span><br><span class="line">            s, p2 = r</span><br><span class="line">            out.append((p, s))</span><br><span class="line">            p = p2</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            p += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> out</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">allstr = strs()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] decoded strings:&quot;</span>, <span class="built_in">len</span>(allstr))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] first strings:&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> off, s <span class="keyword">in</span> allstr[:<span class="number">8</span>]:</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">hex</span>(off), <span class="built_in">repr</span>(s))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n[+] 110kV line intelligent terminals:&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> idx, (off, s) <span class="keyword">in</span> <span class="built_in">enumerate</span>(allstr):</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;110kV&quot;</span> <span class="keyword">in</span> s <span class="keyword">and</span> <span class="string">&quot;线路智能终端&quot;</span> <span class="keyword">in</span> s:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;---&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> o, t <span class="keyword">in</span> allstr[<span class="built_in">max</span>(<span class="number">0</span>, idx - <span class="number">3</span>):idx + <span class="number">2</span>]:</span><br><span class="line">            <span class="built_in">print</span>(<span class="built_in">hex</span>(o), t)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n[+] duplicated IED_GOCB:&quot;</span>)</span><br><span class="line"></span><br><span class="line">records = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> m <span class="keyword">in</span> re.finditer(<span class="string">b&quot;IED_GOCB&quot;</span>, b):</span><br><span class="line">    vals = [s <span class="keyword">for</span> _, s <span class="keyword">in</span> strs(m.end(), m.end() + <span class="number">700</span>)]</span><br><span class="line"></span><br><span class="line">    gocb = <span class="built_in">next</span>((x <span class="keyword">for</span> x <span class="keyword">in</span> vals <span class="keyword">if</span> re.fullmatch(<span class="string">r&quot;gocb\d+&quot;</span>, x)), <span class="literal">None</span>)</span><br><span class="line">    ref = <span class="built_in">next</span>((x <span class="keyword">for</span> x <span class="keyword">in</span> vals <span class="keyword">if</span> <span class="string">&quot;/LLN0&quot;</span> <span class="keyword">in</span> x), <span class="string">&quot;&quot;</span>)</span><br><span class="line"></span><br><span class="line">    mi = re.search(<span class="string">r&quot;0?([A-Z]&#123;1,4&#125;\d&#123;3,4&#125;)(?=[A-Z]+/LLN0)&quot;</span>, ref)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> gocb <span class="keyword">and</span> mi:</span><br><span class="line">        ied = mi.group(<span class="number">1</span>)</span><br><span class="line">        records.append((m.start(), ied, gocb, vals[:<span class="number">6</span>]))</span><br><span class="line"></span><br><span class="line">cnt = Counter((ied, gocb) <span class="keyword">for</span> _, ied, gocb, _ <span class="keyword">in</span> records)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (ied, gocb), c <span class="keyword">in</span> <span class="built_in">sorted</span>(cnt.items()):</span><br><span class="line">    <span class="keyword">if</span> c &gt; <span class="number">1</span>:</span><br><span class="line">        <span class="built_in">print</span>(ied, gocb, <span class="string">&quot;count =&quot;</span>, c)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> off, ied2, gocb2, vals <span class="keyword">in</span> records:</span><br><span class="line">            <span class="keyword">if</span> (ied2, gocb2) == (ied, gocb):</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;   &quot;</span>, <span class="built_in">hex</span>(off), vals[:<span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+
+<p>脚本首先能恢复出原始 SCD 文件名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[+] header: $KEMOV-SCD-FILE$</span><br><span class="line">[+] decoded strings: 8174</span><br><span class="line">[+] first strings:</span><br><span class="line">0x21 &#x27;九曲110kv.scd&#x27;</span><br><span class="line">0x3b &#x27;version&#x27;</span><br><span class="line">0x4d &#x27;reversion&#x27;</span><br><span class="line">0x63 &#x27;template&#x27;</span><br><span class="line">0x77 &#x27;toolID&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>接着筛选 110kV 线路智能终端，可以看到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[+] 110kV line intelligent terminals:</span><br><span class="line">---</span><br><span class="line">0x2525d IL1101</span><br><span class="line">0x2526d 110kV1#线路智能终端</span><br><span class="line">---</span><br><span class="line">0x30a87 IL1102</span><br><span class="line">0x30a97 110kV2#线路智能终端</span><br></pre></td></tr></table></figure>
+
+<p>题目说问题可能来源于线路智能终端，所以重点检查</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">IL1101</span><br><span class="line">IL1102</span><br></pre></td></tr></table></figure>
+
+<p>然后分析 IED_GOCB 记录，即 GOOSE Control Block 配置，异常输出为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[+] duplicated IED_GOCB:</span><br><span class="line">IL1101 gocb5 count = 10</span><br><span class="line">    0x28756 [&#x27;gocb5&#x27;, &#x27;0IL1101RPIT/LLN0&#x27;, &#x27;GOOSE采样&#x27;, &#x27;0IL1101RPIT/LLN0&#x27;, &#x27;GO$gocb5 0IL1101RP&#x27;]</span><br><span class="line">    0x2953e [&#x27;gocb5&#x27;, &#x27;0IL1101RPIT/LLN0&#x27;, &#x27;GOOSE采样&#x27;, &#x27;0IL1101RPIT/LLN0&#x27;, &#x27;GO$gocb5 0IL1101RP&#x27;]</span><br><span class="line">    0x2a24e [&#x27;gocb5&#x27;, &#x27;0IL1101RPIT/LLN0&#x27;, &#x27;GOOSE采样&#x27;, &#x27;0IL1101RPIT/LLN0&#x27;, &#x27;GO$gocb5 0IL1101RP&#x27;]</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<p>这里的异常点非常明确：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IL1101 / RPIT / LLN0 / gocb5</span><br></pre></td></tr></table></figure>
+
+<p>被重复配置了 10 次</p>
+<p>在 IEC 61850&#x2F;SCD 配置里，同一个 IED、同一个逻辑节点下的 GOOSE 控制块名称应该唯一。重复的 <code>gocb5</code> 会导致控制块引用冲突、GOOSE 配置异常，从而引发运行异常</p>
+<p>题目问的是 “分析存在问题根源”</p>
+<p>真正的问题是 “变电站基础配置文件 SCD 存在错误”</p>
+<p>所以 flag 是 <code>flag{scdisbad}</code></p>
+<h3 id="黑客的大意"><a href="#黑客的大意" class="headerlink" title="黑客的大意"></a>黑客的大意</h3>
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/%E5%B7%A5%E6%8E%A7/" title="工控" data-aos="zoom-in">工控</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E6%8E%A7/" rel="tag" title="工控">工控</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="COTP 协议" class="lazyload">
+        <a href="/2019/04/14/COTP%20%E5%8D%8F%E8%AE%AE/" aria-label="前一篇: COTP 协议" title="前一篇: COTP 协议"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            COTP 协议
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Omron Fins 协议" class="lazyload">
+      <a href="/2019/04/14/Omron%20Fins%20%E5%8D%8F%E8%AE%AE/" aria-label="后一篇: Omron Fins 协议"  title="后一篇: Omron Fins 协议"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          Omron Fins 协议
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        166.4k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        13:42
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SCD-%E6%96%87%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">SCD 文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.2.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E5%8F%98%E7%94%B5%E7%AB%99%E8%AE%BE%E5%A4%87%E5%BC%82%E5%B8%B8%E8%AF%8A%E6%96%AD%EF%BC%88SCD-%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">智能变电站设备异常诊断（SCD 文件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%91%E5%AE%A2%E7%9A%84%E5%A4%A7%E6%84%8F"><span class="toc-number">1.2.2.</span> <span class="toc-text">黑客的大意</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">167</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">21</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">177</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "SCD 文件",
+          url: "https://suc2es2.github.io/2019/04/14/SCD%20%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/",
+          excerpt: "",
+          description: "",
+          stripContent: "SCD 文件定义在 IEC 61850 标准体系中，SCD（Substation Configuration Description）文件是变电站配置描述文件，它是整个变电站自动化系统的 “总配置文件” 它包含了：  一次设备接线拓扑：母线、线路、开关、互感器等的连接关系  二次智能电子设备（IED）信息：保护、测控、智能终端等装置的模型，包括逻辑设备、逻辑节点、数据对象等  通信配置：GOOSE、SV 等报文的控制块、发布&amp;#x2F;订阅关系，MMS 报告设置等  映射关系：将设备间的逻辑信号",
+          date: "Sun Apr 14 2019 13:20:00 GMT+0800",
+          updated: "Fri Jun 19 2026 17:32:49 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
