@@ -1,0 +1,600 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
+  <title>
+    2020 工业信息安全技能大赛-济南站 WriteUp | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="2020 工业信息安全技能大赛-济南站 WriteUpMiscCOTP（COTP 协议） 一眼过去全是 COTP 协议，过滤下  COTP 协议默认端口是 102，所以 192.168.99.22 是工控设备  再新增 ip.src &#x3D;&#x3D; 192.168.99.22 过滤下，查看工控响应的内容有没有什么异常  第 217 个包长度突然不一样，是之前的两倍  Payload 中还能看到明显的设备信息">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2020 工业信息安全技能大赛-济南站 WriteUp">
+<meta property="og:url" content="https://suc2es2.github.io/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B5%8E%E5%8D%97%E7%AB%99/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="2020 工业信息安全技能大赛-济南站 WriteUpMiscCOTP（COTP 协议） 一眼过去全是 COTP 协议，过滤下  COTP 协议默认端口是 102，所以 192.168.99.22 是工控设备  再新增 ip.src &#x3D;&#x3D; 192.168.99.22 过滤下，查看工控响应的内容有没有什么异常  第 217 个包长度突然不一样，是之前的两倍  Payload 中还能看到明显的设备信息">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3584f571d0c6ff6148384e.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3584eb71d0c6ff6148384d.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a35872471d0c6ff61483874.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3587bb71d0c6ff6148387b.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3587ea71d0c6ff6148387d.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a35930c71d0c6ff61485786.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a35acef71d0c6ff61487a8c.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a35ad7371d0c6ff61487a8d.png">
+<meta property="article:published_time" content="2020-04-14T05:18:00.000Z">
+<meta property="article:modified_time" content="2026-06-19T21:01:32.083Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6a3584f571d0c6ff6148384e.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="2020 工业信息安全技能大赛-济南站 WriteUp">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">2020 工业信息安全技能大赛-济南站 WriteUp</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B5%8E%E5%8D%97%E7%AB%99-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 工业信息安全技能大赛-济南站 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#COTP%EF%BC%88COTP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">COTP（COTP 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E5%A4%A7%E6%A5%BC%E7%9A%84%E9%81%93%E9%97%B8%E6%80%8E%E4%B9%88%E5%9D%8F%E4%BA%86%EF%BC%881527-%E8%8A%AF%E7%89%87%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">工控大楼的道闸怎么坏了（1527 芯片）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%84%E9%9C%B2%E7%9A%84%E4%BF%A1%E5%8F%B7%EF%BC%88%E6%97%A0%E7%BA%BF-IQ-%E4%BF%A1%E5%8F%B7%E5%88%86%E6%9E%90-%E9%A2%91%E8%B0%B1%E5%9B%BE%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">泄露的信号（无线 IQ 信号分析 + 频谱图隐写）</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">171</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">21</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">177</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-2020-工业信息安全技能大赛-济南站" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2020-04-14T05:18:00.000Z" itemprop="datePublished">2020-04-14</time>
+    <time style="display: none;" id="post-update-time">2026-06-20</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="2020-工业信息安全技能大赛-济南站-WriteUp"><a href="#2020-工业信息安全技能大赛-济南站-WriteUp" class="headerlink" title="2020 工业信息安全技能大赛-济南站 WriteUp"></a>2020 工业信息安全技能大赛-济南站 WriteUp</h1><h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="COTP（COTP-协议）"><a href="#COTP（COTP-协议）" class="headerlink" title="COTP（COTP 协议）"></a>COTP（COTP 协议）</h3><p><img src="https://pic1.imgdb.cn/item/6a3584f571d0c6ff6148384e.png"></p>
+<p>一眼过去全是 COTP 协议，过滤下</p>
+<p><img src="https://pic1.imgdb.cn/item/6a3584eb71d0c6ff6148384d.png"></p>
+<p>COTP 协议默认端口是 102，所以 <code>192.168.99.22</code> 是工控设备</p>
+<p><img src="https://pic1.imgdb.cn/item/6a35872471d0c6ff61483874.png"></p>
+<p>再新增 <code>ip.src == 192.168.99.22</code> 过滤下，查看工控响应的内容有没有什么异常</p>
+<p><img src="https://pic1.imgdb.cn/item/6a3587bb71d0c6ff6148387b.png"></p>
+<p>第 217 个包长度突然不一样，是之前的两倍</p>
+<p><img src="https://pic1.imgdb.cn/item/6a3587ea71d0c6ff6148387d.png"></p>
+<p>Payload 中还能看到明显的设备信息字符串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">6ES7 211-1BE51-0XB0 ;V3.0</span><br></pre></td></tr></table></figure>
+
+<p>这说明攻击者&#x2F;扫描方正在读取设备型号、版本等信息</p>
+<p>因此，这个响应包就是题目要找的 “遭到攻击的数据包”</p>
+<p>最后的 flag 如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;31312D31424535312D30584230203B56332E308240001505323B32383882410003000300A20000000072010000&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="工控大楼的道闸怎么坏了（1527-芯片）"><a href="#工控大楼的道闸怎么坏了（1527-芯片）" class="headerlink" title="工控大楼的道闸怎么坏了（1527 芯片）"></a>工控大楼的道闸怎么坏了（1527 芯片）</h3><p><img src="https://pic1.imgdb.cn/item/6a35930c71d0c6ff61485786.png"></p>
+<p>EM1527 是常见的 433MHz&#x2F;315MHz 无线遥控编码芯片协议，经常用于道闸、卷帘门、遥控开关等设备</p>
+<p>协议数据一般为 24 bit，也就是 6 个十六进制字符</p>
+<p>它通常使用 OOK&#x2F;ASK 调制，也就是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">有载波 = 高电平</span><br><span class="line">无载波 = 低电平</span><br></pre></td></tr></table></figure>
+
+<p>题目附件给的是某种原始无线 IQ 采样数据</p>
+<p>常见 SDR 原始采样格式是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I, Q, I, Q, I, Q ...</span><br></pre></td></tr></table></figure>
+
+<p>用 Python 读取后，将相邻两个字节作为一组 I&#x2F;Q</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">raw = np.fromfile(path, dtype=np.int8)</span><br><span class="line"></span><br><span class="line">I = raw[<span class="number">0</span>::<span class="number">2</span>]</span><br><span class="line">Q = raw[<span class="number">1</span>::<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+
+<p>为了把 OOK 信号还原成高低电平，需要计算幅度</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mag2 大时，表示有载波，即高电平；当 mag2 接近 0 时，表示无载波，即低电平</span></span><br><span class="line">mag2 = I * I + Q * Q</span><br></pre></td></tr></table></figure>
+
+<p>对幅度做一个简单平滑，然后设置阈值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">env = np.convolve(mag2, np.ones(<span class="number">100</span>) / <span class="number">100</span>, mode=<span class="string">&quot;same&quot;</span>)</span><br><span class="line">level = env &gt; <span class="number">1000</span></span><br></pre></td></tr></table></figure>
+
+<p>这样可以得到类似逻辑分析仪中的高低电平序列</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">高电平  低电平  高电平  低电平 ...</span><br></pre></td></tr></table></figure>
+
+<p>本题中观察到的编码方式有点不同</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 = 长高电平 + 短低电平</span><br><span class="line">0 = 短高电平 + 长低电平</span><br></pre></td></tr></table></figure>
+
+<p>也就是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bit 1: HHH + L</span><br><span class="line">bit 0: H + LLL</span><br></pre></td></tr></table></figure>
+
+<p>从信号中截取一帧，统计高低电平长度后，可以得到类似下面的脉冲序列</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">高 2324 低  853</span><br><span class="line">高  728 低 2416</span><br><span class="line">高 2329 低  854</span><br><span class="line">高  727 低 2416</span><br><span class="line">高 2329 低  854</span><br><span class="line">高  726 低 2414</span><br><span class="line">高 2331 低  861</span><br><span class="line">高 2326 低  857</span><br><span class="line">高  724 低 2417</span><br><span class="line">高  721 低 2414</span><br><span class="line">高 2331 低  860</span><br><span class="line">高  721 低 2415</span><br><span class="line">高 2330 低  857</span><br><span class="line">高 2330 低  859</span><br><span class="line">高  722 低 2413</span><br><span class="line">高  725 低 2412</span><br><span class="line">高 2333 低  859</span><br><span class="line">高  722 低 2411</span><br><span class="line">高  728 低 2415</span><br><span class="line">高  723 低 2420</span><br><span class="line">高  719 低 2413</span><br><span class="line">高  724 低 2414</span><br><span class="line">高  725 低 2412</span><br><span class="line">高 2333 低  857</span><br></pre></td></tr></table></figure>
+
+<p>按规则解码得到 24 位二进制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">101010110010110010000001</span><br></pre></td></tr></table></figure>
+
+<p>转 ASCII 码是 AB2C81</p>
+<p>所以 flag 就是 <code>flag{ab2c81}</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">path = <span class="string">&quot;iiiiicccccssssshhhhheeeeexxxxx&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 按 signed int8 IQ 读取</span></span><br><span class="line">raw = np.fromfile(path, dtype=np.int8)</span><br><span class="line"></span><br><span class="line">I = raw[<span class="number">0</span>::<span class="number">2</span>].astype(np.int16)</span><br><span class="line">Q = raw[<span class="number">1</span>::<span class="number">2</span>].astype(np.int16)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 计算幅度平方，OOK 中幅度高表示有载波</span></span><br><span class="line">mag2 = I * I + Q * Q</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 平滑包络</span></span><br><span class="line">win = <span class="number">100</span></span><br><span class="line">env = np.convolve(mag2, np.ones(win) / win, mode=<span class="string">&quot;same&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 二值化</span></span><br><span class="line">level = env &gt; <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 5. 统计高低电平 run length</span></span><br><span class="line">runs = []</span><br><span class="line">cur = level[<span class="number">0</span>]</span><br><span class="line">start = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i, v <span class="keyword">in</span> <span class="built_in">enumerate</span>(level[<span class="number">1</span>:], <span class="number">1</span>):</span><br><span class="line">    <span class="keyword">if</span> v != cur:</span><br><span class="line">        runs.append((<span class="built_in">int</span>(cur), start, i - start))</span><br><span class="line">        cur = v</span><br><span class="line">        start = i</span><br><span class="line"></span><br><span class="line">runs.append((<span class="built_in">int</span>(cur), start, <span class="built_in">len</span>(level) - start))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 过滤掉很短的噪声毛刺</span></span><br><span class="line">runs = [(v, s, l) <span class="keyword">for</span> v, s, l <span class="keyword">in</span> runs <span class="keyword">if</span> l &gt; <span class="number">300</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">classify_len</span>(<span class="params">l</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="number">500</span> &lt;= l &lt;= <span class="number">1100</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;S&quot;</span>   <span class="comment"># short</span></span><br><span class="line">    <span class="keyword">if</span> <span class="number">1900</span> &lt;= l &lt;= <span class="number">2800</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;L&quot;</span>   <span class="comment"># long</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;?&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">frames = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># EM1527 一帧 24 bit，每 bit 由 高电平 + 低电平 组成</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(runs) - <span class="number">48</span>):</span><br><span class="line">    <span class="keyword">if</span> runs[i][<span class="number">0</span>] != <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">    bits = []</span><br><span class="line">    ok = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">24</span>):</span><br><span class="line">        vh, sh, lh = runs[i + <span class="number">2</span> * k]</span><br><span class="line">        vl, sl, ll = runs[i + <span class="number">2</span> * k + <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> vh != <span class="number">1</span> <span class="keyword">or</span> vl != <span class="number">0</span>:</span><br><span class="line">            ok = <span class="literal">False</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        h = classify_len(lh)</span><br><span class="line">        l = classify_len(ll)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> h == <span class="string">&quot;L&quot;</span> <span class="keyword">and</span> l == <span class="string">&quot;S&quot;</span>:</span><br><span class="line">            bits.append(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">        <span class="keyword">elif</span> h == <span class="string">&quot;S&quot;</span> <span class="keyword">and</span> l == <span class="string">&quot;L&quot;</span>:</span><br><span class="line">            bits.append(<span class="string">&quot;0&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            ok = <span class="literal">False</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ok:</span><br><span class="line">        bitstr = <span class="string">&quot;&quot;</span>.join(bits)</span><br><span class="line">        code = <span class="string">f&quot;<span class="subst">&#123;<span class="built_in">int</span>(bitstr, <span class="number">2</span>):06X&#125;</span>&quot;</span></span><br><span class="line">        frames.append((runs[i][<span class="number">1</span>], bitstr, code))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 去重输出</span></span><br><span class="line">seen = <span class="built_in">set</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> start, bitstr, code <span class="keyword">in</span> frames:</span><br><span class="line">    <span class="keyword">if</span> code <span class="keyword">in</span> seen:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">    seen.add(code)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[+] bits:&quot;</span>, bitstr)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[+] code:&quot;</span>, code)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[+] flag:&quot;</span>, <span class="string">f&quot;flag&#123;&#123;<span class="subst">&#123;code.lower()&#125;</span>&#125;&#125;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="泄露的信号（无线-IQ-信号分析-频谱图隐写）"><a href="#泄露的信号（无线-IQ-信号分析-频谱图隐写）" class="headerlink" title="泄露的信号（无线 IQ 信号分析 + 频谱图隐写）"></a>泄露的信号（无线 IQ 信号分析 + 频谱图隐写）</h3><p>文件名没有后缀，看十六进制</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">od</span> -Ax -tx1z -N 64 ppt</span><br><span class="line"></span><br><span class="line">1c 00 fd ff fd ff e4 ff e4 ff 03 00 04 00 1c 00</span><br><span class="line">1c 00 <span class="built_in">fc</span> ff <span class="built_in">fc</span> ff e4 ff e4 ff 04 00 04 00 1c 00</span><br></pre></td></tr></table></figure>
+
+<p>按小端 int16 解释</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">28, -3, -3, -28, -28, 3, 4, 28 ...</span><br></pre></td></tr></table></figure>
+
+<p>如果把它两两分组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I, Q, I, Q, I, Q ...</span><br></pre></td></tr></table></figure>
+
+<p>会发现它很像复数 IQ 采样</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(28, -3), (-3, -28), (-28, 3), (4, 28) ...</span><br></pre></td></tr></table></figure>
+
+<p>也就是说，这个文件大概率是 IQ 原始无线采样</p>
+<p>可以用 Python 对 IQ 数据做 STFT，生成频谱瀑布图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件路径（二进制 IQ 数据）</span></span><br><span class="line">path = <span class="string">&quot;ppt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 按 little-endian int16 读取，转为 float32</span></span><br><span class="line">raw = np.fromfile(path, dtype=<span class="string">&quot;&lt;i2&quot;</span>).astype(np.float32)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 交错提取 I/Q 分量，合成复数信号</span></span><br><span class="line">iq = raw[<span class="number">0</span>::<span class="number">2</span>] + <span class="number">1j</span> * raw[<span class="number">1</span>::<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] complex samples:&quot;</span>, <span class="built_in">len</span>(iq))</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- STFT 参数 ----------</span></span><br><span class="line">nfft = <span class="number">4096</span>                     <span class="comment"># FFT 点数</span></span><br><span class="line">hop = <span class="number">64</span>                        <span class="comment"># 帧移（采样点）</span></span><br><span class="line">win = np.hanning(nfft).astype(np.float32)   <span class="comment"># 汉宁窗</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 总帧数</span></span><br><span class="line">N = (<span class="built_in">len</span>(iq) - nfft) // hop + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 stride trick 生成重叠的帧矩阵（避免循环拷贝）</span></span><br><span class="line">frames = np.lib.stride_tricks.as_strided(</span><br><span class="line">    iq,</span><br><span class="line">    shape=(N, nfft),</span><br><span class="line">    strides=(iq.strides[<span class="number">0</span>] * hop, iq.strides[<span class="number">0</span>])</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加窗 → FFT → fftshift（直流居中）</span></span><br><span class="line">spec = np.fft.fftshift(</span><br><span class="line">    np.fft.fft(frames * win, axis=<span class="number">1</span>),</span><br><span class="line">    axes=<span class="number">1</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转置为 (频率, 时间) 并转换为 dB 幅度谱</span></span><br><span class="line">S = <span class="number">20</span> * np.log10(np.<span class="built_in">abs</span>(spec).T + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- 绘制瀑布图 ----------</span></span><br><span class="line">plt.figure(figsize=(<span class="number">18</span>, <span class="number">8</span>))</span><br><span class="line">plt.imshow(</span><br><span class="line">    S,</span><br><span class="line">    aspect=<span class="string">&quot;auto&quot;</span>,</span><br><span class="line">    origin=<span class="string">&quot;lower&quot;</span>,             <span class="comment"># 低频在下</span></span><br><span class="line">    cmap=<span class="string">&quot;gray&quot;</span>,                <span class="comment"># 灰度颜色映射</span></span><br><span class="line">    vmin=np.percentile(S, <span class="number">50</span>),  <span class="comment"># 动态范围下限（抑制背景）</span></span><br><span class="line">    vmax=np.percentile(S, <span class="number">99.5</span>),<span class="comment"># 上限取 99.5% 分位数，防止个别强点拉平</span></span><br><span class="line">)</span><br><span class="line">plt.axis(<span class="string">&quot;off&quot;</span>)                 <span class="comment"># 隐藏坐标轴</span></span><br><span class="line">plt.tight_layout(pad=<span class="number">0</span>)</span><br><span class="line">plt.savefig(<span class="string">&quot;waterfall.png&quot;</span>, dpi=<span class="number">200</span>)</span><br></pre></td></tr></table></figure>
+
+<p>生成的 waterfall.png 里可以看到一块非常明显的异常区域</p>
+<p><img src="https://pic1.imgdb.cn/item/6a35acef71d0c6ff61487a8c.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image, ImageOps</span><br><span class="line"></span><br><span class="line"><span class="comment"># ========== 1. 读取二进制 IQ 数据 ==========</span></span><br><span class="line">path = <span class="string">&quot;ppt&quot;</span>                                 <span class="comment"># 输入文件路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 按 little-endian int16 读取，并转为 float32 便于后续计算</span></span><br><span class="line">raw = np.fromfile(path, dtype=<span class="string">&quot;&lt;i2&quot;</span>).astype(np.float32)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 交错提取 I（偶数索引）和 Q（奇数索引），合成复数信号</span></span><br><span class="line">iq = raw[<span class="number">0</span>::<span class="number">2</span>] + <span class="number">1j</span> * raw[<span class="number">1</span>::<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># ========== 2. 短时傅里叶变换 (STFT) 参数 ==========</span></span><br><span class="line">nfft = <span class="number">4096</span>                                  <span class="comment"># FFT 点数（频率分辨率）</span></span><br><span class="line">hop = <span class="number">64</span>                                     <span class="comment"># 帧移（时间分辨率）</span></span><br><span class="line">win = np.hanning(nfft).astype(np.float32)    <span class="comment"># 汉宁窗，减少频谱泄漏</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算总帧数（滑动窗口能覆盖的帧数）</span></span><br><span class="line">N = (<span class="built_in">len</span>(iq) - nfft) // hop + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 stride_tricks 高效构建重叠帧矩阵（无拷贝，只改变视图）</span></span><br><span class="line">frames = np.lib.stride_tricks.as_strided(</span><br><span class="line">    iq,</span><br><span class="line">    shape=(N, nfft),                         <span class="comment"># 每行一帧</span></span><br><span class="line">    strides=(iq.strides[<span class="number">0</span>] * hop, iq.strides[<span class="number">0</span>])  <span class="comment"># 行步长 = hop 个样本</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加窗并执行 FFT，再将零频移到频谱中心</span></span><br><span class="line">spec = np.fft.fftshift(</span><br><span class="line">    np.fft.fft(frames * win, axis=<span class="number">1</span>),</span><br><span class="line">    axes=<span class="number">1</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转为 dB 幅度谱（转置后维度为 [频率, 时间]）</span></span><br><span class="line">S = <span class="number">20</span> * np.log10(np.<span class="built_in">abs</span>(spec).T + <span class="number">1</span>)        <span class="comment"># +1 避免 log(0)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ========== 3. 裁剪目标区域（条码所在位置） ==========</span></span><br><span class="line"><span class="comment"># 不同 FFT 参数下，条码在频谱图中的位置会变化，这里根据实际数据手动调整</span></span><br><span class="line">crop = S[<span class="number">900</span>:<span class="number">3100</span>, <span class="number">900</span>:<span class="number">4000</span>]                 <span class="comment"># 裁剪 [频率范围, 时间范围]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 动态范围压缩：取裁剪区域的中位数和 99.5% 分位数作为映射边界</span></span><br><span class="line">vmin = np.percentile(crop, <span class="number">50</span>)               <span class="comment"># 抑制背景噪声</span></span><br><span class="line">vmax = np.percentile(crop, <span class="number">99.5</span>)             <span class="comment"># 防止个别强点拉平对比度</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ========== 4. 归一化并转为 8 位灰度图 ==========</span></span><br><span class="line">img = (crop - vmin) / (vmax - vmin)          <span class="comment"># 线性映射到 [0,1]</span></span><br><span class="line">img = np.clip(img, <span class="number">0</span>, <span class="number">1</span>)                     <span class="comment"># 截断超出范围的值</span></span><br><span class="line">img = (img * <span class="number">255</span>).astype(np.uint8)           <span class="comment"># 转为 0~255 整数</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ========== 5. 图像后处理：旋转与反色 ==========</span></span><br><span class="line">im = Image.fromarray(img)                    <span class="comment"># 创建 PIL 图像对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将图像旋转 90°（使条码横向放置，便于识别器读取）</span></span><br><span class="line">im = im.rotate(<span class="number">90</span>, expand=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成反色版本（黑条白底 → 白条黑底），某些 PDF417 解码器可能偏好</span></span><br><span class="line">im_inv = ImageOps.invert(im)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ========== 6. 保存结果 ==========</span></span><br><span class="line">im.save(<span class="string">&quot;barcode_gray.png&quot;</span>)</span><br><span class="line">im_inv.save(<span class="string">&quot;barcode_invert.png&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] saved barcode_gray.png&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] saved barcode_invert.png&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>翻转过来再颜色反转可以识别出 flag</p>
+<p><img src="https://pic1.imgdb.cn/item/6a35ad7371d0c6ff61487a8d.png"></p>
+<p>所以最后 flag 就是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;1cbnz723x81il1812ss2&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/CTF/" title="CTF" data-aos="zoom-in">CTF</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/CTF/" rel="tag" title="CTF">CTF</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-石家庄站 WriteUp" class="lazyload">
+        <a href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E7%9F%B3%E5%AE%B6%E5%BA%84%E7%AB%99/" aria-label="前一篇: 2020 工业信息安全技能大赛-石家庄站 WriteUp" title="前一篇: 2020 工业信息安全技能大赛-石家庄站 WriteUp"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            2020 工业信息安全技能大赛-石家庄站 WriteUp
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp" class="lazyload">
+      <a href="/2020/04/14/2020%20%E2%80%9C%E4%B9%8B%E6%B1%9F%E6%9D%AF%E2%80%9D%E5%B7%A5%E4%B8%9A%E4%BA%92%E8%81%94%E7%BD%91%E5%86%85%E7%94%9F%E5%AE%89%E5%85%A8%E9%98%B2%E5%BE%A1%E5%9B%BD%E9%99%85%E7%B2%BE%E8%8B%B1%E6%8C%91%E6%88%98%E8%B5%9B/" aria-label="后一篇: 2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp"  title="后一篇: 2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        170.6k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        14:03
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B5%8E%E5%8D%97%E7%AB%99-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 工业信息安全技能大赛-济南站 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#COTP%EF%BC%88COTP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">COTP（COTP 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E5%A4%A7%E6%A5%BC%E7%9A%84%E9%81%93%E9%97%B8%E6%80%8E%E4%B9%88%E5%9D%8F%E4%BA%86%EF%BC%881527-%E8%8A%AF%E7%89%87%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">工控大楼的道闸怎么坏了（1527 芯片）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%84%E9%9C%B2%E7%9A%84%E4%BF%A1%E5%8F%B7%EF%BC%88%E6%97%A0%E7%BA%BF-IQ-%E4%BF%A1%E5%8F%B7%E5%88%86%E6%9E%90-%E9%A2%91%E8%B0%B1%E5%9B%BE%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">泄露的信号（无线 IQ 信号分析 + 频谱图隐写）</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">171</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">21</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">177</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "2020 工业信息安全技能大赛-济南站 WriteUp",
+          url: "https://suc2es2.github.io/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B5%8E%E5%8D%97%E7%AB%99/",
+          excerpt: "",
+          description: "",
+          stripContent: "2020 工业信息安全技能大赛-济南站 WriteUpMiscCOTP（COTP 协议） 一眼过去全是 COTP 协议，过滤下  COTP 协议默认端口是 102，所以 192.168.99.22 是工控设备  再新增 ip.src == 192.168.99.22 过滤下，查看工控响应的内容有没有什么异常  第 217 个包长度突然不一样，是之前的两倍  Payload 中还能看到明显的设备信息字符串 16ES7 211-1BE51-0XB0 ;V3.0  这说明攻击者&amp;#x2F;扫描方正在读",
+          date: "Tue Apr 14 2020 13:18:00 GMT+0800",
+          updated: "Sat Jun 20 2026 05:01:32 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
