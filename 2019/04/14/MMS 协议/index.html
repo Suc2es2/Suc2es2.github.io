@@ -1,0 +1,607 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
+  <title>
+    MMS 协议 | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="MMS 协议概述MMS 提供了一套面向对象的客户端&#x2F;服务器通信模型，核心功能包括：  读&#x2F;写变量：读取或修改设备内部的数据点（如温度、电压、开关状态）  报告：设备在数据变化或事件触发时主动向客户端推送信息  文件操作：上传&#x2F;下载设备上的配置文件或固件  控制：启停设备、执行预定义程序等。  设备建模：通过虚拟制造设备（VMD）和域（Domain）等抽象概念，统一不同">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MMS 协议">
+<meta property="og:url" content="https://suc2es2.github.io/2019/04/14/MMS%20%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="MMS 协议概述MMS 提供了一套面向对象的客户端&#x2F;服务器通信模型，核心功能包括：  读&#x2F;写变量：读取或修改设备内部的数据点（如温度、电压、开关状态）  报告：设备在数据变化或事件触发时主动向客户端推送信息  文件操作：上传&#x2F;下载设备上的配置文件或固件  控制：启停设备、执行预定义程序等。  设备建模：通过虚拟制造设备（VMD）和域（Domain）等抽象概念，统一不同">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3678eb2830ce602a4e8adb.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a367fe12830ce602a4e8cda.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3682232830ce602a4ee6b7.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3682c32830ce602a4ee6e0.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3683c22830ce602a4ee746.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3684ba2830ce602a4ee77a.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a36851e2830ce602a4ee793.png">
+<meta property="article:published_time" content="2019-04-14T05:18:00.000Z">
+<meta property="article:modified_time" content="2026-06-20T12:19:24.760Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="工控">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6a3678eb2830ce602a4e8adb.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="MMS 协议">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">MMS 协议</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MMS-%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.</span> <span class="toc-text">MMS 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">报文结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BER-%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.2.1.</span> <span class="toc-text">BER 快速回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B6%E5%B1%82%E7%9A%84-MMS-PDU-%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">顶层的 MMS PDU 类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%83%E5%8F%96%E6%95%B0%E6%8D%AE%E7%9A%84%E9%BB%91%E5%AE%A2"><span class="toc-number">1.3.1.</span> <span class="toc-text">窃取数据的黑客</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">181</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">21</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">177</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-MMS 协议" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2019-04-14T05:18:00.000Z" itemprop="datePublished">2019-04-14</time>
+    <time style="display: none;" id="post-update-time">2026-06-20</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="MMS-协议"><a href="#MMS-协议" class="headerlink" title="MMS 协议"></a>MMS 协议</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>MMS 提供了一套面向对象的客户端&#x2F;服务器通信模型，核心功能包括：</p>
+<ul>
+<li><p>读&#x2F;写变量：读取或修改设备内部的数据点（如温度、电压、开关状态）</p>
+</li>
+<li><p>报告：设备在数据变化或事件触发时主动向客户端推送信息</p>
+</li>
+<li><p>文件操作：上传&#x2F;下载设备上的配置文件或固件</p>
+</li>
+<li><p>控制：启停设备、执行预定义程序等。</p>
+</li>
+<li><p>设备建模：通过虚拟制造设备（VMD）和域（Domain）等抽象概念，统一不同厂家的设备数据接口</p>
+</li>
+</ul>
+<p>最常见的应用场景是 电力系统 IEC 61850 通信（变电站自动化），以及制造业的 SCADA 系统、机器人控制等</p>
+<h2 id="报文结构"><a href="#报文结构" class="headerlink" title="报文结构"></a>报文结构</h2><p>MMS 协议的 PDU 完全使用 ASN.1 基本编码规则（BER） 来描述，也就是 Tag - Length - Value 结构</p>
+<h3 id="BER-快速回顾"><a href="#BER-快速回顾" class="headerlink" title="BER 快速回顾"></a>BER 快速回顾</h3><ul>
+<li><p>Tag（标签）：1~多字节，说明数据类型及上下文</p>
+</li>
+<li><p>Length（长度）：1~多字节，指明后续 Value 的字节数</p>
+</li>
+<li><p>Value（内容）：可以是简单整数、字符串，也可以是嵌套的 TLV 结构</p>
+</li>
+</ul>
+<p>MMS 中几乎都用上下文特定的构造标签（如 0xA0、0xA1 等）</p>
+<h3 id="顶层的-MMS-PDU-类型"><a href="#顶层的-MMS-PDU-类型" class="headerlink" title="顶层的 MMS PDU 类型"></a>顶层的 MMS PDU 类型</h3><p>MMS 定义了以下几种顶层 PDU，每一类都有一个固定的标签：</p>
+<table>
+<thead>
+<tr>
+<th>PDU 类型</th>
+<th>对应的顶层标签</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>confirmed-RequestPDU</td>
+<td>A0</td>
+<td>客户端请求（需要响应）</td>
+</tr>
+<tr>
+<td>confirmed-ResponsePDU</td>
+<td>A1</td>
+<td>服务端对请求的响应</td>
+</tr>
+<tr>
+<td>unconfirmed-PDU</td>
+<td>A2</td>
+<td>单向报文（如信息报告，无需确认）</td>
+</tr>
+<tr>
+<td>initiate-RequestPDU</td>
+<td>A8</td>
+<td>连接发起方协商能力</td>
+</tr>
+<tr>
+<td>initiate-ResponsePDU</td>
+<td>A9</td>
+<td>连接响应方协商能力</td>
+</tr>
+<tr>
+<td>conclude-RequestPDU</td>
+<td>AC</td>
+<td>请求释放连接</td>
+</tr>
+<tr>
+<td>等等…</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="实战案例"><a href="#实战案例" class="headerlink" title="实战案例"></a>实战案例</h2><h3 id="窃取数据的黑客"><a href="#窃取数据的黑客" class="headerlink" title="窃取数据的黑客"></a>窃取数据的黑客</h3><p><img src="https://pic1.imgdb.cn/item/6a3678eb2830ce602a4e8adb.png"></p>
+<p>查看会话可以看到一直在跟 <code>192.168.51.34:102</code> 通信</p>
+<p>所以 <code>192.168.51.34</code> 就是服务器</p>
+<p><img src="https://pic1.imgdb.cn/item/6a367fe12830ce602a4e8cda.png"></p>
+<p>按照长度排列，第 3096 包没有 info 信息有点可疑（3022、3059 也一样）</p>
+<p><img src="https://pic1.imgdb.cn/item/6a3682232830ce602a4ee6b7.png"></p>
+<p>展开后可以看到 <code>flag.7z</code> 以及 <code>flag.txt</code></p>
+<p><img src="https://pic1.imgdb.cn/item/6a3682c32830ce602a4ee6e0.png"></p>
+<p>按照最先发包顺序，从 3022 之后看攻击者 IP <code>192.168.51.33</code> 请求操作</p>
+<p>在 3066 包中可以看到访问了 <code>flag.7z</code></p>
+<p><img src="https://pic1.imgdb.cn/item/6a3683c22830ce602a4ee746.png"></p>
+<p>编写脚本去响应中找到这个压缩文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line">pcap = <span class="string">&quot;tmflag(1).pcapng&quot;</span>               <span class="comment"># 要解析的 pcapng 文件</span></span><br><span class="line">data = <span class="built_in">open</span>(pcap, <span class="string">&quot;rb&quot;</span>).read()           <span class="comment"># 一次性读取全部二进制内容</span></span><br><span class="line"></span><br><span class="line">endian = <span class="string">&quot;&lt;&quot;</span>                             <span class="comment"># 默认小端字节序，后续可根据块类型修正</span></span><br><span class="line">pos = <span class="number">0</span>                                  <span class="comment"># 当前解析位置（字节偏移）</span></span><br><span class="line">packets = []                             <span class="comment"># 存储提取的原始数据包内容</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 逐块解析 pcapng 文件</span></span><br><span class="line"><span class="keyword">while</span> pos + <span class="number">12</span> &lt;= <span class="built_in">len</span>(data):            <span class="comment"># 至少需要类型(4) + 块长(4) + 尾部块长(4)</span></span><br><span class="line">    block_type, block_len = struct.unpack(endian + <span class="string">&quot;II&quot;</span>, data[pos:pos+<span class="number">8</span>])</span><br><span class="line">    <span class="keyword">if</span> block_len &lt; <span class="number">12</span> <span class="keyword">or</span> pos + block_len &gt; <span class="built_in">len</span>(data):  <span class="comment"># 非法块长度则停止解析</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    body = data[pos+<span class="number">8</span>:pos+block_len-<span class="number">4</span>]  <span class="comment"># 块体，去掉头和尾的块长度字段</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> block_type == <span class="number">0x0A0D0D0A</span>:        <span class="comment"># Section Header Block：决定字节序</span></span><br><span class="line">        bom = struct.unpack(<span class="string">&quot;&lt;I&quot;</span>, body[:<span class="number">4</span>])[<span class="number">0</span>]  <span class="comment"># 读取字节序标记</span></span><br><span class="line">        endian = <span class="string">&quot;&lt;&quot;</span> <span class="keyword">if</span> bom == <span class="number">0x1A2B3C4D</span> <span class="keyword">else</span> <span class="string">&quot;&gt;&quot;</span>  <span class="comment"># 根据标记设置端序</span></span><br><span class="line">    <span class="keyword">elif</span> block_type == <span class="number">6</span>:               <span class="comment"># Enhanced Packet Block</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(body) &gt;= <span class="number">20</span>:</span><br><span class="line">            <span class="comment"># 接口ID、时间戳高/低、捕获长度、原始长度（只关注 caplen）</span></span><br><span class="line">            _, _, _, caplen, _ = struct.unpack(endian + <span class="string">&quot;IIIII&quot;</span>, body[:<span class="number">20</span>])</span><br><span class="line">            packets.append(body[<span class="number">20</span>:<span class="number">20</span>+caplen])  <span class="comment"># 保存捕获到的数据包</span></span><br><span class="line"></span><br><span class="line">    pos += block_len                     <span class="comment"># 移动到下一个块</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 分析提取的以太网数据包</span></span><br><span class="line"><span class="keyword">for</span> idx, pkt <span class="keyword">in</span> <span class="built_in">enumerate</span>(packets, <span class="number">1</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(pkt) &lt; <span class="number">14</span>:</span><br><span class="line">        <span class="keyword">continue</span>                         <span class="comment"># 不够以太网帧头长度，跳过</span></span><br><span class="line"></span><br><span class="line">    eth_type = struct.unpack(<span class="string">&quot;!H&quot;</span>, pkt[<span class="number">12</span>:<span class="number">14</span>])[<span class="number">0</span>]  <span class="comment"># 以太网类型字段</span></span><br><span class="line">    <span class="keyword">if</span> eth_type != <span class="number">0x0800</span>:</span><br><span class="line">        <span class="keyword">continue</span>                         <span class="comment"># 非 IPv4 包则跳过</span></span><br><span class="line"></span><br><span class="line">    ip = pkt[<span class="number">14</span>:]                        <span class="comment"># IP 头部起始</span></span><br><span class="line">    ihl = (ip[<span class="number">0</span>] &amp; <span class="number">0x0f</span>) * <span class="number">4</span>            <span class="comment"># IP 头长度（字节）</span></span><br><span class="line">    proto = ip[<span class="number">9</span>]                        <span class="comment"># 传输层协议号</span></span><br><span class="line">    <span class="keyword">if</span> proto != <span class="number">6</span>:</span><br><span class="line">        <span class="keyword">continue</span>                         <span class="comment"># 非 TCP 则跳过</span></span><br><span class="line"></span><br><span class="line">    total_len = struct.unpack(<span class="string">&quot;!H&quot;</span>, ip[<span class="number">2</span>:<span class="number">4</span>])[<span class="number">0</span>]  <span class="comment"># IP 总长度</span></span><br><span class="line">    tcp = ip[ihl:total_len]              <span class="comment"># TCP 段（头部+数据）</span></span><br><span class="line">    sport, dport = struct.unpack(<span class="string">&quot;!HH&quot;</span>, tcp[:<span class="number">4</span>])  <span class="comment"># 源端口、目的端口</span></span><br><span class="line">    tcp_hlen = (tcp[<span class="number">12</span>] &gt;&gt; <span class="number">4</span>) * <span class="number">4</span>        <span class="comment"># TCP 头长度（字节）</span></span><br><span class="line">    payload = tcp[tcp_hlen:]             <span class="comment"># TCP 有效载荷（应用层数据）</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 7z 文件魔数签名</span></span><br><span class="line">    sig = <span class="string">b&quot;7z\xbc\xaf\x27\x1c&quot;</span></span><br><span class="line">    off = payload.find(sig)              <span class="comment"># 在载荷中查找该签名</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> off != -<span class="number">1</span>:                        <span class="comment"># 找到 7z 文件头</span></span><br><span class="line">        <span class="comment"># 提取从签名开始的一段数据（长度 0x8f 字节）</span></span><br><span class="line">        filedata = payload[off:off + <span class="number">0x8f</span>]</span><br><span class="line">        <span class="built_in">open</span>(<span class="string">&quot;flag.7z&quot;</span>, <span class="string">&quot;wb&quot;</span>).write(filedata)  <span class="comment"># 写出文件</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;[+] frame <span class="subst">&#123;idx&#125;</span>: extracted flag.7z, size=<span class="subst">&#123;<span class="built_in">len</span>(filedata)&#125;</span> bytes&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/6a3684ba2830ce602a4ee77a.png"></p>
+<p>解压后拿到 flag 值</p>
+<p><img src="https://pic1.imgdb.cn/item/6a36851e2830ce602a4ee793.png"></p>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/%E5%B7%A5%E6%8E%A7/" title="工控" data-aos="zoom-in">工控</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E6%8E%A7/" rel="tag" title="工控">工控</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 工业信息安全技能大赛-山东站 WriteUp" class="lazyload">
+        <a href="/2019/04/14/2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%B1%B1%E4%B8%9C%E7%AB%99/" aria-label="前一篇: 2019 工业信息安全技能大赛-山东站 WriteUp" title="前一篇: 2019 工业信息安全技能大赛-山东站 WriteUp"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            2019 工业信息安全技能大赛-山东站 WriteUp
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Modbus 协议" class="lazyload">
+      <a href="/2019/04/14/Modbus%20%E5%8D%8F%E8%AE%AE/" aria-label="后一篇: Modbus 协议"  title="后一篇: Modbus 协议"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          Modbus 协议
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        175.9k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        14:31
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MMS-%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.</span> <span class="toc-text">MMS 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">报文结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BER-%E5%BF%AB%E9%80%9F%E5%9B%9E%E9%A1%BE"><span class="toc-number">1.2.1.</span> <span class="toc-text">BER 快速回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B6%E5%B1%82%E7%9A%84-MMS-PDU-%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">顶层的 MMS PDU 类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AA%83%E5%8F%96%E6%95%B0%E6%8D%AE%E7%9A%84%E9%BB%91%E5%AE%A2"><span class="toc-number">1.3.1.</span> <span class="toc-text">窃取数据的黑客</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">181</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">21</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">177</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "MMS 协议",
+          url: "https://suc2es2.github.io/2019/04/14/MMS%20%E5%8D%8F%E8%AE%AE/",
+          excerpt: "",
+          description: "",
+          stripContent: "MMS 协议概述MMS 提供了一套面向对象的客户端&amp;#x2F;服务器通信模型，核心功能包括：  读&amp;#x2F;写变量：读取或修改设备内部的数据点（如温度、电压、开关状态）  报告：设备在数据变化或事件触发时主动向客户端推送信息  文件操作：上传&amp;#x2F;下载设备上的配置文件或固件  控制：启停设备、执行预定义程序等。  设备建模：通过虚拟制造设备（VMD）和域（Domain）等抽象概念，统一不同厂家的设备数据接口   最常见的应用场景是 电力系统 IEC 61850 通信（变电站自动化），以及",
+          date: "Sun Apr 14 2019 13:18:00 GMT+0800",
+          updated: "Sat Jun 20 2026 20:19:24 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>

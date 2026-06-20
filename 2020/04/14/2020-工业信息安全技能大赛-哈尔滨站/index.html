@@ -17,18 +17,18 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="2020 工业信息安全技能大赛-哈尔滨站 WriteUp举办情况：2020 年工业信息安全技能大赛巡回赛（哈尔滨站）成功举办 参赛规模：共有国内 34 支队伍参加，其中黑龙江省队伍达到 6 支 第二名：电子龙鹰队（黑龙江省工业信息化发展中心&#x2F;黑龙江省电子技术研究所组建） MiscOmron Fins 过滤 omron 协议，可以看到操作中有读取有写入  根据题目描述找写入的流量，其 Co">
+    <meta name="description" content="2020 工业信息安全技能大赛-哈尔滨站 WriteUp举办情况：2020 年工业信息安全技能大赛巡回赛（哈尔滨站）成功举办 参赛规模：共有国内 34 支队伍参加，其中黑龙江省队伍达到 6 支 第二名：电子龙鹰队（黑龙江省工业信息化发展中心&#x2F;黑龙江省电子技术研究所组建） MiscOmron Fins（Omron 协议） 过滤 omron 协议，可以看到操作中有读取有写入  根据题目描述找">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2020 工业信息安全技能大赛-哈尔滨站 WriteUp">
 <meta property="og:url" content="https://suc2es2.github.io/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%93%88%E5%B0%94%E6%BB%A8%E7%AB%99/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="2020 工业信息安全技能大赛-哈尔滨站 WriteUp举办情况：2020 年工业信息安全技能大赛巡回赛（哈尔滨站）成功举办 参赛规模：共有国内 34 支队伍参加，其中黑龙江省队伍达到 6 支 第二名：电子龙鹰队（黑龙江省工业信息化发展中心&#x2F;黑龙江省电子技术研究所组建） MiscOmron Fins 过滤 omron 协议，可以看到操作中有读取有写入  根据题目描述找写入的流量，其 Co">
+<meta property="og:description" content="2020 工业信息安全技能大赛-哈尔滨站 WriteUp举办情况：2020 年工业信息安全技能大赛巡回赛（哈尔滨站）成功举办 参赛规模：共有国内 34 支队伍参加，其中黑龙江省队伍达到 6 支 第二名：电子龙鹰队（黑龙江省工业信息化发展中心&#x2F;黑龙江省电子技术研究所组建） MiscOmron Fins（Omron 协议） 过滤 omron 协议，可以看到操作中有读取有写入  根据题目描述找">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a33a36991b65c4475ab6c19.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a33ad4991b65c4475abab15.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a33ad7d91b65c4475abab2b.png">
 <meta property="article:published_time" content="2020-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-18T08:35:18.383Z">
+<meta property="article:modified_time" content="2026-06-20T07:06:14.113Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -150,7 +150,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%93%88%E5%B0%94%E6%BB%A8%E7%AB%99-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 工业信息安全技能大赛-哈尔滨站 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Omron-Fins"><span class="toc-number">1.1.1.</span> <span class="toc-text">Omron Fins</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%93%88%E5%B0%94%E6%BB%A8%E7%AB%99-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 工业信息安全技能大赛-哈尔滨站 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Omron-Fins%EF%BC%88Omron-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">Omron Fins（Omron 协议）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -161,7 +161,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">171</div>
+    <div class="sidebar-state-number">181</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -228,7 +228,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2020-04-14T05:18:00.000Z" itemprop="datePublished">2020-04-14</time>
-    <time style="display: none;" id="post-update-time">2026-06-18</time>
+    <time style="display: none;" id="post-update-time">2026-06-20</time>
   </span>
 </div>
 
@@ -240,7 +240,7 @@
         <h1 id="2020-工业信息安全技能大赛-哈尔滨站-WriteUp"><a href="#2020-工业信息安全技能大赛-哈尔滨站-WriteUp" class="headerlink" title="2020 工业信息安全技能大赛-哈尔滨站 WriteUp"></a>2020 工业信息安全技能大赛-哈尔滨站 WriteUp</h1><p>举办情况：2020 年工业信息安全技能大赛巡回赛（哈尔滨站）成功举办</p>
 <p>参赛规模：共有国内 34 支队伍参加，其中黑龙江省队伍达到 6 支</p>
 <p>第二名：电子龙鹰队（黑龙江省工业信息化发展中心&#x2F;黑龙江省电子技术研究所组建）</p>
-<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="Omron-Fins"><a href="#Omron-Fins" class="headerlink" title="Omron Fins"></a>Omron Fins</h3><p><img src="https://pic1.imgdb.cn/item/6a33a36991b65c4475ab6c19.png"></p>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="Omron-Fins（Omron-协议）"><a href="#Omron-Fins（Omron-协议）" class="headerlink" title="Omron Fins（Omron 协议）"></a>Omron Fins（Omron 协议）</h3><p><img src="https://pic1.imgdb.cn/item/6a33a36991b65c4475ab6c19.png"></p>
 <p>过滤 <code>omron</code> 协议，可以看到操作中有读取有写入</p>
 <p><img src="https://pic1.imgdb.cn/item/6a33ad4991b65c4475abab15.png"></p>
 <p>根据题目描述找写入的流量，其 <code>Command Data</code> 就是 flag</p>
@@ -256,19 +256,19 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 BJDCTF WriteUp" class="lazyload">
-        <a href="/2020/04/14/2020%20BJDCTF/" aria-label="前一篇: 2020 BJDCTF WriteUp" title="前一篇: 2020 BJDCTF WriteUp"></a>
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-济南站 WriteUp" class="lazyload">
+        <a href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B5%8E%E5%8D%97%E7%AB%99/" aria-label="前一篇: 2020 工业信息安全技能大赛-济南站 WriteUp" title="前一篇: 2020 工业信息安全技能大赛-济南站 WriteUp"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            2020 BJDCTF WriteUp
+            2020 工业信息安全技能大赛-济南站 WriteUp
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-石家庄站 WriteUp" class="lazyload">
-      <a href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E7%9F%B3%E5%AE%B6%E5%BA%84%E7%AB%99/" aria-label="后一篇: 2020 工业信息安全技能大赛-石家庄站 WriteUp"  title="后一篇: 2020 工业信息安全技能大赛-石家庄站 WriteUp"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-湖州站 WriteUp" class="lazyload">
+      <a href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B9%96%E5%B7%9E%E7%AB%99/" aria-label="后一篇: 2020 工业信息安全技能大赛-湖州站 WriteUp"  title="后一篇: 2020 工业信息安全技能大赛-湖州站 WriteUp"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          2020 工业信息安全技能大赛-石家庄站 WriteUp
+          2020 工业信息安全技能大赛-湖州站 WriteUp
       </h3>
     </div>
   </nav>
@@ -295,10 +295,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        170.6k
+        175.9k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        14:03
+        14:31
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -320,7 +320,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%93%88%E5%B0%94%E6%BB%A8%E7%AB%99-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 工业信息安全技能大赛-哈尔滨站 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Omron-Fins"><span class="toc-number">1.1.1.</span> <span class="toc-text">Omron Fins</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%93%88%E5%B0%94%E6%BB%A8%E7%AB%99-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 工业信息安全技能大赛-哈尔滨站 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Omron-Fins%EF%BC%88Omron-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">Omron Fins（Omron 协议）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -331,7 +331,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">171</div>
+    <div class="sidebar-state-number">181</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -452,9 +452,9 @@
           url: "https://suc2es2.github.io/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%93%88%E5%B0%94%E6%BB%A8%E7%AB%99/",
           excerpt: "",
           description: "",
-          stripContent: "2020 工业信息安全技能大赛-哈尔滨站 WriteUp举办情况：2020 年工业信息安全技能大赛巡回赛（哈尔滨站）成功举办 参赛规模：共有国内 34 支队伍参加，其中黑龙江省队伍达到 6 支 第二名：电子龙鹰队（黑龙江省工业信息化发展中心&amp;#x2F;黑龙江省电子技术研究所组建） MiscOmron Fins 过滤 omron 协议，可以看到操作中有读取有写入  根据题目描述找写入的流量，其 Command Data 就是 flag  ",
+          stripContent: "2020 工业信息安全技能大赛-哈尔滨站 WriteUp举办情况：2020 年工业信息安全技能大赛巡回赛（哈尔滨站）成功举办 参赛规模：共有国内 34 支队伍参加，其中黑龙江省队伍达到 6 支 第二名：电子龙鹰队（黑龙江省工业信息化发展中心&amp;#x2F;黑龙江省电子技术研究所组建） MiscOmron Fins（Omron 协议） 过滤 omron 协议，可以看到操作中有读取有写入  根据题目描述找写入的流量，其 Command Data 就是 flag  ",
           date: "Tue Apr 14 2020 13:18:00 GMT+0800",
-          updated: "Thu Jun 18 2026 16:35:18 GMT+0800",
+          updated: "Sat Jun 20 2026 15:06:14 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
