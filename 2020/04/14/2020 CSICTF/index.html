@@ -27,8 +27,10 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a2ffa2ab755a1449d698f60.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a356b7e71d0c6ff61480be5.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a356e0071d0c6ff61480bfc.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a36def12830ce602a50ab49.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a36df552830ce602a50ab4c.png">
 <meta property="article:published_time" content="2020-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-19T16:28:04.263Z">
+<meta property="article:modified_time" content="2026-06-20T19:00:37.928Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -150,7 +152,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-CSICTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 CSICTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Gradient-sky%EF%BC%88%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">Gradient sky（图片隐写）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.2.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#little-RSA%EF%BC%88%E5%88%86%E8%A7%A3-n%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">little RSA（分解 n）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rivest-Shamir-Adleman%EF%BC%88%E5%88%86%E8%A7%A3-n%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">Rivest Shamir Adleman（分解 n）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-CSICTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 CSICTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Gradient-sky%EF%BC%88%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">Gradient sky（图片隐写）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.2.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#little-RSA%EF%BC%88%E5%88%86%E8%A7%A3-n%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">little RSA（分解 n）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rivest-Shamir-Adleman%EF%BC%88%E5%88%86%E8%A7%A3-n%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">Rivest Shamir Adleman（分解 n）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Modern-Clueless-Child%EF%BC%88XOR%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">Modern Clueless Child（XOR）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Quick-Math%EF%BC%88%E4%BD%8E%E6%8C%87%E6%95%B0%E5%B9%BF%E6%92%AD%E6%94%BB%E5%87%BB%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">Quick Math（低指数广播攻击）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -161,7 +163,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">181</div>
+    <div class="sidebar-state-number">185</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -228,7 +230,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2020-04-14T05:18:00.000Z" itemprop="datePublished">2020-04-14</time>
-    <time style="display: none;" id="post-update-time">2026-06-20</time>
+    <time style="display: none;" id="post-update-time">2026-06-21</time>
   </span>
 </div>
 
@@ -253,6 +255,26 @@
 <h3 id="Rivest-Shamir-Adleman（分解-n）"><a href="#Rivest-Shamir-Adleman（分解-n）" class="headerlink" title="Rivest Shamir Adleman（分解 n）"></a>Rivest Shamir Adleman（分解 <code>n</code>）</h3><p>和上题一样的方法</p>
 <p><img src="https://pic1.imgdb.cn/item/6a356e0071d0c6ff61480bfc.png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> isqrt</span><br><span class="line"></span><br><span class="line">n = <span class="number">408579146706567976063586763758203051093687666875502812646277701560732347095463873824829467529879836457478436098685606552992513164224712398195503564207485938278827523972139196070431397049700119503436522251010430918143933255323117421712000644324381094600257291929523792609421325002527067471808992410166917641057703562860663026873111322556414272297111644069436801401012920448661637616392792337964865050210799542881102709109912849797010633838067759525247734892916438373776477679080154595973530904808231</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">c = <span class="number">226582271940094442087193050781730854272200420106419489092394544365159707306164351084355362938310978502945875712496307487367548451311593283589317511213656234433015906518135430048027246548193062845961541375898496150123721180020417232872212026782286711541777491477220762823620612241593367070405349675337889270277102235298455763273194540359004938828819546420083966793260159983751717798236019327334525608143172073795095665271013295322241504491351162010517033995871502259721412160906176911277416194406909</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 已知或爆破得到的小素因子</span></span><br><span class="line">p = <span class="number">15485863</span></span><br><span class="line">q = n // p</span><br><span class="line"></span><br><span class="line"><span class="keyword">assert</span> p * q == n</span><br><span class="line"></span><br><span class="line">phi = (p - <span class="number">1</span>) * (q - <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求私钥指数 d</span></span><br><span class="line">d = <span class="built_in">pow</span>(e, -<span class="number">1</span>, phi)</span><br><span class="line"></span><br><span class="line"><span class="comment"># RSA 解密</span></span><br><span class="line">m = <span class="built_in">pow</span>(c, d, n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># long -&gt; bytes</span></span><br><span class="line">msg = m.to_bytes((m.bit_length() + <span class="number">7</span>) // <span class="number">8</span>, <span class="string">&quot;big&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] flag =&quot;</span>, msg.decode())</span><br></pre></td></tr></table></figure>
+
+<h3 id="Modern-Clueless-Child（XOR）"><a href="#Modern-Clueless-Child（XOR）" class="headerlink" title="Modern Clueless Child（XOR）"></a>Modern Clueless Child（XOR）</h3><p><img src="https://pic1.imgdb.cn/item/6a36def12830ce602a50ab49.png"></p>
+<p>题目给的是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">52f41f58f51f47f57f49f48f5df46f6ef53f43f57f6cf50f6df53f53f40f58f51f6ef42f56f43f41f5ef5cf4e</span><br></pre></td></tr></table></figure>
+
+<p>按 f 分割得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">52 41 58 51 47 57 49 48 5d 46 6e 53 43 57 6c 50 6d 53 53 40 58 51 6e 42 56 43 41 5e 5c 4e</span><br></pre></td></tr></table></figure>
+
+<p>转成 ASCII 得到一段密文</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RAXQGWIH]FnSCWlPmSS@XQnBVCA^\N</span><br></pre></td></tr></table></figure>
+
+<p>将题目给的 Key 转为 ASCII 字符</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x27;1&#x27; = 0x31</span><br><span class="line">&#x27;2&#x27; = 0x32</span><br><span class="line">&#x27;3&#x27; = 0x33</span><br></pre></td></tr></table></figure>
+
+<p>然后对密文循环进行 XOR</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">cipher_hex = <span class="string">&quot;52f41f58f51f47f57f49f48f5df46f6ef53f43f57f6cf50f6df53f53f40f58f51f6ef42f56f43f41f5ef5cf4e&quot;</span></span><br><span class="line">key = <span class="string">&quot;12123&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 按 f 分隔</span></span><br><span class="line">parts = cipher_hex.split(<span class="string">&quot;f&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 每一段当成 hex 字节</span></span><br><span class="line">cipher = <span class="built_in">bytes</span>(<span class="built_in">int</span>(x, <span class="number">16</span>) <span class="keyword">for</span> x <span class="keyword">in</span> parts)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 用 ASCII key 循环 XOR</span></span><br><span class="line">plain = <span class="built_in">bytes</span>(</span><br><span class="line">    c ^ <span class="built_in">ord</span>(key[i % <span class="built_in">len</span>(key)])</span><br><span class="line">    <span class="keyword">for</span> i, c <span class="keyword">in</span> <span class="built_in">enumerate</span>(cipher)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(plain.decode())</span><br></pre></td></tr></table></figure>
+
+<p>得到 <code>csictf{you_are_a_basic_person}</code></p>
+<h3 id="Quick-Math（低指数广播攻击）"><a href="#Quick-Math（低指数广播攻击）" class="headerlink" title="Quick Math（低指数广播攻击）"></a>Quick Math（低指数广播攻击）</h3><p><img src="https://pic1.imgdb.cn/item/6a36df552830ce602a50ab4c.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> prod, gcd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 给定的 RSA 模数与密文（已知 e=3 的广播攻击场景）</span></span><br><span class="line">n1 = <span class="number">86812553978993</span></span><br><span class="line">n2 = <span class="number">81744303091421</span></span><br><span class="line">n3 = <span class="number">83695120256591</span></span><br><span class="line"></span><br><span class="line">c1 = <span class="number">8875674977048</span></span><br><span class="line">c2 = <span class="number">70744354709710</span></span><br><span class="line">c3 = <span class="number">29146719498409</span></span><br><span class="line"></span><br><span class="line">ns = [n1, n2, n3]</span><br><span class="line">cs = [c1, c2, c3]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查模数两两互素，确保 CRT 可行</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(ns)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i):</span><br><span class="line">        <span class="built_in">print</span>(gcd(ns[i], ns[j]))  <span class="comment"># 输出应为 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- 中国剩余定理 (CRT) ----------</span></span><br><span class="line">N = prod(ns)  <span class="comment"># 所有模数的乘积</span></span><br><span class="line">x = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> c, n <span class="keyword">in</span> <span class="built_in">zip</span>(cs, ns):</span><br><span class="line">    Ni = N // n                <span class="comment"># 除当前模数外的其他模数乘积</span></span><br><span class="line">    inv = <span class="built_in">pow</span>(Ni, -<span class="number">1</span>, n)      <span class="comment"># 计算 Ni 在模 n 下的逆元（Python 3.8+ 支持）</span></span><br><span class="line">    x += c * Ni * inv          <span class="comment"># 累加加权值</span></span><br><span class="line"></span><br><span class="line">x %= N  <span class="comment"># 得到 x ≡ m^3 (mod N) 的最小非负解，且因为 m^3 &lt; N，整数意义上 x = m^3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 整数三次方根（二分查找，适用于大整数）</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">iroot3</span>(<span class="params">num</span>):</span><br><span class="line">    l, r = <span class="number">0</span>, num</span><br><span class="line">    <span class="keyword">while</span> l &lt;= r:</span><br><span class="line">        mid = (l + r) // <span class="number">2</span></span><br><span class="line">        v = mid ** <span class="number">3</span></span><br><span class="line">        <span class="keyword">if</span> v == num:</span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">        <span class="keyword">elif</span> v &lt; num:</span><br><span class="line">            l = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            r = mid - <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> r  <span class="comment"># 若未精确匹配，向下取整（这里必定精确匹配）</span></span><br><span class="line"></span><br><span class="line">m = iroot3(x)  <span class="comment"># 恢复出明文</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;m =&quot;</span>, m)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;check:&quot;</span>, m ** <span class="number">3</span> == x)  <span class="comment"># 验证是否成功</span></span><br></pre></td></tr></table></figure>
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/CTF/" title="CTF" data-aos="zoom-in">CTF</a>
@@ -263,19 +285,19 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 BJDCTF WriteUp" class="lazyload">
-        <a href="/2020/04/14/2020%20BJDCTF/" aria-label="前一篇: 2020 BJDCTF WriteUp" title="前一篇: 2020 BJDCTF WriteUp"></a>
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp" class="lazyload">
+        <a href="/2020/04/14/2020%20%E2%80%9C%E4%B9%8B%E6%B1%9F%E6%9D%AF%E2%80%9D%E5%B7%A5%E4%B8%9A%E4%BA%92%E8%81%94%E7%BD%91%E5%86%85%E7%94%9F%E5%AE%89%E5%85%A8%E9%98%B2%E5%BE%A1%E5%9B%BD%E9%99%85%E7%B2%BE%E8%8B%B1%E6%8C%91%E6%88%98%E8%B5%9B/" aria-label="前一篇: 2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp" title="前一篇: 2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            2020 BJDCTF WriteUp
+            2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp" class="lazyload">
-      <a href="/2020/04/14/2020%20%E2%80%9C%E4%B9%8B%E6%B1%9F%E6%9D%AF%E2%80%9D%E5%B7%A5%E4%B8%9A%E4%BA%92%E8%81%94%E7%BD%91%E5%86%85%E7%94%9F%E5%AE%89%E5%85%A8%E9%98%B2%E5%BE%A1%E5%9B%BD%E9%99%85%E7%B2%BE%E8%8B%B1%E6%8C%91%E6%88%98%E8%B5%9B/" aria-label="后一篇: 2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp"  title="后一篇: 2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 网鼎杯-青龙组 WriteUp" class="lazyload">
+      <a href="/2020/04/14/2020%20%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84/" aria-label="后一篇: 2020 网鼎杯-青龙组 WriteUp"  title="后一篇: 2020 网鼎杯-青龙组 WriteUp"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp
+          2020 网鼎杯-青龙组 WriteUp
       </h3>
     </div>
   </nav>
@@ -302,10 +324,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        175.9k
+        186k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        14:31
+        15:21
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -327,7 +349,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-CSICTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 CSICTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Gradient-sky%EF%BC%88%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">Gradient sky（图片隐写）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.2.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#little-RSA%EF%BC%88%E5%88%86%E8%A7%A3-n%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">little RSA（分解 n）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rivest-Shamir-Adleman%EF%BC%88%E5%88%86%E8%A7%A3-n%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">Rivest Shamir Adleman（分解 n）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-CSICTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 CSICTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Gradient-sky%EF%BC%88%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">Gradient sky（图片隐写）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.2.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#little-RSA%EF%BC%88%E5%88%86%E8%A7%A3-n%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">little RSA（分解 n）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rivest-Shamir-Adleman%EF%BC%88%E5%88%86%E8%A7%A3-n%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">Rivest Shamir Adleman（分解 n）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Modern-Clueless-Child%EF%BC%88XOR%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">Modern Clueless Child（XOR）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Quick-Math%EF%BC%88%E4%BD%8E%E6%8C%87%E6%95%B0%E5%B9%BF%E6%92%AD%E6%94%BB%E5%87%BB%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">Quick Math（低指数广播攻击）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -338,7 +360,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">181</div>
+    <div class="sidebar-state-number">185</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -461,7 +483,7 @@
           description: "",
           stripContent: "2020 CSICTF WriteUp“csictf team” 是印度 VIT 大学（Vellore Institute of Technology）计算机学会（CSI）学生分部所运营的团队 MiscGradient sky（图片隐写） 查看字符串拿到 flag 123strings sky.jpg# csictf&amp;#123;j0ker_w4snt_happy&amp;#125;  Cryptolittle RSA（分解 n）题目给了 123c=32949n=64741e=42667  分解 n 得到",
           date: "Tue Apr 14 2020 13:18:00 GMT+0800",
-          updated: "Sat Jun 20 2026 00:28:04 GMT+0800",
+          updated: "Sun Jun 21 2026 03:00:37 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

@@ -1,0 +1,574 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
+  <title>
+    MIFARE Classic 1K IC 卡 | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="MIFARE Classic 1K IC 卡概述门禁卡、电梯卡、水卡大量使用它 用读卡器 dump 出的文件通常就是一个二进制镜像，大小正好 1KB（1024字节），在十六进制编辑器里就是 1024 个字节，每行 16 字节 总体结构16 个扇区，扇区号 0~15 每个扇区 4 个块，块号 0~3，每块 16 字节（32 个十六进制字符） 总块数 64，线性排列 扇区与十六进制地址的对应扇区 0：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIFARE Classic 1K IC 卡">
+<meta property="og:url" content="https://suc2es2.github.io/2019/04/14/IC%20%E5%8D%A1/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="MIFARE Classic 1K IC 卡概述门禁卡、电梯卡、水卡大量使用它 用读卡器 dump 出的文件通常就是一个二进制镜像，大小正好 1KB（1024字节），在十六进制编辑器里就是 1024 个字节，每行 16 字节 总体结构16 个扇区，扇区号 0~15 每个扇区 4 个块，块号 0~3，每块 16 字节（32 个十六进制字符） 总块数 64，线性排列 扇区与十六进制地址的对应扇区 0：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a36cfc32830ce602a508bb3.png">
+<meta property="article:published_time" content="2019-04-14T05:18:00.000Z">
+<meta property="article:modified_time" content="2026-06-20T18:00:17.737Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="工控">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6a36cfc32830ce602a508bb3.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="MIFARE Classic 1K IC 卡">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">MIFARE Classic 1K IC 卡</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MIFARE-Classic-1K-IC-%E5%8D%A1"><span class="toc-number">1.</span> <span class="toc-text">MIFARE Classic 1K IC 卡</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">总体结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%87%E5%8C%BA%E4%B8%8E%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E5%9C%B0%E5%9D%80%E7%9A%84%E5%AF%B9%E5%BA%94"><span class="toc-number">1.3.</span> <span class="toc-text">扇区与十六进制地址的对应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%AD%97%E8%8A%82%E7%9A%84%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%A7%84%E5%BE%8B"><span class="toc-number">1.4.</span> <span class="toc-text">访问控制字节的十六进制规律</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.5.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IC-%E5%8D%A1%E5%88%86%E6%9E%90%EF%BC%88MIFARE-Classic-1K-IC-%E5%8D%A1%EF%BC%89"><span class="toc-number">1.5.1.</span> <span class="toc-text">IC 卡分析（MIFARE Classic 1K IC 卡）</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">185</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">21</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">177</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-IC 卡" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2019-04-14T05:18:00.000Z" itemprop="datePublished">2019-04-14</time>
+    <time style="display: none;" id="post-update-time">2026-06-21</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="MIFARE-Classic-1K-IC-卡"><a href="#MIFARE-Classic-1K-IC-卡" class="headerlink" title="MIFARE Classic 1K IC 卡"></a>MIFARE Classic 1K IC 卡</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>门禁卡、电梯卡、水卡大量使用它</p>
+<p>用读卡器 dump 出的文件通常就是一个二进制镜像，大小正好 1KB（1024字节），在十六进制编辑器里就是 1024 个字节，每行 16 字节</p>
+<h2 id="总体结构"><a href="#总体结构" class="headerlink" title="总体结构"></a>总体结构</h2><p>16 个扇区，扇区号 0~15</p>
+<p>每个扇区 4 个块，块号 0~3，每块 16 字节（32 个十六进制字符）</p>
+<p>总块数 64，线性排列</p>
+<h2 id="扇区与十六进制地址的对应"><a href="#扇区与十六进制地址的对应" class="headerlink" title="扇区与十六进制地址的对应"></a>扇区与十六进制地址的对应</h2><p>扇区 0：000–0CF （4 块 × 16 字节 &#x3D; 64 字节，0x40 长）</p>
+<p>扇区 1：040–07F</p>
+<p>扇区 2：080–0BF … 以此类推</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">00000000  xx xx xx xx xx xx xx xx  xx xx xx xx xx xx xx xx  | 块0 数据</span><br><span class="line">00000010  xx xx xx xx xx xx xx xx  xx xx xx xx xx xx xx xx  | 块1 数据</span><br><span class="line">00000020  xx xx xx xx xx xx xx xx  xx xx xx xx xx xx xx xx  | 块2 数据</span><br><span class="line">00000030  AA AA AA AA AA AA BB BB  BB CC CC CC BB BB BB BB  | 块3 控制块</span><br></pre></td></tr></table></figure>
+
+<p>块 3（每扇区最后一块）是特殊的控制块，结构固定：</p>
+<ul>
+<li><p>字节 0~5：密钥 A（6 字节，若未更改常为 FF FF FF FF FF FF）</p>
+</li>
+<li><p>字节 6~8：访问控制位（3 字节，决定读写权限）</p>
+</li>
+<li><p>字节 9：可选数据（通常 00）</p>
+</li>
+<li><p>字节 10~15：密钥 B（6 字节，默认也常是 FF FF FF FF FF FF 或用于控制）</p>
+</li>
+</ul>
+<h2 id="访问控制字节的十六进制规律"><a href="#访问控制字节的十六进制规律" class="headerlink" title="访问控制字节的十六进制规律"></a>访问控制字节的十六进制规律</h2><p>以常见门禁卡为例，若块 3 为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FF FF FF FF FF FF  78 77 88  C1 00  FF FF FF FF FF FF</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>78 77 88 就是访问控制位（以及它的非值，实际存储是取反备份）</p>
+</li>
+<li><p>C1 是用户字节，在不同应用中意义不同</p>
+</li>
+<li><p>从这些十六进制就能判断每个数据块是用密钥 A 还是密钥 B 读写，以及控制块自身能否更改</p>
+</li>
+</ul>
+<p>这种格式是分析卡片权限的基础</p>
+<h2 id="实战案例"><a href="#实战案例" class="headerlink" title="实战案例"></a>实战案例</h2><h3 id="IC-卡分析（MIFARE-Classic-1K-IC-卡）"><a href="#IC-卡分析（MIFARE-Classic-1K-IC-卡）" class="headerlink" title="IC 卡分析（MIFARE Classic 1K IC 卡）"></a>IC 卡分析（MIFARE Classic 1K IC 卡）</h3><p><img src="https://pic1.imgdb.cn/item/6a36cfc32830ce602a508bb3.png"></p>
+<p>两个文件只有 sector 2 的两个 Value Block 不同</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">文件 1 block 9:</span><br><span class="line">ce 63 00 00 31 9c ff ff ce 63 00 00 01 fe 01 fe</span><br><span class="line"></span><br><span class="line">文件 2 block 9:</span><br><span class="line">78 69 00 00 87 96 ff ff 78 69 00 00 01 fe 01 fe</span><br></pre></td></tr></table></figure>
+
+<p>这题的关键是通过金额块发现 IC 卡 Value Block 的存储规律</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ value ][ ~value ][ value ][ addr ][ ~addr ][ addr ][ ~addr ]</span><br></pre></td></tr></table></figure>
+
+<p>其中金额是小端序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0x000063ce = 25550</span><br><span class="line">0x00006978 = 27000</span><br></pre></td></tr></table></figure>
+
+<p>金额差是 <code>27000 - 25550 = 1450</code></p>
+<p>更重要的是可以看出加密&#x2F;校验规律</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ce 63 00 00  -&gt;  31 9c ff ff</span><br><span class="line">78 69 00 00  -&gt;  87 96 ff ff</span><br></pre></td></tr></table></figure>
+
+<p>也就是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">后 4 字节 = 前 4 字节按位取反</span><br></pre></td></tr></table></figure>
+
+<p>后面有多组伪造的 Value Block，结构类似</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">7b 00 00 00 a6 ff ff ff 30 00 00 00 01 fe 01 fe</span><br><span class="line">75 00 00 00 a0 ff ff ff 34 00 00 00 03 fe 03 fe</span><br><span class="line">72 00 00 00 9a ff ff ff 5f 00 00 00 05 fe 05 fe</span><br><span class="line">31 00 00 00 96 ff ff ff 6b 00 00 00 07 fe 07 fe</span><br><span class="line">65 00 00 00 a0 ff ff ff 6d 00 00 00 09 fe 09 fe</span><br><span class="line">79 00 00 00 a0 ff ff ff 73 00 00 00 a1 fe a1 fe</span><br><span class="line">69 00 00 00 8c ff ff ff 74 00 00 00 a2 fe a3 fe</span><br><span class="line">65 00 00 00 8d ff ff ff 7d 00 00 00 a5 fe a5 fe</span><br></pre></td></tr></table></figure>
+
+<p>每组取 3 个位置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第 1 字节：明文</span><br><span class="line">第 5 字节：取反后得到明文</span><br><span class="line">第 9 字节：明文</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"></span><br><span class="line">data = Path(<span class="string">&quot;1&quot;</span>).read_bytes()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 每组隐藏信息所在的 block</span></span><br><span class="line">blocks = [<span class="number">17</span>, <span class="number">21</span>, <span class="number">25</span>, <span class="number">29</span>, <span class="number">33</span>, <span class="number">37</span>, <span class="number">41</span>, <span class="number">45</span>]</span><br><span class="line"></span><br><span class="line">res = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> b <span class="keyword">in</span> blocks:</span><br><span class="line">    blk = data[b * <span class="number">16</span>:(b + <span class="number">1</span>) * <span class="number">16</span>]</span><br><span class="line"></span><br><span class="line">    c1 = blk[<span class="number">0</span>]</span><br><span class="line">    c2 = (~blk[<span class="number">4</span>]) &amp; <span class="number">0xff</span></span><br><span class="line">    c3 = blk[<span class="number">8</span>]</span><br><span class="line"></span><br><span class="line">    res += <span class="built_in">chr</span>(c1) + <span class="built_in">chr</span>(c2) + <span class="built_in">chr</span>(c3)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;flag&quot;</span> + res)</span><br></pre></td></tr></table></figure>
+
+<p>得到 <code>flag{Y0u_4re_1ike_my_sister}</code></p>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/%E5%B7%A5%E6%8E%A7/" title="工控" data-aos="zoom-in">工控</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E6%8E%A7/" rel="tag" title="工控">工控</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2019-工业信息安全技能大赛-成都站 WriteUp" class="lazyload">
+        <a href="/2019/04/14/2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%88%90%E9%83%BD%E7%AB%99/" aria-label="前一篇: 2019-工业信息安全技能大赛-成都站 WriteUp" title="前一篇: 2019-工业信息安全技能大赛-成都站 WriteUp"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            2019-工业信息安全技能大赛-成都站 WriteUp
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="MMS 协议" class="lazyload">
+      <a href="/2019/04/14/MMS%20%E5%8D%8F%E8%AE%AE/" aria-label="后一篇: MMS 协议"  title="后一篇: MMS 协议"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          MMS 协议
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        186k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        15:21
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MIFARE-Classic-1K-IC-%E5%8D%A1"><span class="toc-number">1.</span> <span class="toc-text">MIFARE Classic 1K IC 卡</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E4%BD%93%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">总体结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%87%E5%8C%BA%E4%B8%8E%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E5%9C%B0%E5%9D%80%E7%9A%84%E5%AF%B9%E5%BA%94"><span class="toc-number">1.3.</span> <span class="toc-text">扇区与十六进制地址的对应</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%AD%97%E8%8A%82%E7%9A%84%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%A7%84%E5%BE%8B"><span class="toc-number">1.4.</span> <span class="toc-text">访问控制字节的十六进制规律</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.5.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IC-%E5%8D%A1%E5%88%86%E6%9E%90%EF%BC%88MIFARE-Classic-1K-IC-%E5%8D%A1%EF%BC%89"><span class="toc-number">1.5.1.</span> <span class="toc-text">IC 卡分析（MIFARE Classic 1K IC 卡）</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">185</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">21</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">177</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "MIFARE Classic 1K IC 卡",
+          url: "https://suc2es2.github.io/2019/04/14/IC%20%E5%8D%A1/",
+          excerpt: "",
+          description: "",
+          stripContent: "MIFARE Classic 1K IC 卡概述门禁卡、电梯卡、水卡大量使用它 用读卡器 dump 出的文件通常就是一个二进制镜像，大小正好 1KB（1024字节），在十六进制编辑器里就是 1024 个字节，每行 16 字节 总体结构16 个扇区，扇区号 0~15 每个扇区 4 个块，块号 0~3，每块 16 字节（32 个十六进制字符） 总块数 64，线性排列 扇区与十六进制地址的对应扇区 0：000–0CF （4 块 × 16 字节 &amp;#x3D; 64 字节，0x40 长） 扇区 1：040",
+          date: "Sun Apr 14 2019 13:18:00 GMT+0800",
+          updated: "Sun Jun 21 2026 02:00:17 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>

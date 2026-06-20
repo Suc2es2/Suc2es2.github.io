@@ -32,13 +32,15 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a300164b755a1449d69951b.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a30014db755a1449d699513.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a35b03b71d0c6ff61489f2e.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3719d72830ce602a513b9e.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a371a5a2830ce602a513ba7.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a35b1bf71d0c6ff61489f2f.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a35b28371d0c6ff61489f31.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a35b1f071d0c6ff61489f30.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a35b30571d0c6ff61489f33.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a35b2de71d0c6ff61489f32.png">
 <meta property="article:published_time" content="2016-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-19T21:22:17.475Z">
+<meta property="article:modified_time" content="2026-06-20T23:20:15.792Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -160,7 +162,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2016-%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%B1%B1%E4%B8%9C%E7%9C%81%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2016 第五届山东省网络安全竞赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#word-%E6%96%87%E4%BB%B6%E6%9C%AC%E8%B4%A8%EF%BC%88Word-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">word 文件本质（Word 隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E6%9C%BA%E5%88%B6%E9%80%A0%E5%95%86%EF%BC%88%E5%9B%BE%E7%89%87%E6%96%87%E6%9C%AC%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">相机制造商（图片文本隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%BD%E5%AD%A9%E5%AD%90%E7%9C%8B%E4%B8%8D%E8%A7%81%EF%BC%88%E5%85%B3%E9%94%AE%E5%AD%97%E6%90%9C%E7%B4%A2%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">好孩子看不见（关键字搜索）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%9B%9B%E4%B8%9D%E9%A9%AC%E8%BF%B9%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">蛛丝马迹（签到）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.2.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E8%BD%AC%E5%8D%81%E4%B8%89%E4%BD%8D%EF%BC%88ROT13-Base64%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">回转十三位（ROT13 + Base64）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%B4%E7%AD%94%E6%BB%B4%E7%AD%94%EF%BC%88%E6%91%A9%E6%96%AF%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">滴答滴答（摩斯密码）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%85%E6%A0%8F%E8%A7%A3%E6%95%91%EF%BC%88%E6%A0%85%E6%A0%8F%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">栅栏解救（栅栏密码）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2016-%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%B1%B1%E4%B8%9C%E7%9C%81%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2016 第五届山东省网络安全竞赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#word-%E6%96%87%E4%BB%B6%E6%9C%AC%E8%B4%A8%EF%BC%88Word-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">word 文件本质（Word 隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E6%9C%BA%E5%88%B6%E9%80%A0%E5%95%86%EF%BC%88%E5%9B%BE%E7%89%87%E6%96%87%E6%9C%AC%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">相机制造商（图片文本隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%BD%E5%AD%A9%E5%AD%90%E7%9C%8B%E4%B8%8D%E8%A7%81%EF%BC%88%E5%85%B3%E9%94%AE%E5%AD%97%E6%90%9C%E7%B4%A2%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">好孩子看不见（关键字搜索）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%9B%9B%E4%B8%9D%E9%A9%AC%E8%BF%B9%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">蛛丝马迹（签到）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%EF%BC%88ZIP-%E7%88%86%E7%A0%B4-Word-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.5.</span> <span class="toc-text">暴力破解（ZIP 爆破 + Word 隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E6%81%A2%E5%A4%8D%EF%BC%88ext2-%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%EF%BC%89"><span class="toc-number">1.1.6.</span> <span class="toc-text">磁盘恢复（ext2 文件恢复）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.2.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E8%BD%AC%E5%8D%81%E4%B8%89%E4%BD%8D%EF%BC%88ROT13-Base64%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">回转十三位（ROT13 + Base64）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%B4%E7%AD%94%E6%BB%B4%E7%AD%94%EF%BC%88%E6%91%A9%E6%96%AF%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">滴答滴答（摩斯密码）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%85%E6%A0%8F%E8%A7%A3%E6%95%91%EF%BC%88%E6%A0%85%E6%A0%8F%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">栅栏解救（栅栏密码）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -171,7 +173,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">181</div>
+    <div class="sidebar-state-number">185</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -238,7 +240,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2016-04-14T05:18:00.000Z" itemprop="datePublished">2016-04-14</time>
-    <time style="display: none;" id="post-update-time">2026-06-20</time>
+    <time style="display: none;" id="post-update-time">2026-06-21</time>
   </span>
 </div>
 
@@ -292,6 +294,30 @@
 <h3 id="蛛丝马迹（签到）"><a href="#蛛丝马迹（签到）" class="headerlink" title="蛛丝马迹（签到）"></a>蛛丝马迹（签到）</h3><p><img src="https://pic1.imgdb.cn/item/6a35b03b71d0c6ff61489f2e.png"></p>
 <p>每个文件翻一翻，在 <code>.me.swp</code> 里找到 flag</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Flag-1s4g76jk89f</span><br></pre></td></tr></table></figure>
+
+<h3 id="暴力破解（ZIP-爆破-Word-隐写）"><a href="#暴力破解（ZIP-爆破-Word-隐写）" class="headerlink" title="暴力破解（ZIP 爆破 + Word 隐写）"></a>暴力破解（ZIP 爆破 + Word 隐写）</h3><p>爆破出密码是 <code>563412</code>，使用的是 ZipCracker 工具</p>
+<p><img src="https://pic1.imgdb.cn/item/6a3719d72830ce602a513b9e.png"></p>
+<p>解压 Word 文档，在 <code>document.xml</code> 中找到 flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Flag&#123;oRuesP57WAaGhBJk&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/6a371a5a2830ce602a513ba7.png"></p>
+<h3 id="磁盘恢复（ext2-文件恢复）"><a href="#磁盘恢复（ext2-文件恢复）" class="headerlink" title="磁盘恢复（ext2 文件恢复）"></a>磁盘恢复（ext2 文件恢复）</h3><p>非预期解法如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">strings -a 86b265d37d1fc10b721a2accae04a60d | grep -i FLAG</span><br><span class="line"></span><br><span class="line">FLAG-ggmgk05096</span><br></pre></td></tr></table></figure>
+
+<p>ext2 的 superblock 位于偏移 <code>0x400</code>，解析后可以得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">block size      = 1024</span><br><span class="line">inode table     = block 9</span><br><span class="line">inode bitmap    = block 8</span><br></pre></td></tr></table></figure>
+
+<p>根目录中可以看到正常文件目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/</span><br><span class="line">├── lost+found</span><br><span class="line">├── image</span><br><span class="line">│   ├── 01.jpeg</span><br><span class="line">│   ├── 02.jpeg</span><br><span class="line">│   └── 03.jpg</span><br><span class="line">└── to keep</span><br><span class="line">    └── 01.txt</span><br></pre></td></tr></table></figure>
+
+<p>同时根目录块中残留了被删除文件名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">secret.txt</span><br></pre></td></tr></table></figure>
+
+<p>继续扫描 inode table，可以发现一个被删除但数据块还没被覆盖的普通文件 inode</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">inode = 12</span><br><span class="line">mode  = regular file</span><br><span class="line">links = 0</span><br><span class="line">dtime != 0</span><br><span class="line">size  = 16</span><br><span class="line">block = 41</span><br></pre></td></tr></table></figure>
+
+<p>读取它指向的数据块 41</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FLAG-ggmgk05096</span><br></pre></td></tr></table></figure>
 
 <h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="回转十三位（ROT13-Base64）"><a href="#回转十三位（ROT13-Base64）" class="headerlink" title="回转十三位（ROT13 + Base64）"></a>回转十三位（ROT13 + Base64）</h3><p><img src="https://pic1.imgdb.cn/item/6a35b1bf71d0c6ff61489f2f.png"></p>
 <p>先 ROT13 再 Base64</p>
@@ -353,10 +379,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        175.9k
+        186k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        14:31
+        15:21
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -378,7 +404,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2016-%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%B1%B1%E4%B8%9C%E7%9C%81%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2016 第五届山东省网络安全竞赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#word-%E6%96%87%E4%BB%B6%E6%9C%AC%E8%B4%A8%EF%BC%88Word-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">word 文件本质（Word 隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E6%9C%BA%E5%88%B6%E9%80%A0%E5%95%86%EF%BC%88%E5%9B%BE%E7%89%87%E6%96%87%E6%9C%AC%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">相机制造商（图片文本隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%BD%E5%AD%A9%E5%AD%90%E7%9C%8B%E4%B8%8D%E8%A7%81%EF%BC%88%E5%85%B3%E9%94%AE%E5%AD%97%E6%90%9C%E7%B4%A2%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">好孩子看不见（关键字搜索）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%9B%9B%E4%B8%9D%E9%A9%AC%E8%BF%B9%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">蛛丝马迹（签到）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.2.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E8%BD%AC%E5%8D%81%E4%B8%89%E4%BD%8D%EF%BC%88ROT13-Base64%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">回转十三位（ROT13 + Base64）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%B4%E7%AD%94%E6%BB%B4%E7%AD%94%EF%BC%88%E6%91%A9%E6%96%AF%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">滴答滴答（摩斯密码）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%85%E6%A0%8F%E8%A7%A3%E6%95%91%EF%BC%88%E6%A0%85%E6%A0%8F%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">栅栏解救（栅栏密码）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2016-%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%B1%B1%E4%B8%9C%E7%9C%81%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E7%AB%9E%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2016 第五届山东省网络安全竞赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#word-%E6%96%87%E4%BB%B6%E6%9C%AC%E8%B4%A8%EF%BC%88Word-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">word 文件本质（Word 隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E6%9C%BA%E5%88%B6%E9%80%A0%E5%95%86%EF%BC%88%E5%9B%BE%E7%89%87%E6%96%87%E6%9C%AC%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">相机制造商（图片文本隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%BD%E5%AD%A9%E5%AD%90%E7%9C%8B%E4%B8%8D%E8%A7%81%EF%BC%88%E5%85%B3%E9%94%AE%E5%AD%97%E6%90%9C%E7%B4%A2%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">好孩子看不见（关键字搜索）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%9B%9B%E4%B8%9D%E9%A9%AC%E8%BF%B9%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">蛛丝马迹（签到）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%EF%BC%88ZIP-%E7%88%86%E7%A0%B4-Word-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.5.</span> <span class="toc-text">暴力破解（ZIP 爆破 + Word 隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E6%81%A2%E5%A4%8D%EF%BC%88ext2-%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%EF%BC%89"><span class="toc-number">1.1.6.</span> <span class="toc-text">磁盘恢复（ext2 文件恢复）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.2.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E8%BD%AC%E5%8D%81%E4%B8%89%E4%BD%8D%EF%BC%88ROT13-Base64%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">回转十三位（ROT13 + Base64）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%B4%E7%AD%94%E6%BB%B4%E7%AD%94%EF%BC%88%E6%91%A9%E6%96%AF%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">滴答滴答（摩斯密码）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%85%E6%A0%8F%E8%A7%A3%E6%95%91%EF%BC%88%E6%A0%85%E6%A0%8F%E5%AF%86%E7%A0%81%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">栅栏解救（栅栏密码）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -389,7 +415,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">181</div>
+    <div class="sidebar-state-number">185</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -512,7 +538,7 @@
           description: "",
           stripContent: "2016 第五届山东省网络安全竞赛 WriteUp赛事组织架构  指导单位：中国信息安全认证中心  主办单位：共青团山东省委、山东省互联网信息办公室、山东省经济和信息化委员会、山东省教育厅、山东省通信管理局、山东省学生联合会  承办单位：山东信息协会、山东科技大学、中国信息安全认证中心山东分中心、浪潮集团有限公司   共有来自山东省内 44 所高校的 130 余名大学生和 170 余名网络安全技术爱好者参加了决赛 详细获奖名单  团体奖 (一等奖)：山东科技大学（获得团体奖共 3 项：一等奖、二",
           date: "Thu Apr 14 2016 13:18:00 GMT+0800",
-          updated: "Sat Jun 20 2026 05:22:17 GMT+0800",
+          updated: "Sun Jun 21 2026 07:20:15 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

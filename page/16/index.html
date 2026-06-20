@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">181</div>
+    <div class="sidebar-state-number">185</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -245,8 +245,33 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/MFC/" aria-label="MFC" title="MFC"></a>
+      <a class="post-link" href="/2019/05/22/Ret2csu/" aria-label="Ret2csu" title="Ret2csu"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2csu" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1.4k 字</span>
+        <span><span class="icon-clock"></span>7 分钟</span>
+      </div>
+      <h2 class="post-title">Ret2csu</h2>
+      <article class="post-article">
+          Ret2csu原理在 glibc 的源码中，有一个函数叫 __libc_csu_init，它在程序启动时负责调用 .init_array 中的初始化函数
+这个函数末尾有一段普适性很强的指令，经常被用作 ROP gadget。安全研究者最早将利用这段代码的技术称为 Return-to-csu，简称 Ret2csu。
+因为 __libc_csu_init 是 libc 标准启动代码的一部分，只要程序是动态链接的，几乎一定存在，而且在没有 PIE 的情况下地址固定。这给了攻击者在 “找不到常规 pop rdi” 时一个可靠的备胎
+实战案例Pwn题滞销,帮帮我好吗_（Ret2csu）
+代码只有两行
+
+
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/MFC/" aria-label="MFC" title="MFC"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MFC" class="lazyload">
     </div>
     <div class="post-info">
@@ -270,9 +295,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/Ret2plt/" aria-label="Ret2plt" title="Ret2plt"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2plt" class="lazyload">
     </div>
     <div class="post-info">
@@ -294,9 +319,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/pwn-Shellcode/" aria-label="Shellcode" title="Shellcode"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Shellcode" class="lazyload">
     </div>
     <div class="post-info">
@@ -327,9 +352,9 @@ mprotect 的第三个参数 7 代表 RWX 权限，从指针 buf 向前偏移 16 
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/2019%20HDCTF/" aria-label="2019 HDCTF WriteUp" title="2019 HDCTF WriteUp"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 HDCTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -357,9 +382,9 @@ dump 出 explorer.exe，它的内存里主
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/2019%20%E5%BC%BA%E7%BD%91%E6%9D%AF/" aria-label="2019 强网杯 WriteUp" title="2019 强网杯 WriteUp"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 强网杯 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -402,9 +427,9 @@ Reverse强网
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/Ret2text/" aria-label="Ret2text" title="Ret2text"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2text" class="lazyload">
     </div>
     <div class="post-info">
@@ -433,9 +458,9 @@ text：.text 段，存放程序机器指令的区域
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/%E8%8A%B1%E6%8C%87%E4%BB%A4/" aria-label="花指令" title="花指令"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="花指令" class="lazyload">
     </div>
     <div class="post-info">
@@ -470,9 +495,9 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/04/15/1527%20%E8%8A%AF%E7%89%87/" aria-label="1527 芯片" title="1527 芯片"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="1527 芯片" class="lazyload">
     </div>
     <div class="post-info">
@@ -504,9 +529,9 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/04/14/COTP%20%E5%8D%8F%E8%AE%AE/" aria-label="COTP 协议" title="COTP 协议"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="COTP 协议" class="lazyload">
     </div>
     <div class="post-info">
@@ -541,37 +566,6 @@ Opt
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/SCD%20%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/" aria-label="SCD 文件" title="SCD 文件"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="SCD 文件" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>1.3k 字</span>
-        <span><span class="icon-clock"></span>7 分钟</span>
-      </div>
-      <h2 class="post-title">SCD 文件</h2>
-      <article class="post-article">
-          SCD 文件定义在 IEC 61850 标准体系中，SCD（Substation Configuration Description）文件是变电站配置描述文件，它是整个变电站自动化系统的 “总配置文件”
-它包含了：
-
-一次设备接线拓扑：母线、线路、开关、互感器等的连接关系
-
-二次智能电子设备（IED）信息：保护、测控、智能终端等装置的模型，包括逻辑设备、逻辑节点、数据对象等
-
-通信配置：GOOSE、SV 等报文的控制块、发布&amp;#x2F;订阅关系，MMS 报告设置等
-
-映射关系：将设备间的逻辑信号绑定到具体网络报文
-
-
-简单说，SCD 文件是变电站二次系统集成和运维的基础数据，必须保证正确性和唯
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/15/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/17/">下一页 &raquo;</a>
   </nav>
@@ -595,10 +589,10 @@ Opt
       </div>
       <div>
         <span class="icon-brush"></span>
-        175.9k
+        186k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        14:31
+        15:21
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -626,7 +620,7 @@ Opt
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">181</div>
+    <div class="sidebar-state-number">185</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>

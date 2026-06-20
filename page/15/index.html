@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">181</div>
+    <div class="sidebar-state-number">185</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -245,15 +245,103 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2020/04/14/2020%20CSICTF/" aria-label="2020 CSICTF WriteUp" title="2020 CSICTF WriteUp"></a>
+      <a class="post-link" href="/2020/04/14/2020%200xGame/" aria-label="2020 0xGame WriteUp" title="2020 0xGame WriteUp"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 0xGame WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2020-04-14</span>
+        <span><span class="icon-pencil"></span>13k 字</span>
+        <span><span class="icon-clock"></span>60 分钟</span>
+      </div>
+      <h2 class="post-title">2020 0xGame WriteUp</h2>
+      <article class="post-article">
+          2020 0xGame WriteUp前言主办方：南京邮电大学
+Miscflip（波形图 + 摩斯密码 + BinWalk + 倒序）
+打开压缩包后得到一个 ZIP 和 MP3
+
+ZIP 需要密码，使用 Audacity 打开 MP3
+
+根据波形长短猜测是摩斯密码
+1....- ----- ----- ---.. ..... -.... -.... ----. ----. ...-- ----- ----- ... .. -.. .-. --- .-- ... ... .- .--.
+
+解密得到
+1400856699300sidrowssap
+
+翻译了一下题目题目名称有翻转的意思，把摩斯密码倒
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2020/04/14/2020%20BJDCTF/" aria-label="2020 BJDCTF WriteUp" title="2020 BJDCTF WriteUp"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 BJDCTF WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2020-04-14</span>
+        <span><span class="icon-pencil"></span>1.1k 字</span>
+        <span><span class="icon-clock"></span>6 分钟</span>
+      </div>
+      <h2 class="post-title">2020 BJDCTF WriteUp</h2>
+      <article class="post-article">
+          2020 BJDCTF WriteUp主办方：由江苏科技大学、北京工业大学、西南民族大学、杭州师范大学、江苏大学、湖南工业大学、新疆大学七校联合举办。北京工业大学的官方信息也确认参与了本次赛事的组织
+Miscjust a rar（RAR 爆破 + Hex 隐写）
+rar的名字是四位数，那么密码应该也是四位数
+
+WinHex 打开拿到 flag
+
+你猜我是个啥（Hex 隐写）
+WinHex 打开拿到 flag
+
+藏藏藏（文件附加隐写）
+010 看到文件中有 PK 头，推测还附加有压缩文件
+
+使用 BinWalk 提取出来后有个名为 “福利.doc” 的文件，打开发现有个二维码
+
+认真你就输了（文
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2020/04/14/2020%20%E2%80%9C%E4%B9%8B%E6%B1%9F%E6%9D%AF%E2%80%9D%E5%B7%A5%E4%B8%9A%E4%BA%92%E8%81%94%E7%BD%91%E5%86%85%E7%94%9F%E5%AE%89%E5%85%A8%E9%98%B2%E5%BE%A1%E5%9B%BD%E9%99%85%E7%B2%BE%E8%8B%B1%E6%8C%91%E6%88%98%E8%B5%9B/" aria-label="2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp" title="2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2020-04-14</span>
+        <span><span class="icon-pencil"></span>2.8k 字</span>
+        <span><span class="icon-clock"></span>12 分钟</span>
+      </div>
+      <h2 class="post-title">2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp</h2>
+      <article class="post-article">
+          2020 “之江杯” 工业互联网内生安全防御国际精英挑战赛 WriteUp
+主办与支持：比赛由之江实验室联合中国信通院等机构共同举办，并获得了中国工程院和浙江省人民政府的支持
+
+赛事概况：比赛于 2020 年 12 月 20 日至 22 日举办，为期三天。共邀请了来自中、美、俄、德等 8 个国家的 40 支顶尖 “白帽黑客” 战队参赛。赛事的核心目标是攻击之江实验室研发的工业互联网拟态防御系列设备
+
+赛制与创新：大赛设置了 CTF 竞速赛、AWD 竞技赛、人机对抗赛和巅峰挑战赛四个环节。最大亮点是首次在工业互联网安全领域引入 “白盒” 人机对抗模式，即向参赛队伍开放部分系统控制权，允许其设置后
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2020/04/14/2020%20CSICTF/" aria-label="2020 CSICTF WriteUp" title="2020 CSICTF WriteUp"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 CSICTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2020-04-14</span>
-        <span><span class="icon-pencil"></span>191 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
+        <span><span class="icon-pencil"></span>627 字</span>
+        <span><span class="icon-clock"></span>4 分钟</span>
       </div>
       <h2 class="post-title">2020 CSICTF WriteUp</h2>
       <article class="post-article">
@@ -268,30 +356,6 @@ Cryptolittle RSA（分解 n）题目给了
 分解 n 得到 p，q
 
 12345678910111213from Crypto.Util.number imp
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2020/04/14/2020%20%E2%80%9C%E4%B9%8B%E6%B1%9F%E6%9D%AF%E2%80%9D%E5%B7%A5%E4%B8%9A%E4%BA%92%E8%81%94%E7%BD%91%E5%86%85%E7%94%9F%E5%AE%89%E5%85%A8%E9%98%B2%E5%BE%A1%E5%9B%BD%E9%99%85%E7%B2%BE%E8%8B%B1%E6%8C%91%E6%88%98%E8%B5%9B/" aria-label="2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp" title="2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2020-04-14</span>
-        <span><span class="icon-pencil"></span>2.2k 字</span>
-        <span><span class="icon-clock"></span>9 分钟</span>
-      </div>
-      <h2 class="post-title">2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp</h2>
-      <article class="post-article">
-          2020 “之江杯” 工业互联网内生安全防御国际精英挑战赛 WriteUp
-主办与支持：比赛由之江实验室联合中国信通院等机构共同举办，并获得了中国工程院和浙江省人民政府的支持
-
-赛事概况：比赛于 2020 年 12 月 20 日至 22 日举办，为期三天。共邀请了来自中、美、俄、德等 8 个国家的 40 支顶尖 “白帽黑客” 战队参赛。赛事的核心目标是攻击之江实验室研发的工业互联网拟态防御系列设备
-
-赛制与创新：大赛设置了 CTF 竞速赛、AWD 竞技赛、人机对抗赛和巅峰挑战赛四个环节。最大亮点是首次在工业互联网安全领域引入 “白盒” 人机对抗模式，即向参赛队伍开放部分系统控制权，允许其设置后
       </article>
     </div>
   </div>
@@ -339,41 +403,8 @@ Cryptolittle RSA（分解 n）题目给了
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B5%8E%E5%8D%97%E7%AB%99/" aria-label="2020 工业信息安全技能大赛-济南站 WriteUp" title="2020 工业信息安全技能大赛-济南站 WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-济南站 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2020-04-14</span>
-        <span><span class="icon-pencil"></span>2k 字</span>
-        <span><span class="icon-clock"></span>10 分钟</span>
-      </div>
-      <h2 class="post-title">2020 工业信息安全技能大赛-济南站 WriteUp</h2>
-      <article class="post-article">
-          2020 工业信息安全技能大赛-济南站 WriteUpMiscCOTP（COTP 协议）
-一眼过去全是 COTP 协议，过滤下
-
-COTP 协议默认端口是 102，所以 192.168.99.22 是工控设备
-
-再新增 ip.src == 192.168.99.22 过滤下，查看工控响应的内容有没有什么异常
-
-第 217 个包长度突然不一样，是之前的两倍
-
-Payload 中还能看到明显的设备信息字符串
-16ES7 211-1BE51-0XB0 ;V3.0
-
-这说明攻击者&amp;#x2F;扫描方正在读取设备型号、版本等信息
-因此，这个响应包就是题目要找的 “遭到攻击的数据包”
-最后的 flag 如下
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%93%88%E5%B0%94%E6%BB%A8%E7%AB%99/" aria-label="2020 工业信息安全技能大赛-哈尔滨站 WriteUp" title="2020 工业信息安全技能大赛-哈尔滨站 WriteUp"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-哈尔滨站 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -393,6 +424,39 @@ MiscOmron Fins（Omron 协议）
 根据题目描述找写入的流量，其 Command Data 就是 flag
 
 
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B5%8E%E5%8D%97%E7%AB%99/" aria-label="2020 工业信息安全技能大赛-济南站 WriteUp" title="2020 工业信息安全技能大赛-济南站 WriteUp"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-济南站 WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2020-04-14</span>
+        <span><span class="icon-pencil"></span>4.8k 字</span>
+        <span><span class="icon-clock"></span>22 分钟</span>
+      </div>
+      <h2 class="post-title">2020 工业信息安全技能大赛-济南站 WriteUp</h2>
+      <article class="post-article">
+          2020 工业信息安全技能大赛-济南站 WriteUpMiscCOTP（COTP 协议）
+一眼过去全是 COTP 协议，过滤下
+
+COTP 协议默认端口是 102，所以 192.168.99.22 是工控设备
+
+再新增 ip.src == 192.168.99.22 过滤下，查看工控响应的内容有没有什么异常
+
+第 217 个包长度突然不一样，是之前的两倍
+
+Payload 中还能看到明显的设备信息字符串
+16ES7 211-1BE51-0XB0 ;V3.0
+
+这说明攻击者&amp;#x2F;扫描方正在读取设备型号、版本等信息
+因此，这个响应包就是题目要找的 “遭到攻击的数据包”
+最后的 flag 如下
       </article>
     </div>
   </div>
@@ -436,8 +500,8 @@ MiscOmron Fins（Omron 协议）
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2020-04-14</span>
-        <span><span class="icon-pencil"></span>120 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
+        <span><span class="icon-pencil"></span>991 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
       </div>
       <h2 class="post-title">2020 工业信息安全技能大赛-石家庄站 WriteUp</h2>
       <article class="post-article">
@@ -449,6 +513,8 @@ TJ 协议（TCP 协议）
 
 快速搜索十六进制拿到 flag
 123strings -a 11.pcap | grep -i &amp;quot;666c61677b&amp;quot;flag&amp;#123;dalaoafddaa&amp;#125;
+
+不安全的组件（HT
       </article>
     </div>
   </div>
@@ -494,62 +560,6 @@ TJ 协议（TCP 协议）
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2020/04/14/2020%200xGame/" aria-label="2020 0xGame WriteUp" title="2020 0xGame WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 0xGame WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2020-04-14</span>
-        <span><span class="icon-pencil"></span>13k 字</span>
-        <span><span class="icon-clock"></span>60 分钟</span>
-      </div>
-      <h2 class="post-title">2020 0xGame WriteUp</h2>
-      <article class="post-article">
-          2020 0xGame WriteUp前言主办方：南京邮电大学
-Miscflip（波形图 + 摩斯密码 + BinWalk + 倒序）
-打开压缩包后得到一个 ZIP 和 MP3
-
-ZIP 需要密码，使用 Audacity 打开 MP3
-
-根据波形长短猜测是摩斯密码
-1....- ----- ----- ---.. ..... -.... -.... ----. ----. ...-- ----- ----- ... .. -.. .-. --- .-- ... ... .- .--.
-
-解密得到
-1400856699300sidrowssap
-
-翻译了一下题目题目名称有翻转的意思，把摩斯密码倒
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/Ret2csu/" aria-label="Ret2csu" title="Ret2csu"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2csu" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1.4k 字</span>
-        <span><span class="icon-clock"></span>7 分钟</span>
-      </div>
-      <h2 class="post-title">Ret2csu</h2>
-      <article class="post-article">
-          Ret2csu原理在 glibc 的源码中，有一个函数叫 __libc_csu_init，它在程序启动时负责调用 .init_array 中的初始化函数
-这个函数末尾有一段普适性很强的指令，经常被用作 ROP gadget。安全研究者最早将利用这段代码的技术称为 Return-to-csu，简称 Ret2csu。
-因为 __libc_csu_init 是 libc 标准启动代码的一部分，只要程序是动态链接的，几乎一定存在，而且在没有 PIE 的情况下地址固定。这给了攻击者在 “找不到常规 pop rdi” 时一个可靠的备胎
-实战案例Pwn题滞销,帮帮我好吗_（Ret2csu）
-代码只有两行
-
-
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/14/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/16/">下一页 &raquo;</a>
   </nav>
@@ -573,10 +583,10 @@ ZIP 需要密码，使用 Audacity 打开 MP3
       </div>
       <div>
         <span class="icon-brush"></span>
-        175.9k
+        186k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        14:31
+        15:21
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -604,7 +614,7 @@ ZIP 需要密码，使用 Audacity 打开 MP3
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">181</div>
+    <div class="sidebar-state-number">185</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
