@@ -245,33 +245,27 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B5%8E%E5%8D%97%E7%AB%99/" aria-label="2020 工业信息安全技能大赛-济南站 WriteUp" title="2020 工业信息安全技能大赛-济南站 WriteUp"></a>
+      <a class="post-link" href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%93%88%E5%B0%94%E6%BB%A8%E7%AB%99/" aria-label="2020 工业信息安全技能大赛-哈尔滨站 WriteUp" title="2020 工业信息安全技能大赛-哈尔滨站 WriteUp"></a>
     <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-济南站 WriteUp" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-哈尔滨站 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2020-04-14</span>
-        <span><span class="icon-pencil"></span>4.8k 字</span>
-        <span><span class="icon-clock"></span>22 分钟</span>
+        <span><span class="icon-pencil"></span>145 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
       </div>
-      <h2 class="post-title">2020 工业信息安全技能大赛-济南站 WriteUp</h2>
+      <h2 class="post-title">2020 工业信息安全技能大赛-哈尔滨站 WriteUp</h2>
       <article class="post-article">
-          2020 工业信息安全技能大赛-济南站 WriteUpMiscCOTP（COTP 协议）
-一眼过去全是 COTP 协议，过滤下
+          2020 工业信息安全技能大赛-哈尔滨站 WriteUp举办情况：2020 年工业信息安全技能大赛巡回赛（哈尔滨站）成功举办
+参赛规模：共有国内 34 支队伍参加，其中黑龙江省队伍达到 6 支
+第二名：电子龙鹰队（黑龙江省工业信息化发展中心&amp;#x2F;黑龙江省电子技术研究所组建）
+MiscOmron Fins（Omron 协议）
+过滤 omron 协议，可以看到操作中有读取有写入
 
-COTP 协议默认端口是 102，所以 192.168.99.22 是工控设备
+根据题目描述找写入的流量，其 Command Data 就是 flag
 
-再新增 ip.src == 192.168.99.22 过滤下，查看工控响应的内容有没有什么异常
 
-第 217 个包长度突然不一样，是之前的两倍
-
-Payload 中还能看到明显的设备信息字符串
-16ES7 211-1BE51-0XB0 ;V3.0
-
-这说明攻击者&amp;#x2F;扫描方正在读取设备型号、版本等信息
-因此，这个响应包就是题目要找的 “遭到攻击的数据包”
-最后的 flag 如下
       </article>
     </div>
   </div>
@@ -584,10 +578,10 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
       </div>
       <div>
         <span class="icon-brush"></span>
-        187.2k
+        186.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        15:27
+        15:24
       </div>
       <div>
         <span class="icon-eye"></span>
