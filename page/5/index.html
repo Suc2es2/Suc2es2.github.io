@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">186</div>
+    <div class="sidebar-state-number">187</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -220,6 +220,9 @@
       <div class="widget">
         <ul>
             <li>
+              <a href="/2026/06/25/Rita%20AI/" title="Rita AI 提示词泄露">Rita AI 提示词泄露</a>
+            </li>
+            <li>
               <a href="/2026/06/24/seek%20agent%20%E9%A1%B9%E7%9B%AE%E7%BA%A7%E6%8A%95%E6%AF%92/" title="Seek README 间接提示词注入">Seek README 间接提示词注入</a>
             </li>
             <li>
@@ -230,9 +233,6 @@
             </li>
             <li>
               <a href="/2026/06/15/Hack%20Me%20Please%201/" title="VulnHub Hack Me Please：1">VulnHub Hack Me Please：1</a>
-            </li>
-            <li>
-              <a href="/2026/06/15/hacksudo%20Thor/" title="VulnHub hacksudo：Thor">VulnHub hacksudo：Thor</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,41 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/11/RSA%20%E4%BD%8E%E6%8C%87%E6%95%B0%E5%B9%BF%E6%92%AD%E6%94%BB%E5%87%BB/" aria-label="RSA 低指数广播攻击" title="RSA 低指数广播攻击"></a>
+      <a class="post-link" href="/2026/05/12/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/" aria-label="RSA 共模攻击" title="RSA 共模攻击"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="RSA 共模攻击" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-05-12</span>
+        <span><span class="icon-pencil"></span>954 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">RSA 共模攻击</h2>
+      <article class="post-article">
+          RSA 共模攻击前置条件有两把 “公钥”：(n, e1) 和 (n, e2)
+注意：n 完全相同，但 e1 与 e2 不同且互质
+同一份明文 m，分别用这两把公钥加密，生成了两个密文：
+
+c1 = m^e1 mod n
+
+c2 = m^e2 mod n
+
+
+如果只知道 c1, c2, e1, e2, n，没有私钥也能算出 m
+贝祖等式共模攻击完全建立在贝祖等式上
+如果两个整数 e1 和 e2 互质，那么存在整数 s 和 t 使得：
+1e1 * s + e2 * t = 1
+
+在 Python 里我们可以直接用 gmpy2.gcdext(e1, e2)，它会返回 (g, s, t)，其中 g=1
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/05/11/RSA%20%E4%BD%8E%E6%8C%87%E6%95%B0%E5%B9%BF%E6%92%AD%E6%94%BB%E5%87%BB/" aria-label="RSA 低指数广播攻击" title="RSA 低指数广播攻击"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="RSA 低指数广播攻击" class="lazyload">
     </div>
     <div class="post-info">
@@ -271,9 +304,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/05/11/RSA/" aria-label="RSA" title="RSA"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="RSA" class="lazyload">
     </div>
     <div class="post-info">
@@ -302,9 +335,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/05/11/Vigen%C3%A8re%20%E5%AF%86%E7%A0%81/" aria-label="Vigenère 密码" title="Vigenère 密码"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Vigenère 密码" class="lazyload">
     </div>
     <div class="post-info">
@@ -329,9 +362,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/05/11/%E6%81%8B%E4%BA%BA%E7%A9%BA%E9%97%B4%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A1%94%E7%BD%97%E7%89%8C%E8%A7%A3%E5%AF%86/" aria-label="恋人空间小程序塔罗牌解密" title="恋人空间小程序塔罗牌解密"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="恋人空间小程序塔罗牌解密" class="lazyload">
     </div>
     <div class="post-info">
@@ -361,9 +394,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/05/11/%E7%94%B5%E7%AB%9E%E6%8A%95%E8%AF%89%E9%99%AA%E7%8E%A9XSS/" aria-label="某电竞俱乐部小程序投诉陪玩与客服对话文件上传 XSS（两个）" title="某电竞俱乐部小程序投诉陪玩与客服对话文件上传 XSS（两个）"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="某电竞俱乐部小程序投诉陪玩与客服对话文件上传 XSS（两个）" class="lazyload">
     </div>
     <div class="post-info">
@@ -393,9 +426,9 @@ XSS在投诉页面发现可以上传图片
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/05/10/Noob%201/" aria-label="VulnHub Noob：1" title="VulnHub Noob：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Noob：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -428,9 +461,9 @@ https://pic1.im
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/05/10/%E7%94%B5%E7%AB%9E%E5%AE%A2%E6%9C%8D%E8%B6%8A%E6%9D%83%E8%8E%B7%E5%8F%96%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95/" aria-label="某电竞小程序越权查看与客服聊天记录（可遍历）" title="某电竞小程序越权查看与客服聊天记录（可遍历）"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="某电竞小程序越权查看与客服聊天记录（可遍历）" class="lazyload">
     </div>
     <div class="post-info">
@@ -459,9 +492,9 @@ content 是聊天内容，发现存在两个关键参数
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/05/10/%E7%94%B5%E7%AB%9E%E5%AE%A2%E6%9C%8D%E5%AF%B9%E8%AF%9D%E8%B6%8A%E6%9D%83/" aria-label="某电竞小程序越权发送消息给客服（可遍历）" title="某电竞小程序越权发送消息给客服（可遍历）"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="某电竞小程序越权发送消息给客服（可遍历）" class="lazyload">
     </div>
     <div class="post-info">
@@ -493,9 +526,9 @@ content 是聊天内容，发现存在两个关键参数
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/05/10/%E4%BB%BF%E5%B0%84%E5%8A%A0%E5%AF%86/" aria-label="仿射加密" title="仿射加密"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="仿射加密" class="lazyload">
     </div>
     <div class="post-info">
@@ -532,26 +565,6 @@ b 是 0~25 之间的整数
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/09/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Linux%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-Where%20IS%EF%BC%9F/" aria-label="知攻善防实验室 Linux 应急响应-Where IS？" title="知攻善防实验室 Linux 应急响应-Where IS？"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="知攻善防实验室 Linux 应急响应-Where IS？" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-05-09</span>
-        <span><span class="icon-pencil"></span>116 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">知攻善防实验室 Linux 应急响应-Where IS？</h2>
-      <article class="post-article">
-          知攻善防实验室 Linux 应急响应-Where IS？题目一个风雨交加的夜晚，安服仔小唐，突然发现公司分配给自己的测试服务器不正常了，似乎有什么不对劲？小唐为何频繁流汗？服务器为何频繁数据外带？24 岁小唐竟然无从下手！到底是道德的沦丧还是人性的扭曲？
-应急响应攻击者的两个 IP 地址
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/4/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/6/">下一页 &raquo;</a>
   </nav>
@@ -575,10 +588,10 @@ b 是 0~25 之间的整数
       </div>
       <div>
         <span class="icon-brush"></span>
-        186.7k
+        188.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        15:24
+        15:29
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -606,7 +619,7 @@ b 是 0~25 之间的整数
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">186</div>
+    <div class="sidebar-state-number">187</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
