@@ -34,13 +34,15 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a35b03b71d0c6ff61489f2e.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a3719d72830ce602a513b9e.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a371a5a2830ce602a513ba7.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3d8c6abb21102f81d74318.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3d8cb7bb21102f81d74319.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a35b1bf71d0c6ff61489f2f.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a35b28371d0c6ff61489f31.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a35b1f071d0c6ff61489f30.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a35b30571d0c6ff61489f33.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a35b2de71d0c6ff61489f32.png">
 <meta property="article:published_time" content="2016-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-23T16:52:29.841Z">
+<meta property="article:modified_time" content="2026-06-25T20:18:27.611Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -240,7 +242,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2016-04-14T05:18:00.000Z" itemprop="datePublished">2016-04-14</time>
-    <time style="display: none;" id="post-update-time">2026-06-24</time>
+    <time style="display: none;" id="post-update-time">2026-06-26</time>
   </span>
 </div>
 
@@ -304,19 +306,23 @@
 <h3 id="磁盘恢复（ext2-文件恢复）"><a href="#磁盘恢复（ext2-文件恢复）" class="headerlink" title="磁盘恢复（ext2 文件恢复）"></a>磁盘恢复（ext2 文件恢复）</h3><p>非预期解法如下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">strings -a 86b265d37d1fc10b721a2accae04a60d | grep -i FLAG</span><br><span class="line"></span><br><span class="line">FLAG-ggmgk05096</span><br></pre></td></tr></table></figure>
 
-<p>ext2 的 superblock 位于偏移 <code>0x400</code>，解析后可以得到</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">block size      = 1024</span><br><span class="line">inode table     = block 9</span><br><span class="line">inode bitmap    = block 8</span><br></pre></td></tr></table></figure>
+<p>预期解法如下</p>
+<p>使用 Sleuth Kit 工具中 <code>fsstat</code> 命令对文件解析</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">FILE SYSTEM INFORMATION  <span class="comment"># 文件系统信息部分</span></span><br><span class="line">--------------------------------------------  <span class="comment"># 分隔线</span></span><br><span class="line">File System Type: Ext2  <span class="comment"># 文件系统类型：Ext2</span></span><br><span class="line">Volume Name:  <span class="comment"># 卷标为空</span></span><br><span class="line">Volume ID: ba2c0a9181cbbbfe3443dbd20fdc091  <span class="comment"># 卷 UUID，唯一标识该文件系统</span></span><br><span class="line">  <span class="comment"># </span></span><br><span class="line">Last Written at: 2014-02-05 10:15:19 (Last Checked at: 2014-02-04 09:41:10 (  <span class="comment"># 最后写入时间（括号内为最后一次 fsck 检查时间，早于写入时间）</span></span><br><span class="line">Last Mounted at: 2014-02-05 10:15:19 (Unmounted Improperly  <span class="comment"># 最后挂载时间，状态为非正常卸载（Unmounted Improperly）</span></span><br><span class="line">  <span class="comment"># </span></span><br><span class="line">Source OS: Linux  <span class="comment"># 文件系统来源操作系统：Linux</span></span><br><span class="line">Dynamic Structure  <span class="comment"># 支持动态结构（如在线扩容）</span></span><br><span class="line">Compat Features: Ext Attributes, Resize Inode, Dir Index  <span class="comment"># 兼容特性：扩展属性、预留调整 inode、目录索引</span></span><br><span class="line">InCompat Features: Filetype,  <span class="comment"># 不兼容特性：目录项包含文件类型字段</span></span><br><span class="line">Read Only Compat Features: Sparse Super,  <span class="comment"># 只读兼容特性：稀疏超级块（仅部分块组有超级块备份）</span></span><br><span class="line">  <span class="comment"># </span></span><br><span class="line">METADATA INFORMATION  <span class="comment"># 元数据信息部分</span></span><br><span class="line">--------------------------------------------  <span class="comment"># 分隔线</span></span><br><span class="line">Inode Range: 1 - 137  <span class="comment"># inode 范围：1 到 137，共 137 个 inode</span></span><br><span class="line">Root Directory: 2  <span class="comment"># 根目录 inode 号为 2（Ext 文件系统固定约定）</span></span><br><span class="line">Free Inodes: 119  <span class="comment"># 空闲 inode 数量：119 个（已用 18 个）</span></span><br><span class="line">  <span class="comment"># </span></span><br><span class="line">CONTENT INFORMATION  <span class="comment"># 数据内容信息部分</span></span><br><span class="line">--------------------------------------------  <span class="comment"># 分隔线</span></span><br><span class="line">Block Range: 0 - 1071  <span class="comment"># 块编号范围：0 到 1071，共 1072 个块</span></span><br><span class="line">Block Size: 1024  <span class="comment"># 块大小：1024 字节（1 KB）</span></span><br><span class="line">Reserved Blocks Before Block Groups: 1  <span class="comment"># 第一个块组之前的保留块数：1（通常为引导块或保留空间）</span></span><br><span class="line">Free Blocks: 858  <span class="comment"># 空闲数据块数量：858 个</span></span><br><span class="line">  <span class="comment"># </span></span><br><span class="line">BLOCK GROUP INFORMATION  <span class="comment"># 块组信息部分</span></span><br><span class="line">--------------------------------------------  <span class="comment"># 分隔线</span></span><br><span class="line">Number of Block Groups: 1  <span class="comment"># 块组总数：1 个</span></span><br><span class="line">Inodes per group: 136  <span class="comment"># 每个块组分配的 inode 数：136 个</span></span><br><span class="line">Blocks per group: 8192  <span class="comment"># 每个块组最大块数：8192（创建时设定，实际未用满）</span></span><br><span class="line">  <span class="comment"># </span></span><br><span class="line">Group: 0:  <span class="comment"># 块组 0 信息</span></span><br><span class="line">  Inode Range: 1 - 136  <span class="comment"># 组内 inode 范围：1 到 136</span></span><br><span class="line">  Block Range: 1 - 1071  <span class="comment"># 组内块范围：1 到 1071（块 0 为保留区域）</span></span><br><span class="line">  Layout:  <span class="comment"># 块组布局详情</span></span><br><span class="line">    Super Block: 1 - 1  <span class="comment"># 超级块占用块 1</span></span><br><span class="line">    Group Descriptor Table: 2 - 2  <span class="comment"># 组描述符表占用块 2</span></span><br><span class="line">    Data bitmap: 7 - 7  <span class="comment"># 数据块位图占用块 7</span></span><br><span class="line">    Inode bitmap: 8 - 8  <span class="comment"># inode 位图占用块 8</span></span><br><span class="line">    Inode Table: 9 - 25  <span class="comment"># inode 表占用块 9 至 25（共 17 个块）</span></span><br><span class="line">    Data Blocks: 26 - 0  <span class="comment"># 数据块区域从块 26 开始，&#x27;0&#x27; 为显示异常或表示到结尾</span></span><br><span class="line">  Free Inodes: 119 (0%)  <span class="comment"># 组内空闲 inode：119（显示 0%，实际空闲率约 87.5%）</span></span><br><span class="line">  Free Blocks: 858 (0%)  <span class="comment"># 组内空闲块：858（显示 0%，实际空闲率约 80%）</span></span><br><span class="line">  Total Directories: 4  <span class="comment"># 目录总数：4 个（含根目录）</span></span><br></pre></td></tr></table></figure>
 
-<p>根目录中可以看到正常文件目录</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/</span><br><span class="line">├── lost+found</span><br><span class="line">├── image</span><br><span class="line">│   ├── 01.jpeg</span><br><span class="line">│   ├── 02.jpeg</span><br><span class="line">│   └── 03.jpg</span><br><span class="line">└── to keep</span><br><span class="line">    └── 01.txt</span><br></pre></td></tr></table></figure>
+<p>下面是 Sleuth Kit 读到了超级块后解码出来的，所以后续操作不需要加 <code>-o</code> 拍内衣</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">File System Type: Ext2          ← 类型是 Ext2</span><br><span class="line">Root Directory: 2               ← 根目录的 inode 号是 2</span><br><span class="line">Block Size: 1024                ← 每个块 1024 字节</span><br><span class="line">Inode Table: 9 - 25             ← inode 表占用了第 9 到第 25 个块</span><br></pre></td></tr></table></figure>
 
-<p>同时根目录块中残留了被删除文件名</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">secret.txt</span><br></pre></td></tr></table></figure>
+<p>接下来我们查找被删除的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fls.exe -f ext2 -r -d 86b265d37d1fc10b721a2accae04a60d</span><br><span class="line"></span><br><span class="line"><span class="comment"># -f ext2   指定文件系统类型</span></span><br><span class="line"><span class="comment"># -r        递归遍历目录</span></span><br><span class="line"><span class="comment"># -d        只显示删除文件</span></span><br></pre></td></tr></table></figure>
 
-<p>继续扫描 inode table，可以发现一个被删除但数据块还没被覆盖的普通文件 inode</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">inode = 12</span><br><span class="line">mode  = regular file</span><br><span class="line">links = 0</span><br><span class="line">dtime != 0</span><br><span class="line">size  = 16</span><br><span class="line">block = 41</span><br></pre></td></tr></table></figure>
+<p><code>$OrphanFiles</code> 是 Sleuth Kit 构造出来的虚拟目录，表示这些 inode 已经没有正常目录项引用了，但 inode 和数据块还残留在文件系统中</p>
+<p><img src="https://pic1.imgdb.cn/item/6a3d8c6abb21102f81d74318.png"></p>
+<p>目录里还能看到 <code>secret.txt</code> 这个删除文件名痕迹，但它的 inode 号已经不可用，TSK 显示成 0</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r/- * 0:        secret.txt</span><br></pre></td></tr></table></figure>
 
-<p>读取它指向的数据块 41</p>
+<p>转换方向去恢复虚拟目录拿到 flag</p>
+<p><img src="https://pic1.imgdb.cn/item/6a3d8cb7bb21102f81d74319.png"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FLAG-ggmgk05096</span><br></pre></td></tr></table></figure>
 
 <h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="回转十三位（ROT13-Base64）"><a href="#回转十三位（ROT13-Base64）" class="headerlink" title="回转十三位（ROT13 + Base64）"></a>回转十三位（ROT13 + Base64）</h3><p><img src="https://pic1.imgdb.cn/item/6a35b1bf71d0c6ff61489f2f.png"></p>
@@ -379,10 +385,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        188.1k
+        189.2k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        15:29
+        15:35
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -538,7 +544,7 @@
           description: "",
           stripContent: "2016 第五届山东省网络安全竞赛 WriteUp赛事组织架构  指导单位：中国信息安全认证中心  主办单位：共青团山东省委、山东省互联网信息办公室、山东省经济和信息化委员会、山东省教育厅、山东省通信管理局、山东省学生联合会  承办单位：山东信息协会、山东科技大学、中国信息安全认证中心山东分中心、浪潮集团有限公司   共有来自山东省内 44 所高校的 130 余名大学生和 170 余名网络安全技术爱好者参加了决赛 详细获奖名单  团体奖 (一等奖)：山东科技大学（获得团体奖共 3 项：一等奖、二",
           date: "Thu Apr 14 2016 13:18:00 GMT+0800",
-          updated: "Wed Jun 24 2026 00:52:29 GMT+0800",
+          updated: "Fri Jun 26 2026 04:18:27 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
