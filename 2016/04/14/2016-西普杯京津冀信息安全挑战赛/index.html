@@ -27,8 +27,20 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a35b95c71d0c6ff61489f3a.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a35b90b71d0c6ff61489f39.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a35b8fd71d0c6ff61489f38.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3f6e932546dff76d1bff36.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3f6fa22546dff76d1c066f.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3f75392546dff76d1c5158.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3f79492546dff76d1c542b.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a402d222546dff76d20fe0f.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a4030782546dff76d20fe24.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a4030aa2546dff76d20fe2d.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a40332e2546dff76d20fe43.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a4034232546dff76d20fe51.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a40358f2546dff76d20fed0.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3f6c9b2546dff76d1bf16a.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a3f6c6d2546dff76d1bf02c.png">
 <meta property="article:published_time" content="2016-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-19T21:49:20.993Z">
+<meta property="article:modified_time" content="2026-06-27T20:42:45.267Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -150,7 +162,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2016-%E8%A5%BF%E6%99%AE%E6%9D%AF%E4%BA%AC%E6%B4%A5%E5%86%80%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8C%91%E6%88%98%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2016 西普杯京津冀信息安全挑战赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-number">1.1.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#re1%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">re1（签到）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2016-%E8%A5%BF%E6%99%AE%E6%9D%AF%E4%BA%AC%E6%B4%A5%E5%86%80%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8C%91%E6%88%98%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2016 西普杯京津冀信息安全挑战赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-number">1.1.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#re1%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">re1（签到）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#re2%EF%BC%88MFC-%E9%80%86%E5%90%91-Base64%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">re2（MFC 逆向 + Base64）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#misc02%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">misc02（签到）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -161,7 +173,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">187</div>
+    <div class="sidebar-state-number">190</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -228,7 +240,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2016-04-14T05:18:00.000Z" itemprop="datePublished">2016-04-14</time>
-    <time style="display: none;" id="post-update-time">2026-06-20</time>
+    <time style="display: none;" id="post-update-time">2026-06-28</time>
   </span>
 </div>
 
@@ -327,6 +339,32 @@
 <p><img src="https://pic1.imgdb.cn/item/6a35b90b71d0c6ff61489f39.png"></p>
 <p>这里在跟用户的输入作比较，所以 flag 是 <code>flag{ssapdrow}</code></p>
 <p><img src="https://pic1.imgdb.cn/item/6a35b8fd71d0c6ff61489f38.png"></p>
+<h3 id="re2（MFC-逆向-Base64）"><a href="#re2（MFC-逆向-Base64）" class="headerlink" title="re2（MFC 逆向 + Base64）"></a>re2（MFC 逆向 + Base64）</h3><p><img src="https://pic1.imgdb.cn/item/6a3f6e932546dff76d1bff36.png"></p>
+<p>打开程序是经典的 MFC 逆向</p>
+<p><img src="https://pic1.imgdb.cn/item/6a3f6fa22546dff76d1c066f.png"></p>
+<p>IDA 导入，打开字符串窗口发现大量的 Base64 编码</p>
+<p><img src="https://pic1.imgdb.cn/item/6a3f75392546dff76d1c5158.png"></p>
+<p>在 <code>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=</code> 处可以看到它被一个函数引用，这个函数地址附近是 <code>sub_4011D0</code></p>
+<p>同时看到注释 <code>*char Str</code></p>
+<p><img src="https://pic1.imgdb.cn/item/6a3f79492546dff76d1c542b.png"></p>
+<p>进入 <code>sub_4011D0</code> 函数反编译代码，这个函数是一个 Base64 解码器，作用是将一个 Base64 编码的字符串解码为原始二进制数据</p>
+<p><img src="https://pic1.imgdb.cn/item/6a402d222546dff76d20fe0f.png"></p>
+<p>鼠标放在 <code>sub_4011D0</code> 函数的第一行指令，看谁调用了它</p>
+<p><img src="https://pic1.imgdb.cn/item/6a4030782546dff76d20fe24.png"></p>
+<p>按 X 键，有 6 个调用点地址</p>
+<p><img src="https://pic1.imgdb.cn/item/6a4030aa2546dff76d20fe2d.png"></p>
+<p>先看第一个地址，双击进入，解码字符串 <code>aW9zc67oktsiyu7</code> 得到 <code>密码不能为空</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">s = <span class="string">&quot;w9zC67K7xNzOqr/V&quot;</span></span><br><span class="line">data = base64.b64decode(s)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(data)</span><br><span class="line"><span class="built_in">print</span>(data.decode(<span class="string">&quot;gbk&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/6a40332e2546dff76d20fe43.png"></p>
+<p>进入第二个地址，将 <code>aW9zc67oktsiyu7</code> 字符串解密得到 <code>密码长度不符合</code></p>
+<p><img src="https://pic1.imgdb.cn/item/6a4034232546dff76d20fe51.png"></p>
+<p>进入第三个地址，解密得到 <code>HOWMP半块西瓜皮hehe</code>，疑似是密码</p>
+<p>在程序中输入拿到 flag</p>
+<p><img src="https://pic1.imgdb.cn/item/6a40358f2546dff76d20fed0.png"></p>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="misc02（签到）"><a href="#misc02（签到）" class="headerlink" title="misc02（签到）"></a>misc02（签到）</h3><p><img src="https://pic1.imgdb.cn/item/6a3f6c9b2546dff76d1bf16a.png"></p>
+<p><img src="https://pic1.imgdb.cn/item/6a3f6c6d2546dff76d1bf02c.png"></p>
+<p>直接扫码得到 <code>429CTF{5cf8ca0d2dd785dd}</code></p>
 
     </div>
     <footer class="article-footer">
@@ -377,10 +415,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        189.2k
+        191k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        15:35
+        15:43
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -402,7 +440,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2016-%E8%A5%BF%E6%99%AE%E6%9D%AF%E4%BA%AC%E6%B4%A5%E5%86%80%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8C%91%E6%88%98%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2016 西普杯京津冀信息安全挑战赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-number">1.1.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#re1%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">re1（签到）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2016-%E8%A5%BF%E6%99%AE%E6%9D%AF%E4%BA%AC%E6%B4%A5%E5%86%80%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8C%91%E6%88%98%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2016 西普杯京津冀信息安全挑战赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-number">1.1.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#re1%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">re1（签到）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#re2%EF%BC%88MFC-%E9%80%86%E5%90%91-Base64%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">re2（MFC 逆向 + Base64）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#misc02%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">misc02（签到）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -413,7 +451,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">187</div>
+    <div class="sidebar-state-number">190</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -536,7 +574,7 @@
           description: "",
           stripContent: "2016 西普杯京津冀信息安全挑战赛 WriteUp🏛️ 组织架构  主办：北京市政府  协调指导：北京市委网信办  组织实施：北京市公安局  承办：北京西普阳光教育科技股份有限公司（西普教育）  协办：中国信息产业商会信息安全产业分会人才建设委员会   📅 赛事规模与流程 赛事历时两个月，规模盛大：  参赛规模：超过 400 支队伍，逾 1400 人次报名  赛程安排：分为分站赛和总决赛两个阶段  分站赛：在天津、河北、北京三地及线上举行，共 4 场选拔赛  总决赛：12 支队伍晋级，于 ",
           date: "Thu Apr 14 2016 13:18:00 GMT+0800",
-          updated: "Sat Jun 20 2026 05:49:20 GMT+0800",
+          updated: "Sun Jun 28 2026 04:42:45 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

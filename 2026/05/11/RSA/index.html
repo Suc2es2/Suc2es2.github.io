@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
   <title>
-    RSA | 雾島风起時
+    RSA 基础 | 雾島风起時
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,17 +17,17 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="RSA欧拉函数 φ(n)φ(n) 表示 “小于等于 n 且与 n 互质的正整数的个数”  如果 n 是质数 p，那么 φ(p) &#x3D; p - 1（因为 1,2,…,p-1 都和 p 互质）  如果 n &#x3D; p * q，且 p、q 都是质数，那么 φ(n) &#x3D; (p - 1) * (q - 1)  例如 p &#x3D; 5, q &#x3D; 11，则 n &#x3D; 55，φ">
+    <meta name="description" content="RSA 基础欧拉函数 φ(n)φ(n) 表示 “小于等于 n 且与 n 互质的正整数的个数”  如果 n 是质数 p，那么 φ(p) &#x3D; p - 1（因为 1,2,…,p-1 都和 p 互质）  如果 n &#x3D; p * q，且 p、q 都是质数，那么 φ(n) &#x3D; (p - 1) * (q - 1)  例如 p &#x3D; 5, q &#x3D; 11，则 n &#x3D; 5">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RSA">
+<meta property="og:title" content="RSA 基础">
 <meta property="og:url" content="https://suc2es2.github.io/2026/05/11/RSA/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="RSA欧拉函数 φ(n)φ(n) 表示 “小于等于 n 且与 n 互质的正整数的个数”  如果 n 是质数 p，那么 φ(p) &#x3D; p - 1（因为 1,2,…,p-1 都和 p 互质）  如果 n &#x3D; p * q，且 p、q 都是质数，那么 φ(n) &#x3D; (p - 1) * (q - 1)  例如 p &#x3D; 5, q &#x3D; 11，则 n &#x3D; 55，φ">
+<meta property="og:description" content="RSA 基础欧拉函数 φ(n)φ(n) 表示 “小于等于 n 且与 n 互质的正整数的个数”  如果 n 是质数 p，那么 φ(p) &#x3D; p - 1（因为 1,2,…,p-1 都和 p 互质）  如果 n &#x3D; p * q，且 p、q 都是质数，那么 φ(n) &#x3D; (p - 1) * (q - 1)  例如 p &#x3D; 5, q &#x3D; 11，则 n &#x3D; 5">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/691e91d73203f7be001921a0.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/692bc9e3291f309b79e8b598.png">
 <meta property="article:published_time" content="2026-05-11T06:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-15T06:13:33.664Z">
+<meta property="article:modified_time" content="2026-06-28T04:33:42.621Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="RSA">
 <meta property="article:tag" content="现代密码">
@@ -131,11 +131,11 @@
 <header id="header" aria-label="Site header">
         <picture>
         </picture>
-          <img  fetchpriority="high" src="/images/banner.webp" alt="RSA">
+          <img  fetchpriority="high" src="/images/banner.webp" alt="RSA 基础">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">RSA</h1>
+            <h1 data-aos="slide-up">RSA 基础</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -150,7 +150,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RSA"><span class="toc-number">1.</span> <span class="toc-text">RSA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0-%CF%86-n"><span class="toc-number">1.1.</span> <span class="toc-text">欧拉函数 φ(n)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90"><span class="toc-number">1.2.</span> <span class="toc-text">密钥生成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E4%B8%A4%E4%B8%AA%E5%A4%A7%E8%B4%A8%E6%95%B0-p-%E5%92%8C-q"><span class="toc-number">1.2.1.</span> <span class="toc-text">选两个大质数 p 和 q</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97-n-%E5%92%8C-%CF%86-n"><span class="toc-number">1.2.2.</span> <span class="toc-text">计算 n 和 φ(n)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E5%85%AC%E9%92%A5%E6%8C%87%E6%95%B0-e"><span class="toc-number">1.2.3.</span> <span class="toc-text">选公钥指数 e</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E7%A7%81%E9%92%A5%E6%8C%87%E6%95%B0-d"><span class="toc-number">1.2.4.</span> <span class="toc-text">计算私钥指数 d</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">加密过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%AF%86%E8%BF%87%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">解密过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC%E8%BF%87%E7%A8%8B"><span class="toc-number">1.5.</span> <span class="toc-text">推导过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.6.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#equationSet%EF%BC%88%E6%8F%90%E5%85%AC%E5%9B%A0%E6%95%B0-p%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">equationSet（提公因数 p）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyRSA%EF%BC%88%E7%BA%BF%E6%80%A7%E7%BB%84%E5%90%88%E6%B3%84%E9%9C%B2-d-%E4%B8%8E-%CF%86-n-%EF%BC%89"><span class="toc-number">1.6.2.</span> <span class="toc-text">easyRSA（线性组合泄露 d 与 φ(n)）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RSA-%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">RSA 基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0-%CF%86-n"><span class="toc-number">1.1.</span> <span class="toc-text">欧拉函数 φ(n)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90"><span class="toc-number">1.2.</span> <span class="toc-text">密钥生成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E4%B8%A4%E4%B8%AA%E5%A4%A7%E8%B4%A8%E6%95%B0-p-%E5%92%8C-q"><span class="toc-number">1.2.1.</span> <span class="toc-text">选两个大质数 p 和 q</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97-n-%E5%92%8C-%CF%86-n"><span class="toc-number">1.2.2.</span> <span class="toc-text">计算 n 和 φ(n)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E5%85%AC%E9%92%A5%E6%8C%87%E6%95%B0-e"><span class="toc-number">1.2.3.</span> <span class="toc-text">选公钥指数 e</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E7%A7%81%E9%92%A5%E6%8C%87%E6%95%B0-d"><span class="toc-number">1.2.4.</span> <span class="toc-text">计算私钥指数 d</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">加密过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%AF%86%E8%BF%87%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">解密过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC%E8%BF%87%E7%A8%8B"><span class="toc-number">1.5.</span> <span class="toc-text">推导过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.6.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#equationSet%EF%BC%88%E6%8F%90%E5%85%AC%E5%9B%A0%E6%95%B0-p%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">equationSet（提公因数 p）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyRSA%EF%BC%88%E7%BA%BF%E6%80%A7%E7%BB%84%E5%90%88%E6%B3%84%E9%9C%B2-d-%E4%B8%8E-%CF%86-n-%EF%BC%89"><span class="toc-number">1.6.2.</span> <span class="toc-text">easyRSA（线性组合泄露 d 与 φ(n)）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -161,7 +161,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">187</div>
+    <div class="sidebar-state-number">190</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -228,7 +228,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2026-05-11T06:18:00.000Z" itemprop="datePublished">2026-05-11</time>
-    <time style="display: none;" id="post-update-time">2026-06-15</time>
+    <time style="display: none;" id="post-update-time">2026-06-28</time>
   </span>
 </div>
 
@@ -237,7 +237,7 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h1><h2 id="欧拉函数-φ-n"><a href="#欧拉函数-φ-n" class="headerlink" title="欧拉函数 φ(n)"></a>欧拉函数 φ(n)</h2><p>φ(n) 表示 “小于等于 n 且与 n 互质的正整数的个数”</p>
+        <h1 id="RSA-基础"><a href="#RSA-基础" class="headerlink" title="RSA 基础"></a>RSA 基础</h1><h2 id="欧拉函数-φ-n"><a href="#欧拉函数-φ-n" class="headerlink" title="欧拉函数 φ(n)"></a>欧拉函数 φ(n)</h2><p>φ(n) 表示 “小于等于 n 且与 n 互质的正整数的个数”</p>
 <ul>
 <li><p>如果 n 是质数 p，那么 φ(p) &#x3D; p - 1（因为 1,2,…,p-1 都和 p 互质）</p>
 </li>
@@ -451,10 +451,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        189.2k
+        191k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        15:35
+        15:43
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -476,7 +476,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RSA"><span class="toc-number">1.</span> <span class="toc-text">RSA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0-%CF%86-n"><span class="toc-number">1.1.</span> <span class="toc-text">欧拉函数 φ(n)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90"><span class="toc-number">1.2.</span> <span class="toc-text">密钥生成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E4%B8%A4%E4%B8%AA%E5%A4%A7%E8%B4%A8%E6%95%B0-p-%E5%92%8C-q"><span class="toc-number">1.2.1.</span> <span class="toc-text">选两个大质数 p 和 q</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97-n-%E5%92%8C-%CF%86-n"><span class="toc-number">1.2.2.</span> <span class="toc-text">计算 n 和 φ(n)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E5%85%AC%E9%92%A5%E6%8C%87%E6%95%B0-e"><span class="toc-number">1.2.3.</span> <span class="toc-text">选公钥指数 e</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E7%A7%81%E9%92%A5%E6%8C%87%E6%95%B0-d"><span class="toc-number">1.2.4.</span> <span class="toc-text">计算私钥指数 d</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">加密过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%AF%86%E8%BF%87%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">解密过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC%E8%BF%87%E7%A8%8B"><span class="toc-number">1.5.</span> <span class="toc-text">推导过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.6.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#equationSet%EF%BC%88%E6%8F%90%E5%85%AC%E5%9B%A0%E6%95%B0-p%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">equationSet（提公因数 p）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyRSA%EF%BC%88%E7%BA%BF%E6%80%A7%E7%BB%84%E5%90%88%E6%B3%84%E9%9C%B2-d-%E4%B8%8E-%CF%86-n-%EF%BC%89"><span class="toc-number">1.6.2.</span> <span class="toc-text">easyRSA（线性组合泄露 d 与 φ(n)）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RSA-%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">RSA 基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0-%CF%86-n"><span class="toc-number">1.1.</span> <span class="toc-text">欧拉函数 φ(n)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%86%E9%92%A5%E7%94%9F%E6%88%90"><span class="toc-number">1.2.</span> <span class="toc-text">密钥生成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E4%B8%A4%E4%B8%AA%E5%A4%A7%E8%B4%A8%E6%95%B0-p-%E5%92%8C-q"><span class="toc-number">1.2.1.</span> <span class="toc-text">选两个大质数 p 和 q</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97-n-%E5%92%8C-%CF%86-n"><span class="toc-number">1.2.2.</span> <span class="toc-text">计算 n 和 φ(n)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E5%85%AC%E9%92%A5%E6%8C%87%E6%95%B0-e"><span class="toc-number">1.2.3.</span> <span class="toc-text">选公钥指数 e</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E7%A7%81%E9%92%A5%E6%8C%87%E6%95%B0-d"><span class="toc-number">1.2.4.</span> <span class="toc-text">计算私钥指数 d</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">加密过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%AF%86%E8%BF%87%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">解密过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC%E8%BF%87%E7%A8%8B"><span class="toc-number">1.5.</span> <span class="toc-text">推导过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.6.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#equationSet%EF%BC%88%E6%8F%90%E5%85%AC%E5%9B%A0%E6%95%B0-p%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">equationSet（提公因数 p）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyRSA%EF%BC%88%E7%BA%BF%E6%80%A7%E7%BB%84%E5%90%88%E6%B3%84%E9%9C%B2-d-%E4%B8%8E-%CF%86-n-%EF%BC%89"><span class="toc-number">1.6.2.</span> <span class="toc-text">easyRSA（线性组合泄露 d 与 φ(n)）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -487,7 +487,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">187</div>
+    <div class="sidebar-state-number">190</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -604,13 +604,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "ALL",
-          title: "RSA",
+          title: "RSA 基础",
           url: "https://suc2es2.github.io/2026/05/11/RSA/",
           excerpt: "",
           description: "",
-          stripContent: "RSA欧拉函数 φ(n)φ(n) 表示 “小于等于 n 且与 n 互质的正整数的个数”  如果 n 是质数 p，那么 φ(p) &amp;#x3D; p - 1（因为 1,2,…,p-1 都和 p 互质）  如果 n &amp;#x3D; p * q，且 p、q 都是质数，那么 φ(n) = (p - 1) * (q - 1)  例如 p &amp;#x3D; 5, q &amp;#x3D; 11，则 n &amp;#x3D; 55，φ(55) &amp;#x3D; 4 * 10 &amp;#x3D; 40   密钥生成选两个大质数 p 和 q实际中",
+          stripContent: "RSA 基础欧拉函数 φ(n)φ(n) 表示 “小于等于 n 且与 n 互质的正整数的个数”  如果 n 是质数 p，那么 φ(p) &amp;#x3D; p - 1（因为 1,2,…,p-1 都和 p 互质）  如果 n &amp;#x3D; p * q，且 p、q 都是质数，那么 φ(n) = (p - 1) * (q - 1)  例如 p &amp;#x3D; 5, q &amp;#x3D; 11，则 n &amp;#x3D; 55，φ(55) &amp;#x3D; 4 * 10 &amp;#x3D; 40   密钥生成选两个大质数 p 和 q",
           date: "Mon May 11 2026 14:18:00 GMT+0800",
-          updated: "Mon Jun 15 2026 14:13:33 GMT+0800",
+          updated: "Sun Jun 28 2026 12:33:42 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
