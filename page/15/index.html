@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">190</div>
+    <div class="sidebar-state-number">194</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -244,6 +244,133 @@
 </aside>
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2025/04/01/Conection/" aria-label="MazeSec Conection" title="MazeSec Conection"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Conection" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-04-01</span>
+        <span><span class="icon-pencil"></span>265 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">MazeSec Conection</h2>
+      <article class="post-article">
+          Conection项目地址：https://downloads.hackmyvm.eu/connection.zip
+是一个打包好的镜像文件
+注意：导入 ova 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+RCESMB139 445 端口全开，使用 enum4linux 枚举信息
+
+发现一个共享文件夹 share
+
+使用 smbclient 加上 -N 参数匿名访问发现是分享的 Web 目录
+
+上传一个反弹 Shell PHP 上去
+
+提权&amp;#x2F;etc&amp;#x2F;sudoers 配置不当寻找提权点
+1find / -user root -perm /4
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2025/04/01/Pwned/" aria-label="MazeSec Pwned" title="MazeSec Pwned"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Pwned" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-04-01</span>
+        <span><span class="icon-pencil"></span>311 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">MazeSec Pwned</h2>
+      <article class="post-article">
+          Pwned项目地址：https://downloads.hackmyvm.eu/pwned.zip
+是一个打包好的镜像文件
+注意：导入 ova 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+敏感信息泄露&amp;#x2F;pwned_vuln访问首页
+
+扫描目录发现一个 .dic 文件
+
+打开是一些路径
+
+对路径做扫描发现 /pwned_vuln
+
+前端页面发现隐藏账号密码
+
+弱口令FTPFTP 登录成功
+
+SSH发现有私钥
+
+123Wow you are here ariana won&amp;#x27;t happy about this note sorry arian
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2025/04/01/Gift/" aria-label="MazeSec Gift" title="MazeSec Gift"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Gift" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-04-01</span>
+        <span><span class="icon-pencil"></span>67 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
+      </div>
+      <h2 class="post-title">MazeSec Gift</h2>
+      <article class="post-article">
+          Gift项目地址：https://downloads.hackmyvm.eu/gift.zip
+是一个打包好的镜像文件
+注意：导入 ova 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+弱口令SSH直接爆破
+
+12HMVtyr543FGHMV665sXzDS
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2024/04/02/2024%20%E7%AC%AC%E4%B8%80%E5%B1%8A%20Solar%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B/" aria-label="2024 第一届 Solar 应急响应挑战赛 WriteUp" title="2024 第一届 Solar 应急响应挑战赛 WriteUp"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2024 第一届 Solar 应急响应挑战赛 WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2024-04-02</span>
+        <span><span class="icon-pencil"></span>4.4k 字</span>
+        <span><span class="icon-clock"></span>21 分钟</span>
+      </div>
+      <h2 class="post-title">2024 第一届 Solar 应急响应挑战赛 WriteUp</h2>
+      <article class="post-article">
+          2024 第一届 Solar 应急响应挑战赛 WriteUp前言主办方：思而听（SERT）公司与 Solar 应急响应团队
+签到签到（邮件头溯源）
+根据邮件头信息，邮件的发件顺序可以从最早的 Received 头部向后推断，首先是最初的邮件来源，依次通过多个邮件服务器转发。具体顺序如下：
+
+mail.solar.sec
+mail.da4s8gag.com
+newxmmxszc6-1.qq.com
+
+所以，flag的结果为
+1flag&amp;#123;mail.solar.sec|mail.da4s8gag.com|newxmmxszc6-1.qq.com&amp;#125;
+
+日志流量日志流量-1（WebS
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2022/04/14/2022%20HITCON/" aria-label="2022 HITCON WriteUp" title="2022 HITCON WriteUp"></a>
     <div class="post-cover left">
@@ -404,138 +531,6 @@ Cryptolittle RSA（分解 n）题目给了
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%93%88%E5%B0%94%E6%BB%A8%E7%AB%99/" aria-label="2020 工业信息安全技能大赛-哈尔滨站 WriteUp" title="2020 工业信息安全技能大赛-哈尔滨站 WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-哈尔滨站 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2020-04-14</span>
-        <span><span class="icon-pencil"></span>145 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">2020 工业信息安全技能大赛-哈尔滨站 WriteUp</h2>
-      <article class="post-article">
-          2020 工业信息安全技能大赛-哈尔滨站 WriteUp举办情况：2020 年工业信息安全技能大赛巡回赛（哈尔滨站）成功举办
-参赛规模：共有国内 34 支队伍参加，其中黑龙江省队伍达到 6 支
-第二名：电子龙鹰队（黑龙江省工业信息化发展中心&amp;#x2F;黑龙江省电子技术研究所组建）
-MiscOmron Fins（Omron 协议）
-过滤 omron 协议，可以看到操作中有读取有写入
-
-根据题目描述找写入的流量，其 Command Data 就是 flag
-
-
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2020/04/14/2020-%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B/" aria-label="2020 第五空间智能安全大赛 WriteUp" title="2020 第五空间智能安全大赛 WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 第五空间智能安全大赛 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2020-04-14</span>
-        <span><span class="icon-pencil"></span>817 字</span>
-        <span><span class="icon-clock"></span>4 分钟</span>
-      </div>
-      <h2 class="post-title">2020 第五空间智能安全大赛 WriteUp</h2>
-      <article class="post-article">
-          2020 第五空间智能安全大赛 WriteUp🏛️ 组织架构
-
-指导单位：第四届世界智能大会组委会
-
-主办单位：天津市委网信办
-
-承办单位：360 集团、南开大学网络空间安全学院、天津大学网络安全学院、天津理工大学计算机科学与工程学院等
-
-协办单位：国家工业信息安全发展研究中心、国家计算机网络与信息安全管理中心、国家计算机病毒应急处理中心、麒麟软件有限公司、天津飞腾信息技术有限公司等
-
-
-决赛于 2020 年 9 月 11 日举行，最终 35 支队伍获奖。完整获奖名单如下：
-
-
-
-奖项
-获奖队伍
-
-
-
-特等奖
-Ph0t1n1a (上海交通大学)
-
-
-一等奖
-Nu1L、blm、天枢 Dubhe
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E7%9F%B3%E5%AE%B6%E5%BA%84%E7%AB%99/" aria-label="2020 工业信息安全技能大赛-石家庄站 WriteUp" title="2020 工业信息安全技能大赛-石家庄站 WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-石家庄站 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2020-04-14</span>
-        <span><span class="icon-pencil"></span>991 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
-      </div>
-      <h2 class="post-title">2020 工业信息安全技能大赛-石家庄站 WriteUp</h2>
-      <article class="post-article">
-          2020 工业信息安全技能大赛-石家庄站 WriteUp比赛情况：已知成都安美勤信息技术股份有限公司曾参加该站比赛并获得了前三名的优异成绩
-TJ 协议（TCP 协议）
-打开流量包，全是 TCP 协议，主要发生在：
-12192.168.99.145 -&amp;gt; 192.168.99.102:8080192.168.99.145 -&amp;gt; 192.168.99.102:8081
-
-
-快速搜索十六进制拿到 flag
-123strings -a 11.pcap | grep -i &amp;quot;666c61677b&amp;quot;flag&amp;#123;dalaoafddaa&amp;#125;
-
-不安全的组件（HT
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B5%8E%E5%8D%97%E7%AB%99/" aria-label="2020 工业信息安全技能大赛-济南站 WriteUp" title="2020 工业信息安全技能大赛-济南站 WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-济南站 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2020-04-14</span>
-        <span><span class="icon-pencil"></span>5.2k 字</span>
-        <span><span class="icon-clock"></span>25 分钟</span>
-      </div>
-      <h2 class="post-title">2020 工业信息安全技能大赛-济南站 WriteUp</h2>
-      <article class="post-article">
-          2020 工业信息安全技能大赛-济南站 WriteUpMiscCOTP（COTP 协议）
-一眼过去全是 COTP 协议，过滤下
-
-COTP 协议默认端口是 102，所以 192.168.99.22 是工控设备
-
-再新增 ip.src == 192.168.99.22 过滤下，查看工控响应的内容有没有什么异常
-
-第 217 个包长度突然不一样，是之前的两倍
-
-Payload 中还能看到明显的设备信息字符串
-16ES7 211-1BE51-0XB0 ;V3.0
-
-这说明攻击者&amp;#x2F;扫描方正在读取设备型号、版本等信息
-因此，这个响应包就是题目要找的 “遭到攻击的数据包”
-最后的 flag 如下
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2020/04/14/2020%20%E2%80%9C%E4%B9%8B%E6%B1%9F%E6%9D%AF%E2%80%9D%E5%B7%A5%E4%B8%9A%E4%BA%92%E8%81%94%E7%BD%91%E5%86%85%E7%94%9F%E5%AE%89%E5%85%A8%E9%98%B2%E5%BE%A1%E5%9B%BD%E9%99%85%E7%B2%BE%E8%8B%B1%E6%8C%91%E6%88%98%E8%B5%9B/" aria-label="2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp" title="2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp"></a>
     <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp" class="lazyload">
@@ -559,7 +554,7 @@ Payload 中还能看到明显的设备信息字符串
   </div>
 </div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
-    <a class="extend prev" rel="prev" href="/page/14/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/16/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/14/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/16/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -581,10 +576,10 @@ Payload 中还能看到明显的设备信息字符串
       </div>
       <div>
         <span class="icon-brush"></span>
-        191k
+        192k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        15:43
+        15:50
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -612,7 +607,7 @@ Payload 中还能看到明显的设备信息字符串
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">190</div>
+    <div class="sidebar-state-number">194</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>

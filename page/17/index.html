@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">190</div>
+    <div class="sidebar-state-number">194</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -245,8 +245,91 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20HDCTF/" aria-label="2019 HDCTF WriteUp" title="2019 HDCTF WriteUp"></a>
+      <a class="post-link" href="/2019/05/22/MFC/" aria-label="MFC" title="MFC"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="MFC" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1k 字</span>
+        <span><span class="icon-clock"></span>4 分钟</span>
+      </div>
+      <h2 class="post-title">MFC</h2>
+      <article class="post-article">
+          MFC介绍MFC（Microsoft Foundation Classes），即微软基础类库，是微软为 Windows 平台开发者提供的一个 C++ 类库
+它的核心价值在于，用 C++ 的 “类” 将复杂的 Windows API (Win32 API) 给 “包裹” 起来，让开发者能通过面向对象的方式去调用
+这样做的好处是大大简化了 Windows 图形界面程序的开发工作
+核心思想与架构MFC 的精髓在于其六个相互配合的内部机制，包括我们马上会介绍的消息映射和序列化。简单来说：
+
+程序启动机制：负责程序启动的流程，从 CWinApp 派生对象到 AfxWinMain 主函数等
+
+窗口创建机制
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/Ret2plt/" aria-label="Ret2plt" title="Ret2plt"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2plt" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>617 字</span>
+        <span><span class="icon-clock"></span>3 分钟</span>
+      </div>
+      <h2 class="post-title">Ret2plt</h2>
+      <article class="post-article">
+          Ret2pltPLT 与 GOT在动态链接的 ELF 程序里，当你调用一个外部库函数（如 puts），实际调用的是 PLT 表中的一个条目
+这个条目会通过 GOT 表间接跳转到函数的真实地址
+关键点：只要程序链接了某个函数（比如 system），即使代码里没出现过 system，它的 PLT 表项可能也会存在
+更常见的情况是：程序虽然没有直接调用 system，但导入了 system，这样 system@plt 就是一个现成的跳板
+核心思想Ret2plt 就是利用栈溢出，将返回地址覆盖为某个函数的 PLT 表项地址（如 system@plt），并伪造好参数，从而调用该函数
+因为 PLT 表位于
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/pwn-Shellcode/" aria-label="Shellcode" title="Shellcode"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Shellcode" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>265 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">Shellcode</h2>
+      <article class="post-article">
+          Shellcode原理狭义上说，Shellcode 是一段用于获取交互式命令行的机器码
+广义上，任何用于完成攻击目标（反弹连接、添加用户、下载执行）的自包含机器码都可以叫 Shellcode
+它的特点：
+
+完全由汇编指令组成，经过编译、提取成为纯二进制字节
+
+与位置无关，不依赖外部环境，放到哪都能跑（通过相对寻址等技巧）
+
+尽量精简、无坏字符，比如不能包含 0x00（截断 strcpy），不能有换行 0x0a 等
+
+
+实战案例该怎么起名呢（Shellcode）
+没开金丝雀
+
+mprotect 的第三个参数 7 代表 RWX 权限，从指针 buf 向前偏移 16 字节 的地址开始，长度为 409
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019%20HDCTF/" aria-label="2019 HDCTF WriteUp" title="2019 HDCTF WriteUp"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 HDCTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -269,6 +352,51 @@ Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程）
 
 
 dump 出 explorer.exe，它的内存里主
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019%20%E5%BC%BA%E7%BD%91%E6%9D%AF/" aria-label="2019 强网杯 WriteUp" title="2019 强网杯 WriteUp"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 强网杯 WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>197 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
+      </div>
+      <h2 class="post-title">2019 强网杯 WriteUp</h2>
+      <article class="post-article">
+          2019 强网杯 WriteUp🏛️ 组织架构
+
+指导单位：中央网信办网络安全协调局
+
+主办单位：河南省互联网信息办公室、郑州市人民政府、信息工程大学
+
+支持&amp;#x2F;协办单位：教育部网络空间安全专业教学指导委员会
+
+承办单位：郑州市高新区管委会
+
+
+🥇 线下赛最终排名（前三名及部分高校）
+
+冠军：腾讯 eee 战队（腾讯安全）
+
+亚军：0×300 战队（长亭科技）
+
+季军：TsingQian 战队（清华大学-奇安信联合研究中心）
+
+总排名第六：白泽战队（复旦大学）
+
+总排名第十五：Nebula 战队（中国科学技术大学）
+
+
+Misc强网先锋-打野（Steg 隐写）
+
+Reverse强网
       </article>
     </div>
   </div>
@@ -444,129 +572,8 @@ Opt
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/Omron%20Fins%20%E5%8D%8F%E8%AE%AE/" aria-label="Omron Fins 协议" title="Omron Fins 协议"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="Omron Fins 协议" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>1.5k 字</span>
-        <span><span class="icon-clock"></span>6 分钟</span>
-      </div>
-      <h2 class="post-title">Omron Fins 协议</h2>
-      <article class="post-article">
-          Omron Fins 协议概述欧姆龙（Omron）的通信协议体系是其工业自动化生态系统的核心，它并非单一协议，而是一套为不同层级和应用场景设计的多层次协议家族
-这些协议共同构建了一个从设备级、控制级到信息级的无缝通信网络，使得PLC、上位机、传感器、执行器等设备能够高效协同工作
-FINS（Factory Interface Network Service）是欧姆龙（Omron）为其工业自动化网络设计的核心指令&amp;#x2F;响应系统
-它的核心优势在于能够实现以太网、控制网络和串行通信等多种物理网络间的无缝通信
-协议类型FINS 协议主要在 TCP&amp;#x2F;IP 模型的应用层工作，并有两种主要实现
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/S7comm%20%E5%8D%8F%E8%AE%AE/" aria-label="S7comm 协议" title="S7comm 协议"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="S7comm 协议" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>3k 字</span>
-        <span><span class="icon-clock"></span>14 分钟</span>
-      </div>
-      <h2 class="post-title">S7comm 协议</h2>
-      <article class="post-article">
-          S7comm 协议概述S7comm 是西门子专有的工业控制协议，主要用于西门子S7-300&amp;#x2F;400系列PLC（可编程逻辑控制器）的编程、数据交换和诊断
-报文结构一个典型的 S7comm 报文由三部分组成：
-
-Header (头部)：固定 12 字节，包含协议标识、PDU 类型等关键信息。
-
-Parameter (参数)：长度可变，包含具体的功能码（如读取、写入）及其参数
-
-Data (数据)：长度可变，在写入等操作中携带实际数据
-
-
-通信过程Wireshark 可以清晰捕捉到 S7 通信的建立过程，分为三步：
-
-TCP 三次握手：客户端通过 TCP 端口 102 与 PLC 建立连接
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/2019%20%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B7%B1%E5%9C%B3%E7%AB%99/" aria-label="2019 工业信息安全技能大赛-深圳站 WriteUp" title="2019 工业信息安全技能大赛-深圳站 WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 工业信息安全技能大赛-深圳站 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>2.7k 字</span>
-        <span><span class="icon-clock"></span>12 分钟</span>
-      </div>
-      <h2 class="post-title">2019 工业信息安全技能大赛-深圳站 WriteUp</h2>
-      <article class="post-article">
-          2019 工业信息安全技能大赛-深圳站 WriteUp组织架构
-
-指导单位：由国家工业信息安全发展研究中心、中国网络空间安全协会竞评演练工作委员会、中国网络空间安全人才教育联盟、中国中文信息学会评测工作委员会共同指导
-
-主办与承办：由鹏城实验室主办，其网络空间安全研究中心具体承办
-
-技术支持：烽台科技（北京）有限公司（灯塔实验室）为大赛提供技术支持
-
-
-MiscModbus 协议分析（Modbus 协议）
-链接: https://pan.baidu.com/s/1RcC1VTPusecH9OqTvRPnPA?pwd=4wv3 提取码: 4wv3 
-题目：黑客通过外网进入一家工厂的控制网络，之后
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%AE%81%E6%B3%A2%E7%AB%99/" aria-label="2019-工业信息安全技能大赛-宁波站 WriteUp" title="2019-工业信息安全技能大赛-宁波站 WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019-工业信息安全技能大赛-宁波站 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>249 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">2019-工业信息安全技能大赛-宁波站 WriteUp</h2>
-      <article class="post-article">
-          2019 工业信息安全技能大赛-宁波站 WriteUp🏛️ 组织架构
-
-主办单位：国家工业信息安全发展研究中心、浙江省经济和信息化厅
-
-承办单位：浙江省电子信息产品检验所（浙江省信息安全测评中心）、浙江国利网安科技有限公司、宁波工业互联网研究院有限公司
-
-
-📝 赛事概况
-
-参赛规模：共有 20 支队伍、近 80 名选手参赛
-
-赛程赛制：比赛分为两天，采用综合晋级赛制
-
-技术支撑：赛事系统基于工控试验场的动态工控场景、真实控制场景工艺包及工控网络攻防演练平台搭建
-
-
-Misc智能楼宇系统（文件附加隐写 + ZIP 爆破）
-每次 Foremost 提取都会给出一个压缩文件和解压密码
-写脚本提取
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
-    <a class="extend prev" rel="prev" href="/page/16/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/18/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/16/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/18/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -588,10 +595,10 @@ Misc智能楼宇系统（文件附加隐写 + ZIP 爆破）
       </div>
       <div>
         <span class="icon-brush"></span>
-        191k
+        192k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        15:43
+        15:50
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -619,7 +626,7 @@ Misc智能楼宇系统（文件附加隐写 + ZIP 爆破）
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">190</div>
+    <div class="sidebar-state-number">194</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
