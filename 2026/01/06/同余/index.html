@@ -17,15 +17,15 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="同余本章主要概述以下三个结论 12345a ≡ b (mod m)m | (a - b)a - b &#x3D; km  余数等价定义如果两个整数 a，b 除以 m 的余数相同，就说它们模 m 同余，记作 1a ≡ b (mod m)  整除性定义根据带余除法，我们可将 a 和 b 分别表示为 123a &#x3D; q1 * m + r1 (0 ≤ r1 &lt; m)b &#x3D; q2 * m + r2 (0 ≤ r2">
+    <meta name="description" content="同余两个整数除以同一个数 n 的余数相同，我们就说它们在这个 n 的世界里是 “一路人” 例如：两个整数 a，b 除以 m 的余数相同，就说它们模 m 同余，记作 1a ≡ b (mod m)  整除性定义根据带余除法，我们可将 a 和 b 分别表示为 123a &#x3D; q1 * m + r1 (0 ≤ r1 &lt; m)b &#x3D; q2 * m + r2 (0 ≤ r2 &lt; m)  因为余数相同">
 <meta property="og:type" content="article">
 <meta property="og:title" content="同余">
 <meta property="og:url" content="https://suc2es2.github.io/2026/01/06/%E5%90%8C%E4%BD%99/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="同余本章主要概述以下三个结论 12345a ≡ b (mod m)m | (a - b)a - b &#x3D; km  余数等价定义如果两个整数 a，b 除以 m 的余数相同，就说它们模 m 同余，记作 1a ≡ b (mod m)  整除性定义根据带余除法，我们可将 a 和 b 分别表示为 123a &#x3D; q1 * m + r1 (0 ≤ r1 &lt; m)b &#x3D; q2 * m + r2 (0 ≤ r2">
+<meta property="og:description" content="同余两个整数除以同一个数 n 的余数相同，我们就说它们在这个 n 的世界里是 “一路人” 例如：两个整数 a，b 除以 m 的余数相同，就说它们模 m 同余，记作 1a ≡ b (mod m)  整除性定义根据带余除法，我们可将 a 和 b 分别表示为 123a &#x3D; q1 * m + r1 (0 ≤ r1 &lt; m)b &#x3D; q2 * m + r2 (0 ≤ r2 &lt; m)  因为余数相同">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-01-06T06:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-30T13:59:26.731Z">
+<meta property="article:modified_time" content="2026-06-30T15:38:40.733Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="数论">
 <meta name="twitter:card" content="summary">
@@ -146,7 +146,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8C%E4%BD%99"><span class="toc-number">1.</span> <span class="toc-text">同余</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%99%E6%95%B0%E7%AD%89%E4%BB%B7%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">余数等价定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E9%99%A4%E6%80%A7%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.</span> <span class="toc-text">整除性定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%B3%95%E5%AE%9A%E4%B9%89"><span class="toc-number">1.3.</span> <span class="toc-text">代数表示法定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E4%BD%99%E7%B1%BB"><span class="toc-number">1.4.</span> <span class="toc-text">同余类</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8C%E4%BD%99"><span class="toc-number">1.</span> <span class="toc-text">同余</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E9%99%A4%E6%80%A7%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">整除性定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%B3%95%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.</span> <span class="toc-text">代数表示法定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%89%E4%BB%B7%E7%B1%BB"><span class="toc-number">1.3.</span> <span class="toc-text">等价类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.4.</span> <span class="toc-text">实战案例</span></a></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -233,10 +233,8 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="同余"><a href="#同余" class="headerlink" title="同余"></a>同余</h1><p>本章主要概述以下三个结论</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a ≡ b (mod m)</span><br><span class="line"></span><br><span class="line">m | (a - b)</span><br><span class="line"></span><br><span class="line">a - b = km</span><br></pre></td></tr></table></figure>
-
-<h2 id="余数等价定义"><a href="#余数等价定义" class="headerlink" title="余数等价定义"></a>余数等价定义</h2><p>如果两个整数 <code>a</code>，<code>b</code> 除以 <code>m</code> 的余数相同，就说它们模 <code>m</code> 同余，记作</p>
+        <h1 id="同余"><a href="#同余" class="headerlink" title="同余"></a>同余</h1><p>两个整数除以同一个数 <code>n</code> 的余数相同，我们就说它们在这个 <code>n</code> 的世界里是 “一路人”</p>
+<p>例如：两个整数 <code>a</code>，<code>b</code> 除以 <code>m</code> 的余数相同，就说它们模 <code>m</code> 同余，记作</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a ≡ b (mod m)</span><br></pre></td></tr></table></figure>
 
 <h2 id="整除性定义"><a href="#整除性定义" class="headerlink" title="整除性定义"></a>整除性定义</h2><p>根据带余除法，我们可将 <code>a</code> 和 <code>b</code> 分别表示为</p>
@@ -255,11 +253,15 @@
 <p>直接将 <code>m</code> 和 <code>a - b</code> 代入定义，立即得到</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a - b = km</span><br></pre></td></tr></table></figure>
 
-<h2 id="同余类"><a href="#同余类" class="headerlink" title="同余类"></a>同余类</h2><p>模 <code>m</code> 的所有整数可以分成 <code>m</code> 类</p>
+<h2 id="等价类"><a href="#等价类" class="headerlink" title="等价类"></a>等价类</h2><p>模 <code>m</code> 的所有整数可以分成 <code>m</code> 类</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[0],[1],[2],…,[m−1]</span><br></pre></td></tr></table></figure>
 
 <p>例如模 5 时，它们除以 5 的余数都是 2</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[2]=&#123;…,−8,−3,2,7,12,17,…&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[2]=&#123;…, −8, −3, 2, 7, 12, 17, …&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="实战案例"><a href="#实战案例" class="headerlink" title="实战案例"></a>实战案例</h2><p>我们生活在一个只有 7 天的星期循环里（相当于模 7 的世界）</p>
+<p>在这里，”今天（第 3 天）” 和 “过 7 天（第 10 天）”、”过 14 天（第 17 天）” 本质上是完全等价的，它们都属于 “星期三” 这同一天</p>
+
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/%E6%95%B0%E8%AE%BA/" title="数论" data-aos="zoom-in">数论</a>
@@ -309,7 +311,7 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        192.2k
+        192.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
         15:52
@@ -334,7 +336,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8C%E4%BD%99"><span class="toc-number">1.</span> <span class="toc-text">同余</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%99%E6%95%B0%E7%AD%89%E4%BB%B7%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">余数等价定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E9%99%A4%E6%80%A7%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.</span> <span class="toc-text">整除性定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%B3%95%E5%AE%9A%E4%B9%89"><span class="toc-number">1.3.</span> <span class="toc-text">代数表示法定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E4%BD%99%E7%B1%BB"><span class="toc-number">1.4.</span> <span class="toc-text">同余类</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8C%E4%BD%99"><span class="toc-number">1.</span> <span class="toc-text">同余</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E9%99%A4%E6%80%A7%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">整除性定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%B3%95%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.</span> <span class="toc-text">代数表示法定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%89%E4%BB%B7%E7%B1%BB"><span class="toc-number">1.3.</span> <span class="toc-text">等价类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.4.</span> <span class="toc-text">实战案例</span></a></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -466,9 +468,9 @@
           url: "https://suc2es2.github.io/2026/01/06/%E5%90%8C%E4%BD%99/",
           excerpt: "",
           description: "",
-          stripContent: "同余本章主要概述以下三个结论 12345a ≡ b (mod m)m | (a - b)a - b = km  余数等价定义如果两个整数 a，b 除以 m 的余数相同，就说它们模 m 同余，记作 1a ≡ b (mod m)  整除性定义根据带余除法，我们可将 a 和 b 分别表示为 123a = q1 * m + r1 (0 ≤ r1 &amp;lt; m)b = q2 * m + r2 (0 ≤ r2 &amp;lt; m)  因为余数相同，所以 r1 &amp;#x3D; r2（参考上一节的带余除法） 此时，我们",
+          stripContent: "同余两个整数除以同一个数 n 的余数相同，我们就说它们在这个 n 的世界里是 “一路人” 例如：两个整数 a，b 除以 m 的余数相同，就说它们模 m 同余，记作 1a ≡ b (mod m)  整除性定义根据带余除法，我们可将 a 和 b 分别表示为 123a = q1 * m + r1 (0 ≤ r1 &amp;lt; m)b = q2 * m + r2 (0 ≤ r2 &amp;lt; m)  因为余数相同，所以 r1 &amp;#x3D; r2（参考上一节的带余除法） 此时，我们将两式相减 123a - b =",
           date: "Tue Jan 06 2026 14:18:00 GMT+0800",
-          updated: "Tue Jun 30 2026 21:59:26 GMT+0800",
+          updated: "Tue Jun 30 2026 23:38:40 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
