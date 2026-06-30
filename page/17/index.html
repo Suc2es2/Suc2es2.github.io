@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">194</div>
+    <div class="sidebar-state-number">196</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -244,6 +244,75 @@
 </aside>
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2020/04/14/2020-%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B/" aria-label="2020 第五空间智能安全大赛 WriteUp" title="2020 第五空间智能安全大赛 WriteUp"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 第五空间智能安全大赛 WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2020-04-14</span>
+        <span><span class="icon-pencil"></span>817 字</span>
+        <span><span class="icon-clock"></span>4 分钟</span>
+      </div>
+      <h2 class="post-title">2020 第五空间智能安全大赛 WriteUp</h2>
+      <article class="post-article">
+          2020 第五空间智能安全大赛 WriteUp🏛️ 组织架构
+
+指导单位：第四届世界智能大会组委会
+
+主办单位：天津市委网信办
+
+承办单位：360 集团、南开大学网络空间安全学院、天津大学网络安全学院、天津理工大学计算机科学与工程学院等
+
+协办单位：国家工业信息安全发展研究中心、国家计算机网络与信息安全管理中心、国家计算机病毒应急处理中心、麒麟软件有限公司、天津飞腾信息技术有限公司等
+
+
+决赛于 2020 年 9 月 11 日举行，最终 35 支队伍获奖。完整获奖名单如下：
+
+
+
+奖项
+获奖队伍
+
+
+
+特等奖
+Ph0t1n1a (上海交通大学)
+
+
+一等奖
+Nu1L、blm、天枢 Dubhe
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/Ret2csu/" aria-label="Ret2csu" title="Ret2csu"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2csu" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1.4k 字</span>
+        <span><span class="icon-clock"></span>7 分钟</span>
+      </div>
+      <h2 class="post-title">Ret2csu</h2>
+      <article class="post-article">
+          Ret2csu原理在 glibc 的源码中，有一个函数叫 __libc_csu_init，它在程序启动时负责调用 .init_array 中的初始化函数
+这个函数末尾有一段普适性很强的指令，经常被用作 ROP gadget。安全研究者最早将利用这段代码的技术称为 Return-to-csu，简称 Ret2csu。
+因为 __libc_csu_init 是 libc 标准启动代码的一部分，只要程序是动态链接的，几乎一定存在，而且在没有 PIE 的情况下地址固定。这给了攻击者在 “找不到常规 pop rdi” 时一个可靠的备胎
+实战案例Pwn题滞销,帮帮我好吗_（Ret2csu）
+代码只有两行
+
+
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/MFC/" aria-label="MFC" title="MFC"></a>
     <div class="post-cover left">
@@ -503,75 +572,6 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/COTP%20%E5%8D%8F%E8%AE%AE/" aria-label="COTP 协议" title="COTP 协议"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="COTP 协议" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>1.1k 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
-      </div>
-      <h2 class="post-title">COTP 协议</h2>
-      <article class="post-article">
-          COTP 协议概述COTP 是 ISO OSI 七层模型中的传输层协议，其正式标准为 ISO 8073，对应的 RFC 文档是 RFC 905。你可以把它理解为 OSI 世界里的 “TCP”
-报文结构连接包用于建立、维护和断开连接。其头部结构通常如下：
-
-Length (1 字节)：后续数据的长度
-
-PDU Type (1 字节)：数据包类型，常见的有：
-
-0x0E：连接请求 (CR)
-
-0x0D：连接确认 (CC)
-
-0x08：断开请求 (DR)
-
-0x0C：断开确认 (DC)
-
-
-
-Destination&amp;#x2F;Source Reference (各 2 字节)：目的和源引用
-
-Opt
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/SCD%20%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/" aria-label="SCD 文件" title="SCD 文件"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="SCD 文件" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>1.3k 字</span>
-        <span><span class="icon-clock"></span>7 分钟</span>
-      </div>
-      <h2 class="post-title">SCD 文件</h2>
-      <article class="post-article">
-          SCD 文件定义在 IEC 61850 标准体系中，SCD（Substation Configuration Description）文件是变电站配置描述文件，它是整个变电站自动化系统的 “总配置文件”
-它包含了：
-
-一次设备接线拓扑：母线、线路、开关、互感器等的连接关系
-
-二次智能电子设备（IED）信息：保护、测控、智能终端等装置的模型，包括逻辑设备、逻辑节点、数据对象等
-
-通信配置：GOOSE、SV 等报文的控制块、发布&amp;#x2F;订阅关系，MMS 报告设置等
-
-映射关系：将设备间的逻辑信号绑定到具体网络报文
-
-
-简单说，SCD 文件是变电站二次系统集成和运维的基础数据，必须保证正确性和唯
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/16/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/18/">下一页 &raquo;</a>
   </nav>
@@ -595,10 +595,10 @@ Opt
       </div>
       <div>
         <span class="icon-brush"></span>
-        192k
+        192.2k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        15:50
+        15:52
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -626,7 +626,7 @@ Opt
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">194</div>
+    <div class="sidebar-state-number">196</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
