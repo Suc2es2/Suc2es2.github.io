@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">196</div>
+    <div class="sidebar-state-number">197</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -244,67 +244,6 @@
 </aside>
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/Gibson%200.2/" aria-label="VulnHub Gibson：0.2" title="VulnHub Gibson：0.2"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Gibson：0.2" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-01</span>
-        <span><span class="icon-pencil"></span>548 字</span>
-        <span><span class="icon-clock"></span>3 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub Gibson：0.2</h2>
-      <article class="post-article">
-          Gibson: 0.2项目地址：https://download.vulnhub.com/gibson/gibson.ova
-是一个打包好的镜像文件
-注意：导入 vmx 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-查看 80 端口源代码在注释中找到线索
-
-弱口令SSH根据前面给出的线索登录成功
-1margo:god
-
-
-提权&amp;#x2F;usr&amp;#x2F;bin&amp;#x2F;convert ImageMagick（CVE-2016-3714）检查权限发现可以使用 /usr/bin/convert
-/usr/bin/convert 是 ImageMagick 图像
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/Droopy%20v0.2/" aria-label="VulnHub Droopy：v0.2" title="VulnHub Droopy：v0.2"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Droopy：v0.2" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-01</span>
-        <span><span class="icon-pencil"></span>105 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub Droopy：v0.2</h2>
-      <article class="post-article">
-          Droopy: v0.2项目地址：https://download.vulnhub.com/fristileaks/FristiLeaks_1.3.ova
-是一个打包好的镜像文件
-注意：导入 vmx 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-访问 80 端口是经典的 Drupal
-
-RCEDrupalgeddon2（CVE-2018–7600）直接 MSF 打 NDay
-
-提权内核 overlayfs 文件系统（CVE-2015-1328）最后打 overlayfs 内核漏洞提权即可
-
-
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/SecTalks%20BNE0x03%20-%20Simple/" aria-label="VulnHub SecTalks：BNE0x03 - Simple" title="VulnHub SecTalks：BNE0x03 - Simple"></a>
     <div class="post-cover left">
@@ -576,6 +515,70 @@ SSH查看文件发现有一个 lol.pacp
     </div>
   </div>
 </div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/01/Hell%201/" aria-label="VulnHub Hell：1" title="VulnHub Hell：1"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Hell：1" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-01</span>
+        <span><span class="icon-pencil"></span>3.4k 字</span>
+        <span><span class="icon-clock"></span>17 分钟</span>
+      </div>
+      <h2 class="post-title">VulnHub Hell：1</h2>
+      <article class="post-article">
+          Hell: 1项目地址：https://download.vulnhub.com/hell/hell.ova
+是一个打包好的镜像文件
+注意：导入 vmx 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+666 端口响应内容如下
+123Welcome to the Admin PanelArchiving latest version on webserver (echoserver.bak)...Starting echo server and monitoring...
+
+扫描目录
+
+继续扫描 /manual 和 /persinal 目录没有结果，于是看看君子
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/01/iView%20Editor%20XSS%EF%BC%88CVE-2025-10949%EF%BC%89/" aria-label="iView Editor XSS（CVE-2025-10949）" title="iView Editor XSS（CVE-2025-10949）"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="iView Editor XSS（CVE-2025-10949）" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-01</span>
+        <span><span class="icon-pencil"></span>183 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
+      </div>
+      <h2 class="post-title">iView Editor XSS（CVE-2025-10949）</h2>
+      <article class="post-article">
+          iView Editor XSS（CVE-2025-10949）前言原本是在给学生授课过程中讲解 XSS 时无意水了一个
+
+受影响产品：iView Editor
+
+产品定位：iView Editor 是一个基于 Vue.js 的开源 Markdown 编辑器
+
+漏洞载体：Markdown Handler 组件
+
+根本原因：应用未能正确过滤或转义用户输入，导致恶意脚本被注入并执行
+
+受影响版本：iView Editor 版本 &amp;lt;&amp;#x3D; 1.1.1
+
+
+
+漏洞复现访问官方给出的在线案例：https://editor.iviewui.com/
+
+点击全屏编辑，从 a 标签输入，找到其 M
+      </article>
+    </div>
+  </div>
+</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/9/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/11/">下一页 &raquo;</a>
   </nav>
@@ -599,10 +602,10 @@ SSH查看文件发现有一个 lol.pacp
       </div>
       <div>
         <span class="icon-brush"></span>
-        192.3k
+        192.6k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        15:52
+        15:54
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -630,7 +633,7 @@ SSH查看文件发现有一个 lol.pacp
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">196</div>
+    <div class="sidebar-state-number">197</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
