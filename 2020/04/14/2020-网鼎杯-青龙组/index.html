@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a4744f11f8fda9783daee38.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a474f0e1f8fda9783daf69c.png">
 <meta property="article:published_time" content="2020-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-07-03T06:36:04.559Z">
+<meta property="article:modified_time" content="2026-07-03T06:42:18.980Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -315,7 +315,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ord(g) = 2 ^ 509</span><br></pre></td></tr></table></figure>
 
 <p>这意味着，<code>g</code> 的 2 ^ 509 次方才会第一次回到 1</p>
-<p><code>g</code> 的所有幂次形成了一个有 2 ^ 509 个元素的循环圈。我们要求的指数 <code>x</code> 就在 0 到 2^509 - 1 之间。这个范围虽然大，但它的结构（阶是 2 的幂）给了我们可乘之机</p>
+<p><code>g</code> 的所有幂次形成了一个有 2 ^ 509 个元素的循环圈。我们要求的指数 <code>x</code> 就在 0 到 2 ^ 509 - 1 之间。这个范围虽然大，但它的结构（阶是 2 的幂）给了我们可乘之机</p>
 <p>我们已知 <code>g ^ x ≡ h (mod 2 ^ 512)</code></p>
 <p>并且 <code>g</code> 的阶是 <code>r = 509</code>，即 <code>g</code> 的幂次是一个 509 位的二进制数就能完全覆盖的圈</p>
 <p>这个算法的精髓就是：我们可以一位一位地确定指数 <code>x</code> 的二进制位，从最低位到最高位</p>
@@ -349,7 +349,7 @@
 <li><p><code>q</code> 是更高位的总和，每一项至少包含因子 <code>2 ^ (i + 1)</code>，所以可以提取 <code>2 ^ (i + 1)</code> 出来，剩下的用 <code>q</code> 表示</p>
 </li>
 </ul>
-<p>我们想“过滤”掉高位 <code>q</code>，只留下 <code>b_i</code> 的信息。因为 <code>g</code> 的阶是 <code>2 ^ r</code>，我们可以利用一个性质：</p>
+<p>我们想 “过滤” 掉高位 <code>q</code>，只留下 <code>b_i</code> 的信息。因为 <code>g</code> 的阶是 <code>2 ^ r</code>，我们可以利用一个性质：</p>
 <p>如果一个指数包含 <code>2 ^ r</code> 这个因子，那一项就会变成 1</p>
 <p>于是，我们故意把等式两边都升到 <code>2 ^ (r - 1 - i)</code> 次方</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">t ^ &#123;2 ^ (r - 1 - i)&#125; ≡ &#123;g ^ (x - x_i)&#125; ^ &#123;2 ^ (r - 1 - i)&#125; (mod 2 ^ 512)</span><br><span class="line"></span><br><span class="line">t ^ &#123;2 ^ (r - 1 - i)&#125; ≡ g ^ &#123;(x - x_i) * 2 ^ (r - 1 - i)&#125; (mod 2 ^ 512)</span><br></pre></td></tr></table></figure>
@@ -601,7 +601,7 @@
           description: "",
           stripContent: "2020 网鼎杯-青龙组 WriteUp🏛️ 组织架构  支持单位：国家网络与信息安全信息通报中心、深圳市人民政府、广东省公安厅  联合主办：深信服科技股份有限公司、北京永信至诚科技股份有限公司  联合协办：阿里巴巴、百度、腾讯、奇安信、清华大学网络科学与网络空间研究院、中国科学院信息工程研究所等   📝 赛事概况  赛事定位：”朱雀组” 是第二届 “网鼎杯” 四场官方线上资格赛的首场比赛  参赛对象：主要面向全国高等院校、职业院校以及社会参赛队伍  比赛时间：2020 年 5 月 10 日",
           date: "Tue Apr 14 2020 13:18:00 GMT+0800",
-          updated: "Fri Jul 03 2026 14:36:04 GMT+0800",
+          updated: "Fri Jul 03 2026 14:42:18 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
