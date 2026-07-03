@@ -24,11 +24,17 @@
 <meta property="og:site_name" content="雾島风起時">
 <meta property="og:description" content="2020 网鼎杯-青龙组 WriteUp🏛️ 组织架构  支持单位：国家网络与信息安全信息通报中心、深圳市人民政府、广东省公安厅  联合主办：深信服科技股份有限公司、北京永信至诚科技股份有限公司  联合协办：阿里巴巴、百度、腾讯、奇安信、清华大学网络科学与网络空间研究院、中国科学院信息工程研究所等   📝 赛事概况  赛事定位：”朱雀组” 是第二届 “网鼎杯” 四场官方线上资格赛的首场比赛">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a47352c1f8fda9783daaa41.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a473c401f8fda9783dab0ba.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a473f571f8fda9783dab398.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a4744f11f8fda9783daee38.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a474f0e1f8fda9783daf69c.png">
 <meta property="article:published_time" content="2020-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-30T10:36:23.066Z">
+<meta property="article:modified_time" content="2026-07-03T06:16:44.181Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/6a47352c1f8fda9783daaa41.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -146,7 +152,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 网鼎杯-青龙组 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.1.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#you-raise-me-up"><span class="toc-number">1.1.1.</span> <span class="toc-text">you raise me up</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 网鼎杯-青龙组 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.1.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#you-raise-me-up%EF%BC%88%E6%A8%A1%E5%B9%82%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">you raise me up（模幂离散对数）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -224,7 +230,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2020-04-14T05:18:00.000Z" itemprop="datePublished">2020-04-14</time>
-    <time style="display: none;" id="post-update-time">2026-06-30</time>
+    <time style="display: none;" id="post-update-time">2026-07-03</time>
   </span>
 </div>
 
@@ -253,7 +259,125 @@
 <li><p>晋级名额：资格赛晋级名额为 130 支队伍</p>
 </li>
 </ul>
-<h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="you-raise-me-up"><a href="#you-raise-me-up" class="headerlink" title="you raise me up"></a>you raise me up</h3>
+<h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="you-raise-me-up（模幂离散对数）"><a href="#you-raise-me-up（模幂离散对数）" class="headerlink" title="you raise me up（模幂离散对数）"></a>you raise me up（模幂离散对数）</h3><p>题目</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">n = <span class="number">2</span> ** <span class="number">512</span></span><br><span class="line">m = random.randint(<span class="number">2</span>, n-<span class="number">1</span>) | <span class="number">1</span></span><br><span class="line">c = <span class="built_in">pow</span>(m, bytes_to_long(flag), n)</span><br></pre></td></tr></table></figure>
+
+<p>也就是 <code>c ≡ m ^ e (mod 2 ^ 512)</code></p>
+<p>并且 <code>m</code> 被强制为奇数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m = random.randint(<span class="number">2</span>, n-<span class="number">1</span>) | <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>奇数在模 2 ^ 512 下一定有乘法逆元（因为与模数互素），所以它属于乘法群</p>
+<p>这是一个模 2 的幂下的离散对数问题，一般离散对数很难，但模 2 的幂的群结构很特殊——它的阶是 2 ^ 511</p>
+<p>因为 <code>φ(2 ^ 512) = 2 ^ 511</code></p>
+<p>但我们可以利用 “模 4” 这个小的模数先偷看一点信息，这个信息就是指数 <code>e</code> 的奇偶性</p>
+<p>规律：底数为 <code>3 (mod 4)</code> 时，奇数次幂永远是 <code>3 (mod 4)</code>，偶数次幂永远是 <code>1 (mod 4)</code></p>
+<p><img src="https://pic1.imgdb.cn/item/6a47352c1f8fda9783daaa41.png"></p>
+<p>题目给出的 <code>m</code> 和 <code>c</code> 满足</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m % <span class="number">4</span> = <span class="number">3</span></span><br><span class="line">c % <span class="number">4</span> = <span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p>所以指数 <code>e</code> 必为奇数</p>
+<p>因为 <code>e</code> 是奇数，它可以写成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e = 2x + 1</span><br></pre></td></tr></table></figure>
+
+<p>代入原方程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c ≡ m ^ (2x + 1) (mod 2 ^ 512)</span><br></pre></td></tr></table></figure>
+
+<p>两边同时乘 m 的模逆</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c * m ^ (-1) ≡ m ^ (2x + 1) * m ^ (-1) (mod 2 ^ 512)</span><br><span class="line"></span><br><span class="line">c * m ^ (-1) ≡ m ^ 2x (mod 2 ^ 512)</span><br></pre></td></tr></table></figure>
+
+<p>令 <code>g = m ^ 2</code>，<code>h = c * m ^ (-1)</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g ^ x ≡ h (mod 2 ^ 512)</span><br></pre></td></tr></table></figure>
+
+<p>现在是要解出这个 <code>x</code>，因为 <code>m</code> 是奇数，<code>m ^ 2</code> 模 8 一定等于 1</p>
+<p>任何奇数的平方减 1 都能被 8 整除</p>
+<p><img src="https://pic1.imgdb.cn/item/6a473c401f8fda9783dab0ba.png"></p>
+<p>所以，我们可以把 <code>g</code> 写成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">g = 1 + 8u</span><br><span class="line">  = 1 + 2 ^ 3 * u</span><br><span class="line"></span><br><span class="line">(u 是某个奇数)</span><br></pre></td></tr></table></figure>
+
+<p>在模 2 的幂的乘法群结构中有一个经典结论，对于形如 <code>1 + 2^s * u（u为奇数）</code> 且 <code>s &gt;= 2</code> 的元素</p>
+<p>它在模 <code>2 ^ k</code> 下的阶就是 <code>2 ^ (k - s)</code> </p>
+<p>这里 <code>k = 512</code>, <code>s = 3</code>，所以 <code>g</code> 的阶就是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ord(g) = 2 ^ 509</span><br></pre></td></tr></table></figure>
+
+<p>这意味着，<code>g</code> 的 2 ^ 509 次方才会第一次回到 1</p>
+<p><code>g</code> 的所有幂次形成了一个有 2 ^ 509 个元素的循环圈。我们要求的指数 <code>x</code> 就在 0 到 2^509 - 1 之间。这个范围虽然大，但它的结构（阶是 2 的幂）给了我们可乘之机</p>
+<p>我们已知 <code>g ^ x ≡ h (mod 2 ^ 512)</code></p>
+<p>并且 <code>g</code> 的阶是 <code>r = 509</code>，即 <code>g</code> 的幂次是一个 509 位的二进制数就能完全覆盖的圈</p>
+<p>这个算法的精髓就是：我们可以一位一位地确定指数 <code>x</code> 的二进制位，从最低位到最高位</p>
+<p>假设我们要求的指数 x 的二进制表示是</p>
+<p><img src="https://pic1.imgdb.cn/item/6a473f571f8fda9783dab398.png"></p>
+<p>我们的目标是求出每一个 <code>b_i</code>（0 或 1）</p>
+<p>假设我们已经通过某种方法求出了 <code>x</code> 的最低 <code>i</code> 位。我们把这部分已知的数值记作 <code>x_i</code></p>
+<p>例如，如果已知最低两位是 01，那 <code>x_2 = 1</code></p>
+<p>现在 <code>x</code> 可以拆成两部分</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = x_i + (剩下的高位部分)</span><br></pre></td></tr></table></figure>
+
+<p>因为 <code>g</code> 是奇数，与 <code>2 ^ 512</code> 互素，所以 <code>g ^ (x_i)</code> 一定有逆元，记作 <code>g ^ (-x_i)</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g ^ x ≡ h (mod 2 ^ 512)</span><br><span class="line"></span><br><span class="line">g ^ x_i * g ^ (-x_i) ≡ 1 (mod 2 ^ 512)</span><br></pre></td></tr></table></figure>
+
+<p>对原等式 <code>g ^ x ≡ h</code> 两边乘以 <code>g ^ (-x_i)</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">g ^ x * g ^ (-x_i) ≡ h * g ^ (-x_i) (mod 2 ^ 512)</span><br><span class="line"></span><br><span class="line">     g ^ (x - x_i) ≡ h * g ^ (-x_i) (mod 2 ^ 512)</span><br></pre></td></tr></table></figure>
+
+<p>我们把右边这个已知的数值叫做 <code>t</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t ≡ h * g ^ (-x_i) (mod 2 ^ 512)</span><br></pre></td></tr></table></figure>
+
+<p>那么根据上面的等式，自然就有：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t ≡ g ^ (x - x_i) (mod 2 ^ 512)</span><br></pre></td></tr></table></figure>
+
+<p>因为 <code>x_i</code> 恰好包含了 <code>x</code> 的低 <code>i</code> 位，所以相减之后，低 <code>i</code> 位全部变成 0</p>
+<p>于是我们可以写成</p>
+<p><img src="https://pic1.imgdb.cn/item/6a4744f11f8fda9783daee38.png"></p>
+<p>这里：</p>
+<ul>
+<li><p><code>b_i * 2 ^ i</code> 就是我们要找的第 <code>i</code> 位的值（只能是 0 或 1）</p>
+</li>
+<li><p><code>q</code> 是更高位的总和，每一项至少包含因子 <code>2 ^ (i + 1)</code>，所以可以提取 <code>2 ^ (i + 1)</code> 出来，剩下的用 <code>q</code> 表示</p>
+</li>
+</ul>
+<p>我们想“过滤”掉高位 <code>q</code>，只留下 <code>b_i</code> 的信息。因为 <code>g</code> 的阶是 <code>2 ^ r</code>，我们可以利用一个性质：</p>
+<p>如果一个指数包含 <code>2 ^ r</code> 这个因子，那一项就会变成 1</p>
+<p>于是，我们故意把等式两边都升到 <code>2 ^ (r - 1 - i)</code> 次方</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">t ^ &#123;2 ^ (r - 1 - i)&#125; ≡ &#123;g ^ (x - x_i)&#125; ^ &#123;2 ^ (r - 1 - i)&#125; (mod 2 ^ 512)</span><br><span class="line"></span><br><span class="line">t ^ &#123;2 ^ (r - 1 - i)&#125; ≡ g ^ &#123;(x - x_i) * 2 ^ (r - 1 - i)&#125; (mod 2 ^ 512)</span><br></pre></td></tr></table></figure>
+
+<p>代入 <code>x - x_i</code> 表达式</p>
+<p><img src="https://pic1.imgdb.cn/item/6a474f0e1f8fda9783daf69c.png"></p>
+<p>所以，我们现在得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t ^ &#123;2 ^ (r - 1 - i)&#125; ≡ g ^ &#123;b_i * 2 ^ (r - 1) + (q * 2 ^ r)&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在指数里有一项是 <code>q * 2 ^ r</code>，我们可以把它拆开</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g ^ &#123;b_i * 2 ^ (r - 1) + (q * 2 ^ r)&#125; = g ^ &#123;b_i * 2 ^ (r - 1)&#125; * g ^ (q * 2 ^ r)</span><br><span class="line">                                      = g ^ &#123;b_i * 2 ^ (r - 1)&#125; * &#123;g ^ (2 ^ r)&#125; ^ q</span><br></pre></td></tr></table></figure>
+
+<p>因为 <code>g</code> 的阶是 <code>2 ^ r</code>，也就是说 <code>g ^ (2 ^ r) ≡ 1 (mod 2 ^ 512)</code>，所以：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;g ^ (2 ^ r)&#125; ^ q ≡ 1 ^ q</span><br><span class="line">                  ≡ 1</span><br></pre></td></tr></table></figure>
+
+<p>于是整个式子简化为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t ^ &#123;2 ^ (r - 1 - i)&#125; ≡ g ^ &#123;b_i * 2 ^ (r - 1)&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在指数只剩下 <code>b_i * 2 ^ (r - 1)</code>，因为 <code>b_i</code> 只能是 0 或 1，所以只有两种情况</p>
+<ul>
+<li><p>如果 <code>b_i = 0</code>，指数为 <code>0 * 2 ^ (r - 1) = 0</code>，于是 <code>t ^ {2 ^ (r - 1 - i)} ≡ g ^ 0 ≡ 1</code></p>
+</li>
+<li><p>如果 <code>b_i = 1</code>，指数为 <code>1 * 2 ^ (r - 1)</code>，于是 <code>t ^ {2 ^ (r - 1 - i)} ≡ g ^ {2 ^ (r - 1)}</code></p>
+</li>
+</ul>
+<p>如何在实际算法中判断？？？我们预先计算好 “标记值”：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">marker = g ^ &#123;2 ^ (r - 1)&#125; (mod 2 ^ 512)</span><br></pre></td></tr></table></figure>
+
+<p>这个 marker 有一个特点：它不等于 1，但是它的平方等于 1</p>
+<p>因为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[g ^ &#123;2 ^ (r - 1)&#125;] ^ 2 = g ^ (2 ^ r) = 1</span><br></pre></td></tr></table></figure>
+
+<p>在每一步（第 <code>i</code> 位），我们计算</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val = t ^ &#123;2 ^ (r - 1 - i)&#125; (mod 2 ^ 512)</span><br></pre></td></tr></table></figure>
+
+<p>然后判断：</p>
+<ul>
+<li><p>若 <code>val == 1</code>，则第 <code>i</code> 位是 0</p>
+</li>
+<li><p>若 <code>val == marker</code>，则第 <code>i</code> 位是 1</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">m = <span class="number">391190709124527428959489662565274039318305952172936859403855079581402770986890308469084735451207885386318986881041563704825943945069343345307381099559075</span></span><br><span class="line"></span><br><span class="line">c = <span class="number">6665851394203214245856789450723658632520816791621796775909766895233000234023642878786025644953797995373211308485605397024123180085924117610802485972584499</span></span><br><span class="line"></span><br><span class="line">N = <span class="number">2</span> ** <span class="number">512</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">long_to_bytes</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">return</span> x.to_bytes((x.bit_length() + <span class="number">7</span>) // <span class="number">8</span>, <span class="string">&quot;big&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">v2</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    返回 x 中因子 2 的次数。</span></span><br><span class="line"><span class="string">    例如 v2(40) = 3，因为 40 = 2^3 * 5。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> (x &amp; -x).bit_length() - <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">order_power_two</span>(<span class="params">g, N</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    计算 g 在模 N 下的阶。</span></span><br><span class="line"><span class="string">    本题中阶一定是 2 的幂，所以不断平方直到等于 1。</span></span><br><span class="line"><span class="string">    如果 g 的阶为 2^r，则返回 r。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    cur = g % N</span><br><span class="line">    r = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> cur != <span class="number">1</span>:</span><br><span class="line">        cur = <span class="built_in">pow</span>(cur, <span class="number">2</span>, N)</span><br><span class="line">        r += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> r</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">dlog_power2</span>(<span class="params">g, h, N, r</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    求解 g^x = h mod N</span></span><br><span class="line"><span class="string">    其中 ord(g) = 2^r。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    使用逐 bit 的 Pohlig-Hellman 思路。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    x = <span class="number">0</span></span><br><span class="line">    gx = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># g^(2^(r-1)) 是阶为 2 的元素</span></span><br><span class="line">    marker = <span class="built_in">pow</span>(g, <span class="number">1</span> &lt;&lt; (r - <span class="number">1</span>), N)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">        <span class="comment"># 去掉已经恢复出来的低 i 位</span></span><br><span class="line">        t = h * <span class="built_in">pow</span>(gx, -<span class="number">1</span>, N)</span><br><span class="line">        t %= N</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 判断第 i 位</span></span><br><span class="line">        val = <span class="built_in">pow</span>(t, <span class="number">1</span> &lt;&lt; (r - <span class="number">1</span> - i), N)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> val == <span class="number">1</span>:</span><br><span class="line">            bit = <span class="number">0</span></span><br><span class="line">        <span class="keyword">elif</span> val == marker:</span><br><span class="line">            bit = <span class="number">1</span></span><br><span class="line">            x |= <span class="number">1</span> &lt;&lt; i</span><br><span class="line">            gx = gx * <span class="built_in">pow</span>(g, <span class="number">1</span> &lt;&lt; i, N)</span><br><span class="line">            gx %= N</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;discrete log failed at bit %d&quot;</span> % i)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># m ≡ 3 mod 4, c ≡ 3 mod 4，所以 e 为奇数</span></span><br><span class="line"><span class="keyword">assert</span> m % <span class="number">4</span> == <span class="number">3</span></span><br><span class="line"><span class="keyword">assert</span> c % <span class="number">4</span> == <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># e = 2x + 1</span></span><br><span class="line"><span class="comment"># c = m^(2x+1)</span></span><br><span class="line"><span class="comment"># c * m^(-1) = (m^2)^x</span></span><br><span class="line">g = <span class="built_in">pow</span>(m, <span class="number">2</span>, N)</span><br><span class="line">h = c * <span class="built_in">pow</span>(m, -<span class="number">1</span>, N)</span><br><span class="line">h %= N</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] v2(g - 1) =&quot;</span>, v2(g - <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">r = order_power_two(g, N)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] ord(g) = 2^%d&quot;</span> % r)</span><br><span class="line"></span><br><span class="line">x = dlog_power2(g, h, N, r)</span><br><span class="line"></span><br><span class="line">e = <span class="number">2</span> * x + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">flag = long_to_bytes(e)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] e =&quot;</span>, e)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] flag =&quot;</span>, flag)</span><br></pre></td></tr></table></figure>
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/CTF/" title="CTF" data-aos="zoom-in">CTF</a>
@@ -264,19 +388,19 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-石家庄站 WriteUp" class="lazyload">
-        <a href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E7%9F%B3%E5%AE%B6%E5%BA%84%E7%AB%99/" aria-label="前一篇: 2020 工业信息安全技能大赛-石家庄站 WriteUp" title="前一篇: 2020 工业信息安全技能大赛-石家庄站 WriteUp"></a>
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 第五空间智能安全大赛 WriteUp" class="lazyload">
+        <a href="/2020/04/14/2020-%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B/" aria-label="前一篇: 2020 第五空间智能安全大赛 WriteUp" title="前一篇: 2020 第五空间智能安全大赛 WriteUp"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            2020 工业信息安全技能大赛-石家庄站 WriteUp
+            2020 第五空间智能安全大赛 WriteUp
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 网鼎杯-朱雀组 WriteUp" class="lazyload">
-      <a href="/2020/04/14/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E6%9C%B1%E9%9B%80%E7%BB%84/" aria-label="后一篇: 2020 网鼎杯-朱雀组 WriteUp"  title="后一篇: 2020 网鼎杯-朱雀组 WriteUp"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2csu" class="lazyload">
+      <a href="/2019/05/22/Ret2csu/" aria-label="后一篇: Ret2csu"  title="后一篇: Ret2csu"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          2020 网鼎杯-朱雀组 WriteUp
+          Ret2csu
       </h3>
     </div>
   </nav>
@@ -303,10 +427,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        192.6k
+        194.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        15:54
+        16:03
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -328,7 +452,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 网鼎杯-青龙组 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.1.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#you-raise-me-up"><span class="toc-number">1.1.1.</span> <span class="toc-text">you raise me up</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 网鼎杯-青龙组 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.1.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#you-raise-me-up%EF%BC%88%E6%A8%A1%E5%B9%82%E7%A6%BB%E6%95%A3%E5%AF%B9%E6%95%B0%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">you raise me up（模幂离散对数）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -462,7 +586,7 @@
           description: "",
           stripContent: "2020 网鼎杯-青龙组 WriteUp🏛️ 组织架构  支持单位：国家网络与信息安全信息通报中心、深圳市人民政府、广东省公安厅  联合主办：深信服科技股份有限公司、北京永信至诚科技股份有限公司  联合协办：阿里巴巴、百度、腾讯、奇安信、清华大学网络科学与网络空间研究院、中国科学院信息工程研究所等   📝 赛事概况  赛事定位：”朱雀组” 是第二届 “网鼎杯” 四场官方线上资格赛的首场比赛  参赛对象：主要面向全国高等院校、职业院校以及社会参赛队伍  比赛时间：2020 年 5 月 10 日",
           date: "Tue Apr 14 2020 13:18:00 GMT+0800",
-          updated: "Tue Jun 30 2026 18:36:23 GMT+0800",
+          updated: "Fri Jul 03 2026 14:16:44 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
