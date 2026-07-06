@@ -29,8 +29,11 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a3677172830ce602a4e8a2c.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a3676b92830ce602a4e8a02.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a3677082830ce602a4e8a27.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a495f2cc0ccbbff1e8540b3.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a495f83c0ccbbff1e8540b4.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a495f9ac0ccbbff1e8540b5.png">
 <meta property="article:published_time" content="2018-06-13T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-20T11:18:52.208Z">
+<meta property="article:modified_time" content="2026-07-04T19:34:15.766Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -152,7 +155,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-%E7%99%BE%E8%B6%8A%E6%9D%AF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2018 百越杯 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A9%AC%E7%94%B7%E6%B3%A2%E6%9D%B0%E5%85%8B%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">马男波杰克（签到）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flag-universe%EF%BC%88LSB-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">flag_universe（LSB 隐写）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-%E7%99%BE%E8%B6%8A%E6%9D%AF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2018 百越杯 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A9%AC%E7%94%B7%E6%B3%A2%E6%9D%B0%E5%85%8B%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">马男波杰克（签到）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flag-universe%EF%BC%88LSB-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">flag_universe（LSB 隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%80%E5%B0%8F%E6%9D%BF%E5%A4%A9%E4%B8%8B%E7%AC%AC%E4%B8%80%E5%8F%AF%E7%88%B1%EF%BC%88LSB-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">血小板天下第一可爱（LSB 隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%BE%E5%88%B0%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">签到（签到）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -163,7 +166,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">200</div>
+    <div class="sidebar-state-number">204</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -230,7 +233,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2018-06-13T05:18:00.000Z" itemprop="datePublished">2018-06-13</time>
-    <time style="display: none;" id="post-update-time">2026-06-20</time>
+    <time style="display: none;" id="post-update-time">2026-07-05</time>
   </span>
 </div>
 
@@ -255,6 +258,17 @@
 <p>然后追踪流量，分析后发现是有上传和下载图片的操作，逐一提取出来</p>
 <p>之后发现 <code>up01.png</code> 图片存在 LSB 隐写</p>
 <p><img src="https://pic1.imgdb.cn/item/6a3677082830ce602a4e8a27.png"></p>
+<h3 id="血小板天下第一可爱（LSB-隐写）"><a href="#血小板天下第一可爱（LSB-隐写）" class="headerlink" title="血小板天下第一可爱（LSB 隐写）"></a>血小板天下第一可爱（LSB 隐写）</h3><p><img src="https://pic1.imgdb.cn/item/6a495f2cc0ccbbff1e8540b3.png"></p>
+<p>拿到两张图片，一张血小板，一张缺了两个定位点的二维码，补全一下扫出来这个东西</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a2V5JTNBJTIwTHNiXzFzX2dyM2F0</span><br></pre></td></tr></table></figure>
+
+<p>Base64 解密出来是 <code>key: Lsb_1s_gr3at</code>，推测是 LSB 隐写</p>
+<p>最后提取出 flag：<code>flag{1_l0ve_LSB~}</code></p>
+<h3 id="签到（签到）"><a href="#签到（签到）" class="headerlink" title="签到（签到）"></a>签到（签到）</h3><p><img src="https://pic1.imgdb.cn/item/6a495f83c0ccbbff1e8540b4.png"></p>
+<p>一张数独的图，拿去在线解密一下就行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;cee3860fb3f4a52e615fa8aaf3c91f2b&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/item/6a495f9ac0ccbbff1e8540b5.png"></p>
 
     </div>
     <footer class="article-footer">
@@ -305,10 +319,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        197k
+        201.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        16:15
+        16:38
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -330,7 +344,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-%E7%99%BE%E8%B6%8A%E6%9D%AF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2018 百越杯 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A9%AC%E7%94%B7%E6%B3%A2%E6%9D%B0%E5%85%8B%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">马男波杰克（签到）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flag-universe%EF%BC%88LSB-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">flag_universe（LSB 隐写）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-%E7%99%BE%E8%B6%8A%E6%9D%AF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2018 百越杯 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A9%AC%E7%94%B7%E6%B3%A2%E6%9D%B0%E5%85%8B%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">马男波杰克（签到）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flag-universe%EF%BC%88LSB-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">flag_universe（LSB 隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%80%E5%B0%8F%E6%9D%BF%E5%A4%A9%E4%B8%8B%E7%AC%AC%E4%B8%80%E5%8F%AF%E7%88%B1%EF%BC%88LSB-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">血小板天下第一可爱（LSB 隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%BE%E5%88%B0%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">签到（签到）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -341,7 +355,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">200</div>
+    <div class="sidebar-state-number">204</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -464,7 +478,7 @@
           description: "",
           stripContent: "2018 百越杯 WriteUp🏛️ 组织架构  主办单位：福建省教育厅与福建省网络与信息安全信息通报中心  承办单位：福建师范大学、福建省网络安全与密码技术重点实验室及永信至诚等   Misc马男波杰克（签到） 题目只说了要百度，然后图片名字是 atool，猜测是 atool 加密，去在线解密一下  flag_universe（LSB 隐写） 打开流量包发现 FTP，直接过滤  然后追踪流量，分析后发现是有上传和下载图片的操作，逐一提取出来 之后发现 up01.png 图片存在 LSB 隐写",
           date: "Wed Jun 13 2018 13:18:00 GMT+0800",
-          updated: "Sat Jun 20 2026 19:18:52 GMT+0800",
+          updated: "Sun Jul 05 2026 03:34:15 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
