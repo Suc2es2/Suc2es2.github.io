@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">204</div>
+    <div class="sidebar-state-number">205</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -160,7 +160,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">178</div>
+    <div class="sidebar-state-number">179</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -245,34 +245,30 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20RCTF/" aria-label="2019 RCTF WriteUp" title="2019 RCTF WriteUp"></a>
+      <a class="post-link" href="/2019/05/22/2019%20HDCTF/" aria-label="2019 HDCTF WriteUp" title="2019 HDCTF WriteUp"></a>
     <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 RCTF WriteUp" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 HDCTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>140 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
+        <span><span class="icon-pencil"></span>2.3k 字</span>
+        <span><span class="icon-clock"></span>10 分钟</span>
       </div>
-      <h2 class="post-title">2019 RCTF WriteUp</h2>
+      <h2 class="post-title">2019 HDCTF WriteUp</h2>
       <article class="post-article">
-          2019 RCTF WriteUp🏛️ 组织架构
-RCTF 2019 由国家创新与发展战略研究会主办，360 集团与南京赛宁信息技术有限公司联合承办
-命题团队为 r3kapig 战队
-⚙️ 赛制与规模
+          2019 HDCTF WriteUp前言主办方：海南大学
+Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程）
+下载附件是一个 .img，使用 vol2 进行取证，先查看操作系统
+1python2 vol.py -f memory.img imageinfo
 
-赛制：采用线上 CTF（Capture The Flag）解题模式（Jeopardy-style）
+发现是 Windows 2003，给出了三个具体的版本
 
-时间：比赛于 2019 年 5 月举行
+查看进程，Server 2003 生命周期中 SP2 是最普遍的版本，所以选择它
+1python2 vol.py -f memory.img --profile=Win2003SP2x86 pslist
 
-规模：赛事在 CTFtime 上的权重为 52.89 分，吸引了全球众多顶尖战队参与
 
-
-Miscdraw（签到）一门叫 logo 的冷门编程语言，在线编译器运行得到图片
-
-flag 就是 RCTF_HeyLogo
-
+dump 出 explorer.exe，它的内存里主
       </article>
     </div>
   </div>
@@ -343,8 +339,51 @@ Vidar
 </div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20%E5%BC%BA%E7%BD%91%E6%9D%AF/" aria-label="2019 强网杯 WriteUp" title="2019 强网杯 WriteUp"></a>
+      <a class="post-link" href="/2019/05/22/2019%20ByteCTF/" aria-label="2019 ByteCTF WriteUp" title="2019 ByteCTF WriteUp"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 ByteCTF WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>231 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
+      </div>
+      <h2 class="post-title">2019 ByteCTF WriteUp</h2>
+      <article class="post-article">
+          2019 ByteCTF WriteUp2019 年 ByteCTF 是由字节跳动主办的首届网络安全攻防大赛
+
+赛事规模：共吸引 4000 余人次报名，722 支高校队伍参赛
+
+比赛时间：线上初赛于 2019 年 9 月 7 日 - 9 月 8 日举行；线下决赛于 10 月 19 日 - 10 月 20 日在北京举行
+
+奖金设置：冠军 80,000 元，亚军 50,000 元，季军 20,000 元，第 4 - 6 名分别获得 10,000、8,000、5,000 元奖金
+
+
+
+
+
+最终排名
+队伍名称
+所属&amp;#x2F;备注
+
+
+
+冠军
+W&amp;amp;M
+联合战队，同时也是线上赛冠军
+
+
+亚军
+N
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019%20%E5%BC%BA%E7%BD%91%E6%9D%AF/" aria-label="2019 强网杯 WriteUp" title="2019 强网杯 WriteUp"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 强网杯 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -387,9 +426,9 @@ Reverse强网
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/Ret2text/" aria-label="Ret2text" title="Ret2text"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2text" class="lazyload">
     </div>
     <div class="post-info">
@@ -418,9 +457,9 @@ text：.text 段，存放程序机器指令的区域
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/%E8%8A%B1%E6%8C%87%E4%BB%A4/" aria-label="花指令" title="花指令"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="花指令" class="lazyload">
     </div>
     <div class="post-info">
@@ -455,9 +494,9 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/04/15/1527%20%E8%8A%AF%E7%89%87/" aria-label="1527 芯片" title="1527 芯片"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="1527 芯片" class="lazyload">
     </div>
     <div class="post-info">
@@ -489,9 +528,9 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/04/14/COTP%20%E5%8D%8F%E8%AE%AE/" aria-label="COTP 协议" title="COTP 协议"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="COTP 协议" class="lazyload">
     </div>
     <div class="post-info">
@@ -527,9 +566,9 @@ Opt
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/04/14/SCD%20%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/" aria-label="SCD 文件" title="SCD 文件"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="SCD 文件" class="lazyload">
     </div>
     <div class="post-info">
@@ -558,9 +597,9 @@ Opt
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/04/14/Omron%20Fins%20%E5%8D%8F%E8%AE%AE/" aria-label="Omron Fins 协议" title="Omron Fins 协议"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Omron Fins 协议" class="lazyload">
     </div>
     <div class="post-info">
@@ -576,37 +615,6 @@ Opt
 FINS（Factory Interface Network Service）是欧姆龙（Omron）为其工业自动化网络设计的核心指令&amp;#x2F;响应系统
 它的核心优势在于能够实现以太网、控制网络和串行通信等多种物理网络间的无缝通信
 协议类型FINS 协议主要在 TCP&amp;#x2F;IP 模型的应用层工作，并有两种主要实现
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/S7comm%20%E5%8D%8F%E8%AE%AE/" aria-label="S7comm 协议" title="S7comm 协议"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="S7comm 协议" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>3k 字</span>
-        <span><span class="icon-clock"></span>14 分钟</span>
-      </div>
-      <h2 class="post-title">S7comm 协议</h2>
-      <article class="post-article">
-          S7comm 协议概述S7comm 是西门子专有的工业控制协议，主要用于西门子S7-300&amp;#x2F;400系列PLC（可编程逻辑控制器）的编程、数据交换和诊断
-报文结构一个典型的 S7comm 报文由三部分组成：
-
-Header (头部)：固定 12 字节，包含协议标识、PDU 类型等关键信息。
-
-Parameter (参数)：长度可变，包含具体的功能码（如读取、写入）及其参数
-
-Data (数据)：长度可变，在写入等操作中携带实际数据
-
-
-通信过程Wireshark 可以清晰捕捉到 S7 通信的建立过程，分为三步：
-
-TCP 三次握手：客户端通过 TCP 端口 102 与 PLC 建立连接
       </article>
     </div>
   </div>
@@ -634,10 +642,10 @@ TCP 三次握手：客户端通过 TCP 端口 102 与 PLC 建立连接
       </div>
       <div>
         <span class="icon-brush"></span>
-        209.5k
+        209.8k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        17:16
+        17:18
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -665,7 +673,7 @@ TCP 三次握手：客户端通过 TCP 端口 102 与 PLC 建立连接
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">204</div>
+    <div class="sidebar-state-number">205</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -673,7 +681,7 @@ TCP 三次握手：客户端通过 TCP 端口 102 与 PLC 建立连接
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">178</div>
+    <div class="sidebar-state-number">179</div>
   </div>
 </div>
 <div class="sidebar-social" >

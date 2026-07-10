@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">204</div>
+    <div class="sidebar-state-number">205</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -160,7 +160,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">178</div>
+    <div class="sidebar-state-number">179</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -245,8 +245,40 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/hackfest2016%20Orcus/" aria-label="VulnHub hackfest2016：Orcus" title="VulnHub hackfest2016：Orcus"></a>
+      <a class="post-link" href="/2026/04/01/zico2%201/" aria-label="VulnHub zico2：1" title="VulnHub zico2：1"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub zico2：1" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-01</span>
+        <span><span class="icon-pencil"></span>510 字</span>
+        <span><span class="icon-clock"></span>3 分钟</span>
+      </div>
+      <h2 class="post-title">VulnHub zico2：1</h2>
+      <article class="post-article">
+          zico2: 1项目地址：https://download.vulnhub.com/btrsys/BTRSys1.rar
+是一个打包好的镜像文件
+注意：导入 vmx 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+本地文件包含page查看 80 端口发现有使用文件包含函数
+
+尝试读取 /etc/passwd 文件成功
+
+弱口令phpLiteAdmin扫描目录发现另一个后台 /dbadmin/
+
+弱口令 admin 登录成功
+
+RCEphpLiteAdmin在 PhpLiteAdmin 主界面找到“Create new database”输入框，输入数据库名 ha
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/01/hackfest2016%20Orcus/" aria-label="VulnHub hackfest2016：Orcus" title="VulnHub hackfest2016：Orcus"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub hackfest2016：Orcus" class="lazyload">
     </div>
     <div class="post-info">
@@ -280,9 +312,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/hackfest2016%20Sedna/" aria-label="VulnHub hackfest2016：Sedna" title="VulnHub hackfest2016：Sedna"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub hackfest2016：Sedna" class="lazyload">
     </div>
     <div class="post-info">
@@ -313,9 +345,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/DC416%202016-Fortress/" aria-label="VulnHub DC416：2016-Fortress" title="VulnHub DC416：2016-Fortress"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub DC416：2016-Fortress" class="lazyload">
     </div>
     <div class="post-info">
@@ -352,9 +384,9 @@ BP 抓包使用换行符绕过
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/pluck%201/" aria-label="VulnHub pluck：1" title="VulnHub pluck：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub pluck：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -382,9 +414,9 @@ BP 抓包使用换行符绕过
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/Breach%201/" aria-label="VulnHub Breach：1" title="VulnHub Breach：1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Breach：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -418,9 +450,9 @@ CTFTLS 流量解密点击 Inbox 发现有三封邮件
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/PwnLab%20%20init/" aria-label="VulnHub PwnLab：init" title="VulnHub PwnLab：init"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub PwnLab：init" class="lazyload">
     </div>
     <div class="post-info">
@@ -448,9 +480,9 @@ CTFTLS 流量解密点击 Inbox 发现有三封邮件
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/6Days%20Lab%201.1/" aria-label="VulnHub 6Days Lab：1.1" title="VulnHub 6Days Lab：1.1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub 6Days Lab：1.1" class="lazyload">
     </div>
     <div class="post-info">
@@ -481,9 +513,9 @@ CTFTLS 流量解密点击 Inbox 发现有三封邮件
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/Violator%201/" aria-label="VulnHub Violator：1" title="VulnHub Violator：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Violator：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -509,9 +541,9 @@ CTFTLS 流量解密点击 Inbox 发现有三封邮件
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/Milnet%201/" aria-label="VulnHub Milnet：1" title="VulnHub Milnet：1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Milnet：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -541,37 +573,6 @@ RCERFI（反弹 Shell）扫描目录发现 phpinfo 文件，开启了远程文�
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/Gibson%200.2/" aria-label="VulnHub Gibson：0.2" title="VulnHub Gibson：0.2"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Gibson：0.2" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-01</span>
-        <span><span class="icon-pencil"></span>548 字</span>
-        <span><span class="icon-clock"></span>3 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub Gibson：0.2</h2>
-      <article class="post-article">
-          Gibson: 0.2项目地址：https://download.vulnhub.com/gibson/gibson.ova
-是一个打包好的镜像文件
-注意：导入 vmx 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-查看 80 端口源代码在注释中找到线索
-
-弱口令SSH根据前面给出的线索登录成功
-1margo:god
-
-
-提权&amp;#x2F;usr&amp;#x2F;bin&amp;#x2F;convert ImageMagick（CVE-2016-3714）检查权限发现可以使用 /usr/bin/convert
-/usr/bin/convert 是 ImageMagick 图像
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/8/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/10/">下一页 &raquo;</a>
   </nav>
@@ -595,10 +596,10 @@ RCERFI（反弹 Shell）扫描目录发现 phpinfo 文件，开启了远程文�
       </div>
       <div>
         <span class="icon-brush"></span>
-        209.5k
+        209.8k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        17:16
+        17:18
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -626,7 +627,7 @@ RCERFI（反弹 Shell）扫描目录发现 phpinfo 文件，开启了远程文�
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">204</div>
+    <div class="sidebar-state-number">205</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -634,7 +635,7 @@ RCERFI（反弹 Shell）扫描目录发现 phpinfo 文件，开启了远程文�
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">178</div>
+    <div class="sidebar-state-number">179</div>
   </div>
 </div>
 <div class="sidebar-social" >
