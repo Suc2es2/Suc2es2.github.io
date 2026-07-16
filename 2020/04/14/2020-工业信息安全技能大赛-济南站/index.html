@@ -38,14 +38,19 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a36ffe32830ce602a51136e.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a37114a2830ce602a513acc.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a3713712830ce602a513adb.png">
+<meta property="og:image" content="https://pic.imgdb.cn/i/033pJtWj7kJ7CaF8OUoVZM.png">
+<meta property="og:image" content="https://pic.imgdb.cn/i/033pmCWz2arTprt83vIpyy.png">
+<meta property="og:image" content="https://pic.imgdb.cn/i/033pmYgInWJqNL3Ljl7j5q.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a3701102830ce602a511372.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a3e581d99bccaf16ccd506f.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a3e59a399bccaf16ccd513c.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a3e6c2b99bccaf16ccdef13.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a3e6fb799bccaf16ccdf10c.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a3710042830ce602a513acb.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a51fa567834d9f07b3a8ebe.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6a5205667834d9f07b3ac0dd.png">
 <meta property="article:published_time" content="2020-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-07-10T21:00:54.907Z">
+<meta property="article:modified_time" content="2026-07-15T07:23:35.653Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
@@ -167,7 +172,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B5%8E%E5%8D%97%E7%AB%99-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 工业信息安全技能大赛-济南站 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#COTP%EF%BC%88COTP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">COTP（COTP 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E5%A4%A7%E6%A5%BC%E7%9A%84%E9%81%93%E9%97%B8%E6%80%8E%E4%B9%88%E5%9D%8F%E4%BA%86%EF%BC%881527-%E8%8A%AF%E7%89%87%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">工控大楼的道闸怎么坏了（1527 芯片）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%84%E9%9C%B2%E7%9A%84%E4%BF%A1%E5%8F%B7%EF%BC%88%E6%97%A0%E7%BA%BF-IQ-%E4%BF%A1%E5%8F%B7%E5%88%86%E6%9E%90-%E9%A2%91%E8%B0%B1%E5%9B%BE%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">泄露的信号（无线 IQ 信号分析 + 频谱图隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A2%AB%E7%AF%A1%E6%94%B9%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%88S7comm-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">被篡改的数据（S7comm 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E7%89%A9%E8%81%94%E7%BD%91%E6%99%BA%E8%83%BD%E7%BD%91%E5%85%B3%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88MQTT-%E5%8D%8F%E8%AE%AE-PNG-%E5%AE%BD%E9%AB%98%E7%AF%A1%E6%94%B9-LSB-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.5.</span> <span class="toc-text">工业物联网智能网关数据分析（MQTT 协议 + PNG 宽高篡改 + LSB 隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E5%8D%8F%E8%AE%AE%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88ARP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.6.</span> <span class="toc-text">工控协议数据分析（ARP 协议）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-number">1.2.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%90%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%AE%BE%E5%A4%87%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7%E5%8C%85%EF%BC%88VxWorks-%E5%9B%BA%E4%BB%B6%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">某嵌入式设备固件升级包（VxWorks 固件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ddddynamic%EF%BC%88%E7%AE%97%E6%B3%95%E4%BC%98%E5%8C%96%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">ddddynamic（算法优化）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B5%8E%E5%8D%97%E7%AB%99-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 工业信息安全技能大赛-济南站 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#COTP%EF%BC%88COTP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">COTP（COTP 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E5%A4%A7%E6%A5%BC%E7%9A%84%E9%81%93%E9%97%B8%E6%80%8E%E4%B9%88%E5%9D%8F%E4%BA%86%EF%BC%881527-%E8%8A%AF%E7%89%87%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">工控大楼的道闸怎么坏了（1527 芯片）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%84%E9%9C%B2%E7%9A%84%E4%BF%A1%E5%8F%B7%EF%BC%88%E6%97%A0%E7%BA%BF-IQ-%E4%BF%A1%E5%8F%B7%E5%88%86%E6%9E%90-%E9%A2%91%E8%B0%B1%E5%9B%BE%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">泄露的信号（无线 IQ 信号分析 + 频谱图隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A2%AB%E7%AF%A1%E6%94%B9%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%88S7comm-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">被篡改的数据（S7comm 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E7%89%A9%E8%81%94%E7%BD%91%E6%99%BA%E8%83%BD%E7%BD%91%E5%85%B3%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88MQTT-%E5%8D%8F%E8%AE%AE-PNG-%E5%AE%BD%E9%AB%98%E7%AF%A1%E6%94%B9-LSB-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.5.</span> <span class="toc-text">工业物联网智能网关数据分析（MQTT 协议 + PNG 宽高篡改 + LSB 隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E5%8D%8F%E8%AE%AE%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88ARP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.6.</span> <span class="toc-text">工控协议数据分析（ARP 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%B8%E6%9C%BA%E7%9A%84%E8%BA%AB%E4%BB%BD%EF%BC%88JT-T808-%E8%BD%A6%E8%BD%BD%E7%BB%88%E7%AB%AF%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.7.</span> <span class="toc-text">司机的身份（JT&#x2F;T808 车载终端通信协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%87%E6%80%AA%E7%9A%84%E5%A3%B0%E9%9F%B3%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.8.</span> <span class="toc-text">奇怪的声音（签到）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-number">1.2.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%90%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%AE%BE%E5%A4%87%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7%E5%8C%85%EF%BC%88VxWorks-%E5%9B%BA%E4%BB%B6%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">某嵌入式设备固件升级包（VxWorks 固件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ddddynamic%EF%BC%88%E7%AE%97%E6%B3%95%E4%BC%98%E5%8C%96%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">ddddynamic（算法优化）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IoT%EF%BC%88RISC-V-%E6%9E%B6%E6%9E%84-XOR%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">IoT（RISC-V 架构 + XOR）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -178,7 +183,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">205</div>
+    <div class="sidebar-state-number">206</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -186,7 +191,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">179</div>
+    <div class="sidebar-state-number">181</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -245,7 +250,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2020-04-14T05:18:00.000Z" itemprop="datePublished">2020-04-14</time>
-    <time style="display: none;" id="post-update-time">2026-07-11</time>
+    <time style="display: none;" id="post-update-time">2026-07-15</time>
   </span>
 </div>
 
@@ -357,6 +362,37 @@
 <p><img src="https://pic1.imgdb.cn/item/6a3713712830ce602a513adb.png"></p>
 <p><code>192.168.1.0/24</code> 中的 <code>192.168.1.0</code> 是网络地址，正常不应该被配置为主机地址或网关地址</p>
 <p>所以这里的异常点是 PLC &#x2F; 工控设备可能配置了错误的网关、通信目标或网络参数，导致它不断尝试 ARP 解析 <code>192.168.1.0</code> 从而产生大量告警日志</p>
+<h3 id="司机的身份（JT-T808-车载终端通信协议）"><a href="#司机的身份（JT-T808-车载终端通信协议）" class="headerlink" title="司机的身份（JT&#x2F;T808 车载终端通信协议）"></a>司机的身份（JT&#x2F;T808 车载终端通信协议）</h3><p><img src="https://pic.imgdb.cn/i/033pJtWj7kJ7CaF8OUoVZM.png" alt="pasted_1784030036432_94e7qb.png"></p>
+<p>打开流量包可以发现大量以 <code>7e</code> 开头、<code>7e</code> 结尾的 JT&#x2F;T 808 帧</p>
+<p><img src="https://pic.imgdb.cn/i/033pmCWz2arTprt83vIpyy.png" alt="pasted_1784099243714_u78427.png"></p>
+<p>在 No.16 流量中，其中关键报文头</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">07 02 40 eb 01 00 00 00 00 01 77 70 64 12 11 00 72</span><br></pre></td></tr></table></figure>
+
+<p>解析</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">消息 ID：0x0702</span><br><span class="line">消息体属性：0x40eb</span><br><span class="line">协议版本：0x01</span><br><span class="line">终端号：00000000017770641211</span><br><span class="line">流水号：0x0072</span><br><span class="line">消息体长度：0x00eb = 235</span><br></pre></td></tr></table></figure>
+
+<p><code>0x0702</code> 正好是驾驶员身份信息采集上报，消息体开头为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">01                  状态：IC 卡插入</span><br><span class="line">20 06 27 09 48 56   时间：2020-06-27 09:48:56</span><br><span class="line">00                  IC 卡读取成功</span><br><span class="line">b4                  驾驶员姓名长度：0xb4 = 180 字节</span><br></pre></td></tr></table></figure>
+
+<p>取出这 180 字节发现是 UTF-16BE。每两个字节对应一个汉字</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">8a f8 -&gt; 諸</span><br><span class="line">96 b8 -&gt; 隸</span><br><span class="line">50 e7 -&gt; 僧</span><br><span class="line">96 4d -&gt; 降</span><br><span class="line">54 3d -&gt; 吽</span><br></pre></td></tr></table></figure>
+
+<p>完整取出来得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">諸隸僧降吽諸陀摩隸僧缽薩願皤耨皤眾劫阿我皤慧阿亦皤我哆兜降嚤祗愍皤迦闍眾皤陀亦聞宣咤迦劫薩囉愍聞須皤塞迦皤諦亦劫亦皤闍願皤咤修闍薩嚤宣皤我菩菩皤迦聞諦婆亦聞皤阿薩所願如空如如囑皤囑</span><br></pre></td></tr></table></figure>
+
+<p>用 “新约佛论禅 &#x2F; 新佛曰” 解密，得到一串 Base64</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TVpXR0NaMzNJTlpIUzREWkdBWVhHUlRWSlo2UT09PT0=</span><br></pre></td></tr></table></figure>
+
+<p>连续 Base 解码得到 <code>flag{Crypy01sFuN}</code></p>
+<h3 id="奇怪的声音（签到）"><a href="#奇怪的声音（签到）" class="headerlink" title="奇怪的声音（签到）"></a>奇怪的声音（签到）</h3><p><img src="https://pic.imgdb.cn/i/033pmYgInWJqNL3Ljl7j5q.png" alt="pasted_1784100116123_fchjm9.png"></p>
+<p>在识别过程中第一个摩斯码为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">---.. -- ..... ..--- ---.. ..- -.- --... ....- .... --... -....</span><br></pre></td></tr></table></figure>
+
+<p>而倒数第二位的 <code>--...</code> 并没有这个莫斯码，所以要将音频文件倒放</p>
+<p>倒放过来得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">....- ...-- .... -.... ...-- -.- -.. ..--- ---.. ..... -- ..---</span><br></pre></td></tr></table></figure>
+
+<p>经过转换得到 <code>flag{43h63kd285m2}</code></p>
 <h2 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h2><h3 id="某嵌入式设备固件升级包（VxWorks-固件）"><a href="#某嵌入式设备固件升级包（VxWorks-固件）" class="headerlink" title="某嵌入式设备固件升级包（VxWorks 固件）"></a>某嵌入式设备固件升级包（VxWorks 固件）</h3><p><img src="https://pic1.imgdb.cn/item/6a3701102830ce602a511372.png"></p>
 <p>题目给出的是一个名为 <code>UpgradePackage.bin</code> 的固件升级包</p>
 <p>首先需要理解固件升级包的常见结构：大多数升级包包含一个明文头部（记录设备型号、版本等信息），后面跟着压缩或加密的固件本体</p>
@@ -444,6 +480,56 @@
 <p>所以它找的是最长非降子序列</p>
 <p>因为数组元素只在 0 ~ 10 之间，所以最长非降子序列可以用很简单的 <code>DP</code> 求</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">MOD = <span class="number">2147483647</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">glibc_rand</span>(<span class="params">seed</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    glibc random()/rand() 生成器</span></span><br><span class="line"><span class="string">    验证：seed=1 时前几个输出应为：</span></span><br><span class="line"><span class="string">    1804289383, 846930886, 1681692777...</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> seed == <span class="number">0</span>:</span><br><span class="line">        seed = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    r = [<span class="number">0</span>] * <span class="number">34</span></span><br><span class="line">    r[<span class="number">0</span>] = seed &amp; <span class="number">0xffffffff</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">31</span>):</span><br><span class="line">        prev = r[i - <span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> prev &gt;= <span class="number">2</span>**<span class="number">31</span>:</span><br><span class="line">            prev -= <span class="number">2</span>**<span class="number">32</span></span><br><span class="line">        r[i] = (<span class="number">16807</span> * prev) % MOD</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">31</span>, <span class="number">34</span>):</span><br><span class="line">        r[i] = r[i - <span class="number">31</span>]</span><br><span class="line"></span><br><span class="line">    i = <span class="number">34</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        val = (r[i - <span class="number">31</span>] + r[i - <span class="number">3</span>]) &amp; <span class="number">0xffffffff</span></span><br><span class="line">        r.append(val)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> i &gt;= <span class="number">344</span>:</span><br><span class="line">            <span class="keyword">yield</span> val &gt;&gt; <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">lnds_len</span>(<span class="params">seq</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    最长非降子序列长度</span></span><br><span class="line"><span class="string">    seq[i] 范围为 0~10</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    dp = [<span class="number">0</span>] * <span class="number">11</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> seq:</span><br><span class="line">        best = <span class="built_in">max</span>(dp[:x + <span class="number">1</span>]) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> best &gt; dp[x]:</span><br><span class="line">            dp[x] = best</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">max</span>(dp)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">seed = <span class="number">0x666c6167</span></span><br><span class="line">rng = glibc_rand(seed)</span><br><span class="line"></span><br><span class="line">chars = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> round_id <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">11</span>):</span><br><span class="line">    arr = [<span class="built_in">next</span>(rng) % <span class="number">11</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10000</span>)]</span><br><span class="line"></span><br><span class="line">    lis = lnds_len(arr)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># solve() 里会把长度加 0x22，最后取低 8 位作为字符</span></span><br><span class="line">    ch = (lis + <span class="number">0x22</span>) &amp; <span class="number">0xff</span></span><br><span class="line">    chars.append(<span class="built_in">chr</span>(ch))</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(</span><br><span class="line">        round_id,</span><br><span class="line">        <span class="string">&quot;LNDS =&quot;</span>, lis,</span><br><span class="line">        <span class="string">&quot;value =&quot;</span>, <span class="built_in">hex</span>(lis + <span class="number">0x22</span>),</span><br><span class="line">        <span class="string">&quot;char =&quot;</span>, <span class="built_in">chr</span>(ch)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">middle = <span class="string">&quot;&quot;</span>.join(chars)</span><br><span class="line">flag = <span class="string">f&quot;flag&#123;&#123;<span class="subst">&#123;middle&#125;</span>&#125;&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+
+<h3 id="IoT（RISC-V-架构-XOR）"><a href="#IoT（RISC-V-架构-XOR）" class="headerlink" title="IoT（RISC-V 架构 + XOR）"></a>IoT（RISC-V 架构 + XOR）</h3><p><img src="https://pic1.imgdb.cn/item/6a51fa567834d9f07b3a8ebe.png"></p>
+<p>IDA 逆向，根据流程图一步一步来</p>
+<p><img src="https://pic1.imgdb.cn/item/6a5205667834d9f07b3ac0dd.png"></p>
+<p><code>main</code> 函数用途：</p>
+<ul>
+<li><p>调用 <code>scanf</code> 从标准输入读取字符串到全局缓冲区 <code>str</code></p>
+</li>
+<li><p>调用 <code>strlen</code> 获取输入长度</p>
+</li>
+<li><p>若长度等于 20，则跳转到 <code>loc_1018E</code> 进入处理逻辑；否则顺序执行</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">main:</span><br><span class="line">var_s0   =  0</span><br><span class="line">var_s8   =  8</span><br><span class="line">var_s10  = 10h</span><br><span class="line">arg_0    = 18h</span><br><span class="line"></span><br><span class="line">addi    sp, sp, -30h          ; 分配栈空间 0x30 字节</span><br><span class="line">sd      ra, 18h+var_s10(sp)   ; 保存返回地址到 sp+0x10</span><br><span class="line">sd      s0, 18h+var_s8(sp)    ; 保存 s0 到 sp+0x8</span><br><span class="line">sd      s1, 18h+var_s0(sp)    ; 保存 s1 到 sp+0x0</span><br><span class="line">addi    s0, sp, 18h+arg_0     ; 设置帧指针 s0 = sp + 0x18</span><br><span class="line">lui     a5, %hi(str)          ; 加载 str 地址高20位</span><br><span class="line">addi    a1, a5, %lo(str)      ; a1 = str 完整地址（scanf 第二个参数）</span><br><span class="line">lui     a5, %hi(unk_1F3D0)    ; 加载格式字符串高20位</span><br><span class="line">addi    a0, a5, %lo(unk_1F3D0); a0 = 格式字符串（scanf 第一个参数）</span><br><span class="line">jal     scanf                 ; 调用 scanf</span><br><span class="line">lui     a5, %hi(str)          ; 重新加载 str 地址</span><br><span class="line">addi    a0, a5, %lo(str)      ; a0 = str</span><br><span class="line">jal     strlen                ; 调用 strlen，返回值在 a0</span><br><span class="line">mv      a4, a0                ; a4 = 字符串长度</span><br><span class="line">li      a5, 0x14              ; a5 = 20</span><br><span class="line">beq     a4, a5, loc_1018E     ; 如果长度等于 20 则跳转到 loc_1018E</span><br></pre></td></tr></table></figure>
+
+<p><code>loc_1018E</code> 函数用途：</p>
+<ul>
+<li>将局部变量 <code>i</code> 置零，然后跳到 <code>loc_101F4</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">loc_1018E:</span><br><span class="line">sw      zero, -24h(s0)       ; 将 0 存入 s0-0x24 处（局部变量初始化）</span><br><span class="line">j       loc_101F4            ; 无条件跳转到 loc_101F4</span><br></pre></td></tr></table></figure>
+
+<p><code>loc_101F4</code> 函数用途：</p>
+<ul>
+<li><p>从栈上重新加载 <code>i</code>，调用 <code>strlen</code> 获得长度 20，用 <code>bltu</code> 比较，若 <code>i &lt; 20</code> 则跳回 <code>loc_10194</code>（循环体），否则退出循环</p>
+</li>
+<li><p>实现一个 20 次迭代的 <code>for</code> 循环，用于逐字节处理输入字符串</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">loc_101F4:</span><br><span class="line">lw      s1, -24h(s0)          ; s1 = i （从栈上局部变量加载）</span><br><span class="line">lui     a5, %hi(str)          ; 加载 str 地址高 20 位</span><br><span class="line">addi    a0, a5, %lo(str)      ; a0 = str （输入缓冲区）</span><br><span class="line">jal     strlen                ; 调用 strlen(str)</span><br><span class="line">mv      a5, a0                ; a5 = 字符串长度 (应为 20)</span><br><span class="line">bltu    s1, a5, loc_10194     ; 如果 i &lt; 长度则跳转到 loc_10194（循环体）</span><br><span class="line">                              ; 否则顺序执行（退出循环）</span><br></pre></td></tr></table></figure>
+
+<p>该循环体对输入字符串 <code>str</code> 的每个字符 <code>str[i]</code> 进行如下操作：</p>
+<ul>
+<li><p>读取 <code>str[i]</code></p>
+</li>
+<li><p>从 <code>xor</code> 表中读取一个 32 位整数 <code>xor[i]</code></p>
+</li>
+<li><p>计算 <code>xor[i] ^ str[i]</code></p>
+</li>
+<li><p>从 <code>__DATA_BEGIN__</code> 表中读取 <code>expected[i]</code></p>
+</li>
+<li><p>比较 <code>xor[i] ^ str[i]</code> 与 <code>expected[i]</code></p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">loc_10194:</span><br><span class="line">lui     a5, %hi(str)            ; a5 = str 的高 20 位地址</span><br><span class="line">addi    a4, a5, %lo(str)        ; a4 = str 的完整地址</span><br><span class="line">lw      a5, -24h(s0)            ; a5 = i （从栈上加载循环计数器）</span><br><span class="line">add     a5, a5, a4              ; a5 = &amp;str[i]</span><br><span class="line">lbu     a5, 0(a5)               ; a5 = str[i]（无符号字节）</span><br><span class="line">sext.w  a4, a5                  ; a4 = 将字节符号扩展为 32 位（实际仍为原值）</span><br><span class="line">lui     a5, %hi(xor)            ; 加载 xor 表地址</span><br><span class="line">addi    a3, a5, %lo(xor)        ; a3 = xor 表基址</span><br><span class="line">lw      a5, -24h(s0)            ; a5 = i</span><br><span class="line">slli    a5, a5, 2               ; a5 = i * 4 （因为 xor 表是 4 字节整数数组）</span><br><span class="line">add     a5, a5, a3              ; a5 = &amp;xor[i]</span><br><span class="line">lw      a5, 0(a5)               ; a5 = xor[i] （32 位值）</span><br><span class="line">xor     a5, a5, a4              ; a5 = xor[i] ^ str[i] （32 位异或，高 24 位为 0）</span><br><span class="line">sext.w  a3, a5                  ; a3 = 异或结果（符号扩展，实际低位有效）</span><br><span class="line">lui     a5, %hi(__DATA_BEGIN__) ; 加载 __DATA_BEGIN__ 表地址</span><br><span class="line">addi    a4, a5, %lo(__DATA_BEGIN__) ; a4 = __DATA_BEGIN__ 基址</span><br><span class="line">lw      a5, -24h(s0)            ; a5 = i</span><br><span class="line">slli    a5, a5, 2               ; a5 = i * 4</span><br><span class="line">add     a5, a5, a4              ; a5 = &amp;__DATA_BEGIN__[i]</span><br><span class="line">lw      a5, 0(a5)               ; a5 = __DATA_BEGIN__[i]</span><br><span class="line">mv      a4, a3                  ; a4 = 异或结果</span><br><span class="line">beq     a4, a5, loc_101EA       ; 如果 xor[i] ^ str[i] == __DATA_BEGIN__[i] 则跳转到 loc_101EA</span><br><span class="line">                                 ; 否则顺序执行（可能走向失败路径）</span><br></pre></td></tr></table></figure>
+
+<p>提取 <code>xor</code> 表和 <code>__DATA_BEGIN__</code> 的数据解密</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 已知的 xor 表与 expected 表（32 位整数数组）</span></span><br><span class="line">xor_table = [</span><br><span class="line">    <span class="number">159</span>, <span class="number">249</span>, <span class="number">383</span>, <span class="number">227</span>, <span class="number">56</span>,</span><br><span class="line">    <span class="number">326</span>, <span class="number">295</span>, <span class="number">468</span>, <span class="number">315</span>, <span class="number">321</span>,</span><br><span class="line">    <span class="number">364</span>, <span class="number">129</span>, <span class="number">236</span>, <span class="number">72</span>, <span class="number">444</span>,</span><br><span class="line">    <span class="number">141</span>, <span class="number">309</span>, <span class="number">392</span>, <span class="number">231</span>, <span class="number">377</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">expected = [</span><br><span class="line">    <span class="number">249</span>, <span class="number">149</span>, <span class="number">286</span>, <span class="number">132</span>, <span class="number">67</span>,</span><br><span class="line">    <span class="number">286</span>, <span class="number">328</span>, <span class="number">390</span>, <span class="number">356</span>, <span class="number">264</span>,</span><br><span class="line">    <span class="number">345</span>, <span class="number">222</span>, <span class="number">191</span>, <span class="number">120</span>, <span class="number">483</span>,</span><br><span class="line">    <span class="number">200</span>, <span class="number">340</span>, <span class="number">507</span>, <span class="number">158</span>, <span class="number">260</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算密钥字节：低 8 位异或</span></span><br><span class="line">key_bytes = [(x ^ e) &amp; <span class="number">0xFF</span> <span class="keyword">for</span> x, e <span class="keyword">in</span> <span class="built_in">zip</span>(xor_table, expected)]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转换为字节串并输出</span></span><br><span class="line">key = <span class="built_in">bytes</span>(key_bytes)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Key bytes:&quot;</span>, key)</span><br></pre></td></tr></table></figure>
+
+<p>最后得到 <code>flag{XoR_I5_S0_Easy}</code></p>
+
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/CTF/" title="CTF" data-aos="zoom-in">CTF</a>
@@ -454,19 +540,19 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-湖州站 WriteUp" class="lazyload">
-        <a href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B9%96%E5%B7%9E%E7%AB%99/" aria-label="前一篇: 2020 工业信息安全技能大赛-湖州站 WriteUp" title="前一篇: 2020 工业信息安全技能大赛-湖州站 WriteUp"></a>
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 BJDCTF WriteUp" class="lazyload">
+        <a href="/2020/04/14/2020%20BJDCTF/" aria-label="前一篇: 2020 BJDCTF WriteUp" title="前一篇: 2020 BJDCTF WriteUp"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            2020 工业信息安全技能大赛-湖州站 WriteUp
+            2020 BJDCTF WriteUp
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-石家庄站 WriteUp" class="lazyload">
-      <a href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E7%9F%B3%E5%AE%B6%E5%BA%84%E7%AB%99/" aria-label="后一篇: 2020 工业信息安全技能大赛-石家庄站 WriteUp"  title="后一篇: 2020 工业信息安全技能大赛-石家庄站 WriteUp"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-湖州站 WriteUp" class="lazyload">
+      <a href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B9%96%E5%B7%9E%E7%AB%99/" aria-label="后一篇: 2020 工业信息安全技能大赛-湖州站 WriteUp"  title="后一篇: 2020 工业信息安全技能大赛-湖州站 WriteUp"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          2020 工业信息安全技能大赛-石家庄站 WriteUp
+          2020 工业信息安全技能大赛-湖州站 WriteUp
       </h3>
     </div>
   </nav>
@@ -493,10 +579,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        209.8k
+        217k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        17:18
+        17:55
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -518,7 +604,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B5%8E%E5%8D%97%E7%AB%99-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 工业信息安全技能大赛-济南站 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#COTP%EF%BC%88COTP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">COTP（COTP 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E5%A4%A7%E6%A5%BC%E7%9A%84%E9%81%93%E9%97%B8%E6%80%8E%E4%B9%88%E5%9D%8F%E4%BA%86%EF%BC%881527-%E8%8A%AF%E7%89%87%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">工控大楼的道闸怎么坏了（1527 芯片）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%84%E9%9C%B2%E7%9A%84%E4%BF%A1%E5%8F%B7%EF%BC%88%E6%97%A0%E7%BA%BF-IQ-%E4%BF%A1%E5%8F%B7%E5%88%86%E6%9E%90-%E9%A2%91%E8%B0%B1%E5%9B%BE%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">泄露的信号（无线 IQ 信号分析 + 频谱图隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A2%AB%E7%AF%A1%E6%94%B9%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%88S7comm-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">被篡改的数据（S7comm 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E7%89%A9%E8%81%94%E7%BD%91%E6%99%BA%E8%83%BD%E7%BD%91%E5%85%B3%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88MQTT-%E5%8D%8F%E8%AE%AE-PNG-%E5%AE%BD%E9%AB%98%E7%AF%A1%E6%94%B9-LSB-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.5.</span> <span class="toc-text">工业物联网智能网关数据分析（MQTT 协议 + PNG 宽高篡改 + LSB 隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E5%8D%8F%E8%AE%AE%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88ARP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.6.</span> <span class="toc-text">工控协议数据分析（ARP 协议）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-number">1.2.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%90%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%AE%BE%E5%A4%87%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7%E5%8C%85%EF%BC%88VxWorks-%E5%9B%BA%E4%BB%B6%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">某嵌入式设备固件升级包（VxWorks 固件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ddddynamic%EF%BC%88%E7%AE%97%E6%B3%95%E4%BC%98%E5%8C%96%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">ddddynamic（算法优化）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B5%8E%E5%8D%97%E7%AB%99-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 工业信息安全技能大赛-济南站 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#COTP%EF%BC%88COTP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">COTP（COTP 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E5%A4%A7%E6%A5%BC%E7%9A%84%E9%81%93%E9%97%B8%E6%80%8E%E4%B9%88%E5%9D%8F%E4%BA%86%EF%BC%881527-%E8%8A%AF%E7%89%87%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">工控大楼的道闸怎么坏了（1527 芯片）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%84%E9%9C%B2%E7%9A%84%E4%BF%A1%E5%8F%B7%EF%BC%88%E6%97%A0%E7%BA%BF-IQ-%E4%BF%A1%E5%8F%B7%E5%88%86%E6%9E%90-%E9%A2%91%E8%B0%B1%E5%9B%BE%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">泄露的信号（无线 IQ 信号分析 + 频谱图隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A2%AB%E7%AF%A1%E6%94%B9%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%88S7comm-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">被篡改的数据（S7comm 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%B8%9A%E7%89%A9%E8%81%94%E7%BD%91%E6%99%BA%E8%83%BD%E7%BD%91%E5%85%B3%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88MQTT-%E5%8D%8F%E8%AE%AE-PNG-%E5%AE%BD%E9%AB%98%E7%AF%A1%E6%94%B9-LSB-%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.1.5.</span> <span class="toc-text">工业物联网智能网关数据分析（MQTT 协议 + PNG 宽高篡改 + LSB 隐写）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E5%8D%8F%E8%AE%AE%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88ARP-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.6.</span> <span class="toc-text">工控协议数据分析（ARP 协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%B8%E6%9C%BA%E7%9A%84%E8%BA%AB%E4%BB%BD%EF%BC%88JT-T808-%E8%BD%A6%E8%BD%BD%E7%BB%88%E7%AB%AF%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.7.</span> <span class="toc-text">司机的身份（JT&#x2F;T808 车载终端通信协议）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%87%E6%80%AA%E7%9A%84%E5%A3%B0%E9%9F%B3%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.8.</span> <span class="toc-text">奇怪的声音（签到）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-number">1.2.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%90%E5%B5%8C%E5%85%A5%E5%BC%8F%E8%AE%BE%E5%A4%87%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7%E5%8C%85%EF%BC%88VxWorks-%E5%9B%BA%E4%BB%B6%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">某嵌入式设备固件升级包（VxWorks 固件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ddddynamic%EF%BC%88%E7%AE%97%E6%B3%95%E4%BC%98%E5%8C%96%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">ddddynamic（算法优化）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IoT%EF%BC%88RISC-V-%E6%9E%B6%E6%9E%84-XOR%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">IoT（RISC-V 架构 + XOR）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -529,7 +615,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">205</div>
+    <div class="sidebar-state-number">206</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -537,7 +623,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">179</div>
+    <div class="sidebar-state-number">181</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -652,7 +738,7 @@
           description: "",
           stripContent: "2020 工业信息安全技能大赛-济南站 WriteUpMiscCOTP（COTP 协议） 一眼过去全是 COTP 协议，过滤下  COTP 协议默认端口是 102，所以 192.168.99.22 是工控设备  再新增 ip.src == 192.168.99.22 过滤下，查看工控响应的内容有没有什么异常  第 217 个包长度突然不一样，是之前的两倍  Payload 中还能看到明显的设备信息字符串 16ES7 211-1BE51-0XB0 ;V3.0  这说明攻击者&amp;#x2F;扫描方正在读",
           date: "Tue Apr 14 2020 13:18:00 GMT+0800",
-          updated: "Sat Jul 11 2026 05:00:54 GMT+0800",
+          updated: "Wed Jul 15 2026 15:23:35 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
