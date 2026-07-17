@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">206</div>
+    <div class="sidebar-state-number">209</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -160,7 +160,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">181</div>
+    <div class="sidebar-state-number">182</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -245,38 +245,8 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20HDCTF/" aria-label="2019 HDCTF WriteUp" title="2019 HDCTF WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 HDCTF WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>2.3k 字</span>
-        <span><span class="icon-clock"></span>10 分钟</span>
-      </div>
-      <h2 class="post-title">2019 HDCTF WriteUp</h2>
-      <article class="post-article">
-          2019 HDCTF WriteUp前言主办方：海南大学
-Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程）
-下载附件是一个 .img，使用 vol2 进行取证，先查看操作系统
-1python2 vol.py -f memory.img imageinfo
-
-发现是 Windows 2003，给出了三个具体的版本
-
-查看进程，Server 2003 生命周期中 SP2 是最普遍的版本，所以选择它
-1python2 vol.py -f memory.img --profile=Win2003SP2x86 pslist
-
-
-dump 出 explorer.exe，它的内存里主
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/2019%20ByteCTF/" aria-label="2019 ByteCTF WriteUp" title="2019 ByteCTF WriteUp"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 ByteCTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -317,6 +287,36 @@ N
   </div>
 </div>
       <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019%20HDCTF/" aria-label="2019 HDCTF WriteUp" title="2019 HDCTF WriteUp"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 HDCTF WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>2.3k 字</span>
+        <span><span class="icon-clock"></span>10 分钟</span>
+      </div>
+      <h2 class="post-title">2019 HDCTF WriteUp</h2>
+      <article class="post-article">
+          2019 HDCTF WriteUp前言主办方：海南大学
+Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程）
+下载附件是一个 .img，使用 vol2 进行取证，先查看操作系统
+1python2 vol.py -f memory.img imageinfo
+
+发现是 Windows 2003，给出了三个具体的版本
+
+查看进程，Server 2003 生命周期中 SP2 是最普遍的版本，所以选择它
+1python2 vol.py -f memory.img --profile=Win2003SP2x86 pslist
+
+
+dump 出 explorer.exe，它的内存里主
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/2019%20RCTF/" aria-label="2019 RCTF WriteUp" title="2019 RCTF WriteUp"></a>
     <div class="post-cover left">
@@ -352,8 +352,72 @@ flag 就是 RCTF_HeyLogo
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20%E5%BC%BA%E7%BD%91%E6%9D%AF/" aria-label="2019 强网杯 WriteUp" title="2019 强网杯 WriteUp"></a>
+      <a class="post-link" href="/2019/05/22/2019%20RoarCTF/" aria-label="2019 RoarCTF WriteUp" title="2019 RoarCTF WriteUp"></a>
     <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 RoarCTF WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>334 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">2019 RoarCTF WriteUp</h2>
+      <article class="post-article">
+          2019 RoarCTF WriteUp🏛️ 组织架构与规模
+
+主办方：由国内知名信息安全媒体“嘶吼（4hou）”与 W&amp;amp;M 战队联合主办
+
+比赛时间：2019 年 10 月 12 日 10:00 至 10 月 14 日 10:00，共计 48 小时
+
+比赛赛制：线上 Jeopardy-style（ jeopardy 解题模式） CTF
+
+参赛规模：吸引了全球超过 2000 名选手参与
+
+
+
+
+
+排名
+队伍名称
+解题数
+得分
+
+
+
+1
+0ops
+25
+14407
+
+
+2
+whitzard
+23
+12931
+
+
+3
+星盟突击队
+19
+9151
+
+
+4
+Vidar
+17
+7507
+
+
+5
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019%20%E5%BC%BA%E7%BD%91%E6%9D%AF/" aria-label="2019 强网杯 WriteUp" title="2019 强网杯 WriteUp"></a>
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 强网杯 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -396,9 +460,9 @@ Reverse强网
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/Ret2text/" aria-label="Ret2text" title="Ret2text"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2text" class="lazyload">
     </div>
     <div class="post-info">
@@ -427,9 +491,70 @@ text：.text 段，存放程序机器指令的区域
   </div>
 </div>
       <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/SMC/" aria-label="SMC" title="SMC"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="SMC" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">SMC</h2>
+      <article class="post-article">
+          SMCSMC（Self-Modifying Code，自修改代码） 是一种程序在执行过程中修改自身指令的技术
+原理程序运行时，动态修改内存中代码段的机器码，然后跳转到修改后的地址执行。修改方式包括：
+
+异或（XOR） — 用密钥异或加密代码段，运行时解密
+
+加减常量 — 对指令字节增减固定值
+
+直接覆写 — 用预先准备好的原始字节替换
+
+
+实战案例jocker（SMC 逆向 + IDA 脚本）
+IDA 反编译发现对 Str 和 Destination 进行了操作
+12345678910111213141516171819202122232425262728int __cdecl main(in
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/%E8%8A%B1%E6%8C%87%E4%BB%A4/" aria-label="花指令" title="花指令"></a>
+      <a class="post-link" href="/2019/05/22/VM%20%E9%80%86%E5%90%91/" aria-label="VM 逆向" title="VM 逆向"></a>
     <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VM 逆向" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">VM 逆向</h2>
+      <article class="post-article">
+          VM 逆向虚拟机逆向（Virtual Machine Reverse Engineering）是指对软件中自实现的虚拟机（或称解释器）进行反向分析的技术
+程序将原本的原生代码或关键逻辑编译成自定义的字节码（bytecode），然后由一个解释器循环（VM loop）执行这些字节码。逆向工程师需要：
+
+识别出虚拟机结构（操作码表、虚拟寄存器、虚拟栈、内存模型等）
+
+提取字节码，并反汇编为人类可读的虚拟指令
+
+理解虚拟指令序列的算法逻辑，以破解保护、提取算法或找到漏洞
+
+
+虚拟机分类根据虚拟机的执行模型，通常分为两类
+基于栈的虚拟机操作数隐式地通过一个虚拟栈传递，指令执行时从栈顶弹出操作数，计算结果
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/%E8%8A%B1%E6%8C%87%E4%BB%A4/" aria-label="花指令" title="花指令"></a>
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="花指令" class="lazyload">
     </div>
     <div class="post-info">
@@ -464,9 +589,9 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/14/JT%20T%20808%20%E5%8D%8F%E8%AE%AE/" aria-label="JT/T 808 协议" title="JT/T 808 协议"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="JT/T 808 协议" class="lazyload">
     </div>
     <div class="post-info">
@@ -481,109 +606,6 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
 协议基于 TCP 或 UDP，采用大端字节序，报文整体以 0x7E 为帧边界，内部需经过转义处理
 报文封装格式每个完整报文由标识位包裹，内部包含消息头、消息体和校验码
 1234+--------+--------+----------+--------+--------+| 标识位 | 消息头 | 消息体   | 校验码 | 标识位 || 0x7e   | 变长   | 变长     | 1 byte | 0x7e
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/15/1527%20%E8%8A%AF%E7%89%87/" aria-label="1527 芯片" title="1527 芯片"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="1527 芯片" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-15</span>
-        <span><span class="icon-pencil"></span>1.5k 字</span>
-        <span><span class="icon-clock"></span>7 分钟</span>
-      </div>
-      <h2 class="post-title">1527 芯片</h2>
-      <article class="post-article">
-          1527 芯片芯片定位与调制方式1527 是一颗固定码无线遥控编码芯片，专为低成本的单向遥控设计。典型工作方式：
-
-射频频率：315 MHz 或 433 MHz（由外部声表&amp;#x2F;晶振和发射电路决定）
-
-调制方式：OOK (开关键控)，即发射载波的有无代表数据
-
-数据发送：按下按键后，同一帧数据会以约 10 ms 的间隔重复发送，直到松手
-
-
-数据结构一帧完整数据由同步头和 24 位数据（20 位地址 + 4 位按键值）组成，每发完一帧会有一段较长的低电平间隙，然后重复下一帧
-1[同步头] + [数据] + 间隙…… 再重复
-
-
-同步头：一个宽高电平脉冲，用来唤醒接收端并标志一帧的开始
-
-
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/COTP%20%E5%8D%8F%E8%AE%AE/" aria-label="COTP 协议" title="COTP 协议"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="COTP 协议" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>1.1k 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
-      </div>
-      <h2 class="post-title">COTP 协议</h2>
-      <article class="post-article">
-          COTP 协议概述COTP 是 ISO OSI 七层模型中的传输层协议，其正式标准为 ISO 8073，对应的 RFC 文档是 RFC 905。你可以把它理解为 OSI 世界里的 “TCP”
-报文结构连接包用于建立、维护和断开连接。其头部结构通常如下：
-
-Length (1 字节)：后续数据的长度
-
-PDU Type (1 字节)：数据包类型，常见的有：
-
-0x0E：连接请求 (CR)
-
-0x0D：连接确认 (CC)
-
-0x08：断开请求 (DR)
-
-0x0C：断开确认 (DC)
-
-
-
-Destination&amp;#x2F;Source Reference (各 2 字节)：目的和源引用
-
-Opt
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/SCD%20%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/" aria-label="SCD 文件" title="SCD 文件"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="SCD 文件" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>1.3k 字</span>
-        <span><span class="icon-clock"></span>7 分钟</span>
-      </div>
-      <h2 class="post-title">SCD 文件</h2>
-      <article class="post-article">
-          SCD 文件定义在 IEC 61850 标准体系中，SCD（Substation Configuration Description）文件是变电站配置描述文件，它是整个变电站自动化系统的 “总配置文件”
-它包含了：
-
-一次设备接线拓扑：母线、线路、开关、互感器等的连接关系
-
-二次智能电子设备（IED）信息：保护、测控、智能终端等装置的模型，包括逻辑设备、逻辑节点、数据对象等
-
-通信配置：GOOSE、SV 等报文的控制块、发布&amp;#x2F;订阅关系，MMS 报告设置等
-
-映射关系：将设备间的逻辑信号绑定到具体网络报文
-
-
-简单说，SCD 文件是变电站二次系统集成和运维的基础数据，必须保证正确性和唯
       </article>
     </div>
   </div>
@@ -611,10 +633,10 @@ Opt
       </div>
       <div>
         <span class="icon-brush"></span>
-        217k
+        223k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        17:55
+        18:24
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -642,7 +664,7 @@ Opt
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">206</div>
+    <div class="sidebar-state-number">209</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -650,7 +672,7 @@ Opt
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">181</div>
+    <div class="sidebar-state-number">182</div>
   </div>
 </div>
 <div class="sidebar-social" >
