@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">216</div>
+    <div class="sidebar-state-number">217</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -245,8 +245,32 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/ext2%20%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/" aria-label="ext2 文件恢复" title="ext2 文件恢复"></a>
+      <a class="post-link" href="/2019/05/22/Ret2plt/" aria-label="Ret2plt" title="Ret2plt"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2plt" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>617 字</span>
+        <span><span class="icon-clock"></span>3 分钟</span>
+      </div>
+      <h2 class="post-title">Ret2plt</h2>
+      <article class="post-article">
+          Ret2pltPLT 与 GOT在动态链接的 ELF 程序里，当你调用一个外部库函数（如 puts），实际调用的是 PLT 表中的一个条目
+这个条目会通过 GOT 表间接跳转到函数的真实地址
+关键点：只要程序链接了某个函数（比如 system），即使代码里没出现过 system，它的 PLT 表项可能也会存在
+更常见的情况是：程序虽然没有直接调用 system，但导入了 system，这样 system@plt 就是一个现成的跳板
+核心思想Ret2plt 就是利用栈溢出，将返回地址覆盖为某个函数的 PLT 表项地址（如 system@plt），并伪造好参数，从而调用该函数
+因为 PLT 表位于
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/ext2%20%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/" aria-label="ext2 文件恢复" title="ext2 文件恢复"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="ext2 文件恢复" class="lazyload">
     </div>
     <div class="post-info">
@@ -282,9 +306,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/ext3%20%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/" aria-label="ext3 文件恢复" title="ext3 文件恢复"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="ext3 文件恢复" class="lazyload">
     </div>
     <div class="post-info">
@@ -327,9 +351,9 @@ Ext3
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/pwn-Shellcode/" aria-label="Shellcode" title="Shellcode"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Shellcode" class="lazyload">
     </div>
     <div class="post-info">
@@ -360,78 +384,31 @@ mprotect 的第三个参数 7 代表 RWX 权限，从指针 buf 向前偏移 16 
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20RCTF/" aria-label="2019 RCTF WriteUp" title="2019 RCTF WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 RCTF WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>140 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">2019 RCTF WriteUp</h2>
-      <article class="post-article">
-          2019 RCTF WriteUp🏛️ 组织架构
-RCTF 2019 由国家创新与发展战略研究会主办，360 集团与南京赛宁信息技术有限公司联合承办
-命题团队为 r3kapig 战队
-⚙️ 赛制与规模
-
-赛制：采用线上 CTF（Capture The Flag）解题模式（Jeopardy-style）
-
-时间：比赛于 2019 年 5 月举行
-
-规模：赛事在 CTFtime 上的权重为 52.89 分，吸引了全球众多顶尖战队参与
-
-
-Miscdraw（签到）一门叫 logo 的冷门编程语言，在线编译器运行得到图片
-
-flag 就是 RCTF_HeyLogo
-
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20ByteCTF/" aria-label="2019 ByteCTF WriteUp" title="2019 ByteCTF WriteUp"></a>
+      <a class="post-link" href="/2019/05/22/2019%20HDCTF/" aria-label="2019 HDCTF WriteUp" title="2019 HDCTF WriteUp"></a>
     <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 ByteCTF WriteUp" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 HDCTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>231 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
+        <span><span class="icon-pencil"></span>2.3k 字</span>
+        <span><span class="icon-clock"></span>10 分钟</span>
       </div>
-      <h2 class="post-title">2019 ByteCTF WriteUp</h2>
+      <h2 class="post-title">2019 HDCTF WriteUp</h2>
       <article class="post-article">
-          2019 ByteCTF WriteUp2019 年 ByteCTF 是由字节跳动主办的首届网络安全攻防大赛
+          2019 HDCTF WriteUp前言主办方：海南大学
+Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程）
+下载附件是一个 .img，使用 vol2 进行取证，先查看操作系统
+1python2 vol.py -f memory.img imageinfo
 
-赛事规模：共吸引 4000 余人次报名，722 支高校队伍参赛
+发现是 Windows 2003，给出了三个具体的版本
 
-比赛时间：线上初赛于 2019 年 9 月 7 日 - 9 月 8 日举行；线下决赛于 10 月 19 日 - 10 月 20 日在北京举行
-
-奖金设置：冠军 80,000 元，亚军 50,000 元，季军 20,000 元，第 4 - 6 名分别获得 10,000、8,000、5,000 元奖金
-
-
-
-
-
-最终排名
-队伍名称
-所属&amp;#x2F;备注
+查看进程，Server 2003 生命周期中 SP2 是最普遍的版本，所以选择它
+1python2 vol.py -f memory.img --profile=Win2003SP2x86 pslist
 
 
-
-冠军
-W&amp;amp;M
-联合战队，同时也是线上赛冠军
-
-
-亚军
-N
+dump 出 explorer.exe，它的内存里主
       </article>
     </div>
   </div>
@@ -502,38 +479,85 @@ Vidar
 </div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20HDCTF/" aria-label="2019 HDCTF WriteUp" title="2019 HDCTF WriteUp"></a>
+      <a class="post-link" href="/2019/05/22/2019%20ByteCTF/" aria-label="2019 ByteCTF WriteUp" title="2019 ByteCTF WriteUp"></a>
     <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 HDCTF WriteUp" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 ByteCTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>2.3k 字</span>
-        <span><span class="icon-clock"></span>10 分钟</span>
+        <span><span class="icon-pencil"></span>231 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
       </div>
-      <h2 class="post-title">2019 HDCTF WriteUp</h2>
+      <h2 class="post-title">2019 ByteCTF WriteUp</h2>
       <article class="post-article">
-          2019 HDCTF WriteUp前言主办方：海南大学
-Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程）
-下载附件是一个 .img，使用 vol2 进行取证，先查看操作系统
-1python2 vol.py -f memory.img imageinfo
+          2019 ByteCTF WriteUp2019 年 ByteCTF 是由字节跳动主办的首届网络安全攻防大赛
 
-发现是 Windows 2003，给出了三个具体的版本
+赛事规模：共吸引 4000 余人次报名，722 支高校队伍参赛
 
-查看进程，Server 2003 生命周期中 SP2 是最普遍的版本，所以选择它
-1python2 vol.py -f memory.img --profile=Win2003SP2x86 pslist
+比赛时间：线上初赛于 2019 年 9 月 7 日 - 9 月 8 日举行；线下决赛于 10 月 19 日 - 10 月 20 日在北京举行
+
+奖金设置：冠军 80,000 元，亚军 50,000 元，季军 20,000 元，第 4 - 6 名分别获得 10,000、8,000、5,000 元奖金
 
 
-dump 出 explorer.exe，它的内存里主
+
+
+
+最终排名
+队伍名称
+所属&amp;#x2F;备注
+
+
+
+冠军
+W&amp;amp;M
+联合战队，同时也是线上赛冠军
+
+
+亚军
+N
       </article>
     </div>
   </div>
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20%E5%BC%BA%E7%BD%91%E6%9D%AF/" aria-label="2019 强网杯 WriteUp" title="2019 强网杯 WriteUp"></a>
+      <a class="post-link" href="/2019/05/22/2019%20RCTF/" aria-label="2019 RCTF WriteUp" title="2019 RCTF WriteUp"></a>
     <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 RCTF WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>140 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
+      </div>
+      <h2 class="post-title">2019 RCTF WriteUp</h2>
+      <article class="post-article">
+          2019 RCTF WriteUp🏛️ 组织架构
+RCTF 2019 由国家创新与发展战略研究会主办，360 集团与南京赛宁信息技术有限公司联合承办
+命题团队为 r3kapig 战队
+⚙️ 赛制与规模
+
+赛制：采用线上 CTF（Capture The Flag）解题模式（Jeopardy-style）
+
+时间：比赛于 2019 年 5 月举行
+
+规模：赛事在 CTFtime 上的权重为 52.89 分，吸引了全球众多顶尖战队参与
+
+
+Miscdraw（签到）一门叫 logo 的冷门编程语言，在线编译器运行得到图片
+
+flag 就是 RCTF_HeyLogo
+
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019%20%E5%BC%BA%E7%BD%91%E6%9D%AF/" aria-label="2019 强网杯 WriteUp" title="2019 强网杯 WriteUp"></a>
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 强网杯 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -576,58 +600,31 @@ Reverse强网
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/RISC-V/" aria-label="RISC-V 架构" title="RISC-V 架构"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="RISC-V 架构" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1.5k 字</span>
-        <span><span class="icon-clock"></span>7 分钟</span>
-      </div>
-      <h2 class="post-title">RISC-V 架构</h2>
-      <article class="post-article">
-          RISC-V 架构RISC-V 是一种开源的精简指令集架构（ISA），由加州大学伯克利分校于 2010 年发起，现由 RISC-V 国际基金会维护
-基本特征位数：RV32（32位）、RV64（64位）、RV128（未来扩展）。常用的是 RV32&amp;#x2F;64
-字节序：默认为小端（Little-Endian），也允许大端（非主流）
-指令格式：定长 16 位（压缩指令）或 32 位（标准指令）。编码极为规整，字段位置几乎固定
-模块化指令集：
-
-基础整数指令集（I）：加减、逻辑、移位、分支、访存、系统调用
-
-标准扩展：
-
-M：乘除法
-
-A：原子操作
-
-F / D：单&amp;#x2F;双精度浮点
-
-C：压
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/RC4/" aria-label="RC4" title="RC4"></a>
+      <a class="post-link" href="/2019/05/22/Python%20%E9%80%86%E5%90%91/" aria-label="Python" title="Python"></a>
     <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="RC4" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Python" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>5.1k 字</span>
+        <span><span class="icon-pencil"></span>5.2k 字</span>
         <span><span class="icon-clock"></span>24 分钟</span>
       </div>
-      <h2 class="post-title">RC4</h2>
+      <h2 class="post-title">Python</h2>
       <article class="post-article">
-          RC4RC4（Rivest Cipher 4）是由 Ron Rivest 在 1987 年设计的对称流密码，因其结构简单、软件实现高效，曾被广泛应用于 SSL&amp;#x2F;TLS、WEP、WPA、RDP、以及各种恶意软件和 CTF 题目中
-算法结构RC4 由两个核心阶段组成：密钥调度算法（KSA, Key-Scheduling Algorithm） 和 伪随机生成算法（PRGA, Pseudo-Random Generation Algorithm）
-状态初始化一个 256 字节的 S 盒（state vector），初始化为 S[i] = i，i = 0..255
-密钥 key 为任意长度（1
+          PythonPython 逆向是指对 Python 编写的程序（包括脚本、.pyc 字节码、打包的可执行文件等）进行分析，以理解其逻辑、提取算法、恢复源码或寻找漏洞
+Python 程序的编译与运行机制源码 .py 被编译为 字节码 .pyc，存储在 __pycache__ 目录（Python 3.2+）
+.pyc 文件结构：
+
+前 4 字节：magic number（标识 Python 版本，如 Python 3.8 为 550D）
+
+后 4 或 12 字节：时间戳 + 源码大小（可选）
+
+剩余部分：marshal 序列化后的 code object
+
+
+逆向的核心就是：获取 .pyc → 反
       </article>
     </div>
   </div>
@@ -655,10 +652,10 @@ C：压
       </div>
       <div>
         <span class="icon-brush"></span>
-        239k
+        240.8k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        19:39
+        19:47
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -686,7 +683,7 @@ C：压
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">216</div>
+    <div class="sidebar-state-number">217</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
