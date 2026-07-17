@@ -152,15 +152,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">209</div>
+    <div class="sidebar-state-number">216</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">22</div>
+    <div class="sidebar-state-number">23</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">182</div>
+    <div class="sidebar-state-number">184</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -245,8 +245,221 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/15/1527%20%E8%8A%AF%E7%89%87/" aria-label="1527 芯片" title="1527 芯片"></a>
+      <a class="post-link" href="/2019/05/22/Python%20%E9%80%86%E5%90%91/" aria-label="Python" title="Python"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Python" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>5.2k 字</span>
+        <span><span class="icon-clock"></span>24 分钟</span>
+      </div>
+      <h2 class="post-title">Python</h2>
+      <article class="post-article">
+          PythonPython 逆向是指对 Python 编写的程序（包括脚本、.pyc 字节码、打包的可执行文件等）进行分析，以理解其逻辑、提取算法、恢复源码或寻找漏洞
+Python 程序的编译与运行机制源码 .py 被编译为 字节码 .pyc，存储在 __pycache__ 目录（Python 3.2+）
+.pyc 文件结构：
+
+前 4 字节：magic number（标识 Python 版本，如 Python 3.8 为 550D）
+
+后 4 或 12 字节：时间戳 + 源码大小（可选）
+
+剩余部分：marshal 序列化后的 code object
+
+
+逆向的核心就是：获取 .pyc → 反
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/Ret2text/" aria-label="Ret2text" title="Ret2text"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2text" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>360 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">Ret2text</h2>
+      <article class="post-article">
+          Ret2text原理在 CTF 和二进制安全里，Ret2text 是一种非常经典的栈溢出利用手法。它的名字可以这样拆开理解：
+
+Ret：Return，代表 “返回地址”
+
+2 &amp;#x2F; to：到、跳转到
+
+text：.text 段，存放程序机器指令的区域
+
+
+简单说，Ret2text 就是利用栈溢出漏洞，将函数的返回地址篡改为程序 .text 段中已存在的合法代码，从而劫持控制流去执行这些代码来获取 shell
+因为执行的代码是程序本来就有的，所以它不需要注入 Shellcode，也能绕过 NX 保护
+实战案例帮我取一个题目名称（Ret2text）
+没开金丝雀，read 函数读取大小为 6
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/SMC/" aria-label="SMC" title="SMC"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="SMC" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">SMC</h2>
+      <article class="post-article">
+          SMCSMC（Self-Modifying Code，自修改代码） 是一种程序在执行过程中修改自身指令的技术
+原理程序运行时，动态修改内存中代码段的机器码，然后跳转到修改后的地址执行。修改方式包括：
+
+异或（XOR） — 用密钥异或加密代码段，运行时解密
+
+加减常量 — 对指令字节增减固定值
+
+直接覆写 — 用预先准备好的原始字节替换
+
+
+实战案例jocker（SMC 逆向 + IDA 脚本）
+IDA 反编译发现对 Str 和 Destination 进行了操作
+12345678910111213141516171819202122232425262728int __cdecl main(in
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/VM%20%E9%80%86%E5%90%91/" aria-label="VM 逆向" title="VM 逆向"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VM 逆向" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">VM 逆向</h2>
+      <article class="post-article">
+          VM 逆向虚拟机逆向（Virtual Machine Reverse Engineering）是指对软件中自实现的虚拟机（或称解释器）进行反向分析的技术
+程序将原本的原生代码或关键逻辑编译成自定义的字节码（bytecode），然后由一个解释器循环（VM loop）执行这些字节码。逆向工程师需要：
+
+识别出虚拟机结构（操作码表、虚拟寄存器、虚拟栈、内存模型等）
+
+提取字节码，并反汇编为人类可读的虚拟指令
+
+理解虚拟指令序列的算法逻辑，以破解保护、提取算法或找到漏洞
+
+
+虚拟机分类根据虚拟机的执行模型，通常分为两类
+基于栈的虚拟机操作数隐式地通过一个虚拟栈传递，指令执行时从栈顶弹出操作数，计算结果
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/VxWorks%20%E5%9B%BA%E4%BB%B6/" aria-label="VxWorks 固件" title="VxWorks 固件"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VxWorks 固件" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>2k 字</span>
+        <span><span class="icon-clock"></span>9 分钟</span>
+      </div>
+      <h2 class="post-title">VxWorks 固件</h2>
+      <article class="post-article">
+          VxWorks 固件VxWorks 是美国 Wind River 公司开发的实时操作系统（RTOS），广泛应用于工控、航空航天、网络设备、医疗仪器等嵌入式场景
+其固件镜像通常是一个单体内核映像，包含内核、驱动、应用程序和文件系统
+固件镜像格式典型镜像类型
+
+Bootrom：引导加载程序，负责初始化硬件、加载主映像
+
+VxWorks 主映像：包含内核、任务、符号表（可选），通常被压缩或直接以 ELF&amp;#x2F;二进制形式存在
+
+文件系统（TFFS&amp;#x2F;DOSFS&amp;#x2F;HRFS）：挂载于 &amp;#x2F;tffs0 等，存放配置、Web 页面、应用程序模块
+
+
+镜像结构特征
+
+压缩壳：常见
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/%E8%8A%B1%E6%8C%87%E4%BB%A4/" aria-label="花指令" title="花指令"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="花指令" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>527 字</span>
+        <span><span class="icon-clock"></span>3 分钟</span>
+      </div>
+      <h2 class="post-title">花指令</h2>
+      <article class="post-article">
+          花指令原理反汇编器通常有两种主要策略：
+
+线性扫描：顺序解析每条指令，遇到干扰字节就会错位
+
+递归下降：根据控制流跳转来反汇编，更智能但依然可能被误导
+
+
+花指令正是利用反汇编器的缺陷——让它把数据当成代码，或者把代码的一部分拆解成错误指令
+最终反汇编出来的结果是混乱、错误、不连续的，分析者需要手动修复或动态调试才能看清真实逻辑
+实战案例
+使用 Exeinfo PE 发现有 UPX 壳
+
+脱壳后用 IDA 分析，有花指令
+
+关键点：jnz +1 的跳转目标
+
+jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
+
+偏移量是相对下一指令地址的位移。当前 jnz 位于 0x4
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/14/JT%20T%20808%20%E5%8D%8F%E8%AE%AE/" aria-label="JT/T 808 协议" title="JT/T 808 协议"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="JT/T 808 协议" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-14</span>
+        <span><span class="icon-pencil"></span>4.7k 字</span>
+        <span><span class="icon-clock"></span>27 分钟</span>
+      </div>
+      <h2 class="post-title">JT/T 808 协议</h2>
+      <article class="post-article">
+          JT&amp;#x2F;T 808 协议概述JT&amp;#x2F;T 808 是交通运输行业标准《道路运输车辆卫星定位系统 北斗兼容车载终端通讯协议》，规定了车载终端与监控平台之间的数据通信格式
+协议基于 TCP 或 UDP，采用大端字节序，报文整体以 0x7E 为帧边界，内部需经过转义处理
+报文封装格式每个完整报文由标识位包裹，内部包含消息头、消息体和校验码
+1234+--------+--------+----------+--------+--------+| 标识位 | 消息头 | 消息体   | 校验码 | 标识位 || 0x7e   | 变长   | 变长     | 1 byte | 0x7e
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/04/15/1527%20%E8%8A%AF%E7%89%87/" aria-label="1527 芯片" title="1527 芯片"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="1527 芯片" class="lazyload">
     </div>
     <div class="post-info">
@@ -278,9 +491,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/04/14/COTP%20%E5%8D%8F%E8%AE%AE/" aria-label="COTP 协议" title="COTP 协议"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="COTP 协议" class="lazyload">
     </div>
     <div class="post-info">
@@ -316,9 +529,9 @@ Opt
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/04/14/SCD%20%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/" aria-label="SCD 文件" title="SCD 文件"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="SCD 文件" class="lazyload">
     </div>
     <div class="post-info">
@@ -346,247 +559,8 @@ Opt
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/Omron%20Fins%20%E5%8D%8F%E8%AE%AE/" aria-label="Omron Fins 协议" title="Omron Fins 协议"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="Omron Fins 协议" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>1.5k 字</span>
-        <span><span class="icon-clock"></span>6 分钟</span>
-      </div>
-      <h2 class="post-title">Omron Fins 协议</h2>
-      <article class="post-article">
-          Omron Fins 协议概述欧姆龙（Omron）的通信协议体系是其工业自动化生态系统的核心，它并非单一协议，而是一套为不同层级和应用场景设计的多层次协议家族
-这些协议共同构建了一个从设备级、控制级到信息级的无缝通信网络，使得PLC、上位机、传感器、执行器等设备能够高效协同工作
-FINS（Factory Interface Network Service）是欧姆龙（Omron）为其工业自动化网络设计的核心指令&amp;#x2F;响应系统
-它的核心优势在于能够实现以太网、控制网络和串行通信等多种物理网络间的无缝通信
-协议类型FINS 协议主要在 TCP&amp;#x2F;IP 模型的应用层工作，并有两种主要实现
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/S7comm%20%E5%8D%8F%E8%AE%AE/" aria-label="S7comm 协议" title="S7comm 协议"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="S7comm 协议" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>3k 字</span>
-        <span><span class="icon-clock"></span>14 分钟</span>
-      </div>
-      <h2 class="post-title">S7comm 协议</h2>
-      <article class="post-article">
-          S7comm 协议概述S7comm 是西门子专有的工业控制协议，主要用于西门子S7-300&amp;#x2F;400系列PLC（可编程逻辑控制器）的编程、数据交换和诊断
-报文结构一个典型的 S7comm 报文由三部分组成：
-
-Header (头部)：固定 12 字节，包含协议标识、PDU 类型等关键信息。
-
-Parameter (参数)：长度可变，包含具体的功能码（如读取、写入）及其参数
-
-Data (数据)：长度可变，在写入等操作中携带实际数据
-
-
-通信过程Wireshark 可以清晰捕捉到 S7 通信的建立过程，分为三步：
-
-TCP 三次握手：客户端通过 TCP 端口 102 与 PLC 建立连接
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%93%88%E5%B0%94%E6%BB%A8%E7%AB%99/" aria-label="2019 工业信息安全技能大赛-哈尔滨站 WriteUp" title="2019 工业信息安全技能大赛-哈尔滨站 WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 工业信息安全技能大赛-哈尔滨站 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>3k 字</span>
-        <span><span class="icon-clock"></span>14 分钟</span>
-      </div>
-      <h2 class="post-title">2019 工业信息安全技能大赛-哈尔滨站 WriteUp</h2>
-      <article class="post-article">
-          2019 工业信息安全技能大赛-哈尔滨站 WriteUp📝 赛事概况
-
-参赛规模：比赛共吸引了来自全国的 24 支队伍参加
-
-比赛项目：大赛设有 PLC 漏洞挖掘和 SCADA 漏洞挖掘两个比赛项目
-
-
-🏛️ 组织架构
-
-指导单位：国家工业信息安全发展研究中心、黑龙江省工业和信息化厅
-
-主办单位：黑龙江省电子技术研究所、哈尔滨工程大学
-
-
-🏆 比赛结果
-
-第一名：冀信安队
-
-Misc异常的 S7 数据（S7comm 协议）大概看了一下，全是 0x05 功能码
-
-绝大多数写入数据都以 ffff 开头
-
-右键作为过滤器应用
-
-WireShark 生成的语法是 s7comm.resp.data
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%AE%81%E6%B3%A2%E7%AB%99/" aria-label="2019-工业信息安全技能大赛-宁波站 WriteUp" title="2019-工业信息安全技能大赛-宁波站 WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019-工业信息安全技能大赛-宁波站 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>1.1k 字</span>
-        <span><span class="icon-clock"></span>4 分钟</span>
-      </div>
-      <h2 class="post-title">2019-工业信息安全技能大赛-宁波站 WriteUp</h2>
-      <article class="post-article">
-          2019 工业信息安全技能大赛-宁波站 WriteUp🏛️ 组织架构
-
-主办单位：国家工业信息安全发展研究中心、浙江省经济和信息化厅
-
-承办单位：浙江省电子信息产品检验所（浙江省信息安全测评中心）、浙江国利网安科技有限公司、宁波工业互联网研究院有限公司
-
-
-📝 赛事概况
-
-参赛规模：共有 20 支队伍、近 80 名选手参赛
-
-赛程赛制：比赛分为两天，采用综合晋级赛制
-
-技术支撑：赛事系统基于工控试验场的动态工控场景、真实控制场景工艺包及工控网络攻防演练平台搭建
-
-
-Misc智能楼宇系统（文件附加隐写 + ZIP 爆破）
-每次 Foremost 提取都会给出一个压缩文件和解压密码
-写脚本提取
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%88%90%E9%83%BD%E7%AB%99/" aria-label="2019-工业信息安全技能大赛-成都站 WriteUp" title="2019-工业信息安全技能大赛-成都站 WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019-工业信息安全技能大赛-成都站 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>1.3k 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
-      </div>
-      <h2 class="post-title">2019-工业信息安全技能大赛-成都站 WriteUp</h2>
-      <article class="post-article">
-          2019 工业信息安全技能大赛-成都站 WriteUp🏆 赛事概况
-
-比赛阶段：全国复赛与总决赛
-
-举办时间：复赛为 2019 年 9 月 23-24 日；总决赛为 2019 年 9 月 29 日
-
-举办地点：成都中国西部国际博览城
-
-参赛规模：复赛有 60 支队伍，其中 30 支晋级总决赛；大赛历时三个月，共吸引近 250 支队伍、近千名选手参加
-
-最终结果：来自绿盟科技的 M01N 战队获得总决赛一等奖
-
-
-🏛️ 组织架构
-
-指导单位：成都市人民政府
-
-主办单位：国家工业信息安全发展研究中心、成都市经济和信息化局、四川天府新区成都管理委员会
-
-承办单位：工业信息安全产业发展联盟
-
-技术
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/2019%20%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B7%B1%E5%9C%B3%E7%AB%99/" aria-label="2019 工业信息安全技能大赛-深圳站 WriteUp" title="2019 工业信息安全技能大赛-深圳站 WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 工业信息安全技能大赛-深圳站 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>2.7k 字</span>
-        <span><span class="icon-clock"></span>12 分钟</span>
-      </div>
-      <h2 class="post-title">2019 工业信息安全技能大赛-深圳站 WriteUp</h2>
-      <article class="post-article">
-          2019 工业信息安全技能大赛-深圳站 WriteUp组织架构
-
-指导单位：由国家工业信息安全发展研究中心、中国网络空间安全协会竞评演练工作委员会、中国网络空间安全人才教育联盟、中国中文信息学会评测工作委员会共同指导
-
-主办与承办：由鹏城实验室主办，其网络空间安全研究中心具体承办
-
-技术支持：烽台科技（北京）有限公司（灯塔实验室）为大赛提供技术支持
-
-
-MiscModbus 协议分析（Modbus 协议）
-链接: https://pan.baidu.com/s/1RcC1VTPusecH9OqTvRPnPA?pwd=4wv3 提取码: 4wv3 
-题目：黑客通过外网进入一家工厂的控制网络，之后
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%B1%B1%E4%B8%9C%E7%AB%99/" aria-label="2019 工业信息安全技能大赛-山东站 WriteUp" title="2019 工业信息安全技能大赛-山东站 WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 工业信息安全技能大赛-山东站 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>796 字</span>
-        <span><span class="icon-clock"></span>4 分钟</span>
-      </div>
-      <h2 class="post-title">2019 工业信息安全技能大赛-山东站 WriteUp</h2>
-      <article class="post-article">
-          2019 工业信息安全技能大赛-山东站 WriteUp组织架构：
-
-指导单位：国家工业信息安全发展研究中心、山东省工业和信息化厅
-
-主办单位：山东省电子信息产品检验院（中国赛宝（山东）实验室）
-
-承办单位：国网山东省电力公司电力科学研究院、山东云天安全大数据技术有限公司、山东省工业信息安全产业发展联盟
-
-技术支撑单位：杭州安恒信息技术股份有限公司
-
-
-Misc另一个隐藏的黑客（SDR 软件无线电信号分析）
-导入到 Audition 里查看频谱。可以隐约看到 flag 字样，硬看加猜得到 flag
-
-1flag&amp;#123;too simple too young&amp;#125;
-
-特殊的工控流量（S
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
-    <a class="extend prev" rel="prev" href="/page/18/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/20/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/18/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/20/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -608,10 +582,10 @@ Misc另一个隐藏的黑客（SDR 软件无线电信号分析）
       </div>
       <div>
         <span class="icon-brush"></span>
-        223k
+        239k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        18:24
+        19:39
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -639,15 +613,15 @@ Misc另一个隐藏的黑客（SDR 软件无线电信号分析）
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">209</div>
+    <div class="sidebar-state-number">216</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">22</div>
+    <div class="sidebar-state-number">23</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">182</div>
+    <div class="sidebar-state-number">184</div>
   </div>
 </div>
 <div class="sidebar-social" >
