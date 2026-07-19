@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">217</div>
+    <div class="sidebar-state-number">223</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -244,6 +244,59 @@
 </aside>
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/D%20%E8%AF%AD%E8%A8%80/" aria-label="D 语言" title="D 语言"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="D 语言" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>506 字</span>
+        <span><span class="icon-clock"></span>3 分钟</span>
+      </div>
+      <h2 class="post-title">D 语言</h2>
+      <article class="post-article">
+          D 语言D 的设计目标是 融合 C&amp;#x2F;C++ 的性能与 Python&amp;#x2F;Ruby 的开发效率。它支持多种编程范式：命令式、面向对象、函数式、泛型、模板元编程
+常见用途：高性能服务端、游戏引擎、数值计算，以及部分 CTF 出题者用来写加密逻辑，利用其模板和范围机制增加逆向趣味性
+逆向技巧识别胖指针：看到函数参数用两个寄存器传递同一数组（如 rcx=ptr, rdx=len），可能是 D 的数组
+关注范围对象的布局：范围操作通常会产生一个栈上的结构体，内部包含当前迭代器指针、剩余长度等字段，需分析清楚
+利用符号名：D 编译后的二进制常保留函数名和模板参数，如 _D3app8encr
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/Python%20%E9%80%86%E5%90%91/" aria-label="Python" title="Python"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Python" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>6.5k 字</span>
+        <span><span class="icon-clock"></span>31 分钟</span>
+      </div>
+      <h2 class="post-title">Python</h2>
+      <article class="post-article">
+          PythonPython 逆向是指对 Python 编写的程序（包括脚本、.pyc 字节码、打包的可执行文件等）进行分析，以理解其逻辑、提取算法、恢复源码或寻找漏洞
+Python 程序的编译与运行机制源码 .py 被编译为 字节码 .pyc，存储在 __pycache__ 目录（Python 3.2+）
+.pyc 文件结构：
+
+前 4 字节：magic number（标识 Python 版本，如 Python 3.8 为 550D）
+
+后 4 或 12 字节：时间戳 + 源码大小（可选）
+
+剩余部分：marshal 序列化后的 code object
+
+
+逆向的核心就是：获取 .pyc → 反
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/RISC-V/" aria-label="RISC-V 架构" title="RISC-V 架构"></a>
     <div class="post-cover left">
@@ -364,9 +417,9 @@ IDA 反编译发现对 Str 和 Destination 进行了操作
 </div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/VM%20%E9%80%86%E5%90%91/" aria-label="VM 逆向" title="VM 逆向"></a>
+      <a class="post-link" href="/2019/05/22/Unity%20%E9%80%86%E5%90%91/" aria-label="Unity" title="Unity"></a>
     <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VM 逆向" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Unity" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
@@ -374,20 +427,33 @@ IDA 反编译发现对 Str 和 Destination 进行了操作
         <span><span class="icon-pencil"></span>1k 字</span>
         <span><span class="icon-clock"></span>5 分钟</span>
       </div>
-      <h2 class="post-title">VM 逆向</h2>
+      <h2 class="post-title">Unity</h2>
       <article class="post-article">
-          VM 逆向虚拟机逆向（Virtual Machine Reverse Engineering）是指对软件中自实现的虚拟机（或称解释器）进行反向分析的技术
-程序将原本的原生代码或关键逻辑编译成自定义的字节码（bytecode），然后由一个解释器循环（VM loop）执行这些字节码。逆向工程师需要：
-
-识别出虚拟机结构（操作码表、虚拟寄存器、虚拟栈、内存模型等）
-
-提取字节码，并反汇编为人类可读的虚拟指令
-
-理解虚拟指令序列的算法逻辑，以破解保护、提取算法或找到漏洞
+          UnityUnity 游戏的核心逻辑通常位于 C# 编译的 DLL（Mono）或 C++ 编译的 IL2CPP 文件中
+编译方式
 
 
-虚拟机分类根据虚拟机的执行模型，通常分为两类
-基于栈的虚拟机操作数隐式地通过一个虚拟栈传递，指令执行时从栈顶弹出操作数，计算结果
+方式
+脚本后端
+包含文件
+难度
+
+
+
+Mono
+C# → IL → .NET DLL
+Assembly-CSharp.dll 等
+低
+
+
+IL2CPP
+C# → IL → C++ → 原生代码
+libil2cpp.so &amp;#x2F; GameAssembly.dll + global-metadata.dat
+较高
+
+
+实战案例Mine Sweeping（Unity）
+打开附件可以看到这是一个 Unity 游戏，Unity C# 题的核心逻辑通常都在 Mine 
       </article>
     </div>
   </div>
@@ -426,8 +492,38 @@ VxWorks 主映像：包含内核、任务、符号表（可选），通常被压
 </div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/%E8%8A%B1%E6%8C%87%E4%BB%A4/" aria-label="花指令" title="花指令"></a>
+      <a class="post-link" href="/2019/05/22/VM%20%E9%80%86%E5%90%91/" aria-label="虚拟机" title="虚拟机"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="虚拟机" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">虚拟机</h2>
+      <article class="post-article">
+          虚拟机虚拟机逆向（Virtual Machine Reverse Engineering）是指对软件中自实现的虚拟机（或称解释器）进行反向分析的技术
+程序将原本的原生代码或关键逻辑编译成自定义的字节码（bytecode），然后由一个解释器循环（VM loop）执行这些字节码。逆向工程师需要：
+
+识别出虚拟机结构（操作码表、虚拟寄存器、虚拟栈、内存模型等）
+
+提取字节码，并反汇编为人类可读的虚拟指令
+
+理解虚拟指令序列的算法逻辑，以破解保护、提取算法或找到漏洞
+
+
+虚拟机分类根据虚拟机的执行模型，通常分为两类
+基于栈的虚拟机操作数隐式地通过一个虚拟栈传递，指令执行时从栈顶弹出操作数，计算结果再压
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/%E8%8A%B1%E6%8C%87%E4%BB%A4/" aria-label="花指令" title="花指令"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="花指令" class="lazyload">
     </div>
     <div class="post-info">
@@ -461,102 +557,8 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/14/JT%20T%20808%20%E5%8D%8F%E8%AE%AE/" aria-label="JT/T 808 协议" title="JT/T 808 协议"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="JT/T 808 协议" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-14</span>
-        <span><span class="icon-pencil"></span>4.7k 字</span>
-        <span><span class="icon-clock"></span>27 分钟</span>
-      </div>
-      <h2 class="post-title">JT/T 808 协议</h2>
-      <article class="post-article">
-          JT&amp;#x2F;T 808 协议概述JT&amp;#x2F;T 808 是交通运输行业标准《道路运输车辆卫星定位系统 北斗兼容车载终端通讯协议》，规定了车载终端与监控平台之间的数据通信格式
-协议基于 TCP 或 UDP，采用大端字节序，报文整体以 0x7E 为帧边界，内部需经过转义处理
-报文封装格式每个完整报文由标识位包裹，内部包含消息头、消息体和校验码
-1234+--------+--------+----------+--------+--------+| 标识位 | 消息头 | 消息体   | 校验码 | 标识位 || 0x7e   | 变长   | 变长     | 1 byte | 0x7e
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/15/1527%20%E8%8A%AF%E7%89%87/" aria-label="1527 芯片" title="1527 芯片"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="1527 芯片" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-15</span>
-        <span><span class="icon-pencil"></span>1.5k 字</span>
-        <span><span class="icon-clock"></span>7 分钟</span>
-      </div>
-      <h2 class="post-title">1527 芯片</h2>
-      <article class="post-article">
-          1527 芯片芯片定位与调制方式1527 是一颗固定码无线遥控编码芯片，专为低成本的单向遥控设计。典型工作方式：
-
-射频频率：315 MHz 或 433 MHz（由外部声表&amp;#x2F;晶振和发射电路决定）
-
-调制方式：OOK (开关键控)，即发射载波的有无代表数据
-
-数据发送：按下按键后，同一帧数据会以约 10 ms 的间隔重复发送，直到松手
-
-
-数据结构一帧完整数据由同步头和 24 位数据（20 位地址 + 4 位按键值）组成，每发完一帧会有一段较长的低电平间隙，然后重复下一帧
-1[同步头] + [数据] + 间隙…… 再重复
-
-
-同步头：一个宽高电平脉冲，用来唤醒接收端并标志一帧的开始
-
-
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/COTP%20%E5%8D%8F%E8%AE%AE/" aria-label="COTP 协议" title="COTP 协议"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="COTP 协议" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>1.1k 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
-      </div>
-      <h2 class="post-title">COTP 协议</h2>
-      <article class="post-article">
-          COTP 协议概述COTP 是 ISO OSI 七层模型中的传输层协议，其正式标准为 ISO 8073，对应的 RFC 文档是 RFC 905。你可以把它理解为 OSI 世界里的 “TCP”
-报文结构连接包用于建立、维护和断开连接。其头部结构通常如下：
-
-Length (1 字节)：后续数据的长度
-
-PDU Type (1 字节)：数据包类型，常见的有：
-
-0x0E：连接请求 (CR)
-
-0x0D：连接确认 (CC)
-
-0x08：断开请求 (DR)
-
-0x0C：断开确认 (DC)
-
-
-
-Destination&amp;#x2F;Source Reference (各 2 字节)：目的和源引用
-
-Opt
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
-    <a class="extend prev" rel="prev" href="/page/18/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/20/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/18/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/20/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -578,10 +580,10 @@ Opt
       </div>
       <div>
         <span class="icon-brush"></span>
-        240.8k
+        248.6k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        19:47
+        20:26
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -609,7 +611,7 @@ Opt
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">217</div>
+    <div class="sidebar-state-number">223</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>

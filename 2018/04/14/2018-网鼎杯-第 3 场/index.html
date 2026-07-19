@@ -1,0 +1,597 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
+  <title>
+    2018 网鼎杯-第三场 WriteUp | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="2018 网鼎杯-第三场 WriteUp📝 赛事概况  比赛赛制：采用线上 CTF（夺旗赛） 模式。参赛队伍通过解题获取 Flag 以获得分数  参赛对象：主要面向电子政务、科技、互联网企业、网信等行业  参赛规模：据当时报道，共有 1483 支队伍参与本场比赛的角逐  晋级规则：线上预选赛每场取前 50 名晋级线下半决赛，四场共计 200 支队伍入围   Reverse最好的语言（Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018 网鼎杯-第三场 WriteUp">
+<meta property="og:url" content="https://suc2es2.github.io/2018/04/14/2018-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E7%AC%AC%203%20%E5%9C%BA/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="2018 网鼎杯-第三场 WriteUp📝 赛事概况  比赛赛制：采用线上 CTF（夺旗赛） 模式。参赛队伍通过解题获取 Flag 以获得分数  参赛对象：主要面向电子政务、科技、互联网企业、网信等行业  参赛规模：据当时报道，共有 1483 支队伍参与本场比赛的角逐  晋级规则：线上预选赛每场取前 50 名晋级线下半决赛，四场共计 200 支队伍入围   Reverse最好的语言（Python">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033rU0nKpXS1ThEtTlF2PW.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033rVPGtqEQabNiLZYnlB9.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033rVv65ZWgDnzzQJNlGFz.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033rWIZumwwlJDhbgEG8kG.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033rWQyd85aggSgwtiyymR.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033rWcqmyT5NuoXwHvpVv2.png">
+<meta property="article:published_time" content="2018-04-14T05:18:00.000Z">
+<meta property="article:modified_time" content="2026-07-18T12:19:52.038Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="Crypto">
+<meta property="article:tag" content="Misc">
+<meta property="article:tag" content="Reverse">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/033rU0nKpXS1ThEtTlF2PW.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="2018 网鼎杯-第三场 WriteUp">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">2018 网鼎杯-第三场 WriteUp</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E7%AC%AC%E4%B8%89%E5%9C%BA-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2018 网鼎杯-第三场 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-number">1.1.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%A5%BD%E7%9A%84%E8%AF%AD%E8%A8%80%EF%BC%88Python-%E5%AD%97%E8%8A%82%E7%A0%81%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">最好的语言（Python 字节码）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#babyre%EF%BC%88VB-NET%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">babyre（VB.NET）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mirror%EF%BC%88%E6%96%87%E4%BB%B6%E9%99%84%E5%8A%A0%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">mirror（文件附加隐写）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.3.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hafuhafu%EF%BC%88%E5%88%86%E8%A7%A3-n%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">hafuhafu（分解 n）</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">223</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">23</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">184</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-2018-网鼎杯-第 3 场" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2018-04-14T05:18:00.000Z" itemprop="datePublished">2018-04-14</time>
+    <time style="display: none;" id="post-update-time">2026-07-18</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="2018-网鼎杯-第三场-WriteUp"><a href="#2018-网鼎杯-第三场-WriteUp" class="headerlink" title="2018 网鼎杯-第三场 WriteUp"></a>2018 网鼎杯-第三场 WriteUp</h1><p>📝 赛事概况</p>
+<ul>
+<li><p>比赛赛制：采用线上 CTF（夺旗赛） 模式。参赛队伍通过解题获取 Flag 以获得分数</p>
+</li>
+<li><p>参赛对象：主要面向电子政务、科技、互联网企业、网信等行业</p>
+</li>
+<li><p>参赛规模：据当时报道，共有 1483 支队伍参与本场比赛的角逐</p>
+</li>
+<li><p>晋级规则：线上预选赛每场取前 50 名晋级线下半决赛，四场共计 200 支队伍入围</p>
+</li>
+</ul>
+<h2 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h2><h3 id="最好的语言（Python-字节码）"><a href="#最好的语言（Python-字节码）" class="headerlink" title="最好的语言（Python 字节码）"></a>最好的语言（Python 字节码）</h3><p><img src="https://pic1.imgdb.cn/i/033rU0nKpXS1ThEtTlF2PW.png" alt="pasted_1784357937528_0wa08t.png"></p>
+<p>下载附加识别字符串发现是 Python2 字节码文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">su2es2@Suc2es2:/mnt/d/CTF/213_79e9610e96eb501c77b8d1cae8536dfcc64f58c0/最好的语言$ strings re</span><br><span class="line">magic 03f30d0a</span><br><span class="line">moddate 6d4a695b (Tue Aug  7 15:29:49 2018)</span><br><span class="line">&lt;code&gt;</span><br><span class="line">   &lt;argcount&gt; 0 &lt;/argcount&gt;</span><br><span class="line">   &lt;nlocals&gt; 0&lt;/nlocals&gt;</span><br><span class="line">   &lt;stacksize&gt; 5&lt;/stacksize&gt;</span><br><span class="line">   &lt;flags&gt; 0040&lt;/flags&gt;</span><br><span class="line">   &lt;code&gt;</span><br><span class="line">      6400006401006c00005a00006400006402006c01006d02005a0200016400</span><br><span class="line">      006401006c03005a03006400006401006c04005a04006403005a05006404</span><br><span class="line">      008400005a06006405008400005a07006506006505006406002083010065</span><br><span class="line">      070065050064060064070021830100176506006505006407001f83010017</span><br><span class="line">      5a08006500006a090065080083010047486408005a080064010053</span><br><span class="line">   &lt;/code&gt;</span><br><span class="line">   &lt;names&gt; (<span class="string">&#x27;base64&#x27;</span>, <span class="string">&#x27;hashlib&#x27;</span>, <span class="string">&#x27;md5&#x27;</span>, <span class="string">&#x27;random&#x27;</span>, <span class="string">&#x27;string&#x27;</span>, <span class="string">&#x27;f&#x27;</span>, <span class="string">&#x27;_&#x27;</span>, <span class="string">&#x27;____&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;b64encode&#x27;</span>)&lt;/names&gt;</span><br><span class="line">   &lt;varnames&gt; ()&lt;/varnames&gt;</span><br><span class="line">   &lt;freevars&gt; ()&lt;/freevars&gt;</span><br><span class="line">   &lt;cellvars&gt; ()&lt;/cellvars&gt;</span><br><span class="line">   &lt;filename&gt; <span class="string">&#x27;re2.py&#x27;</span>&lt;/filename&gt;</span><br><span class="line">   &lt;name&gt; <span class="string">&#x27;&lt;module&gt;&#x27;</span>&lt;/name&gt;</span><br><span class="line">   &lt;firstlineno&gt; 1&lt;/firstlineno&gt;</span><br><span class="line">   &lt;consts&gt;</span><br><span class="line">      -1</span><br><span class="line">      None</span><br><span class="line">      (<span class="string">&#x27;md5&#x27;</span>,)</span><br><span class="line">      <span class="string">&#x27;flag&#123;*******&#125;&#x27;</span></span><br><span class="line">      &lt;code&gt;</span><br><span class="line">         &lt;argcount&gt; 1 &lt;/argcount&gt;</span><br><span class="line">         &lt;nlocals&gt; 4&lt;/nlocals&gt;</span><br><span class="line">         &lt;stacksize&gt; 8&lt;/stacksize&gt;</span><br><span class="line">         &lt;flags&gt; 0043&lt;/flags&gt;</span><br><span class="line">         &lt;code&gt;</span><br><span class="line">            6401006a00007401006a02007403006a04006402008302008301007d0100</span><br><span class="line">            6401007d02007846007405007406007c0000830100830100445d32007d03</span><br><span class="line">            007c02007407007408007c00007c0300198301007408007c01007c030064</span><br><span class="line">            0200161983010041830100377d0200713700577c020053</span><br><span class="line">         &lt;/code&gt;</span><br><span class="line">         &lt;names&gt; (<span class="string">&#x27;join&#x27;</span>, <span class="string">&#x27;random&#x27;</span>, <span class="string">&#x27;sample&#x27;</span>, <span class="string">&#x27;string&#x27;</span>, <span class="string">&#x27;digits&#x27;</span>, <span class="string">&#x27;range&#x27;</span>, <span class="string">&#x27;len&#x27;</span>, <span class="string">&#x27;chr&#x27;</span>, <span class="string">&#x27;ord&#x27;</span>)&lt;/names&gt;</span><br><span class="line">         &lt;varnames&gt; (<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;__&#x27;</span>, <span class="string">&#x27;___&#x27;</span>, <span class="string">&#x27;i&#x27;</span>)&lt;/varnames&gt;</span><br><span class="line">         &lt;freevars&gt; ()&lt;/freevars&gt;</span><br><span class="line">         &lt;cellvars&gt; ()&lt;/cellvars&gt;</span><br><span class="line">         &lt;filename&gt; <span class="string">&#x27;re2.py&#x27;</span>&lt;/filename&gt;</span><br><span class="line">         &lt;name&gt; <span class="string">&#x27;_&#x27;</span>&lt;/name&gt;</span><br><span class="line">         &lt;firstlineno&gt; 7&lt;/firstlineno&gt;</span><br><span class="line">         &lt;consts&gt;</span><br><span class="line">            None</span><br><span class="line">            <span class="string">&#x27;&#x27;</span></span><br><span class="line">            4</span><br><span class="line">         &lt;/consts&gt;</span><br><span class="line">         &lt;lnotab&gt; 00011e01060119013001&lt;/lnotab&gt;</span><br><span class="line">      &lt;/code&gt;</span><br><span class="line">      &lt;code&gt;</span><br><span class="line">         &lt;argcount&gt; 1 &lt;/argcount&gt;</span><br><span class="line">         &lt;nlocals&gt; 2&lt;/nlocals&gt;</span><br><span class="line">         &lt;stacksize&gt; 2&lt;/stacksize&gt;</span><br><span class="line">         &lt;flags&gt; 0043&lt;/flags&gt;</span><br><span class="line">         &lt;code&gt;</span><br><span class="line">            7400008300007d01007c01006a01007c0000830100017c01006a02008300</span><br><span class="line">            0053</span><br><span class="line">         &lt;/code&gt;</span><br><span class="line">         &lt;names&gt; (<span class="string">&#x27;md5&#x27;</span>, <span class="string">&#x27;update&#x27;</span>, <span class="string">&#x27;digest&#x27;</span>)&lt;/names&gt;</span><br><span class="line">         &lt;varnames&gt; (<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;___&#x27;</span>)&lt;/varnames&gt;</span><br><span class="line">         &lt;freevars&gt; ()&lt;/freevars&gt;</span><br><span class="line">         &lt;cellvars&gt; ()&lt;/cellvars&gt;</span><br><span class="line">         &lt;filename&gt; <span class="string">&#x27;re2.py&#x27;</span>&lt;/filename&gt;</span><br><span class="line">         &lt;name&gt; <span class="string">&#x27;____&#x27;</span>&lt;/name&gt;</span><br><span class="line">         &lt;firstlineno&gt; 14&lt;/firstlineno&gt;</span><br><span class="line">         &lt;consts&gt;</span><br><span class="line">            None</span><br><span class="line">         &lt;/consts&gt;</span><br><span class="line">         &lt;lnotab&gt; 000109010d01&lt;/lnotab&gt;</span><br><span class="line">      &lt;/code&gt;</span><br><span class="line">      12</span><br><span class="line">      19</span><br><span class="line">      <span class="string">&#x27;U1VQU05pSHdqCEJrQu7FS7Vngk1OTQ58qqghXmt2AUdrcFBBUEU=&#x27;</span></span><br><span class="line">   &lt;/consts&gt;</span><br><span class="line">   &lt;lnotab&gt; 0c0110010c010c020601090709052f010e01&lt;/lnotab&gt;</span><br><span class="line">&lt;/code&gt;</span><br></pre></td></tr></table></figure>
+
+<p>根据字节码还原脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> md5</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line">f = <span class="string">&#x27;flag&#123;*******&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_</span>(<span class="params">b</span>):</span><br><span class="line">    key = <span class="string">&#x27;&#x27;</span>.join(random.sample(string.digits, <span class="number">4</span>))</span><br><span class="line">    res = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(b)):</span><br><span class="line">        res += <span class="built_in">chr</span>(<span class="built_in">ord</span>(b[i]) ^ <span class="built_in">ord</span>(key[i % <span class="number">4</span>]))</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">____</span>(<span class="params">a</span>):</span><br><span class="line">    m = md5()</span><br><span class="line">    m.update(a)</span><br><span class="line">    <span class="keyword">return</span> m.digest()</span><br><span class="line"></span><br><span class="line">e = _(f[:<span class="number">12</span>]) + ____(f[<span class="number">12</span>:<span class="number">19</span>]) + _(f[<span class="number">19</span>:])</span><br><span class="line"><span class="built_in">print</span> base64.b64encode(e)</span><br><span class="line"></span><br><span class="line">e = <span class="string">&#x27;U1VQU05pSHdqCEJrQu7FS7Vngk1OTQ58qqghXmt2AUdrcFBBUEU=&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>程序把 flag 分成三段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">f[:12]</span><br><span class="line">f[12:19]</span><br><span class="line">f[19:]</span><br><span class="line"></span><br><span class="line">第 1 段：前 12 字符</span><br><span class="line">第 2 段：第 12 到 18 位，共 7 字符</span><br><span class="line">第 3 段：第 19 位到结尾</span><br></pre></td></tr></table></figure>
+
+<p>加密方式为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e = _(f[:12]) + ____(f[12:19]) + _(f[19:])</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>_()</code> 是 XOR 加密</p>
+<p><code>key</code> 是 4 位互不重复的数字</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key = &#x27;&#x27;.join(random.sample(string.digits, 4))</span><br></pre></td></tr></table></figure>
+
+<p>然后循环异或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cipher[i] = plain[i] ^ key[i % 4]</span><br></pre></td></tr></table></figure>
+
+<p>而 <code>____()</code> 是 MD5</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">md5(flag[12:19]).digest()</span><br></pre></td></tr></table></figure>
+
+<p>所以密文结构为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Base64(</span><br><span class="line">    XOR(flag[:12], 4位数字key1)</span><br><span class="line">  + MD5(flag[12:19])</span><br><span class="line">  + XOR(flag[19:], 4位数字key2)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>先解码目标字符串结果长度为 38</p>
+<p>因为中间 MD5 digest 固定是 16 字节，所以可以切成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c1 = data[:12]</span><br><span class="line">h  = data[12:28]</span><br><span class="line">c3 = data[28:]</span><br></pre></td></tr></table></figure>
+
+<p>分别是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c1 长度：12</span><br><span class="line">h  长度：16</span><br><span class="line">c3 长度：10</span><br></pre></td></tr></table></figure>
+
+<p>这说明原始 flag 长度为 <code>12 + 7 + 10 = 29</code></p>
+<p>第一段是 <code>XOR(flag[:12], key1)</code>，而 flag 开头固定为 <code>flag{</code>，密文是 <code>535550534e6948776a08426b</code></p>
+<p>计算</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">key[0] = c1[0] ^ ord(&#x27;f&#x27;)</span><br><span class="line">key[1] = c1[1] ^ ord(&#x27;l&#x27;)</span><br><span class="line">key[2] = c1[2] ^ ord(&#x27;a&#x27;)</span><br><span class="line">key[3] = c1[3] ^ ord(&#x27;g&#x27;)</span><br><span class="line">key[0] = c1[4] ^ ord(&#x27;&#123;&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>得到结果 <code>59145</code>，第 5 位再次得到 <code>5</code>，说明 key 是循环的四位随机数</p>
+<p>解密第一段密文得到 <code>flag{PyC_1s_</code></p>
+<p>爆破第二段密文 MD5 得到 <code>613u21i</code></p>
+<p>最后第三段密文的 Key 可以直接爆破，因为最后一位一定是 <code>}</code></p>
+<p>密钥是 <code>4813</code>，最后得到 <code>_N0t_Hard}</code></p>
+<p>所以 flag 就是 <code>flag{PyC_1s_613u21i_N0t_Hard}</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line"><span class="comment"># Base64 编码的密文，内部结构为：加密前缀(12字节) + MD5哈希(16字节) + 加密后缀</span></span><br><span class="line">target = <span class="string">&quot;U1VQU05pSHdqCEJrQu7FS7Vngk1OTQ58qqghXmt2AUdrcFBBUEU=&quot;</span></span><br><span class="line">data = base64.b64decode(target)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拆分三段</span></span><br><span class="line">c1 = data[:<span class="number">12</span>]       <span class="comment"># 前12字节：flag 前缀部分的密文</span></span><br><span class="line">md5_part = data[<span class="number">12</span>:<span class="number">28</span>]  <span class="comment"># 中间16字节：flag 中间部分的 MD5 哈希</span></span><br><span class="line">c3 = data[<span class="number">28</span>:]        <span class="comment"># 剩余字节：flag 后缀部分的密文</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">xor</span>(<span class="params">c, k</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;循环异或解密：c 为密文字节串，k 为密钥字符串&quot;&quot;&quot;</span></span><br><span class="line">    kb = k.encode()</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">bytes</span>(c[i] ^ kb[i % <span class="built_in">len</span>(kb)] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(c)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- 第一部分：恢复 flag 前缀 ----------</span></span><br><span class="line"><span class="comment"># 已知 flag 以 &quot;flag&#123;&quot; 开头，与密文前5字节异或得到密钥流</span></span><br><span class="line"><span class="comment"># 题目使用的异或密钥长度为 4，因此取密钥流前 0 4字节作为 key1</span></span><br><span class="line">key1 = <span class="built_in">bytes</span>(c1[i] ^ <span class="string">b&quot;flag&#123;&quot;</span>[i] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>))[:<span class="number">4</span>].decode()</span><br><span class="line">part1 = xor(c1, key1).decode()   <span class="comment"># 解密出完整的第一部分</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- 第二部分：中间字符串 ----------</span></span><br><span class="line">middle = <span class="string">&quot;613u21i&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- 第三部分：爆破后缀 ----------</span></span><br><span class="line">charset = string.ascii_letters + string.digits + <span class="string">&quot;_&#123;&#125;&quot;</span>  <span class="comment"># 合法字符集</span></span><br><span class="line"><span class="comment"># 密钥是4位不重复的数字，对 0-9 的所有排列进行尝试</span></span><br><span class="line"><span class="keyword">for</span> digits <span class="keyword">in</span> itertools.permutations(string.digits, <span class="number">4</span>):</span><br><span class="line">    k = <span class="string">&#x27;&#x27;</span>.join(digits)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        text = xor(c3, k).decode()</span><br><span class="line">        <span class="comment"># 检查解密结果是否符合 flag 后缀的特征</span></span><br><span class="line">        <span class="keyword">if</span> text.startswith(<span class="string">&quot;_&quot;</span>) <span class="keyword">and</span> text.endswith(<span class="string">&quot;&#125;&quot;</span>) <span class="keyword">and</span> <span class="built_in">all</span>(c <span class="keyword">in</span> charset <span class="keyword">for</span> c <span class="keyword">in</span> text):</span><br><span class="line">            part3 = text</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">except</span> UnicodeDecodeError:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 拼接得到完整 flag</span></span><br><span class="line">flag = part1 + middle + part3</span><br></pre></td></tr></table></figure>
+
+<h3 id="babyre（VB-NET）"><a href="#babyre（VB-NET）" class="headerlink" title="babyre（VB.NET）"></a>babyre（VB.NET）</h3><p><img src="https://pic1.imgdb.cn/i/033rVPGtqEQabNiLZYnlB9.png" alt="pasted_1784361347609_3w5799.png"></p>
+<p>VB.NET 逆向需要使用 dnSpyEx</p>
+<p><img src="https://pic1.imgdb.cn/i/033rVv65ZWgDnzzQJNlGFz.png" alt="pasted_1784362602549_9ldoff.png"></p>
+<p>构造函数 <code>Form1()</code> 中初始化</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.contents = <span class="string">&quot;flag&#123;ca201ed0-9e07&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>Form1_Load</code> 方法中两次追加字符串</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.contents = ptr + <span class="string">&quot;-11e8-b6dd&quot;</span>;</span><br><span class="line"><span class="keyword">this</span>.contents = ptr + <span class="string">&quot;-000c29dcabfd&#125;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>最终 <code>contents</code> 的值为 <code>flag{ca201ed0-9e07-11e8-b6dd-000c29dcabfd}</code></p>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="mirror（文件附加隐写）"><a href="#mirror（文件附加隐写）" class="headerlink" title="mirror（文件附加隐写）"></a>mirror（文件附加隐写）</h3><p><img src="https://pic1.imgdb.cn/i/033rWIZumwwlJDhbgEG8kG.png" alt="pasted_1784363528258_jibvq1.png"></p>
+<p>JPEG 图片末尾附加的一张整体字节倒序的 PNG 图片，提取出来拿到 flag</p>
+<p><img src="https://pic1.imgdb.cn/i/033rWQyd85aggSgwtiyymR.png" alt="pasted_1784363860071_5f3ayd.png"></p>
+<h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="hafuhafu（分解-n）"><a href="#hafuhafu（分解-n）" class="headerlink" title="hafuhafu（分解 n）"></a>hafuhafu（分解 <code>n</code>）</h3><p><img src="https://pic1.imgdb.cn/i/033rWcqmyT5NuoXwHvpVv2.png" alt="pasted_1784364327934_h2kdnu.png"></p>
+<p>直接分解出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p = 149930380465516707151079321019435489399072155945793735032334088844599773034021170995501688132861944516938448679935403246643441984203770825485165700862168437691254557323938150173733659070945061763789341407547559935070758242521126066900261360899379463301621378242061934281538210192731229473900396425739817670867</span><br><span class="line">q = 170559166199281256887953076784727902849936084815549184550874370897326056825177365209113910954088389779180174518262922176726833811470419181874717574929460298509184863124213663255559781224744696195678069242025195218017449489985102637547369070225979448169459840545693721393354651993457943927480894225788038743661</span><br></pre></td></tr></table></figure>
+
+<p>最后解出 <code>flag{D0nT_uS3_Th3_kN0w_n}</code></p>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/CTF/" title="CTF" data-aos="zoom-in">CTF</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Crypto/" rel="tag" title="Crypto">Crypto</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag" title="Misc">Misc</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Reverse/" rel="tag" title="Reverse">Reverse</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2018 ACTF WriteUp" class="lazyload">
+        <a href="/2018/05/22/2018%20ACTF/" aria-label="前一篇: 2018 ACTF WriteUp" title="前一篇: 2018 ACTF WriteUp"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            2018 ACTF WriteUp
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2018 网鼎杯-第四场 WriteUp" class="lazyload">
+      <a href="/2018/04/14/2018-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E7%AC%AC%204%20%E5%9C%BA/" aria-label="后一篇: 2018 网鼎杯-第四场 WriteUp"  title="后一篇: 2018 网鼎杯-第四场 WriteUp"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          2018 网鼎杯-第四场 WriteUp
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        248.6k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        20:26
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2018-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E7%AC%AC%E4%B8%89%E5%9C%BA-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2018 网鼎杯-第三场 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-number">1.1.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%A5%BD%E7%9A%84%E8%AF%AD%E8%A8%80%EF%BC%88Python-%E5%AD%97%E8%8A%82%E7%A0%81%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">最好的语言（Python 字节码）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#babyre%EF%BC%88VB-NET%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">babyre（VB.NET）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mirror%EF%BC%88%E6%96%87%E4%BB%B6%E9%99%84%E5%8A%A0%E9%9A%90%E5%86%99%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">mirror（文件附加隐写）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.3.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hafuhafu%EF%BC%88%E5%88%86%E8%A7%A3-n%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">hafuhafu（分解 n）</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">223</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">23</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">184</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "2018 网鼎杯-第三场 WriteUp",
+          url: "https://suc2es2.github.io/2018/04/14/2018-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E7%AC%AC%203%20%E5%9C%BA/",
+          excerpt: "",
+          description: "",
+          stripContent: "2018 网鼎杯-第三场 WriteUp📝 赛事概况  比赛赛制：采用线上 CTF（夺旗赛） 模式。参赛队伍通过解题获取 Flag 以获得分数  参赛对象：主要面向电子政务、科技、互联网企业、网信等行业  参赛规模：据当时报道，共有 1483 支队伍参与本场比赛的角逐  晋级规则：线上预选赛每场取前 50 名晋级线下半决赛，四场共计 200 支队伍入围   Reverse最好的语言（Python 字节码） 下载附加识别字符串发现是 Python2 字节码文件 12345678910111213",
+          date: "Sat Apr 14 2018 13:18:00 GMT+0800",
+          updated: "Sat Jul 18 2026 20:19:52 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
