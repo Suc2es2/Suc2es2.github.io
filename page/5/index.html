@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">226</div>
+    <div class="sidebar-state-number">228</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -226,13 +226,13 @@
               <a href="/2026/06/24/seek%20agent%20%E9%A1%B9%E7%9B%AE%E7%BA%A7%E6%8A%95%E6%AF%92/" title="Seek README 间接提示词注入">Seek README 间接提示词注入</a>
             </li>
             <li>
+              <a href="/2026/06/19/HMS%201/" title="VulnHub HMS?：1">VulnHub HMS?：1</a>
+            </li>
+            <li>
               <a href="/2026/06/19/ContainMe%201/" title="VulnHub ContainMe：1">VulnHub ContainMe：1</a>
             </li>
             <li>
               <a href="/2026/06/18/Corrosion%201/" title="VulnHub Corrosion：1">VulnHub Corrosion：1</a>
-            </li>
-            <li>
-              <a href="/2026/06/15/Hack%20Me%20Please%201/" title="VulnHub Hack Me Please：1">VulnHub Hack Me Please：1</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,39 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/12/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/" aria-label="RSA 共模攻击" title="RSA 共模攻击"></a>
+      <a class="post-link" href="/2026/05/12/GCD%20%E6%94%BB%E5%87%BB/" aria-label="RSA GCD 攻击" title="RSA GCD 攻击"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="RSA GCD 攻击" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-05-12</span>
+        <span><span class="icon-pencil"></span>99 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
+      </div>
+      <h2 class="post-title">RSA GCD 攻击</h2>
+      <article class="post-article">
+          RSA GCD 攻击攻击原理假设：
+12n1 = p * q1n2 = p * q2
+
+p 是同一个素数，q1 和 q2 不同
+攻击者可以计算：
+1p = gcd(n1, n2)
+
+因为 p 同时整除 n1 和 n2，并且 n1 和 n2 除了 p 之外没有其他公共因子（q1 和 q2 不同，且都是素数）
+一旦得到 p，立刻得到：
+12q1 = n1 / pq2 = n2 / p
+
+进而恢复私钥 d1 和 d2
+
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/05/12/%E5%85%B1%E6%A8%A1%E6%94%BB%E5%87%BB/" aria-label="RSA 共模攻击" title="RSA 共模攻击"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="RSA 共模攻击" class="lazyload">
     </div>
     <div class="post-info">
@@ -272,6 +303,33 @@ c2 = m^e2 mod n
 1e1 * s + e2 * t = 1
 
 在 Python 里我们可以直接用 gmpy2.gcdext(e1, e2)，它会返回 (g, s, t)，其中 g=1
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/05/11/RSA%20%E4%BD%8E%E6%8C%87%E6%95%B0%E5%B9%BF%E6%92%AD%E6%94%BB%E5%87%BB/" aria-label="RSA 低指数广播攻击" title="RSA 低指数广播攻击"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="RSA 低指数广播攻击" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-05-11</span>
+        <span><span class="icon-pencil"></span>1k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">RSA 低指数广播攻击</h2>
+      <article class="post-article">
+          RSA 低指数广播攻击攻击背景当同一份明文消息 m 使用相同的低加密指数 e（例如 e = 3 或 e = 5）
+但不同的模数 N1, N2, ... , Nk 分别加密并发送给 k 个接收者时，攻击者如果能截获至少 e 个密文，就可以在不分解任何模数的情况下恢复出明文
+该攻击属于 Hastad 广播攻击的一个特例（无随机填充时）
+数学原理以 e = 3 为例
+加密过程
+123c1 = m^3 mod N1c2 = m^3 mod N2c3 = m^3 mod N3
+
+因为 N1, N2, N3 两两互质，我们可以使用中国剩余定理（CRT） 求解同余方程组
+123x ≡ c1 (mod N1)
       </article>
     </div>
   </div>
@@ -307,35 +365,8 @@ N_1 = p × q_1
 </div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/11/RSA%20%E4%BD%8E%E6%8C%87%E6%95%B0%E5%B9%BF%E6%92%AD%E6%94%BB%E5%87%BB/" aria-label="RSA 低指数广播攻击" title="RSA 低指数广播攻击"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="RSA 低指数广播攻击" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-05-11</span>
-        <span><span class="icon-pencil"></span>1k 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
-      </div>
-      <h2 class="post-title">RSA 低指数广播攻击</h2>
-      <article class="post-article">
-          RSA 低指数广播攻击攻击背景当同一份明文消息 m 使用相同的低加密指数 e（例如 e = 3 或 e = 5）
-但不同的模数 N1, N2, ... , Nk 分别加密并发送给 k 个接收者时，攻击者如果能截获至少 e 个密文，就可以在不分解任何模数的情况下恢复出明文
-该攻击属于 Hastad 广播攻击的一个特例（无随机填充时）
-数学原理以 e = 3 为例
-加密过程
-123c1 = m^3 mod N1c2 = m^3 mod N2c3 = m^3 mod N3
-
-因为 N1, N2, N3 两两互质，我们可以使用中国剩余定理（CRT） 求解同余方程组
-123x ≡ c1 (mod N1)
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/05/11/RSA/" aria-label="RSA 基础" title="RSA 基础"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="RSA 基础" class="lazyload">
     </div>
     <div class="post-info">
@@ -362,9 +393,9 @@ N_1 = p × q_1
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/05/11/Vigen%C3%A8re%20%E5%AF%86%E7%A0%81/" aria-label="Vigenère 密码" title="Vigenère 密码"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Vigenère 密码" class="lazyload">
     </div>
     <div class="post-info">
@@ -389,9 +420,9 @@ N_1 = p × q_1
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/05/11/%E6%81%8B%E4%BA%BA%E7%A9%BA%E9%97%B4%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A1%94%E7%BD%97%E7%89%8C%E8%A7%A3%E5%AF%86/" aria-label="恋人空间小程序塔罗牌解密" title="恋人空间小程序塔罗牌解密"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="恋人空间小程序塔罗牌解密" class="lazyload">
     </div>
     <div class="post-info">
@@ -421,9 +452,9 @@ N_1 = p × q_1
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/05/11/%E7%94%B5%E7%AB%9E%E6%8A%95%E8%AF%89%E9%99%AA%E7%8E%A9XSS/" aria-label="某电竞俱乐部小程序投诉陪玩与客服对话文件上传 XSS（两个）" title="某电竞俱乐部小程序投诉陪玩与客服对话文件上传 XSS（两个）"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="某电竞俱乐部小程序投诉陪玩与客服对话文件上传 XSS（两个）" class="lazyload">
     </div>
     <div class="post-info">
@@ -453,9 +484,9 @@ XSS在投诉页面发现可以上传图片
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/05/10/Noob%201/" aria-label="VulnHub Noob：1" title="VulnHub Noob：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Noob：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -488,9 +519,9 @@ https://pic1.im
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/05/10/%E7%94%B5%E7%AB%9E%E5%AE%A2%E6%9C%8D%E8%B6%8A%E6%9D%83%E8%8E%B7%E5%8F%96%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95/" aria-label="某电竞小程序越权查看与客服聊天记录（可遍历）" title="某电竞小程序越权查看与客服聊天记录（可遍历）"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="某电竞小程序越权查看与客服聊天记录（可遍历）" class="lazyload">
     </div>
     <div class="post-info">
@@ -512,40 +543,6 @@ content 是聊天内容，发现存在两个关键参数
 用虚拟机里的小号去获取下 id
 
 替换掉并发包成功越权，并且推测到这个参数应该是可遍历的，两个参数值相差 2
-
-
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/10/%E7%94%B5%E7%AB%9E%E5%AE%A2%E6%9C%8D%E5%AF%B9%E8%AF%9D%E8%B6%8A%E6%9D%83/" aria-label="某电竞小程序越权发送消息给客服（可遍历）" title="某电竞小程序越权发送消息给客服（可遍历）"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="某电竞小程序越权发送消息给客服（可遍历）" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-05-10</span>
-        <span><span class="icon-pencil"></span>192 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">某电竞小程序越权发送消息给客服（可遍历）</h2>
-      <article class="post-article">
-          电竞小程序越权发送消息给客服（可遍历）前言本次测试属于公益类型的 SRC
-越权抓包与客服对话的流量包，发现存在两个关键参数
-一个是 chat_id，另一个则是 token
-
-因为数据格式是 JSON，所以将 token 置空试试
-
-发送成功（这里应该是我超时了，所以重新抓了一个包导致 chat_id 不一样）
-
-切换为小号抓包获取 chat_id
-
-替换参数与文字内容发包
-
-可以看到发出去了，并且这个 chat_id 在后端应该是每次 +1
-所以可以遍历这个参数从而给客服制造大量垃圾消息以及影响客户本身询问的需求，高危起步了
 
 
       </article>
@@ -575,10 +572,10 @@ content 是聊天内容，发现存在两个关键参数
       </div>
       <div>
         <span class="icon-brush"></span>
-        253.1k
+        255.8k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        20:48
+        21:03
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -606,7 +603,7 @@ content 是聊天内容，发现存在两个关键参数
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">226</div>
+    <div class="sidebar-state-number">228</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>

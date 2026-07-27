@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">226</div>
+    <div class="sidebar-state-number">228</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -226,13 +226,13 @@
               <a href="/2026/06/24/seek%20agent%20%E9%A1%B9%E7%9B%AE%E7%BA%A7%E6%8A%95%E6%AF%92/" title="Seek README 间接提示词注入">Seek README 间接提示词注入</a>
             </li>
             <li>
+              <a href="/2026/06/19/HMS%201/" title="VulnHub HMS?：1">VulnHub HMS?：1</a>
+            </li>
+            <li>
               <a href="/2026/06/19/ContainMe%201/" title="VulnHub ContainMe：1">VulnHub ContainMe：1</a>
             </li>
             <li>
               <a href="/2026/06/18/Corrosion%201/" title="VulnHub Corrosion：1">VulnHub Corrosion：1</a>
-            </li>
-            <li>
-              <a href="/2026/06/15/Hack%20Me%20Please%201/" title="VulnHub Hack Me Please：1">VulnHub Hack Me Please：1</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,33 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/APK/" aria-label="APK" title="APK"></a>
+      <a class="post-link" href="/2019/05/22/Ret2csu/" aria-label="Ret2csu" title="Ret2csu"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2csu" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1.4k 字</span>
+        <span><span class="icon-clock"></span>7 分钟</span>
+      </div>
+      <h2 class="post-title">Ret2csu</h2>
+      <article class="post-article">
+          Ret2csu原理在 glibc 的源码中，有一个函数叫 __libc_csu_init，它在程序启动时负责调用 .init_array 中的初始化函数
+这个函数末尾有一段普适性很强的指令，经常被用作 ROP gadget。安全研究者最早将利用这段代码的技术称为 Return-to-csu，简称 Ret2csu。
+因为 __libc_csu_init 是 libc 标准启动代码的一部分，只要程序是动态链接的，几乎一定存在，而且在没有 PIE 的情况下地址固定。这给了攻击者在 “找不到常规 pop rdi” 时一个可靠的备胎
+实战案例Pwn题滞销,帮帮我好吗_（Ret2csu）
+代码只有两行
+
+
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/APK/" aria-label="APK" title="APK"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="APK" class="lazyload">
     </div>
     <div class="post-info">
@@ -265,9 +290,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/MFC/" aria-label="MFC" title="MFC"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MFC" class="lazyload">
     </div>
     <div class="post-info">
@@ -291,9 +316,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/Ret2plt/" aria-label="Ret2plt" title="Ret2plt"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2plt" class="lazyload">
     </div>
     <div class="post-info">
@@ -310,6 +335,44 @@
 更常见的情况是：程序虽然没有直接调用 system，但导入了 system，这样 system@plt 就是一个现成的跳板
 核心思想Ret2plt 就是利用栈溢出，将返回地址覆盖为某个函数的 PLT 表项地址（如 system@plt），并伪造好参数，从而调用该函数
 因为 PLT 表位于
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/ext2%20%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/" aria-label="ext2 文件恢复" title="ext2 文件恢复"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="ext2 文件恢复" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1.2k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">ext2 文件恢复</h2>
+      <article class="post-article">
+          ext2 文件恢复Ext2 是 Linux 中早期广泛使用的文件系统，虽然后被 Ext3&amp;#x2F;4 取代，但在嵌入式、固件、老旧系统及 CTF 取证题中仍经常出现
+由于 Ext2 不涉及日志，一旦文件被删除，其数据并不会立即消失，因此恢复成功率较高
+文件恢复主要基于 inode 信息和间接块指针的重建
+核心结构
+
+
+结构
+大小
+关键字段
+
+
+
+超级块 (Superblock)
+1024 字节
+块大小、inode 总数、块总数、第一个 inode 号（固定为1）、卷名、最后挂载时间、魔数 0xEF53 等
+
+
+组描述符表 (GDT)
+32 字节&amp;#x2F;组
+块位图位置、inode 位图位置
       </article>
     </div>
   </div>
@@ -361,46 +424,8 @@ Ext3
 </div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/ext2%20%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/" aria-label="ext2 文件恢复" title="ext2 文件恢复"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="ext2 文件恢复" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1.2k 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
-      </div>
-      <h2 class="post-title">ext2 文件恢复</h2>
-      <article class="post-article">
-          ext2 文件恢复Ext2 是 Linux 中早期广泛使用的文件系统，虽然后被 Ext3&amp;#x2F;4 取代，但在嵌入式、固件、老旧系统及 CTF 取证题中仍经常出现
-由于 Ext2 不涉及日志，一旦文件被删除，其数据并不会立即消失，因此恢复成功率较高
-文件恢复主要基于 inode 信息和间接块指针的重建
-核心结构
-
-
-结构
-大小
-关键字段
-
-
-
-超级块 (Superblock)
-1024 字节
-块大小、inode 总数、块总数、第一个 inode 号（固定为1）、卷名、最后挂载时间、魔数 0xEF53 等
-
-
-组描述符表 (GDT)
-32 字节&amp;#x2F;组
-块位图位置、inode 位图位置
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/pwn-Shellcode/" aria-label="Shellcode" title="Shellcode"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Shellcode" class="lazyload">
     </div>
     <div class="post-info">
@@ -426,49 +451,6 @@ Ext3
 没开金丝雀
 
 mprotect 的第三个参数 7 代表 RWX 权限，从指针 buf 向前偏移 16 字节 的地址开始，长度为 409
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20ByteCTF/" aria-label="2019 ByteCTF WriteUp" title="2019 ByteCTF WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 ByteCTF WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>231 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">2019 ByteCTF WriteUp</h2>
-      <article class="post-article">
-          2019 ByteCTF WriteUp2019 年 ByteCTF 是由字节跳动主办的首届网络安全攻防大赛
-
-赛事规模：共吸引 4000 余人次报名，722 支高校队伍参赛
-
-比赛时间：线上初赛于 2019 年 9 月 7 日 - 9 月 8 日举行；线下决赛于 10 月 19 日 - 10 月 20 日在北京举行
-
-奖金设置：冠军 80,000 元，亚军 50,000 元，季军 20,000 元，第 4 - 6 名分别获得 10,000、8,000、5,000 元奖金
-
-
-
-
-
-最终排名
-队伍名称
-所属&amp;#x2F;备注
-
-
-
-冠军
-W&amp;amp;M
-联合战队，同时也是线上赛冠军
-
-
-亚军
-N
       </article>
     </div>
   </div>
@@ -505,42 +487,8 @@ dump 出 explorer.exe，它的内存里主
 </div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20RCTF/" aria-label="2019 RCTF WriteUp" title="2019 RCTF WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 RCTF WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>140 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">2019 RCTF WriteUp</h2>
-      <article class="post-article">
-          2019 RCTF WriteUp🏛️ 组织架构
-RCTF 2019 由国家创新与发展战略研究会主办，360 集团与南京赛宁信息技术有限公司联合承办
-命题团队为 r3kapig 战队
-⚙️ 赛制与规模
-
-赛制：采用线上 CTF（Capture The Flag）解题模式（Jeopardy-style）
-
-时间：比赛于 2019 年 5 月举行
-
-规模：赛事在 CTFtime 上的权重为 52.89 分，吸引了全球众多顶尖战队参与
-
-
-Miscdraw（签到）一门叫 logo 的冷门编程语言，在线编译器运行得到图片
-
-flag 就是 RCTF_HeyLogo
-
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/2019%20RoarCTF/" aria-label="2019 RoarCTF WriteUp" title="2019 RoarCTF WriteUp"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 RoarCTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -601,6 +549,49 @@ Vidar
     </div>
   </div>
 </div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019%20ByteCTF/" aria-label="2019 ByteCTF WriteUp" title="2019 ByteCTF WriteUp"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 ByteCTF WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>231 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
+      </div>
+      <h2 class="post-title">2019 ByteCTF WriteUp</h2>
+      <article class="post-article">
+          2019 ByteCTF WriteUp2019 年 ByteCTF 是由字节跳动主办的首届网络安全攻防大赛
+
+赛事规模：共吸引 4000 余人次报名，722 支高校队伍参赛
+
+比赛时间：线上初赛于 2019 年 9 月 7 日 - 9 月 8 日举行；线下决赛于 10 月 19 日 - 10 月 20 日在北京举行
+
+奖金设置：冠军 80,000 元，亚军 50,000 元，季军 20,000 元，第 4 - 6 名分别获得 10,000、8,000、5,000 元奖金
+
+
+
+
+
+最终排名
+队伍名称
+所属&amp;#x2F;备注
+
+
+
+冠军
+W&amp;amp;M
+联合战队，同时也是线上赛冠军
+
+
+亚军
+N
+      </article>
+    </div>
+  </div>
+</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/17/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/19/">下一页 &raquo;</a>
   </nav>
@@ -624,10 +615,10 @@ Vidar
       </div>
       <div>
         <span class="icon-brush"></span>
-        253.1k
+        255.8k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        20:48
+        21:03
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -655,7 +646,7 @@ Vidar
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">226</div>
+    <div class="sidebar-state-number">228</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
