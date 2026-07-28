@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
   <title>
-    仿射加密 | 雾島风起時
+    启阅小说搜索框反射 XSS | 雾島风起時
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,21 +17,22 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="仿射加密仿射加密就像把字母表上的每个字母，通过 “乘以一个数” 再加 “一个常数” 映射成另一个字母 这样加密后的字母和原字母呈线性关系，所以叫 “仿射” 加密原理把英文字母 a~z 对应成数字 0~25 设：  x &#x3D; 明文字母对应的数字  y &#x3D; 密文字母对应的数字   仿射加密的数学形式就是： 1y &#x3D; (a * x + b) mod 26  其中 a 和 b 是密钥，必">
+    <meta name="description" content="启阅小说搜索框反射 XSS前言本次测试属于公益类型的 SRC XSS搜索框输入然后回车，可以看到这个已经回显到了网页上了  源代码中搜索可以看到七处回显点  Payload 有粗分为三种，一种是闭合 title 标签，一种是闭合 content 属性以及 meta 标签，最后一种是闭合 h2 标签 123?searchkey&#x3D;%3C&#x2F;title%3E%3Cscript%3Ealert(%22XSS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="仿射加密">
-<meta property="og:url" content="https://suc2es2.github.io/2026/05/10/%E4%BB%BF%E5%B0%84%E5%8A%A0%E5%AF%86/index.html">
+<meta property="og:title" content="启阅小说搜索框反射 XSS">
+<meta property="og:url" content="https://suc2es2.github.io/2026/07/27/%E6%9F%90%E5%90%AF%E9%98%85%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E6%A1%86%20XSS/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="仿射加密仿射加密就像把字母表上的每个字母，通过 “乘以一个数” 再加 “一个常数” 映射成另一个字母 这样加密后的字母和原字母呈线性关系，所以叫 “仿射” 加密原理把英文字母 a~z 对应成数字 0~25 设：  x &#x3D; 明文字母对应的数字  y &#x3D; 密文字母对应的数字   仿射加密的数学形式就是： 1y &#x3D; (a * x + b) mod 26  其中 a 和 b 是密钥，必">
+<meta property="og:description" content="启阅小说搜索框反射 XSS前言本次测试属于公益类型的 SRC XSS搜索框输入然后回车，可以看到这个已经回显到了网页上了  源代码中搜索可以看到七处回显点  Payload 有粗分为三种，一种是闭合 title 标签，一种是闭合 content 属性以及 meta 标签，最后一种是闭合 h2 标签 123?searchkey&#x3D;%3C&#x2F;title%3E%3Cscript%3Ealert(%22XSS">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/691e12f33203f7be0018c793.png">
-<meta property="article:published_time" content="2026-05-10T06:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-15T02:53:25.261Z">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033xMAtlxDdCCfwx8poF4i.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033xMC1FnIuViC0XhmU67N.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033xMFG0RildNRJEFHnhgv.png">
+<meta property="article:published_time" content="2026-07-26T16:39:00.000Z">
+<meta property="article:modified_time" content="2026-07-28T14:28:13.163Z">
 <meta property="article:author" content="ALL">
-<meta property="article:tag" content="仿射加密">
-<meta property="article:tag" content="古典密码">
+<meta property="article:tag" content="XSS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic1.imgdb.cn/item/691e12f33203f7be0018c793.png">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/033xMAtlxDdCCfwx8poF4i.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -130,11 +131,11 @@
 <header id="header" aria-label="Site header">
         <picture>
         </picture>
-          <img  fetchpriority="high" src="/images/banner.webp" alt="仿射加密">
+          <img  fetchpriority="high" src="/images/banner.webp" alt="启阅小说搜索框反射 XSS">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">仿射加密</h1>
+            <h1 data-aos="slide-up">启阅小说搜索框反射 XSS</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -149,7 +150,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%BF%E5%B0%84%E5%8A%A0%E5%AF%86"><span class="toc-number">1.</span> <span class="toc-text">仿射加密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">加密原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%AF%86%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">解密原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#supperAffine%EF%BC%88%E4%BB%BF%E5%B0%84%E5%8A%A0%E5%AF%86%E5%8F%98%E7%A7%8D%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">supperAffine（仿射加密变种）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%AF%E9%98%85%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E6%A1%86%E5%8F%8D%E5%B0%84-XSS"><span class="toc-number">1.</span> <span class="toc-text">启阅小说搜索框反射 XSS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS"><span class="toc-number">1.2.</span> <span class="toc-text">XSS</span></a></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -164,11 +165,11 @@
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">23</div>
+    <div class="sidebar-state-number">21</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">185</div>
+    <div class="sidebar-state-number">183</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -221,13 +222,13 @@
   </div>
 </aside>
 
-          <section id="main" aria-label="Main content"><article id="post-仿射加密" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main" aria-label="Main content"><article id="post-某启阅小说搜索框 XSS" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2026-05-10T06:18:00.000Z" itemprop="datePublished">2026-05-10</time>
-    <time style="display: none;" id="post-update-time">2026-06-15</time>
+    <time datetime="2026-07-26T16:39:00.000Z" itemprop="datePublished">2026-07-27</time>
+    <time style="display: none;" id="post-update-time">2026-07-28</time>
   </span>
 </div>
 
@@ -236,65 +237,31 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="仿射加密"><a href="#仿射加密" class="headerlink" title="仿射加密"></a>仿射加密</h1><p>仿射加密就像把字母表上的每个字母，通过 “乘以一个数” 再加 “一个常数” 映射成另一个字母</p>
-<p>这样加密后的字母和原字母呈线性关系，所以叫 “仿射”</p>
-<h2 id="加密原理"><a href="#加密原理" class="headerlink" title="加密原理"></a>加密原理</h2><p>把英文字母 <code>a~z</code> 对应成数字 <code>0~25</code></p>
-<p>设：</p>
-<ul>
-<li><p><code>x</code> &#x3D; 明文字母对应的数字</p>
-</li>
-<li><p><code>y</code> &#x3D; 密文字母对应的数字</p>
-</li>
-</ul>
-<p>仿射加密的数学形式就是：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y = (a * x + b) mod 26</span><br></pre></td></tr></table></figure>
+        <h1 id="启阅小说搜索框反射-XSS"><a href="#启阅小说搜索框反射-XSS" class="headerlink" title="启阅小说搜索框反射 XSS"></a>启阅小说搜索框反射 XSS</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本次测试属于公益类型的 SRC</p>
+<h2 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h2><p>搜索框输入然后回车，可以看到这个已经回显到了网页上了</p>
+<p><img src="https://pic1.imgdb.cn/i/033xMAtlxDdCCfwx8poF4i.png" alt="pasted_1785248275619_adclqb.png"></p>
+<p>源代码中搜索可以看到七处回显点</p>
+<p><img src="https://pic1.imgdb.cn/i/033xMC1FnIuViC0XhmU67N.png" alt="pasted_1785248319540_f3s2em.png"></p>
+<p>Payload 有粗分为三种，一种是闭合 <code>title</code> 标签，一种是闭合 <code>content</code> 属性以及 <code>meta</code> 标签，最后一种是闭合 <code>h2</code> 标签</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?searchkey=%3C/title%3E%3Cscript%3Ealert(%22XSS%22)%3C/script%3E</span><br><span class="line">?searchkey=%3C/h2%3E%3Cscript%3Ealert(%22XSS%22)%3C/script%3E</span><br><span class="line">?searchkey=%22/%3E%3Cscript%3Ealert(%22XSS%22)%3C/script%3E</span><br></pre></td></tr></table></figure>
 
-<p>其中 <code>a</code> 和 <code>b</code> 是密钥，必须满足：</p>
-<ul>
-<li><p><code>a </code>与 26 互质（<code>gcd(a,26)=1</code>），否则不同明文字母可能加密成同一密文</p>
-</li>
-<li><p><code>b</code> 是 0~25 之间的整数</p>
-</li>
-</ul>
-<h2 id="解密原理"><a href="#解密原理" class="headerlink" title="解密原理"></a>解密原理</h2><p>解密就是要从 <code>y</code> 求出 <code>x</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a*x = y - b (mod 26)</span><br></pre></td></tr></table></figure>
-
-<p>两边乘以 <code>a</code> 的模逆 <code>a^{-1}</code>（满足 <code>a * a^{-1} ≡ 1 mod 26</code>）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = a^&#123;-1&#125; * (y - b) mod 26</span><br></pre></td></tr></table></figure>
-
-<h2 id="实战案例"><a href="#实战案例" class="headerlink" title="实战案例"></a>实战案例</h2><h3 id="supperAffine（仿射加密变种）"><a href="#supperAffine（仿射加密变种）" class="headerlink" title="supperAffine（仿射加密变种）"></a>supperAffine（仿射加密变种）</h3><p><img src="https://pic1.imgdb.cn/item/691e12f33203f7be0018c793.png"></p>
-<p>解题技巧先放前面：</p>
-<ol>
-<li><strong>识别密码体制：</strong> 代码中出现了 <code>affine(x, a, b)</code> 和 <code>GCD(MOD, ...)</code>，立即锁定这是<strong>仿射密码</strong>及其变种</li>
-<li><strong>识别模数：</strong> 立即进行<strong>模数分解</strong>，MOD &#x3D; 62 &#x3D; 2 * 31</li>
-<li>**代数化简：**看到 <code>f3(f2(f1(x)))</code> 这种结构，立即意识到这是可以合并的</li>
-</ol>
-<p>给出源代码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> string <span class="keyword">import</span> ascii_letters, digits</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line"><span class="keyword">assert</span> flag.startswith(<span class="string">&quot;0xGame&#123;&quot;</span>) <span class="keyword">and</span> flag.endswith(<span class="string">&quot;&#125;&quot;</span>)</span><br><span class="line">table = ascii_letters+digits</span><br><span class="line">MOD = <span class="built_in">len</span>(table)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">affine</span>(<span class="params">x, a, b</span>): <span class="keyword">return</span> a*x+b</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">genKey</span>():</span><br><span class="line">    a = [randint(<span class="number">1</span>, <span class="number">64</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)]</span><br><span class="line">    b = [randint(<span class="number">1</span>, <span class="number">64</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)]</span><br><span class="line">    <span class="keyword">while</span> GCD(MOD, a[<span class="number">0</span>]*a[<span class="number">1</span>]*a[<span class="number">2</span>]) != <span class="number">1</span>:</span><br><span class="line">        a = [randint(<span class="number">1</span>, <span class="number">64</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)]</span><br><span class="line">    <span class="keyword">return</span> a, b</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cipher = <span class="string">&quot;&quot;</span></span><br><span class="line">A, B = genKey()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> flag:</span><br><span class="line">    <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> table:</span><br><span class="line">        cipher += i</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        cipher += table[affine(affine(affine(table.find(i),A[<span class="number">0</span>], B[<span class="number">0</span>]), A[<span class="number">1</span>], B[<span class="number">1</span>]), A[<span class="number">2</span>], B[<span class="number">2</span>]) % MOD]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;cipher =&quot;</span>, cipher)</span><br><span class="line"><span class="comment"># cipher = t6b7Tn&#123;2GByBZBB-aan2-JRWn-GnZB-Jyf7a722ffnZ&#125;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://pic1.imgdb.cn/i/033xMFG0RildNRJEFHnhgv.png" alt="pasted_1785248447893_phex5c.png"></p>
 
     </div>
     <footer class="article-footer">
-        <a class="article-category-link" href="/categories/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/" title="古典密码" data-aos="zoom-in">古典密码</a>
+        <a class="article-category-link" href="/categories/SRC/" title="SRC" data-aos="zoom-in">SRC</a>
 
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E4%BB%BF%E5%B0%84%E5%8A%A0%E5%AF%86/" rel="tag" title="仿射加密">仿射加密</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81/" rel="tag" title="古典密码">古典密码</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/XSS/" rel="tag" title="XSS">XSS</a></li></ul>
 
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
-      <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="某电竞小程序越权发送消息给客服（可遍历）" class="lazyload">
-        <a href="/2026/05/10/%E7%94%B5%E7%AB%9E%E5%AE%A2%E6%9C%8D%E5%AF%B9%E8%AF%9D%E8%B6%8A%E6%9D%83/" aria-label="前一篇: 某电竞小程序越权发送消息给客服（可遍历）" title="前一篇: 某电竞小程序越权发送消息给客服（可遍历）"></a>
-        <div class="article-nav-caption">前一篇</div>
-        <h3 class="article-nav-title">
-            某电竞小程序越权发送消息给客服（可遍历）
-        </h3>
-      </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="知攻善防实验室 Linux 应急响应-Where IS？" class="lazyload">
-      <a href="/2026/05/09/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Linux%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-Where%20IS%EF%BC%9F/" aria-label="后一篇: 知攻善防实验室 Linux 应急响应-Where IS？"  title="后一篇: 知攻善防实验室 Linux 应急响应-Where IS？"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="灰产-小说导流站" class="lazyload">
+      <a href="/2026/07/27/%E7%81%B0%E4%BA%A7-%E5%B0%8F%E8%AF%B4%E5%AF%BC%E6%B5%81%E7%AB%99/" aria-label="后一篇: 灰产-小说导流站"  title="后一篇: 灰产-小说导流站"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          知攻善防实验室 Linux 应急响应-Where IS？
+          灰产-小说导流站
       </h3>
     </div>
   </nav>
@@ -321,10 +288,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        257.5k
+        256.9k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        21:12
+        21:09
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -346,7 +313,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%BF%E5%B0%84%E5%8A%A0%E5%AF%86"><span class="toc-number">1.</span> <span class="toc-text">仿射加密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">加密原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%AF%86%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">解密原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#supperAffine%EF%BC%88%E4%BB%BF%E5%B0%84%E5%8A%A0%E5%AF%86%E5%8F%98%E7%A7%8D%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">supperAffine（仿射加密变种）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%AF%E9%98%85%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E6%A1%86%E5%8F%8D%E5%B0%84-XSS"><span class="toc-number">1.</span> <span class="toc-text">启阅小说搜索框反射 XSS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XSS"><span class="toc-number">1.2.</span> <span class="toc-text">XSS</span></a></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -361,11 +328,11 @@
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">23</div>
+    <div class="sidebar-state-number">21</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">185</div>
+    <div class="sidebar-state-number">183</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -474,13 +441,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "ALL",
-          title: "仿射加密",
-          url: "https://suc2es2.github.io/2026/05/10/%E4%BB%BF%E5%B0%84%E5%8A%A0%E5%AF%86/",
+          title: "启阅小说搜索框反射 XSS",
+          url: "https://suc2es2.github.io/2026/07/27/%E6%9F%90%E5%90%AF%E9%98%85%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E6%A1%86%20XSS/",
           excerpt: "",
           description: "",
-          stripContent: "仿射加密仿射加密就像把字母表上的每个字母，通过 “乘以一个数” 再加 “一个常数” 映射成另一个字母 这样加密后的字母和原字母呈线性关系，所以叫 “仿射” 加密原理把英文字母 a~z 对应成数字 0~25 设：  x &amp;#x3D; 明文字母对应的数字  y &amp;#x3D; 密文字母对应的数字   仿射加密的数学形式就是： 1y = (a * x + b) mod 26  其中 a 和 b 是密钥，必须满足：  a 与 26 互质（gcd(a,26)=1），否则不同明文字母可能加密成同一密文  b ",
-          date: "Sun May 10 2026 14:18:00 GMT+0800",
-          updated: "Mon Jun 15 2026 10:53:25 GMT+0800",
+          stripContent: "启阅小说搜索框反射 XSS前言本次测试属于公益类型的 SRC XSS搜索框输入然后回车，可以看到这个已经回显到了网页上了  源代码中搜索可以看到七处回显点  Payload 有粗分为三种，一种是闭合 title 标签，一种是闭合 content 属性以及 meta 标签，最后一种是闭合 h2 标签 123?searchkey=%3C/title%3E%3Cscript%3Ealert(%22XSS%22)%3C/script%3E?searchkey=%3C/h2%3E%3Cscript%3Ea",
+          date: "Mon Jul 27 2026 00:39:00 GMT+0800",
+          updated: "Tue Jul 28 2026 22:28:13 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
