@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">229</div>
+    <div class="sidebar-state-number">230</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -220,19 +220,19 @@
       <div class="widget">
         <ul>
             <li>
-              <a href="/2026/07/27/%E6%9F%90%E5%90%AF%E9%98%85%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E6%A1%86%20XSS/" title="启阅小说搜索框反射 XSS">启阅小说搜索框反射 XSS</a>
+              <a href="/2026/07/28/digitalworld.local%20FALL/" title="VulnHub digitalworld.local：FALL">VulnHub digitalworld.local：FALL</a>
             </li>
             <li>
               <a href="/2026/07/27/%E7%81%B0%E4%BA%A7-%E5%B0%8F%E8%AF%B4%E5%AF%BC%E6%B5%81%E7%AB%99/" title="灰产——做量">灰产——做量</a>
+            </li>
+            <li>
+              <a href="/2026/07/27/%E6%9F%90%E5%90%AF%E9%98%85%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E6%A1%86%20XSS/" title="启阅小说搜索框反射 XSS">启阅小说搜索框反射 XSS</a>
             </li>
             <li>
               <a href="/2026/06/25/Rita%20AI/" title="Rita AI 提示词泄露">Rita AI 提示词泄露</a>
             </li>
             <li>
               <a href="/2026/06/24/seek%20agent%20%E9%A1%B9%E7%9B%AE%E7%BA%A7%E6%8A%95%E6%AF%92/" title="Seek README 间接提示词注入">Seek README 间接提示词注入</a>
-            </li>
-            <li>
-              <a href="/2026/06/19/doli%201/" title="VulnHub doli：1">VulnHub doli：1</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,39 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/06/devolo-WIFI/" aria-label="实战——攻陷海外某单位监控及 WIFI 设备后台" title="实战——攻陷海外某单位监控及 WIFI 设备后台"></a>
+      <a class="post-link" href="/2026/04/07/Vulnerable%20Docker%201/" aria-label="VulnHub Vulnerable Docker：1" title="VulnHub Vulnerable Docker：1"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Vulnerable Docker：1" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-07</span>
+        <span><span class="icon-pencil"></span>443 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">VulnHub Vulnerable Docker：1</h2>
+      <article class="post-article">
+          Vulnerable Docker: 1项目地址：https://download.vulnhub.com/vulnerabledocker/vulnerable_docker_containement.ova
+是一个打包好的镜像文件
+注意：导入 vmx 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+弱口令WordPress访问 8000 端口发现是使用 WordPress 搭建的博客
+
+使用 WPScan 扫描发现 bob 用户
+1wpscan --url http://192.168.110.143:8000/ --enumerate u
+
+
+爆破出密码
+
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/06/devolo-WIFI/" aria-label="实战——攻陷海外某单位监控及 WIFI 设备后台" title="实战——攻陷海外某单位监控及 WIFI 设备后台"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="实战——攻陷海外某单位监控及 WIFI 设备后台" class="lazyload">
     </div>
     <div class="post-info">
@@ -272,9 +303,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/04/C0m80%201/" aria-label="VulnHub C0m80：1" title="VulnHub C0m80：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub C0m80：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -304,9 +335,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/03/BTRSys%20v2.1/" aria-label="VulnHub BTRSys：v2.1" title="VulnHub BTRSys：v2.1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub BTRSys：v2.1" class="lazyload">
     </div>
     <div class="post-info">
@@ -332,9 +363,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/zico2%201/" aria-label="VulnHub zico2：1" title="VulnHub zico2：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub zico2：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -364,9 +395,9 @@ RCEphpLiteAdmin在 PhpLiteAdmin 主界面找到“Create new database”输入�
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/hackfest2016%20Orcus/" aria-label="VulnHub hackfest2016：Orcus" title="VulnHub hackfest2016：Orcus"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub hackfest2016：Orcus" class="lazyload">
     </div>
     <div class="post-info">
@@ -400,9 +431,9 @@ RCEphpLiteAdmin在 PhpLiteAdmin 主界面找到“Create new database”输入�
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/hackfest2016%20Sedna/" aria-label="VulnHub hackfest2016：Sedna" title="VulnHub hackfest2016：Sedna"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub hackfest2016：Sedna" class="lazyload">
     </div>
     <div class="post-info">
@@ -433,9 +464,9 @@ RCEphpLiteAdmin在 PhpLiteAdmin 主界面找到“Create new database”输入�
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/DC416%202016-Fortress/" aria-label="VulnHub DC416：2016-Fortress" title="VulnHub DC416：2016-Fortress"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub DC416：2016-Fortress" class="lazyload">
     </div>
     <div class="post-info">
@@ -472,9 +503,9 @@ BP 抓包使用换行符绕过
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/pluck%201/" aria-label="VulnHub pluck：1" title="VulnHub pluck：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub pluck：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -502,9 +533,9 @@ BP 抓包使用换行符绕过
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/Breach%201/" aria-label="VulnHub Breach：1" title="VulnHub Breach：1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Breach：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -537,36 +568,6 @@ CTFTLS 流量解密点击 Inbox 发现有三封邮件
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/PwnLab%20%20init/" aria-label="VulnHub PwnLab：init" title="VulnHub PwnLab：init"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub PwnLab：init" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-01</span>
-        <span><span class="icon-pencil"></span>1.3k 字</span>
-        <span><span class="icon-clock"></span>7 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub PwnLab：init</h2>
-      <article class="post-article">
-          PwnLab: init项目地址：https://download.vulnhub.com/pwnlab/pwnlab_init.ova
-是一个打包好的镜像文件
-注意：导入 vmx 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-本地文件包含page（PHP 伪协议）发现 URL 参数是 ?page 的形式来切换不同的页面，推测存在任意文件读取漏洞
-
-尝试任意文件读取无果，换本地文件包含试试
-利用伪协议成功读取到源码
-
-解码拿到源码
-12345678910111213141516171819202122232425262728293031&amp;lt;?php//Mu
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/8/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/10/">下一页 &raquo;</a>
   </nav>
@@ -590,10 +591,10 @@ CTFTLS 流量解密点击 Inbox 发现有三封邮件
       </div>
       <div>
         <span class="icon-brush"></span>
-        257.7k
+        257.9k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        21:12
+        21:13
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -621,7 +622,7 @@ CTFTLS 流量解密点击 Inbox 发现有三封邮件
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">229</div>
+    <div class="sidebar-state-number">230</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
