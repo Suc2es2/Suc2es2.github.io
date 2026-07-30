@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
   <title>
-    整数与整除 | 雾島风起時
+    整除、最大公约数与算术基本定理 | 雾島风起時
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,17 +17,17 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="整数与整除整除关系先理解什么叫 1a | b  读作 a 整除 b，意思是存在整数 k，使得 1b &#x3D; ak  例如 13 | 12  带余除法任意整数 a，对于正整数 m，则存在唯一的一对整数 q（商）和 r（余数），使得 1a &#x3D; qm + r  其中余数满足约束条件 10 ≤ r &lt; m  我们通常将这个唯一的余数 r 记作 1a mod m &#x3D; r  例如 117 mod 5 &#x3D; 2">
+    <meta name="description" content="整除、最大公约数与算术基本定理整除与带余除法整除">
 <meta property="og:type" content="article">
-<meta property="og:title" content="整数与整除">
+<meta property="og:title" content="整除、最大公约数与算术基本定理">
 <meta property="og:url" content="https://suc2es2.github.io/2026/01/01/%E6%95%B4%E6%95%B0%E4%B8%8E%E6%95%B4%E9%99%A4/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="整数与整除整除关系先理解什么叫 1a | b  读作 a 整除 b，意思是存在整数 k，使得 1b &#x3D; ak  例如 13 | 12  带余除法任意整数 a，对于正整数 m，则存在唯一的一对整数 q（商）和 r（余数），使得 1a &#x3D; qm + r  其中余数满足约束条件 10 ≤ r &lt; m  我们通常将这个唯一的余数 r 记作 1a mod m &#x3D; r  例如 117 mod 5 &#x3D; 2">
+<meta property="og:description" content="整除、最大公约数与算术基本定理整除与带余除法整除">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-01-01T06:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-28T13:46:37.060Z">
+<meta property="article:modified_time" content="2026-07-30T16:18:43.436Z">
 <meta property="article:author" content="ALL">
-<meta property="article:tag" content="数论">
+<meta property="article:tag" content="初等数论">
 <meta name="twitter:card" content="summary">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
@@ -127,11 +127,11 @@
 <header id="header" aria-label="Site header">
         <picture>
         </picture>
-          <img  fetchpriority="high" src="/images/banner.webp" alt="整数与整除">
+          <img  fetchpriority="high" src="/images/banner.webp" alt="整除、最大公约数与算术基本定理">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">整数与整除</h1>
+            <h1 data-aos="slide-up">整除、最大公约数与算术基本定理</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -146,7 +146,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E4%B8%8E%E6%95%B4%E9%99%A4"><span class="toc-number">1.</span> <span class="toc-text">整数与整除</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E9%99%A4%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.</span> <span class="toc-text">整除关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%A6%E4%BD%99%E9%99%A4%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">带余除法</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B4%E9%99%A4%E3%80%81%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E4%B8%8E%E7%AE%97%E6%9C%AF%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">整除、最大公约数与算术基本定理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E9%99%A4%E4%B8%8E%E5%B8%A6%E4%BD%99%E9%99%A4%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">整除与带余除法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E9%99%A4"><span class="toc-number">1.1.1.</span> <span class="toc-text">整除</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -157,7 +157,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">232</div>
+    <div class="sidebar-state-number">223</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -165,7 +165,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">183</div>
+    <div class="sidebar-state-number">180</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -224,7 +224,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2026-01-01T06:18:00.000Z" itemprop="datePublished">2026-01-01</time>
-    <time style="display: none;" id="post-update-time">2026-06-28</time>
+    <time style="display: none;" id="post-update-time">2026-07-31</time>
   </span>
 </div>
 
@@ -233,41 +233,22 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="整数与整除"><a href="#整数与整除" class="headerlink" title="整数与整除"></a>整数与整除</h1><h2 id="整除关系"><a href="#整除关系" class="headerlink" title="整除关系"></a>整除关系</h2><p>先理解什么叫</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a | b</span><br></pre></td></tr></table></figure>
-
-<p>读作 <code>a</code> 整除 <code>b</code>，意思是存在整数 <code>k</code>，使得</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = ak</span><br></pre></td></tr></table></figure>
-
-<p>例如</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3 | 12</span><br></pre></td></tr></table></figure>
-
-<h2 id="带余除法"><a href="#带余除法" class="headerlink" title="带余除法"></a>带余除法</h2><p>任意整数 <code>a</code>，对于正整数 <code>m</code>，则存在唯一的一对整数 <code>q</code>（商）和 <code>r</code>（余数），使得</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = qm + r</span><br></pre></td></tr></table></figure>
-
-<p>其中余数满足约束条件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 ≤ r &lt; m</span><br></pre></td></tr></table></figure>
-
-<p>我们通常将这个唯一的余数 <code>r</code> 记作</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a mod m = r</span><br></pre></td></tr></table></figure>
-
-<p>例如</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">17 mod 5 = 2</span><br></pre></td></tr></table></figure>
+        <h1 id="整除、最大公约数与算术基本定理"><a href="#整除、最大公约数与算术基本定理" class="headerlink" title="整除、最大公约数与算术基本定理"></a>整除、最大公约数与算术基本定理</h1><h2 id="整除与带余除法"><a href="#整除与带余除法" class="headerlink" title="整除与带余除法"></a>整除与带余除法</h2><h3 id="整除"><a href="#整除" class="headerlink" title="整除"></a>整除</h3>
     </div>
     <footer class="article-footer">
-        <a class="article-category-link" href="/categories/%E6%95%B0%E8%AE%BA/" title="数论" data-aos="zoom-in">数论</a>
+        <a class="article-category-link" href="/categories/%E5%88%9D%E7%AD%89%E6%95%B0%E8%AE%BA/" title="初等数论" data-aos="zoom-in">初等数论</a>
 
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag" title="数论">数论</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%88%9D%E7%AD%89%E6%95%B0%E8%AE%BA/" rel="tag" title="初等数论">初等数论</a></li></ul>
 
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="算术基本定理" class="lazyload">
-        <a href="/2026/01/04/%E7%AE%97%E6%9C%AF%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86/" aria-label="前一篇: 算术基本定理" title="前一篇: 算术基本定理"></a>
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="微信小程序抓包教程" class="lazyload">
+        <a href="/2026/02/01/wechat/" aria-label="前一篇: 微信小程序抓包教程" title="前一篇: 微信小程序抓包教程"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            算术基本定理
+            微信小程序抓包教程
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
@@ -302,10 +283,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        262k
+        257.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        21:33
+        21:07
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -327,7 +308,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E4%B8%8E%E6%95%B4%E9%99%A4"><span class="toc-number">1.</span> <span class="toc-text">整数与整除</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E9%99%A4%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.</span> <span class="toc-text">整除关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%A6%E4%BD%99%E9%99%A4%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">带余除法</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B4%E9%99%A4%E3%80%81%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E4%B8%8E%E7%AE%97%E6%9C%AF%E5%9F%BA%E6%9C%AC%E5%AE%9A%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">整除、最大公约数与算术基本定理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E9%99%A4%E4%B8%8E%E5%B8%A6%E4%BD%99%E9%99%A4%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">整除与带余除法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E9%99%A4"><span class="toc-number">1.1.1.</span> <span class="toc-text">整除</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -338,7 +319,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">232</div>
+    <div class="sidebar-state-number">223</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -346,7 +327,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">183</div>
+    <div class="sidebar-state-number">180</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -455,13 +436,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "ALL",
-          title: "整数与整除",
+          title: "整除、最大公约数与算术基本定理",
           url: "https://suc2es2.github.io/2026/01/01/%E6%95%B4%E6%95%B0%E4%B8%8E%E6%95%B4%E9%99%A4/",
           excerpt: "",
           description: "",
-          stripContent: "整数与整除整除关系先理解什么叫 1a | b  读作 a 整除 b，意思是存在整数 k，使得 1b = ak  例如 13 | 12  带余除法任意整数 a，对于正整数 m，则存在唯一的一对整数 q（商）和 r（余数），使得 1a = qm + r  其中余数满足约束条件 10 ≤ r &amp;lt; m  我们通常将这个唯一的余数 r 记作 1a mod m = r  例如 117 mod 5 = 2",
+          stripContent: "整除、最大公约数与算术基本定理整除与带余除法整除",
           date: "Thu Jan 01 2026 14:18:00 GMT+0800",
-          updated: "Sun Jun 28 2026 21:46:37 GMT+0800",
+          updated: "Fri Jul 31 2026 00:18:43 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">232</div>
+    <div class="sidebar-state-number">223</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -160,7 +160,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">183</div>
+    <div class="sidebar-state-number">180</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -245,385 +245,22 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/pwn-Shellcode/" aria-label="Shellcode" title="Shellcode"></a>
+      <a class="post-link" href="/2019/05/22/RC4/" aria-label="RC4" title="RC4"></a>
     <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="Shellcode" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="RC4" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>265 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
+        <span><span class="icon-pencil"></span>5.1k 字</span>
+        <span><span class="icon-clock"></span>24 分钟</span>
       </div>
-      <h2 class="post-title">Shellcode</h2>
+      <h2 class="post-title">RC4</h2>
       <article class="post-article">
-          Shellcode原理狭义上说，Shellcode 是一段用于获取交互式命令行的机器码
-广义上，任何用于完成攻击目标（反弹连接、添加用户、下载执行）的自包含机器码都可以叫 Shellcode
-它的特点：
-
-完全由汇编指令组成，经过编译、提取成为纯二进制字节
-
-与位置无关，不依赖外部环境，放到哪都能跑（通过相对寻址等技巧）
-
-尽量精简、无坏字符，比如不能包含 0x00（截断 strcpy），不能有换行 0x0a 等
-
-
-实战案例该怎么起名呢（Shellcode）
-没开金丝雀
-
-mprotect 的第三个参数 7 代表 RWX 权限，从指针 buf 向前偏移 16 字节 的地址开始，长度为 409
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20ByteCTF/" aria-label="2019 ByteCTF WriteUp" title="2019 ByteCTF WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 ByteCTF WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>231 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">2019 ByteCTF WriteUp</h2>
-      <article class="post-article">
-          2019 ByteCTF WriteUp2019 年 ByteCTF 是由字节跳动主办的首届网络安全攻防大赛
-
-赛事规模：共吸引 4000 余人次报名，722 支高校队伍参赛
-
-比赛时间：线上初赛于 2019 年 9 月 7 日 - 9 月 8 日举行；线下决赛于 10 月 19 日 - 10 月 20 日在北京举行
-
-奖金设置：冠军 80,000 元，亚军 50,000 元，季军 20,000 元，第 4 - 6 名分别获得 10,000、8,000、5,000 元奖金
-
-
-
-
-
-最终排名
-队伍名称
-所属&amp;#x2F;备注
-
-
-
-冠军
-W&amp;amp;M
-联合战队，同时也是线上赛冠军
-
-
-亚军
-N
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20RCTF/" aria-label="2019 RCTF WriteUp" title="2019 RCTF WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 RCTF WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>140 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">2019 RCTF WriteUp</h2>
-      <article class="post-article">
-          2019 RCTF WriteUp🏛️ 组织架构
-RCTF 2019 由国家创新与发展战略研究会主办，360 集团与南京赛宁信息技术有限公司联合承办
-命题团队为 r3kapig 战队
-⚙️ 赛制与规模
-
-赛制：采用线上 CTF（Capture The Flag）解题模式（Jeopardy-style）
-
-时间：比赛于 2019 年 5 月举行
-
-规模：赛事在 CTFtime 上的权重为 52.89 分，吸引了全球众多顶尖战队参与
-
-
-Miscdraw（签到）一门叫 logo 的冷门编程语言，在线编译器运行得到图片
-
-flag 就是 RCTF_HeyLogo
-
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20HDCTF/" aria-label="2019 HDCTF WriteUp" title="2019 HDCTF WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 HDCTF WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>2.3k 字</span>
-        <span><span class="icon-clock"></span>10 分钟</span>
-      </div>
-      <h2 class="post-title">2019 HDCTF WriteUp</h2>
-      <article class="post-article">
-          2019 HDCTF WriteUp前言主办方：海南大学
-Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程）
-下载附件是一个 .img，使用 vol2 进行取证，先查看操作系统
-1python2 vol.py -f memory.img imageinfo
-
-发现是 Windows 2003，给出了三个具体的版本
-
-查看进程，Server 2003 生命周期中 SP2 是最普遍的版本，所以选择它
-1python2 vol.py -f memory.img --profile=Win2003SP2x86 pslist
-
-
-dump 出 explorer.exe，它的内存里主
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20RoarCTF/" aria-label="2019 RoarCTF WriteUp" title="2019 RoarCTF WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 RoarCTF WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>334 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
-      </div>
-      <h2 class="post-title">2019 RoarCTF WriteUp</h2>
-      <article class="post-article">
-          2019 RoarCTF WriteUp🏛️ 组织架构与规模
-
-主办方：由国内知名信息安全媒体“嘶吼（4hou）”与 W&amp;amp;M 战队联合主办
-
-比赛时间：2019 年 10 月 12 日 10:00 至 10 月 14 日 10:00，共计 48 小时
-
-比赛赛制：线上 Jeopardy-style（ jeopardy 解题模式） CTF
-
-参赛规模：吸引了全球超过 2000 名选手参与
-
-
-
-
-
-排名
-队伍名称
-解题数
-得分
-
-
-
-1
-0ops
-25
-14407
-
-
-2
-whitzard
-23
-12931
-
-
-3
-星盟突击队
-19
-9151
-
-
-4
-Vidar
-17
-7507
-
-
-5
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20%E5%BC%BA%E7%BD%91%E6%9D%AF/" aria-label="2019 强网杯 WriteUp" title="2019 强网杯 WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 强网杯 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>389 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
-      </div>
-      <h2 class="post-title">2019 强网杯 WriteUp</h2>
-      <article class="post-article">
-          2019 强网杯 WriteUp🏛️ 组织架构
-
-指导单位：中央网信办网络安全协调局
-
-主办单位：河南省互联网信息办公室、郑州市人民政府、信息工程大学
-
-支持&amp;#x2F;协办单位：教育部网络空间安全专业教学指导委员会
-
-承办单位：郑州市高新区管委会
-
-
-🥇 线下赛最终排名（前三名及部分高校）
-
-冠军：腾讯 eee 战队（腾讯安全）
-
-亚军：0×300 战队（长亭科技）
-
-季军：TsingQian 战队（清华大学-奇安信联合研究中心）
-
-总排名第六：白泽战队（复旦大学）
-
-总排名第十五：Nebula 战队（中国科学技术大学）
-
-
-Misc强网先锋-打野（Steg 隐写）
-
-Reverse强网
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019-De1CTF/" aria-label="2019 De1CTF WriteUp" title="2019 De1CTF WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 De1CTF WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1.1k 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
-      </div>
-      <h2 class="post-title">2019 De1CTF WriteUp</h2>
-      <article class="post-article">
-          2019 De1CTF WriteUp🏛️ 组织架构
-
-主办方：De1ta 战队
-
-技术支持：赛宁网安
-
-赞助商：华为、天融信、陌陌安全、红帽安全实验室
-
-
-📊 赛事规模
-本次比赛规模盛大，共吸引了来自全球 77 个国家和地区的 1362 支队伍参赛
-🏆 比赛结果
-
-
-
-排名
-队伍名称
-解题数
-总分
-
-
-
-1
-Whitzard (复旦大学)
-23
-11226
-
-
-2
-0ops (上海交通大学)
-21
-9117
-
-
-3
-Balsn (中国台湾)
-20
-8852
-
-
-4
-NU1L (联合战队)
-18
-7559
-
-
-5
-Venom
-17
-7016
-
-
-6
-AAA
-16
-6569
-
-
-7
-W&amp;a
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/D%20%E8%AF%AD%E8%A8%80/" aria-label="D 语言" title="D 语言"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="D 语言" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>506 字</span>
-        <span><span class="icon-clock"></span>3 分钟</span>
-      </div>
-      <h2 class="post-title">D 语言</h2>
-      <article class="post-article">
-          D 语言D 的设计目标是 融合 C&amp;#x2F;C++ 的性能与 Python&amp;#x2F;Ruby 的开发效率。它支持多种编程范式：命令式、面向对象、函数式、泛型、模板元编程
-常见用途：高性能服务端、游戏引擎、数值计算，以及部分 CTF 出题者用来写加密逻辑，利用其模板和范围机制增加逆向趣味性
-逆向技巧识别胖指针：看到函数参数用两个寄存器传递同一数组（如 rcx=ptr, rdx=len），可能是 D 的数组
-关注范围对象的布局：范围操作通常会产生一个栈上的结构体，内部包含当前迭代器指针、剩余长度等字段，需分析清楚
-利用符号名：D 编译后的二进制常保留函数名和模板参数，如 _D3app8encr
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/RISC-V/" aria-label="RISC-V 架构" title="RISC-V 架构"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="RISC-V 架构" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1.5k 字</span>
-        <span><span class="icon-clock"></span>7 分钟</span>
-      </div>
-      <h2 class="post-title">RISC-V 架构</h2>
-      <article class="post-article">
-          RISC-V 架构RISC-V 是一种开源的精简指令集架构（ISA），由加州大学伯克利分校于 2010 年发起，现由 RISC-V 国际基金会维护
-基本特征位数：RV32（32位）、RV64（64位）、RV128（未来扩展）。常用的是 RV32&amp;#x2F;64
-字节序：默认为小端（Little-Endian），也允许大端（非主流）
-指令格式：定长 16 位（压缩指令）或 32 位（标准指令）。编码极为规整，字段位置几乎固定
-模块化指令集：
-
-基础整数指令集（I）：加减、逻辑、移位、分支、访存、系统调用
-
-标准扩展：
-
-M：乘除法
-
-A：原子操作
-
-F / D：单&amp;#x2F;双精度浮点
-
-C：压
+          RC4RC4（Rivest Cipher 4）是由 Ron Rivest 在 1987 年设计的对称流密码，因其结构简单、软件实现高效，曾被广泛应用于 SSL&amp;#x2F;TLS、WEP、WPA、RDP、以及各种恶意软件和 CTF 题目中
+算法结构RC4 由两个核心阶段组成：密钥调度算法（KSA, Key-Scheduling Algorithm） 和 伪随机生成算法（PRGA, Pseudo-Random Generation Algorithm）
+状态初始化一个 256 字节的 S 盒（state vector），初始化为 S[i] = i，i = 0..255
+密钥 key 为任意长度（1
       </article>
     </div>
   </div>
@@ -658,8 +295,268 @@ Python 程序的编译与运行机制源码 .py 被编译为 字节码 .pyc，�
     </div>
   </div>
 </div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/Ret2text/" aria-label="Ret2text" title="Ret2text"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2text" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>360 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">Ret2text</h2>
+      <article class="post-article">
+          Ret2text原理在 CTF 和二进制安全里，Ret2text 是一种非常经典的栈溢出利用手法。它的名字可以这样拆开理解：
+
+Ret：Return，代表 “返回地址”
+
+2 &amp;#x2F; to：到、跳转到
+
+text：.text 段，存放程序机器指令的区域
+
+
+简单说，Ret2text 就是利用栈溢出漏洞，将函数的返回地址篡改为程序 .text 段中已存在的合法代码，从而劫持控制流去执行这些代码来获取 shell
+因为执行的代码是程序本来就有的，所以它不需要注入 Shellcode，也能绕过 NX 保护
+实战案例帮我取一个题目名称（Ret2text）
+没开金丝雀，read 函数读取大小为 6
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/SMC/" aria-label="SMC" title="SMC"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="SMC" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">SMC</h2>
+      <article class="post-article">
+          SMCSMC（Self-Modifying Code，自修改代码） 是一种程序在执行过程中修改自身指令的技术
+原理程序运行时，动态修改内存中代码段的机器码，然后跳转到修改后的地址执行。修改方式包括：
+
+异或（XOR） — 用密钥异或加密代码段，运行时解密
+
+加减常量 — 对指令字节增减固定值
+
+直接覆写 — 用预先准备好的原始字节替换
+
+
+实战案例jocker（SMC 逆向 + IDA 脚本）
+IDA 反编译发现对 Str 和 Destination 进行了操作
+12345678910111213141516171819202122232425262728int __cdecl main(in
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/Unity%20%E9%80%86%E5%90%91/" aria-label="Unity" title="Unity"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Unity" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">Unity</h2>
+      <article class="post-article">
+          UnityUnity 游戏的核心逻辑通常位于 C# 编译的 DLL（Mono）或 C++ 编译的 IL2CPP 文件中
+编译方式
+
+
+方式
+脚本后端
+包含文件
+难度
+
+
+
+Mono
+C# → IL → .NET DLL
+Assembly-CSharp.dll 等
+低
+
+
+IL2CPP
+C# → IL → C++ → 原生代码
+libil2cpp.so &amp;#x2F; GameAssembly.dll + global-metadata.dat
+较高
+
+
+实战案例Mine Sweeping（Unity）
+打开附件可以看到这是一个 Unity 游戏，Unity C# 题的核心逻辑通常都在 Mine 
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/VM%20%E9%80%86%E5%90%91/" aria-label="虚拟机" title="虚拟机"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="虚拟机" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">虚拟机</h2>
+      <article class="post-article">
+          虚拟机虚拟机逆向（Virtual Machine Reverse Engineering）是指对软件中自实现的虚拟机（或称解释器）进行反向分析的技术
+程序将原本的原生代码或关键逻辑编译成自定义的字节码（bytecode），然后由一个解释器循环（VM loop）执行这些字节码。逆向工程师需要：
+
+识别出虚拟机结构（操作码表、虚拟寄存器、虚拟栈、内存模型等）
+
+提取字节码，并反汇编为人类可读的虚拟指令
+
+理解虚拟指令序列的算法逻辑，以破解保护、提取算法或找到漏洞
+
+
+虚拟机分类根据虚拟机的执行模型，通常分为两类
+基于栈的虚拟机操作数隐式地通过一个虚拟栈传递，指令执行时从栈顶弹出操作数，计算结果再压
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/VxWorks%20%E5%9B%BA%E4%BB%B6/" aria-label="VxWorks 固件" title="VxWorks 固件"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VxWorks 固件" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>2k 字</span>
+        <span><span class="icon-clock"></span>9 分钟</span>
+      </div>
+      <h2 class="post-title">VxWorks 固件</h2>
+      <article class="post-article">
+          VxWorks 固件VxWorks 是美国 Wind River 公司开发的实时操作系统（RTOS），广泛应用于工控、航空航天、网络设备、医疗仪器等嵌入式场景
+其固件镜像通常是一个单体内核映像，包含内核、驱动、应用程序和文件系统
+固件镜像格式典型镜像类型
+
+Bootrom：引导加载程序，负责初始化硬件、加载主映像
+
+VxWorks 主映像：包含内核、任务、符号表（可选），通常被压缩或直接以 ELF&amp;#x2F;二进制形式存在
+
+文件系统（TFFS&amp;#x2F;DOSFS&amp;#x2F;HRFS）：挂载于 &amp;#x2F;tffs0 等，存放配置、Web 页面、应用程序模块
+
+
+镜像结构特征
+
+压缩壳：常见
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/%E8%8A%B1%E6%8C%87%E4%BB%A4/" aria-label="花指令" title="花指令"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="花指令" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>527 字</span>
+        <span><span class="icon-clock"></span>3 分钟</span>
+      </div>
+      <h2 class="post-title">花指令</h2>
+      <article class="post-article">
+          花指令原理反汇编器通常有两种主要策略：
+
+线性扫描：顺序解析每条指令，遇到干扰字节就会错位
+
+递归下降：根据控制流跳转来反汇编，更智能但依然可能被误导
+
+
+花指令正是利用反汇编器的缺陷——让它把数据当成代码，或者把代码的一部分拆解成错误指令
+最终反汇编出来的结果是混乱、错误、不连续的，分析者需要手动修复或动态调试才能看清真实逻辑
+实战案例
+使用 Exeinfo PE 发现有 UPX 壳
+
+脱壳后用 IDA 分析，有花指令
+
+关键点：jnz +1 的跳转目标
+
+jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
+
+偏移量是相对下一指令地址的位移。当前 jnz 位于 0x4
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/14/JT%20T%20808%20%E5%8D%8F%E8%AE%AE/" aria-label="JT/T 808 协议" title="JT/T 808 协议"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="JT/T 808 协议" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-14</span>
+        <span><span class="icon-pencil"></span>4.7k 字</span>
+        <span><span class="icon-clock"></span>27 分钟</span>
+      </div>
+      <h2 class="post-title">JT/T 808 协议</h2>
+      <article class="post-article">
+          JT&amp;#x2F;T 808 协议概述JT&amp;#x2F;T 808 是交通运输行业标准《道路运输车辆卫星定位系统 北斗兼容车载终端通讯协议》，规定了车载终端与监控平台之间的数据通信格式
+协议基于 TCP 或 UDP，采用大端字节序，报文整体以 0x7E 为帧边界，内部需经过转义处理
+报文封装格式每个完整报文由标识位包裹，内部包含消息头、消息体和校验码
+1234+--------+--------+----------+--------+--------+| 标识位 | 消息头 | 消息体   | 校验码 | 标识位 || 0x7e   | 变长   | 变长     | 1 byte | 0x7e
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/04/15/1527%20%E8%8A%AF%E7%89%87/" aria-label="1527 芯片" title="1527 芯片"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="1527 芯片" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-04-15</span>
+        <span><span class="icon-pencil"></span>1.5k 字</span>
+        <span><span class="icon-clock"></span>7 分钟</span>
+      </div>
+      <h2 class="post-title">1527 芯片</h2>
+      <article class="post-article">
+          1527 芯片芯片定位与调制方式1527 是一颗固定码无线遥控编码芯片，专为低成本的单向遥控设计。典型工作方式：
+
+射频频率：315 MHz 或 433 MHz（由外部声表&amp;#x2F;晶振和发射电路决定）
+
+调制方式：OOK (开关键控)，即发射载波的有无代表数据
+
+数据发送：按下按键后，同一帧数据会以约 10 ms 的间隔重复发送，直到松手
+
+
+数据结构一帧完整数据由同步头和 24 位数据（20 位地址 + 4 位按键值）组成，每发完一帧会有一段较长的低电平间隙，然后重复下一帧
+1[同步头] + [数据] + 间隙…… 再重复
+
+
+同步头：一个宽高电平脉冲，用来唤醒接收端并标志一帧的开始
+
+
+      </article>
+    </div>
+  </div>
+</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
-    <a class="extend prev" rel="prev" href="/page/18/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/20/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/18/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/20/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -681,10 +578,10 @@ Python 程序的编译与运行机制源码 .py 被编译为 字节码 .pyc，�
       </div>
       <div>
         <span class="icon-brush"></span>
-        262k
+        257.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        21:33
+        21:07
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -712,7 +609,7 @@ Python 程序的编译与运行机制源码 .py 被编译为 字节码 .pyc，�
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">232</div>
+    <div class="sidebar-state-number">223</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -720,7 +617,7 @@ Python 程序的编译与运行机制源码 .py 被编译为 字节码 .pyc，�
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">183</div>
+    <div class="sidebar-state-number">180</div>
   </div>
 </div>
 <div class="sidebar-social" >
