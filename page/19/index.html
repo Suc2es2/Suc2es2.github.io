@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">230</div>
+    <div class="sidebar-state-number">231</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -220,19 +220,19 @@
       <div class="widget">
         <ul>
             <li>
-              <a href="/2026/07/28/digitalworld.local%20FALL/" title="VulnHub digitalworld.local：FALL">VulnHub digitalworld.local：FALL</a>
+              <a href="/2026/07/28/Funbox%20Scriptkiddie/" title="VulnHub Funbox：Scriptkiddie">VulnHub Funbox：Scriptkiddie</a>
             </li>
             <li>
-              <a href="/2026/07/27/%E7%81%B0%E4%BA%A7-%E5%B0%8F%E8%AF%B4%E5%AF%BC%E6%B5%81%E7%AB%99/" title="灰产——做量">灰产——做量</a>
+              <a href="/2026/07/28/digitalworld.local%20FALL/" title="VulnHub digitalworld.local：FALL">VulnHub digitalworld.local：FALL</a>
             </li>
             <li>
               <a href="/2026/07/27/%E6%9F%90%E5%90%AF%E9%98%85%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E6%A1%86%20XSS/" title="启阅小说搜索框反射 XSS">启阅小说搜索框反射 XSS</a>
             </li>
             <li>
-              <a href="/2026/06/25/Rita%20AI/" title="Rita AI 提示词泄露">Rita AI 提示词泄露</a>
+              <a href="/2026/07/27/%E7%81%B0%E4%BA%A7-%E5%B0%8F%E8%AF%B4%E5%AF%BC%E6%B5%81%E7%AB%99/" title="灰产——做量">灰产——做量</a>
             </li>
             <li>
-              <a href="/2026/06/24/seek%20agent%20%E9%A1%B9%E7%9B%AE%E7%BA%A7%E6%8A%95%E6%AF%92/" title="Seek README 间接提示词注入">Seek README 间接提示词注入</a>
+              <a href="/2026/06/25/Rita%20AI/" title="Rita AI 提示词泄露">Rita AI 提示词泄露</a>
             </li>
         </ul>
       </div>
@@ -244,6 +244,79 @@
 </aside>
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019%20ByteCTF/" aria-label="2019 ByteCTF WriteUp" title="2019 ByteCTF WriteUp"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 ByteCTF WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>231 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
+      </div>
+      <h2 class="post-title">2019 ByteCTF WriteUp</h2>
+      <article class="post-article">
+          2019 ByteCTF WriteUp2019 年 ByteCTF 是由字节跳动主办的首届网络安全攻防大赛
+
+赛事规模：共吸引 4000 余人次报名，722 支高校队伍参赛
+
+比赛时间：线上初赛于 2019 年 9 月 7 日 - 9 月 8 日举行；线下决赛于 10 月 19 日 - 10 月 20 日在北京举行
+
+奖金设置：冠军 80,000 元，亚军 50,000 元，季军 20,000 元，第 4 - 6 名分别获得 10,000、8,000、5,000 元奖金
+
+
+
+
+
+最终排名
+队伍名称
+所属&amp;#x2F;备注
+
+
+
+冠军
+W&amp;amp;M
+联合战队，同时也是线上赛冠军
+
+
+亚军
+N
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019%20HDCTF/" aria-label="2019 HDCTF WriteUp" title="2019 HDCTF WriteUp"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 HDCTF WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>2.3k 字</span>
+        <span><span class="icon-clock"></span>10 分钟</span>
+      </div>
+      <h2 class="post-title">2019 HDCTF WriteUp</h2>
+      <article class="post-article">
+          2019 HDCTF WriteUp前言主办方：海南大学
+Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程）
+下载附件是一个 .img，使用 vol2 进行取证，先查看操作系统
+1python2 vol.py -f memory.img imageinfo
+
+发现是 Windows 2003，给出了三个具体的版本
+
+查看进程，Server 2003 生命周期中 SP2 是最普遍的版本，所以选择它
+1python2 vol.py -f memory.img --profile=Win2003SP2x86 pslist
+
+
+dump 出 explorer.exe，它的内存里主
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/2019%20RCTF/" aria-label="2019 RCTF WriteUp" title="2019 RCTF WriteUp"></a>
     <div class="post-cover left">
@@ -466,38 +539,8 @@ W&amp;a
 </div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20HDCTF/" aria-label="2019 HDCTF WriteUp" title="2019 HDCTF WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 HDCTF WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>2.3k 字</span>
-        <span><span class="icon-clock"></span>10 分钟</span>
-      </div>
-      <h2 class="post-title">2019 HDCTF WriteUp</h2>
-      <article class="post-article">
-          2019 HDCTF WriteUp前言主办方：海南大学
-Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程）
-下载附件是一个 .img，使用 vol2 进行取证，先查看操作系统
-1python2 vol.py -f memory.img imageinfo
-
-发现是 Windows 2003，给出了三个具体的版本
-
-查看进程，Server 2003 生命周期中 SP2 是最普遍的版本，所以选择它
-1python2 vol.py -f memory.img --profile=Win2003SP2x86 pslist
-
-
-dump 出 explorer.exe，它的内存里主
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/D%20%E8%AF%AD%E8%A8%80/" aria-label="D 语言" title="D 语言"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="D 语言" class="lazyload">
     </div>
     <div class="post-info">
@@ -518,9 +561,9 @@ dump 出 explorer.exe，它的内存里主
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/Python%20%E9%80%86%E5%90%91/" aria-label="Python" title="Python"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Python" class="lazyload">
     </div>
     <div class="post-info">
@@ -548,9 +591,9 @@ Python 程序的编译与运行机制源码 .py 被编译为 字节码 .pyc，�
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/RC4/" aria-label="RC4" title="RC4"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="RC4" class="lazyload">
     </div>
     <div class="post-info">
@@ -570,9 +613,9 @@ Python 程序的编译与运行机制源码 .py 被编译为 字节码 .pyc，�
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/RISC-V/" aria-label="RISC-V 架构" title="RISC-V 架构"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="RISC-V 架构" class="lazyload">
     </div>
     <div class="post-info">
@@ -604,39 +647,8 @@ C：压
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/Ret2text/" aria-label="Ret2text" title="Ret2text"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2text" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>360 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
-      </div>
-      <h2 class="post-title">Ret2text</h2>
-      <article class="post-article">
-          Ret2text原理在 CTF 和二进制安全里，Ret2text 是一种非常经典的栈溢出利用手法。它的名字可以这样拆开理解：
-
-Ret：Return，代表 “返回地址”
-
-2 &amp;#x2F; to：到、跳转到
-
-text：.text 段，存放程序机器指令的区域
-
-
-简单说，Ret2text 就是利用栈溢出漏洞，将函数的返回地址篡改为程序 .text 段中已存在的合法代码，从而劫持控制流去执行这些代码来获取 shell
-因为执行的代码是程序本来就有的，所以它不需要注入 Shellcode，也能绕过 NX 保护
-实战案例帮我取一个题目名称（Ret2text）
-没开金丝雀，read 函数读取大小为 6
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
-    <a class="extend prev" rel="prev" href="/page/18/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/20/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/18/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/20/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -658,10 +670,10 @@ text：.text 段，存放程序机器指令的区域
       </div>
       <div>
         <span class="icon-brush"></span>
-        257.9k
+        258k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        21:13
+        21:14
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -689,7 +701,7 @@ text：.text 段，存放程序机器指令的区域
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">230</div>
+    <div class="sidebar-state-number">231</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
