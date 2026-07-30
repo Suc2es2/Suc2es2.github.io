@@ -245,30 +245,22 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/Python%20%E9%80%86%E5%90%91/" aria-label="Python" title="Python"></a>
+      <a class="post-link" href="/2019/05/22/RC4/" aria-label="RC4" title="RC4"></a>
     <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="Python" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="RC4" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>8.2k 字</span>
-        <span><span class="icon-clock"></span>39 分钟</span>
+        <span><span class="icon-pencil"></span>5.1k 字</span>
+        <span><span class="icon-clock"></span>24 分钟</span>
       </div>
-      <h2 class="post-title">Python</h2>
+      <h2 class="post-title">RC4</h2>
       <article class="post-article">
-          PythonPython 逆向是指对 Python 编写的程序（包括脚本、.pyc 字节码、打包的可执行文件等）进行分析，以理解其逻辑、提取算法、恢复源码或寻找漏洞
-Python 程序的编译与运行机制源码 .py 被编译为 字节码 .pyc，存储在 __pycache__ 目录（Python 3.2+）
-.pyc 文件结构：
-
-前 4 字节：magic number（标识 Python 版本，如 Python 3.8 为 550D）
-
-后 4 或 12 字节：时间戳 + 源码大小（可选）
-
-剩余部分：marshal 序列化后的 code object
-
-
-逆向的核心就是：获取 .pyc → 反
+          RC4RC4（Rivest Cipher 4）是由 Ron Rivest 在 1987 年设计的对称流密码，因其结构简单、软件实现高效，曾被广泛应用于 SSL&amp;#x2F;TLS、WEP、WPA、RDP、以及各种恶意软件和 CTF 题目中
+算法结构RC4 由两个核心阶段组成：密钥调度算法（KSA, Key-Scheduling Algorithm） 和 伪随机生成算法（PRGA, Pseudo-Random Generation Algorithm）
+状态初始化一个 256 字节的 S 盒（state vector），初始化为 S[i] = i，i = 0..255
+密钥 key 为任意长度（1
       </article>
     </div>
   </div>
@@ -594,10 +586,10 @@ Opt
       </div>
       <div>
         <span class="icon-brush"></span>
-        261.9k
+        262k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        21:32
+        21:33
       </div>
       <div>
         <span class="icon-eye"></span>
