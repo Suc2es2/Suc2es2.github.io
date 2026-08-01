@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">223</div>
+    <div class="sidebar-state-number">225</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -160,7 +160,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">180</div>
+    <div class="sidebar-state-number">181</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -220,6 +220,12 @@
       <div class="widget">
         <ul>
             <li>
+              <a href="/2026/07/31/Grotesque%203.0.1/" title="VulnHub Grotesque：3.0.1">VulnHub Grotesque：3.0.1</a>
+            </li>
+            <li>
+              <a href="/2026/07/31/Pwn%20The%20Tron%201/" title="VulnHub Pwn The Tron：1">VulnHub Pwn The Tron：1</a>
+            </li>
+            <li>
               <a href="/2026/07/30/DarkHole%201/" title="VulnHub DarkHole：1">VulnHub DarkHole：1</a>
             </li>
             <li>
@@ -227,12 +233,6 @@
             </li>
             <li>
               <a href="/2026/07/28/digitalworld.local%20FALL/" title="VulnHub digitalworld.local：FALL">VulnHub digitalworld.local：FALL</a>
-            </li>
-            <li>
-              <a href="/2026/07/27/%E6%9F%90%E5%90%AF%E9%98%85%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E6%A1%86%20XSS/" title="启阅小说搜索框反射 XSS">启阅小说搜索框反射 XSS</a>
-            </li>
-            <li>
-              <a href="/2026/07/27/%E7%81%B0%E4%BA%A7-%E5%B0%8F%E8%AF%B4%E5%AF%BC%E6%B5%81%E7%AB%99/" title="灰产——做量">灰产——做量</a>
             </li>
         </ul>
       </div>
@@ -244,6 +244,62 @@
 </aside>
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/07/31/Grotesque%203.0.1/" aria-label="VulnHub Grotesque：3.0.1" title="VulnHub Grotesque：3.0.1"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Grotesque：3.0.1" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-07-31</span>
+        <span><span class="icon-pencil"></span>360 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">VulnHub Grotesque：3.0.1</h2>
+      <article class="post-article">
+          Grotesque：3.0.1项目地址：https://download.vulnhub.com/grotesque/grotesque3.zip
+是一个打包好的镜像文件
+注意：导入 ovf 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+文件包含purpose访问 80 端口，有一个链接
+
+进去是一张图片，有提示是 MD5
+
+根据提示生成一个md5字典，这里我们将 /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt 字典进行 MD5 加密
+记得替换里面的横线和空格，然后进
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/07/31/Pwn%20The%20Tron%201/" aria-label="VulnHub Pwn The Tron：1" title="VulnHub Pwn The Tron：1"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Pwn The Tron：1" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-07-31</span>
+        <span><span class="icon-pencil"></span>814 字</span>
+        <span><span class="icon-clock"></span>4 分钟</span>
+      </div>
+      <h2 class="post-title">VulnHub Pwn The Tron：1</h2>
+      <article class="post-article">
+          Pwn The Tron：1项目地址：https://download.vulnhub.com/pwnthetron/Pwn-the-Tron.ova
+是一个打包好的镜像文件
+注意：导入 ovf 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+信息收集Wayback Machine扫描目录发现 /Travel/ 目录
+
+加密消息拿到了，但是需要解密
+1234567擎天柱能够找到两把看似位于同一位置的钥匙的加密坐标。你（杰克）被派去与大黄蜂和阿尔茜一起获取钥匙，在声波能够解密钥匙之前完成任务！你能找到@decepticon-base来获取iacon_codes吗？
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/07/30/DarkHole%201/" aria-label="VulnHub DarkHole：1" title="VulnHub DarkHole：1"></a>
     <div class="post-cover left">
@@ -469,73 +525,6 @@ www 端放一个假的 “互联网技术公司” 页面，仅用于过审
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/06/19/HMS%201/" aria-label="VulnHub HMS?：1" title="VulnHub HMS?：1"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub HMS?：1" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-06-19</span>
-        <span><span class="icon-pencil"></span>432 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub HMS?：1</h2>
-      <article class="post-article">
-          HMS?：1项目地址：https://download.vulnhub.com/hms/niveK.ova
-是一个打包好的镜像文件
-注意：导入 vmx 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-FTP 里什么都没有，7080 是一个网页
-
-SQL 注入Sign In测试万能密码发现有前端校验
-
-删除 type 属性后登录成功
-
-RCESettings在源代码中找到被注释的文件
-
-访问找到一个上传接口
-
-传入一个反弹 Shell 后在源代码中找到接口
-
-
-访问后拿到 Shell
-
-提权Python 升级为交互式 Shell1python -c &amp;#x27;i
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/06/19/ContainMe%201/" aria-label="VulnHub ContainMe：1" title="VulnHub ContainMe：1"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub ContainMe：1" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-06-19</span>
-        <span><span class="icon-pencil"></span>723 字</span>
-        <span><span class="icon-clock"></span>3 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub ContainMe：1</h2>
-      <article class="post-article">
-          ContainMe：1博客地址：https://www.cnblogs.com/upfine/p/16942828.html
-项目地址：https://download.vulnhub.com/containme/THM-ContainMe-v4.ova（环境有问题）
-是一个打包好的镜像文件
-注意：导入 ova 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-RCEpath目录扫描
-
-访问 index.php 返回一个目录信息，在其源代码信息中出现隐藏信息：where is the path ?
-猜测这里应该是存在参数并且可能执行了 ls -al 之类的系统命令
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
   </nav>
@@ -559,10 +548,10 @@ RCEpath目录扫描
       </div>
       <div>
         <span class="icon-brush"></span>
-        257.1k
+        258.2k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        21:07
+        21:13
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -590,7 +579,7 @@ RCEpath目录扫描
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">223</div>
+    <div class="sidebar-state-number">225</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -598,7 +587,7 @@ RCEpath目录扫描
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">180</div>
+    <div class="sidebar-state-number">181</div>
   </div>
 </div>
 <div class="sidebar-social" >
