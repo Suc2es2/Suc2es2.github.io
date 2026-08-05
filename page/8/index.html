@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">226</div>
+    <div class="sidebar-state-number">227</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -220,6 +220,9 @@
       <div class="widget">
         <ul>
             <li>
+              <a href="/2026/07/31/Hacker%20kid%201.0.1/" title="VulnHub Hackable：III">VulnHub Hackable：III</a>
+            </li>
+            <li>
               <a href="/2026/07/31/Hackable%20III/" title="VulnHub Hackable：III">VulnHub Hackable：III</a>
             </li>
             <li>
@@ -230,9 +233,6 @@
             </li>
             <li>
               <a href="/2026/07/30/DarkHole%201/" title="VulnHub DarkHole：1">VulnHub DarkHole：1</a>
-            </li>
-            <li>
-              <a href="/2026/07/28/Funbox%20Scriptkiddie/" title="VulnHub Funbox：Scriptkiddie">VulnHub Funbox：Scriptkiddie</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,44 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/01/Many-Time%20Pad/" aria-label="Many-Time Pad" title="Many-Time Pad"></a>
+      <a class="post-link" href="/2026/05/03/Node%201/" aria-label="VulnHub Node：1" title="VulnHub Node：1"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Node：1" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-05-03</span>
+        <span><span class="icon-pencil"></span>254 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
+      </div>
+      <h2 class="post-title">VulnHub Node：1</h2>
+      <article class="post-article">
+          Node：1项目地址：https://download.vulnhub.com/node/Node.ova
+是一个打包好的镜像文件
+注意：导入 vmx 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+访问 3000 端口
+
+JS 接口泄露&amp;#x2F;api&amp;#x2F;users通过插件 XMCVE-WebRecon 扫描发现
+
+访问拿到用户名以及密码，但是都不是管理员账号
+
+访问另一个接口拿到管理员用户名 myP14ceAdm1nAcc0uNT
+
+成功破解出账号密码
+
+ZIP 密码爆破myplace.backup成功登录后台，有一个下载备份按钮
+
+下载文件发现是
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/05/01/Many-Time%20Pad/" aria-label="Many-Time Pad" title="Many-Time Pad"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Many-Time Pad" class="lazyload">
     </div>
     <div class="post-info">
@@ -271,9 +307,9 @@ Crib‑dragging
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/29/WebShell%20%E5%85%8D%E6%9D%80%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%90%E7%AE%97%20+%20%E5%8A%A8%E6%80%81%E8%B0%83%E7%94%A8/" aria-label="PHP WebShell 免杀之字符串运算 + 动态调用" title="PHP WebShell 免杀之字符串运算 + 动态调用"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="PHP WebShell 免杀之字符串运算 + 动态调用" class="lazyload">
     </div>
     <div class="post-info">
@@ -299,9 +335,9 @@ a
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/28/%E8%BF%99%E5%85%B3%E9%9A%BE%E4%B8%8D%E5%80%92%E4%BD%A0%E7%AE%97%E7%82%B8%E5%8D%95/" aria-label="出题——这关难不倒你算炸单" title="出题——这关难不倒你算炸单"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="出题——这关难不倒你算炸单" class="lazyload">
     </div>
     <div class="post-info">
@@ -328,9 +364,9 @@ Symfony 框架国内不用，WordPress 现成的靶机（VulnHub）也都有，�
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/27/%E7%94%B5%E7%AB%9E%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20XSS-1/" aria-label="某电竞俱乐部小程序文件上传 XSS" title="某电竞俱乐部小程序文件上传 XSS"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="某电竞俱乐部小程序文件上传 XSS" class="lazyload">
     </div>
     <div class="post-info">
@@ -358,9 +394,9 @@ XSS点击头像处
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/25/%E5%85%85%E7%94%B5%E6%A1%A9%E6%94%AF%E4%BB%98%E6%BC%8F%E6%B4%9E-1/" aria-label="某充电桩小程序支付漏洞" title="某充电桩小程序支付漏洞"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="某充电桩小程序支付漏洞" class="lazyload">
     </div>
     <div class="post-info">
@@ -389,9 +425,9 @@ XSS点击头像处
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/25/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Windows%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-%E8%BF%91%E6%BA%90%E6%B8%97%E9%80%8F/" aria-label="知攻善防实验室 Windows 应急响应——近源渗透" title="知攻善防实验室 Windows 应急响应——近源渗透"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="知攻善防实验室 Windows 应急响应——近源渗透" class="lazyload">
     </div>
     <div class="post-info">
@@ -421,9 +457,9 @@ XSS点击头像处
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/23/Gemini%20Inc%201/" aria-label="VulnHub Gemini Inc：1" title="VulnHub Gemini Inc：1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Gemini Inc：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -459,9 +495,9 @@ XSSEdit info of admin在后台编辑资料中尝试注
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/20/Homeless%201/" aria-label="VulnHub Homeless：1" title="VulnHub Homeless：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Homeless：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -492,9 +528,9 @@ CTFindex（UA 头爆破）扫描后台没东西，看看 robots.txt 发现提示
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/16/Depth%201/" aria-label="VulnHub Depth：1" title="VulnHub Depth：1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Depth：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -517,35 +553,6 @@ RCEFile listing checker扫描目录发现 /test.jsp，功能是可以执行系�
 提取SSH 本地登录执行 ls -l /home 命令查看用户家目录，发现 bill
 
 尝试 SSH 本地登录成功，可以使用当前 bill 用户执行
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/14/2026%20%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BD%E5%88%9B%E6%96%B0%E5%A4%A7%E8%B5%9B%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%90%E8%B5%9B%E9%81%93%E5%9B%A2%E9%98%9F%E8%B5%9B%20WriteUp/" aria-label="2026 数字中国创新大赛网络安全子赛道团队赛 WriteUp" title="2026 数字中国创新大赛网络安全子赛道团队赛 WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2026 数字中国创新大赛网络安全子赛道团队赛 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-14</span>
-        <span><span class="icon-pencil"></span>3.2k 字</span>
-        <span><span class="icon-clock"></span>17 分钟</span>
-      </div>
-      <h2 class="post-title">2026 数字中国创新大赛网络安全子赛道团队赛 WriteUp</h2>
-      <article class="post-article">
-          2026 数字中国创新大赛网络安全子赛道团队赛 WriteUp前言主办方：福建省通信管理局和总工会
-第一次在星盟带队打比赛，解出了五道题排名第二
-
-SecureDoc 是别的师傅爆破出了密码，最后由我绕过 WAF 拿到二血
-asystem 其他师傅也解出来了，但是我交的快，哈哈，相当于五道题都是我解的，这波带飞了
-虽然是松柏组，但是这个成绩在学生组也是能进决赛的（松柏前四）
-Misc冰碧蝎?过滤 HTTP
-
-追踪第一个 POST 请求拿到密钥 1ca3b8c9c81a5fdc
-
-后续一直在访问 &amp;#x2F;upload&amp;#x2F;1774…….dcic.php 路径，确认这个就是 WebShe
       </article>
     </div>
   </div>
@@ -573,10 +580,10 @@ Misc冰碧蝎?过滤 HTTP
       </div>
       <div>
         <span class="icon-brush"></span>
-        259.5k
+        260.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        21:19
+        21:22
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -604,7 +611,7 @@ Misc冰碧蝎?过滤 HTTP
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">226</div>
+    <div class="sidebar-state-number">227</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
