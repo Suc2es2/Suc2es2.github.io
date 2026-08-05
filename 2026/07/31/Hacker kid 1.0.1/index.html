@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
   <title>
-    VulnHub Hackable：III | 雾島风起時
+    VulnHub Hacker kid：1.0.1 | 雾島风起時
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,12 +17,12 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="Hackable：III原博客地址：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;upfine&#x2F;p&#x2F;17026653.html 项目地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;hackerkid&#x2F;Hacker_Kid-v1.0.1.ova（占用太大，懒得下） 是一个打包好的镜像文件 注意：导入 ovf 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版">
+    <meta name="description" content="Hacker kid：1.0.1原博客地址：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;upfine&#x2F;p&#x2F;17026653.html 项目地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;hackerkid&#x2F;Hacker_Kid-v1.0.1.ova（占用太大，懒得下） 是一个打包好的镜像文件 注意：导入 ovf 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VulnHub Hackable：III">
+<meta property="og:title" content="VulnHub Hacker kid：1.0.1">
 <meta property="og:url" content="https://suc2es2.github.io/2026/07/31/Hacker%20kid%201.0.1/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="Hackable：III原博客地址：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;upfine&#x2F;p&#x2F;17026653.html 项目地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;hackerkid&#x2F;Hacker_Kid-v1.0.1.ova（占用太大，懒得下） 是一个打包好的镜像文件 注意：导入 ovf 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版">
+<meta property="og:description" content="Hacker kid：1.0.1原博客地址：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;upfine&#x2F;p&#x2F;17026653.html 项目地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;hackerkid&#x2F;Hacker_Kid-v1.0.1.ova（占用太大，懒得下） 是一个打包好的镜像文件 注意：导入 ovf 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/0341oXagcIWvtNWmuRfmgO.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/0341ohDVy1UtGyjbUBYiIU.png">
@@ -42,8 +42,11 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/i/0341pEwDkpPqfoEPMiA6Bq.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/0341pQCJVSGTevJRPYyVCw.png">
 <meta property="article:published_time" content="2026-07-31T08:31:00.000Z">
-<meta property="article:modified_time" content="2026-08-05T10:35:20.685Z">
+<meta property="article:modified_time" content="2026-08-05T10:36:22.991Z">
 <meta property="article:author" content="ALL">
+<meta property="article:tag" content="Capabilities 提权">
+<meta property="article:tag" content="SSTI">
+<meta property="article:tag" content="XXE">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://pic1.imgdb.cn/i/0341oXagcIWvtNWmuRfmgO.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
@@ -144,11 +147,11 @@
 <header id="header" aria-label="Site header">
         <picture>
         </picture>
-          <img  fetchpriority="high" src="/images/banner.webp" alt="VulnHub Hackable：III">
+          <img  fetchpriority="high" src="/images/banner.webp" alt="VulnHub Hacker kid：1.0.1">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">VulnHub Hackable：III</h1>
+            <h1 data-aos="slide-up">VulnHub Hacker kid：1.0.1</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -163,7 +166,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hackable%EF%BC%9AIII"><span class="toc-number">1.</span> <span class="toc-text">Hackable：III</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#XXE"><span class="toc-number">1.1.</span> <span class="toc-text">XXE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-Account"><span class="toc-number">1.1.1.</span> <span class="toc-text">Create Account</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSTI"><span class="toc-number">1.2.</span> <span class="toc-text">SSTI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#name"><span class="toc-number">1.2.1.</span> <span class="toc-text">name</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.3.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Capabilities-%E6%8F%90%E6%9D%83"><span class="toc-number">1.3.1.</span> <span class="toc-text">Capabilities 提权</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hacker-kid%EF%BC%9A1-0-1"><span class="toc-number">1.</span> <span class="toc-text">Hacker kid：1.0.1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#XXE"><span class="toc-number">1.1.</span> <span class="toc-text">XXE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-Account"><span class="toc-number">1.1.1.</span> <span class="toc-text">Create Account</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSTI"><span class="toc-number">1.2.</span> <span class="toc-text">SSTI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#name"><span class="toc-number">1.2.1.</span> <span class="toc-text">name</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.3.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Capabilities-%E6%8F%90%E6%9D%83"><span class="toc-number">1.3.1.</span> <span class="toc-text">Capabilities 提权</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -182,7 +185,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">183</div>
+    <div class="sidebar-state-number">185</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -250,7 +253,7 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="Hackable：III"><a href="#Hackable：III" class="headerlink" title="Hackable：III"></a>Hackable：III</h1><p>原博客地址：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/upfine/p/17026653.html">https://www.cnblogs.com/upfine/p/17026653.html</a></p>
+        <h1 id="Hacker-kid：1-0-1"><a href="#Hacker-kid：1-0-1" class="headerlink" title="Hacker kid：1.0.1"></a>Hacker kid：1.0.1</h1><p>原博客地址：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/upfine/p/17026653.html">https://www.cnblogs.com/upfine/p/17026653.html</a></p>
 <p>项目地址：<a target="_blank" rel="noopener" href="https://download.vulnhub.com/hackerkid/Hacker_Kid-v1.0.1.ova%EF%BC%88%E5%8D%A0%E7%94%A8%E5%A4%AA%E5%A4%A7%EF%BC%8C%E6%87%92%E5%BE%97%E4%B8%8B%EF%BC%89">https://download.vulnhub.com/hackerkid/Hacker_Kid-v1.0.1.ova（占用太大，懒得下）</a></p>
 <p>是一个打包好的镜像文件</p>
 <p><strong>注意：导入 ovf 时一定要选择我已移动，否则没网</strong></p>
@@ -304,7 +307,8 @@
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/VulnHub/" title="VulnHub" data-aos="zoom-in">VulnHub</a>
 
-      
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Capabilities-%E6%8F%90%E6%9D%83/" rel="tag" title="Capabilities 提权">Capabilities 提权</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/SSTI/" rel="tag" title="SSTI">SSTI</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/XXE/" rel="tag" title="XXE">XXE</a></li></ul>
+
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
@@ -365,7 +369,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hackable%EF%BC%9AIII"><span class="toc-number">1.</span> <span class="toc-text">Hackable：III</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#XXE"><span class="toc-number">1.1.</span> <span class="toc-text">XXE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-Account"><span class="toc-number">1.1.1.</span> <span class="toc-text">Create Account</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSTI"><span class="toc-number">1.2.</span> <span class="toc-text">SSTI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#name"><span class="toc-number">1.2.1.</span> <span class="toc-text">name</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.3.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Capabilities-%E6%8F%90%E6%9D%83"><span class="toc-number">1.3.1.</span> <span class="toc-text">Capabilities 提权</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hacker-kid%EF%BC%9A1-0-1"><span class="toc-number">1.</span> <span class="toc-text">Hacker kid：1.0.1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#XXE"><span class="toc-number">1.1.</span> <span class="toc-text">XXE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-Account"><span class="toc-number">1.1.1.</span> <span class="toc-text">Create Account</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSTI"><span class="toc-number">1.2.</span> <span class="toc-text">SSTI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#name"><span class="toc-number">1.2.1.</span> <span class="toc-text">name</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.3.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Capabilities-%E6%8F%90%E6%9D%83"><span class="toc-number">1.3.1.</span> <span class="toc-text">Capabilities 提权</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -384,7 +388,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">183</div>
+    <div class="sidebar-state-number">185</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -493,13 +497,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "ALL",
-          title: "VulnHub Hackable：III",
+          title: "VulnHub Hacker kid：1.0.1",
           url: "https://suc2es2.github.io/2026/07/31/Hacker%20kid%201.0.1/",
           excerpt: "",
           description: "",
-          stripContent: "Hackable：III原博客地址：https://www.cnblogs.com/upfine/p/17026653.html 项目地址：https://download.vulnhub.com/hackerkid/Hacker_Kid-v1.0.1.ova（占用太大，懒得下） 是一个打包好的镜像文件 注意：导入 ovf 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  XXECreate Account打开 80 端口，提示信息告诉我们使用 Dig（域名查询工具",
+          stripContent: "Hacker kid：1.0.1原博客地址：https://www.cnblogs.com/upfine/p/17026653.html 项目地址：https://download.vulnhub.com/hackerkid/Hacker_Kid-v1.0.1.ova（占用太大，懒得下） 是一个打包好的镜像文件 注意：导入 ovf 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  XXECreate Account打开 80 端口，提示信息告诉我们使用 Dig（域名",
           date: "Fri Jul 31 2026 16:31:00 GMT+0800",
-          updated: "Wed Aug 05 2026 18:35:20 GMT+0800",
+          updated: "Wed Aug 05 2026 18:36:22 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
