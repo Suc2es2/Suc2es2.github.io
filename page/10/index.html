@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">225</div>
+    <div class="sidebar-state-number">226</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -160,7 +160,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">181</div>
+    <div class="sidebar-state-number">183</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -223,6 +223,9 @@
               <a href="/2026/07/31/Grotesque%203.0.1/" title="VulnHub Grotesque：3.0.1">VulnHub Grotesque：3.0.1</a>
             </li>
             <li>
+              <a href="/2026/07/31/Hackable%20III/" title="VulnHub Hackable：III">VulnHub Hackable：III</a>
+            </li>
+            <li>
               <a href="/2026/07/31/Pwn%20The%20Tron%201/" title="VulnHub Pwn The Tron：1">VulnHub Pwn The Tron：1</a>
             </li>
             <li>
@@ -230,9 +233,6 @@
             </li>
             <li>
               <a href="/2026/07/28/Funbox%20Scriptkiddie/" title="VulnHub Funbox：Scriptkiddie">VulnHub Funbox：Scriptkiddie</a>
-            </li>
-            <li>
-              <a href="/2026/07/28/digitalworld.local%20FALL/" title="VulnHub digitalworld.local：FALL">VulnHub digitalworld.local：FALL</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,41 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/DC416%202016-Fortress/" aria-label="VulnHub DC416：2016-Fortress" title="VulnHub DC416：2016-Fortress"></a>
+      <a class="post-link" href="/2026/04/01/hackfest2016%20Sedna/" aria-label="VulnHub hackfest2016：Sedna" title="VulnHub hackfest2016：Sedna"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub hackfest2016：Sedna" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-01</span>
+        <span><span class="icon-pencil"></span>470 字</span>
+        <span><span class="icon-clock"></span>3 分钟</span>
+      </div>
+      <h2 class="post-title">VulnHub hackfest2016：Sedna</h2>
+      <article class="post-article">
+          hackfest2016: Sedna项目地址：https://download.vulnhub.com/hackfest2016/Sedna.ova
+是一个打包好的镜像文件
+注意：导入 vmx 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+文件上传BuilderEngine 3.5.0扫描后台发现有个这个目录可以访问
+
+访问过去是空白，查看页面源代码推测使用的框架
+
+去 Exploit-DB 中找到历史 NDay
+
+按照官网给出的路径访问过去
+
+创建一个简单的 HTML 文件 upload.html，内容如下
+1234&amp;lt;form method=&amp;quo
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/01/DC416%202016-Fortress/" aria-label="VulnHub DC416：2016-Fortress" title="VulnHub DC416：2016-Fortress"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub DC416：2016-Fortress" class="lazyload">
     </div>
     <div class="post-info">
@@ -283,9 +316,9 @@ BP 抓包使用换行符绕过
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/pluck%201/" aria-label="VulnHub pluck：1" title="VulnHub pluck：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub pluck：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -313,9 +346,9 @@ BP 抓包使用换行符绕过
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/Breach%201/" aria-label="VulnHub Breach：1" title="VulnHub Breach：1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Breach：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -349,9 +382,9 @@ CTFTLS 流量解密点击 Inbox 发现有三封邮件
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/PwnLab%20%20init/" aria-label="VulnHub PwnLab：init" title="VulnHub PwnLab：init"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub PwnLab：init" class="lazyload">
     </div>
     <div class="post-info">
@@ -379,9 +412,9 @@ CTFTLS 流量解密点击 Inbox 发现有三封邮件
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/6Days%20Lab%201.1/" aria-label="VulnHub 6Days Lab：1.1" title="VulnHub 6Days Lab：1.1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub 6Days Lab：1.1" class="lazyload">
     </div>
     <div class="post-info">
@@ -412,9 +445,9 @@ CTFTLS 流量解密点击 Inbox 发现有三封邮件
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/Violator%201/" aria-label="VulnHub Violator：1" title="VulnHub Violator：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Violator：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -440,9 +473,9 @@ CTFTLS 流量解密点击 Inbox 发现有三封邮件
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/Milnet%201/" aria-label="VulnHub Milnet：1" title="VulnHub Milnet：1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Milnet：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -473,9 +506,9 @@ RCERFI（反弹 Shell）扫描目录发现 phpinfo 文件，开启了远程文�
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/Gibson%200.2/" aria-label="VulnHub Gibson：0.2" title="VulnHub Gibson：0.2"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Gibson：0.2" class="lazyload">
     </div>
     <div class="post-info">
@@ -504,9 +537,9 @@ RCERFI（反弹 Shell）扫描目录发现 phpinfo 文件，开启了远程文�
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/01/Droopy%20v0.2/" aria-label="VulnHub Droopy：v0.2" title="VulnHub Droopy：v0.2"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Droopy：v0.2" class="lazyload">
     </div>
     <div class="post-info">
@@ -529,42 +562,6 @@ RCEDrupalgeddon2（CVE-2018–7600）直接 MSF 打 NDay
 提权内核 overlayfs 文件系统（CVE-2015-1328）最后打 overlayfs 内核漏洞提权即可
 
 
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/SecTalks%20BNE0x03%20-%20Simple/" aria-label="VulnHub SecTalks：BNE0x03 - Simple" title="VulnHub SecTalks：BNE0x03 - Simple"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub SecTalks：BNE0x03 - Simple" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-01</span>
-        <span><span class="icon-pencil"></span>172 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub SecTalks：BNE0x03 - Simple</h2>
-      <article class="post-article">
-          SecTalks: BNE0x03 - Simple项目地址：https://download.vulnhub.com/lordoftheroot/LordOfTheRoot_1.0.1.ova
-是一个打包好的镜像文件
-注意：导入 vmx 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-访问 80 端口发现是一个通用的框架
-
-文件上传漏洞Avatar网上搜索到 NDay
-
-按照上图中的说明注册账号
-
-按照图中的要求的来到这里，发现有个头像上传的功能
-
-直接上传 PHP 反弹 Shell
-
-继续访问文件并开启监听拿到 Shell
-
-提权内核 overlayfs 文
       </article>
     </div>
   </div>
@@ -592,10 +589,10 @@ RCEDrupalgeddon2（CVE-2018–7600）直接 MSF 打 NDay
       </div>
       <div>
         <span class="icon-brush"></span>
-        258.2k
+        259.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        21:13
+        21:19
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -623,7 +620,7 @@ RCEDrupalgeddon2（CVE-2018–7600）直接 MSF 打 NDay
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">225</div>
+    <div class="sidebar-state-number">226</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -631,7 +628,7 @@ RCEDrupalgeddon2（CVE-2018–7600）直接 MSF 打 NDay
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">181</div>
+    <div class="sidebar-state-number">183</div>
   </div>
 </div>
 <div class="sidebar-social" >
