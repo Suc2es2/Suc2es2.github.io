@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">233</div>
+    <div class="sidebar-state-number">234</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -245,8 +245,35 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/LSIS%20FEnet%20%E5%8D%8F%E8%AE%AE/" aria-label="LSIS FEnet 协议" title="LSIS FEnet 协议"></a>
+      <a class="post-link" href="/2019/04/14/IC%20%E5%8D%A1/" aria-label="MIFARE Classic 1K IC 卡" title="MIFARE Classic 1K IC 卡"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="MIFARE Classic 1K IC 卡" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-04-14</span>
+        <span><span class="icon-pencil"></span>875 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">MIFARE Classic 1K IC 卡</h2>
+      <article class="post-article">
+          MIFARE Classic 1K IC 卡概述门禁卡、电梯卡、水卡大量使用它
+用读卡器 dump 出的文件通常就是一个二进制镜像，大小正好 1KB（1024字节），在十六进制编辑器里就是 1024 个字节，每行 16 字节
+总体结构16 个扇区，扇区号 0~15
+每个扇区 4 个块，块号 0~3，每块 16 字节（32 个十六进制字符）
+总块数 64，线性排列
+扇区与十六进制地址的对应扇区 0：000–0CF （4 块 × 16 字节 &amp;#x3D; 64 字节，0x40 长）
+扇区 1：040–07F
+扇区 2：080–0BF … 以此类推
+123400000000  xx xx xx xx
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/04/14/LSIS%20FEnet%20%E5%8D%8F%E8%AE%AE/" aria-label="LSIS FEnet 协议" title="LSIS FEnet 协议"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="LSIS FEnet 协议" class="lazyload">
     </div>
     <div class="post-info">
@@ -289,9 +316,9 @@ DLINK（专有总线）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/04/14/MMS%20%E5%8D%8F%E8%AE%AE/" aria-label="MMS 协议" title="MMS 协议"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MMS 协议" class="lazyload">
     </div>
     <div class="post-info">
@@ -322,9 +349,9 @@ DLINK（专有总线）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/04/14/MQTT%20%E5%8D%8F%E8%AE%AE/" aria-label="MQTT 协议" title="MQTT 协议"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MQTT 协议" class="lazyload">
     </div>
     <div class="post-info">
@@ -344,9 +371,9 @@ DLINK（专有总线）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/04/14/Modbus%20%E5%8D%8F%E8%AE%AE/" aria-label="Modbus 协议" title="Modbus 协议"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Modbus 协议" class="lazyload">
     </div>
     <div class="post-info">
@@ -367,9 +394,9 @@ Modbus 之所以被广泛采用，主要得益于它是公开发表且无版权�
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/03/14/USB/" aria-label="USB 协议" title="USB 协议"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="USB 协议" class="lazyload">
     </div>
     <div class="post-info">
@@ -408,9 +435,9 @@ Left Con
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2018/06/13/2018-HCTF/" aria-label="2018 HCTF WriteUp" title="2018 HCTF WriteUp"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2018 HCTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -447,9 +474,9 @@ Webwarmup（文件包含 ? 绕过）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2018/06/13/2018-TokyoWesterns/" aria-label="2018 TokyoWesterns CTF WriteUp" title="2018 TokyoWesterns CTF WriteUp"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2018 TokyoWesterns CTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -478,9 +505,9 @@ Flag 格式：TWCTF{something}
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2018/06/13/2018-%E7%99%BE%E8%B6%8A%E6%9D%AF/" aria-label="2018 百越杯 WriteUp" title="2018 百越杯 WriteUp"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2018 百越杯 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -514,9 +541,9 @@ flag_universe（LSB 隐写）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2018/05/22/2018%20ACTF/" aria-label="2018 ACTF WriteUp" title="2018 ACTF WriteUp"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2018 ACTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -530,40 +557,6 @@ flag_universe（LSB 隐写）
           2018 ACTF WriteUp前言主办方：XCTF
 Crypto你能看出这是什么加密么（RSA）
 1234567p=0x928fb6aa9d813b6c3270131818a7c54edb18e3806942b88670106c1821e0326364194a8c49392849432b37632f0abe3f3c52e909b939c91c50e41a7b8cd00c67d6743b4fq=0xec301417ccdffa679a8dcc4027dd0d75baf9d441625ed8930472165717f4732884c33f25d4ee6a6c9ae6c44aedad039b0b
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2018/04/14/2018-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E7%AC%AC%204%20%E5%9C%BA/" aria-label="2018 网鼎杯-第四场 WriteUp" title="2018 网鼎杯-第四场 WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2018 网鼎杯-第四场 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2018-04-14</span>
-        <span><span class="icon-pencil"></span>1.5k 字</span>
-        <span><span class="icon-clock"></span>7 分钟</span>
-      </div>
-      <h2 class="post-title">2018 网鼎杯-第四场 WriteUp</h2>
-      <article class="post-article">
-          2018 网鼎杯-第四场 WriteUp📝 赛事概况
-
-比赛赛制：采用线上 CTF（夺旗赛） 模式。参赛队伍通过解题获取 Flag 以获得分数
-
-参赛对象：主要面向电子政务、科技、互联网企业、网信等行业
-
-参赛规模：据当时报道，共有 1483 支队伍参与本场比赛的角逐
-
-晋级规则：线上预选赛每场取前 50 名晋级线下半决赛，四场共计 200 支队伍入围
-
-
-Cryptoshanghai（维吉尼亚密码）
-密文第一行是
-1bju lcogx fisep vjf pyztj sdgh 13 gifc qsxw. pkiowxc
-
-其中 fisep vjf pyztj sdgh，根据题目名 shan
       </article>
     </div>
   </div>
@@ -591,10 +584,10 @@ Cryptoshanghai（维吉尼亚密码）
       </div>
       <div>
         <span class="icon-brush"></span>
-        271.2k
+        271.6k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        22:11
+        22:13
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -622,7 +615,7 @@ Cryptoshanghai（维吉尼亚密码）
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">233</div>
+    <div class="sidebar-state-number">234</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
