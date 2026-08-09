@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">231</div>
+    <div class="sidebar-state-number">232</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -245,38 +245,8 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20HDCTF/" aria-label="2019 HDCTF WriteUp" title="2019 HDCTF WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 HDCTF WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>2.3k 字</span>
-        <span><span class="icon-clock"></span>10 分钟</span>
-      </div>
-      <h2 class="post-title">2019 HDCTF WriteUp</h2>
-      <article class="post-article">
-          2019 HDCTF WriteUp前言主办方：海南大学
-Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程）
-下载附件是一个 .img，使用 vol2 进行取证，先查看操作系统
-1python2 vol.py -f memory.img imageinfo
-
-发现是 Windows 2003，给出了三个具体的版本
-
-查看进程，Server 2003 生命周期中 SP2 是最普遍的版本，所以选择它
-1python2 vol.py -f memory.img --profile=Win2003SP2x86 pslist
-
-
-dump 出 explorer.exe，它的内存里主
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/2019%20ByteCTF/" aria-label="2019 ByteCTF WriteUp" title="2019 ByteCTF WriteUp"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 ByteCTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -317,9 +287,73 @@ N
   </div>
 </div>
       <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019%20HDCTF/" aria-label="2019 HDCTF WriteUp" title="2019 HDCTF WriteUp"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 HDCTF WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>2.3k 字</span>
+        <span><span class="icon-clock"></span>10 分钟</span>
+      </div>
+      <h2 class="post-title">2019 HDCTF WriteUp</h2>
+      <article class="post-article">
+          2019 HDCTF WriteUp前言主办方：海南大学
+Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程）
+下载附件是一个 .img，使用 vol2 进行取证，先查看操作系统
+1python2 vol.py -f memory.img imageinfo
+
+发现是 Windows 2003，给出了三个具体的版本
+
+查看进程，Server 2003 生命周期中 SP2 是最普遍的版本，所以选择它
+1python2 vol.py -f memory.img --profile=Win2003SP2x86 pslist
+
+
+dump 出 explorer.exe，它的内存里主
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20RoarCTF/" aria-label="2019 RoarCTF WriteUp" title="2019 RoarCTF WriteUp"></a>
+      <a class="post-link" href="/2019/05/22/2019%20RCTF/" aria-label="2019 RCTF WriteUp" title="2019 RCTF WriteUp"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 RCTF WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>140 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
+      </div>
+      <h2 class="post-title">2019 RCTF WriteUp</h2>
+      <article class="post-article">
+          2019 RCTF WriteUp🏛️ 组织架构
+RCTF 2019 由国家创新与发展战略研究会主办，360 集团与南京赛宁信息技术有限公司联合承办
+命题团队为 r3kapig 战队
+⚙️ 赛制与规模
+
+赛制：采用线上 CTF（Capture The Flag）解题模式（Jeopardy-style）
+
+时间：比赛于 2019 年 5 月举行
+
+规模：赛事在 CTFtime 上的权重为 52.89 分，吸引了全球众多顶尖战队参与
+
+
+Miscdraw（签到）一门叫 logo 的冷门编程语言，在线编译器运行得到图片
+
+flag 就是 RCTF_HeyLogo
+
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019%20RoarCTF/" aria-label="2019 RoarCTF WriteUp" title="2019 RoarCTF WriteUp"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 RoarCTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -381,9 +415,9 @@ Vidar
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/2019%20%E5%BC%BA%E7%BD%91%E6%9D%AF/" aria-label="2019 强网杯 WriteUp" title="2019 强网杯 WriteUp"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 强网杯 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -426,43 +460,43 @@ Reverse强网
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20RCTF/" aria-label="2019 RCTF WriteUp" title="2019 RCTF WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 RCTF WriteUp" class="lazyload">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019-CISCN-%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BA/" aria-label="2019 CISCN 华北赛区 WriteUp" title="2019 CISCN 华北赛区 WriteUp"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 CISCN 华北赛区 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>140 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
+        <span><span class="icon-pencil"></span>371 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
       </div>
-      <h2 class="post-title">2019 RCTF WriteUp</h2>
+      <h2 class="post-title">2019 CISCN 华北赛区 WriteUp</h2>
       <article class="post-article">
-          2019 RCTF WriteUp🏛️ 组织架构
-RCTF 2019 由国家创新与发展战略研究会主办，360 集团与南京赛宁信息技术有限公司联合承办
-命题团队为 r3kapig 战队
-⚙️ 赛制与规模
+          2019 CISCN 华北赛区 WriteUp🏛️ 大赛组织架构
 
-赛制：采用线上 CTF（Capture The Flag）解题模式（Jeopardy-style）
+主办单位：教育部高等学校网络空间安全专业教学指导委员会
 
-时间：比赛于 2019 年 5 月举行
+承办单位：电子科技大学
 
-规模：赛事在 CTFtime 上的权重为 52.89 分，吸引了全球众多顶尖战队参与
+作品赛决赛地点：江苏南京
+
+创新实践能力赛决赛地点：四川成都
 
 
-Miscdraw（签到）一门叫 logo 的冷门编程语言，在线编译器运行得到图片
+WebHack World（SQL 注入 + 括号绕过）
+考察 POST 类型的 SQL 注入，开局给了表名和列名
 
-flag 就是 RCTF_HeyLogo
-
+经过 FUZZ 过滤了如下字符
+12345678910111213141516171819202122空格||#-;&amp;amp;+orand`&amp;quot;insertgrouplimitupdatedelete*intounionload_fileoutfile.
       </article>
     </div>
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/2019-De1CTF/" aria-label="2019 De1CTF WriteUp" title="2019 De1CTF WriteUp"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 De1CTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -538,9 +572,9 @@ W&amp;a
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/D%20%E8%AF%AD%E8%A8%80/" aria-label="D 语言" title="D 语言"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="D 语言" class="lazyload">
     </div>
     <div class="post-info">
@@ -556,28 +590,6 @@ W&amp;a
 逆向技巧识别胖指针：看到函数参数用两个寄存器传递同一数组（如 rcx=ptr, rdx=len），可能是 D 的数组
 关注范围对象的布局：范围操作通常会产生一个栈上的结构体，内部包含当前迭代器指针、剩余长度等字段，需分析清楚
 利用符号名：D 编译后的二进制常保留函数名和模板参数，如 _D3app8encr
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/RC4/" aria-label="RC4" title="RC4"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="RC4" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>5.1k 字</span>
-        <span><span class="icon-clock"></span>24 分钟</span>
-      </div>
-      <h2 class="post-title">RC4</h2>
-      <article class="post-article">
-          RC4RC4（Rivest Cipher 4）是由 Ron Rivest 在 1987 年设计的对称流密码，因其结构简单、软件实现高效，曾被广泛应用于 SSL&amp;#x2F;TLS、WEP、WPA、RDP、以及各种恶意软件和 CTF 题目中
-算法结构RC4 由两个核心阶段组成：密钥调度算法（KSA, Key-Scheduling Algorithm） 和 伪随机生成算法（PRGA, Pseudo-Random Generation Algorithm）
-状态初始化一个 256 字节的 S 盒（state vector），初始化为 S[i] = i，i = 0..255
-密钥 key 为任意长度（1
       </article>
     </div>
   </div>
@@ -619,30 +631,22 @@ C：压
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/Python%20%E9%80%86%E5%90%91/" aria-label="Python" title="Python"></a>
+      <a class="post-link" href="/2019/05/22/RC4/" aria-label="RC4" title="RC4"></a>
     <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="Python" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="RC4" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>8.2k 字</span>
-        <span><span class="icon-clock"></span>39 分钟</span>
+        <span><span class="icon-pencil"></span>5.1k 字</span>
+        <span><span class="icon-clock"></span>24 分钟</span>
       </div>
-      <h2 class="post-title">Python</h2>
+      <h2 class="post-title">RC4</h2>
       <article class="post-article">
-          PythonPython 逆向是指对 Python 编写的程序（包括脚本、.pyc 字节码、打包的可执行文件等）进行分析，以理解其逻辑、提取算法、恢复源码或寻找漏洞
-Python 程序的编译与运行机制源码 .py 被编译为 字节码 .pyc，存储在 __pycache__ 目录（Python 3.2+）
-.pyc 文件结构：
-
-前 4 字节：magic number（标识 Python 版本，如 Python 3.8 为 550D）
-
-后 4 或 12 字节：时间戳 + 源码大小（可选）
-
-剩余部分：marshal 序列化后的 code object
-
-
-逆向的核心就是：获取 .pyc → 反
+          RC4RC4（Rivest Cipher 4）是由 Ron Rivest 在 1987 年设计的对称流密码，因其结构简单、软件实现高效，曾被广泛应用于 SSL&amp;#x2F;TLS、WEP、WPA、RDP、以及各种恶意软件和 CTF 题目中
+算法结构RC4 由两个核心阶段组成：密钥调度算法（KSA, Key-Scheduling Algorithm） 和 伪随机生成算法（PRGA, Pseudo-Random Generation Algorithm）
+状态初始化一个 256 字节的 S 盒（state vector），初始化为 S[i] = i，i = 0..255
+密钥 key 为任意长度（1
       </article>
     </div>
   </div>
@@ -670,10 +674,10 @@ Python 程序的编译与运行机制源码 .py 被编译为 字节码 .pyc，�
       </div>
       <div>
         <span class="icon-brush"></span>
-        269.8k
+        270.8k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        22:04
+        22:09
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -701,7 +705,7 @@ Python 程序的编译与运行机制源码 .py 被编译为 字节码 .pyc，�
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">231</div>
+    <div class="sidebar-state-number">232</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
