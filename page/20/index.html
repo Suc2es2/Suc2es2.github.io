@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">230</div>
+    <div class="sidebar-state-number">231</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -276,8 +276,39 @@ text：.text 段，存放程序机器指令的区域
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/Unity%20%E9%80%86%E5%90%91/" aria-label="Unity" title="Unity"></a>
+      <a class="post-link" href="/2019/05/22/SMC/" aria-label="SMC" title="SMC"></a>
     <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="SMC" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">SMC</h2>
+      <article class="post-article">
+          SMCSMC（Self-Modifying Code，自修改代码） 是一种程序在执行过程中修改自身指令的技术
+原理程序运行时，动态修改内存中代码段的机器码，然后跳转到修改后的地址执行。修改方式包括：
+
+异或（XOR） — 用密钥异或加密代码段，运行时解密
+
+加减常量 — 对指令字节增减固定值
+
+直接覆写 — 用预先准备好的原始字节替换
+
+
+实战案例jocker（SMC 逆向 + IDA 脚本）
+IDA 反编译发现对 Str 和 Destination 进行了操作
+12345678910111213141516171819202122232425262728int __cdecl main(in
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/Unity%20%E9%80%86%E5%90%91/" aria-label="Unity" title="Unity"></a>
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Unity" class="lazyload">
     </div>
     <div class="post-info">
@@ -318,9 +349,9 @@ libil2cpp.so &amp;#x2F; GameAssembly.dll + global-metadata.dat
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/VM%20%E9%80%86%E5%90%91/" aria-label="虚拟机" title="虚拟机"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="虚拟机" class="lazyload">
     </div>
     <div class="post-info">
@@ -348,9 +379,9 @@ libil2cpp.so &amp;#x2F; GameAssembly.dll + global-metadata.dat
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/VxWorks%20%E5%9B%BA%E4%BB%B6/" aria-label="VxWorks 固件" title="VxWorks 固件"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VxWorks 固件" class="lazyload">
     </div>
     <div class="post-info">
@@ -380,9 +411,9 @@ VxWorks 主映像：包含内核、任务、符号表（可选），通常被压
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/%E8%8A%B1%E6%8C%87%E4%BB%A4/" aria-label="花指令" title="花指令"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="花指令" class="lazyload">
     </div>
     <div class="post-info">
@@ -417,9 +448,9 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/14/JT%20T%20808%20%E5%8D%8F%E8%AE%AE/" aria-label="JT/T 808 协议" title="JT/T 808 协议"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="JT/T 808 协议" class="lazyload">
     </div>
     <div class="post-info">
@@ -439,9 +470,9 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/04/15/1527%20%E8%8A%AF%E7%89%87/" aria-label="1527 芯片" title="1527 芯片"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="1527 芯片" class="lazyload">
     </div>
     <div class="post-info">
@@ -473,9 +504,9 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/04/14/COTP%20%E5%8D%8F%E8%AE%AE/" aria-label="COTP 协议" title="COTP 协议"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="COTP 协议" class="lazyload">
     </div>
     <div class="post-info">
@@ -511,9 +542,9 @@ Opt
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/04/14/SCD%20%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/" aria-label="SCD 文件" title="SCD 文件"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="SCD 文件" class="lazyload">
     </div>
     <div class="post-info">
@@ -541,31 +572,8 @@ Opt
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/Omron%20Fins%20%E5%8D%8F%E8%AE%AE/" aria-label="Omron Fins 协议" title="Omron Fins 协议"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="Omron Fins 协议" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>1.5k 字</span>
-        <span><span class="icon-clock"></span>6 分钟</span>
-      </div>
-      <h2 class="post-title">Omron Fins 协议</h2>
-      <article class="post-article">
-          Omron Fins 协议概述欧姆龙（Omron）的通信协议体系是其工业自动化生态系统的核心，它并非单一协议，而是一套为不同层级和应用场景设计的多层次协议家族
-这些协议共同构建了一个从设备级、控制级到信息级的无缝通信网络，使得PLC、上位机、传感器、执行器等设备能够高效协同工作
-FINS（Factory Interface Network Service）是欧姆龙（Omron）为其工业自动化网络设计的核心指令&amp;#x2F;响应系统
-它的核心优势在于能够实现以太网、控制网络和串行通信等多种物理网络间的无缝通信
-协议类型FINS 协议主要在 TCP&amp;#x2F;IP 模型的应用层工作，并有两种主要实现
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
-    <a class="extend prev" rel="prev" href="/page/19/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><a class="page-number" href="/page/22/">22</a><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/21/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/19/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/21/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -587,10 +595,10 @@ FINS（Factory Interface Network Service）是欧姆龙（Omron）为其工业�
       </div>
       <div>
         <span class="icon-brush"></span>
-        268k
+        269.8k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        21:56
+        22:04
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -618,7 +626,7 @@ FINS（Factory Interface Network Service）是欧姆龙（Omron）为其工业�
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">230</div>
+    <div class="sidebar-state-number">231</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
