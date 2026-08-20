@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">234</div>
+    <div class="sidebar-state-number">235</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -245,8 +245,30 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/15/1527%20%E8%8A%AF%E7%89%87/" aria-label="1527 芯片" title="1527 芯片"></a>
+      <a class="post-link" href="/2019/05/14/JT%20T%20808%20%E5%8D%8F%E8%AE%AE/" aria-label="JT/T 808 协议" title="JT/T 808 协议"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="JT/T 808 协议" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-14</span>
+        <span><span class="icon-pencil"></span>4.7k 字</span>
+        <span><span class="icon-clock"></span>27 分钟</span>
+      </div>
+      <h2 class="post-title">JT/T 808 协议</h2>
+      <article class="post-article">
+          JT&amp;#x2F;T 808 协议概述JT&amp;#x2F;T 808 是交通运输行业标准《道路运输车辆卫星定位系统 北斗兼容车载终端通讯协议》，规定了车载终端与监控平台之间的数据通信格式
+协议基于 TCP 或 UDP，采用大端字节序，报文整体以 0x7E 为帧边界，内部需经过转义处理
+报文封装格式每个完整报文由标识位包裹，内部包含消息头、消息体和校验码
+1234+--------+--------+----------+--------+--------+| 标识位 | 消息头 | 消息体   | 校验码 | 标识位 || 0x7e   | 变长   | 变长     | 1 byte | 0x7e
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/04/15/1527%20%E8%8A%AF%E7%89%87/" aria-label="1527 芯片" title="1527 芯片"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="1527 芯片" class="lazyload">
     </div>
     <div class="post-info">
@@ -278,9 +300,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/04/14/COTP%20%E5%8D%8F%E8%AE%AE/" aria-label="COTP 协议" title="COTP 协议"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="COTP 协议" class="lazyload">
     </div>
     <div class="post-info">
@@ -316,9 +338,9 @@ Opt
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/04/14/SCD%20%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/" aria-label="SCD 文件" title="SCD 文件"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="SCD 文件" class="lazyload">
     </div>
     <div class="post-info">
@@ -347,9 +369,9 @@ Opt
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/04/14/Omron%20Fins%20%E5%8D%8F%E8%AE%AE/" aria-label="Omron Fins 协议" title="Omron Fins 协议"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Omron Fins 协议" class="lazyload">
     </div>
     <div class="post-info">
@@ -370,9 +392,9 @@ FINS（Factory Interface Network Service）是欧姆龙（Omron）为其工业�
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/04/14/S7comm%20%E5%8D%8F%E8%AE%AE/" aria-label="S7comm 协议" title="S7comm 协议"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="S7comm 协议" class="lazyload">
     </div>
     <div class="post-info">
@@ -396,6 +418,36 @@ Data (数据)：长度可变，在写入等操作中携带实际数据
 通信过程Wireshark 可以清晰捕捉到 S7 通信的建立过程，分为三步：
 
 TCP 三次握手：客户端通过 TCP 端口 102 与 PLC 建立连接
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/04/14/2019%20%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B7%B1%E5%9C%B3%E7%AB%99/" aria-label="2019 工业信息安全技能大赛-深圳站 WriteUp" title="2019 工业信息安全技能大赛-深圳站 WriteUp"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 工业信息安全技能大赛-深圳站 WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-04-14</span>
+        <span><span class="icon-pencil"></span>2.9k 字</span>
+        <span><span class="icon-clock"></span>12 分钟</span>
+      </div>
+      <h2 class="post-title">2019 工业信息安全技能大赛-深圳站 WriteUp</h2>
+      <article class="post-article">
+          2019 工业信息安全技能大赛-深圳站 WriteUp组织架构
+
+指导单位：由国家工业信息安全发展研究中心、中国网络空间安全协会竞评演练工作委员会、中国网络空间安全人才教育联盟、中国中文信息学会评测工作委员会共同指导
+
+主办与承办：由鹏城实验室主办，其网络空间安全研究中心具体承办
+
+技术支持：烽台科技（北京）有限公司（灯塔实验室）为大赛提供技术支持
+
+
+MiscModbus 协议分析（Modbus 协议）
+链接: https://pan.baidu.com/s/1RcC1VTPusecH9OqTvRPnPA?pwd=4wv3 提取码: 4wv3 
+题目：黑客通过外网进入一家工厂的控制网络，之后
       </article>
     </div>
   </div>
@@ -520,71 +572,6 @@ WireShark 生成的语法是 s7comm.resp.data
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/2019%20%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B7%B1%E5%9C%B3%E7%AB%99/" aria-label="2019 工业信息安全技能大赛-深圳站 WriteUp" title="2019 工业信息安全技能大赛-深圳站 WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 工业信息安全技能大赛-深圳站 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>2.9k 字</span>
-        <span><span class="icon-clock"></span>12 分钟</span>
-      </div>
-      <h2 class="post-title">2019 工业信息安全技能大赛-深圳站 WriteUp</h2>
-      <article class="post-article">
-          2019 工业信息安全技能大赛-深圳站 WriteUp组织架构
-
-指导单位：由国家工业信息安全发展研究中心、中国网络空间安全协会竞评演练工作委员会、中国网络空间安全人才教育联盟、中国中文信息学会评测工作委员会共同指导
-
-主办与承办：由鹏城实验室主办，其网络空间安全研究中心具体承办
-
-技术支持：烽台科技（北京）有限公司（灯塔实验室）为大赛提供技术支持
-
-
-MiscModbus 协议分析（Modbus 协议）
-链接: https://pan.baidu.com/s/1RcC1VTPusecH9OqTvRPnPA?pwd=4wv3 提取码: 4wv3 
-题目：黑客通过外网进入一家工厂的控制网络，之后
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/2019-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%B1%B1%E4%B8%9C%E7%AB%99/" aria-label="2019 工业信息安全技能大赛-山东站 WriteUp" title="2019 工业信息安全技能大赛-山东站 WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 工业信息安全技能大赛-山东站 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>796 字</span>
-        <span><span class="icon-clock"></span>4 分钟</span>
-      </div>
-      <h2 class="post-title">2019 工业信息安全技能大赛-山东站 WriteUp</h2>
-      <article class="post-article">
-          2019 工业信息安全技能大赛-山东站 WriteUp组织架构：
-
-指导单位：国家工业信息安全发展研究中心、山东省工业和信息化厅
-
-主办单位：山东省电子信息产品检验院（中国赛宝（山东）实验室）
-
-承办单位：国网山东省电力公司电力科学研究院、山东云天安全大数据技术有限公司、山东省工业信息安全产业发展联盟
-
-技术支撑单位：杭州安恒信息技术股份有限公司
-
-
-Misc另一个隐藏的黑客（SDR 软件无线电信号分析）
-导入到 Audition 里查看频谱。可以隐约看到 flag 字样，硬看加猜得到 flag
-
-1flag&amp;#123;too simple too young&amp;#125;
-
-特殊的工控流量（S
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/20/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><a class="page-number" href="/page/23/">23</a><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/22/">下一页 &raquo;</a>
   </nav>
@@ -608,10 +595,10 @@ Misc另一个隐藏的黑客（SDR 软件无线电信号分析）
       </div>
       <div>
         <span class="icon-brush"></span>
-        271.6k
+        275.6k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        22:13
+        22:33
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -639,7 +626,7 @@ Misc另一个隐藏的黑客（SDR 软件无线电信号分析）
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">234</div>
+    <div class="sidebar-state-number">235</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
