@@ -25,10 +25,23 @@
 <meta property="og:description" content="2019 RCTF WriteUp🏛️ 组织架构 RCTF 2019 由国家创新与发展战略研究会主办，360 集团与南京赛宁信息技术有限公司联合承办 命题团队为 r3kapig 战队 ⚙️ 赛制与规模  赛制：采用线上 CTF（Capture The Flag）解题模式（Jeopardy-style）  时间：比赛于 2019 年 5 月举行  规模：赛事在 CTFtime 上的权重为 52.8">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a4b164956011c553991505c.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034AqEUaAOPKbPObXBpCNa.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034AqXlymCN8rNqFtJ2X0T.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034AqbgqjFiJBTNWiMB9e7.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034AqehEDI6W6gW6IWE2vA.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034AquhEPTMOSHH6T9oo48.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034Arkg69bXuTeiHVmjNbv.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034ArlFpsabaYnbEFMPnME.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034Arqd29eCFqLZHLe20sS.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034ArtgRU9XJTRJR6mGcnN.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034AsKyGfGyt82VnaecU8C.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034AsT30EIfrjNxs5EIs9S.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034Asoyzdxw9KbAK3lXktH.png">
 <meta property="article:published_time" content="2019-05-22T06:18:00.000Z">
-<meta property="article:modified_time" content="2026-07-17T10:29:27.604Z">
+<meta property="article:modified_time" content="2026-08-21T07:51:31.710Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="Misc">
+<meta property="article:tag" content="Reverse">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://pic1.imgdb.cn/item/6a4b164956011c553991505c.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
@@ -148,7 +161,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-RCTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 RCTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#draw%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">draw（签到）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-RCTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 RCTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#draw%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">draw（签到）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-number">1.2.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#babyre1%EF%BC%88XXTEA%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">babyre1（XXTEA）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -159,7 +172,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">235</div>
+    <div class="sidebar-state-number">236</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -226,7 +239,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2019-05-22T06:18:00.000Z" itemprop="datePublished">2019-05-22</time>
-    <time style="display: none;" id="post-update-time">2026-07-17</time>
+    <time style="display: none;" id="post-update-time">2026-08-21</time>
   </span>
 </div>
 
@@ -250,30 +263,141 @@
 <h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="draw（签到）"><a href="#draw（签到）" class="headerlink" title="draw（签到）"></a>draw（签到）</h3><p>一门叫 logo 的冷门编程语言，在线编译器运行得到图片</p>
 <p><img src="https://pic1.imgdb.cn/item/6a4b164956011c553991505c.png"></p>
 <p>flag 就是 <code>RCTF_HeyLogo</code></p>
+<h2 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h2><h3 id="babyre1（XXTEA）"><a href="#babyre1（XXTEA）" class="headerlink" title="babyre1（XXTEA）"></a>babyre1（XXTEA）</h3><p><img src="https://pic1.imgdb.cn/i/034AqEUaAOPKbPObXBpCNa.png" alt="pasted_1787292344729_72yk5b.png"></p>
+<p>IDA 反编译</p>
+<p><img src="https://pic1.imgdb.cn/i/034AqXlymCN8rNqFtJ2X0T.png" alt="pasted_1787293105084_5ka9lz.png"></p>
+<p>首先输入必须严格 16 个字符，然后调用了 <code>sub_C00(v6,16,&amp;ptr)</code>，进去看看</p>
+<p><img src="https://pic1.imgdb.cn/i/034AqbgqjFiJBTNWiMB9e7.png" alt="pasted_1787293259145_57qwon.png"></p>
+<p>在这里面又调用了 <code>sub_BE0()</code>，负责把一个字符转换成十六进制数值</p>
+<p>关键代码是 <code>v1 = a1 - 48;</code>，例如：<code>&#39;4&#39; = 52 - 48 = 4</code></p>
+<p><img src="https://pic1.imgdb.cn/i/034AqehEDI6W6gW6IWE2vA.png" alt="pasted_1787293377632_9tq7yo.png"></p>
+<p>接下来重点分析 <code>sub_1180()</code> 函数</p>
+<ul>
+<li><p>首先是长度检查：<code>if ((a2 &amp; 3)==0)</code>，检查变量 <code>a2</code> 的最低两位（bit 0 和 bit 1）是否均为 0，也就是是否为 4 的倍数</p>
+</li>
+<li><p>再复制数据 <code>memcpy(v8, src, a2);</code></p>
+</li>
+<li><p>然后调用 <code>sub_CE0(v7,(a2/-4),a3);</code>，因为前面 <code>sub_C00(v6,16,&amp;ptr)</code> 中，一次取两个字符 <code>v11 = sub_BE0(*v4);v12 = sub_BE0(v4[1]);</code>，所以 <code>a2 = 16 / 2 = 8</code></p>
+</li>
+<li><p>最终调用结果是 <code>sub_CE0(v7,-2,key)</code></p>
+</li>
+</ul>
+<p>这非常像 XXTEA decrypt，因为 XXTEA 的函数通常</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @brief XXTEA (Corrected Block TEA) 加解密核心函数</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * @param v   [输入/输出] 指向 32 位无符号整数数组的指针</span></span><br><span class="line"><span class="comment"> *            加密时：传入明文数据，函数执行后原地变为密文数据</span></span><br><span class="line"><span class="comment"> *            解密时：传入密文数据，函数执行后原地变为明文数据</span></span><br><span class="line"><span class="comment"> *            数据采用小端序（Little-Endian）存储</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * @param n   [输入] 数组中 32 位字的个数（即数据长度 / 4）</span></span><br><span class="line"><span class="comment"> *            - 若 n &gt; 0：执行加密操作，处理 n 个字</span></span><br><span class="line"><span class="comment"> *            - 若 n &lt; 0：执行解密操作，实际处理 |n| 个字（即取绝对值）</span></span><br><span class="line"><span class="comment"> *            - 注意：|n| 必须 &gt;= 2（即最小数据块为 64 位 / 8 字节），否则算法不会生效</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * @param k   [输入] 128 位密钥，由 4 个 32 位无符号整数组成 (k[0]~k[3])</span></span><br><span class="line"><span class="comment"> *            密钥同样采用小端序存储</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * @return    void (无返回值)。处理结果直接覆盖在指针 v 所指向的内存中</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">btea</span><span class="params">(<span class="type">uint32_t</span> *v, <span class="type">int</span> n, <span class="type">uint32_t</span> k[<span class="number">4</span>])</span>;</span><br></pre></td></tr></table></figure>
+
+<p>因为 <code>a = -2 &lt; 0</code>，所以可以确定这是解密函数</p>
+<p><img src="https://pic1.imgdb.cn/i/034AquhEPTMOSHH6T9oo48.png" alt="pasted_1787294006456_y3yyjk.png"></p>
+<p>现在需要去找 Key，但是 IDA 识别参数有问题</p>
+<p><img src="https://pic1.imgdb.cn/i/034Arkg69bXuTeiHVmjNbv.png" alt="pasted_1787296058438_21vj7w.png"></p>
+<p>在 Linux x64 参数传递规则中</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>寄存器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>第1个</td>
+<td>RDI</td>
+</tr>
+<tr>
+<td>第2个</td>
+<td>RSI</td>
+</tr>
+<tr>
+<td>第3个</td>
+<td>RDX</td>
+</tr>
+<tr>
+<td>第4个</td>
+<td>RCX</td>
+</tr>
+<tr>
+<td>第5个</td>
+<td>R8</td>
+</tr>
+</tbody></table>
+<p>而在函数内部，我们的 <code>a3</code> 就是 Key，参数的第三个，也就是去看传给 RDX 寄存器的值即可</p>
+<p><img src="https://pic1.imgdb.cn/i/034ArlFpsabaYnbEFMPnME.png" alt="pasted_1787296081134_mwvmea.png"></p>
+<p>这样就找到 Key 了</p>
+<p><img src="https://pic1.imgdb.cn/i/034Arqd29eCFqLZHLe20sS.png" alt="pasted_1787296292884_yrlcs6.png"></p>
+<p>提取出来是 <code>c7e0c7e0d7d3f1c6d3c6d3c6ced2d0c4</code>，GBK 编码后是 <code>青青子衿悠悠我心</code></p>
+<p>现在去看解密函数内部，代码中大量出现 <code>1640531527</code>，可以推测这就是常量 <code>DELTA</code>，几乎可以确定这就是 XXTEA 加密算法</p>
+<table>
+<thead>
+<tr>
+<th>特征</th>
+<th>伪代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>delta 常量</td>
+<td>✅ 1640531527</td>
+</tr>
+<tr>
+<td>MX公式</td>
+<td>✅ 位移+异或+加法</td>
+</tr>
+<tr>
+<td>key[4]</td>
+<td>✅ a3+4*i</td>
+</tr>
+<tr>
+<td>n正负控制</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>52&#x2F;n轮数</td>
+<td>✅</td>
+</tr>
+</tbody></table>
+<p><img src="https://pic1.imgdb.cn/i/034ArtgRU9XJTRJR6mGcnN.png" alt="pasted_1787296414022_akqk6c.png"></p>
+<p>执行完 XXTEA 函数后还去除了 Padding</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sub_CE0(v7, (a2 / <span class="number">-4</span>), a3);</span><br><span class="line"></span><br><span class="line">v9 = v7[a2 - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">v7[a2] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">*a5 = a2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ( a2 &gt; v9 &amp;&amp; v9 &lt;= <span class="number">4</span> )</span><br><span class="line">&#123;</span><br><span class="line">    *a5 = a2 - v9;</span><br><span class="line">    v7[a2-v9]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码 <code>v9 = v7[a2 - 1];</code>，因为 <code>a2 = 8</code>，所以 <code>v9 = v7[7]</code>，也就是取解密结果的第 8 个字节</p>
+<p>然后 <code>if (a2 &gt; v9 &amp;&amp; v9 &lt;= 4)</code>，也就是说程序认为最后一个字节表示 Padding 长度</p>
+<p>程序开头给了提示 <code>__printf_chk(1, &quot;Input right flag you can got &#39;Bingo!&#39; :&quot;);</code></p>
+<p>则实际有效数据是 <code>Bingo!</code>，6 个字节，缺少了两个字节，所以最后一个字节需要补齐 <code>0x02</code></p>
+<p>但还是缺少了解密后的数据，查看汇编发现后面调用了 <code>sub_13D0</code> 函数</p>
+<p><code>sub_13D0()</code> 是 CRC16-CCITT 校验函数，作用是对 XXTEA 解密后的数据计算 CRC16，用来进一步验证输入是否正确</p>
+<p>代码中多次出现 <code>v4 ^= 0x1021u;</code>，对应着 CRC16-CCITT 的标准多项式 <code>x^16 + x^12 + x^5 + 1</code></p>
+<p><img src="https://pic1.imgdb.cn/i/034AsKyGfGyt82VnaecU8C.png" alt="pasted_1787297490042_k3waew.png"></p>
+<p>继续往后看发现对每个字节都异或 <code>0x17</code></p>
+<p><img src="https://pic1.imgdb.cn/i/034AsT30EIfrjNxs5EIs9S.png" alt="pasted_1787297807962_08qske.png"></p>
+<p>对 <code>Bingo!</code> 进行异或 <code>0x17</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">42 ^ 17 = 55</span><br><span class="line">69 ^ 17 = 7e</span><br><span class="line">6e ^ 17 = 79</span><br><span class="line">67 ^ 17 = 70</span><br><span class="line">6f ^ 17 = 78</span><br><span class="line">21 ^ 17 = 36</span><br></pre></td></tr></table></figure>
+
+<p>明确了 6 个字节，但是 XXTEA 输出的是 8 字节，最后一字节在上面 Padding 确认是 <code>0x02</code></p>
+<p>第七个字节我们可以循环爆破，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xxtea</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 固定密钥</span></span><br><span class="line">KEY = <span class="built_in">bytes</span>.fromhex(</span><br><span class="line">    <span class="string">&quot;c7e0c7e0d7d3f1c6d3c6d3c6ced2d0c4&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 目标 MD5 哈希值</span></span><br><span class="line">TARGET = <span class="string">&quot;5f8243a662cf71bf31d2b2602638dc1d&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 爆破最后一个字节（0~255）</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">256</span>):</span><br><span class="line">    <span class="comment"># XXTEA 待加密的 8 字节明文数据</span></span><br><span class="line">    data = <span class="built_in">bytes</span>([</span><br><span class="line">        <span class="number">0x55</span>,</span><br><span class="line">        <span class="number">0x7e</span>,</span><br><span class="line">        <span class="number">0x79</span>,</span><br><span class="line">        <span class="number">0x70</span>,</span><br><span class="line">        <span class="number">0x78</span>,</span><br><span class="line">        <span class="number">0x36</span>,</span><br><span class="line">        x,</span><br><span class="line">        <span class="number">0x02</span></span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 使用 XXTEA 加密（不填充）</span></span><br><span class="line">    cipher = xxtea.encrypt(</span><br><span class="line">        data,</span><br><span class="line">        KEY,</span><br><span class="line">        padding=<span class="literal">False</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 构造 flag 字符串</span></span><br><span class="line">    flag = <span class="string">&quot;rctf&#123;&quot;</span> + cipher.<span class="built_in">hex</span>() + <span class="string">&quot;&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 检查 MD5 是否匹配目标</span></span><br><span class="line">    <span class="keyword">if</span> hashlib.md5(flag.encode()).hexdigest() == TARGET:</span><br><span class="line">        <span class="built_in">print</span>(flag)</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/i/034Asoyzdxw9KbAK3lXktH.png" alt="pasted_1787298673193_7ee2ri.png"></p>
 
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/CTF/" title="CTF" data-aos="zoom-in">CTF</a>
 
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag" title="Misc">Misc</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag" title="Misc">Misc</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Reverse/" rel="tag" title="Reverse">Reverse</a></li></ul>
 
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 ByteCTF WriteUp" class="lazyload">
-        <a href="/2019/05/22/2019%20ByteCTF/" aria-label="前一篇: 2019 ByteCTF WriteUp" title="前一篇: 2019 ByteCTF WriteUp"></a>
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 强网杯 WriteUp" class="lazyload">
+        <a href="/2019/05/22/2019%20%E5%BC%BA%E7%BD%91%E6%9D%AF/" aria-label="前一篇: 2019 强网杯 WriteUp" title="前一篇: 2019 强网杯 WriteUp"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            2019 ByteCTF WriteUp
+            2019 强网杯 WriteUp
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 RoarCTF WriteUp" class="lazyload">
-      <a href="/2019/05/22/2019%20RoarCTF/" aria-label="后一篇: 2019 RoarCTF WriteUp"  title="后一篇: 2019 RoarCTF WriteUp"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 CISCN 华北赛区 WriteUp" class="lazyload">
+      <a href="/2019/05/22/2019-CISCN-%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BA/" aria-label="后一篇: 2019 CISCN 华北赛区 WriteUp"  title="后一篇: 2019 CISCN 华北赛区 WriteUp"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          2019 RoarCTF WriteUp
+          2019 CISCN 华北赛区 WriteUp
       </h3>
     </div>
   </nav>
@@ -300,10 +424,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        275.6k
+        279.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        22:33
+        22:50
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -325,7 +449,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-RCTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 RCTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#draw%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">draw（签到）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-RCTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 RCTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#draw%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">draw（签到）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-number">1.2.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#babyre1%EF%BC%88XXTEA%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">babyre1（XXTEA）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -336,7 +460,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">235</div>
+    <div class="sidebar-state-number">236</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -459,7 +583,7 @@
           description: "",
           stripContent: "2019 RCTF WriteUp🏛️ 组织架构 RCTF 2019 由国家创新与发展战略研究会主办，360 集团与南京赛宁信息技术有限公司联合承办 命题团队为 r3kapig 战队 ⚙️ 赛制与规模  赛制：采用线上 CTF（Capture The Flag）解题模式（Jeopardy-style）  时间：比赛于 2019 年 5 月举行  规模：赛事在 CTFtime 上的权重为 52.89 分，吸引了全球众多顶尖战队参与   Miscdraw（签到）一门叫 logo 的冷门编程语言，在",
           date: "Wed May 22 2019 14:18:00 GMT+0800",
-          updated: "Fri Jul 17 2026 18:29:27 GMT+0800",
+          updated: "Fri Aug 21 2026 15:51:31 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
