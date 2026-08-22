@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">236</div>
+    <div class="sidebar-state-number">238</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -341,8 +341,58 @@ Web逆转思维（PHP 伪协议 + 文件包含 + 反序列化 __toSt
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%80%86%E5%90%91/" aria-label="二叉树" title="二叉树"></a>
+      <a class="post-link" href="/2019/05/23/XTEA/" aria-label="XTEA" title="XTEA"></a>
     <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="XTEA" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-23</span>
+        <span><span class="icon-pencil"></span>1.2k 字</span>
+        <span><span class="icon-clock"></span>6 分钟</span>
+      </div>
+      <h2 class="post-title">XTEA</h2>
+      <article class="post-article">
+          XTEA概述XTEA 由剑桥大学计算机实验室的戴维·惠勒（David Wheeler） 和罗杰·李约瑟（Roger Needham） 设计。算法于 1997 年在一份未发表的技术报告中首次提出，并且没有申请任何专利，属于公共领域
+核心参数
+
+
+参数
+详情
+
+
+
+算法类型
+对称分组密码（Symmetric Block Cipher）
+
+
+分组大小
+64位（8字节）
+
+
+密钥长度
+128位（16字节）
+
+
+推荐轮数
+64轮（即32个周期）
+
+
+结构
+Feistel网络结构
+
+
+工作原理XTEA的加密过程可以概括为以下步骤：
+
+密钥初始化：将 128 位的密钥分成四个 32 位的子密钥 K[0] 到
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/23/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%80%86%E5%90%91/" aria-label="二叉树" title="二叉树"></a>
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="二叉树" class="lazyload">
     </div>
     <div class="post-info">
@@ -372,9 +422,9 @@ Web逆转思维（PHP 伪协议 + 文件包含 + 反序列化 __toSt
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/Ret2csu/" aria-label="Ret2csu" title="Ret2csu"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2csu" class="lazyload">
     </div>
     <div class="post-info">
@@ -397,9 +447,9 @@ Web逆转思维（PHP 伪协议 + 文件包含 + 反序列化 __toSt
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/APK/" aria-label="APK" title="APK"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="APK" class="lazyload">
     </div>
     <div class="post-info">
@@ -418,9 +468,9 @@ Web逆转思维（PHP 伪协议 + 文件包含 + 反序列化 __toSt
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/MFC/" aria-label="MFC" title="MFC"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MFC" class="lazyload">
     </div>
     <div class="post-info">
@@ -444,9 +494,9 @@ Web逆转思维（PHP 伪协议 + 文件包含 + 反序列化 __toSt
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/Ret2plt/" aria-label="Ret2plt" title="Ret2plt"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2plt" class="lazyload">
     </div>
     <div class="post-info">
@@ -463,51 +513,6 @@ Web逆转思维（PHP 伪协议 + 文件包含 + 反序列化 __toSt
 更常见的情况是：程序虽然没有直接调用 system，但导入了 system，这样 system@plt 就是一个现成的跳板
 核心思想Ret2plt 就是利用栈溢出，将返回地址覆盖为某个函数的 PLT 表项地址（如 system@plt），并伪造好参数，从而调用该函数
 因为 PLT 表位于
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/ext3%20%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/" aria-label="ext3 文件恢复" title="ext3 文件恢复"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="ext3 文件恢复" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1.2k 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
-      </div>
-      <h2 class="post-title">ext3 文件恢复</h2>
-      <article class="post-article">
-          ext3 文件恢复Ext3 是 Ext2 的日志增强版，通过添加日志机制提高了文件系统的可靠性和恢复能力。相较于 Ext2，Ext3 的日志在恢复过程中既是挑战也是机遇
-一方面，日志记录了元数据变更，可用于回滚或重放操作；另一方面，删除文件后日志可能已经覆盖了某些元数据，增加了恢复难度
-与 Ext2 的关键差异
-
-
-特性
-Ext2
-Ext3
-
-
-
-日志
-无
-有，三种模式：journal、ordered、writeback
-
-
-元数据结构
-基本相同（超级块、GDT、inode）
-增加了日志超级块和日志描述符
-
-
-删除文件时的行为
-直接修改元数据和位图
-操作先记入日志，再提交到主文件系统
-
-
-恢复
       </article>
     </div>
   </div>
@@ -573,10 +578,10 @@ Ext3
       </div>
       <div>
         <span class="icon-brush"></span>
-        282.6k
+        287.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        23:06
+        23:29
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -604,7 +609,7 @@ Ext3
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">236</div>
+    <div class="sidebar-state-number">238</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>

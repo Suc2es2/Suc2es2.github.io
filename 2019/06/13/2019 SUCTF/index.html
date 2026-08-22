@@ -26,9 +26,11 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a4763e11f8fda9783db7d72.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a4764ce1f8fda9783db7e44.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034B7YLZO3VwbRMHPsRcnk.png">
 <meta property="article:published_time" content="2019-06-13T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-07-17T10:28:40.000Z">
+<meta property="article:modified_time" content="2026-08-21T18:01:26.449Z">
 <meta property="article:author" content="ALL">
+<meta property="article:tag" content="Misc">
 <meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://pic1.imgdb.cn/item/6a4763e11f8fda9783db7d72.png">
@@ -149,7 +151,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-SUCTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 SUCTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#easysql%EF%BC%88%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-SQL-MOD-%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">easysql（堆叠注入 + SQL_MOD 绕过）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-SUCTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 SUCTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#easysql%EF%BC%88%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-SQL-MOD-%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">easysql（堆叠注入 + SQL_MOD 绕过）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%BE%E5%88%B0%E9%A2%98%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">签到题（签到）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -160,7 +162,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">236</div>
+    <div class="sidebar-state-number">238</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -227,7 +229,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2019-06-13T05:18:00.000Z" itemprop="datePublished">2019-06-13</time>
-    <time style="display: none;" id="post-update-time">2026-07-17</time>
+    <time style="display: none;" id="post-update-time">2026-08-22</time>
   </span>
 </div>
 
@@ -286,11 +288,17 @@
 <p>其中 <code>PIPES_AS_CONCAT</code> 会将 <code>||</code> 认为字符串的连接符，而不是或运算符，这时 <code>||</code> 符号就像 <code>concat</code> 函数一样</p>
 <p>所以只需要更改 <code>SQL_MOD</code> 配置，然后随便查询一个值就可以得到 flag</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1;set sql_mod=PIPES_AS_CONCAT;select 1</span><br></pre></td></tr></table></figure>
+
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="签到题（签到）"><a href="#签到题（签到）" class="headerlink" title="签到题（签到）"></a>签到题（签到）</h3><p>打开附件直接解码即可，是一张图片</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SUCTF&#123;fffffffffT4nk&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/i/034B7YLZO3VwbRMHPsRcnk.png" alt="pasted_1787334690387_zr2lnk.png"></p>
+
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/CTF/" title="CTF" data-aos="zoom-in">CTF</a>
 
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Web/" rel="tag" title="Web">Web</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Misc/" rel="tag" title="Misc">Misc</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Web/" rel="tag" title="Web">Web</a></li></ul>
 
     </footer>
   </div>
@@ -335,10 +343,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        282.6k
+        287.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        23:06
+        23:29
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -360,7 +368,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-SUCTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 SUCTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#easysql%EF%BC%88%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-SQL-MOD-%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">easysql（堆叠注入 + SQL_MOD 绕过）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-SUCTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 SUCTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#easysql%EF%BC%88%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5-SQL-MOD-%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">easysql（堆叠注入 + SQL_MOD 绕过）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%BE%E5%88%B0%E9%A2%98%EF%BC%88%E7%AD%BE%E5%88%B0%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">签到题（签到）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -371,7 +379,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">236</div>
+    <div class="sidebar-state-number">238</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -494,7 +502,7 @@
           description: "",
           stripContent: "2019 SUCTF WriteUp🏛️ 赛事概况  比赛全称：SUCTF 2019  赛事性质：2019 年 XCTF 联赛的国内分站赛，也是一场独立的 CTF 比赛  举办时间：线上赛于 2019 年 8 月举行  主办方：SU 战队  赞助商：XCTF 联赛总体由国家创新与发展战略研究会主办，赛宁网安承办并提供技术支持   🏆 比赛前十名  第 1 名：De1ta (10688分)  第 2 名：Nu1L (10649分)  第 3 名：Venom (8929分)  第 4 名：天枢 ",
           date: "Thu Jun 13 2019 13:18:00 GMT+0800",
-          updated: "Fri Jul 17 2026 18:28:40 GMT+0800",
+          updated: "Sat Aug 22 2026 02:01:26 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

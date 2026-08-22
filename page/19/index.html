@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">236</div>
+    <div class="sidebar-state-number">238</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -245,8 +245,53 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/pwn-Shellcode/" aria-label="Shellcode" title="Shellcode"></a>
+      <a class="post-link" href="/2019/05/22/ext3%20%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/" aria-label="ext3 文件恢复" title="ext3 文件恢复"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="ext3 文件恢复" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1.2k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">ext3 文件恢复</h2>
+      <article class="post-article">
+          ext3 文件恢复Ext3 是 Ext2 的日志增强版，通过添加日志机制提高了文件系统的可靠性和恢复能力。相较于 Ext2，Ext3 的日志在恢复过程中既是挑战也是机遇
+一方面，日志记录了元数据变更，可用于回滚或重放操作；另一方面，删除文件后日志可能已经覆盖了某些元数据，增加了恢复难度
+与 Ext2 的关键差异
+
+
+特性
+Ext2
+Ext3
+
+
+
+日志
+无
+有，三种模式：journal、ordered、writeback
+
+
+元数据结构
+基本相同（超级块、GDT、inode）
+增加了日志超级块和日志描述符
+
+
+删除文件时的行为
+直接修改元数据和位图
+操作先记入日志，再提交到主文件系统
+
+
+恢复
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/pwn-Shellcode/" aria-label="Shellcode" title="Shellcode"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Shellcode" class="lazyload">
     </div>
     <div class="post-info">
@@ -272,49 +317,6 @@
 没开金丝雀
 
 mprotect 的第三个参数 7 代表 RWX 权限，从指针 buf 向前偏移 16 字节 的地址开始，长度为 409
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20ByteCTF/" aria-label="2019 ByteCTF WriteUp" title="2019 ByteCTF WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 ByteCTF WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>231 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">2019 ByteCTF WriteUp</h2>
-      <article class="post-article">
-          2019 ByteCTF WriteUp2019 年 ByteCTF 是由字节跳动主办的首届网络安全攻防大赛
-
-赛事规模：共吸引 4000 余人次报名，722 支高校队伍参赛
-
-比赛时间：线上初赛于 2019 年 9 月 7 日 - 9 月 8 日举行；线下决赛于 10 月 19 日 - 10 月 20 日在北京举行
-
-奖金设置：冠军 80,000 元，亚军 50,000 元，季军 20,000 元，第 4 - 6 名分别获得 10,000、8,000、5,000 元奖金
-
-
-
-
-
-最终排名
-队伍名称
-所属&amp;#x2F;备注
-
-
-
-冠军
-W&amp;amp;M
-联合战队，同时也是线上赛冠军
-
-
-亚军
-N
       </article>
     </div>
   </div>
@@ -351,49 +353,15 @@ dump 出 explorer.exe，它的内存里主
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20RCTF/" aria-label="2019 RCTF WriteUp" title="2019 RCTF WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 RCTF WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1.2k 字</span>
-        <span><span class="icon-clock"></span>6 分钟</span>
-      </div>
-      <h2 class="post-title">2019 RCTF WriteUp</h2>
-      <article class="post-article">
-          2019 RCTF WriteUp🏛️ 组织架构
-RCTF 2019 由国家创新与发展战略研究会主办，360 集团与南京赛宁信息技术有限公司联合承办
-命题团队为 r3kapig 战队
-⚙️ 赛制与规模
-
-赛制：采用线上 CTF（Capture The Flag）解题模式（Jeopardy-style）
-
-时间：比赛于 2019 年 5 月举行
-
-规模：赛事在 CTFtime 上的权重为 52.89 分，吸引了全球众多顶尖战队参与
-
-
-Miscdraw（签到）一门叫 logo 的冷门编程语言，在线编译器运行得到图片
-
-flag 就是 RCTF_HeyLogo
-Reversebabyre1（XX
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/2019%20RoarCTF/" aria-label="2019 RoarCTF WriteUp" title="2019 RoarCTF WriteUp"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 RoarCTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>2.1k 字</span>
-        <span><span class="icon-clock"></span>10 分钟</span>
+        <span><span class="icon-pencil"></span>3.5k 字</span>
+        <span><span class="icon-clock"></span>16 分钟</span>
       </div>
       <h2 class="post-title">2019 RoarCTF WriteUp</h2>
       <article class="post-article">
@@ -448,54 +416,52 @@ Vidar
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20%E5%BC%BA%E7%BD%91%E6%9D%AF/" aria-label="2019 强网杯 WriteUp" title="2019 强网杯 WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 强网杯 WriteUp" class="lazyload">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019%20ByteCTF/" aria-label="2019 ByteCTF WriteUp" title="2019 ByteCTF WriteUp"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 ByteCTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>389 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
+        <span><span class="icon-pencil"></span>231 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
       </div>
-      <h2 class="post-title">2019 强网杯 WriteUp</h2>
+      <h2 class="post-title">2019 ByteCTF WriteUp</h2>
       <article class="post-article">
-          2019 强网杯 WriteUp🏛️ 组织架构
+          2019 ByteCTF WriteUp2019 年 ByteCTF 是由字节跳动主办的首届网络安全攻防大赛
 
-指导单位：中央网信办网络安全协调局
+赛事规模：共吸引 4000 余人次报名，722 支高校队伍参赛
 
-主办单位：河南省互联网信息办公室、郑州市人民政府、信息工程大学
+比赛时间：线上初赛于 2019 年 9 月 7 日 - 9 月 8 日举行；线下决赛于 10 月 19 日 - 10 月 20 日在北京举行
 
-支持&amp;#x2F;协办单位：教育部网络空间安全专业教学指导委员会
-
-承办单位：郑州市高新区管委会
+奖金设置：冠军 80,000 元，亚军 50,000 元，季军 20,000 元，第 4 - 6 名分别获得 10,000、8,000、5,000 元奖金
 
 
-🥇 线下赛最终排名（前三名及部分高校）
-
-冠军：腾讯 eee 战队（腾讯安全）
-
-亚军：0×300 战队（长亭科技）
-
-季军：TsingQian 战队（清华大学-奇安信联合研究中心）
-
-总排名第六：白泽战队（复旦大学）
-
-总排名第十五：Nebula 战队（中国科学技术大学）
 
 
-Misc强网先锋-打野（Steg 隐写）
 
-Reverse强网
+最终排名
+队伍名称
+所属&amp;#x2F;备注
+
+
+
+冠军
+W&amp;amp;M
+联合战队，同时也是线上赛冠军
+
+
+亚军
+N
       </article>
     </div>
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/2019-CISCN-%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BA/" aria-label="2019 CISCN 华北赛区 WriteUp" title="2019 CISCN 华北赛区 WriteUp"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 CISCN 华北赛区 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -527,9 +493,9 @@ WebHack World（SQL 注入 + 括号绕过）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/2019-CSAWCTF-%E5%A4%8D%E8%B5%9B/" aria-label="2019 CSAW CTF 复赛 WriteUp" title="2019 CSAW CTF 复赛 WriteUp"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 CSAW CTF 复赛 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -560,9 +526,9 @@ Upload 页面提供一个 XML 用户格式样例
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/2019-De1CTF/" aria-label="2019 De1CTF WriteUp" title="2019 De1CTF WriteUp"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 De1CTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -638,9 +604,9 @@ W&amp;a
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/2019-NestCTF/" aria-label="2019 NEST CTF WriteUp" title="2019 NEST CTF WriteUp"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 NEST CTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -680,6 +646,51 @@ c 里出现的所有字母标识符，都必须在数学函数白名单里
     </div>
   </div>
 </div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019%20%E5%BC%BA%E7%BD%91%E6%9D%AF/" aria-label="2019 强网杯 WriteUp" title="2019 强网杯 WriteUp"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 强网杯 WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1.2k 字</span>
+        <span><span class="icon-clock"></span>6 分钟</span>
+      </div>
+      <h2 class="post-title">2019 强网杯 WriteUp</h2>
+      <article class="post-article">
+          2019 强网杯 WriteUp🏛️ 组织架构
+
+指导单位：中央网信办网络安全协调局
+
+主办单位：河南省互联网信息办公室、郑州市人民政府、信息工程大学
+
+支持&amp;#x2F;协办单位：教育部网络空间安全专业教学指导委员会
+
+承办单位：郑州市高新区管委会
+
+
+🥇 线下赛最终排名（前三名及部分高校）
+
+冠军：腾讯 eee 战队（腾讯安全）
+
+亚军：0×300 战队（长亭科技）
+
+季军：TsingQian 战队（清华大学-奇安信联合研究中心）
+
+总排名第六：白泽战队（复旦大学）
+
+总排名第十五：Nebula 战队（中国科学技术大学）
+
+
+Misc强网先锋-打野（Steg 隐写）
+
+Reverse强网
+      </article>
+    </div>
+  </div>
+</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/18/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/20/">下一页 &raquo;</a>
   </nav>
@@ -703,10 +714,10 @@ c 里出现的所有字母标识符，都必须在数学函数白名单里
       </div>
       <div>
         <span class="icon-brush"></span>
-        282.6k
+        287.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        23:06
+        23:29
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -734,7 +745,7 @@ c 里出现的所有字母标识符，都必须在数学函数白名单里
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">236</div>
+    <div class="sidebar-state-number">238</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
