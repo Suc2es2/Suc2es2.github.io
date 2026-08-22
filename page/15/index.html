@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">238</div>
+    <div class="sidebar-state-number">239</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -160,7 +160,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">185</div>
+    <div class="sidebar-state-number">186</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -220,6 +220,9 @@
       <div class="widget">
         <ul>
             <li>
+              <a href="/2026/08/01/BuffEMR%201.0.1/" title="VulnHub BuffEMR：1.0.1">VulnHub BuffEMR：1.0.1</a>
+            </li>
+            <li>
               <a href="/2026/08/01/IA%20Keyring%20(1.0.1)/" title="VulnHub IA：Keyring (1.0.1)">VulnHub IA：Keyring (1.0.1)</a>
             </li>
             <li>
@@ -230,9 +233,6 @@
             </li>
             <li>
               <a href="/2026/07/31/Grotesque%203.0.1/" title="VulnHub Grotesque：3.0.1">VulnHub Grotesque：3.0.1</a>
-            </li>
-            <li>
-              <a href="/2026/07/31/Pwn%20The%20Tron%201/" title="VulnHub Pwn The Tron：1">VulnHub Pwn The Tron：1</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,40 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2025/04/01/UnbakedPie/" aria-label="MazeSec UnbakedPie" title="MazeSec UnbakedPie"></a>
+      <a class="post-link" href="/2025/04/01/Greatwall/" aria-label="MazeSec Greatwall" title="MazeSec Greatwall"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Greatwall" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-04-01</span>
+        <span><span class="icon-pencil"></span>869 字</span>
+        <span><span class="icon-clock"></span>4 分钟</span>
+      </div>
+      <h2 class="post-title">MazeSec Greatwall</h2>
+      <article class="post-article">
+          Greatwall项目地址：https://downloads.hackmyvm.eu/unbakedpie.zip
+是一个打包好的镜像文件
+注意：导入 ova 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+远程文件包含Hello World只有 22 端口以及 80 端口，开放的服务是 SSH 以及 Apache
+第一种渗透思路是爆破 SSH，但是机会渺茫
+第二种是访问对应 Web 从而寻找机会
+
+扫描后台无果
+1dirb http://192.168.41.199/
+
+
+只能从网站功能入手了，提示 https:// ，输入百度链接无果，但是注意到 URL 
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2025/04/01/UnbakedPie/" aria-label="MazeSec UnbakedPie" title="MazeSec UnbakedPie"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec UnbakedPie" class="lazyload">
     </div>
     <div class="post-info">
@@ -286,9 +318,9 @@ Opcode
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2025/04/01/Alzheimer/" aria-label="MazeSec Alzheimer" title="MazeSec Alzheimer"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Alzheimer" class="lazyload">
     </div>
     <div class="post-info">
@@ -317,9 +349,9 @@ CTFPort Knocking查看隐藏文件内容
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2025/04/01/SuidyRevenge/" aria-label="MazeSec SuidyRevenge" title="MazeSec SuidyRevenge"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec SuidyRevenge" class="lazyload">
     </div>
     <div class="post-info">
@@ -347,9 +379,9 @@ RCEsimple-backdoor访问页面
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2025/04/01/Hommie/" aria-label="MazeSec Hommie" title="MazeSec Hommie"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Hommie" class="lazyload">
     </div>
     <div class="post-info">
@@ -383,9 +415,9 @@ TFTP使用 nmap 再扫描一遍 UDP 协议的，但是因为 UDP 很慢，所以
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2025/04/01/Learn2Code/" aria-label="MazeSec Learn2Code" title="MazeSec Learn2Code"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Learn2Code" class="lazyload">
     </div>
     <div class="post-info">
@@ -410,9 +442,9 @@ TFTP使用 nmap 再扫描一遍 UDP 协议的，但是因为 UDP 很慢，所以
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2025/04/01/BaseME/" aria-label="MazeSec BaseME" title="MazeSec BaseME"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec BaseME" class="lazyload">
     </div>
     <div class="post-info">
@@ -447,9 +479,9 @@ TFTP使用 nmap 再扫描一遍 UDP 协议的，但是因为 UDP 很慢，所以
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2025/04/01/suidy/" aria-label="MazeSec suidy" title="MazeSec suidy"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec suidy" class="lazyload">
     </div>
     <div class="post-info">
@@ -482,9 +514,9 @@ TFTP使用 nmap 再扫描一遍 UDP 协议的，但是因为 UDP 很慢，所以
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2025/04/01/Conection/" aria-label="MazeSec Conection" title="MazeSec Conection"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Conection" class="lazyload">
     </div>
     <div class="post-info">
@@ -515,9 +547,9 @@ RCESMB139 445 端口全开，使用 enum4linux 枚举信息
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2025/04/01/Gift/" aria-label="MazeSec Gift" title="MazeSec Gift"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Gift" class="lazyload">
     </div>
     <div class="post-info">
@@ -536,44 +568,6 @@ RCESMB139 445 端口全开，使用 enum4linux 枚举信息
 弱口令SSH直接爆破
 
 12HMVtyr543FGHMV665sXzDS
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2025/04/01/Pwned/" aria-label="MazeSec Pwned" title="MazeSec Pwned"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Pwned" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2025-04-01</span>
-        <span><span class="icon-pencil"></span>311 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
-      </div>
-      <h2 class="post-title">MazeSec Pwned</h2>
-      <article class="post-article">
-          Pwned项目地址：https://downloads.hackmyvm.eu/pwned.zip
-是一个打包好的镜像文件
-注意：导入 ova 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-敏感信息泄露&amp;#x2F;pwned_vuln访问首页
-
-扫描目录发现一个 .dic 文件
-
-打开是一些路径
-
-对路径做扫描发现 /pwned_vuln
-
-前端页面发现隐藏账号密码
-
-弱口令FTPFTP 登录成功
-
-SSH发现有私钥
-
-123Wow you are here ariana won&amp;#x27;t happy about this note sorry arian
       </article>
     </div>
   </div>
@@ -601,10 +595,10 @@ SSH发现有私钥
       </div>
       <div>
         <span class="icon-brush"></span>
-        287.5k
+        288.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        23:29
+        23:33
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -632,7 +626,7 @@ SSH发现有私钥
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">238</div>
+    <div class="sidebar-state-number">239</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -640,7 +634,7 @@ SSH发现有私钥
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">185</div>
+    <div class="sidebar-state-number">186</div>
   </div>
 </div>
 <div class="sidebar-social" >
