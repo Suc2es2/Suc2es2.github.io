@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">239</div>
+    <div class="sidebar-state-number">240</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -220,6 +220,9 @@
       <div class="widget">
         <ul>
             <li>
+              <a href="/2026/08/01/Hacker's%20Blog%201/" title="VulnHub Hacker&#39;s Blog：1">VulnHub Hacker&#39;s Blog：1</a>
+            </li>
+            <li>
               <a href="/2026/08/01/BuffEMR%201.0.1/" title="VulnHub BuffEMR：1.0.1">VulnHub BuffEMR：1.0.1</a>
             </li>
             <li>
@@ -230,9 +233,6 @@
             </li>
             <li>
               <a href="/2026/07/31/Hackable%20III/" title="VulnHub Hackable：III">VulnHub Hackable：III</a>
-            </li>
-            <li>
-              <a href="/2026/07/31/Grotesque%203.0.1/" title="VulnHub Grotesque：3.0.1">VulnHub Grotesque：3.0.1</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,36 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/06/15/EvilBox%20One/" aria-label="VulnHub EvilBox：One" title="VulnHub EvilBox：One"></a>
+      <a class="post-link" href="/2026/06/15/Chronos%201/" aria-label="VulnHub Chronos：1" title="VulnHub Chronos：1"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Chronos：1" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-06-15</span>
+        <span><span class="icon-pencil"></span>403 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">VulnHub Chronos：1</h2>
+      <article class="post-article">
+          Chronos：1项目地址：https://download.vulnhub.com/chronos/Chronos.ova
+是一个打包好的镜像文件
+注意：导入 ova 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+RCEdate查看 80 端口源代码发现有一个链接，地址是 http://chronos.local:8000/date?format=4ugYDuAkScCG5gMcZjEN3mALyG1dD5ZYsiCfWvQ2w9anYGyL
+
+修改 hosts 文件访问，回显权限不够
+
+将首页混淆的 JS 代码进行 AI 还原，看到需要设置 User-Ag
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/06/15/EvilBox%20One/" aria-label="VulnHub EvilBox：One" title="VulnHub EvilBox：One"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub EvilBox：One" class="lazyload">
     </div>
     <div class="post-info">
@@ -275,9 +303,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/06/15/Thoth%20Tech%201/" aria-label="VulnHub Thoth Tech：1" title="VulnHub Thoth Tech：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Thoth Tech：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -306,9 +334,9 @@ find 提权1sudo find . -exec /bin/sh \; -
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/06/11/LSB%20Oracle%20Attack/" aria-label="LSB Oracle Attack" title="LSB Oracle Attack"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="LSB Oracle Attack" class="lazyload">
     </div>
     <div class="post-info">
@@ -332,9 +360,9 @@ RSA 具有同态性质：(c * 2^e) mod N 对应的明文是 (2m) mod N
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/06/10/digitalworld.local%20snakeoil/" aria-label="VulnHub digitalworld.local：snakeoil" title="VulnHub digitalworld.local：snakeoil"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub digitalworld.local：snakeoil" class="lazyload">
     </div>
     <div class="post-info">
@@ -366,9 +394,9 @@ RCEFlask在 8080 端口上有个 Useful Links 页面，给了个链接
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/06/10/DarkHole%202/" aria-label="VulnHub DarkHole：2" title="VulnHub DarkHole：2"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub DarkHole：2" class="lazyload">
     </div>
     <div class="post-info">
@@ -391,9 +419,9 @@ RCEFlask在 8080 端口上有个 Useful Links 页面，给了个链接
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/06/10/Vikings%201/" aria-label="VulnHub Vikings：1" title="VulnHub Vikings：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Vikings：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -431,9 +459,9 @@ CTFBinwalk访问首页
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/06/10/Beelzebub%201/" aria-label="VulnHub Beelzebub：1" title="VulnHub Beelzebub：1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Beelzebub：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -455,9 +483,9 @@ CTFBinwalk访问首页
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/06/10/Deathnote%201/" aria-label="VulnHub Deathnote：1" title="VulnHub Deathnote：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Deathnote：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -500,9 +528,9 @@ notes.txt 中则是密码字典
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/06/09/doubletrouble%201/" aria-label="VulnHub doubletrouble：1" title="VulnHub doubletrouble：1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub doubletrouble：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -534,37 +562,6 @@ RCEqdPM 9.
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/06/09/Dripping%20Blues%201/" aria-label="VulnHub Dripping Blues：1" title="VulnHub Dripping Blues：1"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Dripping Blues：1" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-06-09</span>
-        <span><span class="icon-pencil"></span>609 字</span>
-        <span><span class="icon-clock"></span>3 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub Dripping Blues：1</h2>
-      <article class="post-article">
-          Dripping Blues：1项目地址：https://download.vulnhub.com/drippingblues/drippingblues.ova
-是一个打包好的镜像文件
-注意：导入 ovf 时一定要选择我已移动，否则没网
-使用无影扫描出开放服务及系统版本
-
-文件包含drip访问 80 端口首页没东西，扫描出 robots.txt 文件
-
-这里提示 SSH 连接密码，但试过了没用
-
-匿名访问 FTP 服务有一个压缩文件，爆破出密码是 072528035
-
-解压之后获得 respectmydrip.txt 文件和 secret.zip 文件
-respectmydrip.txt 文
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
   </nav>
@@ -588,10 +585,10 @@ respectmydrip.txt 文
       </div>
       <div>
         <span class="icon-brush"></span>
-        288.3k
+        289.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        23:33
+        23:37
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -619,7 +616,7 @@ respectmydrip.txt 文
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">239</div>
+    <div class="sidebar-state-number">240</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
