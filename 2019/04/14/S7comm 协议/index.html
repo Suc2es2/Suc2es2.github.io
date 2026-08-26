@@ -43,7 +43,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a36f3272830ce602a50ed24.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a36f5672830ce602a50ee0a.png">
 <meta property="article:published_time" content="2019-04-14T05:19:00.000Z">
-<meta property="article:modified_time" content="2026-06-20T20:30:59.070Z">
+<meta property="article:modified_time" content="2026-08-26T14:25:38.955Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="工控">
 <meta name="twitter:card" content="summary">
@@ -243,7 +243,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2019-04-14T05:19:00.000Z" itemprop="datePublished">2019-04-14</time>
-    <time style="display: none;" id="post-update-time">2026-06-21</time>
+    <time style="display: none;" id="post-update-time">2026-08-26</time>
   </span>
 </div>
 
@@ -341,76 +341,6 @@
 </tr>
 </tbody></table>
 <h2 id="实战案例"><a href="#实战案例" class="headerlink" title="实战案例"></a>实战案例</h2><h3 id="S7-协议恶意攻击分析（S7comm-协议）"><a href="#S7-协议恶意攻击分析（S7comm-协议）" class="headerlink" title="S7 协议恶意攻击分析（S7comm 协议）"></a>S7 协议恶意攻击分析（S7comm 协议）</h3><p><img src="https://pic1.imgdb.cn/item/6a33579da6693733f7e20ba4.png"></p>
-<p>S7comm（S7 Communication）是西门子专有的工业控制协议，主要功能码如下：</p>
-<table>
-<thead>
-<tr>
-<th align="left">功能码</th>
-<th align="left">描述</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>0x00</strong></td>
-<td align="left">CPU 服务</td>
-<td align="left">用于执行与 CPU 本身相关的系统级功能</td>
-</tr>
-<tr>
-<td align="left"><strong>0xF0</strong></td>
-<td align="left">建立通信</td>
-<td align="left">在数据传输前，用于协商通信参数，如 PDU 大小</td>
-</tr>
-<tr>
-<td align="left"><strong>0x04</strong></td>
-<td align="left">读取变量</td>
-<td align="left">请求读取 PLC 中一个或多个变量的值</td>
-</tr>
-<tr>
-<td align="left"><strong>0x05</strong></td>
-<td align="left">写入变量</td>
-<td align="left">请求向 PLC 写入一个或多个变量的值</td>
-</tr>
-<tr>
-<td align="left"><strong>0x1A</strong></td>
-<td align="left">请求下载</td>
-<td align="left">开始下载程序块或数据块前的请求</td>
-</tr>
-<tr>
-<td align="left"><strong>0x1B</strong></td>
-<td align="left">下载块</td>
-<td align="left">传输程序块或数据块的实际数据内容</td>
-</tr>
-<tr>
-<td align="left"><strong>0x1C</strong></td>
-<td align="left">下载结束</td>
-<td align="left">通知 PLC 下载过程已全部完成</td>
-</tr>
-<tr>
-<td align="left"><strong>0x1D</strong></td>
-<td align="left">开始上传</td>
-<td align="left">开始从 PLC 上传程序块或数据块</td>
-</tr>
-<tr>
-<td align="left"><strong>0x1E</strong></td>
-<td align="left">上传</td>
-<td align="left">传输从 PLC 上传的数据内容</td>
-</tr>
-<tr>
-<td align="left"><strong>0x1F</strong></td>
-<td align="left">上传结束</td>
-<td align="left">通知上位机上传过程已全部完成</td>
-</tr>
-<tr>
-<td align="left"><strong>0x28</strong></td>
-<td align="left">PLC 控制</td>
-<td align="left">用于远程控制 PLC 的运行模式，例如启动（Start）</td>
-</tr>
-<tr>
-<td align="left"><strong>0x29</strong></td>
-<td align="left">停止 PLC</td>
-<td align="left">远程停止 PLC 的运行</td>
-</tr>
-</tbody></table>
 <p>题目说了是 “突然发生停机事件”，所以推测是 <code>0x29</code> 或者 <code>0x28</code>，直接过滤出来</p>
 <p><code>P_PROGRAM</code> 是实现 PLC 模式转换的关键服务。它主要包含两种操作：</p>
 <ul>
@@ -531,7 +461,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">01100110</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://pic1.imgdb.cn/item/6a33e52d91b65c4475ad0a98.png"></p>
-<p>提取出来拼接转成 ASCII 码得到 &#96;flag{flag_is_here}</p>
+<p>提取出来拼接转成 ASCII 码得到 <code>flag{flag_is_here}</code></p>
 <h3 id="异常的-S7-数据（S7comm-协议）"><a href="#异常的-S7-数据（S7comm-协议）" class="headerlink" title="异常的 S7 数据（S7comm 协议）"></a>异常的 S7 数据（S7comm 协议）</h3><p>大概看了一下，全是 <code>0x05</code> 功能码</p>
 <p><img src="https://pic1.imgdb.cn/item/6a34018a91b65c4475ada627.png"></p>
 <p>绝大多数写入数据都以 <code>ffff</code> 开头</p>
@@ -607,10 +537,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        289.1k
+        289.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        23:37
+        23:38
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -766,7 +696,7 @@
           description: "",
           stripContent: "S7comm 协议概述S7comm 是西门子专有的工业控制协议，主要用于西门子S7-300&amp;#x2F;400系列PLC（可编程逻辑控制器）的编程、数据交换和诊断 报文结构一个典型的 S7comm 报文由三部分组成：  Header (头部)：固定 12 字节，包含协议标识、PDU 类型等关键信息。  Parameter (参数)：长度可变，包含具体的功能码（如读取、写入）及其参数  Data (数据)：长度可变，在写入等操作中携带实际数据   通信过程Wireshark 可以清晰捕捉到 S7 通",
           date: "Sun Apr 14 2019 13:19:00 GMT+0800",
-          updated: "Sun Jun 21 2026 04:30:59 GMT+0800",
+          updated: "Wed Aug 26 2026 22:25:38 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

@@ -17,16 +17,16 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="MIFARE Classic 1K IC 卡概述门禁卡、电梯卡、水卡大量使用它 用读卡器 dump 出的文件通常就是一个二进制镜像，大小正好 1KB（1024字节），在十六进制编辑器里就是 1024 个字节，每行 16 字节 总体结构16 个扇区，扇区号 0~15 每个扇区 4 个块，块号 0~3，每块 16 字节（32 个十六进制字符） 总块数 64，线性排列 扇区与十六进制地址的对应扇区 0：">
+    <meta name="description" content="MIFARE Classic 1K IC 卡概述门禁卡、电梯卡、水卡大量使用它 用读卡器 dump 出的文件通常就是一个二进制镜像，大小正好 1KB（1024字节），在十六进制编辑器里就是 1024 个字节，每行 16 字节 总体结构16 个扇区，扇区号 0~15 每个扇区 4 个块，块号 0~3，每块 16 字节（32 个十六进制字符） 总块数 64，线性排列 扇区与十六进制地址的对应MIFAR">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MIFARE Classic 1K IC 卡">
 <meta property="og:url" content="https://suc2es2.github.io/2019/04/14/IC%20%E5%8D%A1/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="MIFARE Classic 1K IC 卡概述门禁卡、电梯卡、水卡大量使用它 用读卡器 dump 出的文件通常就是一个二进制镜像，大小正好 1KB（1024字节），在十六进制编辑器里就是 1024 个字节，每行 16 字节 总体结构16 个扇区，扇区号 0~15 每个扇区 4 个块，块号 0~3，每块 16 字节（32 个十六进制字符） 总块数 64，线性排列 扇区与十六进制地址的对应扇区 0：">
+<meta property="og:description" content="MIFARE Classic 1K IC 卡概述门禁卡、电梯卡、水卡大量使用它 用读卡器 dump 出的文件通常就是一个二进制镜像，大小正好 1KB（1024字节），在十六进制编辑器里就是 1024 个字节，每行 16 字节 总体结构16 个扇区，扇区号 0~15 每个扇区 4 个块，块号 0~3，每块 16 字节（32 个十六进制字符） 总块数 64，线性排列 扇区与十六进制地址的对应MIFAR">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a36cfc32830ce602a508bb3.png">
 <meta property="article:published_time" content="2019-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-20T18:00:17.737Z">
+<meta property="article:modified_time" content="2026-08-26T14:31:28.892Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="工控">
 <meta name="twitter:card" content="summary">
@@ -226,7 +226,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2019-04-14T05:18:00.000Z" itemprop="datePublished">2019-04-14</time>
-    <time style="display: none;" id="post-update-time">2026-06-21</time>
+    <time style="display: none;" id="post-update-time">2026-08-26</time>
   </span>
 </div>
 
@@ -240,24 +240,31 @@
 <h2 id="总体结构"><a href="#总体结构" class="headerlink" title="总体结构"></a>总体结构</h2><p>16 个扇区，扇区号 0~15</p>
 <p>每个扇区 4 个块，块号 0~3，每块 16 字节（32 个十六进制字符）</p>
 <p>总块数 64，线性排列</p>
-<h2 id="扇区与十六进制地址的对应"><a href="#扇区与十六进制地址的对应" class="headerlink" title="扇区与十六进制地址的对应"></a>扇区与十六进制地址的对应</h2><p>扇区 0：000–0CF （4 块 × 16 字节 &#x3D; 64 字节，0x40 长）</p>
-<p>扇区 1：040–07F</p>
-<p>扇区 2：080–0BF … 以此类推</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">00000000  xx xx xx xx xx xx xx xx  xx xx xx xx xx xx xx xx  | 块0 数据</span><br><span class="line">00000010  xx xx xx xx xx xx xx xx  xx xx xx xx xx xx xx xx  | 块1 数据</span><br><span class="line">00000020  xx xx xx xx xx xx xx xx  xx xx xx xx xx xx xx xx  | 块2 数据</span><br><span class="line">00000030  AA AA AA AA AA AA BB BB  BB CC CC CC BB BB BB BB  | 块3 控制块</span><br></pre></td></tr></table></figure>
-
-<p>块 3（每扇区最后一块）是特殊的控制块，结构固定：</p>
+<h2 id="扇区与十六进制地址的对应"><a href="#扇区与十六进制地址的对应" class="headerlink" title="扇区与十六进制地址的对应"></a>扇区与十六进制地址的对应</h2><p>MIFARE Classic 1K 共 16 个扇区，每个扇区包含 4 个块，每块 16 字节，因此每个扇区占：</p>
+<p>4 × 16 &#x3D; 64 字节 &#x3D; 0x40 字节</p>
+<p>所以扇区 n 的起始偏移为：</p>
+<p>起始地址 &#x3D; n × 0x40</p>
+<p>结束地址 &#x3D; (n + 1) × 0x40 - 1</p>
+<p>例如：</p>
 <ul>
-<li><p>字节 0~5：密钥 A（6 字节，若未更改常为 FF FF FF FF FF FF）</p>
+<li><p>扇区 0：<code>000–03F</code></p>
 </li>
-<li><p>字节 6~8：访问控制位（3 字节，决定读写权限）</p>
+<li><p>扇区 1：<code>040–07F</code></p>
 </li>
-<li><p>字节 9：可选数据（通常 00）</p>
+<li><p>扇区 2：<code>080–0BF</code></p>
 </li>
-<li><p>字节 10~15：密钥 B（6 字节，默认也常是 FF FF FF FF FF FF 或用于控制）</p>
+<li><p>扇区 3：<code>0C0–0FF</code></p>
+</li>
+<li><p>扇区 4：<code>100–13F</code></p>
+</li>
+<li><p>…</p>
+</li>
+<li><p>扇区 15：<code>3C0–3FF</code></p>
 </li>
 </ul>
+<p>整个 MIFARE Classic 1K Dump 的地址范围为：<code>000–3FF</code>，共 <code>0x400 = 1024</code> 字节</p>
 <h2 id="访问控制字节的十六进制规律"><a href="#访问控制字节的十六进制规律" class="headerlink" title="访问控制字节的十六进制规律"></a>访问控制字节的十六进制规律</h2><p>以常见门禁卡为例，若块 3 为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FF FF FF FF FF FF  78 77 88  C1 00  FF FF FF FF FF FF</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FF FF FF FF FF FF  78 77 88  C1  FF FF FF FF FF FF</span><br><span class="line">│                 │         │   │</span><br><span class="line">│                 │         │   └─ Key B：6 字节</span><br><span class="line">│                 │         └──── GPB / 用户字节：1 字节</span><br><span class="line">│                 └────────────── Access Bits：3 字节</span><br><span class="line">└──────────────────────────────── Key A：6 字节</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><p>78 77 88 就是访问控制位（以及它的非值，实际存储是取反备份）</p>
@@ -344,10 +351,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        289.1k
+        289.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        23:37
+        23:38
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -501,9 +508,9 @@
           url: "https://suc2es2.github.io/2019/04/14/IC%20%E5%8D%A1/",
           excerpt: "",
           description: "",
-          stripContent: "MIFARE Classic 1K IC 卡概述门禁卡、电梯卡、水卡大量使用它 用读卡器 dump 出的文件通常就是一个二进制镜像，大小正好 1KB（1024字节），在十六进制编辑器里就是 1024 个字节，每行 16 字节 总体结构16 个扇区，扇区号 0~15 每个扇区 4 个块，块号 0~3，每块 16 字节（32 个十六进制字符） 总块数 64，线性排列 扇区与十六进制地址的对应扇区 0：000–0CF （4 块 × 16 字节 &amp;#x3D; 64 字节，0x40 长） 扇区 1：040",
+          stripContent: "MIFARE Classic 1K IC 卡概述门禁卡、电梯卡、水卡大量使用它 用读卡器 dump 出的文件通常就是一个二进制镜像，大小正好 1KB（1024字节），在十六进制编辑器里就是 1024 个字节，每行 16 字节 总体结构16 个扇区，扇区号 0~15 每个扇区 4 个块，块号 0~3，每块 16 字节（32 个十六进制字符） 总块数 64，线性排列 扇区与十六进制地址的对应MIFARE Classic 1K 共 16 个扇区，每个扇区包含 4 个块，每块 16 字节，因此每个扇区占",
           date: "Sun Apr 14 2019 13:18:00 GMT+0800",
-          updated: "Sun Jun 21 2026 02:00:17 GMT+0800",
+          updated: "Wed Aug 26 2026 22:31:28 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

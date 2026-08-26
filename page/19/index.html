@@ -269,46 +269,8 @@
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/ext2%20%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/" aria-label="ext2 文件恢复" title="ext2 文件恢复"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="ext2 文件恢复" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1.2k 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
-      </div>
-      <h2 class="post-title">ext2 文件恢复</h2>
-      <article class="post-article">
-          ext2 文件恢复Ext2 是 Linux 中早期广泛使用的文件系统，虽然后被 Ext3&amp;#x2F;4 取代，但在嵌入式、固件、老旧系统及 CTF 取证题中仍经常出现
-由于 Ext2 不涉及日志，一旦文件被删除，其数据并不会立即消失，因此恢复成功率较高
-文件恢复主要基于 inode 信息和间接块指针的重建
-核心结构
-
-
-结构
-大小
-关键字段
-
-
-
-超级块 (Superblock)
-1024 字节
-块大小、inode 总数、块总数、第一个 inode 号（固定为1）、卷名、最后挂载时间、魔数 0xEF53 等
-
-
-组描述符表 (GDT)
-32 字节&amp;#x2F;组
-块位图位置、inode 位图位置
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/ext3%20%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/" aria-label="ext3 文件恢复" title="ext3 文件恢复"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="ext3 文件恢复" class="lazyload">
     </div>
     <div class="post-info">
@@ -346,6 +308,44 @@ Ext3
 
 
 恢复
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/ext2%20%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D/" aria-label="ext2 文件恢复" title="ext2 文件恢复"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="ext2 文件恢复" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1.2k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">ext2 文件恢复</h2>
+      <article class="post-article">
+          ext2 文件恢复Ext2 是 Linux 中早期广泛使用的文件系统，虽然后被 Ext3&amp;#x2F;4 取代，但在嵌入式、固件、老旧系统及 CTF 取证题中仍经常出现
+由于 Ext2 不涉及日志，一旦文件被删除，其数据并不会立即消失，因此恢复成功率较高
+文件恢复主要基于 inode 信息和间接块指针的重建
+核心结构
+
+
+结构
+大小
+关键字段
+
+
+
+超级块 (Superblock)
+1024 字节
+块大小、inode 总数、块总数、第一个 inode 号（固定为1）、卷名、最后挂载时间、魔数 0xEF53 等
+
+
+组描述符表 (GDT)
+32 字节&amp;#x2F;组
+块位图位置、inode 位图位置
       </article>
     </div>
   </div>
@@ -428,8 +428,38 @@ N
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20RCTF/" aria-label="2019 RCTF WriteUp" title="2019 RCTF WriteUp"></a>
+      <a class="post-link" href="/2019/05/22/2019%20HDCTF/" aria-label="2019 HDCTF WriteUp" title="2019 HDCTF WriteUp"></a>
     <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 HDCTF WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>2.3k 字</span>
+        <span><span class="icon-clock"></span>10 分钟</span>
+      </div>
+      <h2 class="post-title">2019 HDCTF WriteUp</h2>
+      <article class="post-article">
+          2019 HDCTF WriteUp前言主办方：海南大学
+Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程）
+下载附件是一个 .img，使用 vol2 进行取证，先查看操作系统
+1python2 vol.py -f memory.img imageinfo
+
+发现是 Windows 2003，给出了三个具体的版本
+
+查看进程，Server 2003 生命周期中 SP2 是最普遍的版本，所以选择它
+1python2 vol.py -f memory.img --profile=Win2003SP2x86 pslist
+
+
+dump 出 explorer.exe，它的内存里主
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019%20RCTF/" aria-label="2019 RCTF WriteUp" title="2019 RCTF WriteUp"></a>
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 RCTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -461,9 +491,9 @@ Reversebabyre1（XX
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/2019%20RoarCTF/" aria-label="2019 RoarCTF WriteUp" title="2019 RoarCTF WriteUp"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 RoarCTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -525,110 +555,77 @@ Vidar
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20HDCTF/" aria-label="2019 HDCTF WriteUp" title="2019 HDCTF WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 HDCTF WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>2.3k 字</span>
-        <span><span class="icon-clock"></span>10 分钟</span>
-      </div>
-      <h2 class="post-title">2019 HDCTF WriteUp</h2>
-      <article class="post-article">
-          2019 HDCTF WriteUp前言主办方：海南大学
-Misc你能发现什么蛛丝马迹吗（Windows pslist 排查进程）
-下载附件是一个 .img，使用 vol2 进行取证，先查看操作系统
-1python2 vol.py -f memory.img imageinfo
-
-发现是 Windows 2003，给出了三个具体的版本
-
-查看进程，Server 2003 生命周期中 SP2 是最普遍的版本，所以选择它
-1python2 vol.py -f memory.img --profile=Win2003SP2x86 pslist
-
-
-dump 出 explorer.exe，它的内存里主
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019%20%E5%BC%BA%E7%BD%91%E6%9D%AF/" aria-label="2019 强网杯 WriteUp" title="2019 强网杯 WriteUp"></a>
+      <a class="post-link" href="/2019/05/22/2019-CSAWCTF-%E5%A4%8D%E8%B5%9B/" aria-label="2019 CSAW CTF 复赛 WriteUp" title="2019 CSAW CTF 复赛 WriteUp"></a>
     <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 强网杯 WriteUp" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 CSAW CTF 复赛 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1.2k 字</span>
-        <span><span class="icon-clock"></span>6 分钟</span>
-      </div>
-      <h2 class="post-title">2019 强网杯 WriteUp</h2>
-      <article class="post-article">
-          2019 强网杯 WriteUp🏛️ 组织架构
-
-指导单位：中央网信办网络安全协调局
-
-主办单位：河南省互联网信息办公室、郑州市人民政府、信息工程大学
-
-支持&amp;#x2F;协办单位：教育部网络空间安全专业教学指导委员会
-
-承办单位：郑州市高新区管委会
-
-
-🥇 线下赛最终排名（前三名及部分高校）
-
-冠军：腾讯 eee 战队（腾讯安全）
-
-亚军：0×300 战队（长亭科技）
-
-季军：TsingQian 战队（清华大学-奇安信联合研究中心）
-
-总排名第六：白泽战队（复旦大学）
-
-总排名第十五：Nebula 战队（中国科学技术大学）
-
-
-Misc强网先锋-打野（Steg 隐写）
-
-Reverse强网
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019-CISCN-%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BA/" aria-label="2019 CISCN 华北赛区 WriteUp" title="2019 CISCN 华北赛区 WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 CISCN 华北赛区 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>371 字</span>
+        <span><span class="icon-pencil"></span>411 字</span>
         <span><span class="icon-clock"></span>2 分钟</span>
       </div>
-      <h2 class="post-title">2019 CISCN 华北赛区 WriteUp</h2>
+      <h2 class="post-title">2019 CSAW CTF 复赛 WriteUp</h2>
       <article class="post-article">
-          2019 CISCN 华北赛区 WriteUp🏛️ 大赛组织架构
+          2019 CSAW CTF 复赛 WriteUp🏆 决赛概况
 
-主办单位：教育部高等学校网络空间安全专业教学指导委员会
+时间与地点：决赛于 2019 年 11 月 6日 至 8 日在美国纽约布鲁克林举行。此外，在法国、印度、以色列、阿联酋和墨西哥也设有同步进行的国际赛区
 
-承办单位：电子科技大学
+赛制：采用 Jeopardy 解题模式
 
-作品赛决赛地点：江苏南京
-
-创新实践能力赛决赛地点：四川成都
+规模：全球共 1225 支队伍参与选拔，最终 44 支队伍进入全球总决赛。仅美加赛区就迎来了 66 支决赛队伍
 
 
-WebHack World（SQL 注入 + 括号绕过）
-考察 POST 类型的 SQL 注入，开局给了表名和列名
+WebUnagi（XXE 注入 + UTF-16 编码绕过 + intro 字段绕过）打开是正常的页面
 
-经过 FUZZ 过滤了如下字符
-12345678910111213141516171819202122空格||#-;&amp;amp;+orand`&amp;quot;insertgrouplimitupdatedelete*intounionload_fileoutfile.
+Upload 页面提供一个 XML 用户格式样例
+
+普通的 XXE 会被拦截
+123456789&amp;lt;?xml v
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019-NestCTF/" aria-label="2019 NEST CTF WriteUp" title="2019 NEST CTF WriteUp"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 NEST CTF WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>463 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">2019 NEST CTF WriteUp</h2>
+      <article class="post-article">
+          2019 NEST CTF WriteUp🏆 赛事概况
+
+主办方：网络内生安全试验场（NEST）
+
+比赛形式：线上个人夺旗赛（CTF）
+
+题目方向：主要包含Web、Reverse（逆向工程）、Misc（杂项） 等类型
+
+比赛平台：https://nest.ichunqiu.com/
+
+
+Weblove math 2（分号绕过 + 异或绕过 + 可变变量绕过 + {} 绕过）
+经典绕 WAF：
+
+c 长度必须 &amp;lt; 60
+
+c 里不能有空格、引号、反引号、[]
+
+c 里出现的所有字母标识符，都必须在数学函数白名单里
+
+最后直接 eval，并且前面拼了 echo
+
+
+
+最终执行的语句是 ev
       </article>
     </div>
   </div>
@@ -656,10 +653,10 @@ WebHack World（SQL 注入 + 括号绕过）
       </div>
       <div>
         <span class="icon-brush"></span>
-        289.1k
+        289.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        23:37
+        23:38
       </div>
       <div>
         <span class="icon-eye"></span>

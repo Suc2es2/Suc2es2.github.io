@@ -245,32 +245,129 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2020/04/14/2020%20%E2%80%9C%E4%B9%8B%E6%B1%9F%E6%9D%AF%E2%80%9D%E5%B7%A5%E4%B8%9A%E4%BA%92%E8%81%94%E7%BD%91%E5%86%85%E7%94%9F%E5%AE%89%E5%85%A8%E9%98%B2%E5%BE%A1%E5%9B%BD%E9%99%85%E7%B2%BE%E8%8B%B1%E6%8C%91%E6%88%98%E8%B5%9B/" aria-label="2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp" title="2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp"></a>
+      <a class="post-link" href="/2020/04/14/2020%20CSICTF/" aria-label="2020 CSICTF WriteUp" title="2020 CSICTF WriteUp"></a>
     <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 CSICTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2020-04-14</span>
-        <span><span class="icon-pencil"></span>2.8k 字</span>
-        <span><span class="icon-clock"></span>12 分钟</span>
+        <span><span class="icon-pencil"></span>5.4k 字</span>
+        <span><span class="icon-clock"></span>27 分钟</span>
       </div>
-      <h2 class="post-title">2020 &#34;之江杯&#34; 工业互联网内生安全防御国际精英挑战赛 WriteUp</h2>
+      <h2 class="post-title">2020 CSICTF WriteUp</h2>
       <article class="post-article">
-          2020 “之江杯” 工业互联网内生安全防御国际精英挑战赛 WriteUp
-主办与支持：比赛由之江实验室联合中国信通院等机构共同举办，并获得了中国工程院和浙江省人民政府的支持
+          2020 CSICTF WriteUp“csictf team” 是印度 VIT 大学（Vellore Institute of Technology）计算机学会（CSI）学生分部所运营的团队
+MiscGradient sky（图片隐写）
+查看字符串拿到 flag
+123strings sky.jpg# csictf&amp;#123;j0ker_w4snt_happy&amp;#125;
 
-赛事概况：比赛于 2020 年 12 月 20 日至 22 日举办，为期三天。共邀请了来自中、美、俄、德等 8 个国家的 40 支顶尖 “白帽黑客” 战队参赛。赛事的核心目标是攻击之江实验室研发的工业互联网拟态防御系列设备
+unseen（通道隐写 + Steghide 隐写 + Whitespace）对 nyc.png 做 LSB 位平面分析，红色通道第 0 位平面左上角能看到数字
 
-赛制与创新：大赛设置了 CTF 竞速赛、AWD 竞技赛、人机对抗赛和巅峰挑战赛四个环节。最大亮点是首次在工业互联网安全领域引入 “白盒” 人机对抗模式，即向参赛队伍开放部分系统控制权，允许其设置后
+解 morse.wav 的摩斯电码，得到
+1SEARCH
       </article>
     </div>
   </div>
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2020/04/14/2020-SCTF/" aria-label="2020 SCTF WriteUp" title="2020 SCTF WriteUp"></a>
+      <a class="post-link" href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%93%88%E5%B0%94%E6%BB%A8%E7%AB%99/" aria-label="2020 工业信息安全技能大赛-哈尔滨站 WriteUp" title="2020 工业信息安全技能大赛-哈尔滨站 WriteUp"></a>
     <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-哈尔滨站 WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2020-04-14</span>
+        <span><span class="icon-pencil"></span>145 字</span>
+        <span><span class="icon-clock"></span>1 分钟</span>
+      </div>
+      <h2 class="post-title">2020 工业信息安全技能大赛-哈尔滨站 WriteUp</h2>
+      <article class="post-article">
+          2020 工业信息安全技能大赛-哈尔滨站 WriteUp举办情况：2020 年工业信息安全技能大赛巡回赛（哈尔滨站）成功举办
+参赛规模：共有国内 34 支队伍参加，其中黑龙江省队伍达到 6 支
+第二名：电子龙鹰队（黑龙江省工业信息化发展中心&amp;#x2F;黑龙江省电子技术研究所组建）
+MiscOmron Fins（Omron 协议）
+过滤 omron 协议，可以看到操作中有读取有写入
+
+根据题目描述找写入的流量，其 Command Data 就是 flag
+
+
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B9%96%E5%B7%9E%E7%AB%99/" aria-label="2020 工业信息安全技能大赛-湖州站 WriteUp" title="2020 工业信息安全技能大赛-湖州站 WriteUp"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-湖州站 WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2020-04-14</span>
+        <span><span class="icon-pencil"></span>443 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">2020 工业信息安全技能大赛-湖州站 WriteUp</h2>
+      <article class="post-article">
+          2020 工业信息安全技能大赛-湖州站 WriteUp本次湖州站比赛与 “2020年长三角地区工业信息安全峰会” 同步举行，是国内首个将 “攻”（技能大赛）与 “防”（安全峰会）结合的工业信息安全专业会议
+峰会聚焦工业信息安全发展趋势、工业互联网安全、应急响应等议题，吸引了全国及长三角地区的科研院所、重点企业代表 300 余人参会
+本次大赛的主办方包括：
+
+浙江省电子信息产品检验研究院
+
+湖州市经济和信息化局
+
+南浔区人民政府
+
+
+比赛吸引了来自北京、上海、江苏等全国 20 个省（区、市） 的科研院所、高校和企业的百余支战队参加。另有报道提到，现场有 10 支队伍与全国线上的数百支队伍同台竞技
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2020/04/14/2020-%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BD%E5%88%9B%E6%96%B0%E5%A4%A7%E8%B5%9B%E8%99%8E%E7%AC%A6%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E8%B5%9B%E9%81%93/" aria-label="2020 数字中国创新大赛虎符网络安全赛道 WriteUp" title="2020 数字中国创新大赛虎符网络安全赛道 WriteUp"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 数字中国创新大赛虎符网络安全赛道 WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2020-04-14</span>
+        <span><span class="icon-pencil"></span>1.8k 字</span>
+        <span><span class="icon-clock"></span>8 分钟</span>
+      </div>
+      <h2 class="post-title">2020 数字中国创新大赛虎符网络安全赛道 WriteUp</h2>
+      <article class="post-article">
+          2020 数字中国创新大赛虎符网络安全赛道 WriteUp🏛️ 组织架构
+
+主办单位：数字中国建设峰会组委会
+
+承办单位：福建省数字福建建设领导小组办公室、福建省工业和信息化厅、福州市人民政府、中国电子信息产业集团有限公司、奇安信集团
+
+协办单位：北京永信至诚科技股份有限公司
+
+
+📅 赛程与赛制
+赛事分为线上初赛和线下决赛两个阶段
+
+线上初赛
+
+时间：2020 年 4 月 19 日
+
+形式：CTF（Capture The Flag，夺旗赛）
+
+内容：包含 Web 渗透、软件逆向、二进制漏洞挖掘和利用（Pwn）、密码学等 15 道赛题。所有赛题均基于国产 “PK系统” 的真实场景和历史漏洞设
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2020/04/14/2020-SCTF/" aria-label="2020 SCTF WriteUp" title="2020 SCTF WriteUp"></a>
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 SCTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -315,66 +412,9 @@ MiscCan
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E5%93%88%E5%B0%94%E6%BB%A8%E7%AB%99/" aria-label="2020 工业信息安全技能大赛-哈尔滨站 WriteUp" title="2020 工业信息安全技能大赛-哈尔滨站 WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-哈尔滨站 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2020-04-14</span>
-        <span><span class="icon-pencil"></span>145 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">2020 工业信息安全技能大赛-哈尔滨站 WriteUp</h2>
-      <article class="post-article">
-          2020 工业信息安全技能大赛-哈尔滨站 WriteUp举办情况：2020 年工业信息安全技能大赛巡回赛（哈尔滨站）成功举办
-参赛规模：共有国内 34 支队伍参加，其中黑龙江省队伍达到 6 支
-第二名：电子龙鹰队（黑龙江省工业信息化发展中心&amp;#x2F;黑龙江省电子技术研究所组建）
-MiscOmron Fins（Omron 协议）
-过滤 omron 协议，可以看到操作中有读取有写入
-
-根据题目描述找写入的流量，其 Command Data 就是 flag
-
-
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B9%96%E5%B7%9E%E7%AB%99/" aria-label="2020 工业信息安全技能大赛-湖州站 WriteUp" title="2020 工业信息安全技能大赛-湖州站 WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-湖州站 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2020-04-14</span>
-        <span><span class="icon-pencil"></span>443 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
-      </div>
-      <h2 class="post-title">2020 工业信息安全技能大赛-湖州站 WriteUp</h2>
-      <article class="post-article">
-          2020 工业信息安全技能大赛-湖州站 WriteUp本次湖州站比赛与 “2020年长三角地区工业信息安全峰会” 同步举行，是国内首个将 “攻”（技能大赛）与 “防”（安全峰会）结合的工业信息安全专业会议
-峰会聚焦工业信息安全发展趋势、工业互联网安全、应急响应等议题，吸引了全国及长三角地区的科研院所、重点企业代表 300 余人参会
-本次大赛的主办方包括：
-
-浙江省电子信息产品检验研究院
-
-湖州市经济和信息化局
-
-南浔区人民政府
-
-
-比赛吸引了来自北京、上海、江苏等全国 20 个省（区、市） 的科研院所、高校和企业的百余支战队参加。另有报道提到，现场有 10 支队伍与全国线上的数百支队伍同台竞技
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B5%8E%E5%8D%97%E7%AB%99/" aria-label="2020 工业信息安全技能大赛-济南站 WriteUp" title="2020 工业信息安全技能大赛-济南站 WriteUp"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-济南站 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -405,9 +445,9 @@ Payload 中还能看到明显的设备信息字符串
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2020/04/14/2020-%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B/" aria-label="2020 第五空间智能安全大赛 WriteUp" title="2020 第五空间智能安全大赛 WriteUp"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 第五空间智能安全大赛 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -449,74 +489,9 @@ Nu1L、blm、天枢 Dubhe
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2020/04/14/2020-%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BD%E5%88%9B%E6%96%B0%E5%A4%A7%E8%B5%9B%E8%99%8E%E7%AC%A6%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E8%B5%9B%E9%81%93/" aria-label="2020 数字中国创新大赛虎符网络安全赛道 WriteUp" title="2020 数字中国创新大赛虎符网络安全赛道 WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 数字中国创新大赛虎符网络安全赛道 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2020-04-14</span>
-        <span><span class="icon-pencil"></span>1.8k 字</span>
-        <span><span class="icon-clock"></span>8 分钟</span>
-      </div>
-      <h2 class="post-title">2020 数字中国创新大赛虎符网络安全赛道 WriteUp</h2>
-      <article class="post-article">
-          2020 数字中国创新大赛虎符网络安全赛道 WriteUp🏛️ 组织架构
-
-主办单位：数字中国建设峰会组委会
-
-承办单位：福建省数字福建建设领导小组办公室、福建省工业和信息化厅、福州市人民政府、中国电子信息产业集团有限公司、奇安信集团
-
-协办单位：北京永信至诚科技股份有限公司
-
-
-📅 赛程与赛制
-赛事分为线上初赛和线下决赛两个阶段
-
-线上初赛
-
-时间：2020 年 4 月 19 日
-
-形式：CTF（Capture The Flag，夺旗赛）
-
-内容：包含 Web 渗透、软件逆向、二进制漏洞挖掘和利用（Pwn）、密码学等 15 道赛题。所有赛题均基于国产 “PK系统” 的真实场景和历史漏洞设
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E7%9F%B3%E5%AE%B6%E5%BA%84%E7%AB%99/" aria-label="2020 工业信息安全技能大赛-石家庄站 WriteUp" title="2020 工业信息安全技能大赛-石家庄站 WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-石家庄站 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2020-04-14</span>
-        <span><span class="icon-pencil"></span>6.8k 字</span>
-        <span><span class="icon-clock"></span>32 分钟</span>
-      </div>
-      <h2 class="post-title">2020 工业信息安全技能大赛-石家庄站 WriteUp</h2>
-      <article class="post-article">
-          2020 工业信息安全技能大赛-石家庄站 WriteUp比赛情况：已知成都安美勤信息技术股份有限公司曾参加该站比赛并获得了前三名的优异成绩
-MiscTJ 协议（TCP 协议）
-打开流量包，全是 TCP 协议，主要发生在：
-12192.168.99.145 -&amp;gt; 192.168.99.102:8080192.168.99.145 -&amp;gt; 192.168.99.102:8081
-
-
-快速搜索十六进制拿到 flag
-123strings -a 11.pcap | grep -i &amp;quot;666c61677b&amp;quot;flag&amp;#123;dalaoafddaa&amp;#125;
-
-不安全的组
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2020/04/14/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E7%99%BD%E8%99%8E%E7%BB%84/" aria-label="2020 网鼎杯-白虎组 WriteUp" title="2020 网鼎杯-白虎组 WriteUp"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 网鼎杯-白虎组 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -555,9 +530,9 @@ MiscTJ 协议（TCP 协议）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2020/04/14/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E6%9C%B1%E9%9B%80%E7%BB%84/" aria-label="2020 网鼎杯-朱雀组 WriteUp" title="2020 网鼎杯-朱雀组 WriteUp"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 网鼎杯-朱雀组 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -593,6 +568,34 @@ Cryptosimp
     </div>
   </div>
 </div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E7%9F%B3%E5%AE%B6%E5%BA%84%E7%AB%99/" aria-label="2020 工业信息安全技能大赛-石家庄站 WriteUp" title="2020 工业信息安全技能大赛-石家庄站 WriteUp"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-石家庄站 WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2020-04-14</span>
+        <span><span class="icon-pencil"></span>6.8k 字</span>
+        <span><span class="icon-clock"></span>32 分钟</span>
+      </div>
+      <h2 class="post-title">2020 工业信息安全技能大赛-石家庄站 WriteUp</h2>
+      <article class="post-article">
+          2020 工业信息安全技能大赛-石家庄站 WriteUp比赛情况：已知成都安美勤信息技术股份有限公司曾参加该站比赛并获得了前三名的优异成绩
+MiscTJ 协议（TCP 协议）
+打开流量包，全是 TCP 协议，主要发生在：
+12192.168.99.145 -&amp;gt; 192.168.99.102:8080192.168.99.145 -&amp;gt; 192.168.99.102:8081
+
+
+快速搜索十六进制拿到 flag
+123strings -a 11.pcap | grep -i &amp;quot;666c61677b&amp;quot;flag&amp;#123;dalaoafddaa&amp;#125;
+
+不安全的组
+      </article>
+    </div>
+  </div>
+</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/16/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/18/">下一页 &raquo;</a>
   </nav>
@@ -616,10 +619,10 @@ Cryptosimp
       </div>
       <div>
         <span class="icon-brush"></span>
-        289.1k
+        289.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        23:37
+        23:38
       </div>
       <div>
         <span class="icon-eye"></span>
