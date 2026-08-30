@@ -1,0 +1,590 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
+  <title>
+    CAN 总线数据记录格式-ASC | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="CAN 总线数据记录格式-ASC文件结构一个典型的 .asc 文件由三部分组成：  文件头 (Header)：包含日志的元数据，如开始日期、时间戳格式等  123date Fri May 12 04:16:06.532 pm 2023    # 记录开始时间[reference:16]base hex timestamps absolute            # 基数(hex)和时间戳类型(a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CAN 总线数据记录格式-ASC">
+<meta property="og:url" content="https://suc2es2.github.io/2019/04/14/CAN%20%E6%80%BB%E7%BA%BF%E6%95%B0%E6%8D%AE%E8%AE%B0%E5%BD%95%E6%A0%BC%E5%BC%8F-ASC/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="CAN 总线数据记录格式-ASC文件结构一个典型的 .asc 文件由三部分组成：  文件头 (Header)：包含日志的元数据，如开始日期、时间戳格式等  123date Fri May 12 04:16:06.532 pm 2023    # 记录开始时间[reference:16]base hex timestamps absolute            # 基数(hex)和时间戳类型(a">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034FysFsyh04cbbyp9xa7i.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034G8PICzBhB1pYUFmpbb0.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034G8UzpEoKiuxukdMiEJL.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034G8jHRvXxRhnztmbfzim.png">
+<meta property="article:published_time" content="2019-04-14T05:20:00.000Z">
+<meta property="article:modified_time" content="2026-08-30T13:14:29.270Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="工控">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034FysFsyh04cbbyp9xa7i.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="CAN 总线数据记录格式-ASC">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">CAN 总线数据记录格式-ASC</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CAN-%E6%80%BB%E7%BA%BF%E6%95%B0%E6%8D%AE%E8%AE%B0%E5%BD%95%E6%A0%BC%E5%BC%8F-ASC"><span class="toc-number">1.</span> <span class="toc-text">CAN 总线数据记录格式-ASC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">文件结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5%E6%96%87%E8%A1%8C%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">报文行格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#teslaaaaa%EF%BC%88CAN-%E6%80%BB%E7%BA%BF%E6%95%B0%E6%8D%AE%E8%AE%B0%E5%BD%95%E6%A0%BC%E5%BC%8F-ASC%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">teslaaaaa（CAN 总线数据记录格式-ASC）</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">245</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">186</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-CAN 总线数据记录格式-ASC" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2019-04-14T05:20:00.000Z" itemprop="datePublished">2019-04-14</time>
+    <time style="display: none;" id="post-update-time">2026-08-30</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="CAN-总线数据记录格式-ASC"><a href="#CAN-总线数据记录格式-ASC" class="headerlink" title="CAN 总线数据记录格式-ASC"></a>CAN 总线数据记录格式-ASC</h1><h2 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h2><p>一个典型的 <code>.asc</code> 文件由三部分组成：</p>
+<ul>
+<li>文件头 (Header)：包含日志的元数据，如开始日期、时间戳格式等</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">date Fri May 12 04:16:06.532 pm 2023    # 记录开始时间[reference:16]</span><br><span class="line">base hex timestamps absolute            # 基数(hex)和时间戳类型(absolute)[reference:17]</span><br><span class="line">internal events logged                 # 是否记录内部事件[reference:18]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>触发块 (Trigger Block)：代表一段连续的记录会话。如果记录被停止并重新开始，一个文件里可能会有多个触发块</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Begin Triggerblock Fri May 12 04:16:06.532 pm 2023 0.000000  # 触发块开始[reference:20]</span><br><span class="line">... (此处是报文数据) ...</span><br><span class="line">End TriggerBlock                                          # 触发块结束[reference:21]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>报文&#x2F;事件行 (Message&#x2F;Event Lines)：这是文件的主体，由一行行的CAN报文或事件记录组成</li>
+</ul>
+<h2 id="报文行格式"><a href="#报文行格式" class="headerlink" title="报文行格式"></a>报文行格式</h2><p>一条典型的 CAN 报文行格式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;时间戳&gt; &lt;通道&gt; &lt;ID&gt; &lt;方向&gt; d|r &lt;DLC&gt; &lt;数据字节&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>时间戳：报文的时间，单位是秒，通常是一个浮点数</p>
+</li>
+<li><p>通道：标识报文来自哪个 CAN 通道（如 0, 1, 2）</p>
+</li>
+<li><p>ID：报文的仲裁 ID，通常以十六进制表示</p>
+</li>
+<li><p>方向 (Direction)：Tx 表示发送，Rx 表示接收</p>
+</li>
+<li><p>帧类型：d 表示数据帧（Data frame），r 表示远程帧（Remote frame）</p>
+</li>
+<li><p>DLC：Data Length Code，表示后续数据字节的长度</p>
+</li>
+<li><p>数据字节 (Data bytes)：报文的具体数据，以十六进制字节列出</p>
+</li>
+</ul>
+<h2 id="实战案例"><a href="#实战案例" class="headerlink" title="实战案例"></a>实战案例</h2><h3 id="teslaaaaa（CAN-总线数据记录格式-ASC）"><a href="#teslaaaaa（CAN-总线数据记录格式-ASC）" class="headerlink" title="teslaaaaa（CAN 总线数据记录格式-ASC）"></a>teslaaaaa（CAN 总线数据记录格式-ASC）</h3><p><img src="https://pic1.imgdb.cn/i/034FysFsyh04cbbyp9xa7i.png" alt="pasted_1788071387170_l4hnph.png"></p>
+<p>题目给的附件是常见的 CAN 总线日志格式，其中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">730 Tx = 测试设备发给汽车 ECU 的数据</span><br><span class="line">7B0 Rx = 汽车 ECU 回给测试设备的数据</span><br></pre></td></tr></table></figure>
+
+<p>所以我们重点关注 <code>730 Tx</code>，第 27 行有这么一段请求 <code>10 0B 34 00 44 08 00 00</code></p>
+<p>ISO-TP（ISO 15765-2）是一个传输层协议。它的核心作用就是解决 CAN 总线一帧最多只能传 8 字节数据的限制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10 0B 34 00 44 08 00 00</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>1 (PCI 高 4 位): 值为 1，表示这是一个首帧 (FF)。它宣告了一个多帧传输的开始</p>
+</li>
+<li><p>0B (PCI 低 12 位): 十六进制 <code>0x00B</code>，即十进制的 11。这表示整个 UDS 指令的总长度是 11 个字节</p>
+</li>
+<li><p>34 00 44 08 00 00 (后续 6 字节): 这是原始 UDS 指令的前 6 个字节的数据</p>
+</li>
+</ul>
+<p>第二段请求则是 <code>21 00 00 00 20 00 AA AA</code>，取剩下的 5 个字节，<code>21 00 00 00 20</code></p>
+<p>得到 <code>34 00 44 08 00 00 00 00 00 20 00</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">34                RequestDownload</span><br><span class="line">00                DataFormatIdentifier</span><br><span class="line">44                AddressAndLengthFormatIdentifier</span><br><span class="line">08 00 00 00       写入地址：0x08000000</span><br><span class="line">00 00 20 00       写入大小：0x2000</span><br></pre></td></tr></table></figure>
+
+<p>所以后面 ECU 要被刷入一段大小为 <code>0x2000 = 8192 bytes</code> 的固件，加载地址是 <code>0x08000000</code></p>
+<p>紧接着后面出现大量这种数据，这里是 ISO-TP 多帧</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">10 82 36 01 28 04 00 20</span><br><span class="line">21 45 01 00 08 21 03 00</span><br><span class="line">22 08 23 03 00 08 ...</span><br></pre></td></tr></table></figure>
+
+<p><code>10 82</code> 表示本次 ISO-TP 数据总长度 &#x3D; <code>0x82 = 130 bytes</code></p>
+<p>重组后的 UDS payload 是 <code>36 01</code> + 128 bytes 固件数据</p>
+<p>附件里从 <code>36 01</code> 到 <code>36 40</code> 一共有 <code>0x40</code> 块，每块有效固件数据是 128 字节，正好对应前面的 RequestDownload 大小</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"></span><br><span class="line">asc_path = <span class="string">&quot;ecu_can_log.asc&quot;</span></span><br><span class="line">out_path = <span class="string">&quot;firmware_08000000.bin&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译正则表达式，用于匹配 ASC 文件中标准 CAN 帧（ID 为 3 位十六进制，数据长度 8 字节）</span></span><br><span class="line">frame_re = re.<span class="built_in">compile</span>(</span><br><span class="line">    <span class="string">r&quot;^\s*(?P&lt;ts&gt;\d+\.\d+)\s+1\s+(?P&lt;id&gt;[0-9A-F]&#123;3&#125;)\s+&quot;</span>   <span class="comment"># 匹配时间戳、通道 1、ID</span></span><br><span class="line">    <span class="string">r&quot;(?P&lt;dir&gt;Tx|Rx)\s+d\s+8\s+&quot;</span>                           <span class="comment"># 匹配方向(Tx/Rx)和 &quot;d 8&quot;</span></span><br><span class="line">    <span class="string">r&quot;(?P&lt;data&gt;(?:[0-9A-F]&#123;2&#125;\s+)&#123;7&#125;[0-9A-F]&#123;2&#125;)&quot;</span>,        <span class="comment"># 匹配 8 个十六进制字节（空格分隔）</span></span><br><span class="line">    re.I                                                   <span class="comment"># 忽略大小写</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">frames = []  <span class="comment"># 存储所有符合条件的 CAN 帧信息（行号和数据）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开并读取ASC文件</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(asc_path, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>, errors=<span class="string">&quot;ignore&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="keyword">for</span> line_no, line <span class="keyword">in</span> <span class="built_in">enumerate</span>(f):          <span class="comment"># 遍历每一行，记录行号（从 0 开始）</span></span><br><span class="line">        m = frame_re.search(line)               <span class="comment"># 尝试用正则匹配该行</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> m:                               <span class="comment"># 如果不匹配，跳过该行</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">        can_id = <span class="built_in">int</span>(m.group(<span class="string">&quot;id&quot;</span>), <span class="number">16</span>)         <span class="comment"># 提取 CAN ID 并转为整数（十六进制）</span></span><br><span class="line">        direction = m.group(<span class="string">&quot;dir&quot;</span>)              <span class="comment"># 提取方向（Tx 或 Rx）</span></span><br><span class="line">        data = <span class="built_in">bytes</span>.fromhex(m.group(<span class="string">&quot;data&quot;</span>))   <span class="comment"># 将数据部分的十六进制字符串转为字节串</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 本题只关心 Tester 发送给 ECU 的 0x730 Tx 帧（即诊断请求）</span></span><br><span class="line">        <span class="keyword">if</span> can_id == <span class="number">0x730</span> <span class="keyword">and</span> direction == <span class="string">&quot;Tx&quot;</span>:</span><br><span class="line">            frames.append((line_no, data))      <span class="comment"># 将符合条件的帧加入列表</span></span><br><span class="line"></span><br><span class="line">messages = []   <span class="comment"># 存放所有重组后的 UDS 消息（完整 payload）</span></span><br><span class="line">cur = <span class="literal">None</span>      <span class="comment"># 当前正在重组的多帧消息的缓存（bytearray）</span></span><br><span class="line">need = <span class="number">0</span>        <span class="comment"># 当前多帧消息期望接收的总有效载荷字节数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line_no, data <span class="keyword">in</span> frames:        <span class="comment"># 按 ASC 文件顺序遍历所有筛选出的帧</span></span><br><span class="line">    pci_type = data[<span class="number">0</span>] &gt;&gt; <span class="number">4</span>         <span class="comment"># PCI 类型（高半字节）：0=单帧，1=首帧，2=连续帧，3=流控</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 单帧（Single Frame）</span></span><br><span class="line">    <span class="keyword">if</span> pci_type == <span class="number">0x0</span>:</span><br><span class="line">        length = data[<span class="number">0</span>] &amp; <span class="number">0x0F</span>      <span class="comment"># 低 4 位表示有效载荷长度（0-7）</span></span><br><span class="line">        payload = data[<span class="number">1</span>:<span class="number">1</span> + length] <span class="comment"># 截取有效数据</span></span><br><span class="line">        messages.append(payload)     <span class="comment"># 直接作为一个完整消息</span></span><br><span class="line">        cur = <span class="literal">None</span>                   <span class="comment"># 重置当前重组状态（确保没有未完成的多帧）</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 首帧（First Frame）</span></span><br><span class="line">    <span class="keyword">elif</span> pci_type == <span class="number">0x1</span>:</span><br><span class="line">        need = ((data[<span class="number">0</span>] &amp; <span class="number">0x0F</span>) &lt;&lt; <span class="number">8</span>) | data[<span class="number">1</span>]  <span class="comment"># 低 12 位表示总有效载荷长度（大端）</span></span><br><span class="line">        cur = <span class="built_in">bytearray</span>(data[<span class="number">2</span>:])                  <span class="comment"># 初始化缓存，首帧携带的前 6 字节数据</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 连续帧（Consecutive Frame）</span></span><br><span class="line">    <span class="keyword">elif</span> pci_type == <span class="number">0x2</span>:</span><br><span class="line">        <span class="keyword">if</span> cur <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:          <span class="comment"># 只有当前存在未完成的多帧时，才追加数据</span></span><br><span class="line">            cur.extend(data[<span class="number">1</span>:])     <span class="comment"># 连续帧的 PCI 后 7 字节均为有效载荷</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 流控帧（Flow Control）本题不需要处理</span></span><br><span class="line">    <span class="keyword">elif</span> pci_type == <span class="number">0x3</span>:</span><br><span class="line">        <span class="keyword">continue</span>                     <span class="comment"># 直接忽略</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 检查当前多帧重组是否已收满（如果 cur 存在且长度已达到 need）</span></span><br><span class="line">    <span class="keyword">if</span> cur <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> <span class="built_in">len</span>(cur) &gt;= need:</span><br><span class="line">        messages.append(<span class="built_in">bytes</span>(cur[:need]))  <span class="comment"># 截取前 need 个字节作为一个完整消息</span></span><br><span class="line">        cur = <span class="literal">None</span>                          <span class="comment"># 重置状态</span></span><br><span class="line"></span><br><span class="line">blocks = []   <span class="comment"># 存储所有的固件块（每个块包含序号和块数据）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历所有重组后的 UDS 消息</span></span><br><span class="line"><span class="keyword">for</span> payload <span class="keyword">in</span> messages:</span><br><span class="line">    <span class="comment"># 查找 UDS 服务 0x36（请求下载/数据传输），其第一个字节为 0x36</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(payload) &gt;= <span class="number">2</span> <span class="keyword">and</span> payload[<span class="number">0</span>] == <span class="number">0x36</span>:</span><br><span class="line">        seq = payload[<span class="number">1</span>]                    <span class="comment"># 第二个字节为块序列号（从 0 或 1 开始）</span></span><br><span class="line">        block_data = payload[<span class="number">2</span>:]            <span class="comment"># 剩余部分为实际块数据</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 按照协议，每个块应为 128 字节（0x80），如果不是则抛出异常</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(block_data) != <span class="number">0x80</span>:</span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">f&quot;bad block <span class="subst">&#123;seq:02x&#125;</span>, len=<span class="subst">&#123;<span class="built_in">len</span>(block_data)&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">        blocks.append((seq, block_data))    <span class="comment"># 将块序号和数据存入列表</span></span><br><span class="line"></span><br><span class="line">blocks.sort(key=<span class="keyword">lambda</span> x: x[<span class="number">0</span>])             <span class="comment"># 按块序号升序排序，确保顺序正确</span></span><br><span class="line"></span><br><span class="line">firmware = <span class="string">b&quot;&quot;</span>.join(block <span class="keyword">for</span> _, block <span class="keyword">in</span> blocks)  <span class="comment"># 将所有块的数据按顺序拼接成完整的固件</span></span><br><span class="line"></span><br><span class="line">Path(out_path).write_bytes(firmware)        <span class="comment"># 将固件数据写入输出文件</span></span><br></pre></td></tr></table></figure>
+
+<p>IDA 反编译可以看到一个 flag，但可惜是假的</p>
+<p><img src="https://pic1.imgdb.cn/i/034G8PICzBhB1pYUFmpbb0.png" alt="pasted_1788094692808_g2tjdx.png"></p>
+<p>去看看谁引用了它，因为这个固件没有 <code>main</code> 函数</p>
+<p><img src="https://pic1.imgdb.cn/i/034G8UzpEoKiuxukdMiEJL.png" alt="pasted_1788094917580_aw5s8g.png"></p>
+<p>这里在修改 flag 的每一位，跳过前面的 <code>flag{</code></p>
+<p><img src="https://pic1.imgdb.cn/i/034G8jHRvXxRhnztmbfzim.png" alt="pasted_1788095480715_d8ui3p.png"></p>
+<p>编写脚本解密得到 flag</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">fake = <span class="string">&quot;flag&#123;canoecr7-zd9h-1emi-or8m-f8vm2od81nfk&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">inner = <span class="built_in">list</span>(fake[<span class="number">5</span>:-<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">ops = &#123;</span><br><span class="line">    <span class="number">2</span>:  -<span class="number">0x0d</span>,</span><br><span class="line">    <span class="number">11</span>: -<span class="number">0x05</span>,</span><br><span class="line">    <span class="number">15</span>: -<span class="number">0x2c</span>,</span><br><span class="line">    <span class="number">3</span>:  -<span class="number">0x0b</span>,</span><br><span class="line">    <span class="number">5</span>:  -<span class="number">0x30</span>,</span><br><span class="line">    <span class="number">7</span>:  +<span class="number">0x2b</span>,</span><br><span class="line">    <span class="number">28</span>: +<span class="number">0x32</span>,</span><br><span class="line">    <span class="number">31</span>: +<span class="number">0x2e</span>,</span><br><span class="line">    <span class="number">19</span>: -<span class="number">0x0d</span>,</span><br><span class="line">    <span class="number">20</span>: -<span class="number">0x42</span>,</span><br><span class="line">    <span class="number">1</span>:  +<span class="number">0x03</span>,</span><br><span class="line">    <span class="number">29</span>: -<span class="number">0x37</span>,</span><br><span class="line">    <span class="number">24</span>: -<span class="number">0x33</span>,</span><br><span class="line">    <span class="number">9</span>:  -<span class="number">0x17</span>,</span><br><span class="line">    <span class="number">25</span>: -<span class="number">0x06</span>,</span><br><span class="line">    <span class="number">27</span>: -<span class="number">0x3c</span>,</span><br><span class="line">    <span class="number">4</span>:  -<span class="number">0x34</span>,</span><br><span class="line">    <span class="number">6</span>:  -<span class="number">0x0e</span>,</span><br><span class="line">    <span class="number">30</span>: -<span class="number">0x34</span>,</span><br><span class="line">    <span class="number">22</span>: -<span class="number">0x3a</span>,</span><br><span class="line">    <span class="number">12</span>: -<span class="number">0x30</span>,</span><br><span class="line">    <span class="number">16</span>: -<span class="number">0x38</span>,</span><br><span class="line">    <span class="number">34</span>: -<span class="number">0x35</span>,</span><br><span class="line">    <span class="number">0</span>:  -<span class="number">0x30</span>,</span><br><span class="line">    <span class="number">14</span>: +<span class="number">0x03</span>,</span><br><span class="line">    <span class="number">17</span>: -<span class="number">0x05</span>,</span><br><span class="line">    <span class="number">33</span>: -<span class="number">0x37</span>,</span><br><span class="line">    <span class="number">35</span>: -<span class="number">0x38</span>,</span><br><span class="line">    <span class="number">10</span>: -<span class="number">0x02</span>,</span><br><span class="line">    <span class="number">26</span>: -<span class="number">0x43</span>,</span><br><span class="line">    <span class="number">21</span>: -<span class="number">0x06</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> idx, delta <span class="keyword">in</span> ops.items():</span><br><span class="line">    inner[idx] = <span class="built_in">chr</span>(<span class="built_in">ord</span>(inner[idx]) + delta)</span><br><span class="line"></span><br><span class="line">flag = <span class="string">&quot;flag&#123;&quot;</span> + <span class="string">&quot;&quot;</span>.join(inner) + <span class="string">&quot;&#125;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+
+<p>得到 <code>flag{3dad13db-cb48-495d-b023-3231d80f1713}</code></p>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/%E5%B7%A5%E6%8E%A7/" title="工控" data-aos="zoom-in">工控</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%B7%A5%E6%8E%A7/" rel="tag" title="工控">工控</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="1527 芯片" class="lazyload">
+        <a href="/2019/04/15/1527%20%E8%8A%AF%E7%89%87/" aria-label="前一篇: 1527 芯片" title="前一篇: 1527 芯片"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            1527 芯片
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="COTP 协议" class="lazyload">
+      <a href="/2019/04/14/COTP%20%E5%8D%8F%E8%AE%AE/" aria-label="后一篇: COTP 协议"  title="后一篇: COTP 协议"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          COTP 协议
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        300.9k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        24:29
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CAN-%E6%80%BB%E7%BA%BF%E6%95%B0%E6%8D%AE%E8%AE%B0%E5%BD%95%E6%A0%BC%E5%BC%8F-ASC"><span class="toc-number">1.</span> <span class="toc-text">CAN 总线数据记录格式-ASC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">文件结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5%E6%96%87%E8%A1%8C%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">报文行格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B"><span class="toc-number">1.3.</span> <span class="toc-text">实战案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#teslaaaaa%EF%BC%88CAN-%E6%80%BB%E7%BA%BF%E6%95%B0%E6%8D%AE%E8%AE%B0%E5%BD%95%E6%A0%BC%E5%BC%8F-ASC%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">teslaaaaa（CAN 总线数据记录格式-ASC）</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">245</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">186</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "CAN 总线数据记录格式-ASC",
+          url: "https://suc2es2.github.io/2019/04/14/CAN%20%E6%80%BB%E7%BA%BF%E6%95%B0%E6%8D%AE%E8%AE%B0%E5%BD%95%E6%A0%BC%E5%BC%8F-ASC/",
+          excerpt: "",
+          description: "",
+          stripContent: "CAN 总线数据记录格式-ASC文件结构一个典型的 .asc 文件由三部分组成：  文件头 (Header)：包含日志的元数据，如开始日期、时间戳格式等  123date Fri May 12 04:16:06.532 pm 2023    # 记录开始时间[reference:16]base hex timestamps absolute            # 基数(hex)和时间戳类型(absolute)[reference:17]internal events logged      ",
+          date: "Sun Apr 14 2019 13:20:00 GMT+0800",
+          updated: "Sun Aug 30 2026 21:14:29 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>

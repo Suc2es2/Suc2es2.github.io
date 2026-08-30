@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034AsT30EIfrjNxs5EIs9S.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034Asoyzdxw9KbAK3lXktH.png">
 <meta property="article:published_time" content="2019-05-22T06:18:00.000Z">
-<meta property="article:modified_time" content="2026-08-21T07:51:31.710Z">
+<meta property="article:modified_time" content="2026-08-30T08:58:57.352Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="Misc">
 <meta property="article:tag" content="Reverse">
@@ -172,7 +172,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">244</div>
+    <div class="sidebar-state-number">245</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -239,7 +239,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2019-05-22T06:18:00.000Z" itemprop="datePublished">2019-05-22</time>
-    <time style="display: none;" id="post-update-time">2026-08-21</time>
+    <time style="display: none;" id="post-update-time">2026-08-30</time>
   </span>
 </div>
 
@@ -264,11 +264,10 @@
 <p><img src="https://pic1.imgdb.cn/item/6a4b164956011c553991505c.png"></p>
 <p>flag 就是 <code>RCTF_HeyLogo</code></p>
 <h2 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h2><h3 id="babyre1（XXTEA）"><a href="#babyre1（XXTEA）" class="headerlink" title="babyre1（XXTEA）"></a>babyre1（XXTEA）</h3><p><img src="https://pic1.imgdb.cn/i/034AqEUaAOPKbPObXBpCNa.png" alt="pasted_1787292344729_72yk5b.png"></p>
-<p>IDA 反编译</p>
+<p>IDA 反编译，首先输入必须严格 16 个字符，然后调用了 <code>sub_C00(v6,16,&amp;ptr)</code>，进去看看</p>
 <p><img src="https://pic1.imgdb.cn/i/034AqXlymCN8rNqFtJ2X0T.png" alt="pasted_1787293105084_5ka9lz.png"></p>
-<p>首先输入必须严格 16 个字符，然后调用了 <code>sub_C00(v6,16,&amp;ptr)</code>，进去看看</p>
-<p><img src="https://pic1.imgdb.cn/i/034AqbgqjFiJBTNWiMB9e7.png" alt="pasted_1787293259145_57qwon.png"></p>
 <p>在这里面又调用了 <code>sub_BE0()</code>，负责把一个字符转换成十六进制数值</p>
+<p><img src="https://pic1.imgdb.cn/i/034AqbgqjFiJBTNWiMB9e7.png" alt="pasted_1787293259145_57qwon.png"></p>
 <p>关键代码是 <code>v1 = a1 - 48;</code>，例如：<code>&#39;4&#39; = 52 - 48 = 4</code></p>
 <p><img src="https://pic1.imgdb.cn/i/034AqehEDI6W6gW6IWE2vA.png" alt="pasted_1787293377632_9tq7yo.png"></p>
 <p>接下来重点分析 <code>sub_1180()</code> 函数</p>
@@ -424,10 +423,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        297.4k
+        300.9k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        24:12
+        24:29
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -460,7 +459,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">244</div>
+    <div class="sidebar-state-number">245</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -583,7 +582,7 @@
           description: "",
           stripContent: "2019 RCTF WriteUp🏛️ 组织架构 RCTF 2019 由国家创新与发展战略研究会主办，360 集团与南京赛宁信息技术有限公司联合承办 命题团队为 r3kapig 战队 ⚙️ 赛制与规模  赛制：采用线上 CTF（Capture The Flag）解题模式（Jeopardy-style）  时间：比赛于 2019 年 5 月举行  规模：赛事在 CTFtime 上的权重为 52.89 分，吸引了全球众多顶尖战队参与   Miscdraw（签到）一门叫 logo 的冷门编程语言，在",
           date: "Wed May 22 2019 14:18:00 GMT+0800",
-          updated: "Fri Aug 21 2026 15:51:31 GMT+0800",
+          updated: "Sun Aug 30 2026 16:58:57 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
