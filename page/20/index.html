@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">243</div>
+    <div class="sidebar-state-number">244</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -245,8 +245,118 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019-De1CTF/" aria-label="2019 De1CTF WriteUp" title="2019 De1CTF WriteUp"></a>
+      <a class="post-link" href="/2019/05/22/2019-CISCN-%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BA/" aria-label="2019 CISCN 华北赛区 WriteUp" title="2019 CISCN 华北赛区 WriteUp"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 CISCN 华北赛区 WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>371 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">2019 CISCN 华北赛区 WriteUp</h2>
+      <article class="post-article">
+          2019 CISCN 华北赛区 WriteUp🏛️ 大赛组织架构
+
+主办单位：教育部高等学校网络空间安全专业教学指导委员会
+
+承办单位：电子科技大学
+
+作品赛决赛地点：江苏南京
+
+创新实践能力赛决赛地点：四川成都
+
+
+WebHack World（SQL 注入 + 括号绕过）
+考察 POST 类型的 SQL 注入，开局给了表名和列名
+
+经过 FUZZ 过滤了如下字符
+12345678910111213141516171819202122空格||#-;&amp;amp;+orand`&amp;quot;insertgrouplimitupdatedelete*intounionload_fileoutfile.
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019-CSAWCTF-%E5%A4%8D%E8%B5%9B/" aria-label="2019 CSAW CTF 复赛 WriteUp" title="2019 CSAW CTF 复赛 WriteUp"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 CSAW CTF 复赛 WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>411 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">2019 CSAW CTF 复赛 WriteUp</h2>
+      <article class="post-article">
+          2019 CSAW CTF 复赛 WriteUp🏆 决赛概况
+
+时间与地点：决赛于 2019 年 11 月 6日 至 8 日在美国纽约布鲁克林举行。此外，在法国、印度、以色列、阿联酋和墨西哥也设有同步进行的国际赛区
+
+赛制：采用 Jeopardy 解题模式
+
+规模：全球共 1225 支队伍参与选拔，最终 44 支队伍进入全球总决赛。仅美加赛区就迎来了 66 支决赛队伍
+
+
+WebUnagi（XXE 注入 + UTF-16 编码绕过 + intro 字段绕过）打开是正常的页面
+
+Upload 页面提供一个 XML 用户格式样例
+
+普通的 XXE 会被拦截
+123456789&amp;lt;?xml v
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019-NestCTF/" aria-label="2019 NEST CTF WriteUp" title="2019 NEST CTF WriteUp"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 NEST CTF WriteUp" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>463 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">2019 NEST CTF WriteUp</h2>
+      <article class="post-article">
+          2019 NEST CTF WriteUp🏆 赛事概况
+
+主办方：网络内生安全试验场（NEST）
+
+比赛形式：线上个人夺旗赛（CTF）
+
+题目方向：主要包含Web、Reverse（逆向工程）、Misc（杂项） 等类型
+
+比赛平台：https://nest.ichunqiu.com/
+
+
+Weblove math 2（分号绕过 + 异或绕过 + 可变变量绕过 + {} 绕过）
+经典绕 WAF：
+
+c 长度必须 &amp;lt; 60
+
+c 里不能有空格、引号、反引号、[]
+
+c 里出现的所有字母标识符，都必须在数学函数白名单里
+
+最后直接 eval，并且前面拼了 echo
+
+
+
+最终执行的语句是 ev
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/2019-De1CTF/" aria-label="2019 De1CTF WriteUp" title="2019 De1CTF WriteUp"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 De1CTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -322,86 +432,9 @@ W&amp;a
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019-NestCTF/" aria-label="2019 NEST CTF WriteUp" title="2019 NEST CTF WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 NEST CTF WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>463 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
-      </div>
-      <h2 class="post-title">2019 NEST CTF WriteUp</h2>
-      <article class="post-article">
-          2019 NEST CTF WriteUp🏆 赛事概况
-
-主办方：网络内生安全试验场（NEST）
-
-比赛形式：线上个人夺旗赛（CTF）
-
-题目方向：主要包含Web、Reverse（逆向工程）、Misc（杂项） 等类型
-
-比赛平台：https://nest.ichunqiu.com/
-
-
-Weblove math 2（分号绕过 + 异或绕过 + 可变变量绕过 + {} 绕过）
-经典绕 WAF：
-
-c 长度必须 &amp;lt; 60
-
-c 里不能有空格、引号、反引号、[]
-
-c 里出现的所有字母标识符，都必须在数学函数白名单里
-
-最后直接 eval，并且前面拼了 echo
-
-
-
-最终执行的语句是 ev
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019-CISCN-%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BA/" aria-label="2019 CISCN 华北赛区 WriteUp" title="2019 CISCN 华北赛区 WriteUp"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 CISCN 华北赛区 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>371 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
-      </div>
-      <h2 class="post-title">2019 CISCN 华北赛区 WriteUp</h2>
-      <article class="post-article">
-          2019 CISCN 华北赛区 WriteUp🏛️ 大赛组织架构
-
-主办单位：教育部高等学校网络空间安全专业教学指导委员会
-
-承办单位：电子科技大学
-
-作品赛决赛地点：江苏南京
-
-创新实践能力赛决赛地点：四川成都
-
-
-WebHack World（SQL 注入 + 括号绕过）
-考察 POST 类型的 SQL 注入，开局给了表名和列名
-
-经过 FUZZ 过滤了如下字符
-12345678910111213141516171819202122空格||#-;&amp;amp;+orand`&amp;quot;insertgrouplimitupdatedelete*intounionload_fileoutfile.
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/D%20%E8%AF%AD%E8%A8%80/" aria-label="D 语言" title="D 语言"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="D 语言" class="lazyload">
     </div>
     <div class="post-info">
@@ -422,9 +455,9 @@ WebHack World（SQL 注入 + 括号绕过）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/Python%20%E9%80%86%E5%90%91/" aria-label="Python" title="Python"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Python" class="lazyload">
     </div>
     <div class="post-info">
@@ -447,6 +480,28 @@ Python 程序的编译与运行机制源码 .py 被编译为 字节码 .pyc，�
 
 
 逆向的核心就是：获取 .pyc → 反
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/RC4/" aria-label="RC4" title="RC4"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="RC4" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>5.1k 字</span>
+        <span><span class="icon-clock"></span>24 分钟</span>
+      </div>
+      <h2 class="post-title">RC4</h2>
+      <article class="post-article">
+          RC4RC4（Rivest Cipher 4）是由 Ron Rivest 在 1987 年设计的对称流密码，因其结构简单、软件实现高效，曾被广泛应用于 SSL&amp;#x2F;TLS、WEP、WPA、RDP、以及各种恶意软件和 CTF 题目中
+算法结构RC4 由两个核心阶段组成：密钥调度算法（KSA, Key-Scheduling Algorithm） 和 伪随机生成算法（PRGA, Pseudo-Random Generation Algorithm）
+状态初始化一个 256 字节的 S 盒（state vector），初始化为 S[i] = i，i = 0..255
+密钥 key 为任意长度（1
       </article>
     </div>
   </div>
@@ -488,30 +543,8 @@ C：压
 </div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/RC4/" aria-label="RC4" title="RC4"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="RC4" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>5.1k 字</span>
-        <span><span class="icon-clock"></span>24 分钟</span>
-      </div>
-      <h2 class="post-title">RC4</h2>
-      <article class="post-article">
-          RC4RC4（Rivest Cipher 4）是由 Ron Rivest 在 1987 年设计的对称流密码，因其结构简单、软件实现高效，曾被广泛应用于 SSL&amp;#x2F;TLS、WEP、WPA、RDP、以及各种恶意软件和 CTF 题目中
-算法结构RC4 由两个核心阶段组成：密钥调度算法（KSA, Key-Scheduling Algorithm） 和 伪随机生成算法（PRGA, Pseudo-Random Generation Algorithm）
-状态初始化一个 256 字节的 S 盒（state vector），初始化为 S[i] = i，i = 0..255
-密钥 key 为任意长度（1
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/Ret2text/" aria-label="Ret2text" title="Ret2text"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2text" class="lazyload">
     </div>
     <div class="post-info">
@@ -535,30 +568,6 @@ text：.text 段，存放程序机器指令的区域
 因为执行的代码是程序本来就有的，所以它不需要注入 Shellcode，也能绕过 NX 保护
 实战案例帮我取一个题目名称（Ret2text）
 没开金丝雀，read 函数读取大小为 6
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/SMT/" aria-label="SMT" title="SMT"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="SMT" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1.1k 字</span>
-        <span><span class="icon-clock"></span>6 分钟</span>
-      </div>
-      <h2 class="post-title">SMT</h2>
-      <article class="post-article">
-          SMT概述可满足性模理论（Satisfiability Modulo Theories，简称 SMT） 可以看作是一个更强大的 “解方程” 工具。它解决的核心问题是：在特定的数学理论（如整数运算、数组、位向量等）背景下，判断一个逻辑公式是否存在一组解
-工作原理主流的 SMT 求解器多采用 “惰性（Lazy）算法”，其工作流程像一个高效的 “猜-验” 循环：
-
-抽象化：将 SMT 公式中的理论部分（如 x &amp;gt; y）替换为布尔变量，交给内部的 SAT 求解器去 “猜” 一个可能的布尔赋值组合
-
-理论验证：将 SAT 求解器 “猜” 出的布尔组合，还原回具体的理论约束，交给对应的理论求解器（如
       </article>
     </div>
   </div>
@@ -617,10 +626,10 @@ IDA 反编译发现对 Str 和 Destination 进行了操作
       </div>
       <div>
         <span class="icon-brush"></span>
-        297.3k
+        297.4k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        24:13
+        24:12
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -648,7 +657,7 @@ IDA 反编译发现对 Str 和 Destination 进行了操作
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">243</div>
+    <div class="sidebar-state-number">244</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
