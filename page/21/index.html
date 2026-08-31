@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">245</div>
+    <div class="sidebar-state-number">246</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -245,8 +245,39 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/SMT/" aria-label="SMT" title="SMT"></a>
+      <a class="post-link" href="/2019/05/22/SMC/" aria-label="SMC" title="SMC"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="SMC" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">SMC</h2>
+      <article class="post-article">
+          SMCSMC（Self-Modifying Code，自修改代码） 是一种程序在执行过程中修改自身指令的技术
+原理程序运行时，动态修改内存中代码段的机器码，然后跳转到修改后的地址执行。修改方式包括：
+
+异或（XOR） — 用密钥异或加密代码段，运行时解密
+
+加减常量 — 对指令字节增减固定值
+
+直接覆写 — 用预先准备好的原始字节替换
+
+
+实战案例jocker（SMC 逆向 + IDA 脚本）
+IDA 反编译发现对 Str 和 Destination 进行了操作
+12345678910111213141516171819202122232425262728int __cdecl main(in
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/SMT/" aria-label="SMT" title="SMT"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="SMT" class="lazyload">
     </div>
     <div class="post-info">
@@ -268,9 +299,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/Schneider%20%E6%A8%A1%E5%9D%97%E5%9B%BA%E4%BB%B6/" aria-label="Schneider 模块固件" title="Schneider 模块固件"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Schneider 模块固件" class="lazyload">
     </div>
     <div class="post-info">
@@ -286,36 +317,6 @@
 解压缩附件，里面有个压缩文件叫 SchneiderTFE.zip，所以应该考察的是 Schneider 模块固件
 关键文件是 FLASH0/wwwroot/conf/exec/NOE77101.bin
 1od -Ax -tx1z -j 0x210 -N 48 ./NOE77
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/VM%20%E9%80%86%E5%90%91/" aria-label="虚拟机" title="虚拟机"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="虚拟机" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1k 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
-      </div>
-      <h2 class="post-title">虚拟机</h2>
-      <article class="post-article">
-          虚拟机虚拟机逆向（Virtual Machine Reverse Engineering）是指对软件中自实现的虚拟机（或称解释器）进行反向分析的技术
-程序将原本的原生代码或关键逻辑编译成自定义的字节码（bytecode），然后由一个解释器循环（VM loop）执行这些字节码。逆向工程师需要：
-
-识别出虚拟机结构（操作码表、虚拟寄存器、虚拟栈、内存模型等）
-
-提取字节码，并反汇编为人类可读的虚拟指令
-
-理解虚拟指令序列的算法逻辑，以破解保护、提取算法或找到漏洞
-
-
-虚拟机分类根据虚拟机的执行模型，通常分为两类
-基于栈的虚拟机操作数隐式地通过一个虚拟栈传递，指令执行时从栈顶弹出操作数，计算结果再压
       </article>
     </div>
   </div>
@@ -365,8 +366,38 @@ libil2cpp.so &amp;#x2F; GameAssembly.dll + global-metadata.dat
 </div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/VxWorks%20%E5%9B%BA%E4%BB%B6/" aria-label="VxWorks 固件" title="VxWorks 固件"></a>
+      <a class="post-link" href="/2019/05/22/VM%20%E9%80%86%E5%90%91/" aria-label="虚拟机" title="虚拟机"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="虚拟机" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">虚拟机</h2>
+      <article class="post-article">
+          虚拟机虚拟机逆向（Virtual Machine Reverse Engineering）是指对软件中自实现的虚拟机（或称解释器）进行反向分析的技术
+程序将原本的原生代码或关键逻辑编译成自定义的字节码（bytecode），然后由一个解释器循环（VM loop）执行这些字节码。逆向工程师需要：
+
+识别出虚拟机结构（操作码表、虚拟寄存器、虚拟栈、内存模型等）
+
+提取字节码，并反汇编为人类可读的虚拟指令
+
+理解虚拟指令序列的算法逻辑，以破解保护、提取算法或找到漏洞
+
+
+虚拟机分类根据虚拟机的执行模型，通常分为两类
+基于栈的虚拟机操作数隐式地通过一个虚拟栈传递，指令执行时从栈顶弹出操作数，计算结果再压
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/VxWorks%20%E5%9B%BA%E4%BB%B6/" aria-label="VxWorks 固件" title="VxWorks 固件"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VxWorks 固件" class="lazyload">
     </div>
     <div class="post-info">
@@ -396,9 +427,9 @@ VxWorks 主映像：包含内核、任务、符号表（可选），通常被压
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/WebAssembly%20%E9%80%86%E5%90%91/" aria-label="WebAssembly" title="WebAssembly"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="WebAssembly" class="lazyload">
     </div>
     <div class="post-info">
@@ -421,9 +452,9 @@ VxWorks 主映像：包含内核、任务、符号表（可选），通常被压
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/%E8%8A%B1%E6%8C%87%E4%BB%A4/" aria-label="花指令" title="花指令"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="花指令" class="lazyload">
     </div>
     <div class="post-info">
@@ -458,9 +489,9 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/14/JT%20T%20808%20%E5%8D%8F%E8%AE%AE/" aria-label="JT/T 808 协议" title="JT/T 808 协议"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="JT/T 808 协议" class="lazyload">
     </div>
     <div class="post-info">
@@ -480,9 +511,9 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/04/15/1527%20%E8%8A%AF%E7%89%87/" aria-label="1527 芯片" title="1527 芯片"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="1527 芯片" class="lazyload">
     </div>
     <div class="post-info">
@@ -513,32 +544,6 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/14/CAN%20%E6%80%BB%E7%BA%BF%E6%95%B0%E6%8D%AE%E8%AE%B0%E5%BD%95%E6%A0%BC%E5%BC%8F-ASC/" aria-label="CAN 总线数据记录格式-ASC" title="CAN 总线数据记录格式-ASC"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="CAN 总线数据记录格式-ASC" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-14</span>
-        <span><span class="icon-pencil"></span>1.9k 字</span>
-        <span><span class="icon-clock"></span>9 分钟</span>
-      </div>
-      <h2 class="post-title">CAN 总线数据记录格式-ASC</h2>
-      <article class="post-article">
-          CAN 总线数据记录格式-ASC文件结构一个典型的 .asc 文件由三部分组成：
-
-文件头 (Header)：包含日志的元数据，如开始日期、时间戳格式等
-
-123date Fri May 12 04:16:06.532 pm 2023    # 记录开始时间[reference:16]base hex timestamps absolute            # 基数(hex)和时间戳类型(absolute)[reference:17]internal events logged                 # 是否记录内部事件[reference:18]
-
-
-触发块 (Trigger
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/20/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/22/">下一页 &raquo;</a>
   </nav>
@@ -562,10 +567,10 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
       </div>
       <div>
         <span class="icon-brush"></span>
-        302.5k
+        303k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        24:37
+        24:39
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -593,7 +598,7 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">245</div>
+    <div class="sidebar-state-number">246</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
