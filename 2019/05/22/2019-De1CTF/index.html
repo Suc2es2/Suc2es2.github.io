@@ -24,6 +24,7 @@
 <meta property="og:site_name" content="雾島风起時">
 <meta property="og:description" content="2019 De1CTF WriteUp🏛️ 组织架构  主办方：De1ta 战队  技术支持：赛宁网安  赞助商：华为、天融信、陌陌安全、红帽安全实验室   📊 赛事规模 本次比赛规模盛大，共吸引了来自全球 77 个国家和地区的 1362 支队伍参赛 🏆 比赛结果    排名 队伍名称 解题数 总分    1 Whitzard (复旦大学) 23 11226   2 0ops (上海交通大学">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034HKRmHzxNYj2LZxEpufE.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/033s6gcj7VLhG8ZsoKOdnU.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/033sKHRTybVzVxAsvSckBF.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/033sLH9iCMYLtAMAHuR0mc.png">
@@ -31,11 +32,12 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/i/033sLIPx6JtNY1qeeChxCQ.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/033sLOEFwBImv2AKZsKdN6.png">
 <meta property="article:published_time" content="2019-05-22T06:18:00.000Z">
-<meta property="article:modified_time" content="2026-08-09T10:26:37.633Z">
+<meta property="article:modified_time" content="2026-09-01T15:18:50.555Z">
 <meta property="article:author" content="ALL">
+<meta property="article:tag" content="Crypto">
 <meta property="article:tag" content="Reverse">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic1.imgdb.cn/i/033s6gcj7VLhG8ZsoKOdnU.png">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034HKRmHzxNYj2LZxEpufE.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -153,7 +155,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-De1CTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 De1CTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-number">1.1.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mine-Sweeping%EF%BC%88Unity%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">Mine Sweeping（Unity）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-De1CTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 De1CTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.1.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#xorz%EF%BC%88%E9%87%8D%E5%A4%8D%E5%AF%86%E9%92%A5-XOR%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">xorz（重复密钥 XOR）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-number">1.2.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mine-Sweeping%EF%BC%88Unity%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">Mine Sweeping（Unity）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -231,7 +233,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2019-05-22T06:18:00.000Z" itemprop="datePublished">2019-05-22</time>
-    <time style="display: none;" id="post-update-time">2026-08-09</time>
+    <time style="display: none;" id="post-update-time">2026-09-01</time>
   </span>
 </div>
 
@@ -322,6 +324,26 @@
 <td align="left">4947</td>
 </tr>
 </tbody></table>
+<h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="xorz（重复密钥-XOR）"><a href="#xorz（重复密钥-XOR）" class="headerlink" title="xorz（重复密钥 XOR）"></a>xorz（重复密钥 XOR）</h3><p><img src="https://pic1.imgdb.cn/i/034HKRmHzxNYj2LZxEpufE.png" alt="pasted_1788275713310_drgvzn.png"></p>
+<p>加密逻辑是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cipher[i] = plain[i] ^ key[i % <span class="built_in">len</span>(key)] ^ salt[i % <span class="built_in">len</span>(salt)]</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>salt</code> 已知，所以先异或回去</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmp[i] = cipher[i] ^ salt[i % <span class="number">14</span>]</span><br></pre></td></tr></table></figure>
+
+<p>得到</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmp[i] = plain[i] ^ key[i % <span class="built_in">len</span>(key)]</span><br></pre></td></tr></table></figure>
+
+<p>这就变成了经典的 repeating-key XOR。因为明文是英文长文本，key 长度又小于 38，所以可以用英文频率分析、重合指数 IC、汉明距离或者 printable 约束恢复 key</p>
+<p>去 <code>salt</code> 后，对 <code>key_len = 2..37</code> 分组</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">subs = [cipher[i::key_len] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(key_len)]</span><br></pre></td></tr></table></figure>
+
+<p>每一组都相当于被同一个 key 字节 XOR 的英文字符列，所以正确 <code>key_len</code> 下，各列的英文统计特征会更明显</p>
+<p>拿到 <code>key_len = 30</code> 后，每一位单独爆破</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> pos <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">30</span>):</span><br><span class="line">    column = tmp[pos::<span class="number">30</span>]</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">256</span>):</span><br><span class="line">        plain_column = <span class="built_in">bytes</span>(c ^ k <span class="keyword">for</span> c <span class="keyword">in</span> column)</span><br><span class="line">        <span class="comment"># 判断是否像英文：可打印字符、空格、e/t/a/o/i/n 频率等</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> cycle</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line">ct_hex = <span class="string">&quot;49380d773440222d1b421b3060380c3f403c3844791b2026...&quot;</span>  <span class="comment"># 填完整 output</span></span><br><span class="line">salt = <span class="string">b&quot;WeAreDe1taTeam&quot;</span></span><br><span class="line"></span><br><span class="line">ct = <span class="built_in">bytes</span>.fromhex(ct_hex)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 去掉 salt</span></span><br><span class="line">tmp = <span class="built_in">bytes</span>(c ^ salt[i % <span class="built_in">len</span>(salt)] <span class="keyword">for</span> i, c <span class="keyword">in</span> <span class="built_in">enumerate</span>(ct))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 英文评分</span></span><br><span class="line">freq = &#123;</span><br><span class="line">    <span class="string">&#x27; &#x27;</span>: <span class="number">13.0</span>, <span class="string">&#x27;e&#x27;</span>: <span class="number">12.7</span>, <span class="string">&#x27;t&#x27;</span>: <span class="number">9.1</span>, <span class="string">&#x27;a&#x27;</span>: <span class="number">8.2</span>, <span class="string">&#x27;o&#x27;</span>: <span class="number">7.5</span>,</span><br><span class="line">    <span class="string">&#x27;i&#x27;</span>: <span class="number">7.0</span>, <span class="string">&#x27;n&#x27;</span>: <span class="number">6.7</span>, <span class="string">&#x27;s&#x27;</span>: <span class="number">6.3</span>, <span class="string">&#x27;h&#x27;</span>: <span class="number">6.1</span>, <span class="string">&#x27;r&#x27;</span>: <span class="number">6.0</span>,</span><br><span class="line">    <span class="string">&#x27;d&#x27;</span>: <span class="number">4.3</span>, <span class="string">&#x27;l&#x27;</span>: <span class="number">4.0</span>, <span class="string">&#x27;u&#x27;</span>: <span class="number">2.8</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">score</span>(<span class="params">bs</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        s = bs.decode(<span class="string">&quot;latin1&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">10</span>**<span class="number">9</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">any</span>(ch <span class="keyword">not</span> <span class="keyword">in</span> string.printable <span class="keyword">for</span> ch <span class="keyword">in</span> s):</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">10</span>**<span class="number">9</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>(freq.get(ch.lower(), <span class="number">0</span>) <span class="keyword">for</span> ch <span class="keyword">in</span> s)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 已知 WP 里 key_len = 30，也可以自己先用 IC/Hamming 跑</span></span><br><span class="line">key_len = <span class="number">30</span></span><br><span class="line">key = <span class="string">b&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> pos <span class="keyword">in</span> <span class="built_in">range</span>(key_len):</span><br><span class="line">    col = tmp[pos::key_len]</span><br><span class="line">    best = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">256</span>):</span><br><span class="line">        dec = <span class="built_in">bytes</span>(c ^ k <span class="keyword">for</span> c <span class="keyword">in</span> col)</span><br><span class="line">        sc = score(dec)</span><br><span class="line">        <span class="keyword">if</span> best <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> sc &gt; best[<span class="number">0</span>]:</span><br><span class="line">            best = (sc, k)</span><br><span class="line"></span><br><span class="line">    key += <span class="built_in">bytes</span>([best[<span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;candidate key =&quot;</span>, key)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4. 用最终 key 解密验证</span></span><br><span class="line">key = <span class="string">b&quot;W3lc0m3tOjo1nu55un1ojOt3m0cl3W&quot;</span></span><br><span class="line">pt = <span class="built_in">bytes</span>(tmp[i] ^ key[i % <span class="built_in">len</span>(key)] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(tmp)))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(pt.decode(errors=<span class="string">&quot;ignore&quot;</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;flag = de1ctf&#123;%s&#125;&quot;</span> % key.decode())</span><br></pre></td></tr></table></figure>
+
 <h2 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h2><h3 id="Mine-Sweeping（Unity）"><a href="#Mine-Sweeping（Unity）" class="headerlink" title="Mine Sweeping（Unity）"></a>Mine Sweeping（Unity）</h3><p><img src="https://pic1.imgdb.cn/i/033s6gcj7VLhG8ZsoKOdnU.png" alt="pasted_1784452494440_ldg9s1.png"></p>
 <p>打开附件可以看到这是一个 Unity 游戏，Unity C# 题的核心逻辑通常都在 <code>Mine Sweeping_Data/Managed/Assembly-CSharp.dll</code></p>
 <p>直接用 dnSpy 反编译，其中</p>
@@ -354,7 +376,7 @@
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/CTF/" title="CTF" data-aos="zoom-in">CTF</a>
 
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Reverse/" rel="tag" title="Reverse">Reverse</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Crypto/" rel="tag" title="Crypto">Crypto</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Reverse/" rel="tag" title="Reverse">Reverse</a></li></ul>
 
     </footer>
   </div>
@@ -399,10 +421,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        306k
+        306.9k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        24:54
+        24:59
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -424,7 +446,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-De1CTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 De1CTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-number">1.1.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mine-Sweeping%EF%BC%88Unity%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">Mine Sweeping（Unity）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2019-De1CTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2019 De1CTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Crypto"><span class="toc-number">1.1.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#xorz%EF%BC%88%E9%87%8D%E5%A4%8D%E5%AF%86%E9%92%A5-XOR%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">xorz（重复密钥 XOR）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-number">1.2.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mine-Sweeping%EF%BC%88Unity%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">Mine Sweeping（Unity）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -558,7 +580,7 @@
           description: "",
           stripContent: "2019 De1CTF WriteUp🏛️ 组织架构  主办方：De1ta 战队  技术支持：赛宁网安  赞助商：华为、天融信、陌陌安全、红帽安全实验室   📊 赛事规模 本次比赛规模盛大，共吸引了来自全球 77 个国家和地区的 1362 支队伍参赛 🏆 比赛结果    排名 队伍名称 解题数 总分    1 Whitzard (复旦大学) 23 11226   2 0ops (上海交通大学) 21 9117   3 Balsn (中国台湾) 20 8852   4 NU1L (联合战队)",
           date: "Wed May 22 2019 14:18:00 GMT+0800",
-          updated: "Sun Aug 09 2026 18:26:37 GMT+0800",
+          updated: "Tue Sep 01 2026 23:18:50 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
