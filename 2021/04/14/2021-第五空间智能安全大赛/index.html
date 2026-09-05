@@ -28,11 +28,12 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034DsUU1jYJNy1weAUVkLK.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034DsU1jU5ApKphr2PNzs6.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034It4279SounqADJZemKj.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034JN5qPsnS0EKlOatFmmq.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034JMU6kuP8x5KPPKdkE4Q.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034JMaAGfGHKNOM60oHV5h.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034JMiBz434ry9mfH3kbWq.png">
 <meta property="article:published_time" content="2021-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-09-05T06:02:54.969Z">
+<meta property="article:modified_time" content="2026-09-05T06:15:55.651Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
@@ -393,7 +394,8 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span><span class="string">&#x27;/**/union/**/select/**/replace(replace(&#x27;</span><span class="number">1</span>&quot;/**/union/**/select/**/replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)#&#x27;,char(34),char(39)),char(46),&#x27;1&quot;<span class="comment">/**/</span><span class="keyword">union</span><span class="comment">/**/</span><span class="keyword">select</span><span class="comment">/**/</span>replace(replace(&quot;.&quot;,<span class="type">char</span>(<span class="number">34</span>),<span class="type">char</span>(<span class="number">39</span>)),<span class="type">char</span>(<span class="number">46</span>),&quot;.&quot;)#<span class="string">&#x27;)#</span></span><br></pre></td></tr></table></figure>
 
 <p>所以最后可以拿到 flag</p>
-<h3 id="EasyCleanup（session-upload-progress-文件包含-条件竞争）"><a href="#EasyCleanup（session-upload-progress-文件包含-条件竞争）" class="headerlink" title="EasyCleanup（session.upload_progress 文件包含 + 条件竞争）"></a>EasyCleanup（<code>session.upload_progress</code> 文件包含 + 条件竞争）</h3><p>源码如下，当没有 <code>mode</code> 时显示源码；当 <code>mode=eval</code> 时会执行 <code>$shell</code>；当传入 <code>file</code> 参数时会执行 <code>include $_GET[&#39;file&#39;]</code></p>
+<h3 id="EasyCleanup（session-upload-progress-文件包含-条件竞争）"><a href="#EasyCleanup（session-upload-progress-文件包含-条件竞争）" class="headerlink" title="EasyCleanup（session.upload_progress 文件包含 + 条件竞争）"></a>EasyCleanup（<code>session.upload_progress</code> 文件包含 + 条件竞争）</h3><p><img src="https://pic1.imgdb.cn/i/034JN5qPsnS0EKlOatFmmq.png" alt="pasted_1788588949546_exyeja.png"></p>
+<p>源码如下，当没有 <code>mode</code> 时显示源码；当 <code>mode=eval</code> 时会执行 <code>$shell</code>；当传入 <code>file</code> 参数时会执行 <code>include $_GET[&#39;file&#39;]</code></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;mode&#x27;</span>]))&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(__file__);</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;mode&#x27;</span>] == <span class="string">&quot;eval&quot;</span>)&#123;</span><br><span class="line">    <span class="variable">$shell</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;shell&#x27;</span>] ?? <span class="string">&#x27;phpinfo();&#x27;</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">strlen</span>(<span class="variable">$shell</span>) &gt; <span class="number">15</span> | <span class="title function_ invoke__">filter</span>(<span class="variable">$shell</span>) | <span class="title function_ invoke__">checkNums</span>(<span class="variable">$shell</span>)) <span class="keyword">exit</span>(<span class="string">&quot;hacker&quot;</span>);</span><br><span class="line">    <span class="keyword">eval</span>(<span class="variable">$shell</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">strlen</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]) &gt; <span class="number">15</span> | <span class="title function_ invoke__">filter</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>])) <span class="keyword">exit</span>(<span class="string">&quot;hacker&quot;</span>);</span><br><span class="line">    <span class="keyword">include</span> <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params"><span class="variable">$var</span></span>): <span class="title">bool</span></span>&#123;</span><br><span class="line">    <span class="variable">$banned</span> = [<span class="string">&quot;while&quot;</span>, <span class="string">&quot;for&quot;</span>, <span class="string">&quot;\$_&quot;</span>, <span class="string">&quot;include&quot;</span>, <span class="string">&quot;env&quot;</span>, <span class="string">&quot;require&quot;</span>, <span class="string">&quot;?&quot;</span>, <span class="string">&quot;:&quot;</span>, <span class="string">&quot;^&quot;</span>, <span class="string">&quot;+&quot;</span>, <span class="string">&quot;-&quot;</span>, <span class="string">&quot;%&quot;</span>, <span class="string">&quot;*&quot;</span>, <span class="string">&quot;`&quot;</span>];</span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$banned</span> <span class="keyword">as</span> <span class="variable">$ban</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="title function_ invoke__">strstr</span>(<span class="variable">$var</span>, <span class="variable">$ban</span>)) <span class="keyword">return</span> True;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> False;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkNums</span>(<span class="params"><span class="variable">$var</span></span>): <span class="title">bool</span></span>&#123;</span><br><span class="line">    <span class="variable">$alphanum</span> = <span class="string">&#x27;abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&#x27;</span>;</span><br><span class="line">    <span class="variable">$cnt</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="title function_ invoke__">strlen</span>(<span class="variable">$alphanum</span>); <span class="variable">$i</span>++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="variable">$j</span> = <span class="number">0</span>; <span class="variable">$j</span> &lt; <span class="title function_ invoke__">strlen</span>(<span class="variable">$var</span>); <span class="variable">$j</span>++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable">$var</span>[<span class="variable">$j</span>] == <span class="variable">$alphanum</span>[<span class="variable">$i</span>])&#123;</span><br><span class="line">                <span class="variable">$cnt</span> += <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span>(<span class="variable">$cnt</span> &gt; <span class="number">8</span>) <span class="keyword">return</span> True;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> False;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p><code>eval</code> 入口看起来是 RCE，但限制很重</p>
@@ -438,19 +440,19 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="b2evolution CMS SQL 注入（CVE-2021-28242）" class="lazyload">
-        <a href="/2021/05/26/b2evolution%20CMS%20SQL%20%E6%B3%A8%E5%85%A5%EF%BC%88CVE-2021-28242%EF%BC%89/" aria-label="前一篇: b2evolution CMS SQL 注入（CVE-2021-28242）" title="前一篇: b2evolution CMS SQL 注入（CVE-2021-28242）"></a>
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2021 第四届红帽杯网络安全大赛 WriteUp" class="lazyload">
+        <a href="/2021/04/14/2021-%E7%AC%AC%E5%9B%9B%E5%B1%8A%E7%BA%A2%E5%B8%BD%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B/" aria-label="前一篇: 2021 第四届红帽杯网络安全大赛 WriteUp" title="前一篇: 2021 第四届红帽杯网络安全大赛 WriteUp"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            b2evolution CMS SQL 注入（CVE-2021-28242）
+            2021 第四届红帽杯网络安全大赛 WriteUp
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2021 第四届红帽杯网络安全大赛 WriteUp" class="lazyload">
-      <a href="/2021/04/14/2021-%E7%AC%AC%E5%9B%9B%E5%B1%8A%E7%BA%A2%E5%B8%BD%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B/" aria-label="后一篇: 2021 第四届红帽杯网络安全大赛 WriteUp"  title="后一篇: 2021 第四届红帽杯网络安全大赛 WriteUp"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 0xGame WriteUp" class="lazyload">
+      <a href="/2020/04/14/2020%200xGame/" aria-label="后一篇: 2020 0xGame WriteUp"  title="后一篇: 2020 0xGame WriteUp"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          2021 第四届红帽杯网络安全大赛 WriteUp
+          2020 0xGame WriteUp
       </h3>
     </div>
   </nav>
@@ -477,10 +479,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        309.4k
+        310k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        25:11
+        25:13
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -636,7 +638,7 @@
           description: "",
           stripContent: "2021 第五空间智能安全大赛 WriteUp🏛️ 组织架构  主办单位：天津市委网信办、天津市总工会  承办单位：三六零集团（360政企安全集团）、天津滨海高新区总工会  协办单位：包括国家工业信息安全发展研究中心、南开大学网络空间安全学院、天津大学网络安全学院等多家机构   📅 赛程与赛制  报名时间：2021 年 8 月 27 日至 9 月 12 日  线上初赛：2021 年 9 月 16 日举行，采用 CTF（解题）模式  线下决赛：2021 年 10 月 10 日在天津举行，采用 ",
           date: "Wed Apr 14 2021 13:18:00 GMT+0800",
-          updated: "Sat Sep 05 2026 14:02:54 GMT+0800",
+          updated: "Sat Sep 05 2026 14:15:55 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

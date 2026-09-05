@@ -245,22 +245,35 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/RC4/" aria-label="RC4" title="RC4"></a>
+      <a class="post-link" href="/2019/05/22/RISC-V/" aria-label="RISC-V 架构" title="RISC-V 架构"></a>
     <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="RC4" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="RISC-V 架构" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>5.1k 字</span>
-        <span><span class="icon-clock"></span>24 分钟</span>
+        <span><span class="icon-pencil"></span>1.5k 字</span>
+        <span><span class="icon-clock"></span>7 分钟</span>
       </div>
-      <h2 class="post-title">RC4</h2>
+      <h2 class="post-title">RISC-V 架构</h2>
       <article class="post-article">
-          RC4RC4（Rivest Cipher 4）是由 Ron Rivest 在 1987 年设计的对称流密码，因其结构简单、软件实现高效，曾被广泛应用于 SSL&amp;#x2F;TLS、WEP、WPA、RDP、以及各种恶意软件和 CTF 题目中
-算法结构RC4 由两个核心阶段组成：密钥调度算法（KSA, Key-Scheduling Algorithm） 和 伪随机生成算法（PRGA, Pseudo-Random Generation Algorithm）
-状态初始化一个 256 字节的 S 盒（state vector），初始化为 S[i] = i，i = 0..255
-密钥 key 为任意长度（1
+          RISC-V 架构RISC-V 是一种开源的精简指令集架构（ISA），由加州大学伯克利分校于 2010 年发起，现由 RISC-V 国际基金会维护
+基本特征位数：RV32（32位）、RV64（64位）、RV128（未来扩展）。常用的是 RV32&amp;#x2F;64
+字节序：默认为小端（Little-Endian），也允许大端（非主流）
+指令格式：定长 16 位（压缩指令）或 32 位（标准指令）。编码极为规整，字段位置几乎固定
+模块化指令集：
+
+基础整数指令集（I）：加减、逻辑、移位、分支、访存、系统调用
+
+标准扩展：
+
+M：乘除法
+
+A：原子操作
+
+F / D：单&amp;#x2F;双精度浮点
+
+C：压
       </article>
     </div>
   </div>
@@ -298,6 +311,53 @@ text：.text 段，存放程序机器指令的区域
 </div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/SMT/" aria-label="SMT" title="SMT"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="SMT" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1.1k 字</span>
+        <span><span class="icon-clock"></span>6 分钟</span>
+      </div>
+      <h2 class="post-title">SMT</h2>
+      <article class="post-article">
+          SMT概述可满足性模理论（Satisfiability Modulo Theories，简称 SMT） 可以看作是一个更强大的 “解方程” 工具。它解决的核心问题是：在特定的数学理论（如整数运算、数组、位向量等）背景下，判断一个逻辑公式是否存在一组解
+工作原理主流的 SMT 求解器多采用 “惰性（Lazy）算法”，其工作流程像一个高效的 “猜-验” 循环：
+
+抽象化：将 SMT 公式中的理论部分（如 x &amp;gt; y）替换为布尔变量，交给内部的 SAT 求解器去 “猜” 一个可能的布尔赋值组合
+
+理论验证：将 SAT 求解器 “猜” 出的布尔组合，还原回具体的理论约束，交给对应的理论求解器（如
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/Schneider%20%E6%A8%A1%E5%9D%97%E5%9B%BA%E4%BB%B6/" aria-label="Schneider 模块固件" title="Schneider 模块固件"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Schneider 模块固件" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>389 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">Schneider 模块固件</h2>
+      <article class="post-article">
+          Schneider 模块固件概述施耐德电气（Schneider Electric）的模块固件，是为其各类模块化设备（如控制器、I&amp;#x2F;O 模块、通信模块等）提供底层功能的软件。它直接决定了模块的性能、功能及稳定性，通常以 .zip 或 .seco 等格式提供
+实战案例简单的固件逆向分析（Schneider 模块固件）
+解压缩附件，里面有个压缩文件叫 SchneiderTFE.zip，所以应该考察的是 Schneider 模块固件
+关键文件是 FLASH0/wwwroot/conf/exec/NOE77101.bin
+1od -Ax -tx1z -j 0x210 -N 48 ./NOE77
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/SMC/" aria-label="SMC" title="SMC"></a>
     <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="SMC" class="lazyload">
@@ -329,85 +389,8 @@ IDA 反编译发现对 Str 和 Destination 进行了操作
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/SMT/" aria-label="SMT" title="SMT"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="SMT" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1.1k 字</span>
-        <span><span class="icon-clock"></span>6 分钟</span>
-      </div>
-      <h2 class="post-title">SMT</h2>
-      <article class="post-article">
-          SMT概述可满足性模理论（Satisfiability Modulo Theories，简称 SMT） 可以看作是一个更强大的 “解方程” 工具。它解决的核心问题是：在特定的数学理论（如整数运算、数组、位向量等）背景下，判断一个逻辑公式是否存在一组解
-工作原理主流的 SMT 求解器多采用 “惰性（Lazy）算法”，其工作流程像一个高效的 “猜-验” 循环：
-
-抽象化：将 SMT 公式中的理论部分（如 x &amp;gt; y）替换为布尔变量，交给内部的 SAT 求解器去 “猜” 一个可能的布尔赋值组合
-
-理论验证：将 SAT 求解器 “猜” 出的布尔组合，还原回具体的理论约束，交给对应的理论求解器（如
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/Schneider%20%E6%A8%A1%E5%9D%97%E5%9B%BA%E4%BB%B6/" aria-label="Schneider 模块固件" title="Schneider 模块固件"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="Schneider 模块固件" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>389 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
-      </div>
-      <h2 class="post-title">Schneider 模块固件</h2>
-      <article class="post-article">
-          Schneider 模块固件概述施耐德电气（Schneider Electric）的模块固件，是为其各类模块化设备（如控制器、I&amp;#x2F;O 模块、通信模块等）提供底层功能的软件。它直接决定了模块的性能、功能及稳定性，通常以 .zip 或 .seco 等格式提供
-实战案例简单的固件逆向分析（Schneider 模块固件）
-解压缩附件，里面有个压缩文件叫 SchneiderTFE.zip，所以应该考察的是 Schneider 模块固件
-关键文件是 FLASH0/wwwroot/conf/exec/NOE77101.bin
-1od -Ax -tx1z -j 0x210 -N 48 ./NOE77
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/VM%20%E9%80%86%E5%90%91/" aria-label="虚拟机" title="虚拟机"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="虚拟机" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1k 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
-      </div>
-      <h2 class="post-title">虚拟机</h2>
-      <article class="post-article">
-          虚拟机虚拟机逆向（Virtual Machine Reverse Engineering）是指对软件中自实现的虚拟机（或称解释器）进行反向分析的技术
-程序将原本的原生代码或关键逻辑编译成自定义的字节码（bytecode），然后由一个解释器循环（VM loop）执行这些字节码。逆向工程师需要：
-
-识别出虚拟机结构（操作码表、虚拟寄存器、虚拟栈、内存模型等）
-
-提取字节码，并反汇编为人类可读的虚拟指令
-
-理解虚拟指令序列的算法逻辑，以破解保护、提取算法或找到漏洞
-
-
-虚拟机分类根据虚拟机的执行模型，通常分为两类
-基于栈的虚拟机操作数隐式地通过一个虚拟栈传递，指令执行时从栈顶弹出操作数，计算结果再压
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/Unity%20%E9%80%86%E5%90%91/" aria-label="Unity" title="Unity"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Unity" class="lazyload">
     </div>
     <div class="post-info">
@@ -443,6 +426,36 @@ libil2cpp.so &amp;#x2F; GameAssembly.dll + global-metadata.dat
 
 实战案例Mine Sweeping（Unity）
 打开附件可以看到这是一个 Unity 游戏，Unity C# 题的核心逻辑通常都在 Mine 
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/VM%20%E9%80%86%E5%90%91/" aria-label="虚拟机" title="虚拟机"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="虚拟机" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">虚拟机</h2>
+      <article class="post-article">
+          虚拟机虚拟机逆向（Virtual Machine Reverse Engineering）是指对软件中自实现的虚拟机（或称解释器）进行反向分析的技术
+程序将原本的原生代码或关键逻辑编译成自定义的字节码（bytecode），然后由一个解释器循环（VM loop）执行这些字节码。逆向工程师需要：
+
+识别出虚拟机结构（操作码表、虚拟寄存器、虚拟栈、内存模型等）
+
+提取字节码，并反汇编为人类可读的虚拟指令
+
+理解虚拟指令序列的算法逻辑，以破解保护、提取算法或找到漏洞
+
+
+虚拟机分类根据虚拟机的执行模型，通常分为两类
+基于栈的虚拟机操作数隐式地通过一个虚拟栈传递，指令执行时从栈顶弹出操作数，计算结果再压
       </article>
     </div>
   </div>
@@ -564,10 +577,10 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
       </div>
       <div>
         <span class="icon-brush"></span>
-        309.4k
+        310k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        25:11
+        25:13
       </div>
       <div>
         <span class="icon-eye"></span>
