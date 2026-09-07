@@ -245,35 +245,30 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/RISC-V/" aria-label="RISC-V 架构" title="RISC-V 架构"></a>
+      <a class="post-link" href="/2019/05/22/Python%20%E9%80%86%E5%90%91/" aria-label="Python" title="Python"></a>
     <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="RISC-V 架构" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Python" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1.5k 字</span>
-        <span><span class="icon-clock"></span>7 分钟</span>
+        <span><span class="icon-pencil"></span>8.2k 字</span>
+        <span><span class="icon-clock"></span>39 分钟</span>
       </div>
-      <h2 class="post-title">RISC-V 架构</h2>
+      <h2 class="post-title">Python</h2>
       <article class="post-article">
-          RISC-V 架构RISC-V 是一种开源的精简指令集架构（ISA），由加州大学伯克利分校于 2010 年发起，现由 RISC-V 国际基金会维护
-基本特征位数：RV32（32位）、RV64（64位）、RV128（未来扩展）。常用的是 RV32&amp;#x2F;64
-字节序：默认为小端（Little-Endian），也允许大端（非主流）
-指令格式：定长 16 位（压缩指令）或 32 位（标准指令）。编码极为规整，字段位置几乎固定
-模块化指令集：
+          PythonPython 逆向是指对 Python 编写的程序（包括脚本、.pyc 字节码、打包的可执行文件等）进行分析，以理解其逻辑、提取算法、恢复源码或寻找漏洞
+Python 程序的编译与运行机制源码 .py 被编译为 字节码 .pyc，存储在 __pycache__ 目录（Python 3.2+）
+.pyc 文件结构：
 
-基础整数指令集（I）：加减、逻辑、移位、分支、访存、系统调用
+前 4 字节：magic number（标识 Python 版本，如 Python 3.8 为 550D）
 
-标准扩展：
+后 4 或 12 字节：时间戳 + 源码大小（可选）
 
-M：乘除法
+剩余部分：marshal 序列化后的 code object
 
-A：原子操作
 
-F / D：单&amp;#x2F;双精度浮点
-
-C：压
+逆向的核心就是：获取 .pyc → 反
       </article>
     </div>
   </div>
@@ -577,10 +572,10 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
       </div>
       <div>
         <span class="icon-brush"></span>
-        311.9k
+        313.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        25:22
+        25:29
       </div>
       <div>
         <span class="icon-eye"></span>
