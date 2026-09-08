@@ -17,20 +17,36 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="2020 网鼎杯-玄武组 WriteUp🏛️ 组织架构  支持单位：国家网络与信息安全信息通报中心、深圳市人民政府、广东省公安厅  联合主办：深信服科技股份有限公司、北京永信至诚科技股份有限公司  联合协办：阿里巴巴、百度、腾讯、奇安信、清华大学网络科学与网络空间研究院、中国科学院信息工程研究所等   Forensicsransom（RDP 溯源） 搜索事件 ID 为 528 的登录成功日志，然">
+    <meta name="description" content="2020 网鼎杯-玄武组 WriteUp🏛️ 组织架构  支持单位：国家网络与信息安全信息通报中心、深圳市人民政府、广东省公安厅  联合主办：深信服科技股份有限公司、北京永信至诚科技股份有限公司  联合协办：阿里巴巴、百度、腾讯、奇安信、清华大学网络科学与网络空间研究院、中国科学院信息工程研究所等   Reversevulcrack（360 加固 + GDA 脱壳） APKID 识别出 360">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2020 网鼎杯-玄武组 WriteUp">
 <meta property="og:url" content="https://suc2es2.github.io/2020/04/14/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E7%8E%84%E6%AD%A6%E7%BB%84/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="2020 网鼎杯-玄武组 WriteUp🏛️ 组织架构  支持单位：国家网络与信息安全信息通报中心、深圳市人民政府、广东省公安厅  联合主办：深信服科技股份有限公司、北京永信至诚科技股份有限公司  联合协办：阿里巴巴、百度、腾讯、奇安信、清华大学网络科学与网络空间研究院、中国科学院信息工程研究所等   Forensicsransom（RDP 溯源） 搜索事件 ID 为 528 的登录成功日志，然">
+<meta property="og:description" content="2020 网鼎杯-玄武组 WriteUp🏛️ 组织架构  支持单位：国家网络与信息安全信息通报中心、深圳市人民政府、广东省公安厅  联合主办：深信服科技股份有限公司、北京永信至诚科技股份有限公司  联合协办：阿里巴巴、百度、腾讯、奇安信、清华大学网络科学与网络空间研究院、中国科学院信息工程研究所等   Reversevulcrack（360 加固 + GDA 脱壳） APKID 识别出 360">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034L2F0UefxLdZO2VfX292.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034L2neMoHELecZ3cakFn0.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034L5sUXYDoNtsGk57z8DA.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034L5tSMxkONH6wcxnapCd.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034L5uNwyaXsuY1NeBREZN.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034L5unHTgRrvw3wQyonPB.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034L5yGgRsJauGknevoeov.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034L5yufqwTzVIJsdkYlox.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034L65wB9zGIz5MvvqmBai.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034L66RLDOxn8O9tgIinzX.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034L66xPEBNEDK5farWzCD.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034L67wgi87EPeaDLh4DC1.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034L687Anuqv1GFsPZPnKd.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034L6EuG7NTlX6jV1VQbvJ.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034L6Ei0qly6UDwXAdnq4H.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034FZiRtQ2jU5JZimOISfC.png">
 <meta property="article:published_time" content="2020-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-08-29T14:04:56.535Z">
+<meta property="article:modified_time" content="2026-09-08T06:02:23.407Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="Forensics">
+<meta property="article:tag" content="Reverse">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034FZiRtQ2jU5JZimOISfC.png">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034L2F0UefxLdZO2VfX292.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -148,7 +164,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E7%8E%84%E6%AD%A6%E7%BB%84-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 网鼎杯-玄武组 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Forensics"><span class="toc-number">1.1.</span> <span class="toc-text">Forensics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ransom%EF%BC%88RDP-%E6%BA%AF%E6%BA%90%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">ransom（RDP 溯源）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E7%8E%84%E6%AD%A6%E7%BB%84-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 网鼎杯-玄武组 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-number">1.1.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vulcrack%EF%BC%88360-%E5%8A%A0%E5%9B%BA-GDA-%E8%84%B1%E5%A3%B3%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">vulcrack（360 加固 + GDA 脱壳）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Forensics"><span class="toc-number">1.2.</span> <span class="toc-text">Forensics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ransom%EF%BC%88RDP-%E6%BA%AF%E6%BA%90%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">ransom（RDP 溯源）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -226,7 +242,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2020-04-14T05:18:00.000Z" itemprop="datePublished">2020-04-14</time>
-    <time style="display: none;" id="post-update-time">2026-08-29</time>
+    <time style="display: none;" id="post-update-time">2026-09-08</time>
   </span>
 </div>
 
@@ -244,6 +260,67 @@
 <li><p>联合协办：阿里巴巴、百度、腾讯、奇安信、清华大学网络科学与网络空间研究院、中国科学院信息工程研究所等</p>
 </li>
 </ul>
+<h2 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h2><h3 id="vulcrack（360-加固-GDA-脱壳）"><a href="#vulcrack（360-加固-GDA-脱壳）" class="headerlink" title="vulcrack（360 加固 + GDA 脱壳）"></a>vulcrack（360 加固 + GDA 脱壳）</h3><p><img src="https://pic1.imgdb.cn/i/034L2F0UefxLdZO2VfX292.png" alt="pasted_1788837534437_5yh7fq.png"></p>
+<p>APKID 识别出 360 加固保以及还开启了 ProGuard 混淆</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">packer : Jiagu</span><br><span class="line">obfuscator : unreadable field/method names</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/i/034L2neMoHELecZ3cakFn0.png" alt="pasted_1788838893242_qu8rs2.png"></p>
+<p>解压缩文件查看 <code>assets/cmd.txt</code>，内容是 <code>hfns?qozt&lt;ihxKrhgGkuwyY{eq=jiyLsahUhgttkSugs</code></p>
+<p>将给定的字节串中的每个字节，减去其所在位置索引对 8 取模的值（即 <code>i % 8</code>），生成一个新的字节串，最后以 UTF‑8 编码解码并打印</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data = <span class="string">b&quot;hfns?qozt&lt;ihxKrhgGkuwyY&#123;eq=jiyLsahUhgttkSugs&quot;</span></span><br><span class="line"></span><br><span class="line">out = <span class="built_in">bytes</span>((b - (i % <span class="number">8</span>)) <span class="keyword">for</span> i, b <span class="keyword">in</span> <span class="built_in">enumerate</span>(data))</span><br><span class="line"><span class="built_in">print</span>(out.decode())</span><br></pre></td></tr></table></figure>
+
+<p>得到 <code>help;list;getFlagFirstStep;getFlagSecondStep</code></p>
+<p>这一步非常关键，它告诉你真实代码里大概率有这几个命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">help</span><br><span class="line">list</span><br><span class="line">getFlagFirstStep</span><br><span class="line">getFlagSecondStep</span><br></pre></td></tr></table></figure>
+
+<p>首先，我们按下 Dump 按钮启动程序 GDA Device Dumper，然后点击 Install APK 安装 APK 文件，并按下按钮在设备上运行（需要 root 权限）。之后，右键单击 “刷新” 菜单刷新软件包列表，我们将看到 PID 为 的新软件包 5165</p>
+<p>双击进程（软件包名称）即可查看该进程的内存空间分布</p>
+<p><img src="https://pic1.imgdb.cn/i/034L5sUXYDoNtsGk57z8DA.png" alt="pasted_1788846425542_lqv6wa.png"></p>
+<p>接下来，点击单选 REF 按钮显示与进程名称最相关的模块（如下图所示）。oat 文件实际上包含原始应用程序的 DEX（如果您不确定，可以导出所有模块并进行检查，有时原始 DEX 会存在于堆中，我们稍后会讨论这一点）</p>
+<p><img src="https://pic1.imgdb.cn/i/034L5tSMxkONH6wcxnapCd.png" alt="pasted_1788846464624_ikkofq.png"></p>
+<p>我们需要完整地导出模块。怎么做呢？例如，导出模块时 classes.oat module，首先用鼠标左键点击模块的第一行 <code>classes.oat</code>，然后拖动到模块的最后一行 classes.oat module，右键单击 Dump Module 并稍等片刻，对话框就会弹出</p>
+<p><img src="https://pic1.imgdb.cn/i/034L5uNwyaXsuY1NeBREZN.png" alt="pasted_1788846501315_x5qs8j.png"></p>
+<p>单击 OK 查看转储文件，如图所示</p>
+<p><img src="https://pic1.imgdb.cn/i/034L5unHTgRrvw3wQyonPB.png" alt="pasted_1788846517563_3hb9ys.png"></p>
+<p>转储的文件是一个 OAT 文件，解密的 DEX 文件（实际上 DEX 头部的魔法信息被擦除了，GDA 在解析 OAT 时会自动修复它）就在这个文件中</p>
+<p><img src="https://pic1.imgdb.cn/i/034L5yGgRsJauGknevoeov.png" alt="pasted_1788846654017_tup7sa.png"></p>
+<p>在这里，修改文件后缀并将 <code>.oat</code> 其拖到 GDA 中以反编译解密的 dex 文件（如果要将其转换为 DEX，可以使用菜单工具 &gt; oat2dex 将其转换为 dex）</p>
+<p><img src="https://pic1.imgdb.cn/i/034L5yufqwTzVIJsdkYlox.png" alt="pasted_1788846678751_303xx1.png"></p>
+<p>经过初步检查，我们很快找到了可疑的 Flag 类，它很可能就是答案。该类中有两个关键函数：<code>calcFlagFirstStep()</code> 和 <code>calcFlagSecondStep()</code>，它们似乎通过 <code>Flag.keyFirst</code> 和 <code>Flag.keySecond</code> 来计算 flag</p>
+<p>这两个函数（或其返回值）经过 Base64 解码后，会传递给 <code>Flag.comm()</code> 方法。双击 <code>Flag.comm()</code> 查看详情</p>
+<p><img src="https://pic1.imgdb.cn/i/034L65wB9zGIz5MvvqmBai.png" alt="pasted_1788846956795_8uezy9.png"></p>
+<p>如果您不想 try-catch 在这里观看，可以右键单击将其禁用，如图所示</p>
+<p><img src="https://pic1.imgdb.cn/i/034L66RLDOxn8O9tgIinzX.png" alt="pasted_1788846975466_od7dkc.png"></p>
+<p>此功能由 GDA 的灵活结构化算法实现。尤其是在嵌套结构较多的情况下 try-catch，我们通常不需要处理异常，因此关闭此功能 try-catch 可以大大简化代码的复杂度</p>
+<p>这段代码更清晰。首先对两个 flag 进行 Base64 解码，然后进行解密 <code>Flag.comm()</code>，最后连接成我们需要的 flag</p>
+<p><img src="https://pic1.imgdb.cn/i/034L66xPEBNEDK5farWzCD.png" alt="pasted_1788846996998_v4fci9.png"></p>
+<p>在这里，我们使用 GDA Encryption&amp;Decryption 来解码两个标志，然后使用 GDA java plugin 来解密和连接</p>
+<p>首先，打开该 GDA Encryption &amp;Decryption 工具 menu&gt;tools&gt;ALG Tool，选择 Base64 快速解码这两个字符串</p>
+<p><img src="https://pic1.imgdb.cn/i/034L67wgi87EPeaDLh4DC1.png" alt="pasted_1788847036046_1gd76b.png"></p>
+<p><img src="https://pic1.imgdb.cn/i/034L687Anuqv1GFsPZPnKd.png" alt="pasted_1788847042871_d43tbc.png"></p>
+<p>获取到的两个解码后字符串如下：</p>
+<ul>
+<li><p>第一个解码结果：<code>fmcj.97;A7G462H;2F/7&lt;I9496EH1</code>，对应的 Base64 编码（方括号内）为：<code>[Zm1jan85NztBN0c0NjJIOzJGLzc8STk0OTZFSDE=]</code></p>
+</li>
+<li><p>第二个解码结果：<code>A:HI9E4I1E6&lt;}</code> 对应的 Base64 编码为：<code>[QTpISTlFNEkxRTY8fQ==]</code></p>
+</li>
+</ul>
+<p>下来对 <code>Flag.comm()</code> 的处理步骤：</p>
+<ul>
+<li><p>将 <code>Flag.comm()</code> 方法的实现代码直接复制到您的脚本文件中</p>
+</li>
+<li><p>从<a target="_blank" rel="noopener" href="https://github.com/charles2gan/GDA-android-reversing-Tool/blob/master/JavaPlugin.zip">这里</a>下载 GDA 的 java 插件案例</p>
+</li>
+<li><p>建议：直接在 GDA 示例目录（example 文件夹）下创建新的 Java 文件，并注意 Java 类名必须与文件名完全相同</p>
+</li>
+<li><p>完成上述准备后，按照官方提供的调用方式，在脚本中调用 <code>comm()</code> 方法即可</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//File: DecodeCtfString.java</span></span><br><span class="line"><span class="comment">//decode ctf flag by gjden</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> example;</span><br><span class="line"><span class="keyword">import</span> com.gda.api.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DecodeCtfString</span> &#123;</span><br><span class="line">	<span class="comment">//copy from Request.ALLATORIxDEMO decompiled by GDA</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">comm</span><span class="params">(String str,<span class="type">int</span> num)</span>&#123;	</span><br><span class="line">       <span class="type">String</span> <span class="variable">res</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">       <span class="type">byte</span>[] cmdbyte = str.getBytes();</span><br><span class="line">       <span class="type">byte</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">while</span> (i &lt; cmdbyte.length) &#123;	</span><br><span class="line">          cmdbyte[i] = (<span class="type">byte</span>)(cmdbyte[i]-(i%num));</span><br><span class="line">          i = (<span class="type">byte</span>)(i+<span class="number">1</span>);</span><br><span class="line">       &#125;	</span><br><span class="line">       <span class="keyword">try</span>&#123;	</span><br><span class="line">          res = <span class="keyword">new</span> <span class="title class_">String</span>(cmdbyte, <span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">          <span class="keyword">return</span> res;</span><br><span class="line">       &#125;<span class="keyword">catch</span>(java.io.UnsupportedEncodingException e2)&#123;	</span><br><span class="line">          e2.printStackTrace();</span><br><span class="line">          <span class="keyword">return</span> res;</span><br><span class="line">       &#125;	</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">GDA_MAIN</span><span class="params">(GDAInterface gda)</span></span><br><span class="line">	&#123;</span><br><span class="line">		String str1=<span class="string">&quot;fmcj.97;A7G462H;2F/7&lt;I9496EH1&quot;</span>;</span><br><span class="line">		String str2=<span class="string">&quot;A:HI9E4I1E6&lt;&#125;&quot;</span>;</span><br><span class="line">		String res=comm(str1,<span class="number">8</span>)+comm(str2,<span class="number">4</span>);</span><br><span class="line">		gda.log(res);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/i/034L6EuG7NTlX6jV1VQbvJ.png" alt="pasted_1788847310522_j4y42d.png"></p>
+<p>最后，点击 Menu&gt;file&gt;Run Java&#x2F;Class 运行 <code>.java/.class</code> 文件，Flag 将直接打印在 GDA 上，如图所示</p>
+<p><img src="https://pic1.imgdb.cn/i/034L6Ei0qly6UDwXAdnq4H.png" alt="pasted_1788847302732_3gsuh4.png"></p>
 <h2 id="Forensics"><a href="#Forensics" class="headerlink" title="Forensics"></a>Forensics</h2><h3 id="ransom（RDP-溯源）"><a href="#ransom（RDP-溯源）" class="headerlink" title="ransom（RDP 溯源）"></a>ransom（RDP 溯源）</h3><p><img src="https://pic1.imgdb.cn/i/034FZiRtQ2jU5JZimOISfC.png" alt="pasted_1788009876738_4f9pqm.png"></p>
 <p>搜索事件 ID 为 528 的登录成功日志，然后从前往后找 登录类型为 10 的 RDP 登录日志</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IP:   192.200.200.40</span><br><span class="line">Date: 2020-4-15_20:01:59</span><br><span class="line">User: admin</span><br></pre></td></tr></table></figure>
@@ -254,25 +331,25 @@
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/CTF/" title="CTF" data-aos="zoom-in">CTF</a>
 
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Forensics/" rel="tag" title="Forensics">Forensics</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Forensics/" rel="tag" title="Forensics">Forensics</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Reverse/" rel="tag" title="Reverse">Reverse</a></li></ul>
 
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 工业信息安全技能大赛-湖州站 WriteUp" class="lazyload">
-        <a href="/2020/04/14/2020-%E5%B7%A5%E4%B8%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E6%B9%96%E5%B7%9E%E7%AB%99/" aria-label="前一篇: 2020 工业信息安全技能大赛-湖州站 WriteUp" title="前一篇: 2020 工业信息安全技能大赛-湖州站 WriteUp"></a>
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 数字中国创新大赛虎符网络安全赛道 WriteUp" class="lazyload">
+        <a href="/2020/04/14/2020-%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BD%E5%88%9B%E6%96%B0%E5%A4%A7%E8%B5%9B%E8%99%8E%E7%AC%A6%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E8%B5%9B%E9%81%93/" aria-label="前一篇: 2020 数字中国创新大赛虎符网络安全赛道 WriteUp" title="前一篇: 2020 数字中国创新大赛虎符网络安全赛道 WriteUp"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            2020 工业信息安全技能大赛-湖州站 WriteUp
+            2020 数字中国创新大赛虎符网络安全赛道 WriteUp
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 数字中国创新大赛虎符网络安全赛道 WriteUp" class="lazyload">
-      <a href="/2020/04/14/2020-%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BD%E5%88%9B%E6%96%B0%E5%A4%A7%E8%B5%9B%E8%99%8E%E7%AC%A6%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E8%B5%9B%E9%81%93/" aria-label="后一篇: 2020 数字中国创新大赛虎符网络安全赛道 WriteUp"  title="后一篇: 2020 数字中国创新大赛虎符网络安全赛道 WriteUp"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 网鼎杯-白虎组 WriteUp" class="lazyload">
+      <a href="/2020/04/14/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E7%99%BD%E8%99%8E%E7%BB%84/" aria-label="后一篇: 2020 网鼎杯-白虎组 WriteUp"  title="后一篇: 2020 网鼎杯-白虎组 WriteUp"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          2020 数字中国创新大赛虎符网络安全赛道 WriteUp
+          2020 网鼎杯-白虎组 WriteUp
       </h3>
     </div>
   </nav>
@@ -299,10 +376,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        313.7k
+        316.6k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        25:31
+        25:44
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -324,7 +401,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E7%8E%84%E6%AD%A6%E7%BB%84-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 网鼎杯-玄武组 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Forensics"><span class="toc-number">1.1.</span> <span class="toc-text">Forensics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ransom%EF%BC%88RDP-%E6%BA%AF%E6%BA%90%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">ransom（RDP 溯源）</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E7%8E%84%E6%AD%A6%E7%BB%84-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2020 网鼎杯-玄武组 WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reverse"><span class="toc-number">1.1.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vulcrack%EF%BC%88360-%E5%8A%A0%E5%9B%BA-GDA-%E8%84%B1%E5%A3%B3%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">vulcrack（360 加固 + GDA 脱壳）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Forensics"><span class="toc-number">1.2.</span> <span class="toc-text">Forensics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ransom%EF%BC%88RDP-%E6%BA%AF%E6%BA%90%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">ransom（RDP 溯源）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -456,9 +533,9 @@
           url: "https://suc2es2.github.io/2020/04/14/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E7%8E%84%E6%AD%A6%E7%BB%84/",
           excerpt: "",
           description: "",
-          stripContent: "2020 网鼎杯-玄武组 WriteUp🏛️ 组织架构  支持单位：国家网络与信息安全信息通报中心、深圳市人民政府、广东省公安厅  联合主办：深信服科技股份有限公司、北京永信至诚科技股份有限公司  联合协办：阿里巴巴、百度、腾讯、奇安信、清华大学网络科学与网络空间研究院、中国科学院信息工程研究所等   Forensicsransom（RDP 溯源） 搜索事件 ID 为 528 的登录成功日志，然后从前往后找 登录类型为 10 的 RDP 登录日志 123IP:   192.200.200.40",
+          stripContent: "2020 网鼎杯-玄武组 WriteUp🏛️ 组织架构  支持单位：国家网络与信息安全信息通报中心、深圳市人民政府、广东省公安厅  联合主办：深信服科技股份有限公司、北京永信至诚科技股份有限公司  联合协办：阿里巴巴、百度、腾讯、奇安信、清华大学网络科学与网络空间研究院、中国科学院信息工程研究所等   Reversevulcrack（360 加固 + GDA 脱壳） APKID 识别出 360 加固保以及还开启了 ProGuard 混淆 12packer : Jiaguobfuscator :",
           date: "Tue Apr 14 2020 13:18:00 GMT+0800",
-          updated: "Sat Aug 29 2026 22:04:56 GMT+0800",
+          updated: "Tue Sep 08 2026 14:02:23 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
