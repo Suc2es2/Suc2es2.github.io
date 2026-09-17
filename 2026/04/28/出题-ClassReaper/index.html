@@ -1,0 +1,719 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
+  <title>
+    出题——ClassReaper | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="出题——ClassReaper前言这次出题主要考察 RTTI 恢复以及虚函数表，本题关闭了标准 C++ RTTI（&#x2F;GR-），所以 IDA 的 Class Informer 无法自动恢复类。但 MFC 自有的 CRuntimeClass 机制仍然保留，这是本题的突破口 MFC 逆向的 RTTI 恢复，就是利用 MFC 自有的 CRuntimeClass 链表及其 m_lpszClassN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="出题——ClassReaper">
+<meta property="og:url" content="https://suc2es2.github.io/2026/04/28/%E5%87%BA%E9%A2%98-ClassReaper/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="出题——ClassReaper前言这次出题主要考察 RTTI 恢复以及虚函数表，本题关闭了标准 C++ RTTI（&#x2F;GR-），所以 IDA 的 Class Informer 无法自动恢复类。但 MFC 自有的 CRuntimeClass 机制仍然保留，这是本题的突破口 MFC 逆向的 RTTI 恢复，就是利用 MFC 自有的 CRuntimeClass 链表及其 m_lpszClassN">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034QGgCd1BF6BfELOAwf1K.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034QIGLuJjfiU0mc5dJ1Ia.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034QIfgZTxKHxUHsf1SX4i.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034QIpolTAJTUshEoT4eGQ.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034QIpov1JujPA7oGGZz9v.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034QIpp0Ttwg17jkVquN3c.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034QJ5KglpsR1UJjtZoOC9.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034QJATkngyJ645Aj0WDRp.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034QJCyBgZRAb9O2qVIDwW.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034QJxmhGzd4m0XXwsLioe.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034QK9E0wHl53hKqQk3A8o.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034QKKRFNHxNthfhJeu57z.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034QKSwgRJiXZqgBmAqILH.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034QLvQoZh4cSpLOiwHueo.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034QM7DKARNhD4eDPYWrK8.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034QM8qHeuvsrjaVz0TqGe.png">
+<meta property="article:published_time" content="2026-04-27T18:39:00.000Z">
+<meta property="article:modified_time" content="2026-09-17T11:30:22.762Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="MFC 逆向">
+<meta property="article:tag" content="RTTI 恢复">
+<meta property="article:tag" content="虚函数表">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034QGgCd1BF6BfELOAwf1K.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="出题——ClassReaper">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">出题——ClassReaper</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BA%E9%A2%98%E2%80%94%E2%80%94ClassReaper"><span class="toc-number">1.</span> <span class="toc-text">出题——ClassReaper</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%85%A5%E5%8F%A3"><span class="toc-number">1.2.</span> <span class="toc-text">程序入口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E8%A7%A3%E5%AF%86%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">分析解密函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D-CRuntimeClass-%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.</span> <span class="toc-text">恢复 CRuntimeClass 结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E7%BA%BF%E8%A7%A3%E5%AF%86%E7%B1%BB%E5%90%8D"><span class="toc-number">1.5.</span> <span class="toc-text">离线解密类名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB-CRuntimeClass-%E7%9A%84%E4%B8%89%E4%B8%AA%E5%85%B3%E9%94%AE%E5%AD%97%E6%AE%B5"><span class="toc-number">1.6.</span> <span class="toc-text">读 CRuntimeClass 的三个关键字段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0"><span class="toc-number">1.7.</span> <span class="toc-text">工厂函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB-vftable"><span class="toc-number">1.8.</span> <span class="toc-text">读 vftable</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%BD%8D%E5%9B%9B%E4%B8%AA-Check"><span class="toc-number">1.9.</span> <span class="toc-text">定位四个 Check()</span></a></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">252</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">189</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-出题-ClassReaper" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-04-27T18:39:00.000Z" itemprop="datePublished">2026-04-28</time>
+    <time style="display: none;" id="post-update-time">2026-09-17</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="出题——ClassReaper"><a href="#出题——ClassReaper" class="headerlink" title="出题——ClassReaper"></a>出题——ClassReaper</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这次出题主要考察 RTTI 恢复以及虚函数表，本题关闭了标准 C++ RTTI（&#x2F;GR-），所以 IDA 的 Class Informer 无法自动恢复类。但 MFC 自有的 CRuntimeClass 机制仍然保留，这是本题的突破口</p>
+<p>MFC 逆向的 RTTI 恢复，就是利用 MFC 自有的 <code>CRuntimeClass</code> 链表及其 <code>m_lpszClassName</code>、<code>m_pBaseClass</code>、<code>m_pfnCreateObject</code> 等字段，从二进制中还原类名、继承关系、虚表和消息映射，把匿名结构还原成可读的 C++ 类模型</p>
+<h2 id="程序入口"><a href="#程序入口" class="headerlink" title="程序入口"></a>程序入口</h2><p>IDA 反编译找到入口</p>
+<p><img src="https://pic1.imgdb.cn/i/034QGgCd1BF6BfELOAwf1K.png" alt="pasted_1789630748094_8tnc7b.png"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">__int64 __fastcall <span class="title function_">AfxWinMain</span><span class="params">(HINSTANCE__ *hInstance, HINSTANCE__ *hPrevInstance, <span class="type">wchar_t</span> *lpCmdLine, <span class="type">int</span> nCmdShow)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// 1. 取当前线程对象（对单线程 MFC，等价于 theApp，即 CChallengeApp 实例）</span></span><br><span class="line">  Thread = AfxGetThread();</span><br><span class="line">  <span class="comment">// 2. 取模块态里注册的 CWinApp 指针，通常和 Thread 是同一个对象</span></span><br><span class="line">  m_pCurrentWinApp = AfxGetModuleState()-&gt;m_pCurrentWinApp;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 3. 初始化 MFC 运行时</span></span><br><span class="line">  <span class="keyword">if</span> ( AfxWinInit(...) &amp;&amp; (!m_pCurrentWinApp || m_pCurrentWinApp-&gt;InitApplication(...)) )</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// 4. 关键：虚调用 InitInstance</span></span><br><span class="line">    <span class="keyword">if</span> ( Thread-&gt;InitInstance(Thread) )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// 5. 消息循环</span></span><br><span class="line">      v12 = Thread-&gt;Run(Thread);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// 6. InitInstance 返回 FALSE 时的清理</span></span><br><span class="line">      m_pMainWnd = Thread-&gt;m_pMainWnd;</span><br><span class="line">      <span class="keyword">if</span> ( m_pMainWnd )</span><br><span class="line">        m_pMainWnd-&gt;DestroyWindow(m_pMainWnd);</span><br><span class="line">      v12 = Thread-&gt;ExitInstance(Thread);</span><br><span class="line">    &#125;</span><br><span class="line">    v8 = v12;</span><br><span class="line">  &#125;</span><br><span class="line">  AfxWinTerm();</span><br><span class="line">  <span class="keyword">return</span> v8;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>MFC 程序里有个全局唯一的 App 对象，就是 <code>CChallengeApp</code>。整个程序从头到尾只有这一个实例，它代表 “这个应用程序本身”</p>
+<p><code>Thread-&gt;InitInstance(Thread)</code> 是虚调用，<code>Thread</code> 的实际类型是 <code>CChallengeApp</code>，所以这里会跳到 <code>CChallengeApp::InitInstance</code></p>
+<p>虚调用就是函数地址不写死在代码里，而是运行时根据对象的实际类型去查虚函数表（vtable），决定调哪个版本——所以 <code>Thread</code> 实际是 <code>CChallengeApp</code>，就调 <code>CChallengeApp::InitInstance</code>，而不是基类的 <code>CWinThread::InitInstance</code></p>
+<p><img src="https://pic1.imgdb.cn/i/034QIGLuJjfiU0mc5dJ1Ia.png" alt="pasted_1789634619892_1x3t0g.png"></p>
+<h2 id="分析解密函数"><a href="#分析解密函数" class="headerlink" title="分析解密函数"></a>分析解密函数</h2><p><code>CWinApp::InitInstance(this);</code> 是 MFC 基类初始化的，直接看 <code>DecryptAllClassNames</code></p>
+<p>遍历 MFC 主链，把业务类的 <code>m_lpszClassName</code> 从密文原地解密成明文，方便后续代码正常使用类名</p>
+<p>第一步：取主链头</p>
+<p>MFC 在 CRT 初始化阶段，通过 <code>AFX_CLASSINIT</code> 把所有 <code>CRuntimeClass</code> 静态实例自动挂进这条链。所以程序启动后，链上已经有所有注册过的类</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ModuleState = AfxGetModuleState();</span><br><span class="line"><span class="keyword">for</span> ( i = ModuleState-&gt;m_classList.m_pHead; i; ++v0 )</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>AfxGetModuleState()</code> 返回当前 MFC 模块态；</p>
+</li>
+<li><p><code>m_classList.m_pHead</code> 是 <code>CRuntimeClass</code> 全局链表的头指针；</p>
+</li>
+<li><p>沿 <code>m_pNextClass</code> 一直走，上限 4096 防死循环</p>
+</li>
+</ul>
+<p>第二步：筛选目标类</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( i == &amp;CValidator::classCValidator</span><br><span class="line">  || CRuntimeClass::IsDerivedFrom(i, &amp;CValidator::classCValidator)</span><br><span class="line">  || i == &amp;CMainDlg::classCMainDlg</span><br><span class="line">  || i == &amp;CChallengeApp::classCChallengeApp )</span><br></pre></td></tr></table></figure>
+
+<p>命中以下任意一条，就解密</p>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>i == &amp;classCValidator</code></td>
+<td>自身就是 CValidator 基类</td>
+</tr>
+<tr>
+<td><code>IsDerivedFrom(i, &amp;classCValidator)</code></td>
+<td>i 是 CValidator 的任意子类</td>
+</tr>
+</tbody></table>
+<p>第三步：读类名指针、扫长度</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">m_lpszClassName = i-&gt;m_lpszClassName;</span><br><span class="line">v4 = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">do</span> ++v4; <span class="keyword">while</span> ( v4 &lt;= <span class="number">0x200</span> &amp;&amp; m_lpszClassName[v4] );</span><br><span class="line"><span class="keyword">if</span> ( v4 - <span class="number">1</span> &lt;= <span class="number">0x1FF</span> ) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>m_lpszClassName</code> 是 <code>CRuntimeClass</code> 结构体第 0 个字段（偏移 <code>+0x00</code>）</p>
+</li>
+<li><p>扫到 <code>&#39;\0&#39;</code> 定长度，上限 512</p>
+</li>
+<li><p>长度必须非空且 ≤ 511 才继续</p>
+</li>
+</ul>
+<p>第四步：改页权限</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">VirtualProtect(m_lpszClassName, v4, <span class="number">4u</span>, &amp;oldProt)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>4u = PAGE_READWRITE</code>；</p>
+</li>
+<li><p>类名存在 <code>.rdata</code>（只读），必须先改成可写才能原地 XOR；</p>
+</li>
+<li><p>解密后再 <code>VirtualProtect</code> 恢复原保</p>
+</li>
+</ul>
+<p>第五步：XOR 解密循环</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">LOBYTE(v5) = __ROR1__(<span class="number">26</span>, <span class="number">5</span>) ^ <span class="number">0xA7</span>;   <span class="comment">// base = 0x77</span></span><br><span class="line">v6 = *m_lpszClassName;</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    v8 = v5;                            <span class="comment">// v8 = 当前 sbox 索引</span></span><br><span class="line">    ++v7;</span><br><span class="line">    ++v5;                               <span class="comment">// 索引递增，step=1</span></span><br><span class="line">    *(v7 - <span class="number">1</span>) = g_NameSbox[v8] ^ v6;    <span class="comment">// 原地 XOR</span></span><br><span class="line">    v6 = *v7;                           <span class="comment">// 读下一字节</span></span><br><span class="line">&#125; <span class="keyword">while</span> ( *v7 );</span><br></pre></td></tr></table></figure>
+
+<p>从 IDA 抄出 <code>g_NameSbox</code> 的 256 字节</p>
+<p><img src="https://pic1.imgdb.cn/i/034QIfgZTxKHxUHsf1SX4i.png" alt="pasted_1789635620089_5wp2wc.png"></p>
+<h2 id="恢复-CRuntimeClass-结构"><a href="#恢复-CRuntimeClass-结构" class="headerlink" title="恢复 CRuntimeClass 结构"></a>恢复 <code>CRuntimeClass</code> 结构</h2><p>现在去找密文，前面我们知道 <code>m_lpszClassName</code> 是 <code>CRuntimeClass</code> 结构体第 0 个字段（偏移 <code>+0x00</code>）</p>
+<p>所以现在去看 <code>CRuntimeClass</code></p>
+<p><img src="https://pic1.imgdb.cn/i/034QIpolTAJTUshEoT4eGQ.png" alt="pasted_1789635991776_l616n4.png"></p>
+<p><img src="https://pic1.imgdb.cn/i/034QIpov1JujPA7oGGZz9v.png" alt="pasted_1789636007505_73sjo1.png"></p>
+<p><img src="https://pic1.imgdb.cn/i/034QIpp0Ttwg17jkVquN3c.png" alt="pasted_1789636019297_om9j3t.png"></p>
+<table>
+<thead>
+<tr>
+<th>偏移</th>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+0x00</td>
+<td><code>m_lpszClassName</code></td>
+<td>类名字符串指针（密文）</td>
+</tr>
+<tr>
+<td>+0x08</td>
+<td><code>m_nObjectSize</code></td>
+<td>对象大小</td>
+</tr>
+<tr>
+<td>+0x0C</td>
+<td><code>m_wSchema</code></td>
+<td>schema 版本</td>
+</tr>
+<tr>
+<td>+0x10</td>
+<td><code>m_pfnCreateObject</code></td>
+<td>工厂函数指针（抽象类为 NULL）</td>
+</tr>
+<tr>
+<td>+0x18</td>
+<td><code>m_pBaseClass</code></td>
+<td>基类指针</td>
+</tr>
+<tr>
+<td>+0x20</td>
+<td><code>m_pNextClass</code></td>
+<td>链表下一节点</td>
+</tr>
+<tr>
+<td>+0x28</td>
+<td><code>m_pClassInit</code></td>
+<td>AFX_CLASSINIT 指针，MFC 自动注册用</td>
+</tr>
+</tbody></table>
+<h2 id="离线解密类名"><a href="#离线解密类名" class="headerlink" title="离线解密类名"></a>离线解密类名</h2><p>在 IDA 里打开 <code>DecryptAllClassNames</code> 反汇编，只有三个基类被显式引用</p>
+<p><img src="https://pic1.imgdb.cn/i/034QJ5KglpsR1UJjtZoOC9.png" alt="pasted_1789636631267_qjtg9g.png"></p>
+<p>选中 <code>?classCValidator@...</code> 符号，按 Enter 或双击。跳到 <code>.rdata</code> 里的结构体定义</p>
+<p><img src="https://pic1.imgdb.cn/i/034QJATkngyJ645Aj0WDRp.png" alt="pasted_1789636834306_vop62k.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.rdata:...  ?classCValidator@CValidator@@2UCRuntimeClass@@B:</span><br><span class="line">.rdata:...      dq offset a8_0           ; +0x00 m_lpszClassName → 密文（8 字节）</span><br><span class="line">.rdata:...      dd 8                     ; +0x08 m_nObjectSize = 8</span><br><span class="line">.rdata:...      dd 0FFFFh                ; +0x0C m_wSchema</span><br><span class="line">.rdata:...      dq 0                     ; +0x10 m_pfnCreateObject = NULL（抽象类）</span><br><span class="line">.rdata:...      dq offset ?classCObject@CObject@@2UCRuntimeClass@@B  ; +0x18 m_pBaseClass</span><br><span class="line">.rdata:...      dq 0                     ; +0x20 m_pNextClass</span><br><span class="line">.rdata:...      dq 0                     ; +0x28 m_pClassInit</span><br></pre></td></tr></table></figure>
+
+<p>其中密文 <code>a8_0</code> 在下方，同时还发现其他多组</p>
+<p><img src="https://pic1.imgdb.cn/i/034QJCyBgZRAb9O2qVIDwW.png" alt="pasted_1789636932598_qz7qsz.png"></p>
+<p>编写脚本解密</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">SBOX = [</span><br><span class="line">    <span class="number">0x30</span>, <span class="number">0xC2</span>, <span class="number">0xF2</span>, <span class="number">0x86</span>, <span class="number">0x46</span>, <span class="number">0x62</span>, <span class="number">0x34</span>, <span class="number">0x81</span>, <span class="number">0x58</span>, <span class="number">0x1E</span>, <span class="number">0x5E</span>, <span class="number">0x3D</span>, <span class="number">0xBC</span>, <span class="number">0xD2</span>, <span class="number">0xE4</span>, <span class="number">0x56</span>,</span><br><span class="line">    <span class="number">0x7C</span>, <span class="number">0x2A</span>, <span class="number">0x35</span>, <span class="number">0x45</span>, <span class="number">0x06</span>, <span class="number">0xA6</span>, <span class="number">0x76</span>, <span class="number">0x98</span>, <span class="number">0x12</span>, <span class="number">0x84</span>, <span class="number">0xCC</span>, <span class="number">0x52</span>, <span class="number">0x36</span>, <span class="number">0x6A</span>, <span class="number">0x39</span>, <span class="number">0x20</span>,</span><br><span class="line">    <span class="number">0x88</span>, <span class="number">0x09</span>, <span class="number">0xBF</span>, <span class="number">0xAD</span>, <span class="number">0x2C</span>, <span class="number">0xBD</span>, <span class="number">0x02</span>, <span class="number">0xCB</span>, <span class="number">0x74</span>, <span class="number">0x90</span>, <span class="number">0xCE</span>, <span class="number">0x64</span>, <span class="number">0x0E</span>, <span class="number">0xFC</span>, <span class="number">0x94</span>, <span class="number">0x8D</span>,</span><br><span class="line">    <span class="number">0x00</span>, <span class="number">0x4C</span>, <span class="number">0x04</span>, <span class="number">0xC6</span>, <span class="number">0xF0</span>, <span class="number">0x3C</span>, <span class="number">0x3A</span>, <span class="number">0xC7</span>, <span class="number">0x9A</span>, <span class="number">0x78</span>, <span class="number">0x08</span>, <span class="number">0x5D</span>, <span class="number">0xF6</span>, <span class="number">0x19</span>, <span class="number">0x68</span>, <span class="number">0x66</span>,</span><br><span class="line">    <span class="number">0x25</span>, <span class="number">0x97</span>, <span class="number">0x50</span>, <span class="number">0xEC</span>, <span class="number">0x28</span>, <span class="number">0x89</span>, <span class="number">0x7A</span>, <span class="number">0x1B</span>, <span class="number">0xBE</span>, <span class="number">0x65</span>, <span class="number">0x3E</span>, <span class="number">0xF3</span>, <span class="number">0xCF</span>, <span class="number">0x54</span>, <span class="number">0x59</span>, <span class="number">0xA2</span>,</span><br><span class="line">    <span class="number">0x22</span>, <span class="number">0xF1</span>, <span class="number">0x2E</span>, <span class="number">0x60</span>, <span class="number">0xA9</span>, <span class="number">0x95</span>, <span class="number">0x2B</span>, <span class="number">0x99</span>, <span class="number">0x0C</span>, <span class="number">0xB5</span>, <span class="number">0xB8</span>, <span class="number">0xAE</span>, <span class="number">0x0A</span>, <span class="number">0x49</span>, <span class="number">0xA4</span>, <span class="number">0xF8</span>,</span><br><span class="line">    <span class="number">0xAA</span>, <span class="number">0xD0</span>, <span class="number">0x18</span>, <span class="number">0xD6</span>, <span class="number">0x57</span>, <span class="number">0x92</span>, <span class="number">0xF7</span>, <span class="number">0xC0</span>, <span class="number">0x51</span>, <span class="number">0x6C</span>, <span class="number">0xDE</span>, <span class="number">0x93</span>, <span class="number">0xDB</span>, <span class="number">0x61</span>, <span class="number">0x7D</span>, <span class="number">0x85</span>,</span><br><span class="line">    <span class="number">0x16</span>, <span class="number">0xD4</span>, <span class="number">0x1C</span>, <span class="number">0xFB</span>, <span class="number">0xB1</span>, <span class="number">0x69</span>, <span class="number">0x14</span>, <span class="number">0x7B</span>, <span class="number">0x55</span>, <span class="number">0xAF</span>, <span class="number">0xCA</span>, <span class="number">0xA8</span>, <span class="number">0x72</span>, <span class="number">0x0B</span>, <span class="number">0x8C</span>, <span class="number">0xFF</span>,</span><br><span class="line">    <span class="number">0xDC</span>, <span class="number">0xC1</span>, <span class="number">0x7E</span>, <span class="number">0x07</span>, <span class="number">0xAC</span>, <span class="number">0xD1</span>, <span class="number">0x32</span>, <span class="number">0x03</span>, <span class="number">0x4A</span>, <span class="number">0xE9</span>, <span class="number">0x9D</span>, <span class="number">0x91</span>, <span class="number">0xF4</span>, <span class="number">0xB6</span>, <span class="number">0x3F</span>, <span class="number">0xD9</span>,</span><br><span class="line">    <span class="number">0x01</span>, <span class="number">0x2F</span>, <span class="number">0xE7</span>, <span class="number">0xD8</span>, <span class="number">0x43</span>, <span class="number">0x4F</span>, <span class="number">0x38</span>, <span class="number">0x6B</span>, <span class="number">0xEE</span>, <span class="number">0xC8</span>, <span class="number">0x80</span>, <span class="number">0x5B</span>, <span class="number">0x5C</span>, <span class="number">0x41</span>, <span class="number">0xFE</span>, <span class="number">0xB3</span>,</span><br><span class="line">    <span class="number">0x9F</span>, <span class="number">0xC9</span>, <span class="number">0x67</span>, <span class="number">0x37</span>, <span class="number">0x05</span>, <span class="number">0x71</span>, <span class="number">0x2D</span>, <span class="number">0x9B</span>, <span class="number">0xA0</span>, <span class="number">0xB0</span>, <span class="number">0x6E</span>, <span class="number">0x5F</span>, <span class="number">0xBA</span>, <span class="number">0x8B</span>, <span class="number">0x3B</span>, <span class="number">0x13</span>,</span><br><span class="line">    <span class="number">0xDD</span>, <span class="number">0xDA</span>, <span class="number">0x9C</span>, <span class="number">0xE1</span>, <span class="number">0xE6</span>, <span class="number">0x11</span>, <span class="number">0xE2</span>, <span class="number">0xED</span>, <span class="number">0x48</span>, <span class="number">0xE0</span>, <span class="number">0x8A</span>, <span class="number">0x77</span>, <span class="number">0x9E</span>, <span class="number">0x6D</span>, <span class="number">0xB2</span>, <span class="number">0xDF</span>,</span><br><span class="line">    <span class="number">0x79</span>, <span class="number">0xFA</span>, <span class="number">0x82</span>, <span class="number">0xC3</span>, <span class="number">0x4E</span>, <span class="number">0xF9</span>, <span class="number">0xFD</span>, <span class="number">0x53</span>, <span class="number">0xB7</span>, <span class="number">0xF5</span>, <span class="number">0x70</span>, <span class="number">0xE5</span>, <span class="number">0x5A</span>, <span class="number">0x15</span>, <span class="number">0xC4</span>, <span class="number">0xE8</span>,</span><br><span class="line">    <span class="number">0xA1</span>, <span class="number">0x7F</span>, <span class="number">0x44</span>, <span class="number">0x17</span>, <span class="number">0xE3</span>, <span class="number">0xCD</span>, <span class="number">0x0F</span>, <span class="number">0x63</span>, <span class="number">0xA7</span>, <span class="number">0x33</span>, <span class="number">0xD5</span>, <span class="number">0x83</span>, <span class="number">0x0D</span>, <span class="number">0x4D</span>, <span class="number">0x31</span>, <span class="number">0xA3</span>,</span><br><span class="line">    <span class="number">0x4B</span>, <span class="number">0xD7</span>, <span class="number">0x8E</span>, <span class="number">0x87</span>, <span class="number">0x24</span>, <span class="number">0x47</span>, <span class="number">0x42</span>, <span class="number">0xBB</span>, <span class="number">0xEB</span>, <span class="number">0x1D</span>, <span class="number">0x6F</span>, <span class="number">0x73</span>, <span class="number">0x1F</span>, <span class="number">0xB9</span>, <span class="number">0xB4</span>, <span class="number">0xD3</span>,</span><br><span class="line">    <span class="number">0x10</span>, <span class="number">0xC5</span>, <span class="number">0x26</span>, <span class="number">0x27</span>, <span class="number">0x1A</span>, <span class="number">0x75</span>, <span class="number">0x29</span>, <span class="number">0xAB</span>, <span class="number">0xEA</span>, <span class="number">0xA5</span>, <span class="number">0x21</span>, <span class="number">0xEF</span>, <span class="number">0x96</span>, <span class="number">0x8F</span>, <span class="number">0x40</span>, <span class="number">0x23</span>,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">BASE = <span class="number">0x77</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decrypt</span>(<span class="params">cipher: <span class="built_in">bytes</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">bytes</span>(c ^ SBOX[(BASE + i) &amp; <span class="number">0xFF</span>] <span class="keyword">for</span> i, c <span class="keyword">in</span> <span class="built_in">enumerate</span>(cipher)).decode(<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">CIPHERS = &#123;</span><br><span class="line">    <span class="string">&quot;a8_0&quot;</span>:  <span class="built_in">bytes</span>.fromhex(<span class="string">&quot;38 03 CE A6 C1 16 6A F8 90 AE&quot;</span>),</span><br><span class="line">    <span class="string">&quot;a8_3&quot;</span>:  <span class="built_in">bytes</span>.fromhex(<span class="string">&quot;38 19 CA A4 CF 06 63 DA 9E B0 A8 1A 66 D8 BE 40&quot;</span>),</span><br><span class="line">    <span class="string">&quot;a8_2&quot;</span>:  <span class="built_in">bytes</span>.fromhex(<span class="string">&quot;38 0D C0 B8 FE 13 67 E5 9B BD B5 11 75&quot;</span>),</span><br><span class="line">    <span class="string">&quot;a8_4&quot;</span>:  <span class="built_in">bytes</span>.fromhex(<span class="string">&quot;38 17 C0 B2 FE 13 67 E5 9B BD B5 11 75&quot;</span>),</span><br><span class="line">    <span class="string">&quot;a8&quot;</span>:    <span class="built_in">bytes</span>.fromhex(<span class="string">&quot;38 13 C6 A4 C9 1E 5D ED 93 B5 A5 1F 73 C3 A3&quot;</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> tag, cipher <span class="keyword">in</span> CIPHERS.items():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;tag:6s&#125;</span> -&gt; <span class="subst">&#123;decrypt(cipher)&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a8_0   -&gt; CValidator</span><br><span class="line">a8_3   -&gt; CLengthValidator</span><br><span class="line">a8_2   -&gt; CXorValidator</span><br><span class="line">a8_4   -&gt; CBoxValidator</span><br><span class="line">a8     -&gt; CFinalValidator</span><br></pre></td></tr></table></figure>
+
+<p>当然，IDA 里已经带了 XREF 提示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.rdata:... a8_3  db &#x27;8&#x27;   ; DATA XREF: .data:CRuntimeClass CLengthValidator::classCLengthValidator</span><br><span class="line">.rdata:... a8_2  db &#x27;8&#x27;   ; DATA XREF: .data:CRuntimeClass CXorValidator::classCXorValidator</span><br><span class="line">.rdata:... a8_4  db &#x27;8&#x27;   ; DATA XREF: .data:CRuntimeClass CBoxValidator::classCBoxValidator</span><br><span class="line">.rdata:... a8    db &#x27;8&#x27;   ; DATA XREF: .data:CRuntimeClass CFinalValidator::classCFinalValidator</span><br></pre></td></tr></table></figure>
+
+<h2 id="读-CRuntimeClass-的三个关键字段"><a href="#读-CRuntimeClass-的三个关键字段" class="headerlink" title="读 CRuntimeClass 的三个关键字段"></a>读 <code>CRuntimeClass</code> 的三个关键字段</h2><p>从密文的 XREF 跳到四个子类的 <code>CRuntimeClass</code> 结构体，一次读出三个关键字段：</p>
+<ul>
+<li><p><code>m_lpszClassName</code>   → 类名密文（已在上面解密）</p>
+</li>
+<li><p><code>m_pBaseClass</code>      → 基类指针，用于确认继承树</p>
+</li>
+<li><p><code>m_pfnCreateObject</code> → 工厂函数指针</p>
+</li>
+</ul>
+<p>四个子类的 <code>m_pBaseClass</code> 都指向 <code>?classCValidator@CValidator@@...</code>，据此确认继承树：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CObject</span><br><span class="line"> └─ CValidator (抽象, m_pfnCreateObject = 0)</span><br><span class="line">     ├─ CLengthValidator   (m_pfnCreateObject → CreateObject)</span><br><span class="line">     ├─ CXorValidator      (m_pfnCreateObject → CreateObject)</span><br><span class="line">     ├─ CBoxValidator      (m_pfnCreateObject → CreateObject)</span><br><span class="line">     └─ CFinalValidator    (m_pfnCreateObject → CreateObject)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/i/034QJxmhGzd4m0XXwsLioe.png" alt="pasted_1789638778102_a7p2w7.png"></p>
+<h2 id="工厂函数"><a href="#工厂函数" class="headerlink" title="工厂函数"></a>工厂函数</h2><p>双击 <code>CLengthValidator</code> 的 <code>m_pfnCreateObject</code> 值，即 <code>j_?CreateObject@CLengthValidator@@SAPEAVCObject@@XZ</code></p>
+<p><img src="https://pic1.imgdb.cn/i/034QK9E0wHl53hKqQk3A8o.png" alt="pasted_1789639229148_bohepd.png"></p>
+<h2 id="读-vftable"><a href="#读-vftable" class="headerlink" title="读 vftable"></a>读 <code>vftable</code></h2><p>其中 <code>&#39;vftable&#39;</code> 就是虚表地址，在反编译里双击 <code>CLengthValidator::&#39;vftable&#39;</code>，跳到 <code>.rdata</code></p>
+<p><img src="https://pic1.imgdb.cn/i/034QKKRFNHxNthfhJeu57z.png" alt="pasted_1789639671530_3pkf4t.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.rdata:00000001403EC348  ??_7CLengthValidator@@6B@:</span><br><span class="line">.rdata:...  +0x00  dq  j_?GetRuntimeClass@CLengthValidator@@...    ; [0]</span><br><span class="line">.rdata:...  +0x08  dq  j_??_ECLengthValidator@@UEAAPEAXI@Z        ; [1] 虚析构</span><br><span class="line">.rdata:...  +0x10  dq  j_?Serialize@CObject@@UEAAXAEAVCArchive@@@Z ; [2]</span><br><span class="line">.rdata:...  +0x18  dq  j_?Check@CLengthValidator@@UEAAH...@Z      ; [3] Check ★</span><br></pre></td></tr></table></figure>
+
+<h2 id="定位四个-Check"><a href="#定位四个-Check" class="headerlink" title="定位四个 Check()"></a>定位四个 <code>Check()</code></h2><p>在 <code>vftable</code> 里双击 <code>j_?Check@CLengthValidator@@...</code></p>
+<p><img src="https://pic1.imgdb.cn/i/034QKSwgRJiXZqgBmAqILH.png" alt="pasted_1789640006852_7bhexr.png"></p>
+<p>检查点 1：长度 &#x3D; 42</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( *(flag-&gt;m_pszData - <span class="number">4</span>) != <span class="number">42</span> )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>检查点 2：前缀 &#x3D; <code>flag{</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">LODWORD(prefix) = <span class="number">-1157068284</span>;   <span class="comment">// 0xBB088A04，小端 → 04 8A 08 BB</span></span><br><span class="line">BYTE4(prefix)    = <span class="number">36</span>;            <span class="comment">// 0x24</span></span><br><span class="line"><span class="keyword">for</span> ( i = <span class="number">0</span>; i &lt; <span class="number">5</span>; ++i ) &#123;</span><br><span class="line">    v4 = (<span class="number">1121083892</span> - <span class="number">1640531527</span> * i) &gt;&gt; <span class="number">13</span>;</span><br><span class="line">    *(&amp;prefix + i) ^= v4 ^ (<span class="number">-12</span> - <span class="number">71</span> * i) ^ <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 把 5 字节扩展成 wchar_t，与 flag.Left(5) 比较</span></span><br><span class="line">v10 = j_wcscmp(v9-&gt;m_pszData, m_pszData);</span><br><span class="line"><span class="keyword">if</span> ( v10 )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>检查点 3：后缀 &#x3D; <code>}</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lenBlob[<span class="number">0</span>] = <span class="number">24</span>;                                          <span class="comment">// 0x18</span></span><br><span class="line">anonymous_namespace_::XorDecodeInPlace(lenBlob, <span class="number">1u</span>, <span class="number">0x22u</span>);</span><br><span class="line"><span class="keyword">if</span> ( LOBYTE(flag-&gt;m_pszData[len - <span class="number">1</span>]) != lenBlob[<span class="number">0</span>] )</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>检查点 4：第 1 段 &#x3D; 目标值</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">v17 = SplitFlagBody(flag, &amp;a, &amp;b, &amp;c, &amp;d);   <span class="comment">// 按连字符切成 4 段</span></span><br><span class="line">prefix = <span class="number">0x585842E634815ED9L</span>L;                <span class="comment">// 8 字节密文</span></span><br><span class="line">XorDecodeInPlace(&amp;prefix, <span class="number">8u</span>, <span class="number">0x31u</span>);         <span class="comment">// 解密</span></span><br><span class="line"><span class="comment">// 扩展成 8 字符 wchar_t，与第 1 段 a 比较</span></span><br><span class="line">v22 = j_wcscmp(v18, v21);</span><br><span class="line"><span class="keyword">if</span> ( v22 )</span><br><span class="line">    v8 = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>查看解密函数</p>
+<p><img src="https://pic1.imgdb.cn/i/034QLvQoZh4cSpLOiwHueo.png" alt="pasted_1789643575683_gfjh0y.png"></p>
+<p>编写第一段解密脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">xor_decode_in_place</span>(<span class="params">buf: <span class="built_in">bytes</span>, keySalt: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bytes</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;XorDecodeInPlace 的 Python 实现（32 位逻辑右移）&quot;&quot;&quot;</span></span><br><span class="line">    out = <span class="built_in">bytearray</span>(buf)</span><br><span class="line">    a_base = (<span class="number">1121083892</span> - <span class="number">1640531527</span> * keySalt) &amp; <span class="number">0xFFFFFFFF</span></span><br><span class="line">    b      = (-<span class="number">12</span> - <span class="number">71</span> * keySalt) &amp; <span class="number">0xFFFFFFFF</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(out)):</span><br><span class="line">        c = (<span class="number">1121083892</span> - <span class="number">1640531527</span> * i) &amp; <span class="number">0xFFFFFFFF</span></span><br><span class="line">        d = (-<span class="number">12</span> - <span class="number">71</span> * i) &amp; <span class="number">0xFFFFFFFF</span></span><br><span class="line">        key = ((a_base &gt;&gt; <span class="number">13</span>) ^ b ^ (c &gt;&gt; <span class="number">13</span>) ^ d) &amp; <span class="number">0xFF</span></span><br><span class="line">        out[i] ^= key</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">bytes</span>(out)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># ---- 第 1 段：来自 CLengthValidator::Check ----</span></span><br><span class="line">    <span class="comment"># prefix = 0x585842E634815ED9，小端 → D9 5E 81 34 E6 42 58 58</span></span><br><span class="line">    cipher_part1 = <span class="built_in">bytes</span>.fromhex(<span class="string">&quot;D95E8134E6425858&quot;</span>)</span><br><span class="line">    seed_part1   = <span class="number">0x31</span></span><br><span class="line">    plain_part1  = xor_decode_in_place(cipher_part1, seed_part1)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[part1] <span class="subst">&#123;plain_part1.decode(<span class="string">&#x27;ascii&#x27;</span>)&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="comment"># 预期输出: fe55d536</span></span><br></pre></td></tr></table></figure>
+
+<p>同理找到第二个 <code>Check()</code></p>
+<p><img src="https://pic1.imgdb.cn/i/034QM7DKARNhD4eDPYWrK8.png" alt="pasted_1789644038390_pdwq0e.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decrypt_part2</span>() -&gt; <span class="built_in">bytes</span>:</span><br><span class="line">    <span class="comment"># 1. 反编译里给出的初始 9 字节</span></span><br><span class="line">    target = <span class="built_in">bytearray</span>(<span class="number">9</span>)</span><br><span class="line">    struct.pack_into(<span class="string">&#x27;&lt;I&#x27;</span>, target, <span class="number">0</span>, <span class="number">48785376</span>)     <span class="comment"># E0 67 E8 02</span></span><br><span class="line">    struct.pack_into(<span class="string">&#x27;&lt;I&#x27;</span>, target, <span class="number">4</span>, <span class="number">1630828949</span>)   <span class="comment"># 95 79 34 61</span></span><br><span class="line">    target[<span class="number">8</span>] = <span class="number">23</span>                                  <span class="comment"># 0x17</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2. XorDecodeInPlace 等价循环，尾部常量固定为 0xE6</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">9</span>):</span><br><span class="line">        t = (<span class="number">1121083892</span> - <span class="number">1640531527</span> * i) &amp; <span class="number">0xFFFFFFFF</span></span><br><span class="line">        <span class="comment"># 有符号算术右移</span></span><br><span class="line">        <span class="keyword">if</span> t &gt;= <span class="number">0x80000000</span>:</span><br><span class="line">            t_signed = t - <span class="number">0x100000000</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            t_signed = t</span><br><span class="line">        a = (t_signed &gt;&gt; <span class="number">13</span>) &amp; <span class="number">0xFFFFFFFF</span></span><br><span class="line">        b = (-<span class="number">12</span> - <span class="number">71</span> * i) &amp; <span class="number">0xFFFFFFFF</span></span><br><span class="line">        key = (a ^ b ^ <span class="number">0xE6</span>) &amp; <span class="number">0xFF</span></span><br><span class="line">        target[i] ^= key</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3. recovered[j] = b[j] ^ 4 → b[j] = target[j] ^ 4</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">bytes</span>(t ^ <span class="number">4</span> <span class="keyword">for</span> t <span class="keyword">in</span> target)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    part2 = decrypt_part2()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[part2] <span class="subst">&#123;part2.decode()&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="comment"># 预期输出: eff9-4e58</span></span><br></pre></td></tr></table></figure>
+
+<p>第三个 <code>Check()</code></p>
+<p><img src="https://pic1.imgdb.cn/i/034QM8qHeuvsrjaVz0TqGe.png" alt="pasted_1789644103827_oah9ej.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">to_signed32</span>(<span class="params">x</span>):</span><br><span class="line">    x &amp;= <span class="number">0xFFFFFFFF</span></span><br><span class="line">    <span class="keyword">return</span> x - <span class="number">0x100000000</span> <span class="keyword">if</span> x &gt;= <span class="number">0x80000000</span> <span class="keyword">else</span> x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">xor_decode</span>(<span class="params">buf: <span class="built_in">bytes</span>, offset: <span class="built_in">int</span>, tail: <span class="built_in">int</span></span>) -&gt; <span class="built_in">bytes</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;CBoxValidator 里内联的 XOR 解码循环&quot;&quot;&quot;</span></span><br><span class="line">    out = <span class="built_in">bytearray</span>(buf)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(out)):</span><br><span class="line">        idx = i + offset</span><br><span class="line">        t = to_signed32(<span class="number">1121083892</span> - <span class="number">1640531527</span> * idx)</span><br><span class="line">        a = (t &gt;&gt; <span class="number">13</span>) &amp; <span class="number">0xFFFFFFFF</span></span><br><span class="line">        b = (-<span class="number">12</span> - <span class="number">71</span> * idx) &amp; <span class="number">0xFFFFFFFF</span></span><br><span class="line">        key = (a ^ b ^ tail) &amp; <span class="number">0xFF</span></span><br><span class="line">        out[i] ^= key</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">bytes</span>(out)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="comment"># ---- 1. 解出置换 P ----</span></span><br><span class="line">    P_cipher = (-<span class="number">818924588</span> &amp; <span class="number">0xFFFFFFFF</span>).to_bytes(<span class="number">4</span>, <span class="string">&#x27;little&#x27;</span>)  <span class="comment"># D4 33 30 CF</span></span><br><span class="line">    P = xor_decode(P_cipher, offset=<span class="number">96</span>, tail=<span class="number">0x82</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;P = <span class="subst">&#123;<span class="built_in">list</span>(P)&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ---- 2. 解出目标 1（enc 必须匹配） ----</span></span><br><span class="line">    T1_cipher = (-<span class="number">1770870401</span> &amp; <span class="number">0xFFFFFFFF</span>).to_bytes(<span class="number">4</span>, <span class="string">&#x27;little&#x27;</span>)  <span class="comment"># 7F A9 72 96</span></span><br><span class="line">    T1 = xor_decode(T1_cipher, offset=<span class="number">0</span>, tail=<span class="number">0x99</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;T1 = <span class="subst">&#123;[<span class="built_in">hex</span>(b) <span class="keyword">for</span> b <span class="keyword">in</span> T1]&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ---- 3. 解出目标 3（原始输入必须匹配） ----</span></span><br><span class="line">    T3_cipher = (<span class="number">1992629660</span> &amp; <span class="number">0xFFFFFFFF</span>).to_bytes(<span class="number">4</span>, <span class="string">&#x27;little&#x27;</span>)   <span class="comment"># 5C 2F C7 76</span></span><br><span class="line">    T3 = xor_decode(T3_cipher, offset=<span class="number">0</span>, tail=<span class="number">0x9A</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;T3 = <span class="subst">&#123;[<span class="built_in">hex</span>(b) <span class="keyword">for</span> b <span class="keyword">in</span> T3]&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ---- 4. 由 enc[i] = input[P[i]] ^ 0xB2 = T1[i] 反推输入 ----</span></span><br><span class="line">    inp = <span class="built_in">bytearray</span>(<span class="number">4</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">        inp[P[i]] = T1[i] ^ <span class="number">0xB2</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[part3] <span class="subst">&#123;<span class="built_in">bytes</span>(inp).decode()&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<p>第四段的脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">to_signed32</span>(<span class="params">x</span>):</span><br><span class="line">    x &amp;= <span class="number">0xFFFFFFFF</span></span><br><span class="line">    <span class="keyword">return</span> x - <span class="number">0x100000000</span> <span class="keyword">if</span> x &gt;= <span class="number">0x80000000</span> <span class="keyword">else</span> x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">xor_decode</span>(<span class="params">buf, offset, tail</span>):</span><br><span class="line">    out = <span class="built_in">bytearray</span>(buf)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(out)):</span><br><span class="line">        idx = i + offset</span><br><span class="line">        t = to_signed32(<span class="number">1121083892</span> - <span class="number">1640531527</span> * idx)</span><br><span class="line">        a = (t &gt;&gt; <span class="number">13</span>) &amp; <span class="number">0xFFFFFFFF</span></span><br><span class="line">        b = (-<span class="number">12</span> - <span class="number">71</span> * idx) &amp; <span class="number">0xFFFFFFFF</span></span><br><span class="line">        out[i] ^= (a ^ b ^ tail) &amp; <span class="number">0xFF</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">bytes</span>(out)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="comment"># ---- 1. 构造 rollKey（位置偏移 +112，无尾常量） ----</span></span><br><span class="line">    rollKey = <span class="built_in">bytearray</span>(<span class="number">4</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">        idx = i + <span class="number">112</span></span><br><span class="line">        t = to_signed32(<span class="number">1121083892</span> - <span class="number">1640531527</span> * idx)</span><br><span class="line">        a = (t &gt;&gt; <span class="number">13</span>) &amp; <span class="number">0xFFFFFFFF</span></span><br><span class="line">        b = (-<span class="number">12</span> - <span class="number">71</span> * idx) &amp; <span class="number">0xFFFFFFFF</span></span><br><span class="line">        rollKey[i] = (a ^ b) &amp; <span class="number">0xFF</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;rollKey = <span class="subst">&#123;[<span class="built_in">hex</span>(b) <span class="keyword">for</span> b <span class="keyword">in</span> rollKey]&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ---- 2. 解密 target[12]，tail = 0xB1，offset = 0 ----</span></span><br><span class="line">    t_buf = <span class="built_in">bytearray</span>(<span class="number">12</span>)</span><br><span class="line">    struct.pack_into(<span class="string">&#x27;&lt;i&#x27;</span>, t_buf, <span class="number">0</span>, -<span class="number">1646205196</span>)</span><br><span class="line">    struct.pack_into(<span class="string">&#x27;&lt;i&#x27;</span>, t_buf, <span class="number">4</span>, -<span class="number">1556893724</span>)</span><br><span class="line">    struct.pack_into(<span class="string">&#x27;&lt;i&#x27;</span>, t_buf, <span class="number">8</span>,  <span class="number">37837608</span>)</span><br><span class="line">    target = xor_decode(t_buf, <span class="number">0</span>, <span class="number">0xB1</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;target  = <span class="subst">&#123;[<span class="built_in">hex</span>(b) <span class="keyword">for</span> b <span class="keyword">in</span> target]&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ---- 3. 逆滚动 XOR 链还原输入 ----</span></span><br><span class="line">    inp = <span class="built_in">bytearray</span>(<span class="number">12</span>)</span><br><span class="line">    prev = <span class="number">0x4C</span>   <span class="comment"># 76</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">12</span>):</span><br><span class="line">        inp[j] = target[j] ^ prev ^ rollKey[j &amp; <span class="number">3</span>]</span><br><span class="line">        prev = inp[j]</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[part4] <span class="subst">&#123;inp.decode(<span class="string">&#x27;ascii&#x27;</span>)&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<p>最后的 flag：<code>flag{fe55d536-eff9-4e58-ad35-7f93e1b94c69}</code></p>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/%E5%87%BA%E9%A2%98/" title="出题" data-aos="zoom-in">出题</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/MFC-%E9%80%86%E5%90%91/" rel="tag" title="MFC 逆向">MFC 逆向</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/RTTI-%E6%81%A2%E5%A4%8D/" rel="tag" title="RTTI 恢复">RTTI 恢复</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E8%99%9A%E5%87%BD%E6%95%B0%E8%A1%A8/" rel="tag" title="虚函数表">虚函数表</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="PHP WebShell 免杀之字符串运算 + 动态调用" class="lazyload">
+        <a href="/2026/04/29/WebShell%20%E5%85%8D%E6%9D%80%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%90%E7%AE%97%20+%20%E5%8A%A8%E6%80%81%E8%B0%83%E7%94%A8/" aria-label="前一篇: PHP WebShell 免杀之字符串运算 + 动态调用" title="前一篇: PHP WebShell 免杀之字符串运算 + 动态调用"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            PHP WebShell 免杀之字符串运算 + 动态调用
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="出题——这关难不倒你算炸单" class="lazyload">
+      <a href="/2026/04/28/%E8%BF%99%E5%85%B3%E9%9A%BE%E4%B8%8D%E5%80%92%E4%BD%A0%E7%AE%97%E7%82%B8%E5%8D%95/" aria-label="后一篇: 出题——这关难不倒你算炸单"  title="后一篇: 出题——这关难不倒你算炸单"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          出题——这关难不倒你算炸单
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        327.5k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        26:39
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BA%E9%A2%98%E2%80%94%E2%80%94ClassReaper"><span class="toc-number">1.</span> <span class="toc-text">出题——ClassReaper</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%85%A5%E5%8F%A3"><span class="toc-number">1.2.</span> <span class="toc-text">程序入口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E8%A7%A3%E5%AF%86%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">分析解密函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D-CRuntimeClass-%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.</span> <span class="toc-text">恢复 CRuntimeClass 结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E7%BA%BF%E8%A7%A3%E5%AF%86%E7%B1%BB%E5%90%8D"><span class="toc-number">1.5.</span> <span class="toc-text">离线解密类名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB-CRuntimeClass-%E7%9A%84%E4%B8%89%E4%B8%AA%E5%85%B3%E9%94%AE%E5%AD%97%E6%AE%B5"><span class="toc-number">1.6.</span> <span class="toc-text">读 CRuntimeClass 的三个关键字段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0"><span class="toc-number">1.7.</span> <span class="toc-text">工厂函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB-vftable"><span class="toc-number">1.8.</span> <span class="toc-text">读 vftable</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%BD%8D%E5%9B%9B%E4%B8%AA-Check"><span class="toc-number">1.9.</span> <span class="toc-text">定位四个 Check()</span></a></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">252</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">189</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "出题——ClassReaper",
+          url: "https://suc2es2.github.io/2026/04/28/%E5%87%BA%E9%A2%98-ClassReaper/",
+          excerpt: "",
+          description: "",
+          stripContent: "出题——ClassReaper前言这次出题主要考察 RTTI 恢复以及虚函数表，本题关闭了标准 C++ RTTI（&amp;#x2F;GR-），所以 IDA 的 Class Informer 无法自动恢复类。但 MFC 自有的 CRuntimeClass 机制仍然保留，这是本题的突破口 MFC 逆向的 RTTI 恢复，就是利用 MFC 自有的 CRuntimeClass 链表及其 m_lpszClassName、m_pBaseClass、m_pfnCreateObject 等字段，从二进制中还原类名、继",
+          date: "Tue Apr 28 2026 02:39:00 GMT+0800",
+          updated: "Thu Sep 17 2026 19:30:22 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
