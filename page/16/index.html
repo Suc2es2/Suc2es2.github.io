@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">252</div>
+    <div class="sidebar-state-number">253</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -160,7 +160,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">189</div>
+    <div class="sidebar-state-number">193</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -223,6 +223,9 @@
               <a href="/2026/08/28/%E5%87%BA%E9%A2%98-ClassReaper/" title="出题——ClassReaper">出题——ClassReaper</a>
             </li>
             <li>
+              <a href="/2026/08/28/%E5%87%BA%E9%A2%98-GTI%20%E5%B7%A1%E6%9F%A5%E5%9B%A2/" title="出题——G.T.I 巡查团">出题——G.T.I 巡查团</a>
+            </li>
+            <li>
               <a href="/2026/08/01/Funbox%20Under%20Construction!/" title="VulnHub Funbox：Under Construction!">VulnHub Funbox：Under Construction!</a>
             </li>
             <li>
@@ -230,9 +233,6 @@
             </li>
             <li>
               <a href="/2026/08/01/BuffEMR%201.0.1/" title="VulnHub BuffEMR：1.0.1">VulnHub BuffEMR：1.0.1</a>
-            </li>
-            <li>
-              <a href="/2026/08/01/IA%20Keyring%20(1.0.1)/" title="VulnHub IA：Keyring (1.0.1)">VulnHub IA：Keyring (1.0.1)</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,45 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2025/04/01/suidy/" aria-label="MazeSec suidy" title="MazeSec suidy"></a>
+      <a class="post-link" href="/2025/04/01/BaseME/" aria-label="MazeSec BaseME" title="MazeSec BaseME"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec BaseME" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-04-01</span>
+        <span><span class="icon-pencil"></span>347 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">MazeSec BaseME</h2>
+      <article class="post-article">
+          BaseME项目地址：https://downloads.hackmyvm.eu/baseme.zip
+是一个打包好的镜像文件
+注意：导入 ova 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+敏感信息泄露SSH 私钥访问拿到一串 Base64 编码
+
+解码
+
+查看源代码还能发现一串注释
+
+猜测是字典之类的，之前的提示写所有需要的东西都是 BASE64，那么我们就把字典用 BASE64 编码之后再扫描
+得到下面两个路径
+12/aWRfcnNhCg==/cm9ib3RzLnR4dAo=
+
+将两个文件名解码后得到
+12id_rsarobots.txt
+
+其中一个是
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2025/04/01/suidy/" aria-label="MazeSec suidy" title="MazeSec suidy"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec suidy" class="lazyload">
     </div>
     <div class="post-info">
@@ -279,9 +316,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2025/04/01/Conection/" aria-label="MazeSec Conection" title="MazeSec Conection"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Conection" class="lazyload">
     </div>
     <div class="post-info">
@@ -312,9 +349,9 @@ RCESMB139 445 端口全开，使用 enum4linux 枚举信息
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2025/04/01/Gift/" aria-label="MazeSec Gift" title="MazeSec Gift"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Gift" class="lazyload">
     </div>
     <div class="post-info">
@@ -338,9 +375,9 @@ RCESMB139 445 端口全开，使用 enum4linux 枚举信息
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2025/04/01/Pwned/" aria-label="MazeSec Pwned" title="MazeSec Pwned"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Pwned" class="lazyload">
     </div>
     <div class="post-info">
@@ -376,9 +413,9 @@ SSH发现有私钥
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2024/04/02/2024%20%E7%AC%AC%E4%B8%80%E5%B1%8A%20Solar%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B/" aria-label="2024 第一届 Solar 应急响应挑战赛 WriteUp" title="2024 第一届 Solar 应急响应挑战赛 WriteUp"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2024 第一届 Solar 应急响应挑战赛 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -406,29 +443,41 @@ newxmmxszc6-1.qq.com
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2022/04/14/2022%20HITCON/" aria-label="2022 HITCON WriteUp" title="2022 HITCON WriteUp"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2022 HITCON WriteUp" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2022-04-14</span>
-        <span><span class="icon-pencil"></span>46 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
+        <span><span class="icon-pencil"></span>2.5k 字</span>
+        <span><span class="icon-clock"></span>12 分钟</span>
       </div>
       <h2 class="post-title">2022 HITCON WriteUp</h2>
       <article class="post-article">
           2022 HITCON WriteUpHITCON CTF 是由台湾的 HITCON 安全社区组织并主办的国际性网络安全夺旗竞赛，与每年的 HITCON 台湾骇客年会同期举办
+🏆 赛事概况
 
+比赛时间：2022 年 11 月 25 日 21:00 至 11 月 27 日 21:00 (UTC+7)
+
+比赛形式：线上 Jeopardy（解题） 模式
+
+赛事规模：共吸引了来自全球 95 个国家的 1,243 支队伍参赛
+
+题目设置：共 27 道挑战题，涵盖 Web、Pwn、Crypto、Reverse、Misc 等方向
+
+
+Misclemminx（XXE 无回显绕过）
+题目描述：Eclipse 
       </article>
     </div>
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2021/05/26/b2evolution%20CMS%20SQL%20%E6%B3%A8%E5%85%A5%EF%BC%88CVE-2021-28242%EF%BC%89/" aria-label="b2evolution CMS SQL 注入（CVE-2021-28242）" title="b2evolution CMS SQL 注入（CVE-2021-28242）"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="b2evolution CMS SQL 注入（CVE-2021-28242）" class="lazyload">
     </div>
     <div class="post-info">
@@ -462,9 +511,9 @@ newxmmxszc6-1.qq.com
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2021/04/14/2021-%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B/" aria-label="2021 第五空间智能安全大赛 WriteUp" title="2021 第五空间智能安全大赛 WriteUp"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2021 第五空间智能安全大赛 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -503,9 +552,9 @@ newxmmxszc6-1.qq.com
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2021/04/14/2021-%E7%AC%AC%E5%9B%9B%E5%B1%8A%E7%BA%A2%E5%B8%BD%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B/" aria-label="2021 第四届红帽杯网络安全大赛 WriteUp" title="2021 第四届红帽杯网络安全大赛 WriteUp"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2021 第四届红帽杯网络安全大赛 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -555,38 +604,6 @@ ehbud队
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2020/05/23/OctoberCMS%20%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%EF%BC%88CVE-2020-15246%EF%BC%89/" aria-label="OctoberCMS 任意文件读取（CVE-2020-15246）" title="OctoberCMS 任意文件读取（CVE-2020-15246）"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="OctoberCMS 任意文件读取（CVE-2020-15246）" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2020-05-23</span>
-        <span><span class="icon-pencil"></span>899 字</span>
-        <span><span class="icon-clock"></span>4 分钟</span>
-      </div>
-      <h2 class="post-title">OctoberCMS 任意文件读取（CVE-2020-15246）</h2>
-      <article class="post-article">
-          OctoberCMS 任意文件读取（CVE-2020-15246）前言🎯 影响范围
-受影响产品: October CMS
-受影响版本: 1.0.421 至 1.0.468 版本
-安全版本: 1.0.469 及以上版本，以及 1.1.0 及以上版本
-漏洞复现环境搭建主要如下：
-
-PHP 7.3.4
-
-october 1.0.467
-
-Python3
-
-
-漏洞代码入口主要在 modules/cms/classes/Controller.php，OctoberCMS 前台访问一个页面时，会进入 Controller::run($url)，它会根据 URL 找到对应的 CMS 页面，然后执行页面逻辑
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/15/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/17/">下一页 &raquo;</a>
   </nav>
@@ -610,10 +627,10 @@ Python3
       </div>
       <div>
         <span class="icon-brush"></span>
-        327.5k
+        333.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        26:39
+        27:06
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -641,7 +658,7 @@ Python3
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">252</div>
+    <div class="sidebar-state-number">253</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -649,7 +666,7 @@ Python3
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">189</div>
+    <div class="sidebar-state-number">193</div>
   </div>
 </div>
 <div class="sidebar-social" >

