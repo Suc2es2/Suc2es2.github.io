@@ -220,9 +220,6 @@
       <div class="widget">
         <ul>
             <li>
-              <a href="/2026/09/30/%E5%8F%B7%E8%A7%92%E6%9C%AA%E6%8E%88%E6%9D%83%E8%8E%B7%E5%8F%96%E9%98%BF%E9%87%8C%E4%BA%91%20OSS%20STS%20%E4%BA%91%E5%87%AD%E8%AF%81/" title="号角未授权获取阿里云 OSS STS 云凭证">号角未授权获取阿里云 OSS STS 云凭证</a>
-            </li>
-            <li>
               <a href="/2026/09/20/%E5%87%BA%E9%A2%98-GTI%20%E5%B7%A1%E6%9F%A5%E5%9B%A2/" title="出题——G.T.I 巡查团">出题——G.T.I 巡查团</a>
             </li>
             <li>
@@ -233,6 +230,9 @@
             </li>
             <li>
               <a href="/2026/08/01/Hacker's%20Blog%201/" title="VulnHub Hacker&#39;s Blog：1">VulnHub Hacker&#39;s Blog：1</a>
+            </li>
+            <li>
+              <a href="/2026/08/01/BuffEMR%201.0.1/" title="VulnHub BuffEMR：1.0.1">VulnHub BuffEMR：1.0.1</a>
             </li>
         </ul>
       </div>
@@ -245,43 +245,78 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/2019-NestCTF/" aria-label="2019 NEST CTF WriteUp" title="2019 NEST CTF WriteUp"></a>
+      <a class="post-link" href="/2019/05/22/2019-De1CTF/" aria-label="2019 De1CTF WriteUp" title="2019 De1CTF WriteUp"></a>
     <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 NEST CTF WriteUp" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2019 De1CTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>463 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
+        <span><span class="icon-pencil"></span>1.6k 字</span>
+        <span><span class="icon-clock"></span>8 分钟</span>
       </div>
-      <h2 class="post-title">2019 NEST CTF WriteUp</h2>
+      <h2 class="post-title">2019 De1CTF WriteUp</h2>
       <article class="post-article">
-          2019 NEST CTF WriteUp🏆 赛事概况
+          2019 De1CTF WriteUp🏛️ 组织架构
 
-主办方：网络内生安全试验场（NEST）
+主办方：De1ta 战队
 
-比赛形式：线上个人夺旗赛（CTF）
+技术支持：赛宁网安
 
-题目方向：主要包含Web、Reverse（逆向工程）、Misc（杂项） 等类型
-
-比赛平台：https://nest.ichunqiu.com/
+赞助商：华为、天融信、陌陌安全、红帽安全实验室
 
 
-Weblove math 2（分号绕过 + 异或绕过 + 可变变量绕过 + {} 绕过）
-经典绕 WAF：
-
-c 长度必须 &amp;lt; 60
-
-c 里不能有空格、引号、反引号、[]
-
-c 里出现的所有字母标识符，都必须在数学函数白名单里
-
-最后直接 eval，并且前面拼了 echo
+📊 赛事规模
+本次比赛规模盛大，共吸引了来自全球 77 个国家和地区的 1362 支队伍参赛
+🏆 比赛结果
 
 
 
-最终执行的语句是 ev
+排名
+队伍名称
+解题数
+总分
+
+
+
+1
+Whitzard (复旦大学)
+23
+11226
+
+
+2
+0ops (上海交通大学)
+21
+9117
+
+
+3
+Balsn (中国台湾)
+20
+8852
+
+
+4
+NU1L (联合战队)
+18
+7559
+
+
+5
+Venom
+17
+7016
+
+
+6
+AAA
+16
+6569
+
+
+7
+W&amp;a
       </article>
     </div>
   </div>
@@ -338,30 +373,8 @@ Pwnpwn5（格式化字符串漏洞）
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/RC4/" aria-label="RC4" title="RC4"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="RC4" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>5.1k 字</span>
-        <span><span class="icon-clock"></span>24 分钟</span>
-      </div>
-      <h2 class="post-title">RC4</h2>
-      <article class="post-article">
-          RC4RC4（Rivest Cipher 4）是由 Ron Rivest 在 1987 年设计的对称流密码，因其结构简单、软件实现高效，曾被广泛应用于 SSL&amp;#x2F;TLS、WEP、WPA、RDP、以及各种恶意软件和 CTF 题目中
-算法结构RC4 由两个核心阶段组成：密钥调度算法（KSA, Key-Scheduling Algorithm） 和 伪随机生成算法（PRGA, Pseudo-Random Generation Algorithm）
-状态初始化一个 256 字节的 S 盒（state vector），初始化为 S[i] = i，i = 0..255
-密钥 key 为任意长度（1
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/RISC-V/" aria-label="RISC-V 架构" title="RISC-V 架构"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="RISC-V 架构" class="lazyload">
     </div>
     <div class="post-info">
@@ -394,110 +407,23 @@ C：压
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/Ret2text/" aria-label="Ret2text" title="Ret2text"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2text" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>360 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
-      </div>
-      <h2 class="post-title">Ret2text</h2>
-      <article class="post-article">
-          Ret2text原理在 CTF 和二进制安全里，Ret2text 是一种非常经典的栈溢出利用手法。它的名字可以这样拆开理解：
-
-Ret：Return，代表 “返回地址”
-
-2 &amp;#x2F; to：到、跳转到
-
-text：.text 段，存放程序机器指令的区域
-
-
-简单说，Ret2text 就是利用栈溢出漏洞，将函数的返回地址篡改为程序 .text 段中已存在的合法代码，从而劫持控制流去执行这些代码来获取 shell
-因为执行的代码是程序本来就有的，所以它不需要注入 Shellcode，也能绕过 NX 保护
-实战案例帮我取一个题目名称（Ret2text）
-没开金丝雀，read 函数读取大小为 6
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/SMC/" aria-label="SMC" title="SMC"></a>
+      <a class="post-link" href="/2019/05/22/RC4/" aria-label="RC4" title="RC4"></a>
     <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="SMC" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="RC4" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1k 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
+        <span><span class="icon-pencil"></span>5.1k 字</span>
+        <span><span class="icon-clock"></span>24 分钟</span>
       </div>
-      <h2 class="post-title">SMC</h2>
+      <h2 class="post-title">RC4</h2>
       <article class="post-article">
-          SMCSMC（Self-Modifying Code，自修改代码） 是一种程序在执行过程中修改自身指令的技术
-原理程序运行时，动态修改内存中代码段的机器码，然后跳转到修改后的地址执行。修改方式包括：
-
-异或（XOR） — 用密钥异或加密代码段，运行时解密
-
-加减常量 — 对指令字节增减固定值
-
-直接覆写 — 用预先准备好的原始字节替换
-
-
-实战案例jocker（SMC 逆向 + IDA 脚本）
-IDA 反编译发现对 Str 和 Destination 进行了操作
-12345678910111213141516171819202122232425262728int __cdecl main(in
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/Schneider%20%E6%A8%A1%E5%9D%97%E5%9B%BA%E4%BB%B6/" aria-label="Schneider 模块固件" title="Schneider 模块固件"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="Schneider 模块固件" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>389 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
-      </div>
-      <h2 class="post-title">Schneider 模块固件</h2>
-      <article class="post-article">
-          Schneider 模块固件概述施耐德电气（Schneider Electric）的模块固件，是为其各类模块化设备（如控制器、I&amp;#x2F;O 模块、通信模块等）提供底层功能的软件。它直接决定了模块的性能、功能及稳定性，通常以 .zip 或 .seco 等格式提供
-实战案例简单的固件逆向分析（Schneider 模块固件）
-解压缩附件，里面有个压缩文件叫 SchneiderTFE.zip，所以应该考察的是 Schneider 模块固件
-关键文件是 FLASH0/wwwroot/conf/exec/NOE77101.bin
-1od -Ax -tx1z -j 0x210 -N 48 ./NOE77
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/SMT/" aria-label="SMT" title="SMT"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="SMT" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1.1k 字</span>
-        <span><span class="icon-clock"></span>6 分钟</span>
-      </div>
-      <h2 class="post-title">SMT</h2>
-      <article class="post-article">
-          SMT概述可满足性模理论（Satisfiability Modulo Theories，简称 SMT） 可以看作是一个更强大的 “解方程” 工具。它解决的核心问题是：在特定的数学理论（如整数运算、数组、位向量等）背景下，判断一个逻辑公式是否存在一组解
-工作原理主流的 SMT 求解器多采用 “惰性（Lazy）算法”，其工作流程像一个高效的 “猜-验” 循环：
-
-抽象化：将 SMT 公式中的理论部分（如 x &amp;gt; y）替换为布尔变量，交给内部的 SAT 求解器去 “猜” 一个可能的布尔赋值组合
-
-理论验证：将 SAT 求解器 “猜” 出的布尔组合，还原回具体的理论约束，交给对应的理论求解器（如
+          RC4RC4（Rivest Cipher 4）是由 Ron Rivest 在 1987 年设计的对称流密码，因其结构简单、软件实现高效，曾被广泛应用于 SSL&amp;#x2F;TLS、WEP、WPA、RDP、以及各种恶意软件和 CTF 题目中
+算法结构RC4 由两个核心阶段组成：密钥调度算法（KSA, Key-Scheduling Algorithm） 和 伪随机生成算法（PRGA, Pseudo-Random Generation Algorithm）
+状态初始化一个 256 字节的 S 盒（state vector），初始化为 S[i] = i，i = 0..255
+密钥 key 为任意长度（1
       </article>
     </div>
   </div>
@@ -528,6 +454,115 @@ Python 程序的编译与运行机制源码 .py 被编译为 字节码 .pyc，�
 
 
 逆向的核心就是：获取 .pyc → 反
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/Ret2text/" aria-label="Ret2text" title="Ret2text"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2text" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>360 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">Ret2text</h2>
+      <article class="post-article">
+          Ret2text原理在 CTF 和二进制安全里，Ret2text 是一种非常经典的栈溢出利用手法。它的名字可以这样拆开理解：
+
+Ret：Return，代表 “返回地址”
+
+2 &amp;#x2F; to：到、跳转到
+
+text：.text 段，存放程序机器指令的区域
+
+
+简单说，Ret2text 就是利用栈溢出漏洞，将函数的返回地址篡改为程序 .text 段中已存在的合法代码，从而劫持控制流去执行这些代码来获取 shell
+因为执行的代码是程序本来就有的，所以它不需要注入 Shellcode，也能绕过 NX 保护
+实战案例帮我取一个题目名称（Ret2text）
+没开金丝雀，read 函数读取大小为 6
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/SMC/" aria-label="SMC" title="SMC"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="SMC" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">SMC</h2>
+      <article class="post-article">
+          SMCSMC（Self-Modifying Code，自修改代码） 是一种程序在执行过程中修改自身指令的技术
+原理程序运行时，动态修改内存中代码段的机器码，然后跳转到修改后的地址执行。修改方式包括：
+
+异或（XOR） — 用密钥异或加密代码段，运行时解密
+
+加减常量 — 对指令字节增减固定值
+
+直接覆写 — 用预先准备好的原始字节替换
+
+
+实战案例jocker（SMC 逆向 + IDA 脚本）
+IDA 反编译发现对 Str 和 Destination 进行了操作
+12345678910111213141516171819202122232425262728int __cdecl main(in
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/SMT/" aria-label="SMT" title="SMT"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="SMT" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1.1k 字</span>
+        <span><span class="icon-clock"></span>6 分钟</span>
+      </div>
+      <h2 class="post-title">SMT</h2>
+      <article class="post-article">
+          SMT概述可满足性模理论（Satisfiability Modulo Theories，简称 SMT） 可以看作是一个更强大的 “解方程” 工具。它解决的核心问题是：在特定的数学理论（如整数运算、数组、位向量等）背景下，判断一个逻辑公式是否存在一组解
+工作原理主流的 SMT 求解器多采用 “惰性（Lazy）算法”，其工作流程像一个高效的 “猜-验” 循环：
+
+抽象化：将 SMT 公式中的理论部分（如 x &amp;gt; y）替换为布尔变量，交给内部的 SAT 求解器去 “猜” 一个可能的布尔赋值组合
+
+理论验证：将 SAT 求解器 “猜” 出的布尔组合，还原回具体的理论约束，交给对应的理论求解器（如
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/Schneider%20%E6%A8%A1%E5%9D%97%E5%9B%BA%E4%BB%B6/" aria-label="Schneider 模块固件" title="Schneider 模块固件"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Schneider 模块固件" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>389 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">Schneider 模块固件</h2>
+      <article class="post-article">
+          Schneider 模块固件概述施耐德电气（Schneider Electric）的模块固件，是为其各类模块化设备（如控制器、I&amp;#x2F;O 模块、通信模块等）提供底层功能的软件。它直接决定了模块的性能、功能及稳定性，通常以 .zip 或 .seco 等格式提供
+实战案例简单的固件逆向分析（Schneider 模块固件）
+解压缩附件，里面有个压缩文件叫 SchneiderTFE.zip，所以应该考察的是 Schneider 模块固件
+关键文件是 FLASH0/wwwroot/conf/exec/NOE77101.bin
+1od -Ax -tx1z -j 0x210 -N 48 ./NOE77
       </article>
     </div>
   </div>
