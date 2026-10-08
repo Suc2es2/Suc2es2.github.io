@@ -1,0 +1,778 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
+  <title>
+    号角未授权获取阿里云 OSS STS 云凭证 | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="号角未授权获取阿里云 OSS STS 云凭证前言本次测试属于公益类型的 SRC JavaScript 信息收集起点页面 https:&#x2F;&#x2F;web.haojiao.cc&#x2F;wiki&#x2F;wiki_home&#x2F;t2Ud5pOQlscKLbRC 返回的 HTML 只有 1589 字节，除了一堆 meta 就是一个空 div 12345678910111213141516&lt;!doctype html&gt;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="号角未授权获取阿里云 OSS STS 云凭证">
+<meta property="og:url" content="https://suc2es2.github.io/2026/09/30/%E5%8F%B7%E8%A7%92%E6%9C%AA%E6%8E%88%E6%9D%83%E8%8E%B7%E5%8F%96%E9%98%BF%E9%87%8C%E4%BA%91%20OSS%20STS%20%E4%BA%91%E5%87%AD%E8%AF%81/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="号角未授权获取阿里云 OSS STS 云凭证前言本次测试属于公益类型的 SRC JavaScript 信息收集起点页面 https:&#x2F;&#x2F;web.haojiao.cc&#x2F;wiki&#x2F;wiki_home&#x2F;t2Ud5pOQlscKLbRC 返回的 HTML 只有 1589 字节，除了一堆 meta 就是一个空 div 12345678910111213141516&lt;!doctype html&gt;&amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034bbmYlyDaoZnEIq9VXZA.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034bc0N6VjSc6XOWycNUy4.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034bcYF7xk9smqh5nbYfuH.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034bfIh7covYdkguZiXJkd.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034bfpDH0D475LBa038pBl.png">
+<meta property="article:published_time" content="2026-09-30T04:32:00.000Z">
+<meta property="article:modified_time" content="2026-10-08T04:30:29.867Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="SRC">
+<meta property="article:tag" content="Webpack">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034bbmYlyDaoZnEIq9VXZA.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="号角未授权获取阿里云 OSS STS 云凭证">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">号角未授权获取阿里云 OSS STS 云凭证</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%B7%E8%A7%92%E6%9C%AA%E6%8E%88%E6%9D%83%E8%8E%B7%E5%8F%96%E9%98%BF%E9%87%8C%E4%BA%91-OSS-STS-%E4%BA%91%E5%87%AD%E8%AF%81"><span class="toc-number">1.</span> <span class="toc-text">号角未授权获取阿里云 OSS STS 云凭证</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.2.</span> <span class="toc-text">JavaScript 信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE"><span class="toc-number">1.3.</span> <span class="toc-text">未授权访问</span></a></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">255</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">195</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-号角未授权获取阿里云 OSS STS 云凭证" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-09-30T04:32:00.000Z" itemprop="datePublished">2026-09-30</time>
+    <time style="display: none;" id="post-update-time">2026-10-08</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="号角未授权获取阿里云-OSS-STS-云凭证"><a href="#号角未授权获取阿里云-OSS-STS-云凭证" class="headerlink" title="号角未授权获取阿里云 OSS STS 云凭证"></a>号角未授权获取阿里云 OSS STS 云凭证</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本次测试属于公益类型的 SRC</p>
+<h2 id="JavaScript-信息收集"><a href="#JavaScript-信息收集" class="headerlink" title="JavaScript 信息收集"></a>JavaScript 信息收集</h2><p>起点页面 <code>https://web.haojiao.cc/wiki/wiki_home/t2Ud5pOQlscKLbRC</code> 返回的 HTML 只有 <strong>1589 字节</strong>，除了一堆 <code>meta</code> 就是一个空 <code>div</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="keyword">html</span>&gt;</span><span class="tag">&lt;<span class="name">html</span>&gt;</span><span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;shortcut icon&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://files.haojiao.cc/frontend/commons/favicon.ico&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>号角<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://at.alicdn.com/t/c/font_4035192_7p93u2ofib.css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://files.haojiao.cc/frontend/commons/antd.variable.min.css?...&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"><span class="selector-id">#root</span>&#123;<span class="attribute">height</span>:<span class="number">100%</span>;<span class="attribute">width</span>:<span class="number">100%</span>&#125;<span class="selector-tag">body</span>&#123;<span class="attribute">width</span>:<span class="number">100%</span><span class="meta">!important</span>;<span class="attribute">background-color</span>:transparent&#125;</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;title&quot;</span> <span class="attr">content</span>=<span class="string">&quot;horn-web&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;keywords&quot;</span> <span class="attr">content</span>=<span class="string">&quot;react,hooks,redux,typescript,router5,antd4.21.6&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;/./css/406bea94370e8a83a584.css&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;root&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/js/fdf61c7e604adccd8da1.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/js/antd.c91e96c74fb0d99041de.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/js/vendors~app.20d8b078010b5c655dd3.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/js/app.00bef81e713d16ef6d72.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>meta</code> 已经把技术栈交代清楚：React + Redux + TypeScript + router5 + antd 4.21.6，SPA 外壳，真实逻辑全在 JS 里。响应头显示前面是 Tengine + 阿里云 CDN（<code>Via: cache40.l2ea120-5</code>、<code>EagleId</code>）</p>
+<p><code>fdf61c7e604adccd8da1.js</code> 只有 3921 字节，是 webpack 的运行时引导</p>
+<p><img src="https://pic1.imgdb.cn/i/034bbmYlyDaoZnEIq9VXZA.png" alt="pasted_1791339881046_8x7090.png"></p>
+<p>重点分析生成 JS chunk URL 的代码部分</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">d.<span class="property">src</span> = <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> f.<span class="property">p</span> + <span class="string">&quot;js/&quot;</span> + (&#123;</span><br><span class="line">        <span class="number">0</span>: <span class="string">&quot;common&quot;</span>,</span><br><span class="line">        <span class="number">2</span>: <span class="string">&quot;antv&quot;</span>,</span><br><span class="line">        <span class="number">4</span>: <span class="string">&quot;echarts&quot;</span></span><br><span class="line">    &#125;[e] || e) + <span class="string">&quot;.&quot;</span> + &#123;</span><br><span class="line">        <span class="number">0</span>: <span class="string">&quot;0f9cc54654dc2e88a00c&quot;</span>,</span><br><span class="line">        <span class="number">2</span>: <span class="string">&quot;179fc3d571fe8dc212c6&quot;</span>,</span><br><span class="line">        <span class="number">3</span>: <span class="string">&quot;9b826905863c47fbb3cc&quot;</span>,</span><br><span class="line">        <span class="number">4</span>: <span class="string">&quot;f39b212965ee769ac2a2&quot;</span>,</span><br><span class="line">        <span class="number">5</span>: <span class="string">&quot;3e7a80799a833e4df679&quot;</span>,</span><br><span class="line">        <span class="number">6</span>: <span class="string">&quot;ca963572f62abb7c0d7f&quot;</span>,</span><br><span class="line">        <span class="number">7</span>: <span class="string">&quot;36ad98e007a12ffed3e8&quot;</span>,</span><br><span class="line">        <span class="number">11</span>: <span class="string">&quot;bf1adeae6ff61339e831&quot;</span>,</span><br><span class="line">        <span class="number">12</span>: <span class="string">&quot;fca1e3f922c6c2fc8167&quot;</span>,</span><br><span class="line">        <span class="number">13</span>: <span class="string">&quot;1b832194f715c9f5d216&quot;</span>,</span><br><span class="line">        <span class="number">14</span>: <span class="string">&quot;c2182c2cf20f0dbe2727&quot;</span>,</span><br><span class="line">        <span class="number">15</span>: <span class="string">&quot;b3e74c27f230423a5e35&quot;</span>,</span><br><span class="line">        <span class="number">16</span>: <span class="string">&quot;80a006167030b5d124d6&quot;</span>,</span><br><span class="line">        <span class="number">17</span>: <span class="string">&quot;ddf893692ada9f0d02e7&quot;</span>,</span><br><span class="line">        <span class="number">18</span>: <span class="string">&quot;6dc9c657bf6dc31529e3&quot;</span></span><br><span class="line">    &#125;[e] + <span class="string">&quot;.js&quot;</span></span><br><span class="line">&#125;(e);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>function(e) { ... }(e)</code> 传入当前要加载的 chunk id（变量 <code>e</code>），返回完整的 JS 文件路径</p>
+</li>
+<li><p><code>f.p = &quot;/&quot;</code>，所以所有 chunk 都从网站根目录开始加载</p>
+</li>
+<li><p><code>&quot;js/&quot;</code> 表示 chunk 文件存放在 <code>/js/</code> 目录下</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(&#123;</span><br><span class="line">    <span class="number">0</span>: <span class="string">&quot;common&quot;</span>,</span><br><span class="line">    <span class="number">2</span>: <span class="string">&quot;antv&quot;</span>,</span><br><span class="line">    <span class="number">4</span>: <span class="string">&quot;echarts&quot;</span></span><br><span class="line">&#125;[e] || e)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>如果 chunk id 是 0、2、4，则使用对应的可读名称：<code>common</code>、<code>antv</code>、<code>echarts</code></p>
+</li>
+<li><p>其他 chunk id（如 3、5、11…）没有命名，直接使用数字 id 作为文件名的一部分</p>
+</li>
+</ul>
+<p>最终生成 URL 格式：<code>{公共路径}js/{chunk名称或id}.{哈希}.js</code></p>
+<p>按名单批量下载，结果暴露了一个信息：<strong>大部分异步 chunk 已从服务器下线</strong>，只有三个还在</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>大小</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>js/fdf61c7e604adccd8da1.js</code></td>
+<td>3,921 B</td>
+<td>webpack runtime + chunk 表</td>
+</tr>
+<tr>
+<td><code>js/antd.c91e96c74fb0d99041de.js</code></td>
+<td>435,388 B</td>
+<td>antd 组件库</td>
+</tr>
+<tr>
+<td><code>js/vendors~app.20d8b078010b5c655dd3.js</code></td>
+<td>2,287,319 B</td>
+<td>第三方依赖（含埋点 SDK）</td>
+</tr>
+<tr>
+<td><code>js/app.00bef81e713d16ef6d72.js</code></td>
+<td>408,443 B</td>
+<td><strong>业务代码主包（关键）</strong></td>
+</tr>
+<tr>
+<td><code>js/common.0f9cc54654dc2e88a00c.js</code></td>
+<td>1,903,402 B</td>
+<td>公共模块</td>
+</tr>
+<tr>
+<td><code>js/antv.179fc3d571fe8dc212c6.js</code></td>
+<td>1,772,902 B</td>
+<td>图表库</td>
+</tr>
+<tr>
+<td><code>js/echarts.f39b212965ee769ac2a2.js</code></td>
+<td>1,067,439 B</td>
+<td>图表库</td>
+</tr>
+<tr>
+<td>chunk 3&#x2F;5&#x2F;6&#x2F;7&#x2F;11–18</td>
+<td>1,589 B × 12</td>
+<td><strong>已下线</strong>，返回 index.html 兜底</td>
+</tr>
+</tbody></table>
+<p>在 <code>app.*.js</code> 里翻到一个 API 基址配置对象</p>
+<p><img src="https://pic1.imgdb.cn/i/034bc0N6VjSc6XOWycNUy4.png" alt="pasted_1791340429904_ud5vf6.png"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line">a = &#123;</span><br><span class="line">  <span class="attr">user</span>:          <span class="string">&quot;https://api.haojiao.cc/user_register_center&quot;</span>,</span><br><span class="line">  <span class="attr">configCenter</span>:  <span class="string">&quot;https://api.haojiao.cc/config_center&quot;</span>,</span><br><span class="line">  <span class="attr">messageCenter</span>: <span class="string">&quot;https://api.haojiao.cc/message_center&quot;</span>,</span><br><span class="line">  <span class="attr">momentNew</span>:     <span class="string">&quot;https://api.haojiao.cc/moment_new&quot;</span>,</span><br><span class="line">  <span class="attr">userBase</span>:      <span class="string">&quot;https://api.haojiao.cc/user_base_logic&quot;</span>,</span><br><span class="line">  <span class="attr">wiki</span>:          <span class="string">&quot;https://api.haojiao.cc/wiki&quot;</span>,</span><br><span class="line">  <span class="attr">cms</span>:           <span class="string">&quot;https://api.haojiao.cc/cms_api&quot;</span>,</span><br><span class="line">  <span class="attr">web</span>:           <span class="string">&quot;https://web.haojiao.cc&quot;</span>,</span><br><span class="line">  <span class="attr">mobile</span>:        <span class="string">&quot;https://m.haojiao.cc&quot;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>后端是 <code>api.haojiao.cc</code> 上一个<strong>按服务名分区的网关</strong></p>
+<table>
+<thead>
+<tr>
+<th>服务名</th>
+<th>作用（据接口推断）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>wiki</code></td>
+<td>电竞百科主体：赛事 &#x2F; 战队 &#x2F; 选手 &#x2F; 比赛 &#x2F; 评分 &#x2F; 预测</td>
+</tr>
+<tr>
+<td><code>user_register_center</code></td>
+<td>注册、登录、发码、绑定、找回、注销</td>
+</tr>
+<tr>
+<td><code>user_base_logic</code></td>
+<td>用户资料、徽章、JWT 签发</td>
+</tr>
+<tr>
+<td><code>moment_new</code></td>
+<td>社区动态、帖子、评论、话题</td>
+</tr>
+<tr>
+<td><code>message_center</code></td>
+<td>消息通知</td>
+</tr>
+<tr>
+<td><code>config_center</code></td>
+<td>全站配置、OSS 凭证签发</td>
+</tr>
+<tr>
+<td><code>cms_api</code></td>
+<td>内容管理</td>
+</tr>
+</tbody></table>
+<p>顺着这份地图，从 JS 里抽出 <strong>205 条接口路径</strong></p>
+<p>后端接口有鉴权，直接访问返回 403，回到 <code>app.*.js</code> 找请求拦截器</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 请求拦截器：统一处理请求配置</span></span><br><span class="line">i.<span class="property">a</span>.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(<span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  e.<span class="property">data</span> = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(e.<span class="property">data</span>);                <span class="comment">// 序列化请求体</span></span><br><span class="line">  e.<span class="property">timeStamp</span> = (<span class="keyword">new</span> <span class="title class_">Date</span>).<span class="title function_">getTime</span>();             <span class="comment">// 添加时间戳</span></span><br><span class="line">  <span class="keyword">var</span> t = <span class="title function_">p</span>();                                    <span class="comment">// 生成自定义头</span></span><br><span class="line">  e.<span class="property">headers</span> = <span class="title function_">M</span>(<span class="title function_">M</span>(&#123;&#125;, e.<span class="property">headers</span>), t);             <span class="comment">// 合并自定义头到现有 headers</span></span><br><span class="line">  <span class="keyword">var</span> n = c.<span class="property">c</span>.<span class="title function_">get_store</span>(<span class="string">&quot;JW_TOKEN&quot;</span>);              <span class="comment">// 从本地存储获取 token</span></span><br><span class="line">  <span class="keyword">return</span> n &amp;&amp; (e.<span class="property">headers</span>.<span class="property">Authorization</span> = <span class="string">&quot;Bearer &quot;</span>.<span class="title function_">concat</span>(n)), e;  <span class="comment">// 存在则加 Authorization 头，并返回 config</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>追 <code>p()</code>，在同一个模块里找到定义</p>
+<p><img src="https://pic1.imgdb.cn/i/034bcYF7xk9smqh5nbYfuH.png" alt="pasted_1791341725732_k5zpnl.png"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 生成自定义请求头：时间戳、随机数、OS、签名、版本</span></span><br><span class="line">p = <span class="keyword">function</span>(<span class="params">e, t</span>)&#123;</span><br><span class="line">  <span class="comment">// 若未传入时间戳，则取当前毫秒时间戳（Object(l.i)()）</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">void</span> <span class="number">0</span> === e &amp;&amp; (e = <span class="title class_">Object</span>(l.<span class="property">i</span>)()),</span><br><span class="line">         <span class="comment">// 若未传入随机串，则生成一个默认 10 位随机字符串</span></span><br><span class="line">         <span class="keyword">void</span> <span class="number">0</span> === t &amp;&amp; (t = <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">           <span class="keyword">void</span> <span class="number">0</span> === e &amp;&amp; (e = <span class="number">10</span>);                  <span class="comment">// 默认长度 10</span></span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">var</span> t = <span class="string">&quot;&quot;</span>, n = <span class="number">0</span>; n &lt; e; n++)</span><br><span class="line">             t += <span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(</span><br><span class="line">               <span class="title class_">Math</span>.<span class="title function_">round</span>(<span class="number">1</span> * <span class="title class_">Math</span>.<span class="title function_">random</span>()) ? <span class="number">26</span> * <span class="title class_">Math</span>.<span class="title function_">random</span>() + <span class="title class_">Math</span>.<span class="title function_">round</span>(<span class="number">1</span> * <span class="title class_">Math</span>.<span class="title function_">random</span>() ? <span class="number">97</span> : <span class="number">65</span>)  <span class="comment">// 随机大小写字母</span></span><br><span class="line">                                             : <span class="number">10</span> * <span class="title class_">Math</span>.<span class="title function_">random</span>() + <span class="number">48</span>);                                    <span class="comment">// 随机数字</span></span><br><span class="line">           <span class="keyword">return</span> t;</span><br><span class="line">         &#125;()),</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;x-hj-timestamp&quot;</span>: e.<span class="title function_">toString</span>(),                   <span class="comment">// 时间戳（字符串）</span></span><br><span class="line">    <span class="string">&quot;x-hj-nonce&quot;</span>:     t,                              <span class="comment">// 随机数（nonce）</span></span><br><span class="line">    <span class="string">&quot;x-hj-os&quot;</span>:        <span class="string">&quot;web&quot;</span>,                          <span class="comment">// 操作系统标识</span></span><br><span class="line">    <span class="comment">// 硬编码盐 + nonce + 时间戳 计算 SHA1 签名</span></span><br><span class="line">    <span class="string">&quot;x-hj-sign&quot;</span>:      u.<span class="title class_">SHA1</span>(<span class="string">&quot;N61P#=Pf$yz=fwFZa)U8&quot;</span>.<span class="title function_">concat</span>(t).<span class="title function_">concat</span>(e)),</span><br><span class="line">    <span class="string">&quot;x-hj-version&quot;</span>:   d.<span class="property">version</span>                       <span class="comment">// 客户端版本号</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>头</th>
+<th>值</th>
+<th>可预测性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>x-hj-timestamp</code></td>
+<td>当前毫秒时间戳</td>
+<td>完全可控</td>
+</tr>
+<tr>
+<td><code>x-hj-nonce</code></td>
+<td>10 位随机字母数字</td>
+<td>完全可控</td>
+</tr>
+<tr>
+<td><code>x-hj-os</code></td>
+<td>固定 <code>web</code></td>
+<td>常量</td>
+</tr>
+<tr>
+<td><code>x-hj-sign</code></td>
+<td><code>SHA1(盐 + nonce + timestamp)</code></td>
+<td><strong>盐已泄露 → 可算</strong></td>
+</tr>
+<tr>
+<td><code>x-hj-version</code></td>
+<td>前端版本号</td>
+<td>常量</td>
+</tr>
+</tbody></table>
+<p>紧接着拦截器的<strong>响应</strong>处理分支</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 响应拦截器：统一处理响应数据</span></span><br><span class="line">i.<span class="property">a</span>.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(<span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> t, n, a = e.<span class="property">config</span>, i = a.<span class="property">url</span>, o = a.<span class="property">data</span>, c = a.<span class="property">timeStamp</span>;</span><br><span class="line">  <span class="comment">// 记录请求信息（可能用于日志/埋点）</span></span><br><span class="line">  <span class="title function_">D</span>(i, <span class="title function_">y</span>(o)),</span><br><span class="line">  <span class="comment">// 若响应头 content-type 包含 text/plain，则对响应体进行 AES 解密</span></span><br><span class="line">  (<span class="literal">null</span> === (t = e.<span class="property">headers</span>[<span class="string">&quot;content-type&quot;</span>]) || <span class="keyword">void</span> <span class="number">0</span> === t</span><br><span class="line">     ? <span class="keyword">void</span> <span class="number">0</span></span><br><span class="line">     : t.<span class="title function_">includes</span>(<span class="string">&quot;text/plain&quot;</span>))</span><br><span class="line">  &amp;&amp; (e.<span class="property">data</span> = <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">       <span class="keyword">var</span> t = u.<span class="property">AES</span>.<span class="title function_">decrypt</span>(</span><br><span class="line">         e.<span class="property">data</span>,                                              <span class="comment">// base64 密文</span></span><br><span class="line">         u.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(<span class="string">&quot;B-:9bzB8K%~q&#123;Au?^&gt;Pfl*)k&quot;</span>),         <span class="comment">// 硬编码密钥</span></span><br><span class="line">         &#123; <span class="attr">iv</span>:   u.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(<span class="string">&quot;B-:9bzB8K%~q&#123;Au?^&gt;Pfl*)k&quot;</span>), <span class="comment">// IV 与密钥同串</span></span><br><span class="line">           <span class="attr">mode</span>: u.<span class="property">mode</span>.<span class="property">CBC</span>,</span><br><span class="line">           <span class="attr">padding</span>: u.<span class="property">pad</span>.<span class="property">Pkcs7</span> &#125;</span><br><span class="line">       ).<span class="title function_">toString</span>(u.<span class="property">enc</span>.<span class="property">Utf8</span>);                                <span class="comment">// 转为 UTF-8 字符串</span></span><br><span class="line">       <span class="keyword">return</span> <span class="title class_">JSON</span>.<span class="title function_">parse</span>(t);                                  <span class="comment">// 解析为 JSON 对象</span></span><br><span class="line">     &#125;(e.<span class="property">data</span>));</span><br><span class="line">  <span class="comment">// ... 后续处理（如错误码判断、token 刷新等）</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>密钥算法</td>
+<td>AES-CBC &#x2F; PKCS7</td>
+</tr>
+<tr>
+<td>密钥</td>
+<td><code>B-:9bzB8K%~q{Au?^&gt;Pfl*)k</code>（24 字节 → AES-192）</td>
+</tr>
+<tr>
+<td>IV</td>
+<td>同一串，CryptoJS 实际只用前 16 字节</td>
+</tr>
+<tr>
+<td>触发条件</td>
+<td>响应 <code>Content-Type</code> 含 <code>text/plain</code></td>
+</tr>
+<tr>
+<td>编码</td>
+<td>base64</td>
+</tr>
+</tbody></table>
+<p>把 salt 和 nonce&#x2F;timestamp 按算法拼起来，第一次对照实验</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">不带签名头:  GET /wiki/api/v1/game/menu  →  403  (body 0 字节)</span><br><span class="line">自造签名头:  GET /wiki/api/v1/game/menu  →  200  (body 876 字节)</span><br></pre></td></tr></table></figure>
+
+<p>拿到了密文响应解密得到明文</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;code&quot;:200,&quot;data&quot;:[&#123;&quot;game_id&quot;:&quot;t2Ud5pOQlscKLbRC&quot;,&quot;game_name&quot;:&quot;无畏契约&quot;,</span><br><span class="line">  &quot;icon&quot;:&quot;/cms/20230213/1676268309015.jpg&quot;,&quot;bg&quot;:&quot;/wiki/games/game_bg/ico_valorant_bg.png&quot;,</span><br><span class="line">  &quot;banner&quot;:[&quot;/cms/20250208/1738980348349.png&quot;],&quot;color&quot;:&quot;FF2E231E&quot;&#125;, ...]&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="未授权访问"><a href="#未授权访问" class="headerlink" title="未授权访问"></a>未授权访问</h2><p>访问 <code>/config_center/api/v2/global</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;data_sum&quot;</span>:<span class="string">&quot;468e04b051a1bf7e38dd36b1923b8b62&quot;</span>,</span><br><span class="line"> <span class="string">&quot;oss_config&quot;</span>:&#123;</span><br><span class="line">   <span class="string">&quot;avatar&quot;</span>:      &#123;<span class="string">&quot;bucket&quot;</span>:<span class="string">&quot;skyhorn&quot;</span>,<span class="string">&quot;endpoint&quot;</span>:<span class="string">&quot;oss-cn-shenzhen.aliyuncs.com&quot;</span>,<span class="string">&quot;domain&quot;</span>:<span class="string">&quot;https://files.haojiao.cc&quot;</span>,<span class="string">&quot;obj_prefix&quot;</span>:<span class="string">&quot;avatar&quot;</span>&#125;,</span><br><span class="line">   <span class="string">&quot;chat_files&quot;</span>:  &#123;<span class="string">&quot;bucket&quot;</span>:<span class="string">&quot;skyhorn&quot;</span>,<span class="string">&quot;obj_prefix&quot;</span>:<span class="string">&quot;chat_files&quot;</span>&#125;,</span><br><span class="line">   <span class="string">&quot;chat_videos&quot;</span>: &#123;<span class="string">&quot;bucket&quot;</span>:<span class="string">&quot;skyhorn&quot;</span>,<span class="string">&quot;obj_prefix&quot;</span>:<span class="string">&quot;chat_videos&quot;</span>&#125;,</span><br><span class="line">   <span class="string">&quot;chat_voices&quot;</span>: &#123;<span class="string">&quot;bucket&quot;</span>:<span class="string">&quot;skyhorn&quot;</span>,<span class="string">&quot;obj_prefix&quot;</span>:<span class="string">&quot;chat_voices&quot;</span>&#125;,</span><br><span class="line">   <span class="string">&quot;user_report&quot;</span>: &#123;<span class="string">&quot;bucket&quot;</span>:<span class="string">&quot;skyhorn&quot;</span>,<span class="string">&quot;obj_prefix&quot;</span>:<span class="string">&quot;user_report&quot;</span>&#125;,</span><br><span class="line">   <span class="string">&quot;moment_video&quot;</span>:&#123;<span class="string">&quot;bucket&quot;</span>:<span class="string">&quot;sz-media&quot;</span>,<span class="string">&quot;obj_prefix&quot;</span>:<span class="string">&quot;moment_video&quot;</span>&#125;,</span><br><span class="line">   <span class="string">&quot;cms&quot;</span>:         &#123;<span class="string">&quot;bucket&quot;</span>:<span class="string">&quot;skyhorn&quot;</span>,<span class="string">&quot;obj_prefix&quot;</span>:<span class="string">&quot;cms&quot;</span>&#125;,</span><br><span class="line">   <span class="string">&quot;default&quot;</span>:     &#123;<span class="string">&quot;bucket&quot;</span>:<span class="string">&quot;skyhorn&quot;</span>,<span class="string">&quot;obj_prefix&quot;</span>:<span class="string">&quot;&quot;</span>&#125;,</span><br><span class="line">   ... &#125;,</span><br><span class="line"> <span class="string">&quot;app_info&quot;</span>:&#123;<span class="string">&quot;latest_version&quot;</span>:<span class="string">&quot;1.13.0&quot;</span>,<span class="string">&quot;force&quot;</span>:<span class="number">1</span>&#125;,</span><br><span class="line"> <span class="string">&quot;switch_config&quot;</span>:&#123;<span class="string">&quot;ShowThirdLogin&quot;</span>:<span class="literal">true</span>,<span class="string">&quot;EnableUserInfoEdit&quot;</span>:<span class="literal">true</span>,<span class="string">&quot;DumpMatchDetail&quot;</span>:<span class="literal">true</span>,<span class="string">&quot;ShowWikiTab&quot;</span>:<span class="literal">true</span>&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>桶名、endpoint、CDN 域、每个业务前缀，全部匿名可读</strong></p>
+<p>前端是这么调它的（<code>t</code> 表示「是否访客」）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_ = <span class="keyword">function</span>(<span class="params">scene, isVisitor</span>)&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="keyword">return</span> [<span class="number">4</span>, isVisitor ? <span class="title class_">Object</span>(a.<span class="property">m</span>)(&#123; <span class="attr">oss_auth_key</span>: <span class="title function_">p</span>() &#125;)   <span class="comment">// 访客 → oss_auth_visitor</span></span><br><span class="line">                       : <span class="title class_">Object</span>(a.<span class="property">l</span>)()];                       <span class="comment">// 登录 → oss_auth</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>即 <strong>上传时的场景名（enum: <code>Default</code> &#x2F; <code>Meme</code> &#x2F; <code>Moment</code> &#x2F; <code>MomentVideo</code> &#x2F; <code>UserReport</code>）经 <code>p()</code> 换算成一个数字 key</strong> 传过去</p>
+<p>把 key 从小到大扫一遍</p>
+<table>
+<thead>
+<tr>
+<th><code>oss_auth_key</code></th>
+<th>HTTP</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>（空）</td>
+<td>400</td>
+<td>参数缺失</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>400</td>
+<td>参数缺失（0 被当作零值）</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>200</td>
+<td><strong>返回凭证</strong></td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>200</td>
+<td><strong>返回凭证</strong></td>
+</tr>
+<tr>
+<td><code>99999</code></td>
+<td>200</td>
+<td><strong>返回凭证</strong></td>
+</tr>
+<tr>
+<td><code>abc</code></td>
+<td>400</td>
+<td>类型错（ParseUint）</td>
+</tr>
+<tr>
+<td><code>-1</code></td>
+<td>400</td>
+<td>类型错（ParseUint）</td>
+</tr>
+<tr>
+<td><code>1.5</code></td>
+<td>400</td>
+<td>类型错（ParseUint）</td>
+</tr>
+</tbody></table>
+<p><code>1</code>、<code>2</code>、<code>99999</code> 都能拿到凭证 —— 说明服务端对这个 key 的校验很松</p>
+<p><code>oss_auth_key=1</code> 的响应（密文开头）:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">14RaEHcDpjpoW77hxylf/bguQB6MOrPps5O49WGk14OzP3g/j9abgdHQDACptjLXHrTmPR1X9xPOcX0f9KE4cnOCZyKhxMgnnkAXLOsexK9K8ayGfF88udBr...</span><br></pre></td></tr></table></figure>
+
+<p>解密字段结构，三种凭证 <strong>全部返回</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#x27;access_key_id&#x27;, &#x27;access_key_secret&#x27;, &#x27;security_token&#x27;]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/i/034bfIh7covYdkguZiXJkd.png" alt="pasted_1791358327976_u9wnb2.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">用户在前端做「上传」动作（发动态 / 传头像 / 传聊天文件 / 提交举报）</span><br><span class="line">        │</span><br><span class="line">        ▼</span><br><span class="line">上传组件调用 _ (scene, isVisitor)</span><br><span class="line">        │</span><br><span class="line">        ├── isVisitor = true  →  config_center /api/v2/oss_auth_visitor?oss_auth_key=&lt;p(scene)&gt;</span><br><span class="line">        └── isVisitor = false →  config_center /api/v2/oss_auth          （需登录，401）</span><br><span class="line">        │</span><br><span class="line">        ▼</span><br><span class="line">拿到 &#123;access_key_id, access_key_secret, security_token&#125;</span><br><span class="line">        │</span><br><span class="line">        ▼</span><br><span class="line">用 STS 凭证直连 OSS 上传到 &lt;bucket&gt;/&lt;obj_prefix&gt;/...</span><br><span class="line">        │</span><br><span class="line">        ▼</span><br><span class="line">前端把 https://files.haojiao.cc/&lt;prefix&gt;/&lt;name&gt; 存进业务数据</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/i/034bfpDH0D475LBa038pBl.png" alt="pasted_1791359640529_7i0a8k.png"></p>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/SRC/" title="SRC" data-aos="zoom-in">SRC</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/SRC/" rel="tag" title="SRC">SRC</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Webpack/" rel="tag" title="Webpack">Webpack</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="出题——G.T.I 巡查团" class="lazyload">
+      <a href="/2026/09/20/%E5%87%BA%E9%A2%98-GTI%20%E5%B7%A1%E6%9F%A5%E5%9B%A2/" aria-label="后一篇: 出题——G.T.I 巡查团"  title="后一篇: 出题——G.T.I 巡查团"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          出题——G.T.I 巡查团
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        337.3k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        27:25
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%B7%E8%A7%92%E6%9C%AA%E6%8E%88%E6%9D%83%E8%8E%B7%E5%8F%96%E9%98%BF%E9%87%8C%E4%BA%91-OSS-STS-%E4%BA%91%E5%87%AD%E8%AF%81"><span class="toc-number">1.</span> <span class="toc-text">号角未授权获取阿里云 OSS STS 云凭证</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.2.</span> <span class="toc-text">JavaScript 信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE"><span class="toc-number">1.3.</span> <span class="toc-text">未授权访问</span></a></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">255</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">195</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "号角未授权获取阿里云 OSS STS 云凭证",
+          url: "https://suc2es2.github.io/2026/09/30/%E5%8F%B7%E8%A7%92%E6%9C%AA%E6%8E%88%E6%9D%83%E8%8E%B7%E5%8F%96%E9%98%BF%E9%87%8C%E4%BA%91%20OSS%20STS%20%E4%BA%91%E5%87%AD%E8%AF%81/",
+          excerpt: "",
+          description: "",
+          stripContent: "号角未授权获取阿里云 OSS STS 云凭证前言本次测试属于公益类型的 SRC JavaScript 信息收集起点页面 https://web.haojiao.cc/wiki/wiki_home/t2Ud5pOQlscKLbRC 返回的 HTML 只有 1589 字节，除了一堆 meta 就是一个空 div 12345678910111213141516&amp;lt;!doctype html&amp;gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;meta charset=&amp;quot;utf-",
+          date: "Wed Sep 30 2026 12:32:00 GMT+0800",
+          updated: "Thu Oct 08 2026 12:30:29 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
