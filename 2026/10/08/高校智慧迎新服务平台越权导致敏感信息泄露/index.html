@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
   <title>
-    实战——攻陷海外某单位监控及 WIFI 设备后台 | 雾島风起時
+    某高校智慧迎新服务平台越权导致大量敏感信息泄露 | 雾島风起時
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,26 +17,23 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="实战——攻陷海外某单位监控及 WIFI 设备后台信息收集信息收集找到目标站点的一个监控后台  网上找弱口令无果，于是搜索 NDay 成功找到一个任意文件读取漏洞  任意文件读取尝试读取 &#x2F;etc&#x2F;shadow 文件，没想到成功了，可以看出这个监控系统身份是 root 级别的  弱口令后续爆破 admin 的哈希登录进监控系统，同时意外发现该站点还有一个 WIFI 后台 登录进去可以修改 WIFI">
+    <meta name="description" content="某高校智慧迎新服务平台越权导致大量敏感信息泄露前言本次测试属于公益类型的 SRC JavaScript 信息收集收集到一个 Chunk JS 文件  丢给 AI 逆向分析拿到接口  越权ksh 与考生号同名，我把 ksh 拿掉，接口没做任何数据范围限制，直接把全平台学生表分页吐了出来 能一次性批量拉走全平台 41035 名学生的姓名、身份证号、手机号、家庭住址等完整档案">
 <meta property="og:type" content="article">
-<meta property="og:title" content="实战——攻陷海外某单位监控及 WIFI 设备后台">
-<meta property="og:url" content="https://suc2es2.github.io/2026/04/06/devolo-WIFI/index.html">
+<meta property="og:title" content="某高校智慧迎新服务平台越权导致大量敏感信息泄露">
+<meta property="og:url" content="https://suc2es2.github.io/2026/10/08/%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B6%8A%E6%9D%83%E5%AF%BC%E8%87%B4%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="实战——攻陷海外某单位监控及 WIFI 设备后台信息收集信息收集找到目标站点的一个监控后台  网上找弱口令无果，于是搜索 NDay 成功找到一个任意文件读取漏洞  任意文件读取尝试读取 &#x2F;etc&#x2F;shadow 文件，没想到成功了，可以看出这个监控系统身份是 root 级别的  弱口令后续爆破 admin 的哈希登录进监控系统，同时意外发现该站点还有一个 WIFI 后台 登录进去可以修改 WIFI">
+<meta property="og:description" content="某高校智慧迎新服务平台越权导致大量敏感信息泄露前言本次测试属于公益类型的 SRC JavaScript 信息收集收集到一个 Chunk JS 文件  丢给 AI 逆向分析拿到接口  越权ksh 与考生号同名，我把 ksh 拿掉，接口没做任何数据范围限制，直接把全平台学生表分页吐了出来 能一次性批量拉走全平台 41035 名学生的姓名、身份证号、手机号、家庭住址等完整档案">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69d4ca9fcfae5fcb267a69ee.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69d4c981cfae5fcb267a68bb.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69d4cb17cfae5fcb267a6a97.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69d4cbc5cfae5fcb267a6bac.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69d4cc06cfae5fcb267a6bee.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/item/69d4cc1acfae5fcb267a6c10.png">
-<meta property="article:published_time" content="2026-04-06T08:15:00.000Z">
-<meta property="article:modified_time" content="2026-05-15T19:04:21.724Z">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cXn2D33PSQr1jf7wwHT.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cXoY3ROBmRPUeMbJsVJ.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034cXttB2crq7wacuNlPb5.png">
+<meta property="article:published_time" content="2026-10-08T08:40:00.000Z">
+<meta property="article:modified_time" content="2026-10-09T06:55:39.318Z">
 <meta property="article:author" content="ALL">
-<meta property="article:tag" content="任意文件读取">
-<meta property="article:tag" content="弱口令">
+<meta property="article:tag" content="敏感信息泄露">
+<meta property="article:tag" content="越权">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic1.imgdb.cn/item/69d4ca9fcfae5fcb267a69ee.png">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034cXn2D33PSQr1jf7wwHT.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -135,11 +132,11 @@
 <header id="header" aria-label="Site header">
         <picture>
         </picture>
-          <img  fetchpriority="high" src="/images/banner.webp" alt="实战——攻陷海外某单位监控及 WIFI 设备后台">
+          <img  fetchpriority="high" src="/images/banner.webp" alt="某高校智慧迎新服务平台越权导致大量敏感信息泄露">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">实战——攻陷海外某单位监控及 WIFI 设备后台</h1>
+            <h1 data-aos="slide-up">某高校智慧迎新服务平台越权导致大量敏感信息泄露</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -154,7 +151,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E6%94%BB%E9%99%B7%E6%B5%B7%E5%A4%96%E6%9F%90%E5%8D%95%E4%BD%8D%E7%9B%91%E6%8E%A7%E5%8F%8A-WIFI-%E8%AE%BE%E5%A4%87%E5%90%8E%E5%8F%B0"><span class="toc-number">1.</span> <span class="toc-text">实战——攻陷海外某单位监控及 WIFI 设备后台</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.1.</span> <span class="toc-text">信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="toc-number">1.2.</span> <span class="toc-text">任意文件读取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">弱口令</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%90%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B6%8A%E6%9D%83%E5%AF%BC%E8%87%B4%E5%A4%A7%E9%87%8F%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-number">1.</span> <span class="toc-text">某高校智慧迎新服务平台越权导致大量敏感信息泄露</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.2.</span> <span class="toc-text">JavaScript 信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%8A%E6%9D%83"><span class="toc-number">1.3.</span> <span class="toc-text">越权</span></a></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -165,11 +162,11 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">256</div>
+    <div class="sidebar-state-number">253</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">20</div>
+    <div class="sidebar-state-number">19</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
@@ -226,13 +223,13 @@
   </div>
 </aside>
 
-          <section id="main" aria-label="Main content"><article id="post-devolo-WIFI" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main" aria-label="Main content"><article id="post-高校智慧迎新服务平台越权导致敏感信息泄露" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2026-04-06T08:15:00.000Z" itemprop="datePublished">2026-04-06</time>
-    <time style="display: none;" id="post-update-time">2026-05-16</time>
+    <time datetime="2026-10-08T08:40:00.000Z" itemprop="datePublished">2026-10-08</time>
+    <time style="display: none;" id="post-update-time">2026-10-09</time>
   </span>
 </div>
 
@@ -241,39 +238,30 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="实战——攻陷海外某单位监控及-WIFI-设备后台"><a href="#实战——攻陷海外某单位监控及-WIFI-设备后台" class="headerlink" title="实战——攻陷海外某单位监控及 WIFI 设备后台"></a>实战——攻陷海外某单位监控及 WIFI 设备后台</h1><h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>信息收集找到目标站点的一个监控后台</p>
-<p><img src="https://pic1.imgdb.cn/item/69d4ca9fcfae5fcb267a69ee.png"></p>
-<p>网上找弱口令无果，于是搜索 NDay 成功找到一个任意文件读取漏洞</p>
-<p><img src="https://pic1.imgdb.cn/item/69d4c981cfae5fcb267a68bb.png"></p>
-<h2 id="任意文件读取"><a href="#任意文件读取" class="headerlink" title="任意文件读取"></a>任意文件读取</h2><p>尝试读取 <code>/etc/shadow</code> 文件，没想到成功了，可以看出这个监控系统身份是 root 级别的</p>
-<p><img src="https://pic1.imgdb.cn/item/69d4cb17cfae5fcb267a6a97.png"></p>
-<h2 id="弱口令"><a href="#弱口令" class="headerlink" title="弱口令"></a>弱口令</h2><p>后续爆破 admin 的哈希登录进监控系统，同时意外发现该站点还有一个 WIFI 后台</p>
-<p>登录进去可以修改 WIFI 密码等等</p>
-<p><img src="https://pic1.imgdb.cn/item/69d4cbc5cfae5fcb267a6bac.png"><br><img src="https://pic1.imgdb.cn/item/69d4cc06cfae5fcb267a6bee.png"><br><img src="https://pic1.imgdb.cn/item/69d4cc1acfae5fcb267a6c10.png"></p>
+        <h1 id="某高校智慧迎新服务平台越权导致大量敏感信息泄露"><a href="#某高校智慧迎新服务平台越权导致大量敏感信息泄露" class="headerlink" title="某高校智慧迎新服务平台越权导致大量敏感信息泄露"></a>某高校智慧迎新服务平台越权导致大量敏感信息泄露</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本次测试属于公益类型的 SRC</p>
+<h2 id="JavaScript-信息收集"><a href="#JavaScript-信息收集" class="headerlink" title="JavaScript 信息收集"></a>JavaScript 信息收集</h2><p>收集到一个 Chunk JS 文件</p>
+<p><img src="https://pic1.imgdb.cn/i/034cXn2D33PSQr1jf7wwHT.png" alt="pasted_1791491578412_nfdhes.png"></p>
+<p>丢给 AI 逆向分析拿到接口</p>
+<p><img src="https://pic1.imgdb.cn/i/034cXoY3ROBmRPUeMbJsVJ.png" alt="pasted_1791491639333_mw11bs.png"></p>
+<h2 id="越权"><a href="#越权" class="headerlink" title="越权"></a>越权</h2><p><code>ksh</code> 与考生号同名，我把 <code>ksh</code> 拿掉，接口没做任何数据范围限制，直接把全平台学生表分页吐了出来</p>
+<p>能一次性批量拉走全平台 41035 名学生的姓名、身份证号、手机号、家庭住址等完整档案</p>
+<p><img src="https://pic1.imgdb.cn/i/034cXttB2crq7wacuNlPb5.png" alt="pasted_1791491849461_rhe5yg.png"></p>
 
     </div>
     <footer class="article-footer">
-        <a class="article-category-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" title="渗透测试" data-aos="zoom-in">渗透测试</a>
+        <a class="article-category-link" href="/categories/SRC/" title="SRC" data-aos="zoom-in">SRC</a>
 
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/" rel="tag" title="任意文件读取">任意文件读取</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%BC%B1%E5%8F%A3%E4%BB%A4/" rel="tag" title="弱口令">弱口令</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/" rel="tag" title="敏感信息泄露">敏感信息泄露</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E8%B6%8A%E6%9D%83/" rel="tag" title="越权">越权</a></li></ul>
 
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
-      <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Vulnerable Docker：1" class="lazyload">
-        <a href="/2026/04/07/Vulnerable%20Docker%201/" aria-label="前一篇: VulnHub Vulnerable Docker：1" title="前一篇: VulnHub Vulnerable Docker：1"></a>
-        <div class="article-nav-caption">前一篇</div>
-        <h3 class="article-nav-title">
-            VulnHub Vulnerable Docker：1
-        </h3>
-      </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub C0m80：1" class="lazyload">
-      <a href="/2026/04/04/C0m80%201/" aria-label="后一篇: VulnHub C0m80：1"  title="后一篇: VulnHub C0m80：1"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub HackathonCTF：2" class="lazyload">
+      <a href="/2026/10/01/HackathonCTF%202/" aria-label="后一篇: VulnHub HackathonCTF：2"  title="后一篇: VulnHub HackathonCTF：2"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          VulnHub C0m80：1
+          VulnHub HackathonCTF：2
       </h3>
     </div>
   </nav>
@@ -300,10 +288,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        337.6k
+        338.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        27:27
+        27:28
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -325,7 +313,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E2%80%94%E2%80%94%E6%94%BB%E9%99%B7%E6%B5%B7%E5%A4%96%E6%9F%90%E5%8D%95%E4%BD%8D%E7%9B%91%E6%8E%A7%E5%8F%8A-WIFI-%E8%AE%BE%E5%A4%87%E5%90%8E%E5%8F%B0"><span class="toc-number">1.</span> <span class="toc-text">实战——攻陷海外某单位监控及 WIFI 设备后台</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.1.</span> <span class="toc-text">信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="toc-number">1.2.</span> <span class="toc-text">任意文件读取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%B1%E5%8F%A3%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">弱口令</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%90%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B6%8A%E6%9D%83%E5%AF%BC%E8%87%B4%E5%A4%A7%E9%87%8F%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-number">1.</span> <span class="toc-text">某高校智慧迎新服务平台越权导致大量敏感信息泄露</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.2.</span> <span class="toc-text">JavaScript 信息收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%8A%E6%9D%83"><span class="toc-number">1.3.</span> <span class="toc-text">越权</span></a></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -336,11 +324,11 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">256</div>
+    <div class="sidebar-state-number">253</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">20</div>
+    <div class="sidebar-state-number">19</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
@@ -453,13 +441,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "ALL",
-          title: "实战——攻陷海外某单位监控及 WIFI 设备后台",
-          url: "https://suc2es2.github.io/2026/04/06/devolo-WIFI/",
+          title: "某高校智慧迎新服务平台越权导致大量敏感信息泄露",
+          url: "https://suc2es2.github.io/2026/10/08/%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B6%8A%E6%9D%83%E5%AF%BC%E8%87%B4%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/",
           excerpt: "",
           description: "",
-          stripContent: "实战——攻陷海外某单位监控及 WIFI 设备后台信息收集信息收集找到目标站点的一个监控后台  网上找弱口令无果，于是搜索 NDay 成功找到一个任意文件读取漏洞  任意文件读取尝试读取 /etc/shadow 文件，没想到成功了，可以看出这个监控系统身份是 root 级别的  弱口令后续爆破 admin 的哈希登录进监控系统，同时意外发现该站点还有一个 WIFI 后台 登录进去可以修改 WIFI 密码等等  ",
-          date: "Mon Apr 06 2026 16:15:00 GMT+0800",
-          updated: "Sat May 16 2026 03:04:21 GMT+0800",
+          stripContent: "某高校智慧迎新服务平台越权导致大量敏感信息泄露前言本次测试属于公益类型的 SRC JavaScript 信息收集收集到一个 Chunk JS 文件  丢给 AI 逆向分析拿到接口  越权ksh 与考生号同名，我把 ksh 拿掉，接口没做任何数据范围限制，直接把全平台学生表分页吐了出来 能一次性批量拉走全平台 41035 名学生的姓名、身份证号、手机号、家庭住址等完整档案  ",
+          date: "Thu Oct 08 2026 16:40:00 GMT+0800",
+          updated: "Fri Oct 09 2026 14:55:39 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
