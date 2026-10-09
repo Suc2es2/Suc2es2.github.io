@@ -252,20 +252,19 @@
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2026-10-08</span>
-        <span><span class="icon-pencil"></span>137 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
+        <span><span class="icon-pencil"></span>749 字</span>
+        <span><span class="icon-clock"></span>3 分钟</span>
       </div>
       <h2 class="post-title">某高校智慧迎新服务平台越权导致大量敏感信息泄露</h2>
       <article class="post-article">
           某高校智慧迎新服务平台越权导致大量敏感信息泄露前言本次测试属于公益类型的 SRC
-JavaScript 信息收集收集到一个 Chunk JS 文件
+弱口令在该校教务处找到默认密码规则
 
-丢给 AI 逆向分析拿到接口
+去查看公开的新生录取名单，社工库一查就有账号登录了
 
-越权ksh 与考生号同名，我把 ksh 拿掉，接口没做任何数据范围限制，直接把全平台学生表分页吐了出来
-能一次性批量拉走全平台 41035 名学生的姓名、身份证号、手机号、家庭住址等完整档案
-
-
+JavaScript 信息收集Vue CLI3 单页应用，只引两个包：index.304c22b4.js（247KB 业务码）+ chunk-vendors...js（库）
+主包是一行 24 万字符，grep 整行截断 → 改用 [regex]::Matches 只取匹配片段
+123[regex]::Matches($js, &amp;#x27;[&amp;quot;&amp;#x27;&amp;#x27;](/[a-zA-Z0-9_/\-\.]&amp;#12
       </article>
     </div>
   </div>
@@ -310,14 +309,15 @@ SSH访问页面发现一张图片和 @nohtakcah，猜测 nohtakcah 是账户名�
       </div>
       <h2 class="post-title">出题——G.T.I 巡查团</h2>
       <article class="post-article">
-          出题——G.T.I 巡查团本题来源于三角洲以及最近实战中所打的漏洞
-基于 CVE-2026-94108 变种，属于 0day 一类，难度较高，不知道 AI 能不能跑出来
+          出题——G.T.I 巡查团本题来源于三角洲以及最近实战中所打的漏洞 CVE-2026-94108，属于 0day 一类，难度较高
+题目地址：http://hbc.haobachang.com/see_bug_one?id=1448
+
 信息收集在源码中发现一段注释，暂且不知道何意为
 
 注册一个账号登录后可以上传媒体文件作为巡查的素材，上传 WAV 是攻击入口
 
 CVE-2026-94108漏洞源码位于 getid3-1.9.26/getid3/getid3.lib.php
-12345678910111213// ===== 第 14-20 行：XML 解析选项常量定义 =====// 只在常量未定义 且 libxml 已加载时执行if (!defined(&amp;
+12345678910111213// ===== 第 14-20 行：XML 解析选项常量定义 =====// 只在常量未
       </article>
     </div>
   </div>
@@ -544,10 +544,10 @@ CTFStegHide 隐写访问其 80 端口的源代码信息，在其源代码信息�
       </div>
       <div>
         <span class="icon-brush"></span>
-        338.1k
+        338.6k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        27:28
+        27:30
       </div>
       <div>
         <span class="icon-eye"></span>

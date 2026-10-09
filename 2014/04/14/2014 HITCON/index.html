@@ -44,9 +44,8 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034cYRDlgAGgoLcfPZjbOE.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034cYYmZPq7rGhwxrMJ6JJ.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034cahpgh1Vz3ZXz44XwpH.png">
-<meta property="og:image" content="https://pic1.imgdb.cn/i/034cZRr48SIx2MXtY1OpgN.png">
 <meta property="article:published_time" content="2014-04-14T05:18:00.000Z">
-<meta property="article:modified_time" content="2026-10-08T22:41:16.687Z">
+<meta property="article:modified_time" content="2026-10-09T07:32:01.281Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="Pwn">
 <meta name="twitter:card" content="summary">
@@ -473,12 +472,6 @@
 <p>在 64 位 glibc 的空闲 Chunk 结构中：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">偏移量       字段</span><br><span class="line"></span><br><span class="line">+0x00       prev_size</span><br><span class="line">+0x08       size</span><br><span class="line">+0x10       fd</span><br><span class="line">+0x18       bk</span><br></pre></td></tr></table></figure>
 
-<p>Unlink 会执行</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FD-&gt;bk = BK;</span><br><span class="line">BK-&gt;fd = FD;</span><br></pre></td></tr></table></figure>
-
-<p>我们希望这两条语句都修改 <code>s[2]</code>，所以要让</p>
-<p>这次我们想让它发生这样的变化</p>
-<p><img src="https://pic1.imgdb.cn/i/034cZRr48SIx2MXtY1OpgN.png" alt="pasted_1791495634322_vma433.png"></p>
 
     </div>
     <footer class="article-footer">
@@ -529,10 +522,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        338.1k
+        338.6k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        27:28
+        27:30
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -688,7 +681,7 @@
           description: "",
           stripContent: "2014 HITCON CTF WriteUp🏆 赛事概况  赛事全称：HITCON CTF 2014  比赛时间：2014 年 8 月 16 日 12:00 至 8 月 18 日 12:00（UTC+8），共 48 小时  比赛形式：线上 Jeopardy（解题）模式  参赛规模：吸引了来自全球 71 个国家的 1,020 支队伍参赛  题目类型：涵盖 Trivial、Web Security、Binary Processing、Forensics、Pwn3d 等类别  奖金（新台币）：冠军",
           date: "Mon Apr 14 2014 13:18:00 GMT+0800",
-          updated: "Fri Oct 09 2026 06:41:16 GMT+0800",
+          updated: "Fri Oct 09 2026 15:32:01 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
