@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">254</div>
+    <div class="sidebar-state-number">256</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -160,7 +160,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">196</div>
+    <div class="sidebar-state-number">197</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -220,19 +220,19 @@
       <div class="widget">
         <ul>
             <li>
+              <a href="/2026/10/11/DSRM%20%E5%90%8E%E9%97%A8/" title="AD 域--DSRM 后门">AD 域--DSRM 后门</a>
+            </li>
+            <li>
               <a href="/2026/10/08/%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B6%8A%E6%9D%83%E5%AF%BC%E8%87%B4%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/" title="某高校智慧迎新服务平台越权导致大量敏感信息泄露">某高校智慧迎新服务平台越权导致大量敏感信息泄露</a>
+            </li>
+            <li>
+              <a href="/2026/10/03/VulnCMS%201/" title="VulnHub VulnCMS：1">VulnHub VulnCMS：1</a>
             </li>
             <li>
               <a href="/2026/10/02/Hackable%20II/" title="VulnHub Hackable：II">VulnHub Hackable：II</a>
             </li>
             <li>
               <a href="/2026/10/01/HackathonCTF%202/" title="VulnHub HackathonCTF：2">VulnHub HackathonCTF：2</a>
-            </li>
-            <li>
-              <a href="/2026/09/20/%E5%87%BA%E9%A2%98-GTI%20%E5%B7%A1%E6%9F%A5%E5%9B%A2/" title="出题——G.T.I 巡查团">出题——G.T.I 巡查团</a>
-            </li>
-            <li>
-              <a href="/2026/08/28/%E5%87%BA%E9%A2%98-ClassReaper/" title="出题——ClassReaper">出题——ClassReaper</a>
             </li>
         </ul>
       </div>
@@ -244,6 +244,71 @@
 </aside>
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/08/01/IA%20Keyring%20(1.0.1)/" aria-label="VulnHub IA：Keyring (1.0.1)" title="VulnHub IA：Keyring (1.0.1)"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub IA：Keyring (1.0.1)" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-08-01</span>
+        <span><span class="icon-pencil"></span>649 字</span>
+        <span><span class="icon-clock"></span>3 分钟</span>
+      </div>
+      <h2 class="post-title">VulnHub IA：Keyring (1.0.1)</h2>
+      <article class="post-article">
+          IA：Keyring (1.0.1)项目地址：https://download.vulnhub.com/ia/keyring-v1.01.ova
+是一个打包好的镜像文件
+注意：导入 ovf 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+SQL 注入user80 端口是一个注册页面
+
+随便注册一个账号，点击 Login 跳转到登录页面登录
+
+登录后如下
+
+目录扫描发现 history.php 文件，访问是空白
+
+退出登录后再访问回显不能找到某个用户的活动
+
+传入参数 user=suc2es2 还是一样的回显
+
+重新登录后再访问有回显了
+
+查询 admin 用户信
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/07/31/Hacker%20kid%201.0.1/" aria-label="VulnHub Hacker kid：1.0.1" title="VulnHub Hacker kid：1.0.1"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Hacker kid：1.0.1" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-07-31</span>
+        <span><span class="icon-pencil"></span>733 字</span>
+        <span><span class="icon-clock"></span>3 分钟</span>
+      </div>
+      <h2 class="post-title">VulnHub Hacker kid：1.0.1</h2>
+      <article class="post-article">
+          Hacker kid：1.0.1原博客地址：https://www.cnblogs.com/upfine/p/17026653.html
+项目地址：https://download.vulnhub.com/hackerkid/Hacker_Kid-v1.0.1.ova（占用太大，懒得下）
+是一个打包好的镜像文件
+注意：导入 ovf 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+XXECreate Account打开 80 端口，提示信息告诉我们使用 Dig（域名查询工具）去继续挖掘
+
+在其源代码信息中看到提示信息：Use a GET parameter pag
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/07/31/Hackable%20III/" aria-label="VulnHub Hackable：III" title="VulnHub Hackable：III"></a>
     <div class="post-cover left">
@@ -477,52 +542,6 @@ Payload 有粗分为三种，一种是闭合 title 标签，一种是闭合 cont
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/06/24/seek%20agent%20%E9%A1%B9%E7%9B%AE%E7%BA%A7%E6%8A%95%E6%AF%92/" aria-label="Seek README 间接提示词注入" title="Seek README 间接提示词注入"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="Seek README 间接提示词注入" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-06-24</span>
-        <span><span class="icon-pencil"></span>675 字</span>
-        <span><span class="icon-clock"></span>3 分钟</span>
-      </div>
-      <h2 class="post-title">Seek README 间接提示词注入</h2>
-      <article class="post-article">
-          Seek README 间接提示词注入seek 是 DeepSeek-first 的本地终端 Agent，官方介绍为单个 Go 静态二进制，支持 DeepSeek、OpenAI、Anthropic、Gemini 以及任意 OpenAI-compatible endpoint；它有 Windows 安装说明，并提供命令行、目标循环、JSON-RPC、ACP、技能、记忆、cron、worktree、checkpoint 等子命令
-环境搭建访问链接下载编译好的程序：https://github.com/whyiyhw/seek/releases/tag/v0.8.2
-
-首次运行 seek 会引导你选
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/06/19/doli%201/" aria-label="VulnHub doli：1" title="VulnHub doli：1"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub doli：1" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-06-19</span>
-        <span><span class="icon-pencil"></span>1.7k 字</span>
-        <span><span class="icon-clock"></span>9 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub doli：1</h2>
-      <article class="post-article">
-          doli：1博客原地址：https://www.cnblogs.com/hirak0/articles/18116116
-项目地址：https://download.vulnhub.com/doli/doli-vulnhub-fixed.ova（环境有问题）
-是一个打包好的镜像文件
-注意：导入 vmx 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-1234567891011121314151617181920212223242526272829┌──(root㉿MYsec)-[/home/hirak0/Vulhub/105]└─# nmap -A -sV -T4
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
   </nav>
@@ -546,10 +565,10 @@ Payload 有粗分为三种，一种是闭合 title 标签，一种是闭合 cont
       </div>
       <div>
         <span class="icon-brush"></span>
-        341.4k
+        342.9k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        27:44
+        27:52
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -577,7 +596,7 @@ Payload 有粗分为三种，一种是闭合 title 标签，一种是闭合 cont
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">254</div>
+    <div class="sidebar-state-number">256</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -585,7 +604,7 @@ Payload 有粗分为三种，一种是闭合 title 标签，一种是闭合 cont
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">196</div>
+    <div class="sidebar-state-number">197</div>
   </div>
 </div>
 <div class="sidebar-social" >
