@@ -45,7 +45,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a0f3c0f2cb0eba86fb470e2.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6a0f3c462cb0eba86fb470ea.png">
 <meta property="article:published_time" content="2026-05-21T06:18:00.000Z">
-<meta property="article:modified_time" content="2026-05-22T15:27:14.730Z">
+<meta property="article:modified_time" content="2026-10-12T12:07:10.931Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="蚁剑流量特征">
 <meta name="twitter:card" content="summary">
@@ -245,7 +245,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2026-05-21T06:18:00.000Z" itemprop="datePublished">2026-05-21</time>
-    <time style="display: none;" id="post-update-time">2026-05-22</time>
+    <time style="display: none;" id="post-update-time">2026-10-12</time>
   </span>
 </div>
 
@@ -366,7 +366,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="function">(<span class="params">pwd, data, ext = &#123;&#125;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> rawPayload = data[<span class="string">&#x27;_&#x27;</span>];</span><br><span class="line">    <span class="keyword">const</span> n = <span class="title class_">Math</span>.<span class="title function_">ceil</span>(rawPayload.<span class="property">length</span> / <span class="number">80</span>);</span><br><span class="line">    <span class="keyword">const</span> blockLen = <span class="title class_">Math</span>.<span class="title function_">ceil</span>(rawPayload.<span class="property">length</span> / n);</span><br><span class="line">    <span class="keyword">const</span> blocks = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">const</span> block = rawPayload.<span class="title function_">substr</span>(i * blockLen, blockLen);</span><br><span class="line">        <span class="comment">// 使用私钥加密，输出 Base64</span></span><br><span class="line">        blocks.<span class="title function_">push</span>(ext[<span class="string">&#x27;rsa&#x27;</span>].<span class="title function_">encryptPrivate</span>(block, <span class="string">&#x27;base64&#x27;</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    data[pwd] = blocks.<span class="title function_">join</span>(<span class="string">&#x27;|&#x27;</span>);</span><br><span class="line">    <span class="keyword">delete</span> data[<span class="string">&#x27;_&#x27;</span>];</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
     <footer class="article-footer">
-        <a class="article-category-link" href="/categories/%E6%95%B0%E5%AD%97%E5%8F%96%E8%AF%81/" title="数字取证" data-aos="zoom-in">数字取证</a>
+        <a class="article-category-link" href="/categories/Blue-Team/" title="Blue Team" data-aos="zoom-in">Blue Team</a>
 
         <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E8%9A%81%E5%89%91%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81/" rel="tag" title="蚁剑流量特征">蚁剑流量特征</a></li></ul>
 
@@ -572,7 +572,7 @@
           description: "",
           stripContent: "蚁剑流量特征初始化代码PHP 连接类型抓取测试连接的数据包，默认不编码  可以看到只发起了一个请求  追踪数据流  这里就拿到了初始化的代码部分 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273&amp;lt;?php@ini_set(&amp;quot;display_errors&amp;qu",
           date: "Thu May 21 2026 14:18:00 GMT+0800",
-          updated: "Fri May 22 2026 23:27:14 GMT+0800",
+          updated: "Mon Oct 12 2026 20:07:10 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
