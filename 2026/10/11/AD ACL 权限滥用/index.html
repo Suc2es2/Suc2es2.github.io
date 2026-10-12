@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
   <title>
-    T1098 - Account Manipulation | 雾島风起時
+    AD 域--ACL 权限滥用 | 雾島风起時
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,20 +17,26 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="T1098 - Account Manipulation技术背景在 Active Directory 环境中，DSRM（Directory Service Restore Mode）账户是每个域控制器上的本地管理员账户，通常用于离线维护 攻击者在获得足够权限后，可以修改 DSRM 账户的密码，从而在域控上建立一个隐蔽的持久化后门，即使常规的域管理员密码被更改，攻击者仍可通过 DSRM 账户登录域控">
+    <meta name="description" content="AD 域–ACL 权限滥用样本信息 文件：ACL_ForcePwd_SPNAdd_User_Computer_Accounts.evtx  文件大小：1118208 bytes；SHA-256：f09f993909deb7acdae4c4f6f48e5a8447487e89437873fd8e653436a3dce36c  完整有效事件：55 条（Record ID 1—55）；包括 7 种 Ev">
 <meta property="og:type" content="article">
-<meta property="og:title" content="T1098 - Account Manipulation">
-<meta property="og:url" content="https://suc2es2.github.io/2026/10/11/T1098%20-%20Account%20Manipulation/index.html">
+<meta property="og:title" content="AD 域--ACL 权限滥用">
+<meta property="og:url" content="https://suc2es2.github.io/2026/10/11/AD%20ACL%20%E6%9D%83%E9%99%90%E6%BB%A5%E7%94%A8/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="T1098 - Account Manipulation技术背景在 Active Directory 环境中，DSRM（Directory Service Restore Mode）账户是每个域控制器上的本地管理员账户，通常用于离线维护 攻击者在获得足够权限后，可以修改 DSRM 账户的密码，从而在域控上建立一个隐蔽的持久化后门，即使常规的域管理员密码被更改，攻击者仍可通过 DSRM 账户登录域控">
+<meta property="og:description" content="AD 域–ACL 权限滥用样本信息 文件：ACL_ForcePwd_SPNAdd_User_Computer_Accounts.evtx  文件大小：1118208 bytes；SHA-256：f09f993909deb7acdae4c4f6f48e5a8447487e89437873fd8e653436a3dce36c  完整有效事件：55 条（Record ID 1—55）；包括 7 种 Ev">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pic1.imgdb.cn/i/034edbeMLvq0pz0MgDPqvh.png">
-<meta property="article:published_time" content="2026-10-10T17:29:00.000Z">
-<meta property="article:modified_time" content="2026-10-12T13:40:54.831Z">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034enAYWtJCZmFoiVpzHg0.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034enLVyWeVbLNxyctWs57.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034enM2hfpFF12botmUxFD.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034enMn9R1KMlQ2mmG3eJx.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034enREuTFMaLwwZJ9RSki.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034enSVHqpiM3DUxWZ9MwF.png">
+<meta property="article:published_time" content="2026-10-10T18:29:00.000Z">
+<meta property="article:modified_time" content="2026-10-12T19:27:18.113Z">
 <meta property="article:author" content="ALL">
-<meta property="article:tag" content="T1098 - Account Manipulation">
+<meta property="article:tag" content="ACL 滥用">
+<meta property="article:tag" content="Windows 日志">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034edbeMLvq0pz0MgDPqvh.png">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034enAYWtJCZmFoiVpzHg0.png">
     <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -129,11 +135,11 @@
 <header id="header" aria-label="Site header">
         <picture>
         </picture>
-          <img  fetchpriority="high" src="/images/banner.webp" alt="T1098 - Account Manipulation">
+          <img  fetchpriority="high" src="/images/banner.webp" alt="AD 域--ACL 权限滥用">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">T1098 - Account Manipulation</h1>
+            <h1 data-aos="slide-up">AD 域--ACL 权限滥用</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -148,7 +154,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#T1098-Account-Manipulation"><span class="toc-number">1.</span> <span class="toc-text">T1098 - Account Manipulation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">技术背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">日志分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E8%A7%84%E5%88%99"><span class="toc-number">1.3.</span> <span class="toc-text">检测规则</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AD-%E5%9F%9F%E2%80%93ACL-%E6%9D%83%E9%99%90%E6%BB%A5%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">AD 域–ACL 权限滥用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E7%BB%9F%E8%AE%A1"><span class="toc-number">1.2.</span> <span class="toc-text">事件统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.3.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Security-%E6%97%A5%E5%BF%97%E6%B8%85%E9%99%A4"><span class="toc-number">1.3.1.</span> <span class="toc-text">Security 日志清除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E5%9F%9F%E7%AD%96%E7%95%A5%E5%8F%8D%E5%A4%8D%E4%BF%AE%E6%94%B9"><span class="toc-number">1.3.2.</span> <span class="toc-text">默认域策略反复修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7-alice-%E5%A4%9A%E6%AC%A1%E5%8F%91%E7%94%9F%E8%B4%A6%E6%88%B7%E4%BF%AE%E6%94%B9"><span class="toc-number">1.3.3.</span> <span class="toc-text">用户 alice 多次发生账户修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%B4%A6%E6%88%B7-ALICE-%E8%A2%AB%E4%BF%AE%E6%94%B9"><span class="toc-number">1.3.4.</span> <span class="toc-text">计算机账户 ALICE$ 被修改</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -159,7 +165,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">258</div>
+    <div class="sidebar-state-number">259</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -167,7 +173,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">199</div>
+    <div class="sidebar-state-number">200</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -220,13 +226,13 @@
   </div>
 </aside>
 
-          <section id="main" aria-label="Main content"><article id="post-T1098 - Account Manipulation" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main" aria-label="Main content"><article id="post-AD ACL 权限滥用" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2026-10-10T17:29:00.000Z" itemprop="datePublished">2026-10-11</time>
-    <time style="display: none;" id="post-update-time">2026-10-12</time>
+    <time datetime="2026-10-10T18:29:00.000Z" itemprop="datePublished">2026-10-11</time>
+    <time style="display: none;" id="post-update-time">2026-10-13</time>
   </span>
 </div>
 
@@ -235,77 +241,158 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="T1098-Account-Manipulation"><a href="#T1098-Account-Manipulation" class="headerlink" title="T1098 - Account Manipulation"></a>T1098 - Account Manipulation</h1><h2 id="技术背景"><a href="#技术背景" class="headerlink" title="技术背景"></a>技术背景</h2><p>在 Active Directory 环境中，DSRM（Directory Service Restore Mode）账户是每个域控制器上的本地管理员账户，通常用于离线维护</p>
-<p>攻击者在获得足够权限后，可以修改 DSRM 账户的密码，从而在域控上建立一个隐蔽的持久化后门，即使常规的域管理员密码被更改，攻击者仍可通过 DSRM 账户登录域控</p>
-<h2 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h2><p><img src="https://pic1.imgdb.cn/i/034edbeMLvq0pz0MgDPqvh.png" alt="pasted_1791808967839_ifnagp.png"></p>
-<table>
+        <h1 id="AD-域–ACL-权限滥用"><a href="#AD-域–ACL-权限滥用" class="headerlink" title="AD 域–ACL 权限滥用"></a>AD 域–ACL 权限滥用</h1><h2 id="样本信息"><a href="#样本信息" class="headerlink" title="样本信息"></a>样本信息</h2><ul>
+<li><p>文件：<code>ACL_ForcePwd_SPNAdd_User_Computer_Accounts.evtx</code></p>
+</li>
+<li><p>文件大小：1118208 bytes；SHA-256：<code>f09f993909deb7acdae4c4f6f48e5a8447487e89437873fd8e653436a3dce36c</code></p>
+</li>
+<li><p>完整有效事件：55 条（Record ID 1—55）；包括 7 种 Event ID</p>
+</li>
+<li><p>来源：Security 审计通道为主，涉及 <code>Microsoft-Windows-Security-Auditing</code> 和 <code>Microsoft-Windows-Eventlog</code></p>
+</li>
+<li><p>事件 XML 中 <code>System.TimeCreated</code> 范围：2019-03-25T09:09:14.916619Z 到 2019-03-25T13:01:41.935605Z（UTC）</p>
+</li>
+<li><p>EVTX 记录头中的写入时间：2019-03-25T10:05:30.695604Z 到 2019-03-25T13:02:14.947611Z（UTC）</p>
+</li>
+<li><p><strong>时间处理说明：</strong> 事件创建时间与 EVTX 记录写入时间不完全相同，下述时间线统一使用 <code>System.TimeCreated</code>。北京时间 &#x3D; UTC + 8 小时</p>
+</li>
+</ul>
+<h2 id="事件统计"><a href="#事件统计" class="headerlink" title="事件统计"></a>事件统计</h2><table>
 <thead>
 <tr>
-<th>字段</th>
-<th>值</th>
-<th>含义与研判要点</th>
+<th>Event ID</th>
+<th align="right">数量</th>
+<th>Windows 含义</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>事件 ID</td>
-<td>4794</td>
-<td>“试图设置目录服务还原模式管理员密码”。仅在域控上生成，每次修改 DSRM 密码都会记录</td>
+<td>5136</td>
+<td align="right">22</td>
+<td>AD 目录对象属性修改</td>
 </tr>
 <tr>
-<td>使用者安全 ID</td>
-<td>S-1-5-21-…-500</td>
-<td>域 HQCORP 的内置 Administrator 账户（RID 500）。这是域内权限最高的账户之一</td>
+<td>4662</td>
+<td align="right">14</td>
+<td>目录对象操作&#x2F;访问审计</td>
 </tr>
 <tr>
-<td>账户名</td>
-<td>administrator</td>
-<td>执行密码修改操作的用户</td>
+<td>4719</td>
+<td align="right">8</td>
+<td>系统审计策略发生变化</td>
 </tr>
 <tr>
-<td>账户域</td>
-<td>HQCORP</td>
-<td>操作发生在 HQCORP 域</td>
+<td>4738</td>
+<td align="right">5</td>
+<td>用户账户被修改</td>
 </tr>
 <tr>
-<td>登录 ID</td>
-<td>0x2F336F</td>
-<td>该操作所属的登录会话标识</td>
+<td>4702</td>
+<td align="right">4</td>
+<td>计划任务被更新</td>
 </tr>
 <tr>
-<td>调用方工作站</td>
-<td>2016DC</td>
-<td>发起操作的计算机名。名称含 DC，很可能是域控本身</td>
+<td>1102</td>
+<td align="right">1</td>
+<td>Security 审计日志被清除</td>
 </tr>
 <tr>
-<td>状态代码</td>
-<td>0x0</td>
-<td>操作成功。DSRM 密码已被实际修改</td>
+<td>4742</td>
+<td align="right">1</td>
+<td>计算机账户被修改</td>
 </tr>
 </tbody></table>
-<h2 id="检测规则"><a href="#检测规则" class="headerlink" title="检测规则"></a>检测规则</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">Password</span> <span class="string">Change</span> <span class="string">on</span> <span class="string">Directory</span> <span class="string">Service</span> <span class="string">Restore</span> <span class="string">Mode</span> <span class="string">(DSRM)</span> <span class="string">Account</span></span><br><span class="line"><span class="attr">id:</span> <span class="string">53ad8e36-f573-46bf-97e4-15ba5bf4bb51</span></span><br><span class="line"><span class="attr">status:</span> <span class="string">stable</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">Detects</span> <span class="string">potential</span> <span class="string">attempts</span> <span class="string">made</span> <span class="string">to</span> <span class="string">set</span> <span class="string">the</span> <span class="string">DSRM</span> <span class="string">administrator</span> <span class="string">password.</span></span><br><span class="line"><span class="attr">references:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">https://adsecurity.org/?p=1714</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">Thomas</span> <span class="string">Patzke</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">attack.persistence</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">attack.privilege_escalation</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">attack.t1098</span></span><br><span class="line"><span class="attr">logsource:</span></span><br><span class="line">    <span class="attr">product:</span> <span class="string">windows</span></span><br><span class="line">    <span class="attr">service:</span> <span class="string">security</span></span><br><span class="line"><span class="attr">detection:</span></span><br><span class="line">    <span class="attr">selection:</span></span><br><span class="line">        <span class="attr">EventID:</span> <span class="number">4794</span></span><br><span class="line">    <span class="attr">condition:</span> <span class="string">selection</span></span><br><span class="line"><span class="attr">falsepositives:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">Initial</span> <span class="string">installation</span> <span class="string">of</span> <span class="string">a</span> <span class="string">domain</span> <span class="string">controller</span></span><br><span class="line"><span class="attr">level:</span> <span class="string">high</span></span><br></pre></td></tr></table></figure>
+<h2 id="攻击链"><a href="#攻击链" class="headerlink" title="攻击链"></a>攻击链</h2><h3 id="Security-日志清除"><a href="#Security-日志清除" class="headerlink" title="Security 日志清除"></a>Security 日志清除</h3><p><img src="https://pic1.imgdb.cn/i/034enAYWtJCZmFoiVpzHg0.png" alt="pasted_1791832344673_jb7pf7.png"></p>
+<ul>
+<li><p>Record 1；Event ID 1102；事件创建时间 09:09:14 UTC</p>
+</li>
+<li><p><code>SubjectUserName=bob</code>，<code>SubjectDomainName=insecurebank</code>，<code>SubjectLogonId=0x8d7099</code></p>
+</li>
+<li><p>此事件确认发生了安全审计日志清除</p>
+</li>
+</ul>
+<h3 id="默认域策略反复修改"><a href="#默认域策略反复修改" class="headerlink" title="默认域策略反复修改"></a>默认域策略反复修改</h3><p><img src="https://pic1.imgdb.cn/i/034enLVyWeVbLNxyctWs57.png" alt="pasted_1791832778745_h2oglq.png"></p>
+<p><img src="https://pic1.imgdb.cn/i/034enM2hfpFF12botmUxFD.png" alt="pasted_1791832799389_mlvsv8.png"></p>
+<ul>
+<li><p>Record 4–5、7–8、10–11、13–14、20–23、28–29、31–32、41–42、45–48 均为 5136</p>
+</li>
+<li><p>这些事件的 <code>SubjectUserName</code> 全部为 <code>bob</code>；<code>ObjectClass=groupPolicyContainer</code>；<code>AttributeLDAPDisplayName=versionNumber</code></p>
+</li>
+<li><p>代码 <code>%%14675</code> 表示删除旧值，<code>%%14674</code> 表示添加新值，每一轮变化通常有一对事件</p>
+</li>
+<li><p><strong>默认域策略 GPO</strong>：65554 → 65555 → 65556 → 65557 → 65558 → 65559 → 65560 → 65561</p>
+</li>
+<li><p><strong>默认域控制器策略 GPO</strong>：5 → 6 → 7 → 8 → 9</p>
+</li>
+</ul>
+<p><img src="https://pic1.imgdb.cn/i/034enMn9R1KMlQ2mmG3eJx.png" alt="pasted_1791832829153_xt4vf4.png"></p>
+<ul>
+<li>多条 4662 的 <code>AccessMask=0x20</code>，表示 Write Property，对 GPO 对象的写属性活动提供辅助佐证</li>
+</ul>
+<h3 id="用户-alice-多次发生账户修改"><a href="#用户-alice-多次发生账户修改" class="headerlink" title="用户 alice 多次发生账户修改"></a>用户 <code>alice</code> 多次发生账户修改</h3><p><img src="https://pic1.imgdb.cn/i/034enREuTFMaLwwZJ9RSki.png" alt="pasted_1791833004924_kgfwt7.png"></p>
+<table>
+<thead>
+<tr>
+<th align="right">Record ID</th>
+<th>事件创建时间 UTC</th>
+<th align="right">Event ID</th>
+<th>操作者</th>
+<th>目标</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">26</td>
+<td>2019-03-25T11:15:58.239601Z</td>
+<td align="right">4738</td>
+<td>bob</td>
+<td>alice</td>
+</tr>
+<tr>
+<td align="right">35</td>
+<td>2019-03-25T11:19:35.820604Z</td>
+<td align="right">4738</td>
+<td>bob</td>
+<td>alice</td>
+</tr>
+<tr>
+<td align="right">51</td>
+<td>2019-03-25T12:37:49.638677Z</td>
+<td align="right">4738</td>
+<td>bob</td>
+<td>alice</td>
+</tr>
+<tr>
+<td align="right">52</td>
+<td>2019-03-25T12:48:09.195617Z</td>
+<td align="right">4738</td>
+<td>bob</td>
+<td>alice</td>
+</tr>
+<tr>
+<td align="right">54</td>
+<td>2019-03-25T13:01:41.932610Z</td>
+<td align="right">4738</td>
+<td>bob</td>
+<td>alice</td>
+</tr>
+</tbody></table>
+<h3 id="计算机账户-ALICE-被修改"><a href="#计算机账户-ALICE-被修改" class="headerlink" title="计算机账户 ALICE$ 被修改"></a>计算机账户 <code>ALICE$</code> 被修改</h3><p><img src="https://pic1.imgdb.cn/i/034enSVHqpiM3DUxWZ9MwF.png" alt="pasted_1791833054882_byb14u.png"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>bob</code> 清理了安全日志、反复修改默认 GPO 的版本属性，并修改用户 <code>alice</code> 与计算机 <code>ALICE$</code> 的账户对象</p>
+
     </div>
     <footer class="article-footer">
         <a class="article-category-link" href="/categories/Blue-Team/" title="Blue Team" data-aos="zoom-in">Blue Team</a>
 
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/T1098-Account-Manipulation/" rel="tag" title="T1098 - Account Manipulation">T1098 - Account Manipulation</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/ACL-%E6%BB%A5%E7%94%A8/" rel="tag" title="ACL 滥用">ACL 滥用</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Windows-%E6%97%A5%E5%BF%97/" rel="tag" title="Windows 日志">Windows 日志</a></li></ul>
 
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
-      <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="AD 域--DSRM 后门" class="lazyload">
-        <a href="/2026/10/11/DSRM%20%E5%90%8E%E9%97%A8/" aria-label="前一篇: AD 域--DSRM 后门" title="前一篇: AD 域--DSRM 后门"></a>
-        <div class="article-nav-caption">前一篇</div>
-        <h3 class="article-nav-title">
-            AD 域--DSRM 后门
-        </h3>
-      </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="某高校智慧迎新服务平台越权导致大量敏感信息泄露" class="lazyload">
-      <a href="/2026/10/08/%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B6%8A%E6%9D%83%E5%AF%BC%E8%87%B4%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/" aria-label="后一篇: 某高校智慧迎新服务平台越权导致大量敏感信息泄露"  title="后一篇: 某高校智慧迎新服务平台越权导致大量敏感信息泄露"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="4794--DSRM 后门" class="lazyload">
+      <a href="/2026/10/11/4794--DSRM%20%E5%90%8E%E9%97%A8/" aria-label="后一篇: 4794--DSRM 后门"  title="后一篇: 4794--DSRM 后门"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          某高校智慧迎新服务平台越权导致大量敏感信息泄露
+          4794--DSRM 后门
       </h3>
     </div>
   </nav>
@@ -332,10 +419,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        344.1k
+        344.6k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        27:58
+        28:01
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -357,7 +444,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#T1098-Account-Manipulation"><span class="toc-number">1.</span> <span class="toc-text">T1098 - Account Manipulation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">技术背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">日志分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E8%A7%84%E5%88%99"><span class="toc-number">1.3.</span> <span class="toc-text">检测规则</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AD-%E5%9F%9F%E2%80%93ACL-%E6%9D%83%E9%99%90%E6%BB%A5%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">AD 域–ACL 权限滥用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E7%BB%9F%E8%AE%A1"><span class="toc-number">1.2.</span> <span class="toc-text">事件统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.3.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Security-%E6%97%A5%E5%BF%97%E6%B8%85%E9%99%A4"><span class="toc-number">1.3.1.</span> <span class="toc-text">Security 日志清除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E5%9F%9F%E7%AD%96%E7%95%A5%E5%8F%8D%E5%A4%8D%E4%BF%AE%E6%94%B9"><span class="toc-number">1.3.2.</span> <span class="toc-text">默认域策略反复修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7-alice-%E5%A4%9A%E6%AC%A1%E5%8F%91%E7%94%9F%E8%B4%A6%E6%88%B7%E4%BF%AE%E6%94%B9"><span class="toc-number">1.3.3.</span> <span class="toc-text">用户 alice 多次发生账户修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%B4%A6%E6%88%B7-ALICE-%E8%A2%AB%E4%BF%AE%E6%94%B9"><span class="toc-number">1.3.4.</span> <span class="toc-text">计算机账户 ALICE$ 被修改</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -368,7 +455,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">258</div>
+    <div class="sidebar-state-number">259</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -376,7 +463,7 @@
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">199</div>
+    <div class="sidebar-state-number">200</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -485,13 +572,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "ALL",
-          title: "T1098 - Account Manipulation",
-          url: "https://suc2es2.github.io/2026/10/11/T1098%20-%20Account%20Manipulation/",
+          title: "AD 域--ACL 权限滥用",
+          url: "https://suc2es2.github.io/2026/10/11/AD%20ACL%20%E6%9D%83%E9%99%90%E6%BB%A5%E7%94%A8/",
           excerpt: "",
           description: "",
-          stripContent: "T1098 - Account Manipulation技术背景在 Active Directory 环境中，DSRM（Directory Service Restore Mode）账户是每个域控制器上的本地管理员账户，通常用于离线维护 攻击者在获得足够权限后，可以修改 DSRM 账户的密码，从而在域控上建立一个隐蔽的持久化后门，即使常规的域管理员密码被更改，攻击者仍可通过 DSRM 账户登录域控 日志分析    字段 值 含义与研判要点    事件 ID 4794 “试图设置目录服务还原模式管",
-          date: "Sun Oct 11 2026 01:29:00 GMT+0800",
-          updated: "Mon Oct 12 2026 21:40:54 GMT+0800",
+          stripContent: "AD 域–ACL 权限滥用样本信息 文件：ACL_ForcePwd_SPNAdd_User_Computer_Accounts.evtx  文件大小：1118208 bytes；SHA-256：f09f993909deb7acdae4c4f6f48e5a8447487e89437873fd8e653436a3dce36c  完整有效事件：55 条（Record ID 1—55）；包括 7 种 Event ID  来源：Security 审计通道为主，涉及 Microsoft-Windows-Se",
+          date: "Sun Oct 11 2026 02:29:00 GMT+0800",
+          updated: "Tue Oct 13 2026 03:27:18 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
