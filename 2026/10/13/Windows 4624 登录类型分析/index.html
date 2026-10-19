@@ -1,0 +1,717 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
+  <title>
+    Windows 4624 登录类型分析 | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="Windows 4624 登录类型分析样本信息 原始文件：DE_RDP_Tunneling_4624.evtx  SHA-256：2668d3d7f0505ad453affcb9e2b7206617cf1ec1e5a212bd8f191eb8523c0ab1  文件大小：69,632 字节（68 KiB）  文件格式：Windows EVTX，包含一个有效事件数据块  有效 EVTX 记录：18">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows 4624 登录类型分析">
+<meta property="og:url" content="https://suc2es2.github.io/2026/10/13/Windows%204624%20%E7%99%BB%E5%BD%95%E7%B1%BB%E5%9E%8B%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="Windows 4624 登录类型分析样本信息 原始文件：DE_RDP_Tunneling_4624.evtx  SHA-256：2668d3d7f0505ad453affcb9e2b7206617cf1ec1e5a212bd8f191eb8523c0ab1  文件大小：69,632 字节（68 KiB）  文件格式：Windows EVTX，包含一个有效事件数据块  有效 EVTX 记录：18">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034il9cC1SK6EkMuyHWhcu.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034ilCh63OK7ryQVDhuyGc.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034ilGBV7MwVDNTLramGP7.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034ilHgLQ74aewftsmLxPr.png">
+<meta property="article:published_time" content="2026-10-13T01:29:00.000Z">
+<meta property="article:modified_time" content="2026-10-19T18:23:25.549Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="Windows 日志">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034il9cC1SK6EkMuyHWhcu.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="Windows 4624 登录类型分析">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">Windows 4624 登录类型分析</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Windows-4624-%E7%99%BB%E5%BD%95%E7%B1%BB%E5%9E%8B%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">Windows 4624 登录类型分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8D%E4%B8%BA-sshd-server-%E7%9A%84%E6%9C%8D%E5%8A%A1%E8%B4%A6%E6%88%B7%E6%88%90%E5%8A%9F%E7%99%BB%E5%BD%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">名为 sshd_server 的服务账户成功登录</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IEUser-%E9%A6%96%E6%AC%A1%E6%9C%AC%E5%9C%B0%E4%BA%A4%E4%BA%92%E7%99%BB%E5%BD%95"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">IEUser 首次本地交互登录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IEUser-%E9%80%9A%E8%BF%87%E5%9B%9E%E7%8E%AF%E5%9C%B0%E5%9D%80%E5%8F%91%E7%94%9F-RDP-%E8%BF%9C%E7%A8%8B%E4%BA%A4%E4%BA%92%E7%99%BB%E5%BD%95"><span class="toc-number">1.2.2.</span> <span class="toc-text">IEUser 通过回环地址发生 RDP 远程交互登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IEUser-%E5%90%8E%E7%BB%AD%E5%86%8D%E6%AC%A1%E6%9C%AC%E5%9C%B0%E4%BA%A4%E4%BA%92%E7%99%BB%E5%BD%95"><span class="toc-number">1.2.3.</span> <span class="toc-text">IEUser 后续再次本地交互登录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">269</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">200</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-Windows 4624 登录类型分析" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-10-13T01:29:00.000Z" itemprop="datePublished">2026-10-13</time>
+    <time style="display: none;" id="post-update-time">2026-10-20</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="Windows-4624-登录类型分析"><a href="#Windows-4624-登录类型分析" class="headerlink" title="Windows 4624 登录类型分析"></a>Windows 4624 登录类型分析</h1><h2 id="样本信息"><a href="#样本信息" class="headerlink" title="样本信息"></a>样本信息</h2><ul>
+<li><p>原始文件：<code>DE_RDP_Tunneling_4624.evtx</code></p>
+</li>
+<li><p>SHA-256：<code>2668d3d7f0505ad453affcb9e2b7206617cf1ec1e5a212bd8f191eb8523c0ab1</code></p>
+</li>
+<li><p>文件大小：<strong>69,632 字节</strong>（68 KiB）</p>
+</li>
+<li><p>文件格式：Windows EVTX，包含一个有效事件数据块</p>
+</li>
+<li><p>有效 EVTX 记录：<strong>18 条</strong>，Record ID <strong>1—18</strong>，编号连续</p>
+</li>
+<li><p>事件来源：<code>Microsoft-Windows-Security-Auditing</code></p>
+</li>
+<li><p>事件通道：<code>Security</code></p>
+</li>
+<li><p>Event ID：<strong>4624（An account was successfully logged on）</strong>，全部 18 条</p>
+</li>
+<li><p>日志主机：<code>PC02.example.corp</code>（EVTX 事件模板 <code>System/Computer</code>）</p>
+</li>
+<li><p>相关主体：<code>PC02\IEUser</code>、<code>PC02\sshd_server</code>、<code>NT AUTHORITY\ANONYMOUS LOGON</code>、<code>EXAMPLE\PC02$</code></p>
+</li>
+<li><p>关键网络线索：<code>127.0.0.1:49164</code>、<code>10.0.2.17:49168</code>、<code>10.0.2.17:49169</code>、工作站名 <code>PC01</code></p>
+</li>
+<li><p>事件 <strong>XML System&#x2F;TimeCreated</strong> 范围：<strong>2019-02-13 15:14:52.409—15:31:31.556 UTC</strong>（北京时间 <strong>2019-02-13 23:14:52—23:31:31</strong>）</p>
+</li>
+<li><p>注：EVTX <strong>记录头 FILETIME</strong> 与 XML <code>SystemTime</code> 有显著差异（个别超过 5 分钟），下面时间线统一使用 XML <code>SystemTime</code>；差异及复核方法见第十二节</p>
+</li>
+</ul>
+<h2 id="攻击链"><a href="#攻击链" class="headerlink" title="攻击链"></a>攻击链</h2><h3 id="名为-sshd-server-的服务账户成功登录"><a href="#名为-sshd-server-的服务账户成功登录" class="headerlink" title="名为 sshd_server 的服务账户成功登录"></a>名为 sshd_server 的服务账户成功登录</h3><p>Record ID <strong>10</strong>，Event ID <strong>4624</strong>：</p>
+<p><code>PC02\sshd_server</code> 是这次登录的<strong>目标账户 &#x2F; 新登录用户</strong>，<code>LogonType=5</code> 表示服务类型的成功登录。<code>services.exe</code> 和 <code>Advapi</code> 也与 Windows 服务管理场景吻合</p>
+<p><img src="https://pic1.imgdb.cn/i/034il9cC1SK6EkMuyHWhcu.png" alt="pasted_1792433752338_em6p8b.png"></p>
+<h4 id="IEUser-首次本地交互登录"><a href="#IEUser-首次本地交互登录" class="headerlink" title="IEUser 首次本地交互登录"></a>IEUser 首次本地交互登录</h4><p>Record ID <strong>14</strong>，Event ID <strong>4624</strong>：</p>
+<p><code>PC02\IEUser</code> 成功创建<strong>本地交互</strong>登录会话。<code>LogonType=2</code> 表示本地登录，这与后续 Type 10 登录同属一个账户，但对应不同的 <code>TargetLogonId</code></p>
+<p><img src="https://pic1.imgdb.cn/i/034ilCh63OK7ryQVDhuyGc.png" alt="pasted_1792433873809_o147mq.png"></p>
+<h3 id="IEUser-通过回环地址发生-RDP-远程交互登录"><a href="#IEUser-通过回环地址发生-RDP-远程交互登录" class="headerlink" title="IEUser 通过回环地址发生 RDP 远程交互登录"></a>IEUser 通过回环地址发生 RDP 远程交互登录</h3><p>Record ID <strong>15</strong>，Event ID <strong>4624</strong>：</p>
+<p>4624 &#x2F; <strong>LogonType 10</strong> 直接支持该主机建立了一个成功的<strong>远程交互登录会话</strong>，账户为 <strong><code>PC02\IEUser</code></strong>，<code>LogonType=10</code> 表示远程登录，日志报告的网络源端点为 <strong><code>127.0.0.1:49164</code></strong>，Logon ID 为 <strong><code>0x45120</code></strong></p>
+<p><img src="https://pic1.imgdb.cn/i/034ilGBV7MwVDNTLramGP7.png" alt="pasted_1792434011639_dkodx2.png"></p>
+<h3 id="IEUser-后续再次本地交互登录"><a href="#IEUser-后续再次本地交互登录" class="headerlink" title="IEUser 后续再次本地交互登录"></a>IEUser 后续再次本地交互登录</h3><p>Record ID <strong>16</strong>，Event ID <strong>4624</strong>：</p>
+<p>可以证实同一账户先后创建了三次<strong>不同的成功登录会话</strong>，其中只有中间的 Record 15 属于 RemoteInteractive</p>
+<p><img src="https://pic1.imgdb.cn/i/034ilHgLQ74aewftsmLxPr.png" alt="pasted_1792434070184_jydqgs.png"></p>
+<h2 id="测验"><a href="#测验" class="headerlink" title="测验"></a>测验</h2><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>答案</th>
+<th>记录依据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>日志来源与事件通道？</td>
+<td><code>Microsoft-Windows-Security-Auditing</code> &#x2F; <code>Security</code></td>
+<td>EVTX System</td>
+</tr>
+<tr>
+<td>日志所在主机？</td>
+<td><strong><code>PC02.example.corp</code></strong></td>
+<td>EVTX System&#x2F;Computer</td>
+</tr>
+<tr>
+<td>有效事件总数？</td>
+<td><strong>18</strong></td>
+<td>Record 1—18</td>
+</tr>
+<tr>
+<td>所有事件的 Event ID？</td>
+<td><strong>4624</strong></td>
+<td>全部</td>
+</tr>
+<tr>
+<td>RemoteInteractive 的登录类型？</td>
+<td><strong>10</strong></td>
+<td>Windows 4624 定义</td>
+</tr>
+<tr>
+<td>本日志 Type 10 共几次？</td>
+<td><strong>1 次</strong></td>
+<td>Record 15</td>
+</tr>
+<tr>
+<td>RDP&#x2F;远程交互登录账户？</td>
+<td><strong><code>PC02\IEUser</code></strong></td>
+<td>15</td>
+</tr>
+<tr>
+<td>RDP 登录时间（UTC）？</td>
+<td><strong>2019-02-13 15:26:53.356</strong>（XML）</td>
+<td>15</td>
+</tr>
+<tr>
+<td>RDP 登录的来源 IP？</td>
+<td><strong><code>127.0.0.1</code></strong></td>
+<td>15</td>
+</tr>
+<tr>
+<td>RDP 登录的来源端口？</td>
+<td><strong>49164</strong></td>
+<td>15</td>
+</tr>
+<tr>
+<td>RDP 登录的 TargetLogonId？</td>
+<td><strong><code>0x45120</code></strong></td>
+<td>15</td>
+</tr>
+<tr>
+<td>RDP 认证包？</td>
+<td><strong>Negotiate</strong></td>
+<td>15</td>
+</tr>
+<tr>
+<td>RDP 登录进程路径？</td>
+<td><code>C:\Windows\System32\winlogon.exe</code></td>
+<td>15</td>
+</tr>
+<tr>
+<td>登录进程 PID？</td>
+<td><strong>1624</strong>（不是 SSH PID）</td>
+<td>15</td>
+</tr>
+<tr>
+<td>本地 Interactive 登录是哪两条？</td>
+<td>Record <strong>14、16</strong>（LogonType 2）</td>
+<td>14、16</td>
+</tr>
+<tr>
+<td>两次本地登录的 Logon ID？</td>
+<td><code>0x21F73</code>、<code>0x4A26D</code></td>
+<td>14、16</td>
+</tr>
+<tr>
+<td>名称与 SSH 有关的服务账户？</td>
+<td><strong><code>PC02\sshd_server</code></strong></td>
+<td>10</td>
+</tr>
+<tr>
+<td>sshd_server 的 LogonType？</td>
+<td><strong>5（Service）</strong></td>
+<td>10</td>
+</tr>
+<tr>
+<td>sshd_server 的 Logon ID？</td>
+<td><strong><code>0xE509</code></strong></td>
+<td>10</td>
+</tr>
+<tr>
+<td>sshd_server 的具体可执行路径？</td>
+<td><strong>无法从本文件确定</strong></td>
+<td>10</td>
+</tr>
+<tr>
+<td>来自 PC01 的事件 Record ID？</td>
+<td><strong>17、18</strong></td>
+<td>17、18</td>
+</tr>
+<tr>
+<td>网络登录的来源 IP？</td>
+<td><strong><code>10.0.2.17</code></strong></td>
+<td>17、18</td>
+</tr>
+<tr>
+<td>PC01 的两个来源端口？</td>
+<td><strong>49168、49169</strong></td>
+<td>17、18</td>
+</tr>
+<tr>
+<td>PC01 网络登录的目标账户？</td>
+<td><strong><code>NT AUTHORITY\ANONYMOUS LOGON</code></strong></td>
+<td>17、18</td>
+</tr>
+<tr>
+<td>PC01 网络登录的类型？</td>
+<td><strong>3（Network）</strong></td>
+<td>17、18</td>
+</tr>
+<tr>
+<td>日志显示的 NTLM 包细节？</td>
+<td><code>LmPackageName=NTLM V1</code></td>
+<td>11、17、18</td>
+</tr>
+<tr>
+<td>能否从这份文件恢复 Plink 参数？</td>
+<td><strong>不能，无 4688&#x2F;进程命令行</strong></td>
+<td>文件范围</td>
+</tr>
+<tr>
+<td>是否能直接判定 PC01 发起 Record 15 的 RDP？</td>
+<td><strong>不能，RDP 源是本机回环地址；PC01 对应其他事件</strong></td>
+<td>15、17—18</td>
+</tr>
+<tr>
+<td>是否已确认 SSH 隧道？</td>
+<td><strong>不能，仅存在间接线索</strong></td>
+<td>整体证据</td>
+</tr>
+<tr>
+<td>49164 是 RDP 服务端口吗？</td>
+<td><strong>不是，日志记录的是来源端口</strong></td>
+<td>15</td>
+</tr>
+</tbody></table>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/Blue-Team/" title="Blue Team" data-aos="zoom-in">Blue Team</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Windows-%E6%97%A5%E5%BF%97/" rel="tag" title="Windows 日志">Windows 日志</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="Plink 隧道转发 RDP、回环地址远程登录" class="lazyload">
+        <a href="/2026/10/13/Plink%20%E7%BD%91%E7%BB%9C%E9%9A%A7%E9%81%93%E4%B8%8E%20RDP%20%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95/" aria-label="前一篇: Plink 隧道转发 RDP、回环地址远程登录" title="前一篇: Plink 隧道转发 RDP、回环地址远程登录"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            Plink 隧道转发 RDP、回环地址远程登录
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="BITS 后台传输异常任务" class="lazyload">
+      <a href="/2026/10/13/BITS%20%E5%90%8E%E5%8F%B0%E4%BC%A0%E8%BE%93%E6%BB%A5%E7%94%A8%E4%B8%8E%E5%BC%82%E5%B8%B8%E4%BB%BB%E5%8A%A1/" aria-label="后一篇: BITS 后台传输异常任务"  title="后一篇: BITS 后台传输异常任务"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          BITS 后台传输异常任务
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        350.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        28:32
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Windows-4624-%E7%99%BB%E5%BD%95%E7%B1%BB%E5%9E%8B%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">Windows 4624 登录类型分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8D%E4%B8%BA-sshd-server-%E7%9A%84%E6%9C%8D%E5%8A%A1%E8%B4%A6%E6%88%B7%E6%88%90%E5%8A%9F%E7%99%BB%E5%BD%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">名为 sshd_server 的服务账户成功登录</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IEUser-%E9%A6%96%E6%AC%A1%E6%9C%AC%E5%9C%B0%E4%BA%A4%E4%BA%92%E7%99%BB%E5%BD%95"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">IEUser 首次本地交互登录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IEUser-%E9%80%9A%E8%BF%87%E5%9B%9E%E7%8E%AF%E5%9C%B0%E5%9D%80%E5%8F%91%E7%94%9F-RDP-%E8%BF%9C%E7%A8%8B%E4%BA%A4%E4%BA%92%E7%99%BB%E5%BD%95"><span class="toc-number">1.2.2.</span> <span class="toc-text">IEUser 通过回环地址发生 RDP 远程交互登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IEUser-%E5%90%8E%E7%BB%AD%E5%86%8D%E6%AC%A1%E6%9C%AC%E5%9C%B0%E4%BA%A4%E4%BA%92%E7%99%BB%E5%BD%95"><span class="toc-number">1.2.3.</span> <span class="toc-text">IEUser 后续再次本地交互登录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">269</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">200</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "Windows 4624 登录类型分析",
+          url: "https://suc2es2.github.io/2026/10/13/Windows%204624%20%E7%99%BB%E5%BD%95%E7%B1%BB%E5%9E%8B%E5%88%86%E6%9E%90/",
+          excerpt: "",
+          description: "",
+          stripContent: "Windows 4624 登录类型分析样本信息 原始文件：DE_RDP_Tunneling_4624.evtx  SHA-256：2668d3d7f0505ad453affcb9e2b7206617cf1ec1e5a212bd8f191eb8523c0ab1  文件大小：69,632 字节（68 KiB）  文件格式：Windows EVTX，包含一个有效事件数据块  有效 EVTX 记录：18 条，Record ID 1—18，编号连续  事件来源：Microsoft-Windows-Secu",
+          date: "Tue Oct 13 2026 09:29:00 GMT+0800",
+          updated: "Tue Oct 20 2026 02:23:25 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
