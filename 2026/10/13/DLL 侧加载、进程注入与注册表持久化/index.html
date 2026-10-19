@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034ifFTjzJktWoKG3R3A0u.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034ifSkYXzz2QREeo5vg7b.png">
 <meta property="article:published_time" content="2026-10-12T22:29:00.000Z">
-<meta property="article:modified_time" content="2026-10-19T14:24:46.466Z">
+<meta property="article:modified_time" content="2026-10-19T17:15:59.937Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="Windows 日志">
 <meta name="twitter:card" content="summary">
@@ -161,7 +161,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">266</div>
+    <div class="sidebar-state-number">267</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -228,7 +228,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2026-10-12T22:29:00.000Z" itemprop="datePublished">2026-10-13</time>
-    <time style="display: none;" id="post-update-time">2026-10-19</time>
+    <time style="display: none;" id="post-update-time">2026-10-20</time>
   </span>
 </div>
 
@@ -259,18 +259,18 @@
 <li><p>持久化 Run 项：<code>Tendyron</code>，值为 <code>C:\Users\Public\tools\apt\tendyron.exe</code></p>
 </li>
 </ul>
-<h2 id="攻击链"><a href="#攻击链" class="headerlink" title="攻击链"></a>攻击链</h2><h3 id="DLL-侧加载"><a href="#DLL-侧加载" class="headerlink" title="DLL 侧加载"></a>DLL 侧加载</h3><p><img src="https://pic1.imgdb.cn/i/034ieJoXdOXhUVJvirK7tz.png" alt="pasted_1792417036957_lgay3q.png"></p>
-<p><code>OnKeyToken_KEB.dll</code> 与调用它的 EXE 均放置于非标准公共目录 <code>C:\Users\Public\tools\apt\</code>，同时签名未验证</p>
-<h3 id="进程注入"><a href="#进程注入" class="headerlink" title="进程注入"></a>进程注入</h3><p><img src="https://pic1.imgdb.cn/i/034ifFTjzJktWoKG3R3A0u.png" alt="pasted_1792419314080_1uh6lm.png"></p>
-<p>3 条进程访问事件均包含 <code>OnKeyToken_KEB.dll</code> 相关调用栈模块路径（位于 <code>CallTrace</code>）</p>
+<h2 id="攻击链"><a href="#攻击链" class="headerlink" title="攻击链"></a>攻击链</h2><h3 id="DLL-侧加载"><a href="#DLL-侧加载" class="headerlink" title="DLL 侧加载"></a>DLL 侧加载</h3><p><code>OnKeyToken_KEB.dll</code> 与调用它的 EXE 均放置于非标准公共目录 <code>C:\Users\Public\tools\apt\</code>，同时签名未验证</p>
+<p><img src="https://pic1.imgdb.cn/i/034ieJoXdOXhUVJvirK7tz.png" alt="pasted_1792417036957_lgay3q.png"></p>
+<h3 id="进程注入"><a href="#进程注入" class="headerlink" title="进程注入"></a>进程注入</h3><p>3 条进程访问事件均包含 <code>OnKeyToken_KEB.dll</code> 相关调用栈模块路径（位于 <code>CallTrace</code>）</p>
 <ul>
 <li><p><code>0x1FFFFF</code> 代表广泛的进程对象访问权限，包含与内存访问相关的权限</p>
 </li>
 <li><p><strong>外部交叉验证：</strong> ESET 逆向了相同 SHA1 的 DLL，指出其解密 shellcode，再经 <code>WriteProcessMemory</code> 注入 <code>iexplore.exe</code>，因此这里的注入技术归因有额外证据支持，但属于外部研究结论</p>
 </li>
 </ul>
-<h3 id="注册表持久化"><a href="#注册表持久化" class="headerlink" title="注册表持久化"></a>注册表持久化</h3><p><img src="https://pic1.imgdb.cn/i/034ifSkYXzz2QREeo5vg7b.png" alt="pasted_1792419836591_sywyob.png"></p>
-<p>这是同一用户配置单元下的 Run 自启动项，即当前用户登录时可自动启动所指向 EXE</p>
+<p><img src="https://pic1.imgdb.cn/i/034ifFTjzJktWoKG3R3A0u.png" alt="pasted_1792419314080_1uh6lm.png"></p>
+<h3 id="注册表持久化"><a href="#注册表持久化" class="headerlink" title="注册表持久化"></a>注册表持久化</h3><p>这是同一用户配置单元下的 Run 自启动项，即当前用户登录时可自动启动所指向 EXE</p>
+<p><img src="https://pic1.imgdb.cn/i/034ifSkYXzz2QREeo5vg7b.png" alt="pasted_1792419836591_sywyob.png"></p>
 <h2 id="测验"><a href="#测验" class="headerlink" title="测验"></a>测验</h2><table>
 <thead>
 <tr>
@@ -377,10 +377,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        348.2k
+        348.9k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        28:21
+        28:24
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -413,7 +413,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">266</div>
+    <div class="sidebar-state-number">267</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -536,7 +536,7 @@
           description: "",
           stripContent: "DLL 侧加载、进程注入与注册表持久化样本信息 原始文件：sideloading_injection_persistence_run_key.evtx  日志通道：Microsoft-Windows-Sysmon/Operational  主机：MSEDGEWIN10  涉及用户：MSEDGEWIN10\IEUser  有效 EVTX 事件：7 条；Event ID 1 ×2、7 ×1、10 ×3、13 ×1  实际行为集中在 2020-10-15 13:17:02 UTC（北京时间 21:17",
           date: "Tue Oct 13 2026 06:29:00 GMT+0800",
-          updated: "Mon Oct 19 2026 22:24:46 GMT+0800",
+          updated: "Tue Oct 20 2026 01:15:59 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
