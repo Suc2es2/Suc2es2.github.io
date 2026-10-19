@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">264</div>
+    <div class="sidebar-state-number">265</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -223,6 +223,9 @@
               <a href="/2026/10/18/%E6%9F%90%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B7%AF%E5%BE%84%E8%A7%A3%E6%9E%90%E7%BB%95%E8%BF%87/" title="Spring MVC 路由解析分号绕过">Spring MVC 路由解析分号绕过</a>
             </li>
             <li>
+              <a href="/2026/10/13/DLL%20%E4%BE%A7%E5%8A%A0%E8%BD%BD%E3%80%81%E8%BF%9B%E7%A8%8B%E6%B3%A8%E5%85%A5%E4%B8%8E%E6%B3%A8%E5%86%8C%E8%A1%A8%E6%8C%81%E4%B9%85%E5%8C%96/" title="DLL 侧加载、进程注入与注册表持久化">DLL 侧加载、进程注入与注册表持久化</a>
+            </li>
+            <li>
               <a href="/2026/10/13/Rundll32%20%E4%BB%A3%E7%90%86%E6%89%A7%E8%A1%8C%E4%B8%8E%20Wermgr%20%E8%BF%9B%E7%A8%8B%E7%A9%BA%E6%B4%9E%E5%8C%96%E6%94%BB%E5%87%BB/" title="Rundll32 代理执行与 Wermgr 进程空洞化攻击">Rundll32 代理执行与 Wermgr 进程空洞化攻击</a>
             </li>
             <li>
@@ -230,9 +233,6 @@
             </li>
             <li>
               <a href="/2026/10/12/DLL%20%E4%BE%A7%E5%8A%A0%E8%BD%BD%E4%B8%8E%E6%8C%81%E4%B9%85%E5%8C%96%E6%94%BB%E5%87%BB/" title="DLL 侧加载与持久化攻击">DLL 侧加载与持久化攻击</a>
-            </li>
-            <li>
-              <a href="/2026/10/11/Windows%20Defender%20%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6%E6%A3%80%E6%B5%8B%E4%B8%8E%E5%A4%84%E7%BD%AE/" title="Windows Defender 恶意软件检测与处置">Windows Defender 恶意软件检测与处置</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,35 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/10/03/VulnCMS%201/" aria-label="VulnHub VulnCMS：1" title="VulnHub VulnCMS：1"></a>
+      <a class="post-link" href="/2026/10/04/HTB%20Unit42/" aria-label="Hack The Box Unit42" title="Hack The Box Unit42"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Hack The Box Unit42" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-10-04</span>
+        <span><span class="icon-pencil"></span>781 字</span>
+        <span><span class="icon-clock"></span>4 分钟</span>
+      </div>
+      <h2 class="post-title">Hack The Box Unit42</h2>
+      <article class="post-article">
+          Unit42
+Task 1：Event ID 11 有多少条？Event ID 11 &amp;#x3D; FileCreate（文件创建）
+用 Event Viewer 筛选 11，顶部显示计数为 56
+PowerShell 一行命令：
+1(Get-WinEvent -Path &amp;quot;Microsoft-Windows-Sysmon-Operational.evtx&amp;quot; | Where-Object &amp;#123; $_.Id -eq 11 &amp;#125;).count
+
+答案：56
+Task 2：感染系统的恶意进程是什么？Event ID 1 &amp;#x3D; ProcessCreate
+筛
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/10/03/VulnCMS%201/" aria-label="VulnHub VulnCMS：1" title="VulnHub VulnCMS：1"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub VulnCMS：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -266,9 +293,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/10/02/Hackable%20II/" aria-label="VulnHub Hackable：II" title="VulnHub Hackable：II"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Hackable：II" class="lazyload">
     </div>
     <div class="post-info">
@@ -294,9 +321,9 @@ RCEfile使用 gobuster 进行目录扫描发现一个 file 文件夹
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/10/01/HackathonCTF%202/" aria-label="VulnHub HackathonCTF：2" title="VulnHub HackathonCTF：2"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub HackathonCTF：2" class="lazyload">
     </div>
     <div class="post-info">
@@ -320,9 +347,9 @@ SSH访问页面发现一张图片和 @nohtakcah，猜测 nohtakcah 是账户名�
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/09/20/%E5%87%BA%E9%A2%98-GTI%20%E5%B7%A1%E6%9F%A5%E5%9B%A2/" aria-label="出题——G.T.I 巡查团" title="出题——G.T.I 巡查团"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="出题——G.T.I 巡查团" class="lazyload">
     </div>
     <div class="post-info">
@@ -347,9 +374,9 @@ CVE-2026-94108漏洞源码位于 getid3-1.9.26/getid3/getid3.lib.php
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/08/28/%E5%87%BA%E9%A2%98-ClassReaper/" aria-label="出题——ClassReaper" title="出题——ClassReaper"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="出题——ClassReaper" class="lazyload">
     </div>
     <div class="post-info">
@@ -370,9 +397,9 @@ MFC 逆向的 RTTI 恢复，就是利用 MFC 自有的 CRuntimeClass 链表及�
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/08/01/Funbox%20Under%20Construction!/" aria-label="VulnHub Funbox：Under Construction!" title="VulnHub Funbox：Under Construction!"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Funbox：Under Construction!" class="lazyload">
     </div>
     <div class="post-info">
@@ -405,9 +432,9 @@ RCEosCommerce Online Merchant 2.3.4.1（CVE-2018-25114）访问 80 端口
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/08/01/Hacker's%20Blog%201/" aria-label="VulnHub Hacker&#39;s Blog：1" title="VulnHub Hacker&#39;s Blog：1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Hacker&#39;s Blog：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -431,9 +458,9 @@ XXECreate Account打开 Web 界面，提示信息告诉我们使用 dig（域名
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/08/01/BuffEMR%201.0.1/" aria-label="VulnHub BuffEMR：1.0.1" title="VulnHub BuffEMR：1.0.1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub BuffEMR：1.0.1" class="lazyload">
     </div>
     <div class="post-info">
@@ -456,9 +483,9 @@ XXECreate Account打开 Web 界面，提示信息告诉我们使用 dig（域名
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/08/01/IA%20Keyring%20(1.0.1)/" aria-label="VulnHub IA：Keyring (1.0.1)" title="VulnHub IA：Keyring (1.0.1)"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub IA：Keyring (1.0.1)" class="lazyload">
     </div>
     <div class="post-info">
@@ -493,33 +520,6 @@ SQL 注入user80 端口是一个注册页面
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/07/31/Hacker%20kid%201.0.1/" aria-label="VulnHub Hacker kid：1.0.1" title="VulnHub Hacker kid：1.0.1"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Hacker kid：1.0.1" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-07-31</span>
-        <span><span class="icon-pencil"></span>733 字</span>
-        <span><span class="icon-clock"></span>3 分钟</span>
-      </div>
-      <h2 class="post-title">VulnHub Hacker kid：1.0.1</h2>
-      <article class="post-article">
-          Hacker kid：1.0.1原博客地址：https://www.cnblogs.com/upfine/p/17026653.html
-项目地址：https://download.vulnhub.com/hackerkid/Hacker_Kid-v1.0.1.ova（占用太大，懒得下）
-是一个打包好的镜像文件
-注意：导入 ovf 时一定要选择我已移动，否则没网
-使用 Nmap 扫描出开放服务及操作系统版本
-
-XXECreate Account打开 80 端口，提示信息告诉我们使用 Dig（域名查询工具）去继续挖掘
-
-在其源代码信息中看到提示信息：Use a GET parameter pag
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/3/">下一页 &raquo;</a>
   </nav>
@@ -543,10 +543,10 @@ XXECreate Account打开 80 端口，提示信息告诉我们使用 Dig（域名�
       </div>
       <div>
         <span class="icon-brush"></span>
-        346.8k
+        347.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        28:14
+        28:18
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -574,7 +574,7 @@ XXECreate Account打开 80 端口，提示信息告诉我们使用 Dig（域名�
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">264</div>
+    <div class="sidebar-state-number">265</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>

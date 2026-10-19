@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034fXleUQOTQRUWC66Mtgn.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034fXqiFkQHeL8Ci7CMD9R.png">
 <meta property="article:published_time" content="2026-10-11T22:29:00.000Z">
-<meta property="article:modified_time" content="2026-10-19T04:25:48.353Z">
+<meta property="article:modified_time" content="2026-10-19T14:28:16.430Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="Windows 日志">
 <meta name="twitter:card" content="summary">
@@ -151,7 +151,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Rundll32-%E4%BB%A3%E7%90%86%E6%89%A7%E8%A1%8C%E4%B8%8E%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">Rundll32 代理执行与计划任务持久化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A9%E6%9C%9F-DLL-%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.1.</span> <span class="toc-text">早期 DLL 调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-XML-%E5%88%9B%E5%BB%BA%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.2.2.</span> <span class="toc-text">通过 XML 创建计划任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD-rundll32-DLL-%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">后续 rundll32 DLL 调用</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Rundll32-%E4%BB%A3%E7%90%86%E6%89%A7%E8%A1%8C%E4%B8%8E%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">Rundll32 代理执行与计划任务持久化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A9%E6%9C%9F-DLL-%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.1.</span> <span class="toc-text">早期 DLL 调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-XML-%E5%88%9B%E5%BB%BA%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.2.2.</span> <span class="toc-text">通过 XML 创建计划任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD-rundll32-DLL-%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">后续 rundll32 DLL 调用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -162,7 +162,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">264</div>
+    <div class="sidebar-state-number">265</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -370,6 +370,46 @@
 <p><img src="https://pic1.imgdb.cn/i/034fXleUQOTQRUWC66Mtgn.png" alt="pasted_1791946275122_ju499f.png"></p>
 <p>随后还观察到 <code>rundll32.exe</code> 创建两个文件</p>
 <p><img src="https://pic1.imgdb.cn/i/034fXqiFkQHeL8Ci7CMD9R.png" alt="pasted_1791946474697_0rj5r0.png"></p>
+<h2 id="测验"><a href="#测验" class="headerlink" title="测验"></a>测验</h2><table>
+<thead>
+<tr>
+<th>常见问题</th>
+<th>样本答案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>哪个可疑父进程启动了最初的 rundll32？</td>
+<td><code>C:\Users\Public\test.tmp</code></td>
+</tr>
+<tr>
+<td>哪个 DLL 和导出函数被第一次调用？</td>
+<td><code>conf3234.dll</code> &#x2F; <code>f8753</code></td>
+</tr>
+<tr>
+<td>创建计划任务使用了哪个程序？</td>
+<td><code>schtasks.exe</code>，经 <code>cmd.exe /C</code> 启动</td>
+</tr>
+<tr>
+<td>计划任务名称？</td>
+<td><code>DataUsageHandlers</code></td>
+</tr>
+<tr>
+<td>创建任务所引用的 XML 文件路径？</td>
+<td><code>C:\Users\IEUser\AppData\Local\Temp\sduchxll.tmp</code></td>
+</tr>
+<tr>
+<td>后续 rundll32 使用哪个 DLL 路径？</td>
+<td><code>C:\PROGRA~3\DATAUS~1.DLL</code></td>
+</tr>
+<tr>
+<td>计划任务是否已经注册成功？</td>
+<td>仅能确认创建命令已执行，不能从该样本独立确认成功。</td>
+</tr>
+<tr>
+<td>哪两个配置文件被创建？</td>
+<td><code>data.enc</code>、<code>config.xml</code></td>
+</tr>
+</tbody></table>
 
     </div>
     <footer class="article-footer">
@@ -420,10 +460,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        346.8k
+        347.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        28:14
+        28:18
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -445,7 +485,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Rundll32-%E4%BB%A3%E7%90%86%E6%89%A7%E8%A1%8C%E4%B8%8E%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">Rundll32 代理执行与计划任务持久化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A9%E6%9C%9F-DLL-%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.1.</span> <span class="toc-text">早期 DLL 调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-XML-%E5%88%9B%E5%BB%BA%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.2.2.</span> <span class="toc-text">通过 XML 创建计划任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD-rundll32-DLL-%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">后续 rundll32 DLL 调用</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Rundll32-%E4%BB%A3%E7%90%86%E6%89%A7%E8%A1%8C%E4%B8%8E%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">1.</span> <span class="toc-text">Rundll32 代理执行与计划任务持久化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A9%E6%9C%9F-DLL-%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.1.</span> <span class="toc-text">早期 DLL 调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87-XML-%E5%88%9B%E5%BB%BA%E8%AE%A1%E5%88%92%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.2.2.</span> <span class="toc-text">通过 XML 创建计划任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD-rundll32-DLL-%E8%B0%83%E7%94%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">后续 rundll32 DLL 调用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -456,7 +496,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">264</div>
+    <div class="sidebar-state-number">265</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -579,7 +619,7 @@
           description: "",
           stripContent: "Rundll32 代理执行与计划任务持久化样本信息 样本：rundll32_cmd_schtask.evtx  主要 ATT&amp;amp;CK：T1218.011（System Binary Proxy Execution: Rundll32）、T1053.005（Scheduled Task）；补充 T1059.003（Windows Command Shell）  记录来源：Microsoft-Windows-Sysmon/Operational；主机为 MSEDGEWIN10  操作账户：相关",
           date: "Mon Oct 12 2026 06:29:00 GMT+0800",
-          updated: "Mon Oct 19 2026 12:25:48 GMT+0800",
+          updated: "Mon Oct 19 2026 22:28:16 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>

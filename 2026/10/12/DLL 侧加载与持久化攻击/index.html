@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034fIBcwVtmMRmTff5ADfe.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034fICghocNtexnaDQ1ePq.png">
 <meta property="article:published_time" content="2026-10-11T21:29:00.000Z">
-<meta property="article:modified_time" content="2026-10-13T16:34:22.211Z">
+<meta property="article:modified_time" content="2026-10-19T14:30:36.361Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="Windows 日志">
 <meta name="twitter:card" content="summary">
@@ -150,7 +150,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DLL-%E4%BE%A7%E5%8A%A0%E8%BD%BD%E4%B8%8E%E6%8C%81%E4%B9%85%E5%8C%96%E6%94%BB%E5%87%BB"><span class="toc-number">1.</span> <span class="toc-text">DLL 侧加载与持久化攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%97%B6%E9%97%B4%E6%88%B3%E7%AF%A1%E6%94%B9"><span class="toc-number">1.2.1.</span> <span class="toc-text">文件时间戳篡改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DLL-%E4%BE%A7%E5%8A%A0%E8%BD%BD"><span class="toc-number">1.2.2.</span> <span class="toc-text">DLL 侧加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-%E6%B3%A8%E5%86%8C%E8%A1%A8%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">1.2.3.</span> <span class="toc-text">Run 注册表持久化</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DLL-%E4%BE%A7%E5%8A%A0%E8%BD%BD%E4%B8%8E%E6%8C%81%E4%B9%85%E5%8C%96%E6%94%BB%E5%87%BB"><span class="toc-number">1.</span> <span class="toc-text">DLL 侧加载与持久化攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%97%B6%E9%97%B4%E6%88%B3%E7%AF%A1%E6%94%B9"><span class="toc-number">1.2.1.</span> <span class="toc-text">文件时间戳篡改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DLL-%E4%BE%A7%E5%8A%A0%E8%BD%BD"><span class="toc-number">1.2.2.</span> <span class="toc-text">DLL 侧加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-%E6%B3%A8%E5%86%8C%E8%A1%A8%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">1.2.3.</span> <span class="toc-text">Run 注册表持久化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -161,7 +161,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">264</div>
+    <div class="sidebar-state-number">265</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -228,7 +228,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2026-10-11T21:29:00.000Z" itemprop="datePublished">2026-10-12</time>
-    <time style="display: none;" id="post-update-time">2026-10-14</time>
+    <time style="display: none;" id="post-update-time">2026-10-19</time>
   </span>
 </div>
 
@@ -301,6 +301,66 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Image: C:\Users\IEUser\AppData\Roaming\NvSmart.exe</span><br><span class="line"><span class="comment"># 事件类型为&quot;设置键值&quot;</span></span><br><span class="line">EventType: SetValue</span><br><span class="line">TargetObject:</span><br><span class="line">HKU\S-1-5-21-3583694148-1414552638-2922671848-1000\Software\Microsoft\Windows\CurrentVersion\Run\360v</span><br><span class="line"><span class="comment"># 落地载荷路径</span></span><br><span class="line"><span class="comment"># svchost.exe 本应位于 C:\Windows\System32\，这里却在 AppData\Roaming——典型的系统进程名伪装</span></span><br><span class="line">Details: C:\Users\IEUser\AppData\Roaming\svchost.exe</span><br></pre></td></tr></table></figure>
 
 <p><code>HKU\&lt;SID&gt;\…\CurrentVersion\Run</code> 是用户级登录自启动位置</p>
+<h2 id="测验"><a href="#测验" class="headerlink" title="测验"></a>测验</h2><table>
+<thead>
+<tr>
+<th>常见问题</th>
+<th>样本答案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>可疑入口文件名？</td>
+<td><code>Flash_update.exe</code></td>
+</tr>
+<tr>
+<td>它的 PID？</td>
+<td><code>2680</code></td>
+</tr>
+<tr>
+<td>主要载荷所在目录？</td>
+<td><code>C:\Users\IEUser\AppData\Roaming\</code></td>
+</tr>
+<tr>
+<td>哪两个文件被回填到 2013-09-04？</td>
+<td><code>NvSmart.exe</code>、<code>NvSmartMax.dll</code></td>
+</tr>
+<tr>
+<td>文件时间戳篡改事件 ID？</td>
+<td><code>Sysmon 2</code></td>
+</tr>
+<tr>
+<td>DLL 加载证据事件 ID？</td>
+<td><code>Sysmon 7</code></td>
+</tr>
+<tr>
+<td>被 <code>NvSmart.exe</code> 加载的可疑 DLL？</td>
+<td><code>NvSmartMax.dll</code></td>
+</tr>
+<tr>
+<td>Run 注册表修改事件 ID？</td>
+<td><code>Sysmon 13</code></td>
+</tr>
+<tr>
+<td>Run 项名是什么？</td>
+<td><code>360v</code></td>
+</tr>
+<tr>
+<td>Run 项指向什么？</td>
+<td><code>C:\Users\IEUser\AppData\Roaming\svchost.exe</code></td>
+</tr>
+<tr>
+<td>是否证明 DLL 加载成功？</td>
+<td>是，<code>Sysmon ID 7</code> 明确记录加载事件。</td>
+</tr>
+<tr>
+<td>是否证明 Run 指向的程序重新登录后已经启动？</td>
+<td>否。</td>
+</tr>
+<tr>
+<td>是否证明自删除成功？</td>
+<td>否，仅看到 <code>del /q</code> 命令执行。</td>
+</tr>
+</tbody></table>
 
     </div>
     <footer class="article-footer">
@@ -351,10 +411,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        346.8k
+        347.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        28:14
+        28:18
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -376,7 +436,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DLL-%E4%BE%A7%E5%8A%A0%E8%BD%BD%E4%B8%8E%E6%8C%81%E4%B9%85%E5%8C%96%E6%94%BB%E5%87%BB"><span class="toc-number">1.</span> <span class="toc-text">DLL 侧加载与持久化攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%97%B6%E9%97%B4%E6%88%B3%E7%AF%A1%E6%94%B9"><span class="toc-number">1.2.1.</span> <span class="toc-text">文件时间戳篡改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DLL-%E4%BE%A7%E5%8A%A0%E8%BD%BD"><span class="toc-number">1.2.2.</span> <span class="toc-text">DLL 侧加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-%E6%B3%A8%E5%86%8C%E8%A1%A8%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">1.2.3.</span> <span class="toc-text">Run 注册表持久化</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DLL-%E4%BE%A7%E5%8A%A0%E8%BD%BD%E4%B8%8E%E6%8C%81%E4%B9%85%E5%8C%96%E6%94%BB%E5%87%BB"><span class="toc-number">1.</span> <span class="toc-text">DLL 侧加载与持久化攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%97%B6%E9%97%B4%E6%88%B3%E7%AF%A1%E6%94%B9"><span class="toc-number">1.2.1.</span> <span class="toc-text">文件时间戳篡改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DLL-%E4%BE%A7%E5%8A%A0%E8%BD%BD"><span class="toc-number">1.2.2.</span> <span class="toc-text">DLL 侧加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-%E6%B3%A8%E5%86%8C%E8%A1%A8%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">1.2.3.</span> <span class="toc-text">Run 注册表持久化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -387,7 +447,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">264</div>
+    <div class="sidebar-state-number">265</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -510,7 +570,7 @@
           description: "",
           stripContent: "DLL 侧加载与持久化攻击样本信息 文件：DE_timestomp_and_dll_sideloading_and_RunPersist.evtx  文件 SHA256：ce94f2bd83c0adf2381afee0f3714b41aef4ae0997350b3aa039d7947865164c  解析出有效事件 30 条，其中 Microsoft-Windows-Sysmon 23 条、Microsoft-Windows-Diagnostics-Performance 7 条  Sysmon",
           date: "Mon Oct 12 2026 05:29:00 GMT+0800",
-          updated: "Wed Oct 14 2026 00:34:22 GMT+0800",
+          updated: "Mon Oct 19 2026 22:30:36 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
