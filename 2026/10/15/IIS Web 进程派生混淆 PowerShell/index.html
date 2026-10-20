@@ -1,0 +1,798 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
+  <title>
+    IIS Web 进程派生混淆 PowerShell | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="IIS Web 进程派生混淆 PowerShell样本信息 原始文件：discovery_sysmon_1_iis_pwd_and_config_discovery_appcmd.evtx  SHA-256：5388d3281a902a1f3cc087697589145b7de6abdbbc0dc716abd6a702c44bb106  文件大小：1,118,208 字节（约 1.07 MiB）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IIS Web 进程派生混淆 PowerShell">
+<meta property="og:url" content="https://suc2es2.github.io/2026/10/15/IIS%20Web%20%E8%BF%9B%E7%A8%8B%E6%B4%BE%E7%94%9F%E6%B7%B7%E6%B7%86%20PowerShell/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="IIS Web 进程派生混淆 PowerShell样本信息 原始文件：discovery_sysmon_1_iis_pwd_and_config_discovery_appcmd.evtx  SHA-256：5388d3281a902a1f3cc087697589145b7de6abdbbc0dc716abd6a702c44bb106  文件大小：1,118,208 字节（约 1.07 MiB）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034jGEkyfH8CPpseZq3ejt.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034jGONV6JgJxNmq39aPy3.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034jGR5t7yM3VFVtzkxDx7.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034jGT3COdUtn2Nva8h48q.png">
+<meta property="article:published_time" content="2026-10-15T01:29:00.000Z">
+<meta property="article:modified_time" content="2026-10-20T15:33:26.274Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="Windows 日志">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034jGEkyfH8CPpseZq3ejt.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="IIS Web 进程派生混淆 PowerShell">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">IIS Web 进程派生混淆 PowerShell</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#IIS-Web-%E8%BF%9B%E7%A8%8B%E6%B4%BE%E7%94%9F%E6%B7%B7%E6%B7%86-PowerShell"><span class="toc-number">1.</span> <span class="toc-text">IIS Web 进程派生混淆 PowerShell</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IIS-%E5%B7%A5%E4%BD%9C%E8%BF%9B%E7%A8%8B%E6%B4%BE%E7%94%9F%E9%AB%98%E5%AE%8C%E6%95%B4%E6%80%A7%E7%BA%A7%E5%88%AB-PowerShell"><span class="toc-number">1.2.1.</span> <span class="toc-text">IIS 工作进程派生高完整性级别 PowerShell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E7%A0%81-PowerShell-%E5%91%BD%E4%BB%A4%EF%BC%8C%E5%8F%91%E7%8E%B0-XOR-%E8%A7%A3%E7%A0%81%E4%B8%8E%E5%86%85%E5%AD%98%E6%89%A7%E8%A1%8C"><span class="toc-number">1.2.2.</span> <span class="toc-text">解码 PowerShell 命令，发现 XOR 解码与内存执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AppCmd-%E6%89%B9%E9%87%8F%E8%AF%BB%E5%8F%96-IIS-%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="toc-number">1.2.3.</span> <span class="toc-text">AppCmd 批量读取 IIS 基础配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E6%9F%A5%E8%AF%A2%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B1%A0%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81"><span class="toc-number">1.2.4.</span> <span class="toc-text">连续查询应用程序池用户名和密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E6%9F%A5%E8%AF%A2%E8%99%9A%E6%8B%9F%E7%9B%AE%E5%BD%95%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81"><span class="toc-number">1.2.5.</span> <span class="toc-text">连续查询虚拟目录用户名和密码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">283</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">200</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-IIS Web 进程派生混淆 PowerShell" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-10-15T01:29:00.000Z" itemprop="datePublished">2026-10-15</time>
+    <time style="display: none;" id="post-update-time">2026-10-20</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="IIS-Web-进程派生混淆-PowerShell"><a href="#IIS-Web-进程派生混淆-PowerShell" class="headerlink" title="IIS Web 进程派生混淆 PowerShell"></a>IIS Web 进程派生混淆 PowerShell</h1><h2 id="样本信息"><a href="#样本信息" class="headerlink" title="样本信息"></a>样本信息</h2><ul>
+<li><p>原始文件：<code>discovery_sysmon_1_iis_pwd_and_config_discovery_appcmd.evtx</code></p>
+</li>
+<li><p>SHA-256：<code>5388d3281a902a1f3cc087697589145b7de6abdbbc0dc716abd6a702c44bb106</code></p>
+</li>
+<li><p>文件大小：1,118,208 字节（约 1.07 MiB）</p>
+</li>
+<li><p>有效 EVTX 记录：<strong>40 条</strong>，Record ID <strong>1—40</strong>。</p>
+</li>
+<li><p>事件提供程序与通道：<code>Microsoft-Windows-Sysmon</code> &#x2F; <code>Microsoft-Windows-Sysmon/Operational</code></p>
+</li>
+<li><p>事件类型：<strong>Sysmon Event ID 1 — Process Create（进程创建）</strong>，共 40 条</p>
+</li>
+<li><p>主机：<code>IEWIN7</code>；行为账户：<code>IIS APPPOOL\DefaultAppPool</code></p>
+</li>
+<li><p>主要时间区间（EventData.UtcTime，UTC）：<code>2019-05-27 01:28:42.700</code> — <code>2019-05-27 01:29:20.475</code></p>
+</li>
+<li><p>共同登录会话：<code>LogonGuid={365abb72-b26b-5cea-0000-002023240800}</code>，<code>LogonId=0x82423</code></p>
+</li>
+</ul>
+<p>**进程派生（Process Spawning）**是指一个正在运行的进程（父进程）创建并启动另一个新进程（子进程）的行为，例如 IIS 的 w3wp.exe 启动 powershell.exe，后者再启动 appcmd.exe</p>
+<h2 id="攻击链"><a href="#攻击链" class="headerlink" title="攻击链"></a>攻击链</h2><h3 id="IIS-工作进程派生高完整性级别-PowerShell"><a href="#IIS-工作进程派生高完整性级别-PowerShell" class="headerlink" title="IIS 工作进程派生高完整性级别 PowerShell"></a>IIS 工作进程派生高完整性级别 PowerShell</h3><p>IIS 工作进程 <code>w3wp.exe</code>（PID 748，应用程序池 <code>DefaultAppPool</code>）启动 PowerShell（PID 2584），并使用 <code>-nop -noni -enc</code> 参数执行编码命令</p>
+<p><code>-nop</code> 表示不加载 PowerShell Profile；<code>-noni</code> 表示非交互运行；<code>-enc</code> 是使用 UTF-16LE Base64 编码命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">UtcTime             : 2019-05-27 01:28:42.700</span><br><span class="line">ProcessGuid         : &#123;365abb72-3d4a-5ceb-0000-0010fa93fd00&#125;</span><br><span class="line">ProcessId           : 2584</span><br><span class="line">Image               : C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</span><br><span class="line">CurrentDirectory    : C:\Windows\Temp\</span><br><span class="line">User                : IIS APPPOOL\DefaultAppPool</span><br><span class="line">LogonGuid           : &#123;365abb72-b26b-5cea-0000-002023240800&#125;</span><br><span class="line">LogonId             : 0x82423</span><br><span class="line">IntegrityLevel      : High</span><br><span class="line">ParentProcessGuid   : &#123;365abb72-3251-5ceb-0000-00109e06e100&#125;</span><br><span class="line">ParentProcessId     : 748</span><br><span class="line">ParentImage         : C:\Windows\System32\inetsrv\w3wp.exe</span><br><span class="line">CommandLine         : &quot;C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe&quot; -nop -noni -enc &lt;Base64&gt;</span><br><span class="line">ParentCommandLine   : c:\windows\system32\inetsrv\w3wp.exe -ap &quot;DefaultAppPool&quot; -v &quot;v2.0&quot; -l &quot;webengine4.dll&quot; -a \\.\pipe\iisipm7486e07c-453c-4f8e-85c6-8c8e3be98cd5 -h &quot;C:\inetpub\temp\apppools\DefaultAppPool\DefaultAppPool.config&quot; -w &quot;&quot; -m 0 -t 20</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://pic1.imgdb.cn/i/034jGEkyfH8CPpseZq3ejt.png" alt="pasted_1792509746088_idmf3x.png"></p>
+<h3 id="解码-PowerShell-命令，发现-XOR-解码与内存执行"><a href="#解码-PowerShell-命令，发现-XOR-解码与内存执行" class="headerlink" title="解码 PowerShell 命令，发现 XOR 解码与内存执行"></a>解码 PowerShell 命令，发现 XOR 解码与内存执行</h3><p>原始 <code>CommandLine</code> 中的 <code>-enc</code> 后是 Base64；将其<strong>作为文本数据进行离线解码</strong>，可恢复 PowerShell 脚本</p>
+<p>以下摘录了对案件判断有意义的语句</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$path_in_module</span>   = <span class="string">&quot;C:\Windows\Temp\6jrxk3\gfg9i&quot;</span></span><br><span class="line"><span class="variable">$path_in_app_code</span> = <span class="string">&quot;C:\Windows\Temp\6jrxk3\nja9t64rrlu8&quot;</span></span><br><span class="line"><span class="variable">$key</span> = [System.Text.Encoding]::UTF8.GetBytes(<span class="string">&#x27;&lt;64位固定十六进制外观字符串&gt;&#x27;</span>)</span><br><span class="line"><span class="variable">$enc_module</span>   = [System.IO.File]::ReadAllBytes(<span class="variable">$path_in_module</span>)</span><br><span class="line"><span class="variable">$enc_app_code</span> = [System.IO.File]::ReadAllBytes(<span class="variable">$path_in_app_code</span>)</span><br><span class="line"><span class="comment"># 两段数据分别使用 -bxor 与循环密钥解码</span></span><br><span class="line"><span class="variable">$dec_module</span>   = [System.Text.Encoding]::UTF8.GetString(<span class="variable">$dec_module</span>)</span><br><span class="line"><span class="variable">$dec_app_code</span> = [System.Text.Encoding]::UTF8.GetString(<span class="variable">$dec_app_code</span>)</span><br><span class="line">$(<span class="variable">$dec_module</span> + <span class="variable">$dec_app_code</span>) | iex</span><br><span class="line">Remove-Item -Path <span class="variable">$path_in_app_code</span> -Force 2&gt;&amp;1 | Out-Null;</span><br></pre></td></tr></table></figure>
+
+<p>分析要点：</p>
+<ol>
+<li><p>使用 <code>ReadAllBytes</code> 读取两个位于 <code>C:\Windows\Temp\6jrxk3\</code> 的无扩展名文件：<code>gfg9i</code> 和 <code>nja9t64rrlu8</code></p>
+</li>
+<li><p>对每个文件使用 <code>-bxor</code> 和循环密钥执行逐字节 XOR 解码，再按 UTF-8 转为字符串。原脚本的密钥用 <code>UTF8.GetBytes(...)</code> 转换，<strong>并非</strong>直接把十六进制字符串解析成二进制密钥</p>
+</li>
+<li><p>使用 <code>($dec_module+$dec_app_code) | iex</code> 在当前 PowerShell 中解释执行拼接后的脚本文本，属于内存中执行的迹象</p>
+</li>
+<li><p>随后尝试使用 <code>Remove-Item -Force</code> 删除 <code>nja9t64rrlu8</code>，该语句本身不能证明删除成功</p>
+</li>
+</ol>
+<h3 id="AppCmd-批量读取-IIS-基础配置"><a href="#AppCmd-批量读取-IIS-基础配置" class="headerlink" title="AppCmd 批量读取 IIS 基础配置"></a>AppCmd 批量读取 IIS 基础配置</h3><p><strong>Record ID 2、3、22：</strong></p>
+<ul>
+<li><p><strong>Record 2 &#x2F; PID 3484：</strong> <code>&quot;C:\Windows\System32\InetSRV\appcmd.exe&quot;  list vdir /text:physicalpath</code></p>
+</li>
+<li><p><strong>Record 3 &#x2F; PID 2644：</strong> <code>&quot;C:\Windows\System32\inetsrv\appcmd.exe&quot;  list apppools /text:name</code></p>
+</li>
+<li><p><strong>Record 22 &#x2F; PID 1876：</strong> <code>&quot;C:\Windows\System32\inetsrv\appcmd.exe&quot;  list vdir /text:vdir.name</code></p>
+</li>
+</ul>
+<p>分别对应虚拟目录的物理映射路径、应用程序池列表和虚拟目录名称</p>
+<p><img src="https://pic1.imgdb.cn/i/034jGONV6JgJxNmq39aPy3.png" alt="pasted_1792510125688_k9yle7.png"></p>
+<h3 id="连续查询应用程序池用户名和密码"><a href="#连续查询应用程序池用户名和密码" class="headerlink" title="连续查询应用程序池用户名和密码"></a>连续查询应用程序池用户名和密码</h3><p><strong>Record ID 4—21，共 18 条：</strong></p>
+<ul>
+<li><p><strong>Record 6 &#x2F; PID 3096：</strong> <code>&quot;C:\Windows\System32\inetsrv\appcmd.exe&quot;  list apppool /text:processmodel.username</code></p>
+</li>
+<li><p><strong>Record 7 &#x2F; PID 2928：</strong> <code>&quot;C:\Windows\System32\inetsrv\appcmd.exe&quot;  list apppool /text:processmodel.password</code></p>
+</li>
+<li><p><strong>Record 10 &#x2F; PID 3444：</strong> <code>&quot;C:\Windows\System32\inetsrv\appcmd.exe&quot;  list apppool /text:processmodel.username</code></p>
+</li>
+<li><p><strong>Record 11 &#x2F; PID 560：</strong> <code>&quot;C:\Windows\System32\inetsrv\appcmd.exe&quot;  list apppool /text:processmodel.password</code></p>
+</li>
+<li><p><strong>Record 16 &#x2F; PID 3144：</strong> <code>&quot;C:\Windows\System32\inetsrv\appcmd.exe&quot;  list apppool &quot;Description: Cannot read configuration file due to insufficient permissions&quot; /text:processmodel.username</code></p>
+</li>
+<li><p><strong>Record 17 &#x2F; PID 3100：</strong> <code>&quot;C:\Windows\System32\inetsrv\appcmd.exe&quot;  list apppool &quot;Description: Cannot read configuration file due to insufficient permissions&quot; /text:processmodel.password</code></p>
+</li>
+</ul>
+<p>其中 <code>/text:processmodel.username</code> 对应应用程序池进程运行账户，<code>/text:processmodel.password</code> 对应其配置密码字段（具体是否配置及是否可读取取决于身份类型、配置和权限）</p>
+<p><img src="https://pic1.imgdb.cn/i/034jGR5t7yM3VFVtzkxDx7.png" alt="pasted_1792510232317_c0budl.png"></p>
+<h3 id="连续查询虚拟目录用户名和密码"><a href="#连续查询虚拟目录用户名和密码" class="headerlink" title="连续查询虚拟目录用户名和密码"></a>连续查询虚拟目录用户名和密码</h3><p><strong>Record ID 23—40，共 18 条：</strong></p>
+<ul>
+<li><p><strong>Record 23 &#x2F; PID 3304：</strong> <code>&quot;C:\Windows\System32\inetsrv\appcmd.exe&quot;  list vdir &quot;ERROR ( message:Configuration error &quot; /text:userName</code></p>
+</li>
+<li><p><strong>Record 24 &#x2F; PID 2276：</strong> <code>&quot;C:\Windows\System32\inetsrv\appcmd.exe&quot;  list vdir &quot;ERROR ( message:Configuration error &quot; /text:password</code></p>
+</li>
+<li><p><strong>Record 25 &#x2F; PID 1508：</strong> <code>&quot;C:\Windows\System32\inetsrv\appcmd.exe&quot;  list vdir /text:userName</code></p>
+</li>
+<li><p><strong>Record 26 &#x2F; PID 2796：</strong> <code>&quot;C:\Windows\System32\inetsrv\appcmd.exe&quot;  list vdir /text:password</code></p>
+</li>
+<li><p><strong>Record 35 &#x2F; PID 1900：</strong> <code>&quot;C:\Windows\System32\inetsrv\appcmd.exe&quot;  list vdir &quot;Description: Cannot read configuration file due to insufficient permissions&quot; /text:userName</code></p>
+</li>
+<li><p><strong>Record 36 &#x2F; PID 2772：</strong> <code>&quot;C:\Windows\System32\inetsrv\appcmd.exe&quot;  list vdir &quot;Description: Cannot read configuration file due to insufficient permissions&quot; /text:password</code></p>
+</li>
+</ul>
+<p><code>/text:userName</code> 与 <code>/text:password</code> 用于查询虚拟目录配置中的指定账户与密码字段</p>
+<p><img src="https://pic1.imgdb.cn/i/034jGT3COdUtn2Nva8h48q.png" alt="pasted_1792510310120_vzjgws.png"></p>
+<h2 id="测验"><a href="#测验" class="headerlink" title="测验"></a>测验</h2><table>
+<thead>
+<tr>
+<th align="right">#</th>
+<th>问题</th>
+<th>答案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1</td>
+<td>样本包含几条有效事件？</td>
+<td>40 条。</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td>日志来自哪个通道？</td>
+<td>Microsoft-Windows-Sysmon&#x2F;Operational。</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td>主要事件 ID？</td>
+<td>Sysmon Event ID 1（Process Create）。</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td>主机名？</td>
+<td>IEWIN7。</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td>主要执行身份？</td>
+<td>IIS APPPOOL\DefaultAppPool。</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td>初始可疑父进程是什么？</td>
+<td>w3wp.exe。</td>
+</tr>
+<tr>
+<td align="right">7</td>
+<td>w3wp.exe PID？</td>
+<td>748。</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td>PowerShell PID？</td>
+<td>2584。</td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td>PowerShell ProcessGuid？</td>
+<td>{365abb72-3d4a-5ceb-0000-0010fa93fd00}</td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td>AppCmd 进程一共多少条？</td>
+<td>39 条。</td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td>AppCmd 的共同父进程 PID？</td>
+<td>2584。</td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td>全部事件共享的 Logon ID？</td>
+<td>0x82423</td>
+</tr>
+<tr>
+<td align="right">13</td>
+<td>主要进程完整性级别？</td>
+<td>High。</td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td>PowerShell 命令行有哪些特殊参数？</td>
+<td>-nop、-noni、-enc。</td>
+</tr>
+<tr>
+<td align="right">15</td>
+<td>PowerShell -enc 采用什么字符编码？</td>
+<td>这里用 UTF-16LE Base64。</td>
+</tr>
+<tr>
+<td align="right">16</td>
+<td>PowerShell 的外部文件读取函数？</td>
+<td>[System.IO.File]::ReadAllBytes。</td>
+</tr>
+<tr>
+<td align="right">17</td>
+<td>PowerShell 用什么方法解码文件？</td>
+<td>逐字节 XOR（-bxor），配合循环密钥。</td>
+</tr>
+<tr>
+<td align="right">18</td>
+<td>解码后的脚本如何被执行？</td>
+<td>拼接字符串后通过 iex（Invoke-Expression）执行。</td>
+</tr>
+<tr>
+<td align="right">19</td>
+<td>脚本试图删除哪个文件？</td>
+<td>C:\Windows\Temp\6jrxk3\nja9t64rrlu8</td>
+</tr>
+<tr>
+<td align="right">20</td>
+<td>发现虚拟目录实际路径的参数？</td>
+<td>list vdir &#x2F;text:physicalpath。</td>
+</tr>
+<tr>
+<td align="right">21</td>
+<td>枚举应用程序池名称的参数？</td>
+<td>list apppools &#x2F;text:name。</td>
+</tr>
+<tr>
+<td align="right">22</td>
+<td>查询应用程序池用户名的参数？</td>
+<td>list apppool &#x2F;text:processmodel.username。</td>
+</tr>
+<tr>
+<td align="right">23</td>
+<td>查询应用程序池密码字段的参数？</td>
+<td>list apppool &#x2F;text:processmodel.password。</td>
+</tr>
+<tr>
+<td align="right">24</td>
+<td>查询虚拟目录用户名的参数？</td>
+<td>list vdir &#x2F;text:userName。</td>
+</tr>
+<tr>
+<td align="right">25</td>
+<td>查询虚拟目录密码字段的参数？</td>
+<td>list vdir &#x2F;text:password。</td>
+</tr>
+<tr>
+<td align="right">26</td>
+<td>密码字段相关的 appcmd 调用有多少？</td>
+<td>18 条（各 9 条 AppPool &#x2F; VDir）。</td>
+</tr>
+<tr>
+<td align="right">27</td>
+<td>哪条记录首次查询应用程序池密码字段？</td>
+<td>Record ID 5。</td>
+</tr>
+<tr>
+<td align="right">28</td>
+<td>哪条记录首次查询虚拟目录密码字段？</td>
+<td>Record ID 24。</td>
+</tr>
+<tr>
+<td align="right">29</td>
+<td>后续列举时出现的 redirection.config 是什么？</td>
+<td>看起来是配置读取错误文本被当作对象名传入命令，不能证明存在该名称的应用程序池或目录。</td>
+</tr>
+<tr>
+<td align="right">30</td>
+<td>出现 “Cannot read configuration file due to insufficient permissions” 意味着什么？</td>
+<td>它是命令行参数里出现的错误文本，暗示前面可能出现配置访问拒绝，但需实际输出&#x2F;配置日志验证。</td>
+</tr>
+<tr>
+<td align="right">31</td>
+<td>AppCmd 是否一定成功列出了凭据？</td>
+<td>否，进程创建事件没有命令 stdout 和返回码。</td>
+</tr>
+<tr>
+<td align="right">32</td>
+<td>目前能否证明存在 WebShell？</td>
+<td>不能，只能证明 IIS 工作进程派生了编码 PowerShell。</td>
+</tr>
+<tr>
+<td align="right">33</td>
+<td>能否还原 XOR 解码后的全部真实脚本？</td>
+<td>不能，缺少 C:\Windows\Temp\6jrxk3 中的两个输入文件。</td>
+</tr>
+<tr>
+<td align="right">34</td>
+<td>攻击者 IP 能从本份日志得出吗？</td>
+<td>不能，日志没有 HTTP 请求或网络连接事件。</td>
+</tr>
+<tr>
+<td align="right">35</td>
+<td>本日志最值得检测的进程链？</td>
+<td>w3wp.exe → powershell.exe → appcmd.exe。</td>
+</tr>
+<tr>
+<td align="right">36</td>
+<td>主要 ATT&amp;CK 执行技术？</td>
+<td>T1059.001（PowerShell）。</td>
+</tr>
+<tr>
+<td align="right">37</td>
+<td>潜在凭据访问技术？</td>
+<td>T1552.001（Credentials In Files），仅能作为疑似映射。</td>
+</tr>
+</tbody></table>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/Blue-Team/" title="Blue Team" data-aos="zoom-in">Blue Team</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Windows-%E6%97%A5%E5%BF%97/" rel="tag" title="Windows 日志">Windows 日志</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="Spring MVC 路由解析分号绕过" class="lazyload">
+        <a href="/2026/10/18/%E6%9F%90%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B7%AF%E5%BE%84%E8%A7%A3%E6%9E%90%E7%BB%95%E8%BF%87/" aria-label="前一篇: Spring MVC 路由解析分号绕过" title="前一篇: Spring MVC 路由解析分号绕过"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            Spring MVC 路由解析分号绕过
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="域控制器 `NTDS.dit` 数据库副本制作" class="lazyload">
+      <a href="/2026/10/15/%E5%9F%9F%E6%8E%A7%E5%88%B6%E5%99%A8%20NTDS%20dit%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%89%AF%E6%9C%AC%E5%88%B6%E4%BD%9C/" aria-label="后一篇: 域控制器 `NTDS.dit` 数据库副本制作"  title="后一篇: 域控制器 `NTDS.dit` 数据库副本制作"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          域控制器 `NTDS.dit` 数据库副本制作
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        366.5k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        29:49
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#IIS-Web-%E8%BF%9B%E7%A8%8B%E6%B4%BE%E7%94%9F%E6%B7%B7%E6%B7%86-PowerShell"><span class="toc-number">1.</span> <span class="toc-text">IIS Web 进程派生混淆 PowerShell</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IIS-%E5%B7%A5%E4%BD%9C%E8%BF%9B%E7%A8%8B%E6%B4%BE%E7%94%9F%E9%AB%98%E5%AE%8C%E6%95%B4%E6%80%A7%E7%BA%A7%E5%88%AB-PowerShell"><span class="toc-number">1.2.1.</span> <span class="toc-text">IIS 工作进程派生高完整性级别 PowerShell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E7%A0%81-PowerShell-%E5%91%BD%E4%BB%A4%EF%BC%8C%E5%8F%91%E7%8E%B0-XOR-%E8%A7%A3%E7%A0%81%E4%B8%8E%E5%86%85%E5%AD%98%E6%89%A7%E8%A1%8C"><span class="toc-number">1.2.2.</span> <span class="toc-text">解码 PowerShell 命令，发现 XOR 解码与内存执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AppCmd-%E6%89%B9%E9%87%8F%E8%AF%BB%E5%8F%96-IIS-%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="toc-number">1.2.3.</span> <span class="toc-text">AppCmd 批量读取 IIS 基础配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E6%9F%A5%E8%AF%A2%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B1%A0%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81"><span class="toc-number">1.2.4.</span> <span class="toc-text">连续查询应用程序池用户名和密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E6%9F%A5%E8%AF%A2%E8%99%9A%E6%8B%9F%E7%9B%AE%E5%BD%95%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81"><span class="toc-number">1.2.5.</span> <span class="toc-text">连续查询虚拟目录用户名和密码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">283</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">200</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "IIS Web 进程派生混淆 PowerShell",
+          url: "https://suc2es2.github.io/2026/10/15/IIS%20Web%20%E8%BF%9B%E7%A8%8B%E6%B4%BE%E7%94%9F%E6%B7%B7%E6%B7%86%20PowerShell/",
+          excerpt: "",
+          description: "",
+          stripContent: "IIS Web 进程派生混淆 PowerShell样本信息 原始文件：discovery_sysmon_1_iis_pwd_and_config_discovery_appcmd.evtx  SHA-256：5388d3281a902a1f3cc087697589145b7de6abdbbc0dc716abd6a702c44bb106  文件大小：1,118,208 字节（约 1.07 MiB）  有效 EVTX 记录：40 条，Record ID 1—40。  事件提供程序与通道：Micros",
+          date: "Thu Oct 15 2026 09:29:00 GMT+0800",
+          updated: "Tue Oct 20 2026 23:33:26 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
