@@ -1,0 +1,741 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
+  <title>
+    AD 域目录复制权限访问 | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="AD 域目录复制权限访问样本信息 原始文件：CA_DCSync_4662.evtx  SHA-256：679b2ff27af6c932c07bf3e81391e455fae98e69bf3aff0f524e31aadc418131  文件大小：69,632 字节（68 KiB）  格式：Windows EVTX，Security 审计事件  日志主机：DC1.insecurebank.local">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AD 域目录复制权限访问">
+<meta property="og:url" content="https://suc2es2.github.io/2026/10/13/AD%20%E5%9F%9F%E7%9B%AE%E5%BD%95%E5%A4%8D%E5%88%B6%E6%9D%83%E9%99%90%E8%AE%BF%E9%97%AE/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="AD 域目录复制权限访问样本信息 原始文件：CA_DCSync_4662.evtx  SHA-256：679b2ff27af6c932c07bf3e81391e455fae98e69bf3aff0f524e31aadc418131  文件大小：69,632 字节（68 KiB）  格式：Windows EVTX，Security 审计事件  日志主机：DC1.insecurebank.local">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034j6y9WUepmPpkGzFOygJ.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034j70f9SrL9urdxiD9AB2.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034j72As3X2eRvsNG4ljNb.png">
+<meta property="article:published_time" content="2026-10-13T09:29:00.000Z">
+<meta property="article:modified_time" content="2026-10-20T09:08:03.752Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="Windows 日志">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034j6y9WUepmPpkGzFOygJ.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="AD 域目录复制权限访问">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">AD 域目录复制权限访问</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AD-%E5%9F%9F%E7%9B%AE%E5%BD%95%E5%A4%8D%E5%88%B6%E6%9D%83%E9%99%90%E8%AE%BF%E9%97%AE"><span class="toc-number">1.</span> <span class="toc-text">AD 域目录复制权限访问</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%96%E6%AC%A1%E5%A4%8D%E5%88%B6%E5%8F%98%E6%9B%B4%E6%9D%83%E9%99%90%E8%AE%BF%E9%97%AE%EF%BC%88Record-1%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">首次复制变更权限访问（Record 1）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%8D%E6%AC%A1%E4%BD%BF%E7%94%A8-Get-Changes%EF%BC%88Record-2%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">再次使用 Get-Changes（Record 2）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Get-Changes-All-%E8%AE%BF%E9%97%AE%EF%BC%88Record-3%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">Get-Changes-All 访问（Record 3）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">277</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">200</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-AD 域目录复制权限访问" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-10-13T09:29:00.000Z" itemprop="datePublished">2026-10-13</time>
+    <time style="display: none;" id="post-update-time">2026-10-20</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="AD-域目录复制权限访问"><a href="#AD-域目录复制权限访问" class="headerlink" title="AD 域目录复制权限访问"></a>AD 域目录复制权限访问</h1><h2 id="样本信息"><a href="#样本信息" class="headerlink" title="样本信息"></a>样本信息</h2><ul>
+<li><p><strong>原始文件</strong>：<code>CA_DCSync_4662.evtx</code></p>
+</li>
+<li><p><strong>SHA-256</strong>：<code>679b2ff27af6c932c07bf3e81391e455fae98e69bf3aff0f524e31aadc418131</code></p>
+</li>
+<li><p><strong>文件大小</strong>：69,632 字节（68 KiB）</p>
+</li>
+<li><p><strong>格式</strong>：Windows EVTX，Security 审计事件</p>
+</li>
+<li><p><strong>日志主机</strong>：<code>DC1.insecurebank.local</code></p>
+</li>
+<li><p><strong>有效物理记录</strong>：<strong>3 条</strong>，裁剪文件 Record ID 1—3</p>
+</li>
+<li><p><strong>原始事件 EventRecordID</strong>：<strong>202791、202792、202793</strong></p>
+</li>
+<li><p><strong>事件分布</strong>：Windows Security <strong>4662 × 3</strong>（An operation was performed on an object）</p>
+</li>
+<li><p><strong>事件提供者</strong>：<code>Microsoft-Windows-Security-Auditing</code></p>
+</li>
+<li><p><strong>操作主体</strong>：<code>insecurebank\Administrator</code>（SID：<code>S-1-5-21-738609754-2819869699-4189121830-500</code>）</p>
+</li>
+<li><p><strong>SubjectLogonId</strong>：<code>0x40c6511</code>，三条完全相同</p>
+</li>
+<li><p><strong>被访问对象类别</strong>：AD DS <code>Domain-DNS</code>，对象 GUID 为 <code>{c6faf700-bfe4-452a-a766-424f84c29583}</code></p>
+</li>
+<li><p><strong>共同访问权限</strong>：<code>AccessMask=0x100</code>（Control Access，控制访问&#x2F;扩展权限）</p>
+</li>
+<li><p><strong>复制权限特征</strong>：<code>DS-Replication-Get-Changes</code> 出现 <strong>2 次</strong>；<code>DS-Replication-Get-Changes-All</code> 出现 <strong>1 次</strong></p>
+</li>
+<li><p><strong>文件记录头时间（UTC）</strong>：<code>2019-05-08 02:10:43.4872170 UTC</code> 至 <code>2019-05-08 02:10:51.6111760 UTC</code></p>
+</li>
+<li><p><strong>北京时间（UTC+8）</strong>：<code>2019-05-08 10:10:43.4872170 CST (UTC+8)</code> 至 <code>2019-05-08 10:10:51.6111760 CST (UTC+8)</code></p>
+</li>
+</ul>
+<h2 id="攻击链"><a href="#攻击链" class="headerlink" title="攻击链"></a>攻击链</h2><h3 id="首次复制变更权限访问（Record-1）"><a href="#首次复制变更权限访问（Record-1）" class="headerlink" title="首次复制变更权限访问（Record 1）"></a>首次复制变更权限访问（Record 1）</h3><p>这条记录显示 <code>Administrator</code> 对一个 Domain-DNS 类目录对象执行了受控的扩展权限操作</p>
+<p><img src="https://pic1.imgdb.cn/i/034j6y9WUepmPpkGzFOygJ.png" alt="pasted_1792487089824_4e9gpx.png"></p>
+<h3 id="再次使用-Get-Changes（Record-2）"><a href="#再次使用-Get-Changes（Record-2）" class="headerlink" title="再次使用 Get-Changes（Record 2）"></a>再次使用 Get-Changes（Record 2）</h3><p>第二条事件与第一条的账户、登录 ID、对象、权限掩码及复制权限 GUID <strong>完全一致</strong>。文件头时间晚于第一条约 8.09 秒</p>
+<p><img src="https://pic1.imgdb.cn/i/034j70f9SrL9urdxiD9AB2.png" alt="pasted_1792487189259_0sp1zm.png"></p>
+<h3 id="Get-Changes-All-访问（Record-3）"><a href="#Get-Changes-All-访问（Record-3）" class="headerlink" title="Get-Changes-All 访问（Record 3）"></a>Get-Changes-All 访问（Record 3）</h3><p>这里的 <code>Properties</code> 权限 GUID 从 <code>1131f6aa</code> 变成了 <strong><code>1131f6ad</code></strong>，代表 <strong>Replicating Directory Changes All</strong>，微软将此权限定义为允许复制秘密域数据的控制访问权</p>
+<p><img src="https://pic1.imgdb.cn/i/034j72As3X2eRvsNG4ljNb.png" alt="pasted_1792487249336_3yun4y.png"></p>
+<h2 id="测验"><a href="#测验" class="headerlink" title="测验"></a>测验</h2><table>
+<thead>
+<tr>
+<th align="right">#</th>
+<th>常见问题</th>
+<th>答案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1</td>
+<td>日志文件名？</td>
+<td><code>CA_DCSync_4662.evtx</code></td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td>事件主机名？</td>
+<td><code>DC1.insecurebank.local</code></td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td>日志通道？</td>
+<td><code>Security</code></td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td>主要 Event ID？</td>
+<td><code>4662</code></td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td>有效事件数？</td>
+<td><code>3</code></td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td>原始 EventRecordID？</td>
+<td><code>202791</code>、<code>202792</code>、<code>202793</code></td>
+</tr>
+<tr>
+<td align="right">7</td>
+<td>可疑操作主体账户？</td>
+<td><code>insecurebank\Administrator</code></td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td>SubjectUserSid？</td>
+<td><code>S-1-5-21-738609754-2819869699-4189121830-500</code></td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td>SID 末尾 500 表示什么？</td>
+<td>域内建 Administrator 的 RID</td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td>登录会话标识？</td>
+<td><code>0x40c6511</code></td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td>对象服务？</td>
+<td><code>DS</code></td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td>访问对象类别 GUID？</td>
+<td><code>19195a5b-6da0-11d0-afd3-00c04fd930c9</code></td>
+</tr>
+<tr>
+<td align="right">13</td>
+<td>该类别 GUID 对应什么？</td>
+<td><code>Domain-DNS</code> 类</td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td>被访问对象的 GUID？</td>
+<td><code>c6faf700-bfe4-452a-a766-424f84c29583</code></td>
+</tr>
+<tr>
+<td align="right">15</td>
+<td>AccessMask？</td>
+<td><code>0x100</code></td>
+</tr>
+<tr>
+<td align="right">16</td>
+<td>0x100 代表什么？</td>
+<td><code>Control Access</code>，扩展控制访问</td>
+</tr>
+<tr>
+<td align="right">17</td>
+<td>AccessList？</td>
+<td><code>%%7688</code></td>
+</tr>
+<tr>
+<td align="right">18</td>
+<td>复制目录更改权限 GUID？</td>
+<td><code>1131f6aa-9c07-11d1-f79f-00c04fc2dcd2</code></td>
+</tr>
+<tr>
+<td align="right">19</td>
+<td>复制所有目录更改权限 GUID？</td>
+<td><code>1131f6ad-9c07-11d1-f79f-00c04fc2dcd2</code></td>
+</tr>
+<tr>
+<td align="right">20</td>
+<td>Get-Changes 出现次数？</td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td align="right">21</td>
+<td>Get-Changes-All 出现次数？</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td align="right">22</td>
+<td>哪一条含 Get-Changes-All？</td>
+<td>裁剪 Record 3（原始 ID 202793）</td>
+</tr>
+<tr>
+<td align="right">23</td>
+<td>是否看到 Get-Changes-In-Filtered-Set？</td>
+<td>没有；该权限 GUID 为 <code>89e95b76-444d-4c62-991a-0facbeda640c</code></td>
+</tr>
+<tr>
+<td align="right">24</td>
+<td>三条是否同一登录会话？</td>
+<td>是，均为 <code>0x40c6511</code></td>
+</tr>
+<tr>
+<td align="right">25</td>
+<td>三条是否同一个 AD 对象？</td>
+<td>是，<code>ObjectName</code> 相同</td>
+</tr>
+<tr>
+<td align="right">26</td>
+<td>文件头时间范围 UTC？</td>
+<td><code>02:10:43.4872170</code>—<code>02:10:51.6111760</code>，2019-05-08</td>
+</tr>
+<tr>
+<td align="right">27</td>
+<td>北京时间大致是什么时候？</td>
+<td>2019-05-08 10:10 左右</td>
+</tr>
+<tr>
+<td align="right">28</td>
+<td>事件 XML 时间是否与头部一致？</td>
+<td>仅第 1 条一致；第 2、3 条不一致</td>
+</tr>
+<tr>
+<td align="right">29</td>
+<td>对应 ATT&amp;CK 技术？</td>
+<td><code>T1003.006</code>（DCSync）</td>
+</tr>
+<tr>
+<td align="right">30</td>
+<td>能确认使用 Mimikatz 吗？</td>
+<td>不能；缺进程与命令行证据</td>
+</tr>
+<tr>
+<td align="right">31</td>
+<td>能确认获得 <code>krbtgt</code> 哈希吗？</td>
+<td>不能；没有哈希或返回数据</td>
+</tr>
+<tr>
+<td align="right">32</td>
+<td>能确认源 IP 吗？</td>
+<td>不能；4662 中未见源 IP</td>
+</tr>
+<tr>
+<td align="right">33</td>
+<td>是否等价于读取 <code>ntds.dit</code>？</td>
+<td>否；DCSync 是目录复制接口滥用方向</td>
+</tr>
+<tr>
+<td align="right">34</td>
+<td>为什么存在误报？</td>
+<td>正常复制、备份、授权管理可能触发相似 4662</td>
+</tr>
+<tr>
+<td align="right">35</td>
+<td>下一步优先看什么？</td>
+<td>同 Logon ID 的 4624&#x2F;4672、源 IP、RPC&#x2F;DRSUAPI、进程与 EDR</td>
+</tr>
+</tbody></table>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/Blue-Team/" title="Blue Team" data-aos="zoom-in">Blue Team</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Windows-%E6%97%A5%E5%BF%97/" rel="tag" title="Windows 日志">Windows 日志</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="Hashdump" class="lazyload">
+        <a href="/2026/10/13/Hashdump/" aria-label="前一篇: Hashdump" title="前一篇: Hashdump"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            Hashdump
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Chrome 关联交互式登录" class="lazyload">
+      <a href="/2026/10/13/WSUS%20%E4%BC%AA%E8%A3%85%E7%A8%8B%E5%BA%8F%E8%B7%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%BB%E5%8F%96%E5%87%AD%E6%8D%AE%E6%95%B0%E6%8D%AE%E5%BA%93/" aria-label="后一篇: Chrome 关联交互式登录"  title="后一篇: Chrome 关联交互式登录"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          Chrome 关联交互式登录
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        359.6k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        29:16
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AD-%E5%9F%9F%E7%9B%AE%E5%BD%95%E5%A4%8D%E5%88%B6%E6%9D%83%E9%99%90%E8%AE%BF%E9%97%AE"><span class="toc-number">1.</span> <span class="toc-text">AD 域目录复制权限访问</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A6%96%E6%AC%A1%E5%A4%8D%E5%88%B6%E5%8F%98%E6%9B%B4%E6%9D%83%E9%99%90%E8%AE%BF%E9%97%AE%EF%BC%88Record-1%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">首次复制变更权限访问（Record 1）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%8D%E6%AC%A1%E4%BD%BF%E7%94%A8-Get-Changes%EF%BC%88Record-2%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">再次使用 Get-Changes（Record 2）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Get-Changes-All-%E8%AE%BF%E9%97%AE%EF%BC%88Record-3%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">Get-Changes-All 访问（Record 3）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">277</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">200</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "AD 域目录复制权限访问",
+          url: "https://suc2es2.github.io/2026/10/13/AD%20%E5%9F%9F%E7%9B%AE%E5%BD%95%E5%A4%8D%E5%88%B6%E6%9D%83%E9%99%90%E8%AE%BF%E9%97%AE/",
+          excerpt: "",
+          description: "",
+          stripContent: "AD 域目录复制权限访问样本信息 原始文件：CA_DCSync_4662.evtx  SHA-256：679b2ff27af6c932c07bf3e81391e455fae98e69bf3aff0f524e31aadc418131  文件大小：69,632 字节（68 KiB）  格式：Windows EVTX，Security 审计事件  日志主机：DC1.insecurebank.local  有效物理记录：3 条，裁剪文件 Record ID 1—3  原始事件 EventRecordID",
+          date: "Tue Oct 13 2026 17:29:00 GMT+0800",
+          updated: "Tue Oct 20 2026 17:08:03 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
