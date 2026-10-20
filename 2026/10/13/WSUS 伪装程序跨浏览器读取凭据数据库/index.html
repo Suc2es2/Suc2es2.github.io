@@ -1,0 +1,768 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
+  <title>
+    Chrome 关联交互式登录 | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="Chrome 关联交互式登录样本信息 原始文件：CA_chrome_firefox_opera_4663.evtx  SHA-256：e23b74c463d1fba5c1ef44bcc5f386c56a17327a5b216118f6704cc30545cd8c  文件大小：69,632 字节（68 KiB）  日志类型：Windows EVTX &#x2F; Security 安全事件日志  日">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chrome 关联交互式登录">
+<meta property="og:url" content="https://suc2es2.github.io/2026/10/13/WSUS%20%E4%BC%AA%E8%A3%85%E7%A8%8B%E5%BA%8F%E8%B7%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%BB%E5%8F%96%E5%87%AD%E6%8D%AE%E6%95%B0%E6%8D%AE%E5%BA%93/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="Chrome 关联交互式登录样本信息 原始文件：CA_chrome_firefox_opera_4663.evtx  SHA-256：e23b74c463d1fba5c1ef44bcc5f386c56a17327a5b216118f6704cc30545cd8c  文件大小：69,632 字节（68 KiB）  日志类型：Windows EVTX &#x2F; Security 安全事件日志  日">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034j5uYL3O2PlxIOqsUSW5.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034j5vqS9Yabrjuo1igdae.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034j5zU7fJ3NcZ4loPpxsa.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034j62FMo42ebgUFaicgjs.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034j66KRz7AO3iHhz1vIJB.png">
+<meta property="article:published_time" content="2026-10-13T08:29:00.000Z">
+<meta property="article:modified_time" content="2026-10-20T08:30:01.482Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="Windows 日志">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034j5uYL3O2PlxIOqsUSW5.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="Chrome 关联交互式登录">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">Chrome 关联交互式登录</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chrome-%E5%85%B3%E8%81%94%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%99%BB%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">Chrome 关联交互式登录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Security-%E5%AE%A1%E8%AE%A1%E6%97%A5%E5%BF%97%E8%A2%AB%E6%B8%85%E9%99%A4"><span class="toc-number">1.2.1.</span> <span class="toc-text">Security 审计日志被清除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Opera-%E5%AF%86%E7%A0%81%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-2-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">读取 Opera 密码数据库（Record 2 &#x2F; Event ID 4663）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Firefox-%E5%AF%86%E9%92%A5%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-3-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">读取 Firefox 密钥数据库（Record 3 &#x2F; Event ID 4663）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Firefox-%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%EF%BC%88Record-4-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">读取 Firefox 登录数据（Record 4 &#x2F; Event ID 4663）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Chrome-%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-5-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.5.</span> <span class="toc-text">读取 Chrome 登录数据库（Record 5 &#x2F; Event ID 4663）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">275</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">200</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-WSUS 伪装程序跨浏览器读取凭据数据库" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-10-13T08:29:00.000Z" itemprop="datePublished">2026-10-13</time>
+    <time style="display: none;" id="post-update-time">2026-10-20</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="Chrome-关联交互式登录"><a href="#Chrome-关联交互式登录" class="headerlink" title="Chrome 关联交互式登录"></a>Chrome 关联交互式登录</h1><h2 id="样本信息"><a href="#样本信息" class="headerlink" title="样本信息"></a>样本信息</h2><ul>
+<li><p><strong>原始文件</strong>：<code>CA_chrome_firefox_opera_4663.evtx</code></p>
+</li>
+<li><p><strong>SHA-256</strong>：<code>e23b74c463d1fba5c1ef44bcc5f386c56a17327a5b216118f6704cc30545cd8c</code></p>
+</li>
+<li><p><strong>文件大小</strong>：69,632 字节（68 KiB）</p>
+</li>
+<li><p><strong>日志类型</strong>：Windows EVTX &#x2F; Security 安全事件日志</p>
+</li>
+<li><p><strong>日志主机</strong>：<code>IEWIN7</code>。</p>
+</li>
+<li><p><strong>有效物理记录</strong>：<strong>5 条</strong>（裁剪文件物理 Record ID 1—5）</p>
+</li>
+<li><p><strong>原始事件 XML 的 EventRecordID</strong>：<strong>4987—4991</strong>；与裁剪后物理编号不同</p>
+</li>
+<li><p><strong>事件分布</strong>：Event ID <strong>1102 × 1</strong>（安全日志已被清除）；Event ID <strong>4663 × 4</strong>（文件对象访问）</p>
+</li>
+<li><p><strong>事件提供程序</strong>：1102 来自 <code>Microsoft-Windows-Eventlog</code>；4663 来自 <code>Microsoft-Windows-Security-Auditing</code></p>
+</li>
+<li><p><strong>取证时间范围（UTC &#x2F; XML SystemTime）</strong>：<code>2019-04-27 19:27:55.274060</code> — <code>2019-04-27 19:33:50.134293</code></p>
+</li>
+<li><p><strong>北京时间（UTC+8）</strong>：<code>2019-04-28 03:27:55.274060</code> — <code>2019-04-28 03:33:50.134293</code></p>
+</li>
+<li><p><strong>行为账户</strong>：<code>IEWIN7\IEUser</code>，<code>SubjectLogonId=0xffa8</code></p>
+</li>
+<li><p><strong>可疑读取进程</strong>：<code>C:\Users\Defau1t\wsus.exe</code>，<code>ProcessId=0x134c</code>（十进制 <strong>4940</strong>）</p>
+</li>
+<li><p><strong>文件访问权限</strong>：<code>AccessMask=0x1</code>，<code>AccessList=%%4416</code>，含义为文件的 <strong>ReadData（读取文件数据）</strong></p>
+</li>
+</ul>
+<h2 id="攻击链"><a href="#攻击链" class="headerlink" title="攻击链"></a>攻击链</h2><h3 id="Security-审计日志被清除"><a href="#Security-审计日志被清除" class="headerlink" title="Security 审计日志被清除"></a>Security 审计日志被清除</h3><p><img src="https://pic1.imgdb.cn/i/034j5uYL3O2PlxIOqsUSW5.png" alt="pasted_1792484501569_vjn63t.png"></p>
+<h3 id="读取-Opera-密码数据库（Record-2-Event-ID-4663）"><a href="#读取-Opera-密码数据库（Record-2-Event-ID-4663）" class="headerlink" title="读取 Opera 密码数据库（Record 2 &#x2F; Event ID 4663）"></a>读取 Opera 密码数据库（Record 2 &#x2F; Event ID 4663）</h3><p>访问目标是 Opera Stable 用户资料中的 <strong><code>Login Data</code></strong>，而访问者不是 <code>opera.exe</code>，而是名为 <code>wsus.exe</code> 的另一进程。</p>
+<p><img src="https://pic1.imgdb.cn/i/034j5vqS9Yabrjuo1igdae.png" alt="pasted_1792484554270_rr4gx7.png"></p>
+<h3 id="读取-Firefox-密钥数据库（Record-3-Event-ID-4663）"><a href="#读取-Firefox-密钥数据库（Record-3-Event-ID-4663）" class="headerlink" title="读取 Firefox 密钥数据库（Record 3 &#x2F; Event ID 4663）"></a>读取 Firefox 密钥数据库（Record 3 &#x2F; Event ID 4663）</h3><p><code>key4.db</code> 是 Firefox 配置文件中与<strong>加密凭据&#x2F;密钥材料</strong>有关的数据库，单独访问这一文件便值得调查，但真正重要的是它与下一条 <code>logins.json</code> <strong>位于同一个 Firefox Profile</strong></p>
+<p><img src="https://pic1.imgdb.cn/i/034j5zU7fJ3NcZ4loPpxsa.png" alt="pasted_1792484698191_mpkpos.png"></p>
+<h3 id="读取-Firefox-登录数据（Record-4-Event-ID-4663）"><a href="#读取-Firefox-登录数据（Record-4-Event-ID-4663）" class="headerlink" title="读取 Firefox 登录数据（Record 4 &#x2F; Event ID 4663）"></a>读取 Firefox 登录数据（Record 4 &#x2F; Event ID 4663）</h3><p><code>key4.db</code> 与 <code>logins.json</code> 在同一个 <code>kushu3sd.default</code> Profile 中被同一 PID 连续读取，间隔约 <strong>13.392 秒</strong></p>
+<p>Firefox 的这两个文件配合用于保存和管理加密的登录信息，因此这种<strong>成对访问</strong>比随机读取一份普通配置文件更有明显的凭据获取指向</p>
+<p><img src="https://pic1.imgdb.cn/i/034j62FMo42ebgUFaicgjs.png" alt="pasted_1792484807178_pwb3hv.png"></p>
+<h3 id="读取-Chrome-登录数据库（Record-5-Event-ID-4663）"><a href="#读取-Chrome-登录数据库（Record-5-Event-ID-4663）" class="headerlink" title="读取 Chrome 登录数据库（Record 5 &#x2F; Event ID 4663）"></a>读取 Chrome 登录数据库（Record 5 &#x2F; Event ID 4663）</h3><p><code>Login Data</code> 是 Chrome&#x2F;Chromium 体系常见的用户登录凭据存储数据库路径</p>
+<p><img src="https://pic1.imgdb.cn/i/034j66KRz7AO3iHhz1vIJB.png" alt="pasted_1792484967941_78ilk8.png"></p>
+<h2 id="测验"><a href="#测验" class="headerlink" title="测验"></a>测验</h2><table>
+<thead>
+<tr>
+<th align="right">序号</th>
+<th>题目</th>
+<th>基于日志的答案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1</td>
+<td>样本类型？</td>
+<td>Windows EVTX &#x2F; Security 日志</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td>样本内有效事件数？</td>
+<td><strong>5 条</strong></td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td>日志主机名称？</td>
+<td><code>IEWIN7</code></td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td>原始 XML EventRecordID 范围？</td>
+<td><strong>4987—4991</strong></td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td>发生日期（UTC）？</td>
+<td><strong>2019-04-27</strong></td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td>哪个事件代表安全日志被清除？</td>
+<td><strong>Event ID 1102</strong></td>
+</tr>
+<tr>
+<td align="right">7</td>
+<td>清日志事件的原始编号？</td>
+<td><strong>4987</strong>（物理 ID 1）</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td>哪个账户清除了 Security 审计日志？</td>
+<td><code>IEWIN7\IEUser</code></td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td>清日志使用什么程序？</td>
+<td><strong>无法从 1102 单独确认</strong></td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td>文件访问日志的 Event ID？</td>
+<td><strong>4663</strong></td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td>可疑执行文件的完整路径？</td>
+<td><code>C:\Users\Defau1t\wsus.exe</code></td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td><code>Defau1t</code> 中容易混淆的字符？</td>
+<td>数字 <strong>1</strong>，不是小写字母 <code>l</code></td>
+</tr>
+<tr>
+<td align="right">13</td>
+<td>可疑进程 PID（十六进制）？</td>
+<td><code>0x134c</code></td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td>可疑进程 PID（十进制）？</td>
+<td><strong>4940</strong></td>
+</tr>
+<tr>
+<td align="right">15</td>
+<td>四次访问的账户？</td>
+<td><code>IEWIN7\IEUser</code></td>
+</tr>
+<tr>
+<td align="right">16</td>
+<td>四次访问和清日志的共同 Logon ID？</td>
+<td><code>0xffa8</code></td>
+</tr>
+<tr>
+<td align="right">17</td>
+<td>对象类型？</td>
+<td><code>File</code></td>
+</tr>
+<tr>
+<td align="right">18</td>
+<td>ObjectServer？</td>
+<td><code>Security</code></td>
+</tr>
+<tr>
+<td align="right">19</td>
+<td>AccessList 值？</td>
+<td><code>%%4416</code></td>
+</tr>
+<tr>
+<td align="right">20</td>
+<td>AccessMask 值？</td>
+<td><code>0x1</code></td>
+</tr>
+<tr>
+<td align="right">21</td>
+<td><code>0x1</code> 对文件代表什么？</td>
+<td><code>ReadData</code>（读取文件数据）</td>
+</tr>
+<tr>
+<td align="right">22</td>
+<td>四次文件访问有写入权限记录吗？</td>
+<td><strong>没有；四条均仅记录 ReadData</strong></td>
+</tr>
+<tr>
+<td align="right">23</td>
+<td>首个被读取的浏览器？</td>
+<td><strong>Opera</strong></td>
+</tr>
+<tr>
+<td align="right">24</td>
+<td>Opera 目标文件名？</td>
+<td><code>Opera Stable\Login Data</code></td>
+</tr>
+<tr>
+<td align="right">25</td>
+<td>第二个被调查的浏览器？</td>
+<td><strong>Firefox</strong></td>
+</tr>
+<tr>
+<td align="right">26</td>
+<td>Firefox 密钥数据库名？</td>
+<td><code>key4.db</code></td>
+</tr>
+<tr>
+<td align="right">27</td>
+<td>Firefox 保存登录信息的文件名？</td>
+<td><code>logins.json</code></td>
+</tr>
+<tr>
+<td align="right">28</td>
+<td>Firefox 配置文件夹名？</td>
+<td><code>kushu3sd.default</code></td>
+</tr>
+<tr>
+<td align="right">29</td>
+<td>Firefox 两个文件是否同一 Profile？</td>
+<td><strong>是</strong></td>
+</tr>
+<tr>
+<td align="right">30</td>
+<td>最后被读取的浏览器？</td>
+<td><strong>Chrome</strong></td>
+</tr>
+<tr>
+<td align="right">31</td>
+<td>Chrome 目标文件名？</td>
+<td><code>User Data\Default\Login Data</code></td>
+</tr>
+<tr>
+<td align="right">32</td>
+<td>四条文件访问的原始 EventRecordID？</td>
+<td><strong>4988、4989、4990、4991</strong></td>
+</tr>
+<tr>
+<td align="right">33</td>
+<td>可疑行为最接近哪个 ATT&amp;CK 子技术？</td>
+<td><strong>T1555.003 – Credentials from Web Browsers</strong></td>
+</tr>
+<tr>
+<td align="right">34</td>
+<td>清理安全日志对应哪个 ATT&amp;CK 子技术？</td>
+<td><strong>T1070.001 – Clear Windows Event Logs</strong></td>
+</tr>
+<tr>
+<td align="right">35</td>
+<td>日志是否证明获取了明文密码？</td>
+<td><strong>不能证明</strong></td>
+</tr>
+<tr>
+<td align="right">36</td>
+<td>日志是否证明凭据已外传？</td>
+<td><strong>不能证明</strong></td>
+</tr>
+<tr>
+<td align="right">37</td>
+<td><code>wsus.exe</code> 是否已证明是微软程序？</td>
+<td><strong>没有；仅有进程名称与路径</strong></td>
+</tr>
+<tr>
+<td align="right">38</td>
+<td>1102 是否证明由 wsus.exe 执行清除？</td>
+<td><strong>不证明；没有清日志进程标识</strong></td>
+</tr>
+<tr>
+<td align="right">39</td>
+<td>第五条事件是否真的发生在 1601 年？</td>
+<td><strong>不是；其记录头时间为 0，XML SystemTime 有效</strong></td>
+</tr>
+<tr>
+<td align="right">40</td>
+<td>为什么两种 Record ID 不相同？</td>
+<td>物理 Record ID 为裁剪后封装编号，XML EventRecordID 保留原始日志编号</td>
+</tr>
+</tbody></table>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/Blue-Team/" title="Blue Team" data-aos="zoom-in">Blue Team</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Windows-%E6%97%A5%E5%BF%97/" rel="tag" title="Windows 日志">Windows 日志</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="Spring MVC 路由解析分号绕过" class="lazyload">
+        <a href="/2026/10/18/%E6%9F%90%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B7%AF%E5%BE%84%E8%A7%A3%E6%9E%90%E7%BB%95%E8%BF%87/" aria-label="前一篇: Spring MVC 路由解析分号绕过" title="前一篇: Spring MVC 路由解析分号绕过"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            Spring MVC 路由解析分号绕过
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Chrome 关联交互式登录" class="lazyload">
+      <a href="/2026/10/13/Chrome%20%E5%85%B3%E8%81%94%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%99%BB%E5%BD%95/" aria-label="后一篇: Chrome 关联交互式登录"  title="后一篇: Chrome 关联交互式登录"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          Chrome 关联交互式登录
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        357.8k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        29:07
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chrome-%E5%85%B3%E8%81%94%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%99%BB%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">Chrome 关联交互式登录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Security-%E5%AE%A1%E8%AE%A1%E6%97%A5%E5%BF%97%E8%A2%AB%E6%B8%85%E9%99%A4"><span class="toc-number">1.2.1.</span> <span class="toc-text">Security 审计日志被清除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Opera-%E5%AF%86%E7%A0%81%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-2-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">读取 Opera 密码数据库（Record 2 &#x2F; Event ID 4663）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Firefox-%E5%AF%86%E9%92%A5%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-3-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">读取 Firefox 密钥数据库（Record 3 &#x2F; Event ID 4663）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Firefox-%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%EF%BC%88Record-4-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">读取 Firefox 登录数据（Record 4 &#x2F; Event ID 4663）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Chrome-%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-5-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.5.</span> <span class="toc-text">读取 Chrome 登录数据库（Record 5 &#x2F; Event ID 4663）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">275</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">200</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "Chrome 关联交互式登录",
+          url: "https://suc2es2.github.io/2026/10/13/WSUS%20%E4%BC%AA%E8%A3%85%E7%A8%8B%E5%BA%8F%E8%B7%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%BB%E5%8F%96%E5%87%AD%E6%8D%AE%E6%95%B0%E6%8D%AE%E5%BA%93/",
+          excerpt: "",
+          description: "",
+          stripContent: "Chrome 关联交互式登录样本信息 原始文件：CA_chrome_firefox_opera_4663.evtx  SHA-256：e23b74c463d1fba5c1ef44bcc5f386c56a17327a5b216118f6704cc30545cd8c  文件大小：69,632 字节（68 KiB）  日志类型：Windows EVTX &amp;#x2F; Security 安全事件日志  日志主机：IEWIN7。  有效物理记录：5 条（裁剪文件物理 Record ID 1—5）  原始事",
+          date: "Tue Oct 13 2026 16:29:00 GMT+0800",
+          updated: "Tue Oct 20 2026 16:30:01 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
