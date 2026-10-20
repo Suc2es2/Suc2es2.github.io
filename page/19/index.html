@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">281</div>
+    <div class="sidebar-state-number">282</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -223,6 +223,9 @@
               <a href="/2026/10/18/%E6%9F%90%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B7%AF%E5%BE%84%E8%A7%A3%E6%9E%90%E7%BB%95%E8%BF%87/" title="Spring MVC 路由解析分号绕过">Spring MVC 路由解析分号绕过</a>
             </li>
             <li>
+              <a href="/2026/10/15/%E5%9F%9F%E6%8E%A7%E5%88%B6%E5%99%A8%20NTDS%20dit%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%89%AF%E6%9C%AC%E5%88%B6%E4%BD%9C/" title="域控制器 `NTDS.dit` 数据库副本制作">域控制器 `NTDS.dit` 数据库副本制作</a>
+            </li>
+            <li>
               <a href="/2026/10/15/Frida%20%E6%B3%A8%E5%85%A5%E8%BE%85%E5%8A%A9%E8%BF%9B%E7%A8%8B%E8%AE%BF%E9%97%AE%20TeamViewer/" title="Frida 注入辅助进程访问 TeamViewer">Frida 注入辅助进程访问 TeamViewer</a>
             </li>
             <li>
@@ -230,9 +233,6 @@
             </li>
             <li>
               <a href="/2026/10/14/Mimikatz%20MemSSP%20%E9%BB%98%E8%AE%A4%E5%87%AD%E6%8D%AE%E6%97%A5%E5%BF%97/" title="Mimikatz MemSSP 默认凭据日志">Mimikatz MemSSP 默认凭据日志</a>
-            </li>
-            <li>
-              <a href="/2026/10/14/KeeFarce%20%E9%92%88%E5%AF%B9%20KeePass%20%E7%9A%84%E8%BF%9C%E7%A8%8B%E7%BA%BF%E7%A8%8B%E5%88%9B%E5%BB%BA/" title="KeeFarce 针对 KeePass 的远程线程创建">KeeFarce 针对 KeePass 的远程线程创建</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,41 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2025/04/01/Gift/" aria-label="MazeSec Gift" title="MazeSec Gift"></a>
+      <a class="post-link" href="/2025/04/01/Conection/" aria-label="MazeSec Conection" title="MazeSec Conection"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Conection" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-04-01</span>
+        <span><span class="icon-pencil"></span>265 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">MazeSec Conection</h2>
+      <article class="post-article">
+          Conection项目地址：https://downloads.hackmyvm.eu/connection.zip
+是一个打包好的镜像文件
+注意：导入 ova 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+RCESMB139 445 端口全开，使用 enum4linux 枚举信息
+
+发现一个共享文件夹 share
+
+使用 smbclient 加上 -N 参数匿名访问发现是分享的 Web 目录
+
+上传一个反弹 Shell PHP 上去
+
+提权&amp;#x2F;etc&amp;#x2F;sudoers 配置不当寻找提权点
+1find / -user root -perm /4
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2025/04/01/Gift/" aria-label="MazeSec Gift" title="MazeSec Gift"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Gift" class="lazyload">
     </div>
     <div class="post-info">
@@ -270,9 +303,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2025/04/01/Pwned/" aria-label="MazeSec Pwned" title="MazeSec Pwned"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Pwned" class="lazyload">
     </div>
     <div class="post-info">
@@ -308,9 +341,9 @@ SSH发现有私钥
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2024/04/02/2024%20%E7%AC%AC%E4%B8%80%E5%B1%8A%20Solar%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B/" aria-label="2024 第一届 Solar 应急响应挑战赛 WriteUp" title="2024 第一届 Solar 应急响应挑战赛 WriteUp"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2024 第一届 Solar 应急响应挑战赛 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -338,9 +371,9 @@ newxmmxszc6-1.qq.com
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2022/04/14/2022%20HITCON/" aria-label="2022 HITCON CTF WriteUp" title="2022 HITCON CTF WriteUp"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2022 HITCON CTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -369,9 +402,9 @@ Webyeeclass（弱比较 + 越权 + uniqid()
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2021/05/26/b2evolution%20CMS%20SQL%20%E6%B3%A8%E5%85%A5%EF%BC%88CVE-2021-28242%EF%BC%89/" aria-label="b2evolution CMS SQL 注入（CVE-2021-28242）" title="b2evolution CMS SQL 注入（CVE-2021-28242）"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="b2evolution CMS SQL 注入（CVE-2021-28242）" class="lazyload">
     </div>
     <div class="post-info">
@@ -405,9 +438,9 @@ Webyeeclass（弱比较 + 越权 + uniqid()
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2021/04/14/2021-%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B/" aria-label="2021 第五空间智能安全大赛 WriteUp" title="2021 第五空间智能安全大赛 WriteUp"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2021 第五空间智能安全大赛 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -446,9 +479,9 @@ Webyeeclass（弱比较 + 越权 + uniqid()
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2021/04/14/2021-%E7%AC%AC%E5%9B%9B%E5%B1%8A%E7%BA%A2%E5%B8%BD%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B/" aria-label="2021 第四届红帽杯网络安全大赛 WriteUp" title="2021 第四届红帽杯网络安全大赛 WriteUp"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2021 第四届红帽杯网络安全大赛 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -499,9 +532,9 @@ ehbud队
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2020/05/23/OctoberCMS%20%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%EF%BC%88CVE-2020-15246%EF%BC%89/" aria-label="OctoberCMS 任意文件读取（CVE-2020-15246）" title="OctoberCMS 任意文件读取（CVE-2020-15246）"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="OctoberCMS 任意文件读取（CVE-2020-15246）" class="lazyload">
     </div>
     <div class="post-info">
@@ -531,9 +564,9 @@ Python3
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2020/04/14/2020%20BJDCTF/" aria-label="2020 BJDCTF WriteUp" title="2020 BJDCTF WriteUp"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 BJDCTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -563,37 +596,6 @@ WinHex 打开拿到 flag
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2020/04/14/2020%200xGame/" aria-label="2020 0xGame WriteUp" title="2020 0xGame WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2020 0xGame WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2020-04-14</span>
-        <span><span class="icon-pencil"></span>13k 字</span>
-        <span><span class="icon-clock"></span>60 分钟</span>
-      </div>
-      <h2 class="post-title">2020 0xGame WriteUp</h2>
-      <article class="post-article">
-          2020 0xGame WriteUp前言主办方：南京邮电大学
-Miscflip（波形图 + 摩斯密码 + BinWalk + 倒序）
-打开压缩包后得到一个 ZIP 和 MP3
-
-ZIP 需要密码，使用 Audacity 打开 MP3
-
-根据波形长短猜测是摩斯密码
-1....- ----- ----- ---.. ..... -.... -.... ----. ----. ...-- ----- ----- ... .. -.. .-. --- .-- ... ... .- .--.
-
-解密得到
-1400856699300sidrowssap
-
-翻译了一下题目题目名称有翻转的意思，把摩斯密码倒
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/18/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/20/">下一页 &raquo;</a>
   </nav>
@@ -617,10 +619,10 @@ ZIP 需要密码，使用 Audacity 打开 MP3
       </div>
       <div>
         <span class="icon-brush"></span>
-        363.7k
+        364.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        29:36
+        29:40
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -648,7 +650,7 @@ ZIP 需要密码，使用 Audacity 打开 MP3
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">281</div>
+    <div class="sidebar-state-number">282</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>

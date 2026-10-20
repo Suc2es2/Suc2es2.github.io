@@ -1,0 +1,712 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
+  <title>
+    域控制器 `NTDS.dit` 数据库副本制作 | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="域控制器 NTDS.dit 数据库副本制作样本信息   项目 取证结果    原始文件 dc_applog_ntdsutil_dfir_325_326_327.evtx   文件大小 69,632 字节（68 KiB）   SHA-256 56b83f3f107ad9e02ecbcdc849930608f86cac1269d156c90e38326bc401a6ec   有效 EVTX 记录 4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="域控制器 &#96;NTDS.dit&#96; 数据库副本制作">
+<meta property="og:url" content="https://suc2es2.github.io/2026/10/15/%E5%9F%9F%E6%8E%A7%E5%88%B6%E5%99%A8%20NTDS%20dit%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%89%AF%E6%9C%AC%E5%88%B6%E4%BD%9C/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="域控制器 NTDS.dit 数据库副本制作样本信息   项目 取证结果    原始文件 dc_applog_ntdsutil_dfir_325_326_327.evtx   文件大小 69,632 字节（68 KiB）   SHA-256 56b83f3f107ad9e02ecbcdc849930608f86cac1269d156c90e38326bc401a6ec   有效 EVTX 记录 4">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034jFbIyEJs3YUQjKWtR6I.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034jFcYSpVX5YFlLoNuhfH.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034jFf2NRypHwIZkvSLkld.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034jFdweyd14R3GqNMrukc.png">
+<meta property="article:published_time" content="2026-10-15T00:29:00.000Z">
+<meta property="article:modified_time" content="2026-10-20T15:00:03.265Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="Windows 日志">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034jFbIyEJs3YUQjKWtR6I.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="域控制器 `NTDS.dit` 数据库副本制作">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">域控制器 `NTDS.dit` 数据库副本制作</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%9F%E6%8E%A7%E5%88%B6%E5%99%A8-NTDS-dit-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%89%AF%E6%9C%AC%E5%88%B6%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">域控制器 NTDS.dit 数据库副本制作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%82%E8%BD%BD%E5%BF%AB%E7%85%A7%E4%B8%AD%E7%9A%84-NTDS-dit%EF%BC%88Record-1-Event-326%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">挂载快照中的 NTDS.dit（Record 1 &#x2F; Event 326）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E9%9D%9E%E6%A0%87%E5%87%86%E8%B7%AF%E5%BE%84%E5%88%9B%E5%BB%BA-NTDS-dit%EF%BC%88Record-2-Event-325%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">在非标准路径创建 NTDS.dit（Record 2 &#x2F; Event 325）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BD%E5%AF%BC%E5%87%BA%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-3-Event-327%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">卸载导出的数据库（Record 3 &#x2F; Event 327）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BD%E5%BF%AB%E7%85%A7%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-4-Event-327%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">卸载快照数据库（Record 4 &#x2F; Event 327）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">282</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">200</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-域控制器 NTDS dit 数据库副本制作" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-10-15T00:29:00.000Z" itemprop="datePublished">2026-10-15</time>
+    <time style="display: none;" id="post-update-time">2026-10-20</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="域控制器-NTDS-dit-数据库副本制作"><a href="#域控制器-NTDS-dit-数据库副本制作" class="headerlink" title="域控制器 NTDS.dit 数据库副本制作"></a>域控制器 <code>NTDS.dit</code> 数据库副本制作</h1><h2 id="样本信息"><a href="#样本信息" class="headerlink" title="样本信息"></a>样本信息</h2><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>取证结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原始文件</td>
+<td><code>dc_applog_ntdsutil_dfir_325_326_327.evtx</code></td>
+</tr>
+<tr>
+<td>文件大小</td>
+<td><strong>69,632 字节（68 KiB）</strong></td>
+</tr>
+<tr>
+<td>SHA-256</td>
+<td><code>56b83f3f107ad9e02ecbcdc849930608f86cac1269d156c90e38326bc401a6ec</code></td>
+</tr>
+<tr>
+<td>有效 EVTX 记录</td>
+<td><strong>4 条</strong>，裁剪文件记录头编号 1—4</td>
+</tr>
+<tr>
+<td>事件来源</td>
+<td><strong>ESENT</strong></td>
+</tr>
+<tr>
+<td>日志通道</td>
+<td><strong>Application</strong>（应用程序日志）</td>
+</tr>
+<tr>
+<td>计算机</td>
+<td><code>DC1.insecurebank.local</code></td>
+</tr>
+<tr>
+<td>ESENT 消息中标记的实例 &#x2F; 进程</td>
+<td><code>NTDS (3392)</code></td>
+</tr>
+<tr>
+<td>事件种类</td>
+<td>Event ID <strong>325 × 1、326 × 1、327 × 2</strong></td>
+</tr>
+<tr>
+<td>事件 XML 时间</td>
+<td><strong>2019-11-26 23:55:00—23:55:02 UTC</strong></td>
+</tr>
+<tr>
+<td>北京时间（UTC+8）</td>
+<td><strong>2019-11-27 07:55:00—07:55:02</strong></td>
+</tr>
+<tr>
+<td>相关 MITRE ATT&amp;CK 技术</td>
+<td><strong>T1003.003 — OS Credential Dumping: NTDS</strong>（检测关联，非已确认泄露）</td>
+</tr>
+</tbody></table>
+<p><code>NTDS.dit</code> 是 Windows 域控制器中 Active Directory 的核心数据库文件，用于存储域用户、计算机、组等目录信息，以及用户密码哈希等敏感身份验证数据</p>
+<p>Microsoft 的 NTDSUtil <code>ifm create full</code> 功能本来就是为了创建域控制器安装媒体。该操作属于合法管理功能，但也可被滥用来制作 NTDS 数据库副本</p>
+<h2 id="攻击链"><a href="#攻击链" class="headerlink" title="攻击链"></a>攻击链</h2><h3 id="挂载快照中的-NTDS-dit（Record-1-Event-326）"><a href="#挂载快照中的-NTDS-dit（Record-1-Event-326）" class="headerlink" title="挂载快照中的 NTDS.dit（Record 1 &#x2F; Event 326）"></a>挂载快照中的 <code>NTDS.dit</code>（Record 1 &#x2F; Event 326）</h3><p><code>C:\$SNAP_...</code> 并非平时运行的 <code>C:\Windows\NTDS\ntds.dit</code> 目录，体现出数据库引擎正在访问一份通过快照机制呈现的 AD 数据库副本</p>
+<p><img src="https://pic1.imgdb.cn/i/034jFbIyEJs3YUQjKWtR6I.png" alt="pasted_1792508189821_tt7q5i.png"></p>
+<h3 id="在非标准路径创建-NTDS-dit（Record-2-Event-325）"><a href="#在非标准路径创建-NTDS-dit（Record-2-Event-325）" class="headerlink" title="在非标准路径创建 NTDS.dit（Record 2 &#x2F; Event 325）"></a>在非标准路径创建 <code>NTDS.dit</code>（Record 2 &#x2F; Event 325）</h3><p>一份新的 <code>ntds.dit</code> 出现在 <code>C:\Users\bob\Desktop\test\Folder\ntds\Active Directory\</code> 中，与域控常见运行路径明显不同</p>
+<p><img src="https://pic1.imgdb.cn/i/034jFcYSpVX5YFlLoNuhfH.png" alt="pasted_1792508240011_dcmci5.png"></p>
+<h3 id="卸载导出的数据库（Record-3-Event-327）"><a href="#卸载导出的数据库（Record-3-Event-327）" class="headerlink" title="卸载导出的数据库（Record 3 &#x2F; Event 327）"></a>卸载导出的数据库（Record 3 &#x2F; Event 327）</h3><p>这条记录与 Record 2 的<strong>目标路径完全一致</strong>，说明短时间内数据库引擎对新建的 <code>ntds.dit</code> 进行了 <strong>Create → Detach</strong> 操作</p>
+<p><img src="https://pic1.imgdb.cn/i/034jFf2NRypHwIZkvSLkld.png" alt="pasted_1792508337482_jsvsps.png"></p>
+<h3 id="卸载快照数据库（Record-4-Event-327）"><a href="#卸载快照数据库（Record-4-Event-327）" class="headerlink" title="卸载快照数据库（Record 4 &#x2F; Event 327）"></a>卸载快照数据库（Record 4 &#x2F; Event 327）</h3><p>Record 4 的数据库路径与 Record 1 的快照路径完全一致</p>
+<p><img src="https://pic1.imgdb.cn/i/034jFdweyd14R3GqNMrukc.png" alt="pasted_1792508295025_12zas1.png"></p>
+<h2 id="测验"><a href="#测验" class="headerlink" title="测验"></a>测验</h2><table>
+<thead>
+<tr>
+<th>题目</th>
+<th>答案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. 原始日志通道是什么？</td>
+<td><code>Application</code></td>
+</tr>
+<tr>
+<td>2. 事件源是什么？</td>
+<td><code>ESENT</code></td>
+</tr>
+<tr>
+<td>3. 主机名是什么？</td>
+<td><code>DC1.insecurebank.local</code></td>
+</tr>
+<tr>
+<td>4. 有效事件多少条？</td>
+<td><strong>4</strong></td>
+</tr>
+<tr>
+<td>5. 涉及哪些 Event ID？</td>
+<td><strong>325、326、327</strong></td>
+</tr>
+<tr>
+<td>6. 各事件数量？</td>
+<td>325：1；326：1；327：2</td>
+</tr>
+<tr>
+<td>7. Event 325 含义？</td>
+<td>数据库引擎<strong>创建新数据库</strong></td>
+</tr>
+<tr>
+<td>8. Event 326 含义？</td>
+<td>数据库引擎<strong>挂载数据库</strong></td>
+</tr>
+<tr>
+<td>9. Event 327 含义？</td>
+<td>数据库引擎<strong>卸载数据库</strong></td>
+</tr>
+<tr>
+<td>10. ESENT 消息中的实例名是什么？</td>
+<td><code>NTDS</code></td>
+</tr>
+<tr>
+<td>11. 消息中进程编号是多少？</td>
+<td><strong>3392</strong></td>
+</tr>
+<tr>
+<td>12. 原始 XML EventRecordID 范围？</td>
+<td><strong>1969—1972</strong></td>
+</tr>
+<tr>
+<td>13. 裁剪文件 Record ID 范围？</td>
+<td><strong>1—4</strong></td>
+</tr>
+<tr>
+<td>14. 快照数据库的路径？</td>
+<td><code>C:\$SNAP_201911270054_VOLUMEC$\Windows\NTDS\ntds.dit</code></td>
+</tr>
+<tr>
+<td>15. 新数据库保存路径？</td>
+<td><code>C:\Users\bob\Desktop\test\Folder\ntds\Active Directory\ntds.dit</code></td>
+</tr>
+<tr>
+<td>16. 谁的用户目录中出现新数据库？</td>
+<td><code>bob</code>（仅从路径判断；<strong>不能确证操作者就是 bob</strong>）</td>
+</tr>
+<tr>
+<td>17. 最关键的文件名？</td>
+<td><code>ntds.dit</code></td>
+</tr>
+<tr>
+<td>18. 最重要的创建证据是哪个 Record？</td>
+<td><strong>Record 2 &#x2F; Event 325</strong></td>
+</tr>
+<tr>
+<td>19. 快照挂载证据？</td>
+<td><strong>Record 1 &#x2F; Event 326</strong></td>
+</tr>
+<tr>
+<td>20. 目标数据库卸载证据？</td>
+<td><strong>Record 3 &#x2F; Event 327</strong></td>
+</tr>
+<tr>
+<td>21. 快照数据库卸载证据？</td>
+<td><strong>Record 4 &#x2F; Event 327</strong></td>
+</tr>
+<tr>
+<td>22. 最早 XML 事件时间？</td>
+<td><strong>2019-11-26 23:55:00 UTC</strong></td>
+</tr>
+<tr>
+<td>23. 北京时间对应？</td>
+<td><strong>2019-11-27 07:55:00</strong></td>
+</tr>
+<tr>
+<td>24. 关联的 NTDSUtil 功能？</td>
+<td><strong>IFM &#x2F; 数据库副本制作</strong>（推测；未见工具命令）</td>
+</tr>
+<tr>
+<td>25. 对应 ATT&amp;CK 子技术？</td>
+<td><strong>T1003.003</strong></td>
+</tr>
+<tr>
+<td>26. 能否确定执行了 <code>ntdsutil.exe</code>？</td>
+<td><strong>不能</strong>；缺少进程创建及命令行证据</td>
+</tr>
+<tr>
+<td>27. 能否确定密码哈希已导出？</td>
+<td><strong>不能</strong>；缺少数据库解析&#x2F;凭据输出证据</td>
+</tr>
+<tr>
+<td>28. 能否确定数据库已外传？</td>
+<td><strong>不能</strong>；缺少网络&#x2F;文件传输证据</td>
+</tr>
+<tr>
+<td>29. 与 DCSync 相同吗？</td>
+<td><strong>不同</strong>；DCSync 走目录复制协议</td>
+</tr>
+<tr>
+<td>30. 这一定是恶意活动吗？</td>
+<td><strong>不能确定</strong>；合法备份&#x2F;IFM 操作也可能产生类似日志</td>
+</tr>
+</tbody></table>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/Blue-Team/" title="Blue Team" data-aos="zoom-in">Blue Team</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Windows-%E6%97%A5%E5%BF%97/" rel="tag" title="Windows 日志">Windows 日志</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="Spring MVC 路由解析分号绕过" class="lazyload">
+        <a href="/2026/10/18/%E6%9F%90%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B7%AF%E5%BE%84%E8%A7%A3%E6%9E%90%E7%BB%95%E8%BF%87/" aria-label="前一篇: Spring MVC 路由解析分号绕过" title="前一篇: Spring MVC 路由解析分号绕过"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            Spring MVC 路由解析分号绕过
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Frida 注入辅助进程访问 TeamViewer" class="lazyload">
+      <a href="/2026/10/15/Frida%20%E6%B3%A8%E5%85%A5%E8%BE%85%E5%8A%A9%E8%BF%9B%E7%A8%8B%E8%AE%BF%E9%97%AE%20TeamViewer/" aria-label="后一篇: Frida 注入辅助进程访问 TeamViewer"  title="后一篇: Frida 注入辅助进程访问 TeamViewer"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          Frida 注入辅助进程访问 TeamViewer
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        364.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        29:40
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%9F%E6%8E%A7%E5%88%B6%E5%99%A8-NTDS-dit-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%89%AF%E6%9C%AC%E5%88%B6%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">域控制器 NTDS.dit 数据库副本制作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%82%E8%BD%BD%E5%BF%AB%E7%85%A7%E4%B8%AD%E7%9A%84-NTDS-dit%EF%BC%88Record-1-Event-326%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">挂载快照中的 NTDS.dit（Record 1 &#x2F; Event 326）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E9%9D%9E%E6%A0%87%E5%87%86%E8%B7%AF%E5%BE%84%E5%88%9B%E5%BB%BA-NTDS-dit%EF%BC%88Record-2-Event-325%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">在非标准路径创建 NTDS.dit（Record 2 &#x2F; Event 325）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BD%E5%AF%BC%E5%87%BA%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-3-Event-327%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">卸载导出的数据库（Record 3 &#x2F; Event 327）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BD%E5%BF%AB%E7%85%A7%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-4-Event-327%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">卸载快照数据库（Record 4 &#x2F; Event 327）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">282</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">200</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "域控制器 `NTDS.dit` 数据库副本制作",
+          url: "https://suc2es2.github.io/2026/10/15/%E5%9F%9F%E6%8E%A7%E5%88%B6%E5%99%A8%20NTDS%20dit%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%89%AF%E6%9C%AC%E5%88%B6%E4%BD%9C/",
+          excerpt: "",
+          description: "",
+          stripContent: "域控制器 NTDS.dit 数据库副本制作样本信息   项目 取证结果    原始文件 dc_applog_ntdsutil_dfir_325_326_327.evtx   文件大小 69,632 字节（68 KiB）   SHA-256 56b83f3f107ad9e02ecbcdc849930608f86cac1269d156c90e38326bc401a6ec   有效 EVTX 记录 4 条，裁剪文件记录头编号 1—4   事件来源 ESENT   日志通道 Application（应用",
+          date: "Thu Oct 15 2026 08:29:00 GMT+0800",
+          updated: "Tue Oct 20 2026 23:00:03 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
