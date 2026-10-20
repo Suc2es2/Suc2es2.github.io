@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
   <title>
-    Chrome 关联交互式登录 | 雾島风起時
+    WSUS 伪装程序跨浏览器读取凭据数据库 | 雾島风起時
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,12 +17,12 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="Chrome 关联交互式登录样本信息 原始文件：CA_chrome_firefox_opera_4663.evtx  SHA-256：e23b74c463d1fba5c1ef44bcc5f386c56a17327a5b216118f6704cc30545cd8c  文件大小：69,632 字节（68 KiB）  日志类型：Windows EVTX &#x2F; Security 安全事件日志  日">
+    <meta name="description" content="WSUS 伪装程序跨浏览器读取凭据数据库样本信息 原始文件：CA_chrome_firefox_opera_4663.evtx  SHA-256：e23b74c463d1fba5c1ef44bcc5f386c56a17327a5b216118f6704cc30545cd8c  文件大小：69,632 字节（68 KiB）  日志类型：Windows EVTX &#x2F; Security 安全事">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Chrome 关联交互式登录">
+<meta property="og:title" content="WSUS 伪装程序跨浏览器读取凭据数据库">
 <meta property="og:url" content="https://suc2es2.github.io/2026/10/13/WSUS%20%E4%BC%AA%E8%A3%85%E7%A8%8B%E5%BA%8F%E8%B7%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%BB%E5%8F%96%E5%87%AD%E6%8D%AE%E6%95%B0%E6%8D%AE%E5%BA%93/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="Chrome 关联交互式登录样本信息 原始文件：CA_chrome_firefox_opera_4663.evtx  SHA-256：e23b74c463d1fba5c1ef44bcc5f386c56a17327a5b216118f6704cc30545cd8c  文件大小：69,632 字节（68 KiB）  日志类型：Windows EVTX &#x2F; Security 安全事件日志  日">
+<meta property="og:description" content="WSUS 伪装程序跨浏览器读取凭据数据库样本信息 原始文件：CA_chrome_firefox_opera_4663.evtx  SHA-256：e23b74c463d1fba5c1ef44bcc5f386c56a17327a5b216118f6704cc30545cd8c  文件大小：69,632 字节（68 KiB）  日志类型：Windows EVTX &#x2F; Security 安全事">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034j5uYL3O2PlxIOqsUSW5.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034j5vqS9Yabrjuo1igdae.png">
@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034j62FMo42ebgUFaicgjs.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034j66KRz7AO3iHhz1vIJB.png">
 <meta property="article:published_time" content="2026-10-13T08:29:00.000Z">
-<meta property="article:modified_time" content="2026-10-20T08:30:01.482Z">
+<meta property="article:modified_time" content="2026-10-20T10:15:06.356Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="Windows 日志">
 <meta name="twitter:card" content="summary">
@@ -133,11 +133,11 @@
 <header id="header" aria-label="Site header">
         <picture>
         </picture>
-          <img  fetchpriority="high" src="/images/banner.webp" alt="Chrome 关联交互式登录">
+          <img  fetchpriority="high" src="/images/banner.webp" alt="WSUS 伪装程序跨浏览器读取凭据数据库">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">Chrome 关联交互式登录</h1>
+            <h1 data-aos="slide-up">WSUS 伪装程序跨浏览器读取凭据数据库</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -152,7 +152,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chrome-%E5%85%B3%E8%81%94%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%99%BB%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">Chrome 关联交互式登录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Security-%E5%AE%A1%E8%AE%A1%E6%97%A5%E5%BF%97%E8%A2%AB%E6%B8%85%E9%99%A4"><span class="toc-number">1.2.1.</span> <span class="toc-text">Security 审计日志被清除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Opera-%E5%AF%86%E7%A0%81%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-2-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">读取 Opera 密码数据库（Record 2 &#x2F; Event ID 4663）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Firefox-%E5%AF%86%E9%92%A5%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-3-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">读取 Firefox 密钥数据库（Record 3 &#x2F; Event ID 4663）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Firefox-%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%EF%BC%88Record-4-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">读取 Firefox 登录数据（Record 4 &#x2F; Event ID 4663）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Chrome-%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-5-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.5.</span> <span class="toc-text">读取 Chrome 登录数据库（Record 5 &#x2F; Event ID 4663）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WSUS-%E4%BC%AA%E8%A3%85%E7%A8%8B%E5%BA%8F%E8%B7%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%BB%E5%8F%96%E5%87%AD%E6%8D%AE%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text">WSUS 伪装程序跨浏览器读取凭据数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Security-%E5%AE%A1%E8%AE%A1%E6%97%A5%E5%BF%97%E8%A2%AB%E6%B8%85%E9%99%A4"><span class="toc-number">1.2.1.</span> <span class="toc-text">Security 审计日志被清除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Opera-%E5%AF%86%E7%A0%81%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-2-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">读取 Opera 密码数据库（Record 2 &#x2F; Event ID 4663）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Firefox-%E5%AF%86%E9%92%A5%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-3-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">读取 Firefox 密钥数据库（Record 3 &#x2F; Event ID 4663）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Firefox-%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%EF%BC%88Record-4-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">读取 Firefox 登录数据（Record 4 &#x2F; Event ID 4663）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Chrome-%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-5-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.5.</span> <span class="toc-text">读取 Chrome 登录数据库（Record 5 &#x2F; Event ID 4663）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -239,7 +239,7 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h1 id="Chrome-关联交互式登录"><a href="#Chrome-关联交互式登录" class="headerlink" title="Chrome 关联交互式登录"></a>Chrome 关联交互式登录</h1><h2 id="样本信息"><a href="#样本信息" class="headerlink" title="样本信息"></a>样本信息</h2><ul>
+        <h1 id="WSUS-伪装程序跨浏览器读取凭据数据库"><a href="#WSUS-伪装程序跨浏览器读取凭据数据库" class="headerlink" title="WSUS 伪装程序跨浏览器读取凭据数据库"></a>WSUS 伪装程序跨浏览器读取凭据数据库</h1><h2 id="样本信息"><a href="#样本信息" class="headerlink" title="样本信息"></a>样本信息</h2><ul>
 <li><p><strong>原始文件</strong>：<code>CA_chrome_firefox_opera_4663.evtx</code></p>
 </li>
 <li><p><strong>SHA-256</strong>：<code>e23b74c463d1fba5c1ef44bcc5f386c56a17327a5b216118f6704cc30545cd8c</code></p>
@@ -563,7 +563,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Chrome-%E5%85%B3%E8%81%94%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%99%BB%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">Chrome 关联交互式登录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Security-%E5%AE%A1%E8%AE%A1%E6%97%A5%E5%BF%97%E8%A2%AB%E6%B8%85%E9%99%A4"><span class="toc-number">1.2.1.</span> <span class="toc-text">Security 审计日志被清除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Opera-%E5%AF%86%E7%A0%81%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-2-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">读取 Opera 密码数据库（Record 2 &#x2F; Event ID 4663）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Firefox-%E5%AF%86%E9%92%A5%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-3-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">读取 Firefox 密钥数据库（Record 3 &#x2F; Event ID 4663）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Firefox-%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%EF%BC%88Record-4-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">读取 Firefox 登录数据（Record 4 &#x2F; Event ID 4663）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Chrome-%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-5-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.5.</span> <span class="toc-text">读取 Chrome 登录数据库（Record 5 &#x2F; Event ID 4663）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WSUS-%E4%BC%AA%E8%A3%85%E7%A8%8B%E5%BA%8F%E8%B7%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%BB%E5%8F%96%E5%87%AD%E6%8D%AE%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.</span> <span class="toc-text">WSUS 伪装程序跨浏览器读取凭据数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Security-%E5%AE%A1%E8%AE%A1%E6%97%A5%E5%BF%97%E8%A2%AB%E6%B8%85%E9%99%A4"><span class="toc-number">1.2.1.</span> <span class="toc-text">Security 审计日志被清除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Opera-%E5%AF%86%E7%A0%81%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-2-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">读取 Opera 密码数据库（Record 2 &#x2F; Event ID 4663）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Firefox-%E5%AF%86%E9%92%A5%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-3-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">读取 Firefox 密钥数据库（Record 3 &#x2F; Event ID 4663）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Firefox-%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%EF%BC%88Record-4-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">读取 Firefox 登录数据（Record 4 &#x2F; Event ID 4663）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96-Chrome-%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88Record-5-Event-ID-4663%EF%BC%89"><span class="toc-number">1.2.5.</span> <span class="toc-text">读取 Chrome 登录数据库（Record 5 &#x2F; Event ID 4663）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -691,13 +691,13 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "ALL",
-          title: "Chrome 关联交互式登录",
+          title: "WSUS 伪装程序跨浏览器读取凭据数据库",
           url: "https://suc2es2.github.io/2026/10/13/WSUS%20%E4%BC%AA%E8%A3%85%E7%A8%8B%E5%BA%8F%E8%B7%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%BB%E5%8F%96%E5%87%AD%E6%8D%AE%E6%95%B0%E6%8D%AE%E5%BA%93/",
           excerpt: "",
           description: "",
-          stripContent: "Chrome 关联交互式登录样本信息 原始文件：CA_chrome_firefox_opera_4663.evtx  SHA-256：e23b74c463d1fba5c1ef44bcc5f386c56a17327a5b216118f6704cc30545cd8c  文件大小：69,632 字节（68 KiB）  日志类型：Windows EVTX &amp;#x2F; Security 安全事件日志  日志主机：IEWIN7。  有效物理记录：5 条（裁剪文件物理 Record ID 1—5）  原始事",
+          stripContent: "WSUS 伪装程序跨浏览器读取凭据数据库样本信息 原始文件：CA_chrome_firefox_opera_4663.evtx  SHA-256：e23b74c463d1fba5c1ef44bcc5f386c56a17327a5b216118f6704cc30545cd8c  文件大小：69,632 字节（68 KiB）  日志类型：Windows EVTX &amp;#x2F; Security 安全事件日志  日志主机：IEWIN7。  有效物理记录：5 条（裁剪文件物理 Record ID 1—5",
           date: "Tue Oct 13 2026 16:29:00 GMT+0800",
-          updated: "Tue Oct 20 2026 16:30:01 GMT+0800",
+          updated: "Tue Oct 20 2026 18:15:06 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
