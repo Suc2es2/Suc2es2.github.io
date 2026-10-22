@@ -1,0 +1,788 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
+  <title>
+    SQL Server 多账户登录 | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="SQL Server 多账户登录样本信息   项目 取证结果    原始文件 MSSQL_multiple_failed_logon_EventID_18456.evtx   文件大小 69,632 字节（68 KiB）   SHA-256 014e936e1b5bad13275d3c6f2e61cc6dc74c4514557b20264b27df06a08d6ee6   EVTX 文件签名 El">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL Server 多账户登录">
+<meta property="og:url" content="https://suc2es2.github.io/2026/10/15/SQL%20Server%20%E5%A4%9A%E8%B4%A6%E6%88%B7%E7%99%BB%E5%BD%95/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="SQL Server 多账户登录样本信息   项目 取证结果    原始文件 MSSQL_multiple_failed_logon_EventID_18456.evtx   文件大小 69,632 字节（68 KiB）   SHA-256 014e936e1b5bad13275d3c6f2e61cc6dc74c4514557b20264b27df06a08d6ee6   EVTX 文件签名 El">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034kHF1tuZT9qJXOe13Qf5.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034kHFh2a3fvqllb6wCFmq.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034kHNcSHACgALL2dsuPFO.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034kHQ4HjggQZ7M7qzfWwV.png">
+<meta property="article:published_time" content="2026-10-15T04:29:00.000Z">
+<meta property="article:modified_time" content="2026-10-22T10:18:56.018Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="Windows 日志">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034kHF1tuZT9qJXOe13Qf5.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="SQL Server 多账户登录">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">SQL Server 多账户登录</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL-Server-%E5%A4%9A%E8%B4%A6%E6%88%B7%E7%99%BB%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">SQL Server 多账户登录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E4%B8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9E%E7%BB%AD%E5%B0%9D%E8%AF%95-sa-%E4%B8%8E-root"><span class="toc-number">1.2.1.</span> <span class="toc-text">同一客户端连续尝试 sa 与 root</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E4%B8%AA-MS-Certificate-%E7%99%BB%E5%BD%95%E5%90%8D"><span class="toc-number">1.2.2.</span> <span class="toc-text">六个 ##MS_*Certificate## 登录名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA-MS-Policy-Login-%E5%AF%86%E7%A0%81%E8%AF%84%E4%BC%B0%E9%94%99%E8%AF%AF"><span class="toc-number">1.2.3.</span> <span class="toc-text">两个 ##MS_Policy*Login## 密码评估错误</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL-Server-18456-%E7%99%BB%E5%BD%95%E5%A4%B1%E8%B4%A5%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90%E9%97%AE%E7%AD%94"><span class="toc-number">2.</span> <span class="toc-text">SQL Server 18456 登录失败事件分析问答</span></a></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">286</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">200</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-SQL Server 多账户登录" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-10-15T04:29:00.000Z" itemprop="datePublished">2026-10-15</time>
+    <time style="display: none;" id="post-update-time">2026-10-22</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="SQL-Server-多账户登录"><a href="#SQL-Server-多账户登录" class="headerlink" title="SQL Server 多账户登录"></a>SQL Server 多账户登录</h1><h2 id="样本信息"><a href="#样本信息" class="headerlink" title="样本信息"></a>样本信息</h2><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>取证结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原始文件</td>
+<td><code>MSSQL_multiple_failed_logon_EventID_18456.evtx</code></td>
+</tr>
+<tr>
+<td>文件大小</td>
+<td>69,632 字节（68 KiB）</td>
+</tr>
+<tr>
+<td>SHA-256</td>
+<td><code>014e936e1b5bad13275d3c6f2e61cc6dc74c4514557b20264b27df06a08d6ee6</code></td>
+</tr>
+<tr>
+<td>EVTX 文件签名</td>
+<td><code>ElfFile</code></td>
+</tr>
+<tr>
+<td>有效数据块</td>
+<td>1 个 <code>ElfChnk</code></td>
+</tr>
+<tr>
+<td>有效物理记录</td>
+<td><strong>10 条，文件内 Record ID 1—10</strong></td>
+</tr>
+<tr>
+<td>原始 XML EventRecordID</td>
+<td><strong>13026—13035</strong></td>
+</tr>
+<tr>
+<td>Provider</td>
+<td><code>MSSQLSERVER</code></td>
+</tr>
+<tr>
+<td>日志通道</td>
+<td><code>Application</code></td>
+</tr>
+<tr>
+<td>Event ID</td>
+<td><strong>18456（SQL Server 登录失败）</strong></td>
+</tr>
+<tr>
+<td>主机</td>
+<td><code>MSEDGEWIN10</code></td>
+</tr>
+<tr>
+<td>来源 IP</td>
+<td><code>10.0.2.17</code></td>
+</tr>
+<tr>
+<td>关联数据库文本</td>
+<td><code>master</code>（事件数据包含，不能据此认定成功访问）</td>
+</tr>
+<tr>
+<td>XML TimeCreated（UTC）</td>
+<td><code>2019-11-04 13:46:01.171339</code> — <code>2019-11-04 13:46:01.279825</code></td>
+</tr>
+<tr>
+<td>北京时间（UTC+8）</td>
+<td><code>2019-11-04 21:46:01.171339</code> — <code>2019-11-04 21:46:01.279825</code></td>
+</tr>
+<tr>
+<td>原始事件窗口</td>
+<td>108.486 毫秒（按 XML TimeCreated；仅为本文件的记录间隔）</td>
+</tr>
+</tbody></table>
+<h2 id="攻击链"><a href="#攻击链" class="headerlink" title="攻击链"></a>攻击链</h2><h3 id="同一客户端连续尝试-sa-与-root"><a href="#同一客户端连续尝试-sa-与-root" class="headerlink" title="同一客户端连续尝试 sa 与 root"></a>同一客户端连续尝试 sa 与 root</h3><p>有人向 SQL Server 以 sa 登录名提交凭据，但服务端判定密码不匹配</p>
+<p>sa 是 SQL Server 中具有特殊意义的内置高权限登录名</p>
+<p><img src="https://pic1.imgdb.cn/i/034kHF1tuZT9qJXOe13Qf5.png" alt="pasted_1792663783347_gr29a1.png"></p>
+<p>root 常见于其他平台或应用的管理员账户命名，但并非 SQL Server 内置 sa 的别名</p>
+<p><img src="https://pic1.imgdb.cn/i/034kHFh2a3fvqllb6wCFmq.png" alt="pasted_1792663811848_9o41jx.png"></p>
+<h3 id="六个-MS-Certificate-登录名"><a href="#六个-MS-Certificate-登录名" class="headerlink" title="六个 ##MS_*Certificate## 登录名"></a>六个 <code>##MS_*Certificate##</code> 登录名</h3><p>以下全部命中同一条失败原因：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Reason: Attempting to use an NT account name with SQL Server Authentication.</span><br><span class="line">[CLIENT: 10.0.2.17]</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="right">Record</th>
+<th>登录名</th>
+<th>时间（UTC）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">2</td>
+<td><code>##MS_SQLResourceSigningCertificate##</code></td>
+<td><code>13:46:01.187637</code></td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td><code>##MS_SQLReplicationSigningCertificate##</code></td>
+<td><code>13:46:01.202731</code></td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td><code>##MS_SQLAuthenticatorCertificate##</code></td>
+<td><code>13:46:01.202731</code></td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td><code>##MS_PolicySigningCertificate##</code></td>
+<td><code>13:46:01.222452</code></td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td><code>##MS_SmoExtendedSigningCertificate##</code></td>
+<td><code>13:46:01.233944</code></td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td><code>##MS_AgentSigningCertificate##</code></td>
+<td><code>13:46:01.266435</code></td>
+</tr>
+</tbody></table>
+<p><img src="https://pic1.imgdb.cn/i/034kHNcSHACgALL2dsuPFO.png" alt="pasted_1792664124278_nldooo.png"></p>
+<p>这类 <code>##MS_*Certificate##</code> 名称与 SQL Server 内部组件及证书用途相关</p>
+<h3 id="两个-MS-Policy-Login-密码评估错误"><a href="#两个-MS-Policy-Login-密码评估错误" class="headerlink" title="两个 ##MS_Policy*Login## 密码评估错误"></a>两个 <code>##MS_Policy*Login##</code> 密码评估错误</h3><p>这条消息表达的是“评估密码时发生错误”，并不等于“密码策略被破解”“密码正确”“密码复杂度不足”或“账户成功验证”</p>
+<table>
+<thead>
+<tr>
+<th align="right">Record</th>
+<th>登录名</th>
+<th>原始失败原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">7</td>
+<td><code>##MS_PolicyEventProcessingLogin##</code></td>
+<td><code>An error occurred while evaluating the password.</code></td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td><code>##MS_PolicyTsqlExecutionLogin##</code></td>
+<td><code>An error occurred while evaluating the password.</code></td>
+</tr>
+</tbody></table>
+<p><img src="https://pic1.imgdb.cn/i/034kHQ4HjggQZ7M7qzfWwV.png" alt="pasted_1792664220860_3ctb15.png"></p>
+<h2 id="测验"><a href="#测验" class="headerlink" title="测验"></a>测验</h2><h1 id="SQL-Server-18456-登录失败事件分析问答"><a href="#SQL-Server-18456-登录失败事件分析问答" class="headerlink" title="SQL Server 18456 登录失败事件分析问答"></a>SQL Server 18456 登录失败事件分析问答</h1><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>回答</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>事件来源是什么？</td>
+<td>MSSQLSERVER。</td>
+</tr>
+<tr>
+<td>日志通道是什么？</td>
+<td>Application。</td>
+</tr>
+<tr>
+<td>事件编号？</td>
+<td>18456。</td>
+</tr>
+<tr>
+<td>18456 表示什么？</td>
+<td>SQL Server 登录失败。</td>
+</tr>
+<tr>
+<td>目标主机？</td>
+<td>MSEDGEWIN10。</td>
+</tr>
+<tr>
+<td>来源 IP？</td>
+<td>10.0.2.17。</td>
+</tr>
+<tr>
+<td>共有多少有效事件？</td>
+<td>10 条。</td>
+</tr>
+<tr>
+<td>物理 Record ID？</td>
+<td>1—10。</td>
+</tr>
+<tr>
+<td>原始 EventRecordID 范围？</td>
+<td>13026—13035。</td>
+</tr>
+<tr>
+<td>涉及多少个不同登录名？</td>
+<td>10 个。</td>
+</tr>
+<tr>
+<td>有哪些典型高价值账户名？</td>
+<td>sa、root。</td>
+</tr>
+<tr>
+<td>sa 登录成功了吗？</td>
+<td>未成功，日志显示密码不匹配。</td>
+</tr>
+<tr>
+<td>root 登录成功了吗？</td>
+<td>未成功，日志显示密码不匹配。</td>
+</tr>
+<tr>
+<td>root 是 SQL Server 默认超级用户吗？</td>
+<td>不是，不能与 sa 等同。</td>
+</tr>
+<tr>
+<td>密码不匹配多少次？</td>
+<td>2 次。</td>
+</tr>
+<tr>
+<td>身份验证方式不匹配多少次？</td>
+<td>6 次。</td>
+</tr>
+<tr>
+<td>密码评估错误多少次？</td>
+<td>2 次。</td>
+</tr>
+<tr>
+<td>6 个名称有哪些共同特征？</td>
+<td>含 <code>##MS_</code> 与 <code>Certificate##</code>。</td>
+</tr>
+<tr>
+<td><code>##MS_*Certificate##</code> 是否证明证书被窃取？</td>
+<td>否，只是失败登录名。</td>
+</tr>
+<tr>
+<td>两个 Policy 登录名是什么？</td>
+<td><code>##MS_PolicyEventProcessingLogin##</code> 和 <code>##MS_PolicyTsqlExecutionLogin##</code>。</td>
+</tr>
+<tr>
+<td>失败是否来自多个源 IP？</td>
+<td>否，均来自 10.0.2.17。</td>
+</tr>
+<tr>
+<td>能确认账号喷洒使用同一个密码吗？</td>
+<td>不能，日志没有提供尝试的密码。</td>
+</tr>
+<tr>
+<td>能确认 SQL Server 登录爆破成功吗？</td>
+<td>不能，只有失败事件。</td>
+</tr>
+<tr>
+<td>可疑行为为何偏向自动化？</td>
+<td>10 个不同登录名在约 0.108 秒内密集失败。</td>
+</tr>
+<tr>
+<td>能确定目标 SQL 端口为 1433 吗？</td>
+<td>不能，事件没有 TCP 目标端口。</td>
+</tr>
+<tr>
+<td>能确认应用使用了 master 数据库吗？</td>
+<td>事件数据含 master，但不能据此确认任何成功数据库操作。</td>
+</tr>
+<tr>
+<td>SQL 18456 与 Security 4625 一样吗？</td>
+<td>不一样，18456 来自 SQL 引擎，4625 来自 Windows 安全审计。</td>
+</tr>
+<tr>
+<td>State 8 是否在这份 EVTX 中明示？</td>
+<td>没有；只是微软文档中密码错误的常见状态参考。</td>
+</tr>
+<tr>
+<td>如何查看更详细 SQL 登录失败状态？</td>
+<td>关联 SQL Server ERRORLOG 中的 18456 State。</td>
+</tr>
+<tr>
+<td>最稳妥的结论是什么？</td>
+<td>同一客户端短时批量触发 SQL 登录失败，疑似自动化用户名探测及密码猜测。</td>
+</tr>
+</tbody></table>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/Blue-Team/" title="Blue Team" data-aos="zoom-in">Blue Team</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Windows-%E6%97%A5%E5%BF%97/" rel="tag" title="Windows 日志">Windows 日志</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="Spring MVC 路由解析分号绕过" class="lazyload">
+        <a href="/2026/10/18/%E6%9F%90%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B7%AF%E5%BE%84%E8%A7%A3%E6%9E%90%E7%BB%95%E8%BF%87/" aria-label="前一篇: Spring MVC 路由解析分号绕过" title="前一篇: Spring MVC 路由解析分号绕过"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            Spring MVC 路由解析分号绕过
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Kerberos 多账户身份验证" class="lazyload">
+      <a href="/2026/10/15/Kerberos%20%E5%A4%9A%E8%B4%A6%E6%88%B7%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81/" aria-label="后一篇: Kerberos 多账户身份验证"  title="后一篇: Kerberos 多账户身份验证"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          Kerberos 多账户身份验证
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        370k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        30:04
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL-Server-%E5%A4%9A%E8%B4%A6%E6%88%B7%E7%99%BB%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">SQL Server 多账户登录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E4%B8%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%BF%9E%E7%BB%AD%E5%B0%9D%E8%AF%95-sa-%E4%B8%8E-root"><span class="toc-number">1.2.1.</span> <span class="toc-text">同一客户端连续尝试 sa 与 root</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E4%B8%AA-MS-Certificate-%E7%99%BB%E5%BD%95%E5%90%8D"><span class="toc-number">1.2.2.</span> <span class="toc-text">六个 ##MS_*Certificate## 登录名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA-MS-Policy-Login-%E5%AF%86%E7%A0%81%E8%AF%84%E4%BC%B0%E9%94%99%E8%AF%AF"><span class="toc-number">1.2.3.</span> <span class="toc-text">两个 ##MS_Policy*Login## 密码评估错误</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL-Server-18456-%E7%99%BB%E5%BD%95%E5%A4%B1%E8%B4%A5%E4%BA%8B%E4%BB%B6%E5%88%86%E6%9E%90%E9%97%AE%E7%AD%94"><span class="toc-number">2.</span> <span class="toc-text">SQL Server 18456 登录失败事件分析问答</span></a></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">286</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">200</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "SQL Server 多账户登录",
+          url: "https://suc2es2.github.io/2026/10/15/SQL%20Server%20%E5%A4%9A%E8%B4%A6%E6%88%B7%E7%99%BB%E5%BD%95/",
+          excerpt: "",
+          description: "",
+          stripContent: "SQL Server 多账户登录样本信息   项目 取证结果    原始文件 MSSQL_multiple_failed_logon_EventID_18456.evtx   文件大小 69,632 字节（68 KiB）   SHA-256 014e936e1b5bad13275d3c6f2e61cc6dc74c4514557b20264b27df06a08d6ee6   EVTX 文件签名 ElfFile   有效数据块 1 个 ElfChnk   有效物理记录 10 条，文件内 Record",
+          date: "Thu Oct 15 2026 12:29:00 GMT+0800",
+          updated: "Thu Oct 22 2026 18:18:56 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
