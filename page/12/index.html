@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">284</div>
+    <div class="sidebar-state-number">285</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -223,6 +223,9 @@
               <a href="/2026/10/18/%E6%9F%90%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B7%AF%E5%BE%84%E8%A7%A3%E6%9E%90%E7%BB%95%E8%BF%87/" title="Spring MVC 路由解析分号绕过">Spring MVC 路由解析分号绕过</a>
             </li>
             <li>
+              <a href="/2026/10/15/Kerberos%20%E5%A4%9A%E8%B4%A6%E6%88%B7%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81/" title="Kerberos 多账户身份验证">Kerberos 多账户身份验证</a>
+            </li>
+            <li>
               <a href="/2026/10/15/Netlogon%20RPC%20%E8%B0%83%E7%94%A8%E9%93%BE%E8%AF%86%E5%88%AB%EF%BC%88Zerologon%20CVE-2020-1472%EF%BC%89/" title="Netlogon RPC 调用链识别（Zerologon CVE-2020-1472）">Netlogon RPC 调用链识别（Zerologon CVE-2020-1472）</a>
             </li>
             <li>
@@ -230,9 +233,6 @@
             </li>
             <li>
               <a href="/2026/10/15/%E5%9F%9F%E6%8E%A7%E5%88%B6%E5%99%A8%20NTDS%20dit%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%89%AF%E6%9C%AC%E5%88%B6%E4%BD%9C/" title="域控制器 `NTDS.dit` 数据库副本制作">域控制器 `NTDS.dit` 数据库副本制作</a>
-            </li>
-            <li>
-              <a href="/2026/10/15/Frida%20%E6%B3%A8%E5%85%A5%E8%BE%85%E5%8A%A9%E8%BF%9B%E7%A8%8B%E8%AE%BF%E9%97%AE%20TeamViewer/" title="Frida 注入辅助进程访问 TeamViewer">Frida 注入辅助进程访问 TeamViewer</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,36 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/28/%E8%BF%99%E5%85%B3%E9%9A%BE%E4%B8%8D%E5%80%92%E4%BD%A0%E7%AE%97%E7%82%B8%E5%8D%95/" aria-label="出题——这关难不倒你算炸单" title="出题——这关难不倒你算炸单"></a>
+      <a class="post-link" href="/2026/04/29/WebShell%20%E5%85%8D%E6%9D%80%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%90%E7%AE%97%20+%20%E5%8A%A8%E6%80%81%E8%B0%83%E7%94%A8/" aria-label="PHP WebShell 免杀之字符串运算 + 动态调用" title="PHP WebShell 免杀之字符串运算 + 动态调用"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="PHP WebShell 免杀之字符串运算 + 动态调用" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-29</span>
+        <span><span class="icon-pencil"></span>1.1k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">PHP WebShell 免杀之字符串运算 + 动态调用</h2>
+      <article class="post-article">
+          PHP WebShell 免杀之字符串运算 + 动态调用前言以火绒为例，如果直接传入一句话木马包被识别的
+例如下面我刚写完保存就给我删了
+
+我们要从杀软的角度去思考，毕竟杀软也是圈内安全人士开发的
+识别木马最简单的方法就是读取文件内容识别关键字如 eval、assert 等等
+当然也还有结构特征，例如 @eval($_GET[&amp;quot;code&amp;quot;]) 等等
+以上是静态的，当然还有动态的，只不过这个根据杀软的强度来的，只要静态过了，动态大概率会过
+WebShell 的动态不像 C2 木马那样容易捕捉
+思路先确定 Payload 结构，避免常规的结构特征，使用较为冷门的去打 RCE
+a
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/28/%E8%BF%99%E5%85%B3%E9%9A%BE%E4%B8%8D%E5%80%92%E4%BD%A0%E7%AE%97%E7%82%B8%E5%8D%95/" aria-label="出题——这关难不倒你算炸单" title="出题——这关难不倒你算炸单"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="出题——这关难不倒你算炸单" class="lazyload">
     </div>
     <div class="post-info">
@@ -273,9 +301,9 @@ Symfony 框架国内不用，WordPress 现成的靶机（VulnHub）也都有，�
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/27/%E7%94%B5%E7%AB%9E%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%20XSS-1/" aria-label="某电竞俱乐部小程序文件上传 XSS" title="某电竞俱乐部小程序文件上传 XSS"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="某电竞俱乐部小程序文件上传 XSS" class="lazyload">
     </div>
     <div class="post-info">
@@ -303,9 +331,9 @@ XSS点击头像处
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/25/%E5%85%85%E7%94%B5%E6%A1%A9%E6%94%AF%E4%BB%98%E6%BC%8F%E6%B4%9E-1/" aria-label="某充电桩小程序支付漏洞" title="某充电桩小程序支付漏洞"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="某充电桩小程序支付漏洞" class="lazyload">
     </div>
     <div class="post-info">
@@ -334,9 +362,9 @@ XSS点击头像处
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/25/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Windows%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-%E8%BF%91%E6%BA%90%E6%B8%97%E9%80%8F/" aria-label="知攻善防实验室 Windows 应急响应——近源渗透" title="知攻善防实验室 Windows 应急响应——近源渗透"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="知攻善防实验室 Windows 应急响应——近源渗透" class="lazyload">
     </div>
     <div class="post-info">
@@ -366,9 +394,9 @@ XSS点击头像处
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/23/Gemini%20Inc%201/" aria-label="VulnHub Gemini Inc：1" title="VulnHub Gemini Inc：1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Gemini Inc：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -404,9 +432,9 @@ XSSEdit info of admin在后台编辑资料中尝试注
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/20/Homeless%201/" aria-label="VulnHub Homeless：1" title="VulnHub Homeless：1"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Homeless：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -437,9 +465,9 @@ CTFindex（UA 头爆破）扫描后台没东西，看看 robots.txt 发现提示
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/16/Depth%201/" aria-label="VulnHub Depth：1" title="VulnHub Depth：1"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VulnHub Depth：1" class="lazyload">
     </div>
     <div class="post-info">
@@ -467,9 +495,9 @@ RCEFile listing checker扫描目录发现 /test.jsp，功能是可以执行系�
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/14/2026%20%E6%95%B0%E5%AD%97%E4%B8%AD%E5%9B%BD%E5%88%9B%E6%96%B0%E5%A4%A7%E8%B5%9B%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%90%E8%B5%9B%E9%81%93%E5%9B%A2%E9%98%9F%E8%B5%9B%20WriteUp/" aria-label="2026 数字中国创新大赛网络安全子赛道团队赛 WriteUp" title="2026 数字中国创新大赛网络安全子赛道团队赛 WriteUp"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2026 数字中国创新大赛网络安全子赛道团队赛 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -496,9 +524,9 @@ Misc冰碧蝎?过滤 HTTP
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/04/11/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Linux%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-2/" aria-label="知攻善防实验室 Linux 应急响应——2" title="知攻善防实验室 Linux 应急响应——2"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="知攻善防实验室 Linux 应急响应——2" class="lazyload">
     </div>
     <div class="post-info">
@@ -531,35 +559,6 @@ Misc冰碧蝎?过滤 HTTP
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/11/%E7%9F%A5%E6%94%BB%E5%96%84%E9%98%B2%E5%AE%9E%E9%AA%8C%E5%AE%A4%20Linux%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94-1/" aria-label="知攻善防实验室 Linux 应急响应——1" title="知攻善防实验室 Linux 应急响应——1"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="知攻善防实验室 Linux 应急响应——1" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-11</span>
-        <span><span class="icon-pencil"></span>344 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
-      </div>
-      <h2 class="post-title">知攻善防实验室 Linux 应急响应——1</h2>
-      <article class="post-article">
-          知攻善防实验室 Linux 应急响应——1题目小王急匆匆地找到小张，小王说：张哥，我 dev 服务器被黑了，快救救我！！
-应急响应黑客的 IP 地址（Redis 远程连接）靶机需要关注其公众号获取
-账号密码：defend&amp;#x2F;defend, root&amp;#x2F;defend
-登录后先看看有无 Web 网站，看黑客是不是从 Web 打进来的
-很显然是没有的，因为它没有 /www 目录
-
-再查看日志文件
-发现 .log 的日志文件主要是以 vmware、yum 以及 Xorg 为主，这些主要是系统相关的
-
-从攻击者角度思考，一台靶机如果没有 Web 网站，那该怎么打进来呢？？？
-没错，那就是
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/11/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/13/">下一页 &raquo;</a>
   </nav>
@@ -583,10 +582,10 @@ Misc冰碧蝎?过滤 HTTP
       </div>
       <div>
         <span class="icon-brush"></span>
-        368k
+        369k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        29:55
+        30:00
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -614,7 +613,7 @@ Misc冰碧蝎?过滤 HTTP
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">284</div>
+    <div class="sidebar-state-number">285</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
