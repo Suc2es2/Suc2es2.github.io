@@ -1,0 +1,768 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_a0oqhord1y';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'https://suc2es2.github.io';</script>
+  <title>
+    PPLdump 利用 KnownDLLs 劫持绕过 PPL 保护并借助 `services.exe` 转储 LSASS | 雾島风起時
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_a0oqhord1y.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="PPLdump 利用 KnownDLLs 劫持绕过 PPL 保护并借助 services.exe 转储 LSASS样本信息   项目 结果    原始文件 ppl_bypass_ppldump_knowdll_hijack_sysmon_security.evtx   文件大小 69,632 字节（68 KiB）   SHA-256 9ac47a1ab7ac5e899dede49a4ea3512f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PPLdump 利用 KnownDLLs 劫持绕过 PPL 保护并借助 &#96;services.exe&#96; 转储 LSASS">
+<meta property="og:url" content="https://suc2es2.github.io/2026/10/15/PPLdump%20%E5%88%A9%E7%94%A8%20KnownDLLs%20%E5%8A%AB%E6%8C%81%E7%BB%95%E8%BF%87%20PPL%20%E4%BF%9D%E6%8A%A4%E5%B9%B6%E5%80%9F%E5%8A%A9%20%60services.exe%60%20%E8%BD%AC%E5%82%A8%20LSASS/index.html">
+<meta property="og:site_name" content="雾島风起時">
+<meta property="og:description" content="PPLdump 利用 KnownDLLs 劫持绕过 PPL 保护并借助 services.exe 转储 LSASS样本信息   项目 结果    原始文件 ppl_bypass_ppldump_knowdll_hijack_sysmon_security.evtx   文件大小 69,632 字节（68 KiB）   SHA-256 9ac47a1ab7ac5e899dede49a4ea3512f">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034lJecOWXsNcVEBDqLxBp.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034lIgvGn7NdmQy1zIcvsv.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034lJSKkX59bOPXYvjXAnx.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034lJSKwoLV6rxaihysL0E.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034lJUoJJeNXN5zZU9KQKn.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034lJiveUGPpe3y17V88WZ.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034lJlsthSUl0h9is1bjNz.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034lJpErILd7lUtKUnfyiq.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034lJrO7bkoVbBHTXuZ6rS.png">
+<meta property="article:published_time" content="2026-10-15T06:29:00.000Z">
+<meta property="article:modified_time" content="2026-10-24T06:03:30.231Z">
+<meta property="article:author" content="ALL">
+<meta property="article:tag" content="Windows 日志">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/i/034lJecOWXsNcVEBDqLxBp.png">
+    <link rel="alternate" href="/atom.xml" title="雾島风起時" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </a>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </a>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+        <picture>
+        </picture>
+          <img  fetchpriority="high" src="/images/banner.webp" alt="PPLdump 利用 KnownDLLs 劫持绕过 PPL 保护并借助 `services.exe` 转储 LSASS">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">PPLdump 利用 KnownDLLs 劫持绕过 PPL 保护并借助 `services.exe` 转储 LSASS</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content"  class="sidebar-right" >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PPLdump-%E5%88%A9%E7%94%A8-KnownDLLs-%E5%8A%AB%E6%8C%81%E7%BB%95%E8%BF%87-PPL-%E4%BF%9D%E6%8A%A4%E5%B9%B6%E5%80%9F%E5%8A%A9-services-exe-%E8%BD%AC%E5%82%A8-LSASS"><span class="toc-number">1.</span> <span class="toc-text">PPLdump 利用 KnownDLLs 劫持绕过 PPL 保护并借助 services.exe 转储 LSASS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PPLdump-%E7%94%B1-cmd-exe-%E5%90%AF%E5%8A%A8"><span class="toc-number">1.2.1.</span> <span class="toc-text">PPLdump 由 cmd.exe 启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PPLdump-%E5%AF%B9-LSASS%E3%80%81winlogon-%E8%BF%9B%E8%A1%8C%E8%BF%9B%E7%A8%8B%E8%AE%BF%E9%97%AE"><span class="toc-number">1.2.2.</span> <span class="toc-text">PPLdump 对 LSASS、winlogon 进行进程访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NTFS-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%BA%8B%E5%8A%A1%E6%B4%BB%E5%8A%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">NTFS 文件系统事务活动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PPLdump-%E5%90%AF%E5%8A%A8%E5%BC%82%E5%B8%B8-services-exe"><span class="toc-number">1.2.4.</span> <span class="toc-text">PPLdump 启动异常 services.exe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dbgcore-dll-%E5%8A%A0%E8%BD%BD-LSASS-%E8%AE%BF%E9%97%AE-lsass-dmp-%E6%96%87%E4%BB%B6%E5%88%9B%E5%BB%BA"><span class="toc-number">1.2.5.</span> <span class="toc-text">dbgcore.dll 加载 + LSASS 访问 + lsass.dmp 文件创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E5%82%A8%E6%96%87%E4%BB%B6%E5%AE%9E%E9%99%85%E5%88%9B%E5%BB%BA"><span class="toc-number">1.2.6.</span> <span class="toc-text">转储文件实际创建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">287</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">200</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-PPLdump 利用 KnownDLLs 劫持绕过 PPL 保护并借助 `services.exe` 转储 LSASS" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-10-15T06:29:00.000Z" itemprop="datePublished">2026-10-15</time>
+    <time style="display: none;" id="post-update-time">2026-10-24</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h1 id="PPLdump-利用-KnownDLLs-劫持绕过-PPL-保护并借助-services-exe-转储-LSASS"><a href="#PPLdump-利用-KnownDLLs-劫持绕过-PPL-保护并借助-services-exe-转储-LSASS" class="headerlink" title="PPLdump 利用 KnownDLLs 劫持绕过 PPL 保护并借助 services.exe 转储 LSASS"></a>PPLdump 利用 KnownDLLs 劫持绕过 PPL 保护并借助 <code>services.exe</code> 转储 LSASS</h1><h2 id="样本信息"><a href="#样本信息" class="headerlink" title="样本信息"></a>样本信息</h2><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原始文件</td>
+<td><code>ppl_bypass_ppldump_knowdll_hijack_sysmon_security.evtx</code></td>
+</tr>
+<tr>
+<td>文件大小</td>
+<td><strong>69,632 字节（68 KiB）</strong></td>
+</tr>
+<tr>
+<td>SHA-256</td>
+<td><code>9ac47a1ab7ac5e899dede49a4ea3512f0d3628edb9605981fe78bc0aec6f296f</code></td>
+</tr>
+<tr>
+<td>格式</td>
+<td>Windows EVTX，<code>ElfFile</code> &#x2F; <code>ElfChnk</code></td>
+</tr>
+<tr>
+<td>有效事件数</td>
+<td><strong>20 条</strong>；物理 Record 1—20</td>
+</tr>
+<tr>
+<td>事件来源</td>
+<td><code>Microsoft-Windows-Sysmon</code> + <code>Microsoft-Windows-Security-Auditing</code></td>
+</tr>
+<tr>
+<td>日志通道</td>
+<td><code>Microsoft-Windows-Sysmon/Operational</code>、<code>Security</code></td>
+</tr>
+<tr>
+<td>主机</td>
+<td><code>MSEDGEWIN10</code></td>
+</tr>
+<tr>
+<td>主要运行身份</td>
+<td><code>MSEDGEWIN10\IEUser</code>、<code>NT AUTHORITY\SYSTEM</code></td>
+</tr>
+<tr>
+<td>主要日期</td>
+<td><strong>2021-04-22（UTC）</strong>，北京时间 2021-04-23</td>
+</tr>
+</tbody></table>
+<p>PPL 的中文名称是轻量级受保护进程，是 Windows 用来保护重要系统进程的一种安全机制</p>
+<p>它的主要作用是：限制保护级别不足的其他进程读取、修改、注入或终止受保护进程</p>
+<p><img src="https://pic1.imgdb.cn/i/034lJecOWXsNcVEBDqLxBp.png" alt="pasted_1792821268408_c0qy5w.png"></p>
+<p>KnownDLLs 劫持是指攻击者设法操纵系统对已知 DLL 的映射关系或加载过程，让目标进程加载攻击者控制的 DLL 代码</p>
+<p>PPLdump 是一款用于研究和利用 Windows PPL 保护绕过缺陷的工具，能够在特定存在漏洞的系统版本上，借助用户态技术获取受保护进程的内存转储</p>
+<p>它的主要特点是使用用户态技术，而不是必须加载恶意内核驱动来直接关闭 PPL 保护</p>
+<p>官方项目也明确说明：其历史版本采用 KnownDLLs 劫持机制，结合 NTFS 事务相关技术实现内存转储</p>
+<h2 id="攻击链"><a href="#攻击链" class="headerlink" title="攻击链"></a>攻击链</h2><h3 id="PPLdump-由-cmd-exe-启动"><a href="#PPLdump-由-cmd-exe-启动" class="headerlink" title="PPLdump 由 cmd.exe 启动"></a>PPLdump 由 <code>cmd.exe</code> 启动</h3><ol>
+<li><p>工具直接以 <code>PPLdump.exe</code> 的名称运行，位于当前用户桌面，不是 Windows 系统自带的 <code>services.exe</code></p>
+</li>
+<li><p><code>-v lsass lsass.dmp</code> 明确表示操作目标为 LSASS、输出文件名为 <code>lsass.dmp</code>。命令行<strong>只能证实操作意图</strong>，本身不能证明转储成功</p>
+</li>
+<li><p><code>IntegrityLevel=High</code>，说明 PPLdump 处于高完整性级别。是否具有具体的 PPL 绕过所需系统状态，还应结合后续行为判断</p>
+</li>
+<li><p>父进程是 <code>cmd.exe</code>（PID 4864）；日志没有更前一级父进程链，不能据此确认攻击者的初始入口</p>
+</li>
+</ol>
+<p><img src="https://pic1.imgdb.cn/i/034lIgvGn7NdmQy1zIcvsv.png" alt="pasted_1792818912885_l5bqvt.png"></p>
+<h3 id="PPLdump-对-LSASS、winlogon-进行进程访问"><a href="#PPLdump-对-LSASS、winlogon-进行进程访问" class="headerlink" title="PPLdump 对 LSASS、winlogon 进行进程访问"></a>PPLdump 对 LSASS、winlogon 进行进程访问</h3><p><strong>ProcessGuid 对应：</strong> <code>PPLdump.exe</code> 的 <code>{747f3d96-f415-6081-0000-001040fe4900}</code> 在记录 2、3、4 中保持一致；记录 2、3 目标 LSASS GUID 同为 <code>{747f3d96-6e19-6082-0000-001070650000}</code>，不是仅凭相同的 PID 猜测</p>
+<p>权限含义：<code>0x1000=PROCESS_QUERY_LIMITED_INFORMATION</code>；<code>0x1400=PROCESS_QUERY_LIMITED_INFORMATION | PROCESS_QUERY_INFORMATION</code></p>
+<p><img src="https://pic1.imgdb.cn/i/034lJSKkX59bOPXYvjXAnx.png" alt="pasted_1792820773471_khaxzh.png"></p>
+<p><img src="https://pic1.imgdb.cn/i/034lJSKwoLV6rxaihysL0E.png" alt="pasted_1792820783841_qeik2s.png"></p>
+<h3 id="NTFS-文件系统事务活动"><a href="#NTFS-文件系统事务活动" class="headerlink" title="NTFS 文件系统事务活动"></a>NTFS 文件系统事务活动</h3><p>PPLdump 官方公开原理包含利用 NTFS 事务让替换 DLL 内容能够通过节对象参与受保护进程加载。此处的事务日志<strong>和该工作机制吻合</strong></p>
+<p><img src="https://pic1.imgdb.cn/i/034lJUoJJeNXN5zZU9KQKn.png" alt="pasted_1792820881539_v9frhq.png"></p>
+<h3 id="PPLdump-启动异常-services-exe"><a href="#PPLdump-启动异常-services-exe" class="headerlink" title="PPLdump 启动异常 services.exe"></a>PPLdump 启动异常 <code>services.exe</code></h3><ol>
+<li><p>这个 <code>services.exe</code> 的 <strong>PID 为 7188</strong>，由 <code>PPLdump.exe</code>（PID 6316）派生；它不是通常作为系统服务控制管理器运行的 <code>services.exe</code> 实例（稍后日志中另有 PID 624）</p>
+</li>
+<li><p>子进程命令行的第一个数字 <strong>652</strong>，恰好是目标 LSASS 的 PID；后接 <code>lsass.dmp</code> 和一个 GUID，明显不是普通服务控制管理器的惯常命令行</p>
+</li>
+<li><p>该进程以 <code>NT AUTHORITY\SYSTEM</code> 身份运行，且 <code>IntegrityLevel=System</code>。这能证明运行身份，但<strong>并不能单独从 Sysmon 1 看出 Protected Process Light 的实际保护级别</strong></p>
+</li>
+<li><p>子进程 <code>ParentProcessGuid</code> 和第一条 PPLdump 的 <code>ProcessGuid</code> 严格相等，父子进程关系有强直接证据</p>
+</li>
+</ol>
+<p><img src="https://pic1.imgdb.cn/i/034lJiveUGPpe3y17V88WZ.png" alt="pasted_1792821438084_1b3pwf.png"></p>
+<h3 id="dbgcore-dll-加载-LSASS-访问-lsass-dmp-文件创建"><a href="#dbgcore-dll-加载-LSASS-访问-lsass-dmp-文件创建" class="headerlink" title="dbgcore.dll 加载 + LSASS 访问 + lsass.dmp 文件创建"></a><code>dbgcore.dll</code> 加载 + LSASS 访问 + <code>lsass.dmp</code> 文件创建</h3><p><code>dbgcore.dll</code> 是 Windows 的调试&#x2F;转储相关模块，它由子 <code>services.exe</code> 加载。这里的模块路径在正常 Windows 系统目录，且日志中签名有效；<strong>可疑的是加载主体、时间和后续 LSASS 访问的组合，而不是 DLL 文件本身是恶意文件</strong></p>
+<p><img src="https://pic1.imgdb.cn/i/034lJlsthSUl0h9is1bjNz.png" alt="pasted_1792821554997_thtex0.png"></p>
+<p><code>0x1410</code> 含 <code>0x10=PROCESS_VM_READ</code>、<code>0x400=PROCESS_QUERY_INFORMATION</code>、<code>0x1000=PROCESS_QUERY_LIMITED_INFORMATION</code>；<code>0x1FFFFF</code> 为包含多类访问位的广泛进程访问掩码。两次访问的 Source&#x2F;Target ProcessGuid 都一致，能够归入同一组进程</p>
+<p><img src="https://pic1.imgdb.cn/i/034lJpErILd7lUtKUnfyiq.png" alt="pasted_1792821687032_matuk8.png"></p>
+<p>以下是 Record 11 调用栈中有代表性的连续片段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\System32\KERNEL32.DLL+237f8</span><br><span class="line">C:\Windows\system32\dbgcore.DLL+9247</span><br><span class="line">C:\Windows\system32\dbgcore.DLL+15dc5</span><br><span class="line">C:\Windows\system32\dbgcore.DLL+fec6</span><br><span class="line">C:\Windows\system32\dbgcore.DLL+5f56</span><br><span class="line">C:\Windows\system32\dbgcore.DLL+69f7</span><br><span class="line">C:\Windows\System32\EventAggregation.dll+15d2</span><br></pre></td></tr></table></figure>
+
+<p>这组调用栈给出了比单纯 <code>GrantedAccess</code> 更强的内存转储相关线索，特别是 <code>dbgcore.dll</code> 与 <code>EventAggregation.dll</code> 同时出现，符合 PPLdump 利用正常组件完成受保护进程转储的设计</p>
+<h3 id="转储文件实际创建"><a href="#转储文件实际创建" class="headerlink" title="转储文件实际创建"></a>转储文件实际创建</h3><p>不仅 PPLdump 命令行指定了 <code>lsass.dmp</code>，Sysmon 还实际记录了由 <strong>PID 7188 的 <code>services.exe</code></strong> 创建桌面上的同名文件，且其 ProcessGuid 与 Record 6 的子进程一致</p>
+<p><img src="https://pic1.imgdb.cn/i/034lJrO7bkoVbBHTXuZ6rS.png" alt="pasted_1792821771956_la48w9.png"></p>
+<h2 id="测验"><a href="#测验" class="headerlink" title="测验"></a>测验</h2><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>答案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>样本共有多少条有效事件？</td>
+<td>20 条，来自同一个有效 EVTX Chunk。</td>
+</tr>
+<tr>
+<td>主要攻击工具名称？</td>
+<td>PPLdump.exe。</td>
+</tr>
+<tr>
+<td>攻击工具完整路径？</td>
+<td>C:\Users\IEUser\Desktop\PPLdump.exe。</td>
+</tr>
+<tr>
+<td>工具的原始执行命令？</td>
+<td><code>PPLdump.exe  -v lsass lsass.dmp</code>。</td>
+</tr>
+<tr>
+<td>PPLdump 的 PID？</td>
+<td>6316。</td>
+</tr>
+<tr>
+<td>PPLdump 的 ProcessGuid？</td>
+<td><code>{747f3d96-f415-6081-0000-001040fe4900}</code>。</td>
+</tr>
+<tr>
+<td>启动 PPLdump 的父进程是什么？</td>
+<td>cmd.exe（PID 4864）。</td>
+</tr>
+<tr>
+<td>执行 PPLdump 的用户？</td>
+<td>MSEDGEWIN10\IEUser。</td>
+</tr>
+<tr>
+<td>PPLdump 的完整性级别？</td>
+<td>High。</td>
+</tr>
+<tr>
+<td>LSASS 进程 PID？</td>
+<td>652。</td>
+</tr>
+<tr>
+<td>LSASS 的 ProcessGuid？</td>
+<td><code>{747f3d96-6e19-6082-0000-001070650000}</code>。</td>
+</tr>
+<tr>
+<td>PPLdump 初次访问 LSASS 的权限是什么？</td>
+<td><code>GrantedAccess=0x1000</code>，查询受限的进程信息。</td>
+</tr>
+<tr>
+<td>PPLdump 访问了哪些其他安全敏感进程？</td>
+<td>除 LSASS 外还访问了 winlogon.exe（PID 592），权限 <code>0x1400</code>。</td>
+</tr>
+<tr>
+<td>新启动的 services.exe PID？</td>
+<td>7188（不同于后来正常的 services.exe PID 624）。</td>
+</tr>
+<tr>
+<td>新 services.exe 的运行账户？</td>
+<td>NT AUTHORITY\SYSTEM。</td>
+</tr>
+<tr>
+<td>新 services.exe 的父进程 PID？</td>
+<td>6316，即 PPLdump.exe。</td>
+</tr>
+<tr>
+<td>新 services.exe 命令中出现哪个目标 PID？</td>
+<td>652，正是 LSASS 的 PID。</td>
+</tr>
+<tr>
+<td>新 services.exe 命令中出现的 GUID？</td>
+<td><code>a708b1d9-e27b-48bc-8ea7-c56d3a23f99</code>，用途不能单凭该文件完全确定。</td>
+</tr>
+<tr>
+<td>哪个进程实际创建了转储文件？</td>
+<td>services.exe（PID 7188）。</td>
+</tr>
+<tr>
+<td>转储文件创建事件 ID？</td>
+<td>Sysmon Event ID 11。</td>
+</tr>
+<tr>
+<td>输出文件路径？</td>
+<td><code>C:\Users\IEUser\Desktop\lsass.dmp</code>。</td>
+</tr>
+<tr>
+<td>services.exe 加载的关键 DLL？</td>
+<td><code>C:\Windows\System32\dbgcore.dll</code>。</td>
+</tr>
+<tr>
+<td>该 DLL 的签名状态？</td>
+<td>Signed&#x3D;true，SignatureStatus&#x3D;Valid，日志标记签名为 Microsoft Windows。</td>
+</tr>
+<tr>
+<td>子 services.exe 对 LSASS 的两次访问权限？</td>
+<td><code>0x1410</code> 和 <code>0x1FFFFF</code>。</td>
+</tr>
+<tr>
+<td>哪个访问权限包含 PROCESS_VM_READ？</td>
+<td><code>0x1410</code>，其中低位 <code>0x10</code> 即 PROCESS_VM_READ。</td>
+</tr>
+<tr>
+<td>哪个访问事件的调用栈明确包含 dbgcore.dll？</td>
+<td>Record 11，服务进程访问 LSASS。</td>
+</tr>
+<tr>
+<td>两条 Security 事件 ID 是多少？</td>
+<td>均为 4985（文件系统事务状态变更）。</td>
+</tr>
+<tr>
+<td>这两条 Security 事件对应哪个进程？</td>
+<td>PPLdump.exe（PID 6316）。</td>
+</tr>
+<tr>
+<td>两条事务记录的 NewState 是什么？</td>
+<td>48 与 56；本日志只给数值，没有权威状态名。</td>
+</tr>
+<tr>
+<td>两条 Security 事件的 TransactionId 是否一致？</td>
+<td>一致，均为 <code>{166192ff-a400-11eb-b76a-0800276b894e}</code>。</td>
+</tr>
+<tr>
+<td>KnownDLLs 符号链接是否被本日志直接记录？</td>
+<td>没有。结合 PPLdump 官方工作原理推断其可能参与，但 EVTX 未直接展示。</td>
+</tr>
+<tr>
+<td>能否证明 lsass.dmp 已生成？</td>
+<td>能确认文件创建&#x2F;覆盖事件；无法单凭 EVTX 证明文件内容完整。</td>
+</tr>
+<tr>
+<td>能否证明账号密码或哈希已被导出？</td>
+<td>不能，未提供转储内容及凭据解析结果。</td>
+</tr>
+<tr>
+<td>能否证明外传？</td>
+<td>不能，此文件没有对应网络连接或数据外传记录。</td>
+</tr>
+<tr>
+<td>此份文件与之前普通 LSASS ProcessAccess 题最大的区别？</td>
+<td>本份出现 PPLdump 的命令、由其派生的系统服务进程、dbgcore.dll 调用栈和 lsass.dmp 文件创建事件，证据更完整。</td>
+</tr>
+<tr>
+<td>主要 ATT&amp;CK 对应？</td>
+<td>T1003.001（LSASS Memory）；KnownDLL 劫持可作为有条件的 T1574.001 参考。</td>
+</tr>
+</tbody></table>
+
+    </div>
+    <footer class="article-footer">
+        <a class="article-category-link" href="/categories/Blue-Team/" title="Blue Team" data-aos="zoom-in">Blue Team</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Windows-%E6%97%A5%E5%BF%97/" rel="tag" title="Windows 日志">Windows 日志</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="Spring MVC 路由解析分号绕过" class="lazyload">
+        <a href="/2026/10/18/%E6%9F%90%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B7%AF%E5%BE%84%E8%A7%A3%E6%9E%90%E7%BB%95%E8%BF%87/" aria-label="前一篇: Spring MVC 路由解析分号绕过" title="前一篇: Spring MVC 路由解析分号绕过"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            Spring MVC 路由解析分号绕过
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="SQL Server 多账户登录" class="lazyload">
+      <a href="/2026/10/15/SQL%20Server%20%E5%A4%9A%E8%B4%A6%E6%88%B7%E7%99%BB%E5%BD%95/" aria-label="后一篇: SQL Server 多账户登录"  title="后一篇: SQL Server 多账户登录"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          SQL Server 多账户登录
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      ALL
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        371.8k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        30:12
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PPLdump-%E5%88%A9%E7%94%A8-KnownDLLs-%E5%8A%AB%E6%8C%81%E7%BB%95%E8%BF%87-PPL-%E4%BF%9D%E6%8A%A4%E5%B9%B6%E5%80%9F%E5%8A%A9-services-exe-%E8%BD%AC%E5%82%A8-LSASS"><span class="toc-number">1.</span> <span class="toc-text">PPLdump 利用 KnownDLLs 劫持绕过 PPL 保护并借助 services.exe 转储 LSASS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.</span> <span class="toc-text">样本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PPLdump-%E7%94%B1-cmd-exe-%E5%90%AF%E5%8A%A8"><span class="toc-number">1.2.1.</span> <span class="toc-text">PPLdump 由 cmd.exe 启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PPLdump-%E5%AF%B9-LSASS%E3%80%81winlogon-%E8%BF%9B%E8%A1%8C%E8%BF%9B%E7%A8%8B%E8%AE%BF%E9%97%AE"><span class="toc-number">1.2.2.</span> <span class="toc-text">PPLdump 对 LSASS、winlogon 进行进程访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NTFS-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%BA%8B%E5%8A%A1%E6%B4%BB%E5%8A%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">NTFS 文件系统事务活动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PPLdump-%E5%90%AF%E5%8A%A8%E5%BC%82%E5%B8%B8-services-exe"><span class="toc-number">1.2.4.</span> <span class="toc-text">PPLdump 启动异常 services.exe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dbgcore-dll-%E5%8A%A0%E8%BD%BD-LSASS-%E8%AE%BF%E9%97%AE-lsass-dmp-%E6%96%87%E4%BB%B6%E5%88%9B%E5%BB%BA"><span class="toc-number">1.2.5.</span> <span class="toc-text">dbgcore.dll 加载 + LSASS 访问 + lsass.dmp 文件创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E5%82%A8%E6%96%87%E4%BB%B6%E5%AE%9E%E9%99%85%E5%88%9B%E5%BB%BA"><span class="toc-number">1.2.6.</span> <span class="toc-text">转储文件实际创建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text">测验</span></a></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="ALL" class="lazyload">
+  <div class="sidebar-author-name">ALL</div>
+  <div class="sidebar-description">雾島风起時の日常</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">287</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">200</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-github sidebar-social-icon">
+      <a href=https://github.com/duckpigdog itemprop="url" target="_blank" aria-label="github" rel="noopener nofollow noreferrer"></a>
+    </div>
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/1337537884?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "ALL",
+          title: "PPLdump 利用 KnownDLLs 劫持绕过 PPL 保护并借助 `services.exe` 转储 LSASS",
+          url: "https://suc2es2.github.io/2026/10/15/PPLdump%20%E5%88%A9%E7%94%A8%20KnownDLLs%20%E5%8A%AB%E6%8C%81%E7%BB%95%E8%BF%87%20PPL%20%E4%BF%9D%E6%8A%A4%E5%B9%B6%E5%80%9F%E5%8A%A9%20%60services.exe%60%20%E8%BD%AC%E5%82%A8%20LSASS/",
+          excerpt: "",
+          description: "",
+          stripContent: "PPLdump 利用 KnownDLLs 劫持绕过 PPL 保护并借助 services.exe 转储 LSASS样本信息   项目 结果    原始文件 ppl_bypass_ppldump_knowdll_hijack_sysmon_security.evtx   文件大小 69,632 字节（68 KiB）   SHA-256 9ac47a1ab7ac5e899dede49a4ea3512f0d3628edb9605981fe78bc0aec6f296f   格式 Windows EVTX",
+          date: "Thu Oct 15 2026 14:29:00 GMT+0800",
+          updated: "Sat Oct 24 2026 14:03:30 GMT+0800",
+          cover: "/images/banner.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.3' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+
+
+
+  </body>
+  </html>
