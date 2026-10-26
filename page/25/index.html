@@ -152,15 +152,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">288</div>
+    <div class="sidebar-state-number">290</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">20</div>
+    <div class="sidebar-state-number">21</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">200</div>
+    <div class="sidebar-state-number">202</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -223,16 +223,16 @@
               <a href="/2026/10/18/%E6%9F%90%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B7%AF%E5%BE%84%E8%A7%A3%E6%9E%90%E7%BB%95%E8%BF%87/" title="Spring MVC 路由解析分号绕过">Spring MVC 路由解析分号绕过</a>
             </li>
             <li>
+              <a href="/2026/10/15/CISP-PTS%202025%20%E7%AC%AC%E4%B8%80%E6%9C%9F/" title="CentOS7 靶机（2025 年第一期）">CentOS7 靶机（2025 年第一期）</a>
+            </li>
+            <li>
+              <a href="/2026/10/15/Exploit%20Kit%20%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7%E5%8C%85%E6%84%9F%E6%9F%93%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" title="Exploit Kit 漏洞利用工具包感染流量分析">Exploit Kit 漏洞利用工具包感染流量分析</a>
+            </li>
+            <li>
               <a href="/2026/10/15/%E5%9F%9F%E6%8E%A7%E6%9C%BA%E5%99%A8%E8%B4%A6%E6%88%B7%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE/" title="域控机器账户密码重置">域控机器账户密码重置</a>
             </li>
             <li>
               <a href="/2026/10/15/PPLdump%20%E5%88%A9%E7%94%A8%20KnownDLLs%20%E5%8A%AB%E6%8C%81%E7%BB%95%E8%BF%87%20PPL%20%E4%BF%9D%E6%8A%A4%E5%B9%B6%E5%80%9F%E5%8A%A9%20%60services.exe%60%20%E8%BD%AC%E5%82%A8%20LSASS/" title="PPLdump 利用 KnownDLLs 劫持绕过 PPL 保护并借助 `services.exe` 转储 LSASS">PPLdump 利用 KnownDLLs 劫持绕过 PPL 保护并借助 `services.exe` 转储 LSASS</a>
-            </li>
-            <li>
-              <a href="/2026/10/15/SQL%20Server%20%E5%A4%9A%E8%B4%A6%E6%88%B7%E7%99%BB%E5%BD%95/" title="SQL Server 多账户登录">SQL Server 多账户登录</a>
-            </li>
-            <li>
-              <a href="/2026/10/15/Kerberos%20%E5%A4%9A%E8%B4%A6%E6%88%B7%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81/" title="Kerberos 多账户身份验证">Kerberos 多账户身份验证</a>
             </li>
         </ul>
       </div>
@@ -244,6 +244,72 @@
 </aside>
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/RISC-V/" aria-label="RISC-V 架构" title="RISC-V 架构"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="RISC-V 架构" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1.5k 字</span>
+        <span><span class="icon-clock"></span>7 分钟</span>
+      </div>
+      <h2 class="post-title">RISC-V 架构</h2>
+      <article class="post-article">
+          RISC-V 架构RISC-V 是一种开源的精简指令集架构（ISA），由加州大学伯克利分校于 2010 年发起，现由 RISC-V 国际基金会维护
+基本特征位数：RV32（32位）、RV64（64位）、RV128（未来扩展）。常用的是 RV32&amp;#x2F;64
+字节序：默认为小端（Little-Endian），也允许大端（非主流）
+指令格式：定长 16 位（压缩指令）或 32 位（标准指令）。编码极为规整，字段位置几乎固定
+模块化指令集：
+
+基础整数指令集（I）：加减、逻辑、移位、分支、访存、系统调用
+
+标准扩展：
+
+M：乘除法
+
+A：原子操作
+
+F / D：单&amp;#x2F;双精度浮点
+
+C：压
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/Ret2text/" aria-label="Ret2text" title="Ret2text"></a>
+    <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2text" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>360 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">Ret2text</h2>
+      <article class="post-article">
+          Ret2text原理在 CTF 和二进制安全里，Ret2text 是一种非常经典的栈溢出利用手法。它的名字可以这样拆开理解：
+
+Ret：Return，代表 “返回地址”
+
+2 &amp;#x2F; to：到、跳转到
+
+text：.text 段，存放程序机器指令的区域
+
+
+简单说，Ret2text 就是利用栈溢出漏洞，将函数的返回地址篡改为程序 .text 段中已存在的合法代码，从而劫持控制流去执行这些代码来获取 shell
+因为执行的代码是程序本来就有的，所以它不需要注入 Shellcode，也能绕过 NX 保护
+实战案例帮我取一个题目名称（Ret2text）
+没开金丝雀，read 函数读取大小为 6
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/SMC/" aria-label="SMC" title="SMC"></a>
     <div class="post-cover left">
@@ -323,8 +389,38 @@ IDA 反编译发现对 Str 和 Destination 进行了操作
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/Unity%20%E9%80%86%E5%90%91/" aria-label="Unity" title="Unity"></a>
+      <a class="post-link" href="/2019/05/22/VM%20%E9%80%86%E5%90%91/" aria-label="虚拟机" title="虚拟机"></a>
     <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="虚拟机" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1k 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">虚拟机</h2>
+      <article class="post-article">
+          虚拟机虚拟机逆向（Virtual Machine Reverse Engineering）是指对软件中自实现的虚拟机（或称解释器）进行反向分析的技术
+程序将原本的原生代码或关键逻辑编译成自定义的字节码（bytecode），然后由一个解释器循环（VM loop）执行这些字节码。逆向工程师需要：
+
+识别出虚拟机结构（操作码表、虚拟寄存器、虚拟栈、内存模型等）
+
+提取字节码，并反汇编为人类可读的虚拟指令
+
+理解虚拟指令序列的算法逻辑，以破解保护、提取算法或找到漏洞
+
+
+虚拟机分类根据虚拟机的执行模型，通常分为两类
+基于栈的虚拟机操作数隐式地通过一个虚拟栈传递，指令执行时从栈顶弹出操作数，计算结果再压
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/Unity%20%E9%80%86%E5%90%91/" aria-label="Unity" title="Unity"></a>
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Unity" class="lazyload">
     </div>
     <div class="post-info">
@@ -360,36 +456,6 @@ libil2cpp.so &amp;#x2F; GameAssembly.dll + global-metadata.dat
 
 实战案例Mine Sweeping（Unity）
 打开附件可以看到这是一个 Unity 游戏，Unity C# 题的核心逻辑通常都在 Mine 
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/VM%20%E9%80%86%E5%90%91/" aria-label="虚拟机" title="虚拟机"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="虚拟机" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1k 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
-      </div>
-      <h2 class="post-title">虚拟机</h2>
-      <article class="post-article">
-          虚拟机虚拟机逆向（Virtual Machine Reverse Engineering）是指对软件中自实现的虚拟机（或称解释器）进行反向分析的技术
-程序将原本的原生代码或关键逻辑编译成自定义的字节码（bytecode），然后由一个解释器循环（VM loop）执行这些字节码。逆向工程师需要：
-
-识别出虚拟机结构（操作码表、虚拟寄存器、虚拟栈、内存模型等）
-
-提取字节码，并反汇编为人类可读的虚拟指令
-
-理解虚拟指令序列的算法逻辑，以破解保护、提取算法或找到漏洞
-
-
-虚拟机分类根据虚拟机的执行模型，通常分为两类
-基于栈的虚拟机操作数隐式地通过一个虚拟栈传递，指令执行时从栈顶弹出操作数，计算结果再压
       </article>
     </div>
   </div>
@@ -488,62 +554,6 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/14/JT%20T%20808%20%E5%8D%8F%E8%AE%AE/" aria-label="JT/T 808 协议" title="JT/T 808 协议"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="JT/T 808 协议" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-14</span>
-        <span><span class="icon-pencil"></span>4.7k 字</span>
-        <span><span class="icon-clock"></span>27 分钟</span>
-      </div>
-      <h2 class="post-title">JT/T 808 协议</h2>
-      <article class="post-article">
-          JT&amp;#x2F;T 808 协议概述JT&amp;#x2F;T 808 是交通运输行业标准《道路运输车辆卫星定位系统 北斗兼容车载终端通讯协议》，规定了车载终端与监控平台之间的数据通信格式
-协议基于 TCP 或 UDP，采用大端字节序，报文整体以 0x7E 为帧边界，内部需经过转义处理
-报文封装格式每个完整报文由标识位包裹，内部包含消息头、消息体和校验码
-1234+--------+--------+----------+--------+--------+| 标识位 | 消息头 | 消息体   | 校验码 | 标识位 || 0x7e   | 变长   | 变长     | 1 byte | 0x7e
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/04/15/1527%20%E8%8A%AF%E7%89%87/" aria-label="1527 芯片" title="1527 芯片"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="1527 芯片" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-04-15</span>
-        <span><span class="icon-pencil"></span>1.5k 字</span>
-        <span><span class="icon-clock"></span>7 分钟</span>
-      </div>
-      <h2 class="post-title">1527 芯片</h2>
-      <article class="post-article">
-          1527 芯片芯片定位与调制方式1527 是一颗固定码无线遥控编码芯片，专为低成本的单向遥控设计。典型工作方式：
-
-射频频率：315 MHz 或 433 MHz（由外部声表&amp;#x2F;晶振和发射电路决定）
-
-调制方式：OOK (开关键控)，即发射载波的有无代表数据
-
-数据发送：按下按键后，同一帧数据会以约 10 ms 的间隔重复发送，直到松手
-
-
-数据结构一帧完整数据由同步头和 24 位数据（20 位地址 + 4 位按键值）组成，每发完一帧会有一段较长的低电平间隙，然后重复下一帧
-1[同步头] + [数据] + 间隙…… 再重复
-
-
-同步头：一个宽高电平脉冲，用来唤醒接收端并标志一帧的开始
-
-
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/24/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="page-number" href="/page/24/">24</a><span class="page-number current">25</span><a class="page-number" href="/page/26/">26</a><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/26/">下一页 &raquo;</a>
   </nav>
@@ -567,10 +577,10 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
       </div>
       <div>
         <span class="icon-brush"></span>
-        372.7k
+        373.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        30:16
+        30:21
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -598,15 +608,15 @@ jnz short 指令本身长 2 字节（75 操作码 + 01 偏移量）
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">288</div>
+    <div class="sidebar-state-number">290</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">20</div>
+    <div class="sidebar-state-number">21</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">200</div>
+    <div class="sidebar-state-number">202</div>
   </div>
 </div>
 <div class="sidebar-social" >
