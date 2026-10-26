@@ -309,18 +309,16 @@ JavaScript 信息收集还是先找 Chunk 表
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2026-10-15</span>
-        <span><span class="icon-pencil"></span>775 字</span>
+        <span><span class="icon-pencil"></span>789 字</span>
         <span><span class="icon-clock"></span>4 分钟</span>
       </div>
       <h2 class="post-title">Exploit Kit 漏洞利用工具包感染流量分析</h2>
       <article class="post-article">
-          Exploit Kit 漏洞利用工具包感染流量分析通信环境打开 Wireshark 后，先查看 Statistics → Protocol Hierarchy 与 Statistics → Conversations → IPv4
+          Exploit Kit 漏洞利用工具包感染流量分析通信环境样本链接：https://malware-traffic-analysis.net/2014/11/08/index2.html
+打开 Wireshark 后，先查看 Statistics → Protocol Hierarchy 与 Statistics → Conversations → IPv4
 确认抓包中哪些内网主机与哪些服务器通信，这里能看到不止一台内网客户端，包括 172.16.165.132、172.16.165.133 和 172.16.165.159
 
-攻击链感染主机流量包中有 HTTP 请求，先看 172.16.165.159 的 HTTP 请求
-发现大多数都是图片以及 CSS 等静态文件
-
-在 “统计 –&amp;gt; 会话” 中勾选 “显示过滤器
+攻击链感染主机流量包中有 HTTP 请求，先看 172.16.16
       </article>
     </div>
   </div>
