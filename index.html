@@ -385,8 +385,31 @@ Java 利用组件把和这个域名相关的请求全部过滤出来
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/10/15/CISP-PTS%202025%20%E7%AC%AC%E4%B8%80%E6%9C%9F/" aria-label="CentOS7 靶机（2025 年第一期）" title="CentOS7 靶机（2025 年第一期）"></a>
+      <a class="post-link" href="/2026/10/15/%E9%9A%90%E8%97%8F%20iframe%20%E5%8A%AB%E6%8C%81%E4%B8%8E%20EK%20%E6%94%BB%E5%87%BB%E6%B5%81%E9%87%8F%E6%BA%AF%E6%BA%90/" aria-label="隐藏 iframe 劫持与 EK 攻击流量溯源" title="隐藏 iframe 劫持与 EK 攻击流量溯源"></a>
     <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="隐藏 iframe 劫持与 EK 攻击流量溯源" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-10-15</span>
+        <span><span class="icon-pencil"></span>790 字</span>
+        <span><span class="icon-clock"></span>4 分钟</span>
+      </div>
+      <h2 class="post-title">隐藏 iframe 劫持与 EK 攻击流量溯源</h2>
+      <article class="post-article">
+          隐藏 iframe 劫持与 EK 攻击流量溯源通信环境样本链接：https://malware-traffic-analysis.net/2014/11/08/index2.html
+打开 Wireshark 后，先查看 Statistics → Protocol Hierarchy 与 Statistics → Conversations → IPv4
+确认抓包中哪些内网主机与哪些服务器通信，这里能看到不止一台内网客户端，包括 172.16.165.132、172.16.165.133 和 172.16.165.159
+
+攻击链感染主机流量包中有 HTTP 请求，先看 172.16.165.
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/10/15/CISP-PTS%202025%20%E7%AC%AC%E4%B8%80%E6%9C%9F/" aria-label="CentOS7 靶机（2025 年第一期）" title="CentOS7 靶机（2025 年第一期）"></a>
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="CentOS7 靶机（2025 年第一期）" class="lazyload">
     </div>
     <div class="post-info">
@@ -422,9 +445,9 @@ Web1信息泄露（备份文件 + .swp 文件）进入 Web1 关卡，提示了�
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/10/15/%E5%9F%9F%E6%8E%A7%E6%9C%BA%E5%99%A8%E8%B4%A6%E6%88%B7%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE/" aria-label="域控机器账户密码重置" title="域控机器账户密码重置"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="域控机器账户密码重置" class="lazyload">
     </div>
     <div class="post-info">
@@ -465,29 +488,6 @@ Security
 
 主要 Provider
 Microsoft-Windows-Security-Auditing；另有 Microsof
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/10/15/%E9%9A%90%E8%97%8F%20iframe%20%E5%8A%AB%E6%8C%81%E4%B8%8E%20EK%20%E6%94%BB%E5%87%BB%E6%B5%81%E9%87%8F%E6%BA%AF%E6%BA%90/" aria-label="隐藏 iframe 劫持与 EK 攻击流量溯源" title="隐藏 iframe 劫持与 EK 攻击流量溯源"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="隐藏 iframe 劫持与 EK 攻击流量溯源" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-10-15</span>
-        <span><span class="icon-pencil"></span>790 字</span>
-        <span><span class="icon-clock"></span>4 分钟</span>
-      </div>
-      <h2 class="post-title">隐藏 iframe 劫持与 EK 攻击流量溯源</h2>
-      <article class="post-article">
-          隐藏 iframe 劫持与 EK 攻击流量溯源通信环境样本链接：https://malware-traffic-analysis.net/2014/11/08/index2.html
-打开 Wireshark 后，先查看 Statistics → Protocol Hierarchy 与 Statistics → Conversations → IPv4
-确认抓包中哪些内网主机与哪些服务器通信，这里能看到不止一台内网客户端，包括 172.16.165.132、172.16.165.133 和 172.16.165.159
-
-攻击链感染主机流量包中有 HTTP 请求，先看 172.16.165.
       </article>
     </div>
   </div>
