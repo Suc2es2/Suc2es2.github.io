@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">293</div>
+    <div class="sidebar-state-number">294</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -223,6 +223,9 @@
               <a href="/2026/10/18/%E6%9F%90%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B7%AF%E5%BE%84%E8%A7%A3%E6%9E%90%E7%BB%95%E8%BF%87/" title="Spring MVC 路由解析分号绕过">Spring MVC 路由解析分号绕过</a>
             </li>
             <li>
+              <a href="/2026/10/15/Windows%20AntiBreach%20Module%20%E5%81%87%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E6%B5%81%E9%87%8F%E6%BA%AF%E6%BA%90/" title="Windows AntiBreach Module 假杀毒软件流量溯源">Windows AntiBreach Module 假杀毒软件流量溯源</a>
+            </li>
+            <li>
               <a href="/2026/10/15/Dyre%20%E9%93%B6%E8%A1%8C%E6%9C%A8%E9%A9%AC%E6%B5%81%E9%87%8F%E6%BA%AF%E6%BA%90/" title="Dyre 银行木马流量溯源">Dyre 银行木马流量溯源</a>
             </li>
             <li>
@@ -230,9 +233,6 @@
             </li>
             <li>
               <a href="/2026/10/15/G01PACK%20EK%20%E6%8A%95%E9%80%92%E9%94%81%E5%B1%8F%E5%9E%8B%E5%8B%92%E7%B4%A2%E8%BD%AF%E4%BB%B6/" title="G01PACK EK 投递锁屏型勒索软件流量溯源">G01PACK EK 投递锁屏型勒索软件流量溯源</a>
-            </li>
-            <li>
-              <a href="/2026/10/15/CISP-PTS%202025%20%E7%AC%AC%E4%B8%80%E6%9C%9F/" title="CentOS7 靶机（2025 年第一期）">CentOS7 靶机（2025 年第一期）</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,45 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2025/04/01/suidy/" aria-label="MazeSec suidy" title="MazeSec suidy"></a>
+      <a class="post-link" href="/2025/04/01/BaseME/" aria-label="MazeSec BaseME" title="MazeSec BaseME"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec BaseME" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2025-04-01</span>
+        <span><span class="icon-pencil"></span>347 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">MazeSec BaseME</h2>
+      <article class="post-article">
+          BaseME项目地址：https://downloads.hackmyvm.eu/baseme.zip
+是一个打包好的镜像文件
+注意：导入 ova 时一定要选择我已移动，否则没网
+使用 Nmap 扫描出开放服务及操作系统版本
+
+敏感信息泄露SSH 私钥访问拿到一串 Base64 编码
+
+解码
+
+查看源代码还能发现一串注释
+
+猜测是字典之类的，之前的提示写所有需要的东西都是 BASE64，那么我们就把字典用 BASE64 编码之后再扫描
+得到下面两个路径
+12/aWRfcnNhCg==/cm9ib3RzLnR4dAo=
+
+将两个文件名解码后得到
+12id_rsarobots.txt
+
+其中一个是
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2025/04/01/suidy/" aria-label="MazeSec suidy" title="MazeSec suidy"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec suidy" class="lazyload">
     </div>
     <div class="post-info">
@@ -279,9 +316,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2025/04/01/Conection/" aria-label="MazeSec Conection" title="MazeSec Conection"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Conection" class="lazyload">
     </div>
     <div class="post-info">
@@ -312,9 +349,9 @@ RCESMB139 445 端口全开，使用 enum4linux 枚举信息
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2025/04/01/Gift/" aria-label="MazeSec Gift" title="MazeSec Gift"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Gift" class="lazyload">
     </div>
     <div class="post-info">
@@ -338,9 +375,9 @@ RCESMB139 445 端口全开，使用 enum4linux 枚举信息
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2025/04/01/Pwned/" aria-label="MazeSec Pwned" title="MazeSec Pwned"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="MazeSec Pwned" class="lazyload">
     </div>
     <div class="post-info">
@@ -376,9 +413,9 @@ SSH发现有私钥
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2024/04/02/2024%20%E7%AC%AC%E4%B8%80%E5%B1%8A%20Solar%20%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%8C%91%E6%88%98%E8%B5%9B/" aria-label="2024 第一届 Solar 应急响应挑战赛 WriteUp" title="2024 第一届 Solar 应急响应挑战赛 WriteUp"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2024 第一届 Solar 应急响应挑战赛 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -406,9 +443,9 @@ newxmmxszc6-1.qq.com
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2022/04/14/2022%20HITCON/" aria-label="2022 HITCON CTF WriteUp" title="2022 HITCON CTF WriteUp"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="2022 HITCON CTF WriteUp" class="lazyload">
     </div>
     <div class="post-info">
@@ -437,9 +474,9 @@ Webyeeclass（弱比较 + 越权 + uniqid()
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2021/05/26/b2evolution%20CMS%20SQL%20%E6%B3%A8%E5%85%A5%EF%BC%88CVE-2021-28242%EF%BC%89/" aria-label="b2evolution CMS SQL 注入（CVE-2021-28242）" title="b2evolution CMS SQL 注入（CVE-2021-28242）"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="b2evolution CMS SQL 注入（CVE-2021-28242）" class="lazyload">
     </div>
     <div class="post-info">
@@ -468,47 +505,6 @@ Webyeeclass（弱比较 + 越权 + uniqid()
 
 漏洞代码inc/collections/model/_blog.funcs.php 第 2143 行
 这里
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2021/04/14/2021-%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B/" aria-label="2021 第五空间智能安全大赛 WriteUp" title="2021 第五空间智能安全大赛 WriteUp"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="2021 第五空间智能安全大赛 WriteUp" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2021-04-14</span>
-        <span><span class="icon-pencil"></span>3.3k 字</span>
-        <span><span class="icon-clock"></span>16 分钟</span>
-      </div>
-      <h2 class="post-title">2021 第五空间智能安全大赛 WriteUp</h2>
-      <article class="post-article">
-          2021 第五空间智能安全大赛 WriteUp🏛️ 组织架构
-
-主办单位：天津市委网信办、天津市总工会
-
-承办单位：三六零集团（360政企安全集团）、天津滨海高新区总工会
-
-协办单位：包括国家工业信息安全发展研究中心、南开大学网络空间安全学院、天津大学网络安全学院等多家机构
-
-
-📅 赛程与赛制
-
-报名时间：2021 年 8 月 27 日至 9 月 12 日
-
-线上初赛：2021 年 9 月 16 日举行，采用 CTF（解题）模式
-
-线下决赛：2021 年 10 月 10 日在天津举行，采用 A&amp;amp;D（攻防对抗）模式
-
-颁奖典礼：2021 年 10 月 11 日
-
-
-📊 赛事规模
-
-
       </article>
     </div>
   </div>
@@ -568,32 +564,41 @@ ehbud队
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2020/05/23/OctoberCMS%20%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%EF%BC%88CVE-2020-15246%EF%BC%89/" aria-label="OctoberCMS 任意文件读取（CVE-2020-15246）" title="OctoberCMS 任意文件读取（CVE-2020-15246）"></a>
+      <a class="post-link" href="/2021/04/14/2021-%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B/" aria-label="2021 第五空间智能安全大赛 WriteUp" title="2021 第五空间智能安全大赛 WriteUp"></a>
     <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="OctoberCMS 任意文件读取（CVE-2020-15246）" class="lazyload">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="2021 第五空间智能安全大赛 WriteUp" class="lazyload">
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <span><span class="icon-calendar"></span>2020-05-23</span>
-        <span><span class="icon-pencil"></span>899 字</span>
-        <span><span class="icon-clock"></span>4 分钟</span>
+        <span><span class="icon-calendar"></span>2021-04-14</span>
+        <span><span class="icon-pencil"></span>3.3k 字</span>
+        <span><span class="icon-clock"></span>16 分钟</span>
       </div>
-      <h2 class="post-title">OctoberCMS 任意文件读取（CVE-2020-15246）</h2>
+      <h2 class="post-title">2021 第五空间智能安全大赛 WriteUp</h2>
       <article class="post-article">
-          OctoberCMS 任意文件读取（CVE-2020-15246）前言🎯 影响范围
-受影响产品: October CMS
-受影响版本: 1.0.421 至 1.0.468 版本
-安全版本: 1.0.469 及以上版本，以及 1.1.0 及以上版本
-漏洞复现环境搭建主要如下：
+          2021 第五空间智能安全大赛 WriteUp🏛️ 组织架构
 
-PHP 7.3.4
+主办单位：天津市委网信办、天津市总工会
 
-october 1.0.467
+承办单位：三六零集团（360政企安全集团）、天津滨海高新区总工会
 
-Python3
+协办单位：包括国家工业信息安全发展研究中心、南开大学网络空间安全学院、天津大学网络安全学院等多家机构
 
 
-漏洞代码入口主要在 modules/cms/classes/Controller.php，OctoberCMS 前台访问一个页面时，会进入 Controller::run($url)，它会根据 URL 找到对应的 CMS 页面，然后执行页面逻辑
+📅 赛程与赛制
+
+报名时间：2021 年 8 月 27 日至 9 月 12 日
+
+线上初赛：2021 年 9 月 16 日举行，采用 CTF（解题）模式
+
+线下决赛：2021 年 10 月 10 日在天津举行，采用 A&amp;amp;D（攻防对抗）模式
+
+颁奖典礼：2021 年 10 月 11 日
+
+
+📊 赛事规模
+
+
       </article>
     </div>
   </div>
@@ -621,10 +626,10 @@ Python3
       </div>
       <div>
         <span class="icon-brush"></span>
-        376.7k
+        377.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        30:36
+        30:38
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -652,7 +657,7 @@ Python3
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">293</div>
+    <div class="sidebar-state-number">294</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
