@@ -17,16 +17,24 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="Dyre 银行木马流量溯源通信环境样本链接：https:&#x2F;&#x2F;malware-traffic-analysis.net&#x2F;2014&#x2F;12&#x2F;05&#x2F;2014-12-05-Upatre-Dyre-infection-traffic.pcap.zip 受害主机只有一台">
+    <meta name="description" content="Dyre 银行木马流量溯源通信环境样本链接：https:&#x2F;&#x2F;malware-traffic-analysis.net&#x2F;2014&#x2F;12&#x2F;05&#x2F;2014-12-05-Upatre-Dyre-infection-traffic.pcap.zip 受害主机只有一台  攻击链恶意 ZIP 下载追踪 HTTP 流发现恶意 JS 代码  12345&lt;div style&#x3D;&quot;display:none">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dyre 银行木马流量溯源">
 <meta property="og:url" content="https://suc2es2.github.io/2026/10/15/Dyre%20%E9%93%B6%E8%A1%8C%E6%9C%A8%E9%A9%AC%E6%B5%81%E9%87%8F%E6%BA%AF%E6%BA%90/index.html">
 <meta property="og:site_name" content="雾島风起時">
-<meta property="og:description" content="Dyre 银行木马流量溯源通信环境样本链接：https:&#x2F;&#x2F;malware-traffic-analysis.net&#x2F;2014&#x2F;12&#x2F;05&#x2F;2014-12-05-Upatre-Dyre-infection-traffic.pcap.zip 受害主机只有一台">
+<meta property="og:description" content="Dyre 银行木马流量溯源通信环境样本链接：https:&#x2F;&#x2F;malware-traffic-analysis.net&#x2F;2014&#x2F;12&#x2F;05&#x2F;2014-12-05-Upatre-Dyre-infection-traffic.pcap.zip 受害主机只有一台  攻击链恶意 ZIP 下载追踪 HTTP 流发现恶意 JS 代码  12345&lt;div style&#x3D;&quot;display:none">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034nB8HIpvVqA4f86atzKJ.png">
-<meta property="article:published_time" content="2026-10-15T11:29:00.000Z">
-<meta property="article:modified_time" content="2026-10-27T12:20:16.827Z">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034nCMw1qVqveKL2CFPqPV.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034nDST3u5IBleAo3WLwNV.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034nE33FFGDwMhBpcP6DvT.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034nE8DBAyLJWt5SkmCzUZ.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034nEG9S6RcXPxKeAaEwng.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034nEK9sFT5MKAcr2yykqQ.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034nEbnz0CAQ2RWImslCJp.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/i/034nEjEC0yEfHxT9F7AhpF.png">
+<meta property="article:published_time" content="2026-10-15T12:29:00.000Z">
+<meta property="article:modified_time" content="2026-10-27T14:52:40.738Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="流量分析">
 <meta name="twitter:card" content="summary">
@@ -148,7 +156,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dyre-%E9%93%B6%E8%A1%8C%E6%9C%A8%E9%A9%AC%E6%B5%81%E9%87%8F%E6%BA%AF%E6%BA%90"><span class="toc-number">1.</span> <span class="toc-text">Dyre 银行木马流量溯源</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text">通信环境</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dyre-%E9%93%B6%E8%A1%8C%E6%9C%A8%E9%A9%AC%E6%B5%81%E9%87%8F%E6%BA%AF%E6%BA%90"><span class="toc-number">1.</span> <span class="toc-text">Dyre 银行木马流量溯源</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text">通信环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%81%B6%E6%84%8F-ZIP-%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.2.1.</span> <span class="toc-text">恶意 ZIP 下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E8%BF%9E"><span class="toc-number">1.2.2.</span> <span class="toc-text">回连</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E7%96%91%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.2.3.</span> <span class="toc-text">可疑文件下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TLS-%E5%8A%A0%E5%AF%86%E9%80%9A%E4%BF%A1"><span class="toc-number">1.2.4.</span> <span class="toc-text">TLS 加密通信</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -225,7 +233,7 @@
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2026-10-15T11:29:00.000Z" itemprop="datePublished">2026-10-15</time>
+    <time datetime="2026-10-15T12:29:00.000Z" itemprop="datePublished">2026-10-15</time>
     <time style="display: none;" id="post-update-time">2026-10-27</time>
   </span>
 </div>
@@ -238,6 +246,32 @@
         <h1 id="Dyre-银行木马流量溯源"><a href="#Dyre-银行木马流量溯源" class="headerlink" title="Dyre 银行木马流量溯源"></a>Dyre 银行木马流量溯源</h1><h2 id="通信环境"><a href="#通信环境" class="headerlink" title="通信环境"></a>通信环境</h2><p>样本链接：<a target="_blank" rel="noopener" href="https://malware-traffic-analysis.net/2014/12/05/2014-12-05-Upatre-Dyre-infection-traffic.pcap.zip">https://malware-traffic-analysis.net/2014/12/05/2014-12-05-Upatre-Dyre-infection-traffic.pcap.zip</a></p>
 <p>受害主机只有一台</p>
 <p><img src="https://pic1.imgdb.cn/i/034nB8HIpvVqA4f86atzKJ.png" alt="pasted_1793103600363_mpzygs.png"></p>
+<h2 id="攻击链"><a href="#攻击链" class="headerlink" title="攻击链"></a>攻击链</h2><h3 id="恶意-ZIP-下载"><a href="#恶意-ZIP-下载" class="headerlink" title="恶意 ZIP 下载"></a>恶意 ZIP 下载</h3><p>追踪 HTTP 流发现恶意 JS 代码</p>
+<p><img src="https://pic1.imgdb.cn/i/034nCMw1qVqveKL2CFPqPV.png" alt="pasted_1793106622193_o7nax9.png"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style=<span class="string">&quot;display:none&quot;</span>&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">id</span>=<span class="string">&quot;mcnt&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span></span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">id</span>=<span class="string">&quot;mylink&quot;</span> <span class="attr">download</span>=<span class="string">&quot;BreakingNews_pdf34.zip&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">     <span class="attr">href</span>=<span class="string">&quot;data:application/zip;base64,UEsDBBQ...&quot;</span>&gt;</span>Get<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>整个下载区域被 <code>display:none</code> 隐藏</p>
+</li>
+<li><p><code>iframe id=&quot;mcnt&quot;</code> 是无 src 的隐藏 iframe，后续被脚本写入内容</p>
+</li>
+<li><p>下载文件名伪装为 <code>BreakingNews_pdf34.zip</code></p>
+</li>
+</ol>
+<p>往后继续翻找发现下载的恶意 ZIP</p>
+<p><img src="https://pic1.imgdb.cn/i/034nDST3u5IBleAo3WLwNV.png" alt="pasted_1793109283321_4xoqei.png"></p>
+<p>云沙箱识别出为 Upatre 家族木马</p>
+<p><img src="https://pic1.imgdb.cn/i/034nE33FFGDwMhBpcP6DvT.png" alt="pasted_1793110726986_wgpfaf.png"></p>
+<h3 id="回连"><a href="#回连" class="headerlink" title="回连"></a>回连</h3><p>观察到两个请求，两条请求在当前 TCP 重组中均未看到服务端 HTTP 响应正文</p>
+<p><img src="https://pic1.imgdb.cn/i/034nE8DBAyLJWt5SkmCzUZ.png" alt="pasted_1793110930028_miez0h.png"></p>
+<p><code>realUpdate</code> 被历史 Snort 规则作为 Upatre 可疑 User-Agent 特征识别</p>
+<p><img src="https://pic1.imgdb.cn/i/034nEG9S6RcXPxKeAaEwng.png" alt="pasted_1793111244127_fy2ps4.png"></p>
+<h3 id="可疑文件下载"><a href="#可疑文件下载" class="headerlink" title="可疑文件下载"></a>可疑文件下载</h3><p>还是一样的 UA 头，下载了一个可疑文件</p>
+<p><img src="https://pic1.imgdb.cn/i/034nEK9sFT5MKAcr2yykqQ.png" alt="pasted_1793111402189_scdebm.png"></p>
+<p>云沙箱未识别出木马，可能是配置文件之类的</p>
+<p><img src="https://pic1.imgdb.cn/i/034nEbnz0CAQ2RWImslCJp.png" alt="pasted_1793112097618_2mnbih.png"></p>
+<h3 id="TLS-加密通信"><a href="#TLS-加密通信" class="headerlink" title="TLS 加密通信"></a>TLS 加密通信</h3><p>多条 TLS 会话包含 Client Hello、Server Hello、Certificate、Change Cipher Spec、Finished，随后出现双方的 Application Data</p>
+<p><img src="https://pic1.imgdb.cn/i/034nEjEC0yEfHxT9F7AhpF.png" alt="pasted_1793112390246_t5u8w6.png"></p>
 
     </div>
     <footer class="article-footer">
@@ -249,19 +283,19 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-            <img data-src="/images/banner.webp" data-sizes="auto" alt="Asprox 木马流量溯源" class="lazyload">
-        <a href="/2026/10/15/Asprox%20%E6%9C%A8%E9%A9%AC%E6%B5%81%E9%87%8F%E6%BA%AF%E6%BA%90/" aria-label="前一篇: Asprox 木马流量溯源" title="前一篇: Asprox 木马流量溯源"></a>
+            <img data-src="/images/banner.webp" data-sizes="auto" alt="Spring MVC 路由解析分号绕过" class="lazyload">
+        <a href="/2026/10/18/%E6%9F%90%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B7%AF%E5%BE%84%E8%A7%A3%E6%9E%90%E7%BB%95%E8%BF%87/" aria-label="前一篇: Spring MVC 路由解析分号绕过" title="前一篇: Spring MVC 路由解析分号绕过"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            Asprox 木马流量溯源
+            Spring MVC 路由解析分号绕过
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="G01PACK EK 投递锁屏型勒索软件流量溯源" class="lazyload">
-      <a href="/2026/10/15/G01PACK%20EK%20%E6%8A%95%E9%80%92%E9%94%81%E5%B1%8F%E5%9E%8B%E5%8B%92%E7%B4%A2%E8%BD%AF%E4%BB%B6/" aria-label="后一篇: G01PACK EK 投递锁屏型勒索软件流量溯源"  title="后一篇: G01PACK EK 投递锁屏型勒索软件流量溯源"></a>
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Asprox 木马流量溯源" class="lazyload">
+      <a href="/2026/10/15/Asprox%20%E6%9C%A8%E9%A9%AC%E6%B5%81%E9%87%8F%E6%BA%AF%E6%BA%90/" aria-label="后一篇: Asprox 木马流量溯源"  title="后一篇: Asprox 木马流量溯源"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          G01PACK EK 投递锁屏型勒索软件流量溯源
+          Asprox 木马流量溯源
       </h3>
     </div>
   </nav>
@@ -288,10 +322,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        376.5k
+        376.7k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        30:35
+        30:36
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -313,7 +347,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dyre-%E9%93%B6%E8%A1%8C%E6%9C%A8%E9%A9%AC%E6%B5%81%E9%87%8F%E6%BA%AF%E6%BA%90"><span class="toc-number">1.</span> <span class="toc-text">Dyre 银行木马流量溯源</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text">通信环境</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dyre-%E9%93%B6%E8%A1%8C%E6%9C%A8%E9%A9%AC%E6%B5%81%E9%87%8F%E6%BA%AF%E6%BA%90"><span class="toc-number">1.</span> <span class="toc-text">Dyre 银行木马流量溯源</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text">通信环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E9%93%BE"><span class="toc-number">1.2.</span> <span class="toc-text">攻击链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%81%B6%E6%84%8F-ZIP-%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.2.1.</span> <span class="toc-text">恶意 ZIP 下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E8%BF%9E"><span class="toc-number">1.2.2.</span> <span class="toc-text">回连</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E7%96%91%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.2.3.</span> <span class="toc-text">可疑文件下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TLS-%E5%8A%A0%E5%AF%86%E9%80%9A%E4%BF%A1"><span class="toc-number">1.2.4.</span> <span class="toc-text">TLS 加密通信</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -445,9 +479,9 @@
           url: "https://suc2es2.github.io/2026/10/15/Dyre%20%E9%93%B6%E8%A1%8C%E6%9C%A8%E9%A9%AC%E6%B5%81%E9%87%8F%E6%BA%AF%E6%BA%90/",
           excerpt: "",
           description: "",
-          stripContent: "Dyre 银行木马流量溯源通信环境样本链接：https://malware-traffic-analysis.net/2014/12/05/2014-12-05-Upatre-Dyre-infection-traffic.pcap.zip 受害主机只有一台  ",
-          date: "Thu Oct 15 2026 19:29:00 GMT+0800",
-          updated: "Tue Oct 27 2026 20:20:16 GMT+0800",
+          stripContent: "Dyre 银行木马流量溯源通信环境样本链接：https://malware-traffic-analysis.net/2014/12/05/2014-12-05-Upatre-Dyre-infection-traffic.pcap.zip 受害主机只有一台  攻击链恶意 ZIP 下载追踪 HTTP 流发现恶意 JS 代码  12345&amp;lt;div style=&amp;quot;display:none&amp;quot;&amp;gt;  &amp;lt;iframe id=&amp;quot;mcnt&amp;quot;&amp;gt;&amp;lt;",
+          date: "Thu Oct 15 2026 20:29:00 GMT+0800",
+          updated: "Tue Oct 27 2026 22:52:40 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
