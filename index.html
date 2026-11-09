@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">299</div>
+    <div class="sidebar-state-number">300</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -223,6 +223,9 @@
               <a href="/2026/10/18/%E6%9F%90%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B7%AF%E5%BE%84%E8%A7%A3%E6%9E%90%E7%BB%95%E8%BF%87/" title="Spring MVC 路由解析分号绕过">Spring MVC 路由解析分号绕过</a>
             </li>
             <li>
+              <a href="/2026/10/17/Rbot%20Botnet%20%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" title="Rbot Botnet 流量分析">Rbot Botnet 流量分析</a>
+            </li>
+            <li>
               <a href="/2026/10/17/Neris%20Botnet%20%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" title="Neris Botnet 流量分析">Neris Botnet 流量分析</a>
             </li>
             <li>
@@ -230,9 +233,6 @@
             </li>
             <li>
               <a href="/2026/10/16/%E6%81%B6%E6%84%8F%20LNK%20%E6%96%87%E4%BB%B6%E4%B8%8E%20PowerShell%20%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%B5%81%E9%87%8F%E5%88%86/" title="恶意 LNK 文件与 PowerShell 下载链流量分析">恶意 LNK 文件与 PowerShell 下载链流量分析</a>
-            </li>
-            <li>
-              <a href="/2026/10/16/%E5%81%87%E5%AD%97%E4%BD%93%E6%9B%B4%E6%96%B0%E8%AF%B1%E5%AF%BC%E7%9A%84%20Monero%20%E6%8C%96%E7%9F%BF%E6%9C%A8%E9%A9%AC%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" title="假字体更新诱导的 Monero 挖矿木马流量分析">假字体更新诱导的 Monero 挖矿木马流量分析</a>
             </li>
         </ul>
       </div>
@@ -272,8 +272,36 @@ JavaScript 信息收集还是先找 Chunk 表
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/10/17/Neris%20Botnet%20%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" aria-label="Neris Botnet 流量分析" title="Neris Botnet 流量分析"></a>
+      <a class="post-link" href="/2026/10/17/Rbot%20Botnet%20%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" aria-label="Rbot Botnet 流量分析" title="Rbot Botnet 流量分析"></a>
     <div class="post-cover right">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Rbot Botnet 流量分析" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-10-17</span>
+        <span><span class="icon-pencil"></span>523 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">Rbot Botnet 流量分析</h2>
+      <article class="post-article">
+          Rbot Botnet 流量分析通信环境本次分析对象为一个标记为 Rbot 的 Botnet 网络流量样本
+通过对 PCAP 文件进行完整解析，发现内部主机 147.32.84.165 与多个 IRC 服务器建立了 TCP 连接，并加入同一个 IRC 控制频道
+
+攻击链感染主机与 IRC C2 建立连接在 TCP 流量中发现感染主机主动连接多个 TCP 6667 端口
+通过分析 IRC 服务端响应，确认这些服务器属于当时的 FreeNode IRC 网络
+
+Bot 在不同连接中使用不同昵称：
+1234Pepe597599Pepe202905Pepe305632Pepe061664
+
+对应的 I
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/10/17/Neris%20Botnet%20%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" aria-label="Neris Botnet 流量分析" title="Neris Botnet 流量分析"></a>
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Neris Botnet 流量分析" class="lazyload">
     </div>
     <div class="post-info">
@@ -297,9 +325,9 @@ JavaScript 信息收集还是先找 Chunk 表
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/10/16/IcedID%20%E6%84%9F%E6%9F%93%E3%80%81Anubis%20VNC%20%E8%BF%9C%E6%8E%A7%E4%B8%8E%20Trickbot%20%E5%9F%9F%E6%8E%A7%E4%BC%A0%E6%92%AD%E7%9A%84%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" aria-label="IcedID 感染、Anubis VNC 远控与 Trickbot 域控传播的流量分析" title="IcedID 感染、Anubis VNC 远控与 Trickbot 域控传播的流量分析"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="IcedID 感染、Anubis VNC 远控与 Trickbot 域控传播的流量分析" class="lazyload">
     </div>
     <div class="post-info">
@@ -317,9 +345,9 @@ Anubis VNC 远控： 这里的 Anubis VNC 是与 IcedID 相关的隐藏桌面远
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/10/16/%E6%81%B6%E6%84%8F%20LNK%20%E6%96%87%E4%BB%B6%E4%B8%8E%20PowerShell%20%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%B5%81%E9%87%8F%E5%88%86/" aria-label="恶意 LNK 文件与 PowerShell 下载链流量分析" title="恶意 LNK 文件与 PowerShell 下载链流量分析"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="恶意 LNK 文件与 PowerShell 下载链流量分析" class="lazyload">
     </div>
     <div class="post-info">
@@ -343,9 +371,9 @@ LNK 参数以 /C 启动 PowerShell，完整参数为：
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/10/16/%E5%81%87%E5%AD%97%E4%BD%93%E6%9B%B4%E6%96%B0%E8%AF%B1%E5%AF%BC%E7%9A%84%20Monero%20%E6%8C%96%E7%9F%BF%E6%9C%A8%E9%A9%AC%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" aria-label="假字体更新诱导的 Monero 挖矿木马流量分析" title="假字体更新诱导的 Monero 挖矿木马流量分析"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="假字体更新诱导的 Monero 挖矿木马流量分析" class="lazyload">
     </div>
     <div class="post-info">
@@ -368,9 +396,9 @@ LNK 参数以 /C 启动 PowerShell，完整参数为：
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/10/15/%E9%94%AE%E7%9B%98%E8%AE%B0%E5%BD%95%E5%99%A8%E7%9A%84%20C2%20%E9%80%9A%E4%BF%A1%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" aria-label="键盘记录器的 C2 通信流量分析" title="键盘记录器的 C2 通信流量分析"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="键盘记录器的 C2 通信流量分析" class="lazyload">
     </div>
     <div class="post-info">
@@ -397,9 +425,9 @@ LNK 参数以 /C 启动 PowerShell，完整参数为：
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/10/15/Windows%20AntiBreach%20Module%20%E5%81%87%E6%9D%80%E6%AF%92%E8%BD%AF%E4%BB%B6%E6%B5%81%E9%87%8F%E6%BA%AF%E6%BA%90/" aria-label="Windows AntiBreach Module 假杀毒软件流量分析" title="Windows AntiBreach Module 假杀毒软件流量分析"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Windows AntiBreach Module 假杀毒软件流量分析" class="lazyload">
     </div>
     <div class="post-info">
@@ -429,9 +457,9 @@ LNK 参数以 /C 启动 PowerShell，完整参数为：
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/10/15/Dyre%20%E9%93%B6%E8%A1%8C%E6%9C%A8%E9%A9%AC%E6%B5%81%E9%87%8F%E6%BA%AF%E6%BA%90/" aria-label="Dyre 银行木马流量分析" title="Dyre 银行木马流量分析"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Dyre 银行木马流量分析" class="lazyload">
     </div>
     <div class="post-info">
@@ -454,9 +482,9 @@ LNK 参数以 /C 启动 PowerShell，完整参数为：
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/10/15/Asprox%20%E6%9C%A8%E9%A9%AC%E6%B5%81%E9%87%8F%E6%BA%AF%E6%BA%90/" aria-label="Asprox 木马流量分析" title="Asprox 木马流量分析"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Asprox 木马流量分析" class="lazyload">
     </div>
     <div class="post-info">
@@ -478,34 +506,6 @@ LNK 参数以 /C 启动 PowerShell，完整参数为：
 导出后放到云沙箱识别出是木马，家族类型 Kuluoz
 
 
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/10/15/Win%202016%20+%20Nacos%EF%BC%882025%20%E5%B9%B4%E7%AC%AC%E4%B8%80%E6%9C%9F%EF%BC%89/" aria-label="WIN 2016 + Nacos（2025 年第一期）" title="WIN 2016 + Nacos（2025 年第一期）"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="WIN 2016 + Nacos（2025 年第一期）" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-10-15</span>
-        <span><span class="icon-pencil"></span>563 字</span>
-        <span><span class="icon-clock"></span>3 分钟</span>
-      </div>
-      <h2 class="post-title">WIN 2016 + Nacos（2025 年第一期）</h2>
-      <article class="post-article">
-          WIN 2016 + Nacos（2025 年第一期）靶机下载链接：
-Ubuntu 按照以下命令启动
-123systemctl start dockerdocker start mysql  # 启动后等一会docker start nacos-standalone-mysql
-
-信息收集扫描网段中的存活主机
-
-扫描具体开放端口，只有 445 可打
-
-RCEMS17_010 永恒之蓝先用 web_delivery 起一个 PowerShell stager：
-123456use exploit/multi/script/web_deliveryset target 2             
       </article>
     </div>
   </div>
@@ -533,10 +533,10 @@ RCEMS17_010 永恒之蓝先用 web_delivery 起一个 PowerShell stager：
       </div>
       <div>
         <span class="icon-brush"></span>
-        380.4k
+        380.9k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        30:55
+        30:57
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -564,7 +564,7 @@ RCEMS17_010 永恒之蓝先用 web_delivery 起一个 PowerShell stager：
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">299</div>
+    <div class="sidebar-state-number">300</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
