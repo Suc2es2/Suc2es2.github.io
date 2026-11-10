@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">301</div>
+    <div class="sidebar-state-number">302</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -220,6 +220,9 @@
       <div class="widget">
         <ul>
             <li>
+              <a href="/2026/10/20/Android%20HawkShaw%20%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" title="Android HawkShaw 流量分析">Android HawkShaw 流量分析</a>
+            </li>
+            <li>
               <a href="/2026/10/18/%E6%9F%90%E9%AB%98%E6%A0%A1%E6%99%BA%E6%85%A7%E8%BF%8E%E6%96%B0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0%E8%B7%AF%E5%BE%84%E8%A7%A3%E6%9E%90%E7%BB%95%E8%BF%87/" title="Spring MVC 路由解析分号绕过">Spring MVC 路由解析分号绕过</a>
             </li>
             <li>
@@ -230,9 +233,6 @@
             </li>
             <li>
               <a href="/2026/10/17/Neris%20Botnet%20%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" title="Neris Botnet 流量分析">Neris Botnet 流量分析</a>
-            </li>
-            <li>
-              <a href="/2026/10/16/IcedID%20%E6%84%9F%E6%9F%93%E3%80%81Anubis%20VNC%20%E8%BF%9C%E6%8E%A7%E4%B8%8E%20Trickbot%20%E5%9F%9F%E6%8E%A7%E4%BC%A0%E6%92%AD%E7%9A%84%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" title="IcedID 感染、Anubis VNC 远控与 Trickbot 域控传播的流量分析">IcedID 感染、Anubis VNC 远控与 Trickbot 域控传播的流量分析</a>
             </li>
         </ul>
       </div>
@@ -245,8 +245,38 @@
 
           <section id="main" aria-label="Main content">      <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/RC4/" aria-label="RC4" title="RC4"></a>
+      <a class="post-link" href="/2019/05/22/Python%20%E9%80%86%E5%90%91/" aria-label="Python" title="Python"></a>
     <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="Python" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>8.8k 字</span>
+        <span><span class="icon-clock"></span>41 分钟</span>
+      </div>
+      <h2 class="post-title">Python</h2>
+      <article class="post-article">
+          PythonPython 逆向是指对 Python 编写的程序（包括脚本、.pyc 字节码、打包的可执行文件等）进行分析，以理解其逻辑、提取算法、恢复源码或寻找漏洞
+Python 程序的编译与运行机制源码 .py 被编译为 字节码 .pyc，存储在 __pycache__ 目录（Python 3.2+）
+.pyc 文件结构：
+
+前 4 字节：magic number（标识 Python 版本，如 Python 3.8 为 550D）
+
+后 4 或 12 字节：时间戳 + 源码大小（可选）
+
+剩余部分：marshal 序列化后的 code object
+
+
+逆向的核心就是：获取 .pyc → 反
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/RC4/" aria-label="RC4" title="RC4"></a>
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="RC4" class="lazyload">
     </div>
     <div class="post-info">
@@ -266,9 +296,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/RISC-V/" aria-label="RISC-V 架构" title="RISC-V 架构"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="RISC-V 架构" class="lazyload">
     </div>
     <div class="post-info">
@@ -301,9 +331,9 @@ C：压
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/Ret2text/" aria-label="Ret2text" title="Ret2text"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Ret2text" class="lazyload">
     </div>
     <div class="post-info">
@@ -327,6 +357,30 @@ text：.text 段，存放程序机器指令的区域
 因为执行的代码是程序本来就有的，所以它不需要注入 Shellcode，也能绕过 NX 保护
 实战案例帮我取一个题目名称（Ret2text）
 没开金丝雀，read 函数读取大小为 6
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2019/05/22/SMT/" aria-label="SMT" title="SMT"></a>
+    <div class="post-cover left">
+          <img data-src="/images/banner.webp" data-sizes="auto" alt="SMT" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2019-05-22</span>
+        <span><span class="icon-pencil"></span>1.1k 字</span>
+        <span><span class="icon-clock"></span>6 分钟</span>
+      </div>
+      <h2 class="post-title">SMT</h2>
+      <article class="post-article">
+          SMT概述可满足性模理论（Satisfiability Modulo Theories，简称 SMT） 可以看作是一个更强大的 “解方程” 工具。它解决的核心问题是：在特定的数学理论（如整数运算、数组、位向量等）背景下，判断一个逻辑公式是否存在一组解
+工作原理主流的 SMT 求解器多采用 “惰性（Lazy）算法”，其工作流程像一个高效的 “猜-验” 循环：
+
+抽象化：将 SMT 公式中的理论部分（如 x &amp;gt; y）替换为布尔变量，交给内部的 SAT 求解器去 “猜” 一个可能的布尔赋值组合
+
+理论验证：将 SAT 求解器 “猜” 出的布尔组合，还原回具体的理论约束，交给对应的理论求解器（如
       </article>
     </div>
   </div>
@@ -364,32 +418,8 @@ IDA 反编译发现对 Str 和 Destination 进行了操作
 </div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/SMT/" aria-label="SMT" title="SMT"></a>
-    <div class="post-cover left">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="SMT" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1.1k 字</span>
-        <span><span class="icon-clock"></span>6 分钟</span>
-      </div>
-      <h2 class="post-title">SMT</h2>
-      <article class="post-article">
-          SMT概述可满足性模理论（Satisfiability Modulo Theories，简称 SMT） 可以看作是一个更强大的 “解方程” 工具。它解决的核心问题是：在特定的数学理论（如整数运算、数组、位向量等）背景下，判断一个逻辑公式是否存在一组解
-工作原理主流的 SMT 求解器多采用 “惰性（Lazy）算法”，其工作流程像一个高效的 “猜-验” 循环：
-
-抽象化：将 SMT 公式中的理论部分（如 x &amp;gt; y）替换为布尔变量，交给内部的 SAT 求解器去 “猜” 一个可能的布尔赋值组合
-
-理论验证：将 SAT 求解器 “猜” 出的布尔组合，还原回具体的理论约束，交给对应的理论求解器（如
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/Schneider%20%E6%A8%A1%E5%9D%97%E5%9B%BA%E4%BB%B6/" aria-label="Schneider 模块固件" title="Schneider 模块固件"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Schneider 模块固件" class="lazyload">
     </div>
     <div class="post-info">
@@ -410,9 +440,9 @@ IDA 反编译发现对 Str 和 Destination 进行了操作
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/VM%20%E9%80%86%E5%90%91/" aria-label="虚拟机" title="虚拟机"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="虚拟机" class="lazyload">
     </div>
     <div class="post-info">
@@ -440,9 +470,9 @@ IDA 反编译发现对 Str 和 Destination 进行了操作
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/Unity%20%E9%80%86%E5%90%91/" aria-label="Unity" title="Unity"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="Unity" class="lazyload">
     </div>
     <div class="post-info">
@@ -483,9 +513,9 @@ libil2cpp.so &amp;#x2F; GameAssembly.dll + global-metadata.dat
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2019/05/22/VxWorks%20%E5%9B%BA%E4%BB%B6/" aria-label="VxWorks 固件" title="VxWorks 固件"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
           <img data-src="/images/banner.webp" data-sizes="auto" alt="VxWorks 固件" class="lazyload">
     </div>
     <div class="post-info">
@@ -514,31 +544,6 @@ VxWorks 主映像：包含内核、任务、符号表（可选），通常被压
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2019/05/22/WebAssembly%20%E9%80%86%E5%90%91/" aria-label="WebAssembly" title="WebAssembly"></a>
-    <div class="post-cover right">
-          <img data-src="/images/banner.webp" data-sizes="auto" alt="WebAssembly" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2019-05-22</span>
-        <span><span class="icon-pencil"></span>1.2k 字</span>
-        <span><span class="icon-clock"></span>6 分钟</span>
-      </div>
-      <h2 class="post-title">WebAssembly</h2>
-      <article class="post-article">
-          WebAssembly概述WebAssembly（简称 Wasm）是一项为现代 Web 打造的底层、高性能、可移植的字节码格式。它允许使用 C、C++、Rust 等语言编写的代码，在浏览器中以接近原生应用的速度运行
-核心优势
-🚄 高性能：Wasm 是一种紧凑的二进制格式，能被浏览器快速解码和编译为机器码。执行效率接近原生程序，非常适合处理计算密集型任务
-
-🛡️ 高安全性：Wasm 代码运行在一个内存安全的沙箱环境中。它无法直接访问系统内存或执行危险操作，并遵循浏览器同源策略，有效保障了用户安全
-
-🌍 可移植性：作为一套 “虚拟指令集架构”，Wasm 代码不依赖特定硬件或操作系统，编译一次
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <a class="extend prev" rel="prev" href="/page/25/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/27/">下一页 &raquo;</a>
   </nav>
@@ -562,10 +567,10 @@ VxWorks 主映像：包含内核、任务、符号表（可选），通常被压
       </div>
       <div>
         <span class="icon-brush"></span>
-        381.5k
+        382.5k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        31:00
+        31:04
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -593,7 +598,7 @@ VxWorks 主映像：包含内核、任务、符号表（可选），通常被压
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">301</div>
+    <div class="sidebar-state-number">302</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
