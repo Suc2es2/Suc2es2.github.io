@@ -25,7 +25,7 @@
 <meta property="og:description" content="模运算什么是模运算模运算其实就是我们日常生活中的求余数 例如： 现在是下午 10 点，过 5 个小时是几点？ 110 + 5 &#x3D; 15  但是一天只有 24 小时，如果按照 12 小时制计算： 115 - 12 &#x3D; 3  所以答案是下午 3 点 这实际上就是一种模运算 数学表达： 115 mod 12 &#x3D; 3  其中：  15：被除数  12：模数（Modulus）  3：余数   模运算的核心就">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-05-12T06:18:00.000Z">
-<meta property="article:modified_time" content="2026-11-20T06:39:01.397Z">
+<meta property="article:modified_time" content="2026-11-20T06:49:28.217Z">
 <meta property="article:author" content="ALL">
 <meta property="article:tag" content="模运算">
 <meta name="twitter:card" content="summary">
@@ -286,6 +286,7 @@
 <p>第三步：再次取模</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5 mod 7 = 5</span><br></pre></td></tr></table></figure>
 
+<p>所以 <code>(17 + 23) mod 7</code> 的答案是 5</p>
 <h3 id="模减法"><a href="#模减法" class="headerlink" title="模减法"></a>模减法</h3><p>公式：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(a - b) mod n</span><br></pre></td></tr></table></figure>
 
@@ -302,7 +303,8 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-4 + 7 = 3</span><br></pre></td></tr></table></figure>
 
 <p>所以：</p>
-<p>(5 - 9) mod 7 &#x3D; 3</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(5 - 9) mod 7 = 3</span><br></pre></td></tr></table></figure>
+
 <p>注意：在密码学中，负数取模通常要转换为非负余数</p>
 <h3 id="模乘法"><a href="#模乘法" class="headerlink" title="模乘法"></a>模乘法</h3><p>公式：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(a × b) mod n</span><br></pre></td></tr></table></figure>
@@ -560,7 +562,7 @@
           description: "",
           stripContent: "模运算什么是模运算模运算其实就是我们日常生活中的求余数 例如： 现在是下午 10 点，过 5 个小时是几点？ 110 + 5 = 15  但是一天只有 24 小时，如果按照 12 小时制计算： 115 - 12 = 3  所以答案是下午 3 点 这实际上就是一种模运算 数学表达： 115 mod 12 = 3  其中：  15：被除数  12：模数（Modulus）  3：余数   模运算的核心就是：计算一个数除以另一个数之后的余数 模运算的基本表达式例如： 117 mod 5 = 2  因为：",
           date: "Tue May 12 2026 14:18:00 GMT+0800",
-          updated: "Fri Nov 20 2026 14:39:01 GMT+0800",
+          updated: "Fri Nov 20 2026 14:49:28 GMT+0800",
           cover: "/images/banner.webp",
         };
       </script>
